@@ -21,12 +21,6 @@
             <groupId>org.onap.cps</groupId>
             <artifactId>cps-ri</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>

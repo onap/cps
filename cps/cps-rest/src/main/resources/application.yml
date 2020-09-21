@@ -4,6 +4,15 @@ server:
 spring:
     main:
         banner-mode: "off"
+    # for POC only, later this should move to cpi-ri module
+    jpa:
+        hibernate:
+        ddl-auto: create
+    datasource:
+        url: jdbc:mariadb://${DB_HOST}:3306/${DB_NAME}
+        username: ${USERNAME}
+        password: ${PWD}
+        driverClassName: org.mariadb.jdbc.Driver
 
 logging:
     level:

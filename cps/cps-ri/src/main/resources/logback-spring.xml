@@ -19,7 +19,7 @@
         <file>../log/${logName}.log</file>
         <rollingPolicy
             class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${debugLogName}.%d{yyyy-MM-dd}.%i.log.zip
+            <fileNamePattern>${logName}.%d{yyyy-MM-dd}.%i.log.zip
             </fileNamePattern>
             <maxFileSize>${maxFileSize}</maxFileSize>
             <maxHistory>${maxHistory}</maxHistory>
