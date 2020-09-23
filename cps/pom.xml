@@ -1,115 +1,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.onap.oparent</groupId>
-        <artifactId>oparent</artifactId>
-        <version>3.1.0</version>
-    </parent>
-    <groupId>org.onap.cps</groupId>
-    <artifactId>cps</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>cps</name>
-    <description>ONAP Configuration and Persistency Service</description>
-    <organization>
-        <name>ONAP - CPS</name>
-        <url>http://www.onap.org/</url>
-    </organization>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.onap.oparent</groupId>
+    <artifactId>oparent</artifactId>
+    <version>3.1.0</version>
+  </parent>
+  <groupId>org.onap.cps</groupId>
+  <artifactId>cps</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>cps</name>
+  <description>ONAP Configuration and Persistency Service</description>
+  <organization>
+    <name>ONAP - CPS</name>
+    <url>http://www.onap.org/</url>
+  </organization>
 
-    <properties>
-        <version.java.compiler>11</version.java.compiler>
-        <springboot.version>2.3.3.RELEASE</springboot.version>
-        <onap.logging.version>1.6.7</onap.logging.version>
-        <oparent.version>3.1.0</oparent.version>
-    </properties>
+  <properties>
+    <version.java.compiler>11</version.java.compiler>
+    <springboot.version>2.3.3.RELEASE</springboot.version>
+    <oparent.version>3.1.0</oparent.version>
+    <org.opendaylight.yangtools.version>5.0.5</org.opendaylight.yangtools.version>
+  </properties>
 
-    <dependencyManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${springboot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+
+      <resource>
+        <directory>target/generated-sources/license</directory>
+        <includes>
+          <include>third-party-licenses.txt</include>
+        </includes>
+      </resource>
+
+      <resource>
+        <directory>target/generated-resources/licenses</directory>
+        <includes>
+          <include>*.*</include>
+        </includes>
+        <targetPath>third-party-licenses</targetPath>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${version.java.compiler}</source>
+          <target>${version.java.compiler}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>onap-java-style</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
+              <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
+              <includeResources>true</includeResources>
+              <includeTestSourceDirectory>true</includeTestSourceDirectory>
+              <includeTestResources>true</includeTestResources>
+              <consoleOutput>true</consoleOutput>
+              <violationSeverity>warning</violationSeverity>
+              <failsOnViolation>true</failsOnViolation>
+            </configuration>
+          </execution>
+        </executions>
+
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${springboot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+          <dependency>
+            <groupId>org.onap.oparent</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${oparent.version}</version>
+          </dependency>
         </dependencies>
-    </dependencyManagement>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
+      </plugin>
+    </plugins>
+  </build>
 
-            <resource>
-                <directory>target/generated-sources/license</directory>
-                <includes>
-                    <include>third-party-licenses.txt</include>
-                </includes>
-            </resource>
-
-            <resource>
-                <directory>target/generated-resources/licenses</directory>
-                <includes>
-                    <include>*.*</include>
-                </includes>
-                <targetPath>third-party-licenses</targetPath>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${version.java.compiler}</source>
-                    <target>${version.java.compiler}</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>onap-java-style</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                        <configuration>
-                            <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
-                            <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
-                            <includeResources>true</includeResources>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                            <includeTestResources>true</includeTestResources>
-                            <consoleOutput>true</consoleOutput>
-                            <violationSeverity>warning</violationSeverity>
-                            <failsOnViolation>true</failsOnViolation>
-                        </configuration>
-                    </execution>
-                </executions>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>org.onap.oparent</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${oparent.version}</version>
-                        <scope>compile</scope>
-                    </dependency>
-                </dependencies>
-
-            </plugin>
-        </plugins>
-    </build>
-
-    <modules>
-        <module>cps-service</module>
-        <module>cps-rest</module>
-        <module>cps-ri</module>
-    </modules>
+  <modules>
+    <module>cps-service</module>
+    <module>cps-rest</module>
+    <module>cps-ri</module>
+  </modules>
 
 </project>

@@ -22,8 +22,9 @@ package org.onap.cps.rest.config;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.onap.cps.rest.controller.ModelController;
+import org.onap.cps.rest.controller.RestController;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -32,6 +33,7 @@ public class JerseyConfig extends ResourceConfig {
 
     @PostConstruct
     public void init() {
-        register(ModelController.class);
+        register(RestController.class);
+        register(MultiPartFeature.class);
     }
 }
