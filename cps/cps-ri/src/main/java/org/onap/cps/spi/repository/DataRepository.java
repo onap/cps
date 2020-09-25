@@ -19,12 +19,10 @@
 
 package org.onap.cps.spi.repository;
 
-
-import org.onap.cps.spi.entities.ModuleEntity;
+import org.onap.cps.spi.entities.JsonDataEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
-
+public interface DataRepository extends JpaRepository<JsonDataEntity, Integer> {
 }

@@ -19,6 +19,8 @@
 
 package org.onap.cps.rest.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.io.IOException;
 import javax.ws.rs.Consumes;
@@ -41,26 +43,62 @@ public class RestController {
     @Autowired
     private CpService cpService;
 
+    /**
+     * Upload a yang model file.
+     *
+     * @param uploadedFile the yang model file.
+     * @return a http response code.
+     */
     @POST
-    @Path("uploadYangFile")
+    @Path("upload-yang-model-file")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(@FormDataParam("file") File uploadedFile) throws IOException {
+    public final Response uploadYangModelFile(@FormDataParam("file") File uploadedFile) throws IOException {
         try {
-            File fileToParse = renameFileIfNeeded(uploadedFile);
-            SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
+            final File fileToParse = renameFileIfNeeded(uploadedFile);
+            final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
             cpService.storeSchemaContext(schemaContext);
             return Response.status(Status.OK).entity("Yang File Parsed").build();
         } catch (YangParserException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
-    private static File renameFileIfNeeded(File originalFile) {
+    /**
+     * Upload a JSON file.
+     *
+     * @param uploadedFile the JSON file.
+     * @return a http response code.
+     */
+    @POST
+    @Path("upload-yang-json-data-file")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public final Response uploadYangJsonDataFile(@FormDataParam("file") String uploadedFile) {
+        try {
+            validateJsonStructure(uploadedFile);
+            final int persistenceObjectId = cpService.storeJsonStructure(uploadedFile);
+            return Response.status(Status.OK).entity("Object stored in CPS with identity: " + persistenceObjectId)
+                .build();
+        } catch (JsonSyntaxException e) {
+            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    private static final void validateJsonStructure(final String jsonFile) {
+        final Gson gson = new Gson();
+        gson.fromJson(jsonFile, Object.class);
+    }
+
+    private static final File renameFileIfNeeded(File originalFile) {
         if (originalFile.getName().endsWith(".yang")) {
             return originalFile;
         }
-        File renamedFile = new File(originalFile.getName() + ".yang");
+        final File renamedFile = new File(originalFile.getName() + ".yang");
         originalFile.renameTo(renamedFile);
         return renamedFile;
     }

@@ -52,4 +52,11 @@ public interface CpService {
      */
     void storeSchemaContext(final SchemaContext schemaContext);
 
+    /**
+     * Store the JSON structure in the database.
+     *
+     * @param jsonStructure the JSON structure.
+     * @return entity ID.
+     */
+    Integer storeJsonStructure(final String jsonStructure);
 }

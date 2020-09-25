@@ -19,9 +19,8 @@
 
 package org.onap.cps.spi.impl;
 
-
-import org.onap.cps.spi.impl.entities.ModuleEntity;
 import org.onap.cps.spi.ModelPersistencyService;
+import org.onap.cps.spi.entities.ModuleEntity;
 import org.onap.cps.spi.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

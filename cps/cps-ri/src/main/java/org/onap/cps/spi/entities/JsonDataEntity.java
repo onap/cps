@@ -17,7 +17,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.impl.entities;
+package org.onap.cps.spi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,34 +30,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * Entity to store a yang module.
+ * Entity to store a JSON data structure.
  */
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "modules")
-public class ModuleEntity {
+@Table(name = "JsonData")
+public class JsonDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
-    private String name;
+    private String jsonStructure;
 
-    @Column
-    private String moduleContent;
-
-    @Column
-    private String revision;
-
-    public ModuleEntity(String name, String moduleContent, String revision) {
-        this.name = name;
-        this.moduleContent = moduleContent;
-        this.revision = revision;
+    public JsonDataEntity(String jsonStructure) {
+        this.jsonStructure = jsonStructure;
     }
 }

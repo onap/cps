@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 import org.onap.cps.api.CpService;
+import org.onap.cps.spi.DataPersistencyService;
 import org.onap.cps.spi.ModelPersistencyService;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -39,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class CpServiceImpl implements CpService {
@@ -59,8 +61,12 @@ public class CpServiceImpl implements CpService {
     @Autowired
     private ModelPersistencyService modelPersistencyService;
 
+    @Autowired
+    private DataPersistencyService dataPersistencyService;
+
+
     @Override
-    public SchemaContext parseAndValidateModel(final String yangModelContent)
+    public final SchemaContext parseAndValidateModel(final String yangModelContent)
         throws IOException, YangParserException {
         final File tempFile = File.createTempFile("yang", ".yang");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
@@ -72,7 +78,7 @@ public class CpServiceImpl implements CpService {
     }
 
     @Override
-    public SchemaContext parseAndValidateModel(final File yangModelFile) throws IOException, YangParserException {
+    public final SchemaContext parseAndValidateModel(final File yangModelFile) throws IOException, YangParserException {
         final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
         final YangParser yangParser = PARSER_FACTORY.createParser(StatementParserMode.DEFAULT_MODE);
         yangParser.addSource(yangTextSchemaSource);
@@ -80,7 +86,12 @@ public class CpServiceImpl implements CpService {
     }
 
     @Override
-    public void storeSchemaContext(final SchemaContext schemaContext) {
+    public final Integer storeJsonStructure(final String jsonStructure) {
+        return dataPersistencyService.storeJsonStructure(jsonStructure);
+    }
+
+    @Override
+    public final void storeSchemaContext(final SchemaContext schemaContext) {
         for (final Module module : schemaContext.getModules()) {
             modelPersistencyService.storeModule(module.getName(), module.toString(),
                 module.getRevision().toString());

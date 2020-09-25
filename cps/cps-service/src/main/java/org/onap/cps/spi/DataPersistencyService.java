@@ -17,14 +17,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi;
 
+/**
+ * Defines methods to access and manipulate data using the chosen database solution.
+ */
+public interface DataPersistencyService {
 
-import org.onap.cps.spi.entities.ModuleEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
-
+    /**
+     * Store the JSON structure in the database.
+     *
+     * @param jsonStructure the JSON structure.
+     * @return jsonEntityID the ID of the JSON entity.
+     */
+    Integer storeJsonStructure(final String jsonStructure);
 }

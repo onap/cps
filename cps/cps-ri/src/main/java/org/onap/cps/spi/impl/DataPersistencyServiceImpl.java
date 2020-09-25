@@ -17,14 +17,30 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.impl;
+
+import org.onap.cps.spi.DataPersistencyService;
+import org.onap.cps.spi.entities.JsonDataEntity;
+import org.onap.cps.spi.repository.DataRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
-import org.onap.cps.spi.entities.ModuleEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+@Component
+public class DataPersistencyServiceImpl implements DataPersistencyService {
 
-@Repository
-public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
+    @Autowired
+    private DataRepository dataRepository;
 
+    /**
+     * Method to store a JSON data structure in the database.
+     *
+     * @param jsonStructure the JSON data structure.
+     * @return
+     */
+    public final Integer storeJsonStructure(final String jsonStructure) {
+        final JsonDataEntity jsonDataEntity = new JsonDataEntity(jsonStructure);
+        dataRepository.save(jsonDataEntity);
+        return jsonDataEntity.getId();
+    }
 }
