@@ -27,7 +27,7 @@ import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 /**
  * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
  */
-public interface CPService {
+public interface CpService {
 
     /**
      * Parse and validate a string representing a yang model to generate a schema context.

@@ -86,9 +86,9 @@
               <includeResources>true</includeResources>
               <includeTestSourceDirectory>true</includeTestSourceDirectory>
               <includeTestResources>true</includeTestResources>
-              <consoleOutput>true</consoleOutput>
+              <consoleOutput>false</consoleOutput>
               <violationSeverity>warning</violationSeverity>
-              <failsOnViolation>true</failsOnViolation>
+              <failOnViolation>true</failOnViolation>
             </configuration>
           </execution>
         </executions>

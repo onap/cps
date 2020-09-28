@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.onap.cps.api.CPService;
+import org.onap.cps.api.CpService;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RestController {
 
     @Autowired
-    private CPService cpService;
+    private CpService cpService;
 
     @POST
     @Path("uploadYangFile")

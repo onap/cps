@@ -26,9 +26,10 @@ public interface ModelPersistencyService {
 
     /**
      * Store the module from a yang model in the database.
-     * @param name
-     * @param moduleContent
-     * @param revision
+     *
+     * @param name module name
+     * @param moduleContent module content
+     * @param revision module revision
      */
     void storeModule(final String name, final String moduleContent, final String revision);
 

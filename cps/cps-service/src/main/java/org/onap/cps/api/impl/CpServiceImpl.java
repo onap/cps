@@ -26,7 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.ServiceLoader;
-import org.onap.cps.api.CPService;
+import org.onap.cps.api.CpService;
 import org.onap.cps.spi.ModelPersistencyService;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -41,9 +41,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CPServiceImpl implements CPService {
+public class CpServiceImpl implements CpService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(CPServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CpServiceImpl.class);
 
     private static final YangParserFactory PARSER_FACTORY;
 
@@ -65,7 +65,7 @@ public class CPServiceImpl implements CPService {
         final File tempFile = File.createTempFile("yang", ".yang");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
             writer.write(yangModelContent);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             LOGGER.error("Unable to write to temporary file {}", e.getMessage());
         }
         return parseAndValidateModel(tempFile);
