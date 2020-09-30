@@ -23,6 +23,8 @@
     <springboot.version>2.3.3.RELEASE</springboot.version>
     <oparent.version>3.1.0</oparent.version>
     <org.opendaylight.yangtools.version>5.0.5</org.opendaylight.yangtools.version>
+    <version.groovy>3.0.6</version.groovy>
+    <version.spock-core>2.0-M2-groovy-3.0</version.spock-core>
   </properties>
 
   <dependencyManagement>
@@ -102,6 +104,36 @@
         </dependencies>
 
       </plugin>
+
+      <!-- Mandatory plugins for using Spock -->
+      <plugin>
+        <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
+        visit https://github.com/groovy/GMavenPlus/wiki -->
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>1.9.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compileTests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Required because names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <useFile>false</useFile>
+          <includes>
+            <include>**/*Spec.java</include>
+            <include>**/*Test.java</include> <!-- Just in case of having also "normal" JUnit tests -->
+          </includes>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
