@@ -17,27 +17,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps;
 
-import org.onap.cps.spi.DataPersistencyService
-import spock.lang.Specification;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
-
-class CpServiceImplSpec extends Specification {
-
-    def dataPersistencyService = Mock(DataPersistencyService)
-    def objectUnderTest = new CpServiceImpl()
-
-    def setup() {
-        // Insert mocked dependencies
-        objectUnderTest.dataPersistencyService = dataPersistencyService;
-    }
-
-    def 'Cps Service provides to its client the id assigned by the system when storing a data structure'() {
-        given: 'that data persistency service is giving id 123 to a data structure it is asked to store'
-            dataPersistencyService.storeJsonStructure(_) >> 123
-
-        expect: 'Cps service returns the same id when storing data structure'
-            objectUnderTest.storeJsonStructure('') == 123
+/**
+ * Common convenience methods for testing
+ */
+public class TestUtils {
+    /**
+     * Convert a file in the test resource folder to a string
+     *
+     * @param filename to name of the file in test/resources
+     * @return the content of the file as a String
+     * @throws IOException when there is an IO issue
+     */
+    public static String getResourceFileContent(final String filename) throws IOException {
+        File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
+        return new String(Files.readAllBytes(file.toPath()));
     }
 }

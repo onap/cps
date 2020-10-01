@@ -24,18 +24,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.ServiceLoader;
 import org.onap.cps.api.CpService;
 import org.onap.cps.spi.DataPersistencyService;
 import org.onap.cps.spi.ModelPersistencyService;
+import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParser;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserFactory;
-import org.opendaylight.yangtools.yang.model.repo.api.StatementParserMode;
-import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,16 +45,7 @@ public class CpServiceImpl implements CpService {
 
     private static final YangParserFactory PARSER_FACTORY;
 
-    static {
-        final Iterator<YangParserFactory> it =
-            ServiceLoader.load(YangParserFactory.class).iterator();
-        if (!it.hasNext()) {
-            throw new IllegalStateException("No YangParserFactory found");
-        }
-        PARSER_FACTORY = it.next();
-    }
-
-    @Autowired
+     @Autowired
     private ModelPersistencyService modelPersistencyService;
 
     @Autowired
@@ -66,23 +53,18 @@ public class CpServiceImpl implements CpService {
 
 
     @Override
-    public final SchemaContext parseAndValidateModel(final String yangModelContent)
-        throws IOException, YangParserException {
+    public final SchemaContext parseAndValidateModel(final String yangModelContent) throws IOException,
+            YangParserException {
         final File tempFile = File.createTempFile("yang", ".yang");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
             writer.write(yangModelContent);
-        } catch (final IOException e) {
-            LOGGER.error("Unable to write to temporary file {}", e.getMessage());
         }
         return parseAndValidateModel(tempFile);
     }
 
     @Override
     public final SchemaContext parseAndValidateModel(final File yangModelFile) throws IOException, YangParserException {
-        final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
-        final YangParser yangParser = PARSER_FACTORY.createParser(StatementParserMode.DEFAULT_MODE);
-        yangParser.addSource(yangTextSchemaSource);
-        return yangParser.buildEffectiveModel();
+        return YangUtils.parseYangModelFile(yangModelFile);
     }
 
     @Override

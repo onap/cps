@@ -1,0 +1,34 @@
+{
+   "test:bookstore":{
+      "categories":[
+         {
+            "name":"web",
+            "books":[
+               {
+                  "authors":[
+                     "Toine Siebelink","David Lang"
+                  ],
+                  "lang":"en",
+                  "price":"123456",
+                  "pub_year":"2020",
+                  "title":"My first book"
+               }
+            ]
+         },
+         {
+            "name":"art",
+            "books":[
+               {
+                  "authors":[
+                     "Test"
+                  ],
+                  "lang":"en",
+                  "price":"1234",
+                  "pub_year":"2020",
+                  "title":"My 2nd book"
+               }
+            ]
+         }
+      ]
+   }
+}
