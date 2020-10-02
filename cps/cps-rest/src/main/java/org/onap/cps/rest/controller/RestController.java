@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,9 +36,15 @@ import org.onap.cps.api.CpService;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Path("cps")
+@org.springframework.web.bind.annotation.RestController
 public class RestController {
 
     @Autowired
@@ -64,6 +71,13 @@ public class RestController {
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
+    }
+
+    @PostMapping("/model")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String addModel(@RequestParam("file") MultipartFile file) {
+        // Store and return a model dto ...
+        return UUID.randomUUID() + " : " + file.getOriginalFilename();
     }
 
     /**
