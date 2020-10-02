@@ -20,20 +20,38 @@
 
 package org.onap.cps.rest.config;
 
+import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
+import io.swagger.v3.jaxrs2.integration.resources.AcceptHeaderOpenApiResource;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+import io.swagger.v3.oas.integration.OpenApiConfigurationException;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.onap.cps.rest.controller.RestController;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ApplicationPath("/api/v1")
 public class JerseyConfig extends ResourceConfig {
 
+    /**
+     * This method is used to setup Jersey related configuration.
+     */
     @PostConstruct
     public void init() {
-        register(RestController.class);
         register(MultiPartFeature.class);
+        register(OpenApiResource.class);
+        register(AcceptHeaderOpenApiResource.class);
+
+        packages("org.onap.cps.rest.controller");
+        configureSwagger();
+    }
+
+    private void configureSwagger() {
+        try {
+            new JaxrsOpenApiContextBuilder<>().buildContext(true).read();
+        } catch (final OpenApiConfigurationException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
     }
 }

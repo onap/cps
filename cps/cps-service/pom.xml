@@ -14,26 +14,26 @@
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-parser-api</artifactId>
-      <version>${org.opendaylight.yangtools.version}</version>
+      <version>${yangtools.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-parser-impl</artifactId>
-      <version>${org.opendaylight.yangtools.version}</version>
+      <version>${yangtools.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-model-util</artifactId>
-      <version>${org.opendaylight.yangtools.version}</version>
+      <version>${yangtools.version}</version>
     </dependency>
 
     <dependency>
       <!-- required for processing yang data in json format -->
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-data-codec-gson</artifactId>
-      <version>${org.opendaylight.yangtools.version}</version>
+      <version>${yangtools.version}</version>
     </dependency>
 
     <dependency>
@@ -64,13 +64,13 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy</artifactId>
-      <version>${version.groovy}</version>
+      <version>${groovy.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
-      <version>${version.spock-core}</version>
+      <version>${spock-core.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
