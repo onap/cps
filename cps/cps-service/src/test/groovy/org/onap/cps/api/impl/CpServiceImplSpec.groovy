@@ -19,25 +19,64 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.TestUtils
 import org.onap.cps.spi.DataPersistencyService
-import spock.lang.Specification;
-
+import org.opendaylight.yangtools.yang.common.Revision
+import org.opendaylight.yangtools.yang.model.api.SchemaContext
+import org.opendaylight.yangtools.yang.model.parser.api.YangParserException
+import spock.lang.Specification
 
 class CpServiceImplSpec extends Specification {
 
-    def dataPersistencyService = Mock(DataPersistencyService)
+    def mockDataPersistencyService = Mock(DataPersistencyService)
     def objectUnderTest = new CpServiceImpl()
 
     def setup() {
-        // Insert mocked dependencies
-        objectUnderTest.dataPersistencyService = dataPersistencyService;
+        objectUnderTest.dataPersistencyService = mockDataPersistencyService;
     }
 
     def 'Cps Service provides to its client the id assigned by the system when storing a data structure'() {
         given: 'that data persistency service is giving id 123 to a data structure it is asked to store'
-            dataPersistencyService.storeJsonStructure(_) >> 123
-
+            mockDataPersistencyService.storeJsonStructure(_) >> 123
         expect: 'Cps service returns the same id when storing data structure'
             objectUnderTest.storeJsonStructure('') == 123
+    }
+
+    def 'Parse and Validate a Yang Model with a Valid Yang Model'() {
+        given: 'a yang model (file)'
+            def yangModel = TestUtils.getResourceFileContent('bookstore.yang')
+        when: 'a valid model is parsed and validated'
+            def result = objectUnderTest.parseAndValidateModel(yangModel)
+        then: 'Verify a schema context for that model is created with the correct identity'
+            assertModule(result)
+    }
+
+    def 'Parse and Validate a Yang Model Using a File'() {
+        given: 'a yang file that contains a yang model'
+            File file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
+        when: 'a model is parsed and validated'
+            def result = objectUnderTest.parseAndValidateModel(file)
+        then: 'Verify a schema context for that model is created with the correct identity'
+            assertModule(result)
+
+    }
+
+    def assertModule(SchemaContext schemaContext){
+        def optionalModule = schemaContext.findModule('bookstore', Revision.of('2020-09-15'))
+        return schemaContext.modules.size() == 1 && optionalModule.isPresent()
+    }
+
+    def 'Parse and Validate an Invalid Model'() {
+        given: 'a yang file that contains a invalid yang model'
+            File file = new File(ClassLoader.getSystemClassLoader().getResource('invalid.yang').getFile())
+        when: 'the model is parsed and validated'
+            objectUnderTest.parseAndValidateModel(file)
+        then: 'a YangParserException is thrown'
+            thrown(YangParserException)
+    }
+
+    def 'Store a SchemaContext'() {
+        expect: 'No exception to be thrown when a valid model (schema) is stored'
+            objectUnderTest.storeSchemaContext(Stub(SchemaContext.class))
     }
 }
