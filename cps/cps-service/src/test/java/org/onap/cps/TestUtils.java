@@ -24,11 +24,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
- * Common convenience methods for testing
+ * Common convenience methods for testing.
  */
 public class TestUtils {
     /**
-     * Convert a file in the test resource folder to a string
+     * Convert a file in the test resource folder to a string.
      *
      * @param filename to name of the file in test/resources
      * @return the content of the file as a String

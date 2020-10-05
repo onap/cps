@@ -43,9 +43,7 @@ public class CpServiceImpl implements CpService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CpServiceImpl.class);
 
-    private static final YangParserFactory PARSER_FACTORY;
-
-     @Autowired
+    @Autowired
     private ModelPersistencyService modelPersistencyService;
 
     @Autowired
