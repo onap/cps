@@ -28,6 +28,9 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.servlet.ServletProperties;
+import org.onap.cps.rest.controller.ModelController;
+import org.onap.cps.rest.controller.RestController;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -43,8 +46,12 @@ public class JerseyConfig extends ResourceConfig {
         register(OpenApiResource.class);
         register(AcceptHeaderOpenApiResource.class);
 
-        packages("org.onap.cps.rest.controller");
+        // Register controllers
+        register(ModelController.class);
+        register(RestController.class);
+
         configureSwagger();
+        configureSwaggerUI();
     }
 
     private void configureSwagger() {
@@ -54,4 +61,12 @@ public class JerseyConfig extends ResourceConfig {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
+
+    private void configureSwaggerUI() {
+        // Enable Jersey filter forwarding to next filter for 404 responses.
+        // This configuration lets Jersey servlet container forwarding static swagger ui requests to spring mvc filter
+        // to be handle by spring mvc dispatcher servlet.
+        property(ServletProperties.FILTER_FORWARD_ON_404, true);
+    }
+
 }

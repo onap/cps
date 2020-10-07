@@ -77,8 +77,7 @@ public class CpServiceImpl implements CpService {
     @Override
     public final void storeSchemaContext(final SchemaContext schemaContext) {
         for (final Module module : schemaContext.getModules()) {
-            modelPersistencyService.storeModule(module.getName(), module.toString(),
-                module.getRevision().toString());
+            modelPersistencyService.storeModule(module.getName(), module.toString(), module.getRevision().toString());
         }
     }
 }
