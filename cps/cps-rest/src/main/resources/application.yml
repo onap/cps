@@ -2,23 +2,25 @@ server:
   port: 8080
 
 spring:
-  main:
-    banner-mode: "off"
-  # for POC only, later this should move to cpi-ri module
-  jpa:
-    hibernate:
-    ddl-auto: create
-    open-in-view: false
-    properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-  datasource:
-    url: jdbc:mariadb://${DB_HOST}:3306/${DB_NAME}
-    username: ${USERNAME}
-    password: ${PWD}
-    driverClassName: org.mariadb.jdbc.Driver
+    main:
+        banner-mode: "off"
+# for POC only, later this should move to cpi-ri module
+    jpa:
+        ddl-auto: create
+        open-in-view: false
+        properties:
+            hibernate:
+                enable_lazy_load_no_trans: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    datasource:
+        url: jdbc:postgresql://${DB_HOST}:5432/cpsdb
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        driverClassName: org.postgresql.Driver
+        initialization-mode: always
 
 logging:
-  level:
-    org:
-      springframework: INFO
+    level:
+        org:
+            springframework: INFO
