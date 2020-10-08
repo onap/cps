@@ -31,7 +31,6 @@ import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +67,11 @@ public class CpServiceImpl implements CpService {
     @Override
     public final Integer storeJsonStructure(final String jsonStructure) {
         return dataPersistencyService.storeJsonStructure(jsonStructure);
+    }
+
+    @Override
+    public final String getJsonById(final int jsonObjectId) {
+        return dataPersistencyService.getJsonById(jsonObjectId);
     }
 
     @Override

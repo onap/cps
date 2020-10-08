@@ -23,9 +23,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.io.IOException;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -84,6 +87,24 @@ public class RestController {
                 .build();
         } catch (JsonSyntaxException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    /**
+     * Read a JSON Object using the object identifier.
+     *
+     * @param jsonObjectId the JSON object identifier.
+     * @return a HTTP response.
+     */
+    @GET
+    @Path("json-object/{id}")
+    public final Response getJsonObjectById(@PathParam("id") int jsonObjectId) {
+        try {
+            return Response.status(Status.OK).entity(cpService.getJsonById(jsonObjectId)).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }

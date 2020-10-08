@@ -59,4 +59,12 @@ public interface CpService {
      * @return entity ID.
      */
     Integer storeJsonStructure(final String jsonStructure);
+
+    /**
+     * Read a JSON Object using the object identifier.
+     *
+     * @param jsonObjectId the JSON object identifier.
+     * @return the JSON structure.
+     */
+    String getJsonById(final int jsonObjectId);
 }

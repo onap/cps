@@ -31,4 +31,12 @@ public interface DataPersistencyService {
      * @return jsonEntityID the ID of the JSON entity.
      */
     Integer storeJsonStructure(final String jsonStructure);
+
+    /**
+     * Get the JSON structure from the database using the entity identifier.
+     *
+     * @param jsonStructureId the json entity identifier.
+     * @return a JSON Structure.
+     */
+    String getJsonById(int jsonStructureId);
 }

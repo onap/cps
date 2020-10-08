@@ -79,4 +79,21 @@ class CpServiceImplSpec extends Specification {
         expect: 'No exception to be thrown when a valid model (schema) is stored'
             objectUnderTest.storeSchemaContext(Stub(SchemaContext.class))
     }
+
+    def 'Read a JSON object with a valid identifier'(){
+        given: 'that the data persistence service returns a JSON structure for identifier 1'
+            mockDataPersistencyService.getJsonById(1) >> '{name : hello}'
+        expect: 'that the same JSON structure is returned by CPS'
+            objectUnderTest.getJsonById(1) == '{name : hello}'
+    }
+
+    def 'Read a JSON object with an identifier that does not exist'(){
+        given: 'that the data persistence service throws an exception'
+            def exceptionThrownByPersistenceService = new IllegalStateException()
+            mockDataPersistencyService.getJsonById(_) >> {throw exceptionThrownByPersistenceService}
+        when: 'we try to get the JSON structure'
+            objectUnderTest.getJsonById(1);
+        then: 'the same exception is thrown by CPS'
+            thrown(IllegalStateException)
+    }
 }

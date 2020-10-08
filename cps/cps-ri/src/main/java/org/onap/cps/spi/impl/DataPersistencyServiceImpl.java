@@ -36,11 +36,21 @@ public class DataPersistencyServiceImpl implements DataPersistencyService {
      * Method to store a JSON data structure in the database.
      *
      * @param jsonStructure the JSON data structure.
-     * @return
+     * @return the entity identifier.
      */
     public final Integer storeJsonStructure(final String jsonStructure) {
         final JsonDataEntity jsonDataEntity = new JsonDataEntity(jsonStructure);
         dataRepository.save(jsonDataEntity);
         return jsonDataEntity.getId();
+    }
+
+    /**
+     * Return the JSON structure from the database using the object identifier.
+     *
+     * @param jsonStructureId the JSON object identifier.
+     * @return the JSON structure from the database as a string.
+     */
+    public final String getJsonById(final int jsonStructureId) {
+        return dataRepository.getOne(jsonStructureId).getJsonStructure();
     }
 }
