@@ -31,7 +31,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ApplicationPath("/api/v1")
+@ApplicationPath("/api/cps")
 public class JerseyConfig extends ResourceConfig {
 
     /**

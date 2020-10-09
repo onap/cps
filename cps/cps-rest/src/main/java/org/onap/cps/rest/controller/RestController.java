@@ -40,7 +40,8 @@ import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-@Path("cps")
+
+@Path("v1")
 public class RestController {
 
     @Autowired
@@ -53,7 +54,7 @@ public class RestController {
      * @return a http response code.
      */
     @POST
-    @Path("upload-yang-model-file")
+    @Path("/upload-yang-model-file")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public final Response uploadYangModelFile(@FormDataParam("file") File uploadedFile) throws IOException {
@@ -62,9 +63,9 @@ public class RestController {
             final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
             cpService.storeSchemaContext(schemaContext);
             return Response.status(Status.OK).entity("Yang File Parsed").build();
-        } catch (YangParserException e) {
+        } catch (final YangParserException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -76,7 +77,7 @@ public class RestController {
      * @return a http response code.
      */
     @POST
-    @Path("upload-yang-json-data-file")
+    @Path("/upload-yang-json-data-file")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public final Response uploadYangJsonDataFile(@FormDataParam("file") String uploadedFile) {
@@ -85,9 +86,9 @@ public class RestController {
             final int persistenceObjectId = cpService.storeJsonStructure(uploadedFile);
             return Response.status(Status.OK).entity("Object stored in CPS with identity: " + persistenceObjectId)
                 .build();
-        } catch (JsonSyntaxException e) {
+        } catch (final JsonSyntaxException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -99,13 +100,13 @@ public class RestController {
      * @return a HTTP response.
      */
     @GET
-    @Path("json-object/{id}")
+    @Path("/json-object/{id}")
     public final Response getJsonObjectById(@PathParam("id") int jsonObjectId) {
         try {
             return Response.status(Status.OK).entity(cpService.getJsonById(jsonObjectId)).build();
-        } catch (PersistenceException e) {
+        } catch (final PersistenceException e) {
             return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -124,7 +125,3 @@ public class RestController {
         return renamedFile;
     }
 }
-
-
-
-

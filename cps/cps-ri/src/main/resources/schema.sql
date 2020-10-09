@@ -1,8 +1,3 @@
-/*  Initialisation script for CPS.
-
-To be moved to cps-ri in Honolulu.  */
-
-
 CREATE TABLE IF NOT EXISTS RELATION_TYPE
 (
     RELATION_TYPE TEXT NOT NULL,
