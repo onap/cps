@@ -51,7 +51,7 @@ public class CpServiceImpl implements CpService {
 
     @Override
     public final SchemaContext parseAndValidateModel(final String yangModelContent) throws IOException,
-            YangParserException {
+        YangParserException {
         final File tempFile = File.createTempFile("yang", ".yang");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
             writer.write(yangModelContent);
@@ -72,6 +72,11 @@ public class CpServiceImpl implements CpService {
     @Override
     public final String getJsonById(final int jsonObjectId) {
         return dataPersistencyService.getJsonById(jsonObjectId);
+    }
+
+    @Override
+    public void deleteJsonById(int jsonObjectId) {
+        dataPersistencyService.deleteJsonById(jsonObjectId);;
     }
 
     @Override

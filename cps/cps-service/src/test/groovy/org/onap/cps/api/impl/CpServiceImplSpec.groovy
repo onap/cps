@@ -96,4 +96,20 @@ class CpServiceImplSpec extends Specification {
         then: 'the same exception is thrown by CPS'
             thrown(IllegalStateException)
     }
+
+    def 'Delete a JSON object with a valid identifier'(){
+        given: 'that the data persistence service can delete a JSON structure for identifier 1'
+            mockDataPersistencyService.deleteJsonById(1)
+        expect: 'No exception is thrown when we delete a JSON structure with identifier 1'
+            objectUnderTest.deleteJsonById(1)
+    }
+
+    def 'Delete a JSON object with an identifier that does not exist'(){
+        given: 'that the data persistence service throws an exception'
+            mockDataPersistencyService.deleteJsonById(_) >> {throw new IllegalStateException()}
+        when: 'we try to delete a JSON structure'
+            objectUnderTest.deleteJsonById(100);
+        then: 'the same exception is thrown by CPS'
+            thrown(IllegalStateException)
+    }
 }

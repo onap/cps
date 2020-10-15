@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -38,6 +39,7 @@ import org.onap.cps.api.CpService;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 
 
@@ -106,6 +108,25 @@ public class RestController {
             return Response.status(Status.OK).entity(cpService.getJsonById(jsonObjectId)).build();
         } catch (final PersistenceException e) {
             return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (final Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    /**
+     * Delete a JSON Object using the object identifier.
+     *
+     * @param jsonObjectId the JSON object identifier.
+     * @return a HTTP response.
+     */
+    @DELETE
+    @Path("json-object/{id}")
+    public final Response deleteJsonObjectById(@PathParam("id") int jsonObjectId) {
+        try {
+            cpService.deleteJsonById(jsonObjectId);
+            return Response.status(Status.OK).entity(Status.OK.toString()).build();
+        } catch (final EmptyResultDataAccessException e) {
+            return Response.status(Status.NOT_FOUND).entity(Status.NOT_FOUND.toString()).build();
         } catch (final Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }

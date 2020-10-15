@@ -67,4 +67,11 @@ public interface CpService {
      * @return the JSON structure.
      */
     String getJsonById(final int jsonObjectId);
+
+    /**
+     * Delete a JSON Object using the object identifier.
+     *
+     * @param jsonObjectId the JSON object identifier.
+     */
+    void deleteJsonById(final int jsonObjectId);
 }

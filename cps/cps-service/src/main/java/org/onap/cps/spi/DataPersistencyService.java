@@ -39,4 +39,11 @@ public interface DataPersistencyService {
      * @return a JSON Structure.
      */
     String getJsonById(int jsonStructureId);
+
+    /**
+     * Delete the JSON structure from the database using the entity identifier.
+     *
+     * @param jsonStructureId the json entity identifier.
+     */
+    void deleteJsonById(int jsonStructureId);
 }

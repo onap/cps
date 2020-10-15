@@ -38,19 +38,32 @@ public class DataPersistencyServiceImpl implements DataPersistencyService {
      * @param jsonStructure the JSON data structure.
      * @return the entity identifier.
      */
+    @Override
     public final Integer storeJsonStructure(final String jsonStructure) {
         final JsonDataEntity jsonDataEntity = new JsonDataEntity(jsonStructure);
         dataRepository.save(jsonDataEntity);
         return jsonDataEntity.getId();
     }
 
-    /**
+    /*
      * Return the JSON structure from the database using the object identifier.
      *
      * @param jsonStructureId the JSON object identifier.
+     *
      * @return the JSON structure from the database as a string.
      */
+    @Override
     public final String getJsonById(final int jsonStructureId) {
         return dataRepository.getOne(jsonStructureId).getJsonStructure();
+    }
+
+    /**
+     * Delete the JSON structure from the database using the object identifier.
+     *
+     * @param jsonStructureId the JSON object identifier.
+     */
+    @Override
+    public void deleteJsonById(int jsonStructureId) {
+        dataRepository.deleteById(jsonStructureId);
     }
 }
