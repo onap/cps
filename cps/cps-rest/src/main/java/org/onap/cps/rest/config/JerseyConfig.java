@@ -34,7 +34,7 @@ import org.onap.cps.rest.controller.RestController;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ApplicationPath("/api/cps")
+@ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {
 
     /**

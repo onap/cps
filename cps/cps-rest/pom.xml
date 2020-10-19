@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cps-rest</artifactId>
     <parent>
@@ -72,6 +72,21 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!--   Used by the generated API     -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-bundle-jaxrs</artifactId>
+            <version>${cxf-bundle-jaxrs.version}</version>
+        </dependency>
+
+        <!--   Used by the generated API     -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description</artifactId>
+            <version>${cxf-rt-rs-service.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -85,6 +100,33 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>${swagger-codegen.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
+                            <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
+                            <modelPackage>org.onap.cps.rest.model</modelPackage>
+                            <apiPackage>org.onap.cps.rest.controller</apiPackage>
+                            <language>jaxrs-cxf</language>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <dateLibrary>java8</dateLibrary>
+                                <library>jersey2</library>
+                                <interfaceOnly>true</interfaceOnly>
+                            </configOptions>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -107,7 +149,9 @@
                                     <version>${swagger-ui.version}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/swagger-ui-${swagger-ui.version}</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/swagger-ui-${swagger-ui.version}
+                            </outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -125,10 +169,13 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/static/swagger-ui</outputDirectory>
+                            <outputDirectory>${project.build.outputDirectory}/static/swagger-ui
+                            </outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.build.directory}/swagger-ui-${swagger-ui.version}/META-INF/resources/webjars/swagger-ui/${swagger-ui.version}/</directory>
+                                    <directory>
+                                        ${project.build.directory}/swagger-ui-${swagger-ui.version}/META-INF/resources/webjars/swagger-ui/${swagger-ui.version}/
+                                    </directory>
                                     <excludes>
                                         <exclude>**/*.gz</exclude>
                                     </excludes>

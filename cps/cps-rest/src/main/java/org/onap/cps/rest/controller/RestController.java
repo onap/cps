@@ -23,7 +23,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.persistence.PersistenceException;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -34,6 +36,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.onap.cps.api.CpService;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -41,13 +46,65 @@ import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-
-
-@Path("v1")
-public class RestController {
+@Path("cps")
+public class RestController implements CpsResourceApi {
 
     @Autowired
     private CpService cpService;
+
+    @Override
+    public Object createAnchor(Attachment fileDetail, Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object createModules(Attachment fileDetail, Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object createNode(Attachment fileDetail, Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object deleteAnchor(Integer dataspaceName, Integer anchorName) {
+        return null;
+    }
+
+    @Override
+    public Object deleteDataspace(Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object getAnchor(Integer dataspaceName, Integer anchorName) {
+        return null;
+    }
+
+    @Override
+    public Object getAnchors(Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object getModule(Integer dataspaceName, Integer namespaceName, Integer revision) {
+        return null;
+    }
+
+    @Override
+    public Object getNode(@Valid String body, Integer dataspaceName) {
+        return null;
+    }
+
+    @Override
+    public Object getNodeByDataspaceAndAnchor(@Valid String body, Integer dataspaceName, Integer anchorpoint) {
+        return null;
+    }
+
+    /*
+    Old rest endpoints before contract first approach (Need to be removed).
+     */
 
     /**
      * Upload a yang model file.
