@@ -19,6 +19,8 @@ spring:
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
         initialization-mode: always
+    jersey:
+        type: filter
 
 logging:
     level:
