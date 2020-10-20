@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,10 +22,14 @@ package org.onap.cps.spi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,32 +44,41 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "modules")
+@Table(name = "module")
 public class ModuleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private String name;
-
+    @NotNull
     @Column
     private String moduleContent;
 
+    @NotNull
     @Column
     private String revision;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dataspace_id", referencedColumnName = "ID")
+    private Dataspace dataspace;
+
+    @NotNull
+    @Column
+    private String namespace;
 
     /**
      * Initialize a module entity.
      *
-     * @param name the module name.
+     * @param namespace the module namespace.
      * @param moduleContent the module content.
      * @param revision the revision number of the module.
+     * @param dataspace the dataspace related to the module.
      */
-    public ModuleEntity(String name, String moduleContent, String revision) {
-        this.name = name;
+    public ModuleEntity(String namespace, String moduleContent, String revision, Dataspace dataspace) {
+        this.namespace = namespace;
         this.moduleContent = moduleContent;
         this.revision = revision;
+        this.dataspace = dataspace;
     }
 }

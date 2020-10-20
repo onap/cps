@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +22,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.DataPersistencyService
+
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException
@@ -32,7 +34,7 @@ class CpServiceImplSpec extends Specification {
     def objectUnderTest = new CpServiceImpl()
 
     def setup() {
-        objectUnderTest.dataPersistencyService = mockDataPersistencyService;
+        objectUnderTest.dataPersistencyService = mockDataPersistencyService
     }
 
     def 'Cps Service provides to its client the id assigned by the system when storing a data structure'() {
@@ -77,7 +79,7 @@ class CpServiceImplSpec extends Specification {
 
     def 'Store a SchemaContext'() {
         expect: 'No exception to be thrown when a valid model (schema) is stored'
-            objectUnderTest.storeSchemaContext(Stub(SchemaContext.class))
+            objectUnderTest.storeSchemaContext(Stub(SchemaContext.class), "sampleDataspace")
     }
 
     def 'Read a JSON object with a valid identifier'(){

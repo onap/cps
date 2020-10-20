@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,8 +23,6 @@ package org.onap.cps.rest.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import javax.persistence.PersistenceException;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -36,10 +35,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.SecurityContext;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.hibernate.exception.ConstraintViolationException;
 import org.onap.cps.api.CpService;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
@@ -110,19 +108,21 @@ public class RestController implements CpsResourceApi {
      * Upload a yang model file.
      *
      * @param uploadedFile the yang model file.
+     * @param dataspaceName the dataspace name linked to the model.
      * @return a http response code.
      */
     @POST
-    @Path("/upload-yang-model-file")
+    @Path("/dataspaces/{dataspace_name}/modules")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public final Response uploadYangModelFile(@FormDataParam("file") File uploadedFile) throws IOException {
+    public final Response uploadYangModelFile(@FormDataParam("file") File uploadedFile,
+        @PathParam("dataspace_name") String dataspaceName) {
         try {
             final File fileToParse = renameFileIfNeeded(uploadedFile);
             final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
-            cpService.storeSchemaContext(schemaContext);
-            return Response.status(Status.OK).entity("Yang File Parsed").build();
-        } catch (final YangParserException e) {
+            cpService.storeSchemaContext(schemaContext, dataspaceName);
+            return Response.status(Status.CREATED).entity("Resource successfully created").build();
+        } catch (final YangParserException | ConstraintViolationException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         } catch (final Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();

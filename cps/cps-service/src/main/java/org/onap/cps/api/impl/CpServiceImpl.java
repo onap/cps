@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,20 +20,19 @@
 
 package org.onap.cps.api.impl;
 
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Optional;
 import org.onap.cps.api.CpService;
 import org.onap.cps.spi.DataPersistencyService;
 import org.onap.cps.spi.ModelPersistencyService;
 import org.onap.cps.utils.YangUtils;
+import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,14 +40,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CpServiceImpl implements CpService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CpServiceImpl.class);
-
     @Autowired
     private ModelPersistencyService modelPersistencyService;
 
     @Autowired
     private DataPersistencyService dataPersistencyService;
-
 
     @Override
     public final SchemaContext parseAndValidateModel(final String yangModelContent) throws IOException,
@@ -76,13 +73,16 @@ public class CpServiceImpl implements CpService {
 
     @Override
     public void deleteJsonById(int jsonObjectId) {
-        dataPersistencyService.deleteJsonById(jsonObjectId);;
+        dataPersistencyService.deleteJsonById(jsonObjectId);
     }
 
     @Override
-    public final void storeSchemaContext(final SchemaContext schemaContext) {
+    public final void storeSchemaContext(final SchemaContext schemaContext, final String dataspaceName) {
         for (final Module module : schemaContext.getModules()) {
-            modelPersistencyService.storeModule(module.getName(), module.toString(), module.getRevision().toString());
+            Optional<Revision> optionalRevision = module.getRevision();
+            String revisionValue = optionalRevision.isPresent() ? optionalRevision.get().toString() : null;
+            modelPersistencyService.storeModule(module.getNamespace().toString(), module.toString(),
+                revisionValue, dataspaceName);
         }
     }
 }

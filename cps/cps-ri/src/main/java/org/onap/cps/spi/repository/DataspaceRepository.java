@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,22 +17,16 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi;
+package org.onap.cps.spi.repository;
 
-/**
- * Defines methods to access and manipulate data using the chosen database solution.
- */
-public interface ModelPersistencyService {
 
-    /**
-     * Store the module from a yang model in the database.
-     *
-     * @param namespace module namespace
-     * @param moduleContent module content
-     * @param revision module revision
-     * @param dataspaceName the name of the dataspace the module is associated with
-     */
-    void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName);
+import org.onap.cps.spi.entities.Dataspace;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
+    Boolean existsByName(String name); //Checks if there are any records by name()
+
+    Dataspace findByName(String name);
 }

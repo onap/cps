@@ -31,6 +31,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 /**
  * Entity to store a dataspace.
  */
@@ -49,4 +50,13 @@ public class Dataspace {
     @NotNull
     @Column(columnDefinition = "text")
     private String name;
+
+    /**
+     * Initialize a Dataspace .
+     *
+     * @param name the Dataspace name.
+     */
+    public Dataspace(String name) {
+        this.name = name;
+    }
 }

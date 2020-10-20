@@ -60,25 +60,19 @@
     </dependency>
 
     <!-- T E S T   D E P E N D E N C I E S -->
-
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy</artifactId>
-      <version>${groovy.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
-      <version>${spock-core.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib-nodep</artifactId>
-      <version>3.1</version>
-      <scope>test</scope>
     </dependency>
+
   </dependencies>
 
 </project>
