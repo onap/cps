@@ -1,151 +1,153 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.onap.oparent</groupId>
-    <artifactId>oparent</artifactId>
-    <version>3.1.0</version>
-  </parent>
-  <groupId>org.onap.cps</groupId>
-  <artifactId>cps</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>cps</name>
-  <description>ONAP Configuration and Persistency Service</description>
-  <organization>
-    <name>ONAP - CPS</name>
-    <url>http://www.onap.org/</url>
-  </organization>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.onap.oparent</groupId>
+        <artifactId>oparent</artifactId>
+        <version>3.1.0</version>
+    </parent>
+    <groupId>org.onap.cps</groupId>
+    <artifactId>cps</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>cps</name>
+    <description>ONAP Configuration and Persistency Service</description>
+    <organization>
+        <name>ONAP - CPS</name>
+        <url>http://www.onap.org/</url>
+    </organization>
 
-  <properties>
-    <java.version>11</java.version>
-    <springboot.version>2.3.3.RELEASE</springboot.version>
-    <oparent.version>3.1.0</oparent.version>
-    <yangtools.version>5.0.6</yangtools.version>
-    <swagger.version>2.1.4</swagger.version>
-    <groovy.version>3.0.6</groovy.version>
-    <spock-core.version>2.0-M2-groovy-3.0</spock-core.version>
-    <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-    <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-    <maven-replacer-plugin.version>1.5.3</maven-replacer-plugin.version>
-    <swagger-ui.version>3.35.0</swagger-ui.version>
-  </properties>
+    <properties>
+        <java.version>11</java.version>
+        <springboot.version>2.3.3.RELEASE</springboot.version>
+        <oparent.version>3.1.0</oparent.version>
+        <yangtools.version>5.0.6</yangtools.version>
+        <swagger.version>2.1.4</swagger.version>
+        <groovy.version>3.0.6</groovy.version>
+        <spock-core.version>2.0-M2-groovy-3.0</spock-core.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-replacer-plugin.version>1.5.3</maven-replacer-plugin.version>
+        <swagger-ui.version>3.35.0</swagger-ui.version>
+        <hibernate-types.version>2.10.0</hibernate-types.version>
+    </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${springboot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-
-      <resource>
-        <directory>target/generated-sources/license</directory>
-        <includes>
-          <include>third-party-licenses.txt</include>
-        </includes>
-      </resource>
-
-      <resource>
-        <directory>target/generated-resources/licenses</directory>
-        <includes>
-          <include>*.*</include>
-        </includes>
-        <targetPath>third-party-licenses</targetPath>
-      </resource>
-    </resources>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>onap-java-style</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
-              <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
-              <includeResources>true</includeResources>
-              <includeTestSourceDirectory>true</includeTestSourceDirectory>
-              <includeTestResources>true</includeTestResources>
-              <consoleOutput>false</consoleOutput>
-              <violationSeverity>warning</violationSeverity>
-              <failOnViolation>true</failOnViolation>
-            </configuration>
-          </execution>
-        </executions>
-
+    <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>org.onap.oparent</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${oparent.version}</version>
-          </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
+    </dependencyManagement>
 
-      </plugin>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
 
-      <!-- Mandatory plugins for using Spock -->
-      <plugin>
-        <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
-        visit https://github.com/groovy/GMavenPlus/wiki -->
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.9.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- Required because names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-        <configuration>
-          <useFile>false</useFile>
-          <includes>
-            <include>**/*Spec.java</include>
-            <include>**/*Test.java</include> <!-- Just in case of having also "normal" JUnit tests -->
-          </includes>
-        </configuration>
-      </plugin>
+            <resource>
+                <directory>target/generated-sources/license</directory>
+                <includes>
+                    <include>third-party-licenses.txt</include>
+                </includes>
+            </resource>
 
-    </plugins>
-  </build>
+            <resource>
+                <directory>target/generated-resources/licenses</directory>
+                <includes>
+                    <include>*.*</include>
+                </includes>
+                <targetPath>third-party-licenses</targetPath>
+            </resource>
+        </resources>
 
-  <modules>
-    <module>cps-service</module>
-    <module>cps-rest</module>
-    <module>cps-ri</module>
-  </modules>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>onap-java-style</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
+                            <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
+                            <includeResources>true</includeResources>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <includeTestResources>true</includeTestResources>
+                            <consoleOutput>false</consoleOutput>
+                            <violationSeverity>warning</violationSeverity>
+                            <failOnViolation>true</failOnViolation>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.onap.oparent</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${oparent.version}</version>
+                    </dependency>
+                </dependencies>
+
+            </plugin>
+
+            <!-- Mandatory plugins for using Spock -->
+            <plugin>
+                <!-- The gmavenplus plugin is used to compile Groovy code. 
+                    To learn more about this plugin, visit https://github.com/groovy/GMavenPlus/wiki -->
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.9.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Required because names of spec classes don't match default 
+                Surefire patterns (`*Test` etc.) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Spec.java</include>
+                        <include>**/*Test.java</include> <!-- Just in case of having also "normal" JUnit tests -->
+                    </includes>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <modules>
+        <module>cps-service</module>
+        <module>cps-rest</module>
+        <module>cps-ri</module>
+    </modules>
 
 </project>
