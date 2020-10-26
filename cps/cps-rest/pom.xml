@@ -2,27 +2,24 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cps-rest</artifactId>
     <parent>
         <groupId>org.onap.cps</groupId>
-        <artifactId>cps</artifactId>
+        <artifactId>cps-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../cps-parent/pom.xml</relativePath>
     </parent>
 
+    <artifactId>cps-rest</artifactId>
+
     <dependencies>
-
         <dependency>
-            <groupId>org.onap.cps</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>cps-service</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.onap.cps</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>cps-ri</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -33,24 +30,18 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
-
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-jaxrs2</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -62,7 +53,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -70,93 +60,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
-
             <plugin>
                 <!-- Download Swagger UI webjar. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven-dependency-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.webjars</groupId>
-                                    <artifactId>swagger-ui</artifactId>
-                                    <version>${swagger-ui.version}</version>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/swagger-ui-${swagger-ui.version}
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <!-- Copy Swagger UI resources to static resources directory. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/static/swagger-ui
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>
-                                        ${project.build.directory}/swagger-ui-${swagger-ui.version}/META-INF/resources/webjars/swagger-ui/${swagger-ui.version}/
-                                    </directory>
-                                    <excludes>
-                                        <exclude>**/*.gz</exclude>
-                                    </excludes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <!-- Replace the OpenAPI specification example URL with the local one. -->
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>replacer</artifactId>
-                <version>${maven-replacer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <file>${project.build.outputDirectory}/static/swagger-ui/index.html</file>
-                    <replacements>
-                        <replacement>
-                            <token>https://petstore.swagger.io/v2/swagger.json</token>
-                            <value>/api/cps/openapi.json</value>
-                        </replacement>
-                    </replacements>
-                </configuration>
             </plugin>
         </plugins>
     </build>
