@@ -21,8 +21,7 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       responses:
         200:
           description: OK
@@ -51,8 +50,7 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       responses:
         200:
           description: OK
@@ -80,8 +78,7 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       requestBody:
         content:
           multipart/form-data:
@@ -125,15 +122,13 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
         - name: anchor-name
           in: path
           description: anchor-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       responses:
         200:
           description: OK
@@ -161,15 +156,13 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
         - name: anchor-name
           in: path
           description: anchor-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       responses:
         200:
           description: OK
@@ -193,20 +186,18 @@ paths:
       summary: Get a node given an anchor for the given dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
-        - name: dataspaceName
+        - name: dataspace-name
           in: path
-          description: dataspaceName
+          description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
-        - name: anchorpoint
+            type: string
+        - name: anchor-name
           in: path
-          description: anchorpoint
+          description: anchor-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       requestBody:
         description: xpath
         content:
@@ -238,25 +229,22 @@ paths:
       summary: Read all yang modules in the store
       operationId: getModule
       parameters:
-        - name: dataspaceName
+        - name: dataspace-name
           in: path
-          description: dataspaceName
+          description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
         - name: namespace-name
           in: query
           description: namespace-name
           schema:
-            type: integer
-            format: int32
+            type: string
         - name: revision
           in: query
           description: revision
           schema:
-            type: integer
-            format: int32
+            type: string
       responses:
         200:
           description: OK
@@ -284,8 +272,7 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       requestBody:
         content:
           multipart/form-data:
@@ -324,13 +311,12 @@ paths:
       summary: Get all nodes for a given dataspace using an xpath or schema node identifier
       operationId: getNode
       parameters:
-        - name: dataspaceName
+        - name: dataspace-name
           in: path
-          description: dataspaceName
+          description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       requestBody:
         description: requestBody
         content:
@@ -366,8 +352,7 @@ paths:
           description: dataspace-name
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
       requestBody:
         content:
           multipart/form-data:

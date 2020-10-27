@@ -51,52 +51,53 @@ public class RestController implements CpsResourceApi {
     private CpService cpService;
 
     @Override
-    public Object createAnchor(Attachment fileDetail, Integer dataspaceName) {
+    public Object createAnchor(final Attachment fileDetail, final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object createModules(Attachment fileDetail, Integer dataspaceName) {
+    public Object createModules(final Attachment fileDetail, final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object createNode(Attachment fileDetail, Integer dataspaceName) {
+    public Object createNode(final Attachment fileDetail, final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object deleteAnchor(Integer dataspaceName, Integer anchorName) {
+    public Object deleteAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
 
     @Override
-    public Object deleteDataspace(Integer dataspaceName) {
+    public Object deleteDataspace(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object getAnchor(Integer dataspaceName, Integer anchorName) {
+    public Object getAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
 
     @Override
-    public Object getAnchors(Integer dataspaceName) {
+    public Object getAnchors(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object getModule(Integer dataspaceName, Integer namespaceName, Integer revision) {
+    public Object getModule(final String dataspaceName, final String namespaceName, final String revision) {
         return null;
     }
 
     @Override
-    public Object getNode(@Valid String body, Integer dataspaceName) {
+    public Object getNode(@Valid final String body, final String dataspaceName) {
         return null;
     }
 
     @Override
-    public Object getNodeByDataspaceAndAnchor(@Valid String body, Integer dataspaceName, Integer anchorpoint) {
+    public Object getNodeByDataspaceAndAnchor(@Valid final String body, final String dataspaceName,
+        final String anchorName) {
         return null;
     }
 
@@ -139,7 +140,7 @@ public class RestController implements CpsResourceApi {
     @Path("/upload-yang-json-data-file")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public final Response uploadYangJsonDataFile(@FormDataParam("file") String uploadedFile) {
+    public final Response uploadYangJsonDataFile(@FormDataParam("file") final String uploadedFile) {
         try {
             validateJsonStructure(uploadedFile);
             final int persistenceObjectId = cpService.storeJsonStructure(uploadedFile);
@@ -160,7 +161,7 @@ public class RestController implements CpsResourceApi {
      */
     @GET
     @Path("/json-object/{id}")
-    public final Response getJsonObjectById(@PathParam("id") int jsonObjectId) {
+    public final Response getJsonObjectById(@PathParam("id") final int jsonObjectId) {
         try {
             return Response.status(Status.OK).entity(cpService.getJsonById(jsonObjectId)).build();
         } catch (final PersistenceException e) {
@@ -178,7 +179,7 @@ public class RestController implements CpsResourceApi {
      */
     @DELETE
     @Path("json-object/{id}")
-    public final Response deleteJsonObjectById(@PathParam("id") int jsonObjectId) {
+    public final Response deleteJsonObjectById(@PathParam("id") final int jsonObjectId) {
         try {
             cpService.deleteJsonById(jsonObjectId);
             return Response.status(Status.OK).entity(Status.OK.toString()).build();
@@ -194,7 +195,7 @@ public class RestController implements CpsResourceApi {
         gson.fromJson(jsonFile, Object.class);
     }
 
-    private static final File renameFileIfNeeded(File originalFile) {
+    private static final File renameFileIfNeeded(final File originalFile) {
         if (originalFile.getName().endsWith(".yang")) {
             return originalFile;
         }
