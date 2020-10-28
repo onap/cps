@@ -21,11 +21,10 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.exceptions.CpsValidationException
 import org.onap.cps.spi.DataPersistencyService
-
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException
 import spock.lang.Specification
 
 class CpServiceImplSpec extends Specification {
@@ -73,8 +72,8 @@ class CpServiceImplSpec extends Specification {
             File file = new File(ClassLoader.getSystemClassLoader().getResource('invalid.yang').getFile())
         when: 'the model is parsed and validated'
             objectUnderTest.parseAndValidateModel(file)
-        then: 'a YangParserException is thrown'
-            thrown(YangParserException)
+        then: 'a CpsValidationException is thrown'
+            thrown(CpsValidationException)
     }
 
     def 'Store a SchemaContext'() {

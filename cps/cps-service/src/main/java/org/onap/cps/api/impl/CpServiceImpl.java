@@ -26,6 +26,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 import org.onap.cps.api.CpService;
+import org.onap.cps.exceptions.CpsException;
+import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.DataPersistencyService;
 import org.onap.cps.spi.ModelPersistencyService;
 import org.onap.cps.utils.YangUtils;
@@ -47,18 +49,28 @@ public class CpServiceImpl implements CpService {
     private DataPersistencyService dataPersistencyService;
 
     @Override
-    public final SchemaContext parseAndValidateModel(final String yangModelContent) throws IOException,
-        YangParserException {
-        final File tempFile = File.createTempFile("yang", ".yang");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-            writer.write(yangModelContent);
+    public final SchemaContext parseAndValidateModel(final String yangModelContent) {
+
+        try {
+            final File tempFile = File.createTempFile("yang", ".yang");
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                writer.write(yangModelContent);
+            }
+            return parseAndValidateModel(tempFile);
+        } catch (IOException e) {
+            throw new CpsException(e);
         }
-        return parseAndValidateModel(tempFile);
     }
 
     @Override
-    public final SchemaContext parseAndValidateModel(final File yangModelFile) throws IOException, YangParserException {
-        return YangUtils.parseYangModelFile(yangModelFile);
+    public final SchemaContext parseAndValidateModel(final File yangModelFile) {
+        try {
+            return YangUtils.parseYangModelFile(yangModelFile);
+        } catch (YangParserException e) {
+            throw new CpsValidationException("Yang file validation failed", e.getMessage());
+        } catch (IOException e) {
+            throw new CpsException(e);
+        }
     }
 
     @Override

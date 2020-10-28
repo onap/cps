@@ -26,15 +26,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.persistence.PersistenceException;
 import javax.validation.Valid;
-import org.hibernate.exception.ConstraintViolationException;
 import org.onap.cps.api.CpService;
+import org.onap.cps.exceptions.CpsException;
+import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.api.CpsRestApi;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -58,16 +56,10 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> createModules(@Valid MultipartFile multipartFile, String dataspaceName) {
-        try {
-            final File fileToParse = saveToFile(multipartFile);
-            final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
-            cpService.storeSchemaContext(schemaContext, dataspaceName);
-            return new ResponseEntity<>("Resource successfully created", HttpStatus.CREATED);
-        } catch (final YangParserException | ConstraintViolationException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (final Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        final File fileToParse = saveToFile(multipartFile);
+        final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
+        cpService.storeSchemaContext(schemaContext, dataspaceName);
+        return new ResponseEntity<>("Resource successfully created", HttpStatus.CREATED);
     }
 
     @Override
@@ -124,16 +116,11 @@ public class CpsRestController implements CpsRestApi {
     @PostMapping("/upload-yang-json-data-file")
     public final ResponseEntity<String> uploadYangJsonDataFile(
         @RequestParam("file") MultipartFile uploadedFile) {
-        try {
-            validateJsonStructure(uploadedFile);
-            final int persistenceObjectId = cpService.storeJsonStructure(new String(uploadedFile.getBytes()));
-            return new ResponseEntity<String>(
-                "Object stored in CPS with identity: " + persistenceObjectId, HttpStatus.OK);
-        } catch (final JsonSyntaxException e) {
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (final Exception e) {
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        validateJsonStructure(uploadedFile);
+        final int persistenceObjectId = cpService.storeJsonStructure(getJsonString(uploadedFile));
+        return new ResponseEntity<String>(
+            "Object stored in CPS with identity: " + persistenceObjectId, HttpStatus.OK);
+
     }
 
     /**
@@ -145,13 +132,7 @@ public class CpsRestController implements CpsRestApi {
     @GetMapping("/json-object/{id}")
     public final ResponseEntity<String> getJsonObjectById(
         @PathVariable("id") final int jsonObjectId) {
-        try {
-            return new ResponseEntity<String>(cpService.getJsonById(jsonObjectId), HttpStatus.OK);
-        } catch (final PersistenceException e) {
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (final Exception e) {
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<String>(cpService.getJsonById(jsonObjectId), HttpStatus.OK);
     }
 
     /**
@@ -163,30 +144,39 @@ public class CpsRestController implements CpsRestApi {
     @DeleteMapping("json-object/{id}")
     public final ResponseEntity<Object> deleteJsonObjectById(
         @PathVariable("id") final int jsonObjectId) {
+        cpService.deleteJsonById(jsonObjectId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    private static void validateJsonStructure(final MultipartFile multipartFile) {
         try {
-            cpService.deleteJsonById(jsonObjectId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (final EmptyResultDataAccessException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND.toString(), HttpStatus.NOT_FOUND);
-        } catch (final Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            final Gson gson = new Gson();
+            gson.fromJson(getJsonString(multipartFile), Object.class);
+        } catch (JsonSyntaxException e) {
+            throw new CpsValidationException("Not a valid JSON file.", e);
         }
     }
 
-    private static final void validateJsonStructure(final MultipartFile jsonFile)
-        throws JsonSyntaxException, IOException {
-        final Gson gson = new Gson();
-        gson.fromJson(new String(jsonFile.getBytes()), Object.class);
+    private static File saveToFile(final MultipartFile multipartFile) {
+        try {
+            final File file = File.createTempFile("tempFile", ".yang");
+            file.deleteOnExit();
+
+            try (OutputStream outputStream = new FileOutputStream(file)) {
+                outputStream.write(multipartFile.getBytes());
+            }
+            return file;
+
+        } catch (IOException e) {
+            throw new CpsException(e);
+        }
     }
 
-    private static final File saveToFile(final MultipartFile multipartFile)
-        throws IOException {
-        final File file = File.createTempFile("tempFile", ".yang");
-        file.deleteOnExit();
-
-        try (OutputStream outputStream = new FileOutputStream(file)) {
-            outputStream.write(multipartFile.getBytes());
+    private static String getJsonString(final MultipartFile multipartFile) {
+        try {
+            return new String(multipartFile.getBytes());
+        } catch (IOException e) {
+            throw new CpsException(e);
         }
-        return file;
     }
 }

@@ -36,7 +36,7 @@ public interface CpService {
      * @param yangModelContent the input stream
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(final String yangModelContent) throws IOException, YangParserException;
+    SchemaContext parseAndValidateModel(final String yangModelContent);
 
     /**
      * Parse and validate a file representing a yang model to generate a schema context.
@@ -44,7 +44,7 @@ public interface CpService {
      * @param yangModelFile the yang file
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(final File yangModelFile) throws IOException, YangParserException;
+    SchemaContext parseAndValidateModel(final File yangModelFile);
 
     /**
      * Store schema context for a yang model.
