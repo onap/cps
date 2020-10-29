@@ -24,6 +24,18 @@ spring:
     jersey:
         type: filter
 
+# Actuator
+management:
+    endpoints:
+        web:
+            base-path: /manage
+    endpoint:
+        health:
+            show-details: always
+            # kubernetes probes: liveness and readiness
+            probes:
+                enabled: true
+
 logging:
     level:
         org:
