@@ -24,18 +24,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -73,20 +63,6 @@
             </exclusions>
         </dependency>
 
-        <!--   Used by the generated API     -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-bundle-jaxrs</artifactId>
-            <version>${cxf-bundle-jaxrs.version}</version>
-        </dependency>
-
-        <!--   Used by the generated API     -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-service-description</artifactId>
-            <version>${cxf-rt-rs-service.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -104,32 +80,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>${swagger-codegen.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
-                            <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
-                            <modelPackage>org.onap.cps.rest.model</modelPackage>
-                            <apiPackage>org.onap.cps.rest.controller</apiPackage>
-                            <language>jaxrs-cxf</language>
-                            <generateSupportingFiles>true</generateSupportingFiles>
-                            <configOptions>
-                                <sourceFolder>src/gen/java</sourceFolder>
-                                <dateLibrary>java8</dateLibrary>
-                                <library>jersey2</library>
-                                <interfaceOnly>true</interfaceOnly>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <!-- Download Swagger UI webjar. -->
                 <groupId>org.apache.maven.plugins</groupId>
