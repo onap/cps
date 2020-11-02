@@ -22,6 +22,7 @@
         <maven-replacer-plugin.version>1.5.3</maven-replacer-plugin.version>
         <oparent.version>3.1.0</oparent.version>
         <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
+        <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
         <swagger-ui.version>3.35.0</swagger-ui.version>
     </properties>
 
@@ -75,6 +76,33 @@
                             <goals>
                                 <goal>repackage</goal>
                             </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Swagger code generation. -->
+                <plugin>
+                    <groupId>io.swagger.codegen.v3</groupId>
+                    <artifactId>swagger-codegen-maven-plugin</artifactId>
+                    <version>${swagger-codegen-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
+                                <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
+                                <modelPackage>org.onap.cps.rest.model</modelPackage>
+                                <apiPackage>org.onap.cps.rest.api</apiPackage>
+                                <language>spring</language>
+                                <generateSupportingFiles>false</generateSupportingFiles>
+                                <configOptions>
+                                    <sourceFolder>src/gen/java</sourceFolder>
+                                    <dateLibrary>java11</dateLibrary>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <useTags>true</useTags>
+                                </configOptions>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>

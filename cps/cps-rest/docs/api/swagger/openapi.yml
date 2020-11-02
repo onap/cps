@@ -6,13 +6,13 @@ info:
 servers:
   - url: //localhost:8088/
 tags:
-  - name: cps-resource
+  - name: cps-rest
     description: cps Resource
 paths:
   /v1/dataspaces/{dataspace-name}/:
     delete:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Delete the given dataspace
       operationId: deleteDataspace
       parameters:
@@ -41,7 +41,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Read all anchors, given a dataspace
       operationId: getAnchors
       parameters:
@@ -69,7 +69,7 @@ paths:
           content: {}
     post:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Create a new anchor in the given dataspace
       operationId: createAnchor
       parameters:
@@ -86,9 +86,9 @@ paths:
               required:
                 - file
               properties:
-                file:
+                multipartFile:
                   type: string
-                  description: file
+                  description: multipartFile
                   format: binary
         required: true
       responses:
@@ -113,7 +113,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
     get:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Read an anchor given a anchor and a dataspace
       operationId: getAnchor
       parameters:
@@ -147,7 +147,7 @@ paths:
           content: {}
     delete:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Delete an anchor given a anchor and a dataspace
       operationId: deleteAnchor
       parameters:
@@ -182,7 +182,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     get:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Get a node given an anchor for the given dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
@@ -225,7 +225,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/modules:
     get:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Read all yang modules in the store
       operationId: getModule
       parameters:
@@ -263,7 +263,7 @@ paths:
           content: {}
     post:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Create modules for the given dataspace
       operationId: createModules
       parameters:
@@ -280,9 +280,9 @@ paths:
               required:
                 - file
               properties:
-                file:
+                multipartFile:
                   type: string
-                  description: file
+                  description: multipartFile
                   format: binary
         required: true
       responses:
@@ -307,7 +307,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/nodes:
     get:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Get all nodes for a given dataspace using an xpath or schema node identifier
       operationId: getNode
       parameters:
@@ -343,7 +343,7 @@ paths:
       x-codegen-request-body-name: requestBody
     post:
       tags:
-        - cps-resource
+        - cps-rest
       summary: Create a node for a given anchor for the given dataspace
       operationId: createNode
       parameters:
@@ -360,9 +360,9 @@ paths:
               required:
                 - file
               properties:
-                file:
+                multipartFile:
                   type: string
-                  description: file
+                  description: multipartFile
                   format: binary
         required: true
       responses:
