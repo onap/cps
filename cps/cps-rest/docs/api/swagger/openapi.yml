@@ -1,0 +1,387 @@
+openapi: 3.0.1
+info:
+  title: CPS API
+  description: Configuration Persistence Service API
+  version: "1.0"
+servers:
+  - url: //localhost:8088/
+tags:
+  - name: cps-rest
+    description: cps Resource
+paths:
+  /v1/dataspaces/{dataspace-name}/:
+    delete:
+      tags:
+        - cps-rest
+      summary: Delete the given dataspace
+      operationId: deleteDataspace
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+  /v1/dataspaces/{dataspace-name}/anchors:
+    get:
+      tags:
+        - cps-rest
+      summary: Read all anchors, given a dataspace
+      operationId: getAnchors
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+    post:
+      tags:
+        - cps-rest
+      summary: Create a new anchor in the given dataspace
+      operationId: createAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                multipartFile:
+                  type: string
+                  description: multipartFile
+                  format: binary
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
+    get:
+      tags:
+        - cps-rest
+      summary: Read an anchor given a anchor and a dataspace
+      operationId: getAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+    delete:
+      tags:
+        - cps-rest
+      summary: Delete an anchor given a anchor and a dataspace
+      operationId: deleteAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
+    get:
+      tags:
+        - cps-rest
+      summary: Get a node given an anchor for the given dataspace
+      operationId: getNodeByDataspaceAndAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: xpath
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      x-codegen-request-body-name: xpath
+  /v1/dataspaces/{dataspace-name}/modules:
+    get:
+      tags:
+        - cps-rest
+      summary: Read all yang modules in the store
+      operationId: getModule
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: namespace-name
+          in: query
+          description: namespace-name
+          schema:
+            type: string
+        - name: revision
+          in: query
+          description: revision
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+    post:
+      tags:
+        - cps-rest
+      summary: Create modules for the given dataspace
+      operationId: createModules
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                multipartFile:
+                  type: string
+                  description: multipartFile
+                  format: binary
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+  /v1/dataspaces/{dataspace-name}/nodes:
+    get:
+      tags:
+        - cps-rest
+      summary: Get all nodes for a given dataspace using an xpath or schema node identifier
+      operationId: getNode
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: requestBody
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      x-codegen-request-body-name: requestBody
+    post:
+      tags:
+        - cps-rest
+      summary: Create a node for a given anchor for the given dataspace
+      operationId: createNode
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                multipartFile:
+                  type: string
+                  description: multipartFile
+                  format: binary
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+components: {}

@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.onap.oparent</groupId>
+        <artifactId>oparent</artifactId>
+        <version>3.1.0</version>
+    </parent>
+
+    <groupId>org.onap.cps</groupId>
+    <artifactId>cps-aggregator</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>cps</name>
+    <description>ONAP Configuration and Persistency Service</description>
+
+    <organization>
+        <name>ONAP - CPS</name>
+        <url>http://www.onap.org/</url>
+    </organization>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
+    </properties>
+
+    <modules>
+        <module>cps-dependencies</module>
+        <module>cps-bom</module>
+        <module>cps-parent</module>
+        <module>cps-service</module>
+        <module>cps-rest</module>
+        <module>cps-ri</module>
+    </modules>
+</project>
