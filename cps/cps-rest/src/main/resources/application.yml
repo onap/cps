@@ -22,6 +22,18 @@ spring:
         driverClassName: org.postgresql.Driver
         initialization-mode: always
 
+# Actuator
+management:
+    endpoints:
+        web:
+            base-path: /manage
+    endpoint:
+        health:
+            show-details: always
+            # kubernetes probes: liveness and readiness
+            probes:
+                enabled: true
+
 logging:
     level:
         org:
