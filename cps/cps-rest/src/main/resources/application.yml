@@ -1,7 +1,7 @@
 server:
-  port: 8080
-  servlet:
-     context-path: /api/cps
+    port: 8080
+    servlet:
+        context-path: /api/cps
 
 spring:
     main:
@@ -21,8 +21,6 @@ spring:
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
         initialization-mode: always
-    jersey:
-        type: filter
 
 logging:
     level:

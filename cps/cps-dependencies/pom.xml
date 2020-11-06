@@ -17,7 +17,7 @@
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <spock-core.version>2.0-M2-groovy-3.0</spock-core.version>
         <springboot.version>2.3.3.RELEASE</springboot.version>
-        <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
+        <springfox.version>3.0.0</springfox.version>
         <swagger.version>2.1.4</swagger.version>
         <yangtools.version>5.0.6</yangtools.version>
     </properties>
@@ -44,19 +44,9 @@
                 <version>${swagger.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-jaxrs2</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${springfox-swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox-swagger2.version}</version>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.vladmihalcea</groupId>
