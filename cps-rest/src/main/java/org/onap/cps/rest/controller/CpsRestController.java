@@ -27,10 +27,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import javax.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpService;
+import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.api.CpsRestApi;
+import org.onap.cps.rest.model.Anchor;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,9 +52,22 @@ public class CpsRestController implements CpsRestApi {
     @Autowired
     private CpService cpService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+    /**
+     * Create a new anchor.
+     *
+     * @param anchor the anchor details object.
+     * @param dataspaceName the dataspace name.
+     * @return a ResponseEntity with the anchor name.
+     */
     @Override
-    public ResponseEntity<Object> createAnchor(@Valid MultipartFile multipartFile, String dataspaceName) {
-        return null;
+    public final ResponseEntity<String> createAnchor(@Valid Anchor anchor, String dataspaceName) {
+        final AnchorDetails anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
+        anchorDetails.setDataspace(dataspaceName);
+        final String anchorName = cpService.createAnchor(anchorDetails);
+        return new ResponseEntity<String>(anchorName, HttpStatus.CREATED);
     }
 
     @Override
@@ -152,7 +168,7 @@ public class CpsRestController implements CpsRestApi {
         try {
             final Gson gson = new Gson();
             gson.fromJson(getJsonString(multipartFile), Object.class);
-        } catch (JsonSyntaxException e) {
+        } catch (final JsonSyntaxException e) {
             throw new CpsValidationException("Not a valid JSON file.", e);
         }
     }
@@ -161,13 +177,12 @@ public class CpsRestController implements CpsRestApi {
         try {
             final File file = File.createTempFile("tempFile", ".yang");
             file.deleteOnExit();
-
             try (OutputStream outputStream = new FileOutputStream(file)) {
                 outputStream.write(multipartFile.getBytes());
             }
             return file;
 
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CpsException(e);
         }
     }
@@ -175,7 +190,7 @@ public class CpsRestController implements CpsRestApi {
     private static String getJsonString(final MultipartFile multipartFile) {
         try {
             return new String(multipartFile.getBytes());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CpsException(e);
         }
     }

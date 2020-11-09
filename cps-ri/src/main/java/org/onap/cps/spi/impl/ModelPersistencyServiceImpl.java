@@ -31,17 +31,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ModelPersistencyServiceImpl implements ModelPersistencyService {
 
-
-    private final ModuleRepository moduleRepository;
-
-    private final DataspaceRepository dataspaceRepository;
+    @Autowired
+    private ModuleRepository moduleRepository;
 
     @Autowired
-    public ModelPersistencyServiceImpl(final ModuleRepository moduleRepository,
-        final DataspaceRepository dataspaceRepository) {
-        this.moduleRepository = moduleRepository;
-        this.dataspaceRepository = dataspaceRepository;
-    }
+    private DataspaceRepository dataspaceRepository;
 
     @Override
     public void storeModule(final String namespace, final String moduleContent, final String revision,
@@ -50,7 +44,7 @@ public class ModelPersistencyServiceImpl implements ModelPersistencyService {
         if (Boolean.FALSE.equals(dataspaceRepository.existsByName(dataspaceName))) {
             dataspaceRepository.save(dataspace);
         }
-        dataspace.setId(dataspaceRepository.findByName(dataspaceName).getId());
+        dataspace.setId(dataspaceRepository.getByName(dataspaceName).getId());
         final ModuleEntity moduleEntity = new ModuleEntity(namespace, moduleContent, revision, dataspace);
         moduleRepository.save(moduleEntity);
     }

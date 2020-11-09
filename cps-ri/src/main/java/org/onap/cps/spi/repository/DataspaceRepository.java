@@ -20,6 +20,7 @@
 package org.onap.cps.spi.repository;
 
 
+import java.util.Optional;
 import org.onap.cps.spi.entities.Dataspace;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,7 @@ import org.springframework.stereotype.Repository;
 public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
     Boolean existsByName(String name); //Checks if there are any records by name()
 
-    Dataspace findByName(String name);
+    Optional<Dataspace> findByName(String name);
+
+    Dataspace getByName(String name);
 }
