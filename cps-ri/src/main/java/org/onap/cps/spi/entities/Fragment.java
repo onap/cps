@@ -21,6 +21,7 @@
 package org.onap.cps.spi.entities;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,6 +33,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,8 +49,11 @@ import org.hibernate.annotations.TypeDefs;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
-public class Fragment {
+public class Fragment implements Serializable {
+
+    private static final long serialVersionUID = 7737669789097119667L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +67,10 @@ public class Fragment {
     @Column(columnDefinition = "jsonb")
     private String attributes;
 
+    @Column(columnDefinition = "text")
+    private String anchorName;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id")
     private Dataspace dataspace;
@@ -73,4 +82,8 @@ public class Fragment {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Fragment parentFragment;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "module_id")
+    private ModuleEntity module;
 }
