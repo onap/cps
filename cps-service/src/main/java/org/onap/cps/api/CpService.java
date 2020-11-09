@@ -21,9 +21,8 @@
 package org.onap.cps.api;
 
 import java.io.File;
-import java.io.IOException;
+import org.onap.cps.api.model.AnchorDetails;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 
 /**
  * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
@@ -76,4 +75,11 @@ public interface CpService {
      * @param jsonObjectId the JSON object identifier.
      */
     void deleteJsonById(final int jsonObjectId);
+
+    /**
+     * Create an anchor using provided anchorDetails object.
+     *
+     * @param anchorDetails the anchor details object.
+     */
+    void createAnchor(final AnchorDetails anchorDetails);
 }
