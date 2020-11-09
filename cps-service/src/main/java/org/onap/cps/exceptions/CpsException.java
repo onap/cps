@@ -20,12 +20,13 @@
 package org.onap.cps.exceptions;
 
 import lombok.Getter;
-import org.springframework.core.NestedExceptionUtils;
 
 /**
  * CP Service exception.
  */
 public class CpsException extends RuntimeException {
+
+    private static final long serialVersionUID = 5573438585188332404L;
 
     @Getter
     String details;
