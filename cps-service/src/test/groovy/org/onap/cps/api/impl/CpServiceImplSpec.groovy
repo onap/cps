@@ -21,8 +21,11 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.api.model.AnchorDetails
+import org.onap.cps.exceptions.CpsNotFoundException
 import org.onap.cps.exceptions.CpsValidationException
 import org.onap.cps.spi.DataPersistencyService
+import org.onap.cps.spi.FragmentPersistenceService
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
@@ -30,10 +33,12 @@ import spock.lang.Specification
 class CpServiceImplSpec extends Specification {
 
     def mockDataPersistencyService = Mock(DataPersistencyService)
+    def mockFragmentPersistenceService = Mock(FragmentPersistenceService)
     def objectUnderTest = new CpServiceImpl()
 
     def setup() {
         objectUnderTest.dataPersistencyService = mockDataPersistencyService
+        objectUnderTest.fragmentPersistenceService = mockFragmentPersistenceService
     }
 
     def 'Cps Service provides to its client the id assigned by the system when storing a data structure'() {
@@ -112,5 +117,55 @@ class CpServiceImplSpec extends Specification {
             objectUnderTest.deleteJsonById(100);
         then: 'the same exception is thrown by CPS'
             thrown(IllegalStateException)
+    }
+
+    def 'Create an anchor with a non-existant dataspace'(){
+        given: 'that the dataspace does not exist service throws an exception'
+            AnchorDetails anchorDetails = new AnchorDetails()
+            anchorDetails.setDataspace('dummyDataspace')
+            mockFragmentPersistenceService.createAnchor(anchorDetails) >> {throw new CpsNotFoundException(_ as String, _ as String)}
+        when: 'we try to create a anchor with a non-existant dataspace'
+            objectUnderTest.createAnchor(anchorDetails)
+        then: 'the same exception is thrown by CPS'
+            thrown(CpsNotFoundException)
+    }
+
+    def 'Create an anchor with invalid dataspace, namespace and revision'(){
+        given: 'that the dataspace, namespace and revison combination does not exist service throws an exception'
+            AnchorDetails anchorDetails = new AnchorDetails()
+            anchorDetails.setDataspace('dummyDataspace')
+            anchorDetails.setNamespace('dummyNamespace')
+            anchorDetails.setRevision('dummyRevision')
+            mockFragmentPersistenceService.createAnchor(anchorDetails) >> {throw new CpsNotFoundException(_ as String, _ as String)}
+        when: 'we try to create a anchor with a non-existant dataspace, namespace and revison combination'
+            objectUnderTest.createAnchor(anchorDetails)
+        then: 'the same exception is thrown by CPS'
+            thrown(CpsNotFoundException)
+    }
+
+    def 'Create a duplicate anchor'(){
+        given: 'that the anchor already exist service throws an exception'
+            AnchorDetails anchorDetails = new AnchorDetails()
+            anchorDetails.setDataspace('dummyDataspace')
+            anchorDetails.setNamespace('dummyNamespace')
+            anchorDetails.setRevision('dummyRevision')
+            anchorDetails.setRevision('dummyAnchorName')
+            mockFragmentPersistenceService.createAnchor(anchorDetails) >> {throw new CpsValidationException(_ as String, _ as String)}
+        when: 'we try to create a duplicate anchor'
+            objectUnderTest.createAnchor(anchorDetails)
+        then: 'the same exception is thrown by CPS'
+            thrown(CpsValidationException)
+    }
+
+    def 'Create an anchor with supplied anchor name, dataspace, namespace and revision'(){
+        given: 'that the anchor does not pre-exist service creates an anchor'
+            AnchorDetails anchorDetails = new AnchorDetails()
+            anchorDetails.setDataspace('dummyDataspace')
+            anchorDetails.setNamespace('dummyNamespace')
+            anchorDetails.setRevision('dummyRevision')
+            anchorDetails.setRevision('dummyAnchorName')
+            mockFragmentPersistenceService.createAnchor(anchorDetails) >> 'dummyAnchorName'
+        expect: 'anchor name is returned by service'
+            objectUnderTest.createAnchor(anchorDetails) == 'dummyAnchorName'
     }
 }
