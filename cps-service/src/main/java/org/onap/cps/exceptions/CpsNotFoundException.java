@@ -19,12 +19,13 @@
 
 package org.onap.cps.exceptions;
 
-import lombok.Getter;
 
 /**
  * CP Service exception. Indicates the requested data being absent.
  */
 public class CpsNotFoundException extends CpsException {
+
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
      * Constructor.
