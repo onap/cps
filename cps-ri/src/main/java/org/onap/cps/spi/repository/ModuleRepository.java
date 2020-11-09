@@ -20,10 +20,36 @@
 package org.onap.cps.spi.repository;
 
 
+import java.util.Optional;
+import javax.validation.constraints.NotNull;
+import org.onap.cps.exceptions.CpsNotFoundException;
+import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.ModuleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
+
+    Optional<ModuleEntity> findByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace,
+        @NotNull String namespace,
+        @NotNull String revision);
+
+    /**
+     * This method gets a ModuleEntity by dataspace, namespace and revision.
+     *
+     * @param dataspace the dataspace
+     * @param namespace the namespace
+     * @param revision the revision
+     * @return the ModuleEntity
+     * @throws CpsNotFoundException if ModuleEntity not found
+     */
+    default ModuleEntity getByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace, @NotNull String namespace,
+        @NotNull String revision) {
+        return findByDataspaceAndNamespaceAndRevision(dataspace, namespace,
+            revision)
+            .orElseThrow(() -> new CpsNotFoundException("Validation Error", String.format(
+                "Module with dataspace %s, revision %s does not exist in namespace %s.",
+                dataspace.getName(), revision, namespace)));
+    }
 }
