@@ -26,9 +26,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 import org.onap.cps.api.CpService;
+import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.DataPersistencyService;
+import org.onap.cps.spi.FragmentPersistenceService;
 import org.onap.cps.spi.ModelPersistencyService;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Revision;
@@ -48,6 +50,9 @@ public class CpServiceImpl implements CpService {
     @Autowired
     private DataPersistencyService dataPersistencyService;
 
+    @Autowired
+    private FragmentPersistenceService fragmentPersistenceService;
+
     @Override
     public final SchemaContext parseAndValidateModel(final String yangModelContent) {
 
@@ -57,7 +62,7 @@ public class CpServiceImpl implements CpService {
                 writer.write(yangModelContent);
             }
             return parseAndValidateModel(tempFile);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CpsException(e);
         }
     }
@@ -66,9 +71,9 @@ public class CpServiceImpl implements CpService {
     public final SchemaContext parseAndValidateModel(final File yangModelFile) {
         try {
             return YangUtils.parseYangModelFile(yangModelFile);
-        } catch (YangParserException e) {
+        } catch (final YangParserException e) {
             throw new CpsValidationException("Yang file validation failed", e.getMessage());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new CpsException(e);
         }
     }
@@ -91,10 +96,15 @@ public class CpServiceImpl implements CpService {
     @Override
     public final void storeSchemaContext(final SchemaContext schemaContext, final String dataspaceName) {
         for (final Module module : schemaContext.getModules()) {
-            Optional<Revision> optionalRevision = module.getRevision();
-            String revisionValue = optionalRevision.isPresent() ? optionalRevision.get().toString() : null;
+            final Optional<Revision> optionalRevision = module.getRevision();
+            final String revisionValue = optionalRevision.isPresent() ? optionalRevision.get().toString() : null;
             modelPersistencyService.storeModule(module.getNamespace().toString(), module.toString(),
                 revisionValue, dataspaceName);
         }
+    }
+
+    @Override
+    public void createAnchor(AnchorDetails anchorDetails) {
+        fragmentPersistenceService.createAnchor(anchorDetails);
     }
 }

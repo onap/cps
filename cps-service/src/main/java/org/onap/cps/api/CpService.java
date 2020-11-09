@@ -21,9 +21,8 @@
 package org.onap.cps.api;
 
 import java.io.File;
-import java.io.IOException;
+import org.onap.cps.api.model.AnchorDetails;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 
 /**
  * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
@@ -36,7 +35,7 @@ public interface CpService {
      * @param yangModelContent the input stream
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(final String yangModelContent);
+    SchemaContext parseAndValidateModel(String yangModelContent);
 
     /**
      * Parse and validate a file representing a yang model to generate a schema context.
@@ -44,7 +43,7 @@ public interface CpService {
      * @param yangModelFile the yang file
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(final File yangModelFile);
+    SchemaContext parseAndValidateModel(File yangModelFile);
 
     /**
      * Store schema context for a yang model.
@@ -52,7 +51,7 @@ public interface CpService {
      * @param schemaContext the schema context
      * @param dataspaceName the dataspace name
      */
-    void storeSchemaContext(final SchemaContext schemaContext, final String dataspaceName);
+    void storeSchemaContext(SchemaContext schemaContext, String dataspaceName);
 
     /**
      * Store the JSON structure in the database.
@@ -60,7 +59,7 @@ public interface CpService {
      * @param jsonStructure the JSON structure.
      * @return entity ID.
      */
-    Integer storeJsonStructure(final String jsonStructure);
+    Integer storeJsonStructure(String jsonStructure);
 
     /**
      * Read a JSON Object using the object identifier.
@@ -68,12 +67,19 @@ public interface CpService {
      * @param jsonObjectId the JSON object identifier.
      * @return the JSON structure.
      */
-    String getJsonById(final int jsonObjectId);
+    String getJsonById(int jsonObjectId);
 
     /**
      * Delete a JSON Object using the object identifier.
      *
      * @param jsonObjectId the JSON object identifier.
      */
-    void deleteJsonById(final int jsonObjectId);
+    void deleteJsonById(int jsonObjectId);
+
+    /**
+     * Create an anchor using provided anchorDetails object.
+     *
+     * @param anchorDetails the anchor details object.
+     */
+    void createAnchor(AnchorDetails anchorDetails);
 }
