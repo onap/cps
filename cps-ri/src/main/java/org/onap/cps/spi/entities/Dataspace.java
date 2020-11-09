@@ -19,6 +19,7 @@
 
 package org.onap.cps.spi.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +42,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dataspace")
-public class Dataspace {
+public class Dataspace implements Serializable {
+
+    private static final long serialVersionUID = 8395254649813051882L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
