@@ -81,23 +81,13 @@ paths:
             type: string
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
-              required:
-                - file
-              properties:
-                multipartFile:
-                  type: string
-                  description: multipartFile
-                  format: binary
+              title: Anchor
+              description: anchor
+              $ref: '#/components/schemas/Anchor'
         required: true
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
         201:
           description: Created
           content: {}
@@ -384,4 +374,19 @@ paths:
         404:
           description: Not Found
           content: {}
-components: {}
+components:
+    schemas:
+       Anchor:
+           type: object
+           title: Anchor
+           required:
+              - anchorName
+              - namespace
+              - revision
+           properties:
+               anchorName:
+                   type: string
+               namespace:
+                   type: string
+               revision:
+                   type: string
