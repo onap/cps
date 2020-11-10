@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d7bfff0a_7ed872ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T10:50:55Z",
+      "side": 1,
+      "message": "I am not changing that format, just adding something to it (as part of the description body)\nIts for convenience only, its been good practice in many projects I have worked on to add the Jira link (for quick cut\u0026paste to browser) AS I said I am just asking, I will never fail a commit if this is missing....",
+      "parentUuid": "9d1c9106_dc2d9287",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efba6c87_58dd077f",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "first I want to see the jobs running, then we need to see that credentials for docker are set on job. If you are sure it is ready, then we can proceed with this part.",
       "parentUuid": "efba6c87_58dd077f",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 35
+      },
+      "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93c1585c_d6890797",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T10:50:55Z",
+      "side": 1,
+      "message": "Are you working on getting the jobs running?",
+      "parentUuid": "218e7b72_33235441",
       "range": {
         "startLine": 208,
         "startChar": 0,
