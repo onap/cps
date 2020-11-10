@@ -24,12 +24,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ServiceLoader;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
@@ -116,8 +120,9 @@ public class YangUtils {
     public static Fragment fragmentNormalizedNode(
             final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
             final Module module) {
-        final QName nodeType = tree.getNodeType();
-        final Fragment rootFragment = Fragment.createRootFragment(module, nodeType);
+        final QName[] nodeType = {tree.getNodeType()};
+        final String xpath  = buildXpathNodeIdentifier(tree.getIdentifier());
+        final Fragment rootFragment = Fragment.createRootFragment(module, nodeType, xpath);
         fragmentNormalizedNode(rootFragment, tree);
         return rootFragment;
     }
@@ -167,8 +172,33 @@ public class YangUtils {
     private static void createNodeForEachListElement(final Fragment currentFragment, final MapNode mapNode) {
         final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
-            final Fragment listElementFragment = currentFragment.createChildFragment(mapNode.getNodeType());
+            final String xpathNodeId = buildXpathNodeIdentifier(mapEntryNode.getIdentifier());
+            final Fragment listElementFragment =
+                currentFragment.createChildFragment(mapNode.getNodeType(), xpathNodeId);
             fragmentNormalizedNode(listElementFragment, mapEntryNode);
         }
+    }
+
+    private static String buildXpathNodeIdentifier(YangInstanceIdentifier.PathArgument nodeIdentifier) {
+        final StringBuilder xpathIdBuilder = new StringBuilder();
+        xpathIdBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
+
+        if (nodeIdentifier instanceof NodeIdentifierWithPredicates) {
+            // add key attributes if defined for entire node
+            final List<String> keyAttributes = ((NodeIdentifierWithPredicates) nodeIdentifier).entrySet()
+                .stream().map(
+                    entry -> {
+                        String name = entry.getKey().getLocalName();
+                        String value = String.valueOf(entry.getValue()).replaceAll("'", "\\'");
+                        return String.format("@%s='%s'", name, value);
+                    }
+                ).collect(Collectors.toList());
+            if (!keyAttributes.isEmpty()) {
+                Collections.sort(keyAttributes); // ensure attributes are sorted by name
+                xpathIdBuilder.append("[").append(String.join(" and ", keyAttributes)).append("]");
+            }
+        }
+
+        return xpathIdBuilder.toString();
     }
 }
