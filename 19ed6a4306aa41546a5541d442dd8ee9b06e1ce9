@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "130714b0_d37bb970",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-10T15:42:34Z",
+      "side": 1,
+      "message": "there is no strict requirement to always use \u0027given\u0027 for case setup.\nmodelling the exception occurrence differs from setting up the data.\nusing \u0027given\u0027 keyword here does not help describing the case, \nit just confuses and misleads. when-then seems more descriptive.",
+      "parentUuid": "b15800b7_a9d31d46",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "19ed6a4306aa41546a5541d442dd8ee9b06e1ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a156dfa5_d20b64b9",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-11-10T09:42:22Z",
       "side": 1,
       "message": "Dont think having different error messages mater for these test matters. I would extract out one common variable for the whole class errorMessage \u003d \u0027some error message\u0027 Also would mean you dont have to pass it to the assert method",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 58
+      },
+      "revId": "19ed6a4306aa41546a5541d442dd8ee9b06e1ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feb7de17_c130ab6d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-10T15:42:34Z",
+      "side": 1,
+      "message": "this will make the test code less clear.",
+      "parentUuid": "a156dfa5_d20b64b9",
       "range": {
         "startLine": 73,
         "startChar": 12,
