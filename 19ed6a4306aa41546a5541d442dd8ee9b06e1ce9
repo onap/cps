@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "68a7e6b6_3135fb1e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:22:45Z",
+      "side": 1,
+      "message": "ok, its probably a matter of opinion/preference, I can see your point of view in these basic tests I don\u0027t fully agree but not strong enough to reject your proposal",
+      "parentUuid": "130714b0_d37bb970",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "19ed6a4306aa41546a5541d442dd8ee9b06e1ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a156dfa5_d20b64b9",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "this will make the test code less clear.",
       "parentUuid": "a156dfa5_d20b64b9",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 58
+      },
+      "revId": "19ed6a4306aa41546a5541d442dd8ee9b06e1ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80655bda_d4ffc820",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:22:45Z",
+      "side": 1,
+      "message": "like before a matter of opinion, whatever yo prefer....",
+      "parentUuid": "feb7de17_c130ab6d",
       "range": {
         "startLine": 73,
         "startChar": 12,
