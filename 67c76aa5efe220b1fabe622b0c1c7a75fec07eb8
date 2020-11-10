@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7f00ad19_a2684ceb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:09:26Z",
+      "side": 1,
+      "message": "I think the last time I talked to Tony about this he recommended to return \u0027the id the users needs to get the object\u0027 which is the user defined anchorName in this case\n(I know the user supplied it himself but still its good to stick to the pattern of retuning an ide upon create)",
+      "range": {
+        "startLine": 67,
+        "startChar": 35,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "259ca2a9_2f85eb8e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
         "patchSetId": 1
@@ -13,6 +36,98 @@
       "writtenOn": "2020-11-10T16:39:28Z",
       "side": 1,
       "message": "I think ModuleEntity should also implement Serializable.",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c2bfcdd_5590e787",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:09:26Z",
+      "side": 1,
+      "message": "I know these are onyl a few lines but it might be good to separate methods \nlike\n- verifyDataSacepExists(...)\n- verifyMoudleExists(...)",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd7579a_6c1255fc",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:09:26Z",
+      "side": 1,
+      "message": "same module revision can be added to more than one dataspace so you need to add datapace_id to the constraint too",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e19171e_bf0b434e",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:09:26Z",
+      "side": 1,
+      "message": "not sure if the order really matter here but logically I would like to see the dataspace_id first as it is the \u0027highest level\u0027 entity",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 44
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc8de75c_19d2a963",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-10T17:09:26Z",
+      "side": 1,
+      "message": "Not sure what good this index is...",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 97
+      },
       "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
