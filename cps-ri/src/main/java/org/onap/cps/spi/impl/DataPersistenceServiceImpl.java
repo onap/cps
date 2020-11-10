@@ -25,7 +25,6 @@ import org.onap.cps.spi.repository.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class DataPersistenceServiceImpl implements DataPersistenceService {
 
@@ -63,7 +62,8 @@ public class DataPersistenceServiceImpl implements DataPersistenceService {
      * @param jsonStructureId the JSON object identifier.
      */
     @Override
-    public void deleteJsonById(int jsonStructureId) {
+    public void deleteJsonById(final int jsonStructureId) {
         dataRepository.deleteById(jsonStructureId);
     }
+
 }
