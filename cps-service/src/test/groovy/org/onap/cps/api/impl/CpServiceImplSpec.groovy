@@ -67,7 +67,7 @@ class CpServiceImplSpec extends Specification {
     }
 
     def assertModule(SchemaContext schemaContext){
-        def optionalModule = schemaContext.findModule('bookstore', Revision.of('2020-09-15'))
+        def optionalModule = schemaContext.findModule('stores', Revision.of('2020-09-15'))
         return schemaContext.modules.size() == 1 && optionalModule.isPresent()
     }
 
