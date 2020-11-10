@@ -19,14 +19,16 @@
 
 package org.onap.cps.utils
 
-import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
+import org.onap.cps.TestUtils
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.common.Revision
+import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class YangUtilsSpec extends Specification{
+
     def 'Parsing a valid Yang Model'() {
         given: 'a yang model (file)'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
@@ -34,14 +36,14 @@ class YangUtilsSpec extends Specification{
             def result = YangUtils.parseYangModelFile(file)
         then: 'the result contain 1 module of the correct name and revision'
             result.modules.size() == 1
-            def optionalModule = result.findModule('bookstore', Revision.of('2020-09-15'))
+            def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
             optionalModule.isPresent()
     }
 
     @Unroll
-    def 'parsing invalid yang file (#description)'() {
+    def 'Parsing invalid yang file (#description).'() {
         given: 'a file with #description'
-            File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
+            File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile())
         when: 'the file is parsed'
             YangUtils.parseYangModelFile(file)
         then: 'an exception is thrown'
@@ -52,29 +54,48 @@ class YangUtilsSpec extends Specification{
             'someOtherFile.txt' | 'no .yang extension' || IllegalArgumentException
     }
 
-    def 'Parsing a valid Json String'() {
+    def 'Parsing a valid Json String.'() {
         given: 'a yang model (file)'
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
         and: 'a model for that data'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
             def schemaContext = YangUtils.parseYangModelFile(file)
         when: 'the json data is parsed'
-            NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext);
+            NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
         then: 'the result is a normalized node of the correct type'
-            result.nodeType == QName.create('org:onap:ccsdk:sample','2020-09-15','bookstore')
+            result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
     }
 
-    def 'Parsing an invalid Json String'() {
+    @Unroll
+    def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
-            def jsonData = '{incomplete json'
-        and: 'a model'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
             def schemaContext = YangUtils.parseYangModelFile(file)
-        when: 'the invalid json is parsed'
-            YangUtils.parseJsonData(jsonData, schemaContext);
-        then: ' an exception is thrown'
+        when: 'invalid data is parsed'
+            YangUtils.parseJsonData(invalidJson, schemaContext)
+        then: 'an exception is thrown'
             thrown(IllegalStateException)
+        where: 'the following invalid json is provided'
+            invalidJson                                       | description
+            '{incomplete json'                                | 'incomplete json'
+            '{"test:bookstore": {"address": "Parnell st." }}' | 'json with un-modelled data'
     }
 
+    def 'Breaking a Json Data Object into fragments.'() {
+        given: 'a Yang module'
+            def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
+            def schemaContext = YangUtils.parseYangModelFile(file)
+            def module = schemaContext.findModule('stores', Revision.of('2020-09-15')).get()
+        and: 'a normalized node for that model'
+            def jsonData = TestUtils.getResourceFileContent('bookstore.json')
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
+        when: 'the json data is fragmented'
+            def result = YangUtils.fragmentNormalizedNode(normalizedNode, module)
+        then: 'the system creates a (root) fragment without a parent and 2 children (categories)'
+            result.parentFragment == null
+            result.childFragments.size() == 2
+        and: 'each child (category) has the root fragment (result) as parent and in turn as 1 child (a list of books)'
+            result.childFragments.each { it.parentFragment == result && it.childFragments.size() == 1 }
+    }
 
 }

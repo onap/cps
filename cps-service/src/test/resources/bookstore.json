@@ -1,31 +1,49 @@
 {
    "test:bookstore":{
-      "categories":[
+      "bookstore-name": "Chapters",
+      "categories": [
          {
-            "name":"web",
-            "books":[
+            "code": "01",
+            "name": "SciFi",
+            "books": [
                {
-                  "authors":[
-                     "Toine Siebelink","David Lang"
+                  "authors": [
+                     "Iain M. Banks"
                   ],
-                  "lang":"en",
-                  "price":"123456",
-                  "pub_year":"2020",
-                  "title":"My first book"
+                  "lang": "en",
+                  "price": "895",
+                  "pub_year": "1994",
+                  "title": "Feersum Endjinn"
+               },
+               {
+                  "authors": [
+                     "Ursula K. Le Guin",
+                     "Joe Haldeman",
+                     "Orson Scott Card",
+                     "david Brin",
+                     "Rober Silverberg",
+                     "Dan Simmons",
+                     "Greg Bear"
+                  ],
+                  "lang": "en",
+                  "price": "1099",
+                  "pub_year": "1999",
+                  "title": "Far Horizons"
                }
             ]
          },
          {
-            "name":"art",
-            "books":[
+            "name": "kids",
+            "code": "02",
+            "books": [
                {
-                  "authors":[
-                     "Test"
+                  "authors": [
+                     "Philip Pullman"
                   ],
-                  "lang":"en",
-                  "price":"1234",
-                  "pub_year":"2020",
-                  "title":"My 2nd book"
+                  "lang": "en",
+                  "price": "699",
+                  "pub_year": "1995",
+                  "title": "The Golden Compass"
                }
             ]
          }
