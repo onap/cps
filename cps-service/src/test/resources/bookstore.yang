@@ -1,6 +1,5 @@
-module bookstore {
+module stores {
     yang-version 1.1;
-
     namespace "org:onap:ccsdk:sample";
 
     prefix book-store;
@@ -18,9 +17,17 @@ module bookstore {
 
     container bookstore {
 
+        leaf bookstore-name {
+            type string;
+        }
+
     list categories {
 
-        key name;
+        key "code name";
+
+        leaf code {
+            type string;
+        }
 
         leaf name {
             type string;
