@@ -39,7 +39,7 @@ import org.opendaylight.yangtools.yang.model.api.Module;
 public class Fragment {
 
     @Getter
-    private String xpath;
+    private final String xpath;
 
     @Getter
     private final Map<String, Object> attributes = new HashMap<>();
@@ -62,9 +62,10 @@ public class Fragment {
      *
      * @param module the Yang module that encompasses this fragment
      * @param qnames the list of qualified names that points the schema node for this fragment
+     * @param xpath  the xpath of root fragment
      */
-    public static Fragment createRootFragment(final Module module, final QName... qnames) {
-        return new Fragment(null, module, qnames);
+    public static Fragment createRootFragment(final Module module, final QName[] qnames, final String xpath) {
+        return new Fragment(null, module, qnames, xpath);
     }
 
     /**
@@ -72,24 +73,27 @@ public class Fragment {
      *
      * @param parentFragment the parent (can be null for 'root' objects)
      * @param module         the Yang module that encompasses this fragment
-     * @param qnames         the list of qualified names that points the schema node for this fragment
+     * @param qnames         array of qualified names that points the schema node for this fragment
+     * @param xpath          the xpath for this fragment
      */
-    private Fragment(final Fragment parentFragment, final Module module, final QName... qnames) {
+    private Fragment(final Fragment parentFragment, final Module module, final QName[] qnames, String xpath) {
         this.parentFragment = parentFragment;
         this.module = module;
         this.qnames = qnames;
+        this.xpath = xpath;
     }
 
     /**
      * Create a Child Fragment where the current Fragment is the parent.
      *
-     * @param qnameChild The Qualified name for the child (relative to the parent)
+     * @param childQname The Qualified name for the child (relative to the parent)
+     * @param childXPath The child xpath (relative to the parrent)
      * @return the child fragment
      */
-    public Fragment createChildFragment(final QName qnameChild) {
+    public Fragment createChildFragment(final QName childQname, final String childXPath) {
         final QName[] qnamesForChild = Arrays.copyOf(qnames, qnames.length + 1);
-        qnamesForChild[qnamesForChild.length - 1] = qnameChild;
-        final Fragment childFragment = new Fragment(this, module, qnamesForChild);
+        qnamesForChild[qnamesForChild.length - 1] = childQname;
+        final Fragment childFragment = new Fragment(this, module, qnamesForChild, getXpath() + childXPath);
         childFragments.add(childFragment);
         return childFragment;
     }
