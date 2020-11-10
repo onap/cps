@@ -141,6 +141,30 @@
       "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04ebeee1_00701bb8",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-10T11:09:31Z",
+      "side": 1,
+      "message": "those jobs are created automatically from initial INFO.yaml file.\nIf I understood the process, we can see that job for merge is run and passed on the latest commit merged. \nFor commit to review, we need to add as default reviewer \"ONAP Jobbuilder\" I will say. This should trigger the job for each new commit, but I don\u0027t have the rights for that. \nSame for create cps reviewer group. \nIf you check the chat you will see that Rishi tried as well, but without success.\nRegards",
+      "parentUuid": "93c1585c_d6890797",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 35
+      },
+      "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
