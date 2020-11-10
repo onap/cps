@@ -24,12 +24,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ServiceLoader;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
@@ -79,7 +83,7 @@ public class YangUtils {
     public static SchemaContext parseYangModelFile(final File yangModelFile) throws IOException, YangParserException {
         final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
         final YangParser yangParser = PARSER_FACTORY
-                .createParser(StatementParserMode.DEFAULT_MODE);
+            .createParser(StatementParserMode.DEFAULT_MODE);
         yangParser.addSource(yangTextSchemaSource);
         return yangParser.buildEffectiveModel();
     }
@@ -92,14 +96,14 @@ public class YangUtils {
      * @return the NormalizedNode representing the json data
      */
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext)
-            throws IOException {
+        throws IOException {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-                .getShared(schemaContext);
+            .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
+            .from(normalizedNodeResult);
         try (final JsonParserStream jsonParserStream = JsonParserStream
-                .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
+            .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
             final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
         }
@@ -114,16 +118,17 @@ public class YangUtils {
      * @return the 'root' Fragment for the tree contain all relevant children etc.
      */
     public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
-        final QName nodeType = tree.getNodeType();
-        final Fragment rootFragment = Fragment.createRootFragment(module, nodeType);
+        final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
+        final Module module) {
+        final QName[] nodeTypes = {tree.getNodeType()};
+        final String xpath = buildXpathId(tree.getIdentifier());
+        final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);
         fragmentNormalizedNode(rootFragment, tree);
         return rootFragment;
     }
 
     private static void fragmentNormalizedNode(final Fragment currentFragment,
-                                               final NormalizedNode normalizedNode) {
+        final NormalizedNode normalizedNode) {
         if (normalizedNode instanceof DataContainerNode) {
             inspectContainer(currentFragment, (DataContainerNode) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
@@ -138,13 +143,13 @@ public class YangUtils {
     }
 
     private static void inspectLeaf(final Fragment currentFragment,
-                                    final ValueNode valueNode) {
+        final ValueNode valueNode) {
         final Object value = valueNode.getValue();
         currentFragment.addLeafValue(valueNode.getNodeType().getLocalName(), value);
     }
 
     private static void inspectLeafList(final Fragment currentFragment,
-                                        final LeafSetNode leafSetNode) {
+        final LeafSetNode leafSetNode) {
         currentFragment.addLeafListName(leafSetNode.getNodeType().getLocalName());
         for (final NormalizedNode value : (Collection<NormalizedNode>) leafSetNode.getValue()) {
             fragmentNormalizedNode(currentFragment, value);
@@ -152,7 +157,7 @@ public class YangUtils {
     }
 
     private static void inspectContainer(final Fragment currentFragment,
-                                         final DataContainerNode dataContainerNode) {
+        final DataContainerNode dataContainerNode) {
         final Collection<NormalizedNode> leaves = (Collection) dataContainerNode.getValue();
         for (final NormalizedNode leaf : leaves) {
             fragmentNormalizedNode(currentFragment, leaf);
@@ -160,15 +165,44 @@ public class YangUtils {
     }
 
     private static void inspectKeyedList(final Fragment currentFragment,
-                                         final MapNode mapNode) {
+        final MapNode mapNode) {
         createNodeForEachListElement(currentFragment, mapNode);
     }
 
     private static void createNodeForEachListElement(final Fragment currentFragment, final MapNode mapNode) {
         final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
-            final Fragment listElementFragment = currentFragment.createChildFragment(mapNode.getNodeType());
+            final String xpathId = buildXpathId(mapEntryNode.getIdentifier());
+            final Fragment listElementFragment =
+                currentFragment.createChildFragment(mapNode.getNodeType(), xpathId);
             fragmentNormalizedNode(listElementFragment, mapEntryNode);
+        }
+    }
+
+    private static String buildXpathId(YangInstanceIdentifier.PathArgument nodeIdentifier) {
+        final StringBuilder xpathIdBuilder = new StringBuilder();
+        xpathIdBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
+
+        if (nodeIdentifier instanceof NodeIdentifierWithPredicates) {
+            xpathIdBuilder.append(getKeyAttributesStatement((NodeIdentifierWithPredicates) nodeIdentifier));
+        }
+        return xpathIdBuilder.toString();
+    }
+
+    private static String getKeyAttributesStatement(NodeIdentifierWithPredicates nodeIdentifier) {
+        List<String> keyAttributes = nodeIdentifier.entrySet().stream().map(
+            entry -> {
+                String name = entry.getKey().getLocalName();
+                String value = String.valueOf(entry.getValue()).replace("'", "\\'");
+                return String.format("@%s='%s'", name, value);
+            }
+        ).collect(Collectors.toList());
+
+        if (keyAttributes.isEmpty()) {
+            return "";
+        } else {
+            Collections.sort(keyAttributes);
+            return "[" + String.join(" and ", keyAttributes) + "]";
         }
     }
 }
