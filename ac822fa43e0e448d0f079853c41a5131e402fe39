@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9d1c9106_dc2d9287",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-10T10:04:35Z",
+      "side": 1,
+      "message": "This is the format followed among the community, I do not see reason to be changed.\n\nhttps://wiki.onap.org/display/DW/Commit+Messages",
+      "parentUuid": "b56a0ac2_546957fd",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efba6c87_58dd077f",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-11-10T09:45:04Z",
       "side": 1,
       "message": "We have migrated now?!",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 35
+      },
+      "revId": "ac822fa43e0e448d0f079853c41a5131e402fe39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "218e7b72_33235441",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-10T10:04:35Z",
+      "side": 1,
+      "message": "first I want to see the jobs running, then we need to see that credentials for docker are set on job. If you are sure it is ready, then we can proceed with this part.",
+      "parentUuid": "efba6c87_58dd077f",
       "range": {
         "startLine": 208,
         "startChar": 0,
