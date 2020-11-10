@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "259ca2a9_2f85eb8e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-11-10T16:39:28Z",
+      "side": 1,
+      "message": "I think ModuleEntity should also implement Serializable.",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2641d352_bae37b1f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-11-10T16:39:28Z",
+      "side": 1,
+      "message": "Remove unused import.",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c986c19_32f27a38",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/AnchorDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-11-10T16:39:28Z",
+      "side": 1,
+      "message": "Change to private",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
