@@ -184,6 +184,24 @@
     },
     {
       "key": {
+        "uuid": "7c9781a8_f47352c2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-11T12:27:49Z",
+      "side": 1,
+      "message": "I agree, it should be consistent across the project. let\u0027s see what Bruno and Toine think. I propose setter injection.",
+      "parentUuid": "0b23bac1_1306af8b",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbd7579a_6c1255fc",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 1
@@ -383,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "a58da543_44f3ce32",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-11T12:27:49Z",
+      "side": 1,
+      "message": "my IDE auto adds it for me, removed now.",
+      "parentUuid": "a1286f72_20c5e4de",
+      "range": {
+        "startLine": 86,
+        "startChar": 22,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c986c19_32f27a38",
         "filename": "cps-service/src/main/java/org/onap/cps/api/model/AnchorDetails.java",
         "patchSetId": 1
@@ -444,6 +486,24 @@
       "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc6cbd62_68508152",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FragmentPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-11T12:27:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43d95749_50a0b918",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
