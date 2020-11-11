@@ -1,3 +1,11 @@
+# Docker Compose
+
+To run the application locally using `docker-compose`, execute following commands from this `docker-compose` folder:
+
 ```bash
-VERSION=0.0.1-SNAPSHOT DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps docker-compose up
+export VERSION=0.0.1-SNAPSHOT
+export DB_HOST=dbpostgresql
+export DB_USERNAME=cps
+export DB_PASSWORD=cps
+docker-compose up
 ```
