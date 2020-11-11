@@ -65,6 +65,23 @@
     },
     {
       "key": {
+        "uuid": "0fe5ecf2_5b2654f1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-11T08:53:59Z",
+      "side": 1,
+      "message": "dependency injection via constructor is more preferable.\nit allows making fields final, clearly instructs the components \ninitialization order, simplifies unit testing etc.\n\nhttps://stackoverflow.com/questions/40620000/spring-autowire-on-properties-vs-constructor\n\ni\u0027d suggest revert this change",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbd7579a_6c1255fc",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 1
