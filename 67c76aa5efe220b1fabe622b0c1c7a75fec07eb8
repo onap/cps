@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "95f42230_a6e2bd93",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-11T12:48:10Z",
+      "side": 1,
+      "message": "what about use modelmapper\n\nhttps://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f00ad19_a2684ceb",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
         "patchSetId": 1
