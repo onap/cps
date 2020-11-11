@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9daae6aa_ec3a019d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-11T16:09:27Z",
+      "side": 1,
+      "message": "since we decided to phase out ConstraintViolationException from CpsRestExceptionHandler.java earlier today",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "2966defa62f080ebcfbd9503b724577ec69c5cf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
