@@ -205,14 +205,13 @@
                             <goal>dockerBuild</goal>
                         </goals>
                     </execution>
-                    <!-- FIXME Enable this once migrated to onap,
                     <execution>
                         <phase>deploy</phase>
                         <id>buildAndPush</id>
                         <goals>
                             <goal>build</goal>
                         </goals>
-                    </execution>-->
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
