@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8f9b5dae_9f846242",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-11T13:19:33Z",
+      "side": 1,
+      "message": "ModelMapper is a good suggestion. Though I do not want to use it and explicitly create DTOs here for our service layer, which will be pretty standard and will form part of our API. Model mapper will tie it to a entity and its datatypes, hence introduce coupling, which we all do not want. Entities  might mostly be the same(unless we use something specific to a DB like JSONB in postresql) for RDBMS but may change in case of some NoSQL Db. If we introduce a interface above the Entities, then this can be considered again.",
+      "parentUuid": "95f42230_a6e2bd93",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f00ad19_a2684ceb",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
         "patchSetId": 1
