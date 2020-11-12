@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "838b664f_467a9d58",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-12T07:41:35Z",
+      "side": 1,
+      "message": "those changes in schema.sql doesn\u0027t seems to be related to the dockerization.\nIt will be good to keep changes decoupled",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92bba0b1_b706bc02",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-12T07:41:35Z",
+      "side": 1,
+      "message": "I would like to keep it as it was, environment free (minimal installation, no environment variables, etc...) Always you can still have those variable locally declared in you environment if you wish, and use the short command. But not the other way around is not possible.",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9aba066_c53f8e33",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-12T07:41:35Z",
+      "side": 1,
+      "message": "this can be deleted as well.  I will push a commit only for fix this file.\nSo meanwhile we decide how we proceed with the command line we have this solved.",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
