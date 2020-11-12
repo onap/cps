@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7f7314a0_16b80c9a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-12T14:59:26Z",
+      "side": 1,
+      "message": "you will be using modelmapper to map Anchor to AnchorDetails, same as you do here.\nbut decoupling the responsability of mapping from CpsRestController. Not mapping to the entity.",
+      "parentUuid": "8f9b5dae_9f846242",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f00ad19_a2684ceb",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
         "patchSetId": 1
