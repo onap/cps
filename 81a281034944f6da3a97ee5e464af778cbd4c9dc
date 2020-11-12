@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8f47c193_660584b6",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T14:45:07Z",
+      "side": 1,
+      "message": "agreed, it almost looks as if Bruno accidently has an old copy of this file?!",
+      "parentUuid": "838b664f_467a9d58",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92bba0b1_b706bc02",
         "filename": "docker-compose/README.md",
         "patchSetId": 2
