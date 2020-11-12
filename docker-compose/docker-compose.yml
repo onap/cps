@@ -2,16 +2,15 @@ version: "3.7"
 
 services:
   cps:
-    restart: unless-stopped
-    image: nexus3.onap.org:10001/onap/cps-service:${VERSION}
     container_name: cps-service
+    image: nexus3.onap.org:10001/onap/cps-service:${VERSION}
+    ports:
+      - "8080:8080"
     environment:
       DB_HOST: ${DB_HOST}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "8080:8080"
-    network_mode: "host
+    restart: unless-stopped
     depends_on:
       - dbpostgresql
 
@@ -21,6 +20,6 @@ services:
     ports:
       - '5432:5432'
     environment:
-      DB_NAME: cpsdb
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: cpsdb
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
