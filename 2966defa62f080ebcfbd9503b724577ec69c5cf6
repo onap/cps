@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c934d62_dc8ba495",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "the discussion I had with Tony as after that, just to re-iterator Tony and I would like to return the id used by the client in this case the anchorName",
+      "range": {
+        "startLine": 67,
+        "startChar": 34,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "2966defa62f080ebcfbd9503b724577ec69c5cf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9daae6aa_ec3a019d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 4

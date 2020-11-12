@@ -102,6 +102,30 @@
     },
     {
       "key": {
+        "uuid": "0dceff2f_878f40db",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "the discussion I had with Tony as after that, just to re-iterator Tony and I would like to return the id used by the client in this case the anchorName",
+      "parentUuid": "b99b57e8_e263dfb5",
+      "range": {
+        "startLine": 67,
+        "startChar": 35,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "259ca2a9_2f85eb8e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
         "patchSetId": 1
@@ -172,6 +196,30 @@
       "side": 1,
       "message": "if some other method in future needs it, will refactor then.",
       "parentUuid": "9c2bfcdd_5590e787",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd3c9aa3_9170033c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "I would prefer if you do it now...",
+      "parentUuid": "9be33a73_0a42a382",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -255,6 +303,24 @@
     },
     {
       "key": {
+        "uuid": "57b23a9a_7a6f3320",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion, only thing I can add is that setter injection does not give us problems with testing as Groovy is well able to override private variables (we have already doen this in some tests)",
+      "parentUuid": "7c9781a8_f47352c2",
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbd7579a_6c1255fc",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 1
@@ -290,6 +356,30 @@
       "side": 1,
       "message": "i think this was added as part of Aditya\u0027s code, I just moved it up. Please create a separate task as this is not relevant to this story.",
       "parentUuid": "dbd7579a_6c1255fc",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb7dafa2_aec8deac",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "we came to realize it as part of your user story (and missed in aditya\u0027s story which is already closed) lets just be pragmatic and update it here too now.\nYou can also see it is making it consistent we the unique contraints for anchors.",
+      "parentUuid": "bc413cd0_bfe9d2ff",
       "range": {
         "startLine": 27,
         "startChar": 12,
@@ -396,6 +486,30 @@
     },
     {
       "key": {
+        "uuid": "fbb9446c_e34fd4ea",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "OK\u003c I\u0027ll Create a user story to revisit the DB schema, indexes etc in a little while.\nSee https://jira.onap.org/browse/CPS-81",
+      "parentUuid": "5b40b953_123aa395",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 97
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2641d352_bae37b1f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
         "patchSetId": 1
@@ -466,6 +580,30 @@
       "side": 1,
       "message": "my IDE auto adds it for me, removed now.",
       "parentUuid": "a1286f72_20c5e4de",
+      "range": {
+        "startLine": 86,
+        "startChar": 22,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9683f2c9_d2342df2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-12T15:24:16Z",
+      "side": 1,
+      "message": "does not make difference for compiler, if your IDE keeps doing it I wouldn\u0027t worry about it",
+      "parentUuid": "a58da543_44f3ce32",
       "range": {
         "startLine": 86,
         "startChar": 22,
