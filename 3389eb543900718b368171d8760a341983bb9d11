@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "231ea89b_524c3ae5",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-11-13T05:24:49Z",
+      "side": 1,
+      "message": "When testing it I had an issue with host network mode that was preventing to expose the port on the host.",
+      "revId": "3389eb543900718b368171d8760a341983bb9d11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
