@@ -126,6 +126,30 @@
     },
     {
       "key": {
+        "uuid": "936437aa_455f285e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-13T06:38:59Z",
+      "side": 1,
+      "message": "OK. Do you want it only in REST or Java API as well?",
+      "parentUuid": "0dceff2f_878f40db",
+      "range": {
+        "startLine": 67,
+        "startChar": 35,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "259ca2a9_2f85eb8e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
         "patchSetId": 1
@@ -220,6 +244,30 @@
       "side": 1,
       "message": "I would prefer if you do it now...",
       "parentUuid": "9be33a73_0a42a382",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84bdc6a4_0908bcf0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-13T06:38:59Z",
+      "side": 1,
+      "message": "The behavior to return boolean or throw exception in newly created method is very use case specific andd hence the method(of just a single line) may not be so useful.So, if in future we do drift towards one approach or the other would make sense to add method then to avoid rework. If you still want this , let me know which approach is your preference and i will happily implement.",
+      "parentUuid": "dd3c9aa3_9170033c",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -389,6 +437,30 @@
       "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d261ef81_681ab5fa",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-13T06:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb7dafa2_aec8deac",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
