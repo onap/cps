@@ -23,7 +23,7 @@ module stores {
 
     list categories {
 
-        key "code name";
+        key name;
 
         leaf code {
             type string;
