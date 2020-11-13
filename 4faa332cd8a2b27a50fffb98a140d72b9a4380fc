@@ -46,6 +46,30 @@
       "revId": "4faa332cd8a2b27a50fffb98a140d72b9a4380fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d2665a8_749a0bb9",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-13T10:45:09Z",
+      "side": 1,
+      "message": "yea, I though the same, but wanted to be sure and understand what this line is doing :)",
+      "parentUuid": "d19098f1_b995baeb",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 63,
+        "endChar": 40
+      },
+      "revId": "4faa332cd8a2b27a50fffb98a140d72b9a4380fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
