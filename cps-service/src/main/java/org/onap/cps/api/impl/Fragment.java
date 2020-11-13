@@ -79,12 +79,11 @@ public class Fragment {
      * @param qnameChild The Qualified name for the child (relative to the parent)
      * @return the child fragment
      */
-    public Fragment createChildFragment(final QName qnameChild, final String xpath) {
+    public Fragment createChildFragment(final QName qnameChild, final String xpathIdentifier) {
         final QName[] qnamesForChild = Arrays.copyOf(qnames, qnames.length + 1);
         qnamesForChild[qnamesForChild.length - 1] = qnameChild;
         final Fragment childFragment = new Fragment(this, module, qnamesForChild);
-        final String a = module.getQNameModule().toString();
-        childFragment.setXpath(getXpath() + '/' + qnameChild.getLocalName());
+        childFragment.setXpath(getXpath() + xpathIdentifier);
         childFragments.add(childFragment);
         return childFragment;
     }
