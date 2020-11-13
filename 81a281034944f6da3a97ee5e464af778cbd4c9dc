@@ -104,6 +104,24 @@
       "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f69b05f0_4d8f3544",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-11-13T05:25:15Z",
+      "side": 1,
+      "message": "I don\u0027t mind which change we are going with. I also provided my comments in yours.",
+      "parentUuid": "e9aba066_c53f8e33",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
