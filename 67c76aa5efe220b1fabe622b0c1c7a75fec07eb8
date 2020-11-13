@@ -672,6 +672,30 @@
     },
     {
       "key": {
+        "uuid": "1f3de83a_b226cc1e",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T15:23:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fbb9446c_e34fd4ea",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 97
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2641d352_bae37b1f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
         "patchSetId": 1

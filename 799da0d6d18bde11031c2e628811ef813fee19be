@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47434baa_b1f1e107",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T15:23:23Z",
+      "side": 1,
+      "message": "you will stil create methods for the 2 steps following our discussion in Patch 1?",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "799da0d6d18bde11031c2e628811ef813fee19be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4da921b_77cad412",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T15:23:23Z",
+      "side": 1,
+      "message": "I always prefer error message with significant details to help troubleshooting\ne.g. Anchor with name xyx already exisst in dataspace abc",
+      "range": {
+        "startLine": 73,
+        "startChar": 33,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "799da0d6d18bde11031c2e628811ef813fee19be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
