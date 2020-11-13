@@ -150,6 +150,30 @@
     },
     {
       "key": {
+        "uuid": "48b34c66_72ea1e27",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T10:23:28Z",
+      "side": 1,
+      "message": "good question, yes I think Java API should behave the same",
+      "parentUuid": "936437aa_455f285e",
+      "range": {
+        "startLine": 67,
+        "startChar": 35,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "259ca2a9_2f85eb8e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
         "patchSetId": 1
@@ -268,6 +292,30 @@
       "side": 1,
       "message": "The behavior to return boolean or throw exception in newly created method is very use case specific andd hence the method(of just a single line) may not be so useful.So, if in future we do drift towards one approach or the other would make sense to add method then to avoid rework. If you still want this , let me know which approach is your preference and i will happily implement.",
       "parentUuid": "dd3c9aa3_9170033c",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "67c76aa5efe220b1fabe622b0c1c7a75fec07eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "088bd042_ee2d5b27",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T10:23:28Z",
+      "side": 1,
+      "message": "these method try to grow over time. Even if small now it is good to describe exactly what is happening by having descriptive method names and even if now they only contain one line\nVoid method that throw an exception is fine in this case.\n\nThis is really about guiding future developers to keep everything nice and tidy.\n\nThanks,Toine",
+      "parentUuid": "84bdc6a4_0908bcf0",
       "range": {
         "startLine": 49,
         "startChar": 0,
