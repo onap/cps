@@ -93,13 +93,12 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNode(@Valid String body, String dataspaceName) {
+    public ResponseEntity<Object> getNode(String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(@Valid String body, String dataspaceName,
-        String anchorName) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(String dataspaceName, String anchorName) {
         return null;
     }
 
