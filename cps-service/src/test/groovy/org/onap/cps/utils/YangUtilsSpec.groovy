@@ -92,11 +92,17 @@ class YangUtilsSpec extends Specification{
         when: 'the json data is fragmented'
             def result = YangUtils.fragmentNormalizedNode(normalizedNode, module)
         then: 'the system creates a (root) fragment without a parent and 2 children (categories)'
-            //result.xpath == 'stores:bookstore'
             result.parentFragment == null
             result.childFragments.size() == 2
         and: 'each child (category) has the root fragment (result) as parent and in turn as 1 child (a list of books)'
             result.childFragments.each { it.parentFragment == result && it.childFragments.size() == 1 }
+        and: 'xpath values built for root and 2 children fragments are matching expected'
+            def rootXpath = '/org:onap:ccsdk:sample:bookstore(2020-09-15)'
+            assert result.xpath == rootXpath
+            assert result.childFragments.collect { it.xpath }.containsAll([
+                    rootXpath + "/org:onap:ccsdk:sample:categories(2020-09-15)[@code='01' and @name='SciFi']",
+                    rootXpath + "/org:onap:ccsdk:sample:categories(2020-09-15)[@code='02' and @name='kids']"
+            ])
     }
 
 
