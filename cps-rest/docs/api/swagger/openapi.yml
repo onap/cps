@@ -198,13 +198,6 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        description: xpath
-        content:
-          application/json:
-            schema:
-              type: string
-        required: true
       responses:
         200:
           description: OK
@@ -317,13 +310,6 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        description: requestBody
-        content:
-          application/json:
-            schema:
-              type: string
-        required: true
       responses:
         200:
           description: OK
