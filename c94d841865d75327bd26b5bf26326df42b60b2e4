@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37c5af45_5b0aa6d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T11:45:28Z",
+      "side": 1,
+      "message": "I had some conversations about including thees details in the xpath of each node. It should NOT be needed! Only if there are ambiguous paths a module name and/or revision should be required to distinguish and this information can also be retrieved using the module(set) id that is associated with each fragment.\nIt might be that we need a team meeting about this, and have a wiki page to show the different options, pros and cons etc.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 72
+      },
+      "revId": "c94d841865d75327bd26b5bf26326df42b60b2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc7af4e_9d6d2ede",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-13T11:45:28Z",
+      "side": 1,
+      "message": "This is only required for list that have key-fields and only the key field(s) should be included in the xpath",
+      "range": {
+        "startLine": 182,
+        "startChar": 19,
+        "endLine": 182,
+        "endChar": 42
+      },
+      "revId": "c94d841865d75327bd26b5bf26326df42b60b2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
