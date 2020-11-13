@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "2df60d5e_fb498cef",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-11-13T04:59:26Z",
+      "side": 1,
+      "message": "Moved to another change: https://gerrit.onap.org/r/c/cps/+/114866",
+      "parentUuid": "8f47c193_660584b6",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92bba0b1_b706bc02",
         "filename": "docker-compose/README.md",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2020-11-12T07:41:35Z",
       "side": 1,
       "message": "I would like to keep it as it was, environment free (minimal installation, no environment variables, etc...) Always you can still have those variable locally declared in you environment if you wish, and use the short command. But not the other way around is not possible.",
+      "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a3bf373_848f503c",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-11-13T04:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92bba0b1_b706bc02",
       "revId": "81a281034944f6da3a97ee5e464af778cbd4c9dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
