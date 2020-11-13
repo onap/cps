@@ -27,7 +27,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 import org.onap.cps.api.impl.Fragment;
-import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.common.QName;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.PathArgument;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
@@ -82,7 +84,8 @@ public class YangUtils {
 
     /**
      * Parse a file containing json data for a certain model (schemaContext).
-     * @param jsonData a string containing json data for the given model
+     *
+     * @param jsonData      a string containing json data for the given model
      * @param schemaContext the SchemaContext for the given data
      * @return the NormalizedNode representing the json data
      */
@@ -109,10 +112,10 @@ public class YangUtils {
      * @return the 'root' Fragment for the tree contain all relevant children etc.
      */
     public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
+            final NormalizedNode<? extends PathArgument, ?> tree,
             final Module module) {
         final Fragment rootFragment = new Fragment(null, module, tree.getNodeType());
-        rootFragment.setXpath(module.getName() + ":" + tree.getNodeType().getLocalName());
+        rootFragment.setXpath(buildXpathNodeIdentifier(tree.getIdentifier()));
         fragmentNormalizedNode(rootFragment, tree);
         return rootFragment;
     }
@@ -146,8 +149,6 @@ public class YangUtils {
 
     private static void inspectContainer(final Fragment currentFragment,
                                          final DataContainerNode dataContainerNode) {
-        currentFragment.setXpath(dataContainerNode.getIdentifier()
-                .toRelativeString(YangInstanceIdentifier.empty().getLastPathArgument()));
         final Collection<NormalizedNode> leaves = (Collection) dataContainerNode.getValue();
         for (final NormalizedNode leaf : leaves) {
             fragmentNormalizedNode(currentFragment, leaf);
@@ -159,9 +160,34 @@ public class YangUtils {
         // Instead of one child, we have a collection of List Elements
         final Collection<MapEntryNode> mapEntryNodes = (Collection) mapNode.getValue();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
-            final Object key2 = mapEntryNode.getIdentifier().toRelativeString(mapNode.getIdentifier());
-            final Fragment listElementFragment = currentFragment.createChildFragment(mapNode.getNodeType(), "");
+            final String xPathNodeId = buildXpathNodeIdentifier(mapEntryNode.getIdentifier());
+            final Fragment listElementFragment = currentFragment.createChildFragment(mapNode.getNodeType(), xPathNodeId);
             fragmentNormalizedNode(listElementFragment, mapEntryNode);
         }
+    }
+
+    private static String buildXpathNodeIdentifier(PathArgument nodeIdentifier) {
+        StringBuilder xPathIdBuilder = new StringBuilder();
+
+        QName nodeType = nodeIdentifier.getNodeType();
+        xPathIdBuilder.append("/").append(nodeType.getLocalName());
+
+        if (nodeIdentifier instanceof NodeIdentifierWithPredicates) {
+            // set unique node identifiers as name-value pairs of key attributes (leaves)
+            StringBuilder nvpBuilder= new StringBuilder();
+            ((NodeIdentifierWithPredicates) nodeIdentifier).entrySet().forEach(
+                entry -> {
+                    String name = entry.getKey().getLocalName();
+                    String value = String.valueOf(entry.getValue()).replaceAll("'", "\\'");
+                    nvpBuilder
+                        .append(nvpBuilder.length() > 0 ? " and " : "")
+                        .append(String.format("@%s='%s'", name, value));
+                }
+            );
+            if(nvpBuilder.length() >0) {
+                xPathIdBuilder.append("[").append(nvpBuilder.toString()).append("]");
+            }
+        }
+        return xPathIdBuilder.toString();
     }
 }
