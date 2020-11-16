@@ -29,7 +29,7 @@
 
     <profiles>
         <profile>
-            <id>Docker</id>
+            <id>docker</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
