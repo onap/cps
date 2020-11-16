@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "37ee9ac0_4e1c3f1e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "What else do you have in mind?",
+      "parentUuid": "b47e5dfe_b79077f1",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d529c67b_596c8b86",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "d7caa3ef_83190ae2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6625f420_c3cbb345",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e318fb9_07ecd135",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -91,6 +139,30 @@
       "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56cdb1a9_439b69af",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e318fb9_07ecd135",
+      "range": {
+        "startLine": 64,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 70
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "55b5d8b0_38c637c4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b81171e_7ed1cd54",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 93
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eab3db59_bc47f27e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
         "patchSetId": 8
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "8b165c58_d947edff",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "This service holds all operations for Fragments. What else do you have in mind?",
+      "parentUuid": "eab3db59_bc47f27e",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b76dbf1a_98af0a74",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
         "patchSetId": 8
@@ -151,6 +271,30 @@
       "writtenOn": "2020-11-16T14:53:28Z",
       "side": 1,
       "message": "I think we need to have a chat about this test and possibly the production code...",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 78
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50aa83a5_ca7bee27",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "sure. will leave the test code comments till our chat",
+      "parentUuid": "b76dbf1a_98af0a74",
       "range": {
         "startLine": 123,
         "startChar": 15,

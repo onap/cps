@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "61704bb1_8f2b6552",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8ce11a8_6795fe4e",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a63c338_964df99e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 7
@@ -140,6 +158,24 @@
       "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335f992e_e21b79e3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e62cdf6_9b81c48b",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -228,6 +264,24 @@
       "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57668c84_e74e9fac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-16T15:34:03Z",
+      "side": 1,
+      "message": "Ok. can do it separately as well. pretty small change",
+      "parentUuid": "cb508c86_d5e51c76",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
