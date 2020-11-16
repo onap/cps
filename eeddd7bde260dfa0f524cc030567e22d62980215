@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "cabf8fe6_6cbf8621",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T17:33:55Z",
+      "side": 1,
+      "message": "I am not sure will we have a repository and a service for each of our type of objects?! \nI don\u0027t see the need for such fine granularity, please ask other reviewers to commit on this.\nIf we do decide to have a ...Service for each object DataPerssitencyService need to refactors as no such class then probably will exists anymore...",
+      "parentUuid": "8b165c58_d947edff",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b76dbf1a_98af0a74",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
         "patchSetId": 8
@@ -295,6 +319,30 @@
       "side": 1,
       "message": "sure. will leave the test code comments till our chat",
       "parentUuid": "b76dbf1a_98af0a74",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 78
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92e5cd59_e8c64b54",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T17:33:55Z",
+      "side": 1,
+      "message": "There is something not quite right with teh exception handling and teh way it is tested now, please address Ruslan\u0027s comments on that first and then we can look at teh test again",
+      "parentUuid": "50aa83a5_ca7bee27",
       "range": {
         "startLine": 123,
         "startChar": 15,
