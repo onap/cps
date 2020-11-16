@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9bfc4c32_868517da",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-16T14:48:08Z",
+      "side": 1,
+      "message": "updated; local name only used",
+      "parentUuid": "37c5af45_5b0aa6d4",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 72
+      },
+      "revId": "c94d841865d75327bd26b5bf26326df42b60b2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fc7af4e_9d6d2ede",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c94d841865d75327bd26b5bf26326df42b60b2e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828860ea_7674ea1d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-16T14:48:08Z",
+      "side": 1,
+      "message": "NodeIdentifierWithPredicates class serves this purpose, it encapsulates the data and model information about the leafs marked for being keys; see no issue here",
+      "parentUuid": "0fc7af4e_9d6d2ede",
+      "range": {
+        "startLine": 182,
+        "startChar": 19,
+        "endLine": 182,
+        "endChar": 42
+      },
+      "revId": "c94d841865d75327bd26b5bf26326df42b60b2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
