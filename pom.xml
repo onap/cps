@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <name>cps</name>
-    <description>ONAP Configuration and Persistency Service</description>
+    <description>ONAP Configuration Persistence Service</description>
 
     <organization>
         <name>ONAP - CPS</name>
