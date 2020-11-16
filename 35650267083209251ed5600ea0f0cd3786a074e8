@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "b8ce11a8_6795fe4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T13:06:01Z",
+      "side": 1,
+      "message": "as more verbose less readable I will say, also I will say doesnt provide valuable information in this case",
+      "parentUuid": "57629203_02ce39e1",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a63c338_964df99e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 7
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "I agree.\nNot sure most people like Optional in the group. I can change this.\nThe dataspaceRepository does have an exists method curerntly, how about we use that pattern, exists and then find instead of optional (though i commented against it previously)? My vote is for using optional and I did discuss this previously but optional was downvoted. lemme know which is preferred approach by the group.",
       "parentUuid": "5a63c338_964df99e",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e62cdf6_9b81c48b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T13:06:01Z",
+      "side": 1,
+      "message": "I think there is space for each case, and each is valid and useful.\n\n- get -\u003e returns object or exception\n- find -\u003e returns optional\n- exist -\u003e boolean",
+      "parentUuid": "137ea9a9_0ef97d35",
       "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -171,6 +207,24 @@
       "side": 1,
       "message": "Duplication error is used with cpsvalidationerror(currently). I think Ruslan introduced an Enum in one of his patches for this same purpose, not sure why it didn\u0027t make it to the merge.",
       "parentUuid": "0cd78baa_6580c6a1",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb508c86_d5e51c76",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T13:06:01Z",
+      "side": 1,
+      "message": "let see if we can recover",
+      "parentUuid": "e45041ec_dfd206bb",
       "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
