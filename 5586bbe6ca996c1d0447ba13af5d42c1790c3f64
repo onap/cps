@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f27301d_6f414861",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-16T16:32:43Z",
+      "side": 1,
+      "message": "returning \"not found\" error on \"create\" request seems to be wrong behavior.\nit\u0027s not a \"fetch\" request, when data is expected in response.\nin this case providing invalid reference for new record is bad input.\nso validation exception (\"bad request\" response) seems more reasonable here.",
+      "revId": "5586bbe6ca996c1d0447ba13af5d42c1790c3f64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

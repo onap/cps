@@ -214,6 +214,23 @@
     },
     {
       "key": {
+        "uuid": "5be9dcb7_f9e430dd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-16T16:32:43Z",
+      "side": 1,
+      "message": "there is no need in \u0027throws\u0027 for runtime exception (+ same in a neighbor method).\n\nalso it seems reasonable to move actual exception throwing onto upper level.\nto avoid the case when \"not found\" exception is thrown for \"insert\" requests.\nsee comment for CpServiceImplSpec.groovy. this seems to require some discussion.",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0cd78baa_6580c6a1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 7
