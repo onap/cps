@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b47e5dfe_b79077f1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "Only realizing now, not sure why we need a different service for each object type?!",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d529c67b_596c8b86",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "typo in name",
+      "range": {
+        "startLine": 51,
+        "startChar": 36,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6625f420_c3cbb345",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "moduleEntity",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e318fb9_07ecd135",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "please check my suggestion in the original comment:\n\"Anchor with name xyx already exist in dataspace abc\"\n\n(the namespace and revision are irrelevant for this duplication error, actually many anchors will probably have the same of those!) but the NAME has to be unique",
+      "range": {
+        "startLine": 64,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 70
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b81171e_7ed1cd54",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "Suggested rewording:\nModule with dataspace %s, revision %s does not exist in namespace %s",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 93
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eab3db59_bc47f27e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "I\u0027m confused, why is there a separate service for this?!",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b76dbf1a_98af0a74",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "I think we need to have a chat about this test and possibly the production code...",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 78
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1a5d497_57e27349",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-16T14:53:28Z",
+      "side": 1,
+      "message": "this is not really needed if you use _ (underscore wildcard) in the line below",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 56
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
