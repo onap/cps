@@ -2,6 +2,148 @@
   "comments": [
     {
       "key": {
+        "uuid": "cbf192f0_fa6b8a3e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "xPath should be immutable, so consider moving it to constructor",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5232af6a_15b158a6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "improve naming",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "059805df_54c3ee71",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "move \u0027/\u0027 to static variable",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3daf22c_c0e23aa7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "I think I really mentioned this, but this is a service not an util class. \nIntroduce an interface. This will allow to mock the implementation if need it.\nAlso we will have a well defined API of what it does, and is expected from it.",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0553e87_113a9058",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "extract tree.getNodeType() to variable",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495657ae_4460a929",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "we might want to create a constructor specific for this case, so we dont need to pass null",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50ff9448_91f0eb58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "this types of comments tend to end anywhere if the code mutate, I\u0027m not really fun of them. Better to document in the method",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc49a9f_f1db46fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T16:09:29Z",
+      "side": 1,
+      "message": "should this line be removed?",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e14ce0e_8b70a5d1",
         "filename": "cps-service/src/test/resources/bookstore.yang",
         "patchSetId": 2
