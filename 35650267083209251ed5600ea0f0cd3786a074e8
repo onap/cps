@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3256d9f_118458df",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "remove extra line",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4e2c671_0a75c0a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "do we really need set parentFragment / anchorFragment to null?? Are not null by default?",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a63c338_964df99e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "Consider moving findModule to moduleRepository service and call it getModule\nSame for Dataspace method\nKeep responsibilities decoupled, module service should take care of get / find or save, or anything related to module. Same for dataspace service.\nSo where *FIND* method should get maybe an optional, *GET* gets the object or throws and exception. And downstream consumers doesn\u0027t need to care about implementation, neither will be duplicated code if different services needs to do some GET for example",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edba5c72_3c04c052",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "missing final",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cd78baa_6580c6a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "Consider add \"Not Found\" \"Duplication Error\" as public Static Variables under CpsNotFoundException, so it can be reused",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bab5c1c4_22c442b2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "findDatasapce typo + missing final",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc73c17_3cac1594",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-16T09:41:44Z",
+      "side": 1,
+      "message": "optionalRevision.map(...).else(null",
+      "revId": "35650267083209251ed5600ea0f0cd3786a074e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
