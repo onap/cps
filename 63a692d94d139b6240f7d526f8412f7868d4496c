@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e14ce0e_8b70a5d1",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-16T15:49:49Z",
+      "side": 1,
+      "message": "to discuss: using plural form for model definition",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
