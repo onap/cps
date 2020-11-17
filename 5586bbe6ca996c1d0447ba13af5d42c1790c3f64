@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "5e7bd400_e83e10b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T08:42:46Z",
+      "side": 1,
+      "message": "this is responsibility of the repository, check my comment on DataspaceRepository",
+      "revId": "5586bbe6ca996c1d0447ba13af5d42c1790c3f64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c55bd98e_45021da9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T08:42:46Z",
+      "side": 1,
+      "message": "default Dataspace getByName(String name) throws CpsNotFoundException {\n        return findByName(name)\n                .orElseThrow(() -\u003e new CpsNotFoundException(\"Not Found\", \"Dataspace \" + name + \" does not exist.\"));\n    }",
+      "revId": "5586bbe6ca996c1d0447ba13af5d42c1790c3f64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264b14c2_29ee73ec",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T08:42:46Z",
+      "side": 1,
+      "message": "rebase and align this file.",
+      "revId": "5586bbe6ca996c1d0447ba13af5d42c1790c3f64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f27301d_6f414861",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
         "patchSetId": 9
