@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "10b1f6e3_387ea720",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-17T12:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d529c67b_596c8b86",
+      "range": {
+        "startLine": 51,
+        "startChar": 36,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6625f420_c3cbb345",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -308,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "14dd6eca_be01ebb0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-17T12:53:55Z",
+      "side": 1,
+      "message": "Requesting others opinion here",
+      "parentUuid": "cabf8fe6_6cbf8621",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b76dbf1a_98af0a74",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
         "patchSetId": 8
@@ -367,6 +415,30 @@
       "side": 1,
       "message": "There is something not quite right with teh exception handling and teh way it is tested now, please address Ruslan\u0027s comments on that first and then we can look at teh test again",
       "parentUuid": "50aa83a5_ca7bee27",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 78
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "756ab68b_123bc146",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-17T12:53:55Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "92e5cd59_e8c64b54",
       "range": {
         "startLine": 123,
         "startChar": 15,
