@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ac135531_d817d49b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T08:45:29Z",
+      "side": 1,
+      "message": "Once you do my proposed changes, createAnchor will be reduced to 3 lines. At any rate, we can keep separately now, and join it later. I dont see any issue or blocker, since test will still be valids",
+      "parentUuid": "37ee9ac0_4e1c3f1e",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "eeddd7bde260dfa0f524cc030567e22d62980215",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d529c67b_596c8b86",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 8
