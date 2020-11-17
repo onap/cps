@@ -22,6 +22,30 @@
       "revId": "5faa49cf0206720fc59be21cc449ef812ba6ad97",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "015d3bc2_32e2d48a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T12:02:53Z",
+      "side": 1,
+      "message": "not at all, but Bruno wanted it, and I\u0027m ok with it",
+      "parentUuid": "eec55b4b_649d471b",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "5faa49cf0206720fc59be21cc449ef812ba6ad97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
