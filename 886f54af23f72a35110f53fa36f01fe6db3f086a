@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86e74372_e7ec7d84",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-17T17:56:06Z",
+      "side": 1,
+      "message": "do we still need the QNames? (I introduced them as I thought we might need them to build teh xPath but maybe that is not needed anymore)",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7811828e_d9173350",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-17T17:56:06Z",
+      "side": 1,
+      "message": "nvp ?! That\u0027s why I don\u0027t like acronyms in variable names...",
+      "range": {
+        "startLine": 177,
+        "startChar": 26,
+        "endLine": 177,
+        "endChar": 36
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7604611_db2d3de0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-17T17:56:06Z",
+      "side": 1,
+      "message": "extract out for readability? e.g. addKeys()",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 72
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c23c3b7_26c3eb3e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-17T17:56:06Z",
+      "side": 1,
+      "message": "i this order guaranteed?! If not (and we will address it in a separate US)\nFor now just change the bookstore module to have a single key (I only added it to see what would happen)",
+      "range": {
+        "startLine": 102,
+        "startChar": 43,
+        "endLine": 102,
+        "endChar": 71
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
