@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f89f15d_ec0fa7ee",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-17T13:07:18Z",
+      "side": 1,
+      "message": "the property naming approach is quite inconsistent.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "24c217c5eda9b5a889067d2f003a54439238bebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
