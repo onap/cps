@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Rishi Chail <rishi.chail@est.tech>
+Code-Review+1: Ruslan Kashapov <ruslan.kashapov@pantheon.tech>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-by: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-at: Tue, 17 Nov 2020 11:52:22 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/114948
+Project: cps
+Branch: refs/heads/master
