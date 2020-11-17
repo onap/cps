@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91d45d53_a71e1f50",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T18:55:10Z",
+      "side": 1,
+      "message": "add the exceptions throwns to the interface methods",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f085cf9_59b4fa45",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T18:55:10Z",
+      "side": 1,
+      "message": "Why are converting CpsNotFoundException to CpsValidationException?",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34728410_2949990c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T18:55:10Z",
+      "side": 1,
+      "message": "default Dataspace getByName(String name) throws CpsNotFoundException\nAlso I see the other repo uses @nonnulll annotations, try to keep consistency here as well",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deaeafed_c6b21d08",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T18:55:10Z",
+      "side": 1,
+      "message": "add CpsNotFoundException",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936a86a2_34e61d82",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-17T18:55:10Z",
+      "side": 1,
+      "message": "is there some reason for the change of the order? same for the others lines, try to reduce the changes required to the minimum and related to the task of this commit",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
