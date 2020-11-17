@@ -20,12 +20,30 @@
         <base.image>openjdk:11-jre-slim</base.image>
         <java.version>11</java.version>
         <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+        <nexusproxy>https://nexus.onap.org</nexusproxy>
+        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <oparent.version>3.1.0</oparent.version>
+        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <repository.name>nexus3.onap.org:10001/onap/cps-service</repository.name>
         <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
         <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
+        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
+        <stagingNexusPath>/content/repositories/staging/</stagingNexusPath>
         <tag.version>${project.version}</tag.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>ecomp-releases</id>
+            <name>ECOMP Release Repository</name>
+            <url>${nexusproxy}${releaseNexusPath}</url>
+        </repository>
+        <snapshotRepository>
+            <id>ecomp-snapshots</id>
+            <name>ECOMP Snapshot Repository</name>
+            <url>${nexusproxy}${snapshotNexusPath}</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <profiles>
         <profile>
