@@ -51,6 +51,7 @@ public interface CpService {
      *
      * @param schemaContext the schema context
      * @param dataspaceName the dataspace name
+     * @throws CpsValidationException if input data already exists.
      */
     void storeSchemaContext(SchemaContext schemaContext, String dataspaceName);
 
