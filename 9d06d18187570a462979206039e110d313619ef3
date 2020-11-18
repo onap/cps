@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "833845a1_59efef1d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-18T13:04:44Z",
+      "side": 1,
+      "message": "this will have to be renamed once we agree the terminology discussed in the SPI meeting : dataNode\n(but we can do in a separate user story which I will create) \nAlthough this is in the SPI impl, I need to think about that...",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b7f3910_65f4bf1c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-18T13:04:44Z",
+      "side": 1,
+      "message": "I really think we dont need these parameter in the name of the method it will cause inconsistencies and problems in the long run",
+      "range": {
+        "startLine": 53,
+        "startChar": 63,
+        "endLine": 53,
+        "endChar": 100
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3adfad3_48bc9c6f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-18T13:04:44Z",
+      "side": 1,
+      "message": "please make this first parameter (everywhere)",
+      "range": {
+        "startLine": 35,
+        "startChar": 34,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46656318_9d14a0ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-18T13:04:44Z",
+      "side": 1,
+      "message": "please make this first parameter (everywhere)",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 62
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
