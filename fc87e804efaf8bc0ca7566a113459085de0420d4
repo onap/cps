@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5c967e34_7fd24e34",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T05:17:30Z",
+      "side": 1,
+      "message": "Were added previously. See previous comments from Ruslan.",
+      "parentUuid": "91d45d53_a71e1f50",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f085cf9_59b4fa45",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2020-11-17T18:55:10Z",
       "side": 1,
       "message": "Why are converting CpsNotFoundException to CpsValidationException?",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1814d90_4ba117b3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T05:17:30Z",
+      "side": 1,
+      "message": "See previous comments from Ruslan. he said a create request should not throw a NOtFound exception. The repository get request will still throw a notfound, but this method makes sense to throw a validation exception. Hence the conversion.",
+      "parentUuid": "9f085cf9_59b4fa45",
       "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8344e1b0_3bb2d525",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T05:17:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34728410_2949990c",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "deaeafed_c6b21d08",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 11
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "d464b555_49fb4c3c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T05:17:30Z",
+      "side": 1,
+      "message": "see similar comment",
+      "parentUuid": "deaeafed_c6b21d08",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "936a86a2_34e61d82",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 11
@@ -81,6 +153,24 @@
       "writtenOn": "2020-11-17T18:55:10Z",
       "side": 1,
       "message": "is there some reason for the change of the order? same for the others lines, try to reduce the changes required to the minimum and related to the task of this commit",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db02cdd2_f3690061",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T05:17:30Z",
+      "side": 1,
+      "message": "Have tried to move the ID to the top as it was buried within other fields and hard to read.",
+      "parentUuid": "936a86a2_34e61d82",
       "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
