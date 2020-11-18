@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8581723f_e3e4fe73",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T10:31:17Z",
+      "side": 1,
+      "message": "How did we come up with this?",
+      "range": {
+        "startLine": 24,
+        "startChar": 26,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b69668c8_674dec97",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 1
@@ -42,6 +65,52 @@
         "startChar": 0,
         "endLine": 183,
         "endChar": 61
+      },
+      "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4df4889_9fd7a949",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T10:31:17Z",
+      "side": 1,
+      "message": "Question :What do you plan to pass as arguments here?",
+      "range": {
+        "startLine": 265,
+        "startChar": 20,
+        "endLine": 265,
+        "endChar": 49
+      },
+      "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89f69945_f67e9a16",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T10:31:17Z",
+      "side": 1,
+      "message": "Are we going to use jacoco and sonar both for coverage. I remember someone mentioned ONAP uses sonar, not sure if both are required?",
+      "range": {
+        "startLine": 274,
+        "startChar": 16,
+        "endLine": 277,
+        "endChar": 28
       },
       "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
