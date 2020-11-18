@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "54d11fab_3030b512",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-18T14:10:51Z",
+      "side": 1,
+      "message": "OK, thanks for explaining",
+      "parentUuid": "d4e7c5cd_8cc2ccaa",
+      "range": {
+        "startLine": 53,
+        "startChar": 63,
+        "endLine": 53,
+        "endChar": 100
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3adfad3_48bc9c6f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 13
