@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bdbf3e1_538a784a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T16:58:00Z",
+      "side": 1,
+      "message": "only this needs to be in try-catch",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 48
+      },
+      "revId": "71e447a7d8d24b9ecf910733242a6115132574c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca03c2df_454d007a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T16:58:00Z",
+      "side": 1,
+      "message": "add throws in Cpservice javadoc",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "71e447a7d8d24b9ecf910733242a6115132574c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
