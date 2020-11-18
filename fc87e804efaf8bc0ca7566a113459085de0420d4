@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "ab9d952a_060324e4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T09:41:34Z",
+      "side": 1,
+      "message": "i think consumer should not be exposed to DataIntegrityViolationException as it is RDBMS based. As ruslan said, create request should not throw CpsNotFoundException. This class is fully responsible for saving the anchor so i think this is the right place for it. THis can be discussed.",
+      "parentUuid": "c05cda8c_d91db9ea",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34728410_2949990c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
         "patchSetId": 11
