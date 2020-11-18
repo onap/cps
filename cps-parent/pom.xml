@@ -19,7 +19,9 @@
         <app>org.onap.cps.Application</app>
         <base.image>openjdk:11-jre-slim</base.image>
         <java.version>11</java.version>
+        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
         <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+        <minimum-coverage>0.17</minimum-coverage>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <oparent.version>3.1.0</oparent.version>
@@ -177,6 +179,26 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>${jib-maven-plugin.version}</version>
+                    <configuration>
+                        <container>
+                            <mainClass>${app}</mainClass>
+                            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                        </container>
+                        <from>
+                            <image>${base.image}</image>
+                        </from>
+                        <to>
+                            <image>${repository.name}</image>
+                            <tags>
+                                <tag>${tag.version}</tag>
+                            </tags>
+                        </to>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -240,6 +262,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+                    <argLine>@{argLine}</argLine>
                     <useFile>false</useFile>
                     <includes>
                         <include>**/*Spec.java</include>
@@ -248,24 +271,37 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>${jib-maven-plugin.version}</version>
-                <configuration>
-                    <container>
-                        <mainClass>${app}</mainClass>
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                    </container>
-                    <from>
-                        <image>${base.image}</image>
-                    </from>
-                    <to>
-                        <image>${repository.name}</image>
-                        <tags>
-                            <tag>${tag.version}</tag>
-                        </tags>
-                    </to>
-                </configuration>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>coverage-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${minimum-coverage}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
