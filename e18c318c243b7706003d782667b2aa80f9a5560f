@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9bc65fc5_88d1d894",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "as discussed, this is JPA standard where the impl of these are handled by the framework.",
+      "parentUuid": "d43bb8ba_93092323",
+      "range": {
+        "startLine": 34,
+        "startChar": 27,
+        "endLine": 34,
+        "endChar": 65
+      },
+      "revId": "e18c318c243b7706003d782667b2aa80f9a5560f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80c4dd58_5ed3accf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "79cad1f3_f78d890e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80c4dd58_5ed3accf",
+      "range": {
+        "startLine": 35,
+        "startChar": 53,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "e18c318c243b7706003d782667b2aa80f9a5560f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f52f72c_3282d27f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 10
@@ -68,6 +116,30 @@
       "revId": "e18c318c243b7706003d782667b2aa80f9a5560f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5600f857_33042d28",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f52f72c_3282d27f",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 47,
+        "endChar": 63
+      },
+      "revId": "e18c318c243b7706003d782667b2aa80f9a5560f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

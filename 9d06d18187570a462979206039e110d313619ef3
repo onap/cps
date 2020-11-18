@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "451652e5_3600237a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "833845a1_59efef1d",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b7f3910_65f4bf1c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2020-11-18T13:04:44Z",
       "side": 1,
       "message": "I really think we dont need these parameter in the name of the method it will cause inconsistencies and problems in the long run",
+      "range": {
+        "startLine": 53,
+        "startChar": 63,
+        "endLine": 53,
+        "endChar": 100
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4e7c5cd_8cc2ccaa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "this is JPA standard",
+      "parentUuid": "4b7f3910_65f4bf1c",
       "range": {
         "startLine": 53,
         "startChar": 63,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "358e6d9b_7719e224",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3adfad3_48bc9c6f",
+      "range": {
+        "startLine": 35,
+        "startChar": 34,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46656318_9d14a0ad",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 13
@@ -91,6 +163,30 @@
       "revId": "9d06d18187570a462979206039e110d313619ef3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa47ea55_126b0b72",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-18T13:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46656318_9d14a0ad",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 62
+      },
+      "revId": "9d06d18187570a462979206039e110d313619ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
