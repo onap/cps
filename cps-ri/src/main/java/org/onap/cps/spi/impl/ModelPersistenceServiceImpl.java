@@ -20,12 +20,14 @@
 
 package org.onap.cps.spi.impl;
 
+import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.ModelPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Module;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -46,6 +48,11 @@ public class ModelPersistenceServiceImpl implements ModelPersistenceService {
         }
         dataspace.setId(dataspaceRepository.getByName(dataspaceName).getId());
         final Module module = new Module(namespace, moduleContent, revision, dataspace);
-        moduleRepository.save(module);
+        try {
+            moduleRepository.save(module);
+        } catch (final DataIntegrityViolationException ex) {
+            throw new CpsValidationException("Duplicate Entry",
+                String.format("Module already exist in dataspace %s.", dataspaceName));
+        }
     }
 }
