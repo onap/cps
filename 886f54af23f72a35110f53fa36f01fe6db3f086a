@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80ba5376_670169ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-18T10:31:37Z",
+      "side": 1,
+      "message": "seems out of scope for entire task",
+      "parentUuid": "86e74372_e7ec7d84",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7811828e_d9173350",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed415745_932eb86b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-18T10:31:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7811828e_d9173350",
+      "range": {
+        "startLine": 177,
+        "startChar": 26,
+        "endLine": 177,
+        "endChar": 36
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bfaafa3b_b1f9b64c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-18T10:31:37Z",
+      "side": 1,
+      "message": "the method is updated for greater readability,\nno need to split it",
+      "parentUuid": "d7604611_db2d3de0",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 72
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c23c3b7_26c3eb3e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5878e594_28a8e635",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-18T10:31:37Z",
+      "side": 1,
+      "message": "updated: \norder by leaf name guaranteed,\nmodel uses single key field now.",
+      "parentUuid": "0c23c3b7_26c3eb3e",
+      "range": {
+        "startLine": 102,
+        "startChar": 43,
+        "endLine": 102,
+        "endChar": 71
+      },
+      "revId": "886f54af23f72a35110f53fa36f01fe6db3f086a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
