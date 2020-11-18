@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "0a0ab2a2_d59147bb",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-18T10:39:46Z",
+      "side": 1,
+      "message": "Jacoco does, otherwise plugin(jacoco) wont work as expected",
+      "parentUuid": "f4df4889_9fd7a949",
+      "range": {
+        "startLine": 265,
+        "startChar": 20,
+        "endLine": 265,
+        "endChar": 49
+      },
+      "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89f69945_f67e9a16",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 1
@@ -106,6 +130,30 @@
       "writtenOn": "2020-11-18T10:31:17Z",
       "side": 1,
       "message": "Are we going to use jacoco and sonar both for coverage. I remember someone mentioned ONAP uses sonar, not sure if both are required?",
+      "range": {
+        "startLine": 274,
+        "startChar": 16,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "f6b16a3522d476f4c13f55163e32b075ee492158",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9564fe91_4e9ab83b",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-18T10:39:46Z",
+      "side": 1,
+      "message": "Please take a look to the task or you e-mail. Same response apply to first question",
+      "parentUuid": "89f69945_f67e9a16",
       "range": {
         "startLine": 274,
         "startChar": 16,
