@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "1d9d855a_1943d3c1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-18T10:05:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab9d952a_060324e4",
+      "revId": "fc87e804efaf8bc0ca7566a113459085de0420d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34728410_2949990c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
         "patchSetId": 11
