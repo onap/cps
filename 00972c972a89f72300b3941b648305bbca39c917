@@ -16,6 +16,24 @@
       "revId": "00972c972a89f72300b3941b648305bbca39c917",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e244b99_69493f4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-11-19T09:46:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "195cca63_6a3eb94b",
+      "revId": "00972c972a89f72300b3941b648305bbca39c917",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
