@@ -23,7 +23,7 @@ package org.onap.cps.spi;
 /**
  * Defines methods to access and manipulate data using the chosen database solution.
  */
-public interface ModelPersistencyService {
+public interface ModelPersistenceService {
 
     /**
      * Store the module from a yang model in the database.

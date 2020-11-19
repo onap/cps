@@ -26,7 +26,7 @@ import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.FragmentPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
-import org.onap.cps.spi.entities.ModuleEntity;
+import org.onap.cps.spi.entities.Module;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
@@ -50,13 +50,13 @@ public class FragmentPersistenceServiceImpl implements FragmentPersistenceServic
     public String createAnchor(final AnchorDetails anchorDetails) {
         try {
             final Dataspace dataspace = dataspaceRepository.getByName(anchorDetails.getDataspace());
-            final ModuleEntity moduleEntity =
+            final Module module =
                 moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspace,
                 anchorDetails.getNamespace(), anchorDetails.getRevision());
 
             final Fragment fragment = Fragment.builder().xpath(anchorDetails.getAnchorName())
                 .anchorName(anchorDetails.getAnchorName())
-                .dataspace(dataspace).module(moduleEntity).build();
+                .dataspace(dataspace).module(module).build();
 
             fragmentRepository.save(fragment);
             return anchorDetails.getAnchorName();

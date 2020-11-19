@@ -19,7 +19,7 @@
 
 package org.onap.cps.spi.impl;
 
-import org.onap.cps.spi.DataPersistencyService;
+import org.onap.cps.spi.DataPersistenceService;
 import org.onap.cps.spi.entities.JsonDataEntity;
 import org.onap.cps.spi.repository.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class DataPersistencyServiceImpl implements DataPersistencyService {
+public class DataPersistenceServiceImpl implements DataPersistenceService {
 
     @Autowired
     private DataRepository dataRepository;

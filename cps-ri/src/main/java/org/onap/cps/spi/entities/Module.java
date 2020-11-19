@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,7 +46,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "module")
-public class ModuleEntity {
+public class Module implements Serializable {
+
+    private static final long serialVersionUID = -748666970938314895L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,7 +78,7 @@ public class ModuleEntity {
      * @param revision the revision number of the module.
      * @param dataspace the dataspace related to the module.
      */
-    public ModuleEntity(String namespace, String moduleContent, String revision, Dataspace dataspace) {
+    public Module(String namespace, String moduleContent, String revision, Dataspace dataspace) {
         this.namespace = namespace;
         this.moduleContent = moduleContent;
         this.revision = revision;

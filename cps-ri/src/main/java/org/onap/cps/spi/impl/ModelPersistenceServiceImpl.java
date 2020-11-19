@@ -20,16 +20,16 @@
 
 package org.onap.cps.spi.impl;
 
-import org.onap.cps.spi.ModelPersistencyService;
+import org.onap.cps.spi.ModelPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.ModuleEntity;
+import org.onap.cps.spi.entities.Module;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ModelPersistencyServiceImpl implements ModelPersistencyService {
+public class ModelPersistenceServiceImpl implements ModelPersistenceService {
 
     @Autowired
     private ModuleRepository moduleRepository;
@@ -45,7 +45,7 @@ public class ModelPersistencyServiceImpl implements ModelPersistencyService {
             dataspaceRepository.save(dataspace);
         }
         dataspace.setId(dataspaceRepository.getByName(dataspaceName).getId());
-        final ModuleEntity moduleEntity = new ModuleEntity(namespace, moduleContent, revision, dataspace);
-        moduleRepository.save(moduleEntity);
+        final Module module = new Module(namespace, moduleContent, revision, dataspace);
+        moduleRepository.save(module);
     }
 }

@@ -24,27 +24,27 @@ import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.ModuleEntity;
+import org.onap.cps.spi.entities.Module;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<ModuleEntity, Integer> {
+public interface ModuleRepository extends JpaRepository<Module, Integer> {
 
-    Optional<ModuleEntity> findByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace,
+    Optional<Module> findByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace,
         @NotNull String namespace,
         @NotNull String revision);
 
     /**
-     * This method gets a ModuleEntity by dataspace, namespace and revision.
+     * This method gets a Module by dataspace, namespace and revision.
      *
      * @param dataspace the dataspace
      * @param namespace the namespace
      * @param revision the revision
-     * @return the ModuleEntity
-     * @throws CpsNotFoundException if ModuleEntity not found
+     * @return the Module
+     * @throws CpsNotFoundException if Module not found
      */
-    default ModuleEntity getByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace, @NotNull String namespace,
+    default Module getByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace, @NotNull String namespace,
         @NotNull String revision) {
         return findByDataspaceAndNamespaceAndRevision(dataspace, namespace,
             revision)

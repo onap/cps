@@ -29,9 +29,9 @@ import org.onap.cps.api.CpService;
 import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsValidationException;
-import org.onap.cps.spi.DataPersistencyService;
+import org.onap.cps.spi.DataPersistenceService;
 import org.onap.cps.spi.FragmentPersistenceService;
-import org.onap.cps.spi.ModelPersistencyService;
+import org.onap.cps.spi.ModelPersistenceService;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
@@ -40,15 +40,14 @@ import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class CpServiceImpl implements CpService {
 
     @Autowired
-    private ModelPersistencyService modelPersistencyService;
+    private ModelPersistenceService modelPersistenceService;
 
     @Autowired
-    private DataPersistencyService dataPersistencyService;
+    private DataPersistenceService dataPersistenceService;
 
     @Autowired
     private FragmentPersistenceService fragmentPersistenceService;
@@ -80,17 +79,17 @@ public class CpServiceImpl implements CpService {
 
     @Override
     public final Integer storeJsonStructure(final String jsonStructure) {
-        return dataPersistencyService.storeJsonStructure(jsonStructure);
+        return dataPersistenceService.storeJsonStructure(jsonStructure);
     }
 
     @Override
     public final String getJsonById(final int jsonObjectId) {
-        return dataPersistencyService.getJsonById(jsonObjectId);
+        return dataPersistenceService.getJsonById(jsonObjectId);
     }
 
     @Override
     public void deleteJsonById(int jsonObjectId) {
-        dataPersistencyService.deleteJsonById(jsonObjectId);
+        dataPersistenceService.deleteJsonById(jsonObjectId);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class CpServiceImpl implements CpService {
         for (final Module module : schemaContext.getModules()) {
             final Optional<Revision> optionalRevision = module.getRevision();
             final String revisionValue = optionalRevision.map(Object::toString).orElse(null);
-            modelPersistencyService.storeModule(module.getNamespace().toString(), module.toString(),
+            modelPersistenceService.storeModule(module.getNamespace().toString(), module.toString(),
                 revisionValue, dataspaceName);
         }
     }

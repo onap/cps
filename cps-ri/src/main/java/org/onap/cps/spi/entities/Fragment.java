@@ -85,5 +85,5 @@ public class Fragment implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id")
-    private ModuleEntity module;
+    private Module module;
 }
