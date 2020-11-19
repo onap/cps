@@ -123,6 +123,24 @@
       "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bb89b8d_2765fadb",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T12:10:38Z",
+      "side": 1,
+      "message": "thats ok, but chosen field is not the correct one",
+      "parentUuid": "1c118f1f_c93223b8",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
