@@ -22,7 +22,7 @@ package org.onap.cps.spi;
 /**
  * Defines methods to access and manipulate data using the chosen database solution.
  */
-public interface DataPersistencyService {
+public interface DataPersistenceService {
 
     /**
      * Store the JSON structure in the database.
