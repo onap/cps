@@ -245,6 +245,30 @@
       "revId": "36ad07723d7e827df07dc3aae760eda0f8cc1104",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d167403_ca92772a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T12:52:22Z",
+      "side": 1,
+      "message": "\"value\" is very deliberate and relevant in this context!",
+      "parentUuid": "c7c57b10_b55cf2f7",
+      "range": {
+        "startLine": 145,
+        "startChar": 34,
+        "endLine": 145,
+        "endChar": 40
+      },
+      "revId": "36ad07723d7e827df07dc3aae760eda0f8cc1104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
