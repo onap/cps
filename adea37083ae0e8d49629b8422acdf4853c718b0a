@@ -69,6 +69,24 @@
       "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0072de63_5888f3f6",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T11:18:18Z",
+      "side": 1,
+      "message": "that is not a reason for not do it correctly",
+      "parentUuid": "80dad5ac_e254f1b9",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
