@@ -62,7 +62,7 @@ public class FragmentPersistenceServiceImpl implements FragmentPersistenceServic
             return anchorDetails.getAnchorName();
         } catch (final CpsNotFoundException ex) {
             throw new CpsValidationException("Validation Error",
-                String.format("Dataspace and/or Module do not exist."));
+                "Dataspace and/or Module do not exist.");
         } catch (final DataIntegrityViolationException ex) {
             throw new CpsValidationException("Duplication Error",
                 String.format("Anchor with name %s already exist in dataspace %s.",
