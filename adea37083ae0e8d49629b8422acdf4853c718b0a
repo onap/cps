@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e2673b1f_b9f7a48c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T10:39:49Z",
+      "side": 1,
+      "message": "it\u0027s a formatting being applied to align property descriptors\nrolled back anyway",
+      "parentUuid": "4a6bfb7b_643964d0",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2ca3ffc_598cbe97",
         "filename": "cps-service/src/test/resources/bookstore.yang",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80dad5ac_e254f1b9",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T10:39:49Z",
+      "side": 1,
+      "message": "it was agreed to to support the single key for now\nthe chosen field plays no role for test",
+      "parentUuid": "b2ca3ffc_598cbe97",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
