@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "19ff3af5_1543f6bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T16:59:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "993305bd_5109d803",
+      "range": {
+        "startLine": 123,
+        "startChar": 22,
+        "endLine": 123,
+        "endChar": 30
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "416ded66_61f551d2",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a019838e_bad258a9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T16:59:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "416ded66_61f551d2",
+      "range": {
+        "startLine": 175,
+        "startChar": 25,
+        "endLine": 175,
+        "endChar": 36
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "629c34a1_2a1b9af8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T16:59:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "322dc9b9_44a2c7b4",
+      "range": {
+        "startLine": 182,
+        "startChar": 26,
+        "endLine": 182,
+        "endChar": 50
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d565730f_82e4116c",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 9
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "fd6d3a81_2349b5b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T16:59:37Z",
+      "side": 1,
+      "message": "i think comments are helpful when code is messy.\nthis code looks messy because of ODL artifacts we have to use here.\nreplacing a comment with extra method wont make it better",
+      "parentUuid": "d565730f_82e4116c",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 195,
+        "endChar": 47
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87c931a0_d1be7404",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 9
@@ -114,6 +210,30 @@
       "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd2f315_ec446362",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-19T16:59:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87c931a0_d1be7404",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 88
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
