@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1dd692da_3fbbb27f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "not so sure, a (list) node with a key value could change and therefore its xpath could change!\nI think it needs to be handled in a future users story. Ruslan is working on that part so lets discuss later (xpath was descoped from my user story)",
+      "parentUuid": "cbf192f0_fa6b8a3e",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5232af6a_15b158a6",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2020-11-16T16:09:29Z",
       "side": 1,
       "message": "improve naming",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54095f4b_1e270c59",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "left over form testing, removed now",
+      "parentUuid": "5232af6a_15b158a6",
       "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "2491296a_0abc2078",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "left over form testing, removed now",
+      "parentUuid": "059805df_54c3ee71",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3daf22c_c0e23aa7",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 2
@@ -70,6 +130,24 @@
       "writtenOn": "2020-11-16T16:09:29Z",
       "side": 1,
       "message": "I think I really mentioned this, but this is a service not an util class. \nIntroduce an interface. This will allow to mock the implementation if need it.\nAlso we will have a well defined API of what it does, and is expected from it.",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dacf504_cdf63b5d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "I did answer this before (when stil in nordix) It is a Utils class in a utils package, so my intention is clear I dont understand why you now see it as a service. Also for Groovy/Spock testing there is no need to change this. \nMaybe we can discuss this later but I propose too leave it for now to not delay/block Ruslan follow up work",
+      "parentUuid": "a3daf22c_c0e23aa7",
       "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "92e8d750_85f6d180",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0553e87_113a9058",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "495657ae_4460a929",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 2
@@ -104,6 +200,24 @@
       "writtenOn": "2020-11-16T16:09:29Z",
       "side": 1,
       "message": "we might want to create a constructor specific for this case, so we dont need to pass null",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be88a4de_f6fe78c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "doen using a static method to convey more meaning.\nNow there is no more public constructors, this ight also solve the issue with xpaths setting for now",
+      "parentUuid": "495657ae_4460a929",
       "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -127,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "27a5dd03_54c8a569",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "agreed, have extracted out method now to convey more meaning",
+      "parentUuid": "50ff9448_91f0eb58",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7bc49a9f_f1db46fa",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 2
@@ -138,6 +270,24 @@
       "writtenOn": "2020-11-16T16:09:29Z",
       "side": 1,
       "message": "should this line be removed?",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd9a5d7_c953de83",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:06:56Z",
+      "side": 1,
+      "message": "yes, thsi is the point where Ruslan is taking over...",
+      "parentUuid": "7bc49a9f_f1db46fa",
       "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
