@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "195cca63_6a3eb94b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistencyServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T07:46:18Z",
+      "side": 1,
+      "message": "Duplicate Entry",
+      "revId": "00972c972a89f72300b3941b648305bbca39c917",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
