@@ -105,6 +105,24 @@
       "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c118f1f_c93223b8",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:41:12Z",
+      "side": 1,
+      "message": "This was agreed and it will (soon) handle in a separate user story: https://jira.onap.org/browse/CPS-84\n\nIt would make more sense for the code to be the single-value key for now (a I have done in my patch)",
+      "parentUuid": "7c6758f5_c0dc22d0",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
