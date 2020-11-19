@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "d0e824f8_aacaf54d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-19T11:44:05Z",
+      "side": 1,
+      "message": "I think you can actually it was one of the major concerns we discussed quiet early on if I remember correctly, but come to think we did agree NOT to support it. Let me check again with Tony. If its is possible and we do support it I will add a user story to the backlog specifically for that",
+      "parentUuid": "206a1d76_c36858f4",
+      "revId": "63a692d94d139b6240f7d526f8412f7868d4496c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5232af6a_15b158a6",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
         "patchSetId": 2
