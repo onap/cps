@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "5b2c43ca_4673bcb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T12:03:54Z",
+      "side": 1,
+      "message": "with documenting that *.yang file is expected is more than enough I will say",
+      "parentUuid": "92f58d90_4b9eb0bf",
+      "range": {
+        "startLine": 72,
+        "startChar": 28,
+        "endLine": 72,
+        "endChar": 115
+      },
+      "revId": "36ad07723d7e827df07dc3aae760eda0f8cc1104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54547883_4908f836",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -99,6 +123,30 @@
       "writtenOn": "2020-11-19T11:56:32Z",
       "side": 1,
       "message": "should it not have an \"else\"",
+      "range": {
+        "startLine": 131,
+        "startChar": 10,
+        "endLine": 133,
+        "endChar": 9
+      },
+      "revId": "36ad07723d7e827df07dc3aae760eda0f8cc1104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2ce27e3_2f889e43",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T12:03:54Z",
+      "side": 1,
+      "message": "good point, at least a WARN should be printed until all possible cases are covered",
+      "parentUuid": "dbc74e97_a879d40d",
       "range": {
         "startLine": 131,
         "startChar": 10,
