@@ -87,6 +87,24 @@
       "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c6758f5_c0dc22d0",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T11:25:18Z",
+      "side": 1,
+      "message": "let me clarify this, as better and more realistic are the test, better for people not involved with the project to see/understand what is happening. Otherwise it might lead to think that test has not been properly implemented, etc",
+      "parentUuid": "0072de63_5888f3f6",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
