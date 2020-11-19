@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a6bfb7b_643964d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T07:56:31Z",
+      "side": 1,
+      "message": "remove extra space added",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2ca3ffc_598cbe97",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T07:56:31Z",
+      "side": 1,
+      "message": "why the change from 2 keys fields to one?\nAnd if is something agreed, then why name? I see code field, which seems more logic",
+      "revId": "adea37083ae0e8d49629b8422acdf4853c718b0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
