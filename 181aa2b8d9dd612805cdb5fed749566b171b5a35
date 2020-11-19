@@ -16,6 +16,24 @@
       "revId": "181aa2b8d9dd612805cdb5fed749566b171b5a35",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac33e0cb_1ee2efea",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-11-19T10:13:13Z",
+      "side": 1,
+      "message": "if the module exist and is not the same, it is probably a diff revision, which is to be stored. We (team with Tony) 2 weeks ago decided to not be idempotent and throw exception in such cases.",
+      "parentUuid": "f0688a4b_aa2a3698",
+      "revId": "181aa2b8d9dd612805cdb5fed749566b171b5a35",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
