@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb87acf0_fdab2c3d",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-19T10:32:29Z",
+      "side": 1,
+      "message": "this doesnt seems to be well aligned",
+      "revId": "b398b36a3408cf3a1e4cb0e25c63949e70e0eaf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
