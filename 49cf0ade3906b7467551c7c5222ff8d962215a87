@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "02694c26_b0d3076e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-23T13:36:44Z",
+      "side": 1,
+      "message": "the xpathId is a unique node identifier within xpath.\nthese two have different meanings.",
+      "parentUuid": "6e36e3b3_9bea2269",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "49cf0ade3906b7467551c7c5222ff8d962215a87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7053f651_67d5ef59",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "49cf0ade3906b7467551c7c5222ff8d962215a87",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b5cc5aa_93c61062",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-23T13:36:44Z",
+      "side": 1,
+      "message": "as answered above xpathId is a part of xpath",
+      "parentUuid": "7053f651_67d5ef59",
+      "range": {
+        "startLine": 67,
+        "startChar": 96,
+        "endLine": 67,
+        "endChar": 101
+      },
+      "revId": "49cf0ade3906b7467551c7c5222ff8d962215a87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
