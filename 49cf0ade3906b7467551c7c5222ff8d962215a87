@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e36e3b3_9bea2269",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-23T09:17:11Z",
+      "side": 1,
+      "message": "rename to xPathId in line with changes in other classes",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "49cf0ade3906b7467551c7c5222ff8d962215a87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7053f651_67d5ef59",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-23T09:17:11Z",
+      "side": 1,
+      "message": "xPathId (as agreed lets make this consistent in call code ABOVE the DB layer)",
+      "range": {
+        "startLine": 67,
+        "startChar": 96,
+        "endLine": 67,
+        "endChar": 101
+      },
+      "revId": "49cf0ade3906b7467551c7c5222ff8d962215a87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
