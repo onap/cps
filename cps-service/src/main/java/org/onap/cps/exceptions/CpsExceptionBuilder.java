@@ -32,16 +32,6 @@ public class CpsExceptionBuilder {
     private static final String SCHEMA_SET_IS_INVALID = "Schema Set is invalid.";
 
     /**
-     * Generates validation error exception for case when requested dataspace is absent.
-     *
-     * @param dataspaceName dataspace name
-     */
-    public static CpsException invalidDataspaceException(final String dataspaceName) {
-        return new CpsValidationException("Dataspace is invalid.",
-            String.format("Dataspace with name %s does not exist.", dataspaceName));
-    }
-
-    /**
      * Generates validation error exception for case when requested schema set is absent for existing dataspace.
      *
      * @param dataspaceName dataspace name
@@ -71,12 +61,12 @@ public class CpsExceptionBuilder {
     }
 
     /**
-     * Generates no data found exception for case when requested dataspace is absent.
+     * Generates an exception for case when requested dataspace is absent.
      *
      * @param dataspaceName dataspace name
      */
     public static CpsException dataspaceNotFoundException(final String dataspaceName) {
-        return new CpsNotFoundException("Dataspace was not found.",
+        return new DataspaceNotFoundException(
             String.format("Dataspace with name %s does not exist.", dataspaceName));
     }
 
@@ -89,6 +79,32 @@ public class CpsExceptionBuilder {
     public static CpsException schemaSetNotFoundException(final String dataspaceName, final String schemaSetName) {
         return new CpsNotFoundException("Schema Set was not found.",
             String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName, dataspaceName));
+    }
+
+    /**
+     * Generates validation exception for case when inserting anchor for schema set while there is existing
+     * anchor referencing same schema set.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     */
+    public static CpsException anchorExistsForSchemaSetException(final String dataspaceName,
+                                                                 final String schemaSetName) {
+        return new CpsValidationException("Anchor already exists for schema set.",
+            String.format("Anchor for Schema Set with name %s already exists in dataspace %s.",
+                schemaSetName, dataspaceName));
+    }
+
+    /**
+     * Generates validation exception for case when inserting anchor with name which already taken
+     * (within requested dataspace).
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     */
+    public static CpsException anchorNameConflictException(final String dataspaceName, final String anchorName) {
+        return new CpsValidationException("Anchor name already taken.",
+            String.format("Anchor with name %s already exists in dataspace %s.", anchorName, dataspaceName));
     }
 
 }
