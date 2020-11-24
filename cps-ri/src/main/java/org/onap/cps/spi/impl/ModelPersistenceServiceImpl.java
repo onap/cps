@@ -20,12 +20,24 @@
 
 package org.onap.cps.spi.impl;
 
+import static org.onap.cps.exceptions.CpsExceptionProvider.dataspaceNotFoundException;
+import static org.onap.cps.exceptions.CpsExceptionProvider.invalidDataspaceException;
+import static org.onap.cps.exceptions.CpsExceptionProvider.invalidModuleSetException;
+import static org.onap.cps.exceptions.CpsExceptionProvider.moduleSetNotFoundException;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.onap.cps.api.model.ModuleDescriptor;
+import org.onap.cps.api.model.ModuleSetDescriptor;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.ModelPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.ModuleSet;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
+import org.onap.cps.spi.repository.ModuleSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -35,6 +47,9 @@ public class ModelPersistenceServiceImpl implements ModelPersistenceService {
 
     @Autowired
     private ModuleRepository moduleRepository;
+
+    @Autowired
+    private ModuleSetRepository moduleSetRepository;
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
@@ -54,5 +69,55 @@ public class ModelPersistenceServiceImpl implements ModelPersistenceService {
             throw new CpsValidationException("Duplicate Entry",
                 String.format("Module already exist in dataspace %s.", dataspaceName));
         }
+    }
+
+    @Override
+    public void storeModuleSet(ModuleSetDescriptor modulesetDescriptor) {
+
+
+    }
+
+    @Override
+    public void deleteModuleSet(String dataspaceName, String moduleSetName) {
+        Dataspace dataspace = dataspaceRepository.findByName(dataspaceName)
+            .orElseThrow(() -> invalidDataspaceException(dataspaceName));
+        ModuleSet moduleSet = moduleSetRepository.findByDataspaceAndName(dataspace, moduleSetName)
+            .orElseThrow(() -> invalidModuleSetException(dataspaceName, moduleSetName));
+        moduleSetRepository.delete(moduleSet);
+    }
+
+    @Override
+    public List<ModuleSetDescriptor> getAllModuleSets(String dataspaceName) {
+        Dataspace dataspace = dataspaceRepository.findByName(dataspaceName)
+            .orElseThrow(() -> dataspaceNotFoundException(dataspaceName));
+        List<ModuleSet> moduleSets = moduleSetRepository.findAllByDataspace(dataspace);
+
+        return moduleSets.stream().map(
+            moduleSet -> ModuleSetDescriptor.builder()
+                .dataspace(dataspaceName).name(moduleSet.getName()).build()
+        ).collect(Collectors.toList());
+    }
+
+    @Override
+    public ModuleSetDescriptor getModuleSet(String dataspaceName, String moduleSetName) {
+        Dataspace dataspace = dataspaceRepository.findByName(dataspaceName)
+            .orElseThrow(() -> dataspaceNotFoundException(dataspaceName));
+        ModuleSet moduleSet = moduleSetRepository.findByDataspaceAndName(dataspace, moduleSetName)
+            .orElseThrow(() -> moduleSetNotFoundException(dataspaceName, moduleSetName));
+
+        Set<ModuleDescriptor> modules = moduleSet.getModules().stream()
+            .map(
+                module -> ModuleDescriptor.builder()
+                    .dataspace(module.getDataspace().getName())
+                    .moduleset(module.getModuleSet().getName())
+                    .namespace(module.getNamespace())
+                    .revision(module.getRevision())
+                    .content(module.getModuleContent()).build()
+            ).collect(Collectors.toSet());
+
+        return ModuleSetDescriptor.builder()
+            .dataspace(moduleSet.getDataspace().getName())
+            .name(moduleSet.getName())
+            .modules(modules).build();
     }
 }

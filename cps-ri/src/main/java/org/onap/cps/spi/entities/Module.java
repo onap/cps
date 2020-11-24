@@ -55,7 +55,7 @@ public class Module implements Serializable {
     private Integer id;
 
     @NotNull
-    @Column
+    @Column(name = "module_content")
     private String moduleContent;
 
     @NotNull
@@ -65,6 +65,10 @@ public class Module implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id", referencedColumnName = "ID")
     private Dataspace dataspace;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "moduleset_id", referencedColumnName = "ID")
+    private ModuleSet moduleSet;
 
     @NotNull
     @Column
@@ -83,5 +87,23 @@ public class Module implements Serializable {
         this.moduleContent = moduleContent;
         this.revision = revision;
         this.dataspace = dataspace;
+    }
+
+    /**
+     * Initialize a module entity.
+     *
+     * @param namespace the module namespace.
+     * @param moduleContent the module content.
+     * @param revision the revision number of the module.
+     * @param dataspace the dataspace related to the module.
+     * @param moduleSet the moduleSet this module belongs to
+     */
+    public Module(String namespace, String moduleContent, String revision, Dataspace dataspace,
+        ModuleSet moduleSet) {
+        this.namespace = namespace;
+        this.moduleContent = moduleContent;
+        this.revision = revision;
+        this.dataspace = dataspace;
+        this.moduleSet = moduleSet;
     }
 }
