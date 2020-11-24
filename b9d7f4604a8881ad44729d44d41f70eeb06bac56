@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "580d9c2b_3c79b6bf",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "move tp cps-dependencies pom",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b573275a_409ee989",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "comment seems to contradict the setting below?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f82c54e_e92a3b66",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleSet.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "I have been discussing this with Niamh as well, we need a set of Module References, where a Module Reference (object) is a namespace (String) and revision (String)\n\nThe module content (definition) needs to be stored separately (but ultimately provided by our client on demand ie. as we need it",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3776a12a_02edb8e5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "agreed!",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 54
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "217deb1d_970efccd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "not really in scope for your user story",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1befffb7_49dc85e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "out of scope, maybe you need for testing but I am worried about how long this user story will take if you keep adding more then is strictly required...",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 5
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4185539f_d717f069",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "incorrect, as discussed we want to store the module only once!\n-a ModuleSet has a one-to-many relation-ship to module\n(I\u0027ll create a diagram to explain this better)",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5b19c38_d69df9a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "Not sure if we need (something like this)",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "230d9eea_681c6235",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleSetDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-24T16:10:05Z",
+      "side": 1,
+      "message": "just ModuleRef  (or composite key for namespace\u0026revision)",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
