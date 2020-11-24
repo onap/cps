@@ -33,54 +33,11 @@ class CpsAdminPersistenceServiceImplSpec extends Specification {
         objectUnderTest.cpsAdminPersistenceService = mockCpsAdminService
     }
 
-    def 'Create an anchor with a non-existant dataspace'() {
-        given: 'that the dataspace does not exist service throws an exception'
-            Anchor anchor = new Anchor()
-            anchor.setDataspaceName('dummyDataspace')
-            mockCpsAdminService.createAnchor(anchor) >> { throw new CpsValidationException(_ as String, _ as String) }
-        when: 'we try to create a anchor with a non-existant dataspace'
-            objectUnderTest.createAnchor(anchor)
-        then: 'the same exception is thrown by CPS'
-            thrown(CpsValidationException)
-    }
-
-    def 'Create an anchor with invalid dataspace, namespace and revision'() {
-        given: 'that the dataspace, namespace and revison combination does not exist service throws an exception'
-            Anchor anchor = new Anchor()
-            anchor.setDataspaceName('dummyDataspace')
-            anchor.setNamespace('dummyNamespace')
-            anchor.setRevision('dummyRevision')
-            mockCpsAdminService.createAnchor(anchor) >> { throw new CpsValidationException(_ as String, _ as String) }
-        when: 'we try to create a anchor with a non-existant dataspace, namespace and revison combination'
-            objectUnderTest.createAnchor(anchor)
-        then: 'the same exception is thrown by CPS'
-            thrown(CpsValidationException)
-    }
-
-    def 'Create a duplicate anchor'() {
-        given: 'that the anchor already exist service throws an exception'
-            Anchor anchor = new Anchor()
-            anchor.setDataspaceName('dummyDataspace')
-            anchor.setNamespace('dummyNamespace')
-            anchor.setRevision('dummyRevision')
-            anchor.setRevision('dummyAnchorName')
-            mockCpsAdminService.createAnchor(anchor) >> { throw new CpsValidationException(_ as String, _ as String) }
-        when: 'we try to create a duplicate anchor'
-            objectUnderTest.createAnchor(anchor)
-        then: 'the same exception is thrown by CPS'
-            thrown(CpsValidationException)
-    }
-
-    def 'Create an anchor with supplied anchor name, dataspace, namespace and revision'() {
-        given: 'that the anchor does not pre-exist service creates an anchor'
-            Anchor anchor = new Anchor()
-            anchor.setDataspaceName('dummyDataspace')
-            anchor.setNamespace('dummyNamespace')
-            anchor.setRevision('dummyRevision')
-            anchor.setRevision('dummyAnchorName')
-            mockCpsAdminService.createAnchor(anchor) >> 'dummyAnchorName'
-        expect: 'anchor name is returned by service'
-            objectUnderTest.createAnchor(anchor) == 'dummyAnchorName'
+    def 'Create anchor method invokes persistence service'() {
+        when: 'Create anchor method is invoked'
+            objectUnderTest.createAnchor('dummyDataspace', 'dummySchemaSet', 'dummyAnchorName')
+        then: 'The persistence service method is invoked with same parameters'
+            1 * mockCpsAdminService.createAnchor('dummyDataspace', 'dummySchemaSet', 'dummyAnchorName')
     }
 
 }

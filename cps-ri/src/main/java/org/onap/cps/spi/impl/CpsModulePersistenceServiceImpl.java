@@ -20,8 +20,8 @@
 
 package org.onap.cps.spi.impl;
 
+import static org.onap.cps.exceptions.CpsExceptionBuilder.dataspaceNotFoundException;
 import static org.onap.cps.exceptions.CpsExceptionBuilder.duplicateSchemaSetException;
-import static org.onap.cps.exceptions.CpsExceptionBuilder.invalidDataspaceException;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
@@ -66,7 +66,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                                final Set<String> yangResourcesAsStrings) {
 
         final Dataspace dataspace = dataspaceRepository.findByName(dataspaceName)
-            .orElseThrow(() -> invalidDataspaceException(dataspaceName));
+            .orElseThrow(() -> dataspaceNotFoundException(dataspaceName));
 
         final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesAsStrings);
         final SchemaSet schemaSet = new SchemaSet();
