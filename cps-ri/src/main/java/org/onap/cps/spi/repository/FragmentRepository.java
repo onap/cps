@@ -22,6 +22,8 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Optional;
+import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,6 +31,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<Fragment, Integer> {
+
+    Optional<Fragment> findByDataspaceAndAnchorName(@NotNull Dataspace dataspace, @NotNull String anchorName);
 
     default Collection<Fragment> findFragmentsThatAreAnchorsByDataspace(Dataspace dataspace) {
         return findFragmentsByDataspaceAndParentFragmentIsNull(dataspace);

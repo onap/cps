@@ -43,16 +43,15 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Create a new anchor.
      *
-     * @param anchor        the anchor details object.
-     * @param dataspaceName the dataspace name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchorName
      * @return a ResponseEntity with the anchor name.
      */
     @Override
-    public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
-        final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
-        anchorDetails.setDataspaceName(dataspaceName);
-        final String anchorName = cpsAdminService.createAnchor(anchorDetails);
+    public ResponseEntity<String> createAnchor(final String dataspaceName, final String schemaSetName,
+                                               final String anchorName) {
+        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
     }
 
@@ -72,7 +71,6 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-
     public ResponseEntity<Object> getAnchors(final String dataspaceName) {
         final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);

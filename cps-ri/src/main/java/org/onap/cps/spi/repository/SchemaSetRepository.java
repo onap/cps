@@ -36,14 +36,15 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSet, Integer> {
     Optional<SchemaSet> findByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String schemaSetName);
 
     /**
-     * This method gets a SchemaSet by dataspace, namespace and schemaSetName.
+     * Gets a schema set by dataspace and schema set name.
      *
-     * @param dataspace     the dataspace
-     * @param schemaSetName the schemaSet Name
-     * @return schemaSet
+     * @param dataspace     dataspace entity
+     * @param schemaSetName schema set name
+     * @return schema set entity
+     * @throws SchemaSetNotFoundException if SchemaSet not found
      */
-    default SchemaSet getByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String schemaSetName) {
+    default SchemaSet getByDataspaceAndName(@NotNull final Dataspace dataspace, @NotNull final String schemaSetName) {
         return findByDataspaceAndName(dataspace, schemaSetName)
-                       .orElseThrow(() -> new SchemaSetNotFoundException(dataspace.getName(), schemaSetName));
+            .orElseThrow(() -> new SchemaSetNotFoundException(dataspace.getName(), schemaSetName));
     }
 }
