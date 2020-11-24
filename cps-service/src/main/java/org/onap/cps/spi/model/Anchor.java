@@ -22,22 +22,20 @@ package org.onap.cps.spi.model;
 
 import java.io.Serializable;
 import java.util.Map;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
+@Builder
 public class Anchor implements Serializable {
 
-    // anchor will support both a single module and schema set until CPS-99 is complete
     private static final long serialVersionUID = 1464791260718603291L;
-    private String anchorName;
+
+    private String name;
     private String dataspaceName;
-    private String namespace;
-    private String revision;
-    private String moduleSetName;
-    private Map<String, String> externalReferences;
-    private String xpath;
+    private String schemaSetName;
+
 }

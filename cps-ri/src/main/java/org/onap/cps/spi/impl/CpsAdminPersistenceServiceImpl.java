@@ -23,17 +23,19 @@ package org.onap.cps.spi.impl;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
-import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
-import org.onap.cps.spi.repository.ModuleRepository;
+import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -48,22 +50,26 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private FragmentRepository fragmentRepository;
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private SchemaSetRepository schemaSetRepository;
 
     @Override
-    public String createAnchor(final Anchor anchor) {
-        final String anchorName = anchor.getAnchorName();
+    public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSet schemaSet = schemaSetRepository.findByDataspaceAndName(dataspace, schemaSetName)
+            .orElseThrow(
+                () -> new NotFoundInDataspaceException(
+                    String.format("Schema set with name %s", schemaSetName), dataspaceName)
+            );
+        final Fragment anchor = Fragment.builder()
+            .xpath(anchorName)
+            .anchorName(anchorName)
+            .dataspace(dataspace)
+            .schemaSet(schemaSet)
+            .build();
         try {
-            final Dataspace dataspace = dataspaceRepository.getByName(anchor.getDataspaceName());
-            final Module module = moduleRepository
-                .getByDataspaceAndNamespaceAndRevision(dataspace, anchor.getNamespace(), anchor.getRevision());
-            final Fragment fragment =
-                Fragment.builder().xpath(anchorName).anchorName(anchorName).dataspace(dataspace).module(module).build();
-
-            fragmentRepository.save(fragment);
-            return anchorName;
-        } catch (final DataIntegrityViolationException ex) {
-            throw new AnchorAlreadyDefinedException(anchor.getDataspaceName(), anchorName, ex);
+            fragmentRepository.save(anchor);
+        } catch (final DataIntegrityViolationException e) {
+            throw new AnchorAlreadyDefinedException(dataspaceName, anchorName, e);
         }
     }
 
@@ -71,7 +77,12 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final Collection<Fragment> fragments = fragmentRepository.findFragmentsThatAreAnchorsByDataspace(dataspace);
-        final Type anchorListType = new TypeToken<Collection<Anchor>>() {}.getType();
-        return new ModelMapper().map(fragments, anchorListType);
+        return fragments.stream().map(
+            entity -> Anchor.builder()
+                .name(entity.getAnchorName())
+                .dataspaceName(dataspaceName)
+                .schemaSetName(entity.getSchemaSet().getName())
+                .build()
+        ).collect(Collectors.toList());
     }
 }

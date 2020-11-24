@@ -66,17 +66,16 @@ public class CpsRestController implements CpsRestApi {
     /**
      * Create a new anchor.
      *
-     * @param anchor        the anchor details object.
-     * @param dataspaceName the dataspace name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchorName
      * @return a ResponseEntity with the anchor name.
      */
     @Override
-    public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
-        final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
-        anchorDetails.setDataspaceName(dataspaceName);
-        final String anchorName = cpsAdminService.createAnchor(anchorDetails);
-        return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
+    public ResponseEntity<String> createAnchor(final String dataspaceName, final String schemaSetName,
+                                               final String anchorName) {
+        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        return new ResponseEntity<String>(anchorName, HttpStatus.CREATED);
     }
 
     @Override
@@ -108,7 +107,6 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-
     public ResponseEntity<Object> getAnchors(final String dataspaceName) {
         final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
@@ -116,7 +114,7 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
+                                            @Valid final String revision) {
         return null;
     }
 
@@ -129,6 +127,7 @@ public class CpsRestController implements CpsRestApi {
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
+
 
     /*
     Old rest endpoints before contract first approach (Need to be removed).
