@@ -1,7 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +21,8 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Optional;
+import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,6 +32,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<Fragment, Integer> {
+    Optional<Fragment> findByDataspaceAndAnchorName(@NotNull Dataspace dataspace, @NotNull String anchorName);
+
 
     default Collection<Fragment> findFragmentsThatAreAnchorsByDataspace(Dataspace dataspace) {
         return findFragmentsByDataspaceAndParentFragmentIsNull(dataspace);
