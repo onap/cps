@@ -20,6 +20,9 @@
 
 package org.onap.cps.spi;
 
+import java.util.List;
+import org.onap.cps.api.model.ModuleSet;
+
 /**
  * Defines methods to access and manipulate data using the chosen database solution.
  */
@@ -28,12 +31,42 @@ public interface ModelPersistenceService {
     /**
      * Store the module from a yang model in the database.
      *
-     * @param namespace module namespace
+     * @param namespace     module namespace
      * @param moduleContent module content
-     * @param revision module revision
+     * @param revision      module revision
      * @param dataspaceName the name of the dataspace the module is associated with
      */
     void storeModule(final String namespace, final String moduleContent, final String revision,
         final String dataspaceName);
 
+
+    /**
+     * Stores the moduleset.
+     *
+     * @param moduleSet the data descriptor including dataspace name, moduleset name and modules descriptors
+     */
+    void storeModuleSet(ModuleSet moduleSet);
+
+    /**
+     * Deletes the ModuleSet and associated modules.
+     *
+     * @param dataspaceName the dataspace name
+     * @param moduleSetName the moduleset name
+     */
+    void deleteModuleSet(String dataspaceName, String moduleSetName);
+
+    /**
+     * Retrieves the ModuleSet by dataspace and name.
+     *
+     * @param dataspaceName the dataspace name
+     * @param moduleSetName the moduleset name
+     */
+    ModuleSet getModuleSet(String dataspaceName, String moduleSetName);
+
+    /**
+     * Retrieves list of modulesets by dataspace. Moduleset names only returned, module content is omitted
+     *
+     * @param dataspaceName the dataspace name
+     */
+    List<ModuleSet> getAllModuleSets(String dataspaceName);
 }
