@@ -1,7 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2020 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,32 +17,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.spi.exceptions;
 
-import java.util.Collection;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.model.Anchor;
+public class SchemaSetNotFoundException extends CpsAdminException {
 
-/**
- * CPS Admin Service.
- */
-public interface CpsAdminService {
+    private static final long serialVersionUID = 7422782395935450035L;
 
     /**
-     * Create an Anchor.
+     * Constructor.
      *
      * @param dataspaceName dataspace name
      * @param schemaSetName schema set name
-     * @param anchorName    anchor name
-     * @throws CpsException if input data is invalid.
      */
-    void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
+    public SchemaSetNotFoundException(final String dataspaceName, final String schemaSetName) {
+        super("Schema Set not found.",
+            String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName, dataspaceName));
+    }
 
-    /**
-     * Read all anchors in the given a dataspace.
-     *
-     * @param dataspaceName dataspace name
-     * @return a collection of anchors
-     */
-    Collection<Anchor> getAnchors(String dataspaceName);
 }
