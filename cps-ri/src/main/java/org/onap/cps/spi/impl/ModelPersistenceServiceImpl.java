@@ -20,39 +20,110 @@
 
 package org.onap.cps.spi.impl;
 
-import org.onap.cps.exceptions.CpsValidationException;
+import static org.onap.cps.exceptions.CpsExceptionBuilder.duplicateSchemaSetException;
+import static org.onap.cps.exceptions.CpsExceptionBuilder.emptySchemaSetException;
+import static org.onap.cps.exceptions.CpsExceptionBuilder.invalidDataspaceException;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import org.onap.cps.spi.ModelPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.SchemaSetEntity;
+import org.onap.cps.spi.entities.YangResourceEntity;
+import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.spi.model.YangResource;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.ModuleRepository;
+import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 
 @Component
 public class ModelPersistenceServiceImpl implements ModelPersistenceService {
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private YangResourceRepository yangResourceRepository;
+
+    @Autowired
+    private SchemaSetRepository schemaSetRepository;
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
 
     @Override
     public void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName) {
-        final Dataspace dataspace = new Dataspace(dataspaceName);
-        if (Boolean.FALSE.equals(dataspaceRepository.existsByName(dataspaceName))) {
-            dataspaceRepository.save(dataspace);
+                            final String dataspaceName) {
+        // TODO this method should be removed as obsolete.
+        // Modules to be processed within modulesets only.
+    }
+
+    @Override
+    @Transactional
+    public void storeSchemaSet(final SchemaSet schemaSet) {
+        final Dataspace dataspace = dataspaceRepository.findByName(schemaSet.getDataspace())
+            .orElseThrow(() -> invalidDataspaceException(schemaSet.getDataspace()));
+        if (schemaSet.getYangResources() == null || schemaSet.getYangResources().isEmpty()) {
+            throw emptySchemaSetException();
         }
-        dataspace.setId(dataspaceRepository.getByName(dataspaceName).getId());
-        final Module module = new Module(namespace, moduleContent, revision, dataspace);
+        final Set<YangResourceEntity> yangResourceEntities = persistYangResources(schemaSet.getYangResources());
+        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
+        schemaSetEntity.setName(schemaSet.getName());
+        schemaSetEntity.setDataspace(dataspace);
+        schemaSetEntity.setYangResources(yangResourceEntities);
         try {
-            moduleRepository.save(module);
-        } catch (final DataIntegrityViolationException ex) {
-            throw new CpsValidationException("Duplicate Entry",
-                String.format("Module already exist in dataspace %s.", dataspaceName));
+            schemaSetRepository.save(schemaSetEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw duplicateSchemaSetException(schemaSet.getDataspace(), schemaSet.getName());
         }
     }
+
+    @Override
+    public void deleteSchemaSet(final String dataspaceName, final String moduleSetName) {
+        // not implemented yet
+    }
+
+    @Override
+    public List<SchemaSet> getAllSchemaSets(final String dataspaceName) {
+        // not implemented yet
+        return null;
+    }
+
+    @Override
+    public SchemaSet getSchemaSet(final String dataspaceName, final String moduleSetName) {
+        // not implemented yet
+        return null;
+    }
+
+    private Set<YangResourceEntity> persistYangResources(final Set<YangResource> yangResources) {
+        final Map<String, YangResource> checksumMap = yangResources.stream()
+            .collect(Collectors.toMap(
+                yangResource -> DigestUtils.md5DigestAsHex(yangResource.getContent().getBytes()),
+                yangResource -> yangResource)
+            );
+
+        final List<YangResourceEntity> existingYangFiles =
+            yangResourceRepository.findAllByChecksumIn(checksumMap.keySet());
+        existingYangFiles.forEach(yangFile -> checksumMap.remove(yangFile.getChecksum()));
+
+        final List<YangResourceEntity> newYangFiles = checksumMap.entrySet().stream()
+            .map(entry -> {
+                final YangResourceEntity entity = new YangResourceEntity();
+                entity.setContent(entry.getValue().getContent());
+                entity.setChecksum(entry.getKey());
+                return entity;
+            }).collect(Collectors.toList());
+        yangResourceRepository.saveAll(newYangFiles);
+
+        final Set<YangResourceEntity> result = new HashSet<>();
+        result.addAll(existingYangFiles);
+        result.addAll(newYangFiles);
+        return result;
+    }
+
 }
