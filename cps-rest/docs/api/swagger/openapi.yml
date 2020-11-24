@@ -84,14 +84,18 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: Anchor
-              description: anchor
-              $ref: '#/components/schemas/Anchor'
-        required: true
+        - name: schema-set-name
+          in: query
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: query
+          description: anchor-name
+          required: true
+          schema:
+            type: string
       responses:
         201:
           description: Created
@@ -336,18 +340,4 @@ components:
         message:
           type: string
         details:
-          type: string
-    Anchor:
-      type: object
-      title: Anchor
-      required:
-        - anchorName
-        - namespace
-        - revision
-      properties:
-        anchorName:
-          type: string
-        namespace:
-          type: string
-        revision:
           type: string

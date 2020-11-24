@@ -84,6 +84,6 @@ public class Fragment implements Serializable {
     private Fragment parentFragment;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "module_id")
-    private Module module;
+    @JoinColumn(name = "schema_set_id")
+    private SchemaSet schemaSet;
 }
