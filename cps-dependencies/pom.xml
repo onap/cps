@@ -27,6 +27,7 @@
         <springfox.version>3.0.0</springfox.version>
         <stagingNexusPath>/content/repositories/staging/</stagingNexusPath>
         <swagger.version>2.1.4</swagger.version>
+        <testcontainers.version>1.15.0</testcontainers.version>
         <yangtools.version>5.0.6</yangtools.version>
     </properties>
 
@@ -98,6 +99,11 @@
                 <groupId>org.modelmapper</groupId>
                 <artifactId>modelmapper</artifactId>
                 <version>${modelmapper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${testcontainers.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
