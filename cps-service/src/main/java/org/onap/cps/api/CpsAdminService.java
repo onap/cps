@@ -29,11 +29,12 @@ import org.onap.cps.spi.model.Anchor;
 public interface CpsAdminService {
 
     /**
-     * Create an anchor using provided anchorDetails object.
+     * Create an Anchor.
      *
-     * @param anchor the anchor details object.
-     * @return the anchor name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchor name
      * @throws CpsValidationException if input data is invalid.
      */
-    String createAnchor(Anchor anchor);
+    void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 }
