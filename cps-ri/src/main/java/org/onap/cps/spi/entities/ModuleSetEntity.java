@@ -1,7 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2020 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +20,7 @@
 package org.onap.cps.spi.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,61 +28,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * Entity to store a yang module.
+ * Entity to store a ModuleSet.
  */
 @Getter
 @Setter
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "module")
-public class Module implements Serializable {
+@Entity
+@Table(name = "moduleset")
+public class ModuleSetEntity implements Serializable {
 
-    private static final long serialVersionUID = -748666970938314895L;
+    private static final long serialVersionUID = 6665056955069047269L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    @Column(name = "module_content")
-    private String moduleContent;
+    @Column
+    private String name;
 
     @NotNull
-    @Column
-    private String revision;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id", referencedColumnName = "ID")
     private Dataspace dataspace;
 
     @NotNull
-    @Column
-    private String namespace;
-
-    /**
-     * Initialize a module entity.
-     *
-     * @param namespace the module namespace.
-     * @param moduleContent the module content.
-     * @param revision the revision number of the module.
-     * @param dataspace the dataspace related to the module.
-     */
-    public Module(String namespace, String moduleContent, String revision, Dataspace dataspace) {
-        this.namespace = namespace;
-        this.moduleContent = moduleContent;
-        this.revision = revision;
-        this.dataspace = dataspace;
-    }
-
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "moduleset_files",
+        joinColumns = @JoinColumn(name = "moduleset_id"),
+        inverseJoinColumns = @JoinColumn(name = "yang_file_id"))
+    private Set<YangFileEntity> yangFiles;
 }
