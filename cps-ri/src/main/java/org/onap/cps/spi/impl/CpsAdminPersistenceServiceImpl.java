@@ -20,16 +20,14 @@
 
 package org.onap.cps.spi.impl;
 
-import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
-import org.onap.cps.spi.entities.Module;
-import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
-import org.onap.cps.spi.repository.ModuleRepository;
+import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -41,33 +39,34 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private DataspaceRepository dataspaceRepository;
 
     @Autowired
-    private FragmentRepository fragmentRepository;
+    private SchemaSetRepository schemaSetRepository;
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private FragmentRepository fragmentRepository;
 
     @Override
-    public String createAnchor(final Anchor anchor) {
-        final String anchorName = anchor.getAnchorName();
+    public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
+
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSet schemaSet = schemaSetRepository.findByDataspaceAndName(dataspace, schemaSetName)
+            .orElseThrow(
+                () -> new CpsValidationException("Schema set does not exist.",
+                    String.format("Schema set with name %s was not found for dataspace %s.", schemaSetName,
+                        dataspaceName))
+            );
+
+        final Fragment anchor = Fragment.builder()
+            .xpath(anchorName)
+            .anchorName(anchorName)
+            .dataspace(dataspace)
+            .schemaSet(schemaSet)
+            .build();
+
         try {
-            final Dataspace dataspace = dataspaceRepository.getByName(anchor.getDataspaceName());
-            final Module module =
-                moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspace,
-                    anchor.getNamespace(), anchor.getRevision());
-
-            final Fragment fragment = Fragment.builder().xpath(anchorName)
-                .anchorName(anchorName)
-                .dataspace(dataspace).module(module).build();
-
-            fragmentRepository.save(fragment);
-            return anchorName;
-        } catch (final CpsNotFoundException ex) {
-            throw new CpsValidationException("Validation Error",
-                "Dataspace and/or Module do not exist.");
-        } catch (final DataIntegrityViolationException ex) {
-            throw new CpsValidationException("Duplication Error",
-                String.format("Anchor with name %s already exist in dataspace %s.",
-                    anchorName, anchor.getDataspaceName()));
+            fragmentRepository.save(anchor);
+        } catch (final DataIntegrityViolationException e) {
+            throw new CpsValidationException("Anchor already defined.",
+                String.format("Anchor with name %s already defined for dataspace %s.", anchorName, dataspaceName));
         }
     }
 }
