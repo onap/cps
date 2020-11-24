@@ -32,8 +32,4 @@ public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
 
     Optional<Dataspace> findByName(@NotNull String name);
 
-    default Dataspace getByName(@NotNull String name) {
-        return findByName(name).orElseThrow(
-            () -> new DataspaceNotFoundException("Dataspace " + name + " does not exist."));
-    }
 }

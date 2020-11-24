@@ -34,7 +34,6 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.api.CpsRestApi;
-import org.onap.cps.spi.model.Anchor;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,16 +64,15 @@ public class CpsRestController implements CpsRestApi {
     /**
      * Create a new anchor.
      *
-     * @param anchor        the anchor details object.
-     * @param dataspaceName the dataspace name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchorName
      * @return a ResponseEntity with the anchor name.
      */
     @Override
-    public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
-        final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
-        anchorDetails.setDataspaceName(dataspaceName);
-        final String anchorName = cpsAdminService.createAnchor(anchorDetails);
+    public ResponseEntity<String> createAnchor(final String dataspaceName, final String schemaSetName,
+                                               final String anchorName) {
+        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<String>(anchorName, HttpStatus.CREATED);
     }
 
@@ -113,7 +111,7 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
+                                            @Valid final String revision) {
         return null;
     }
 

@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
 import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
@@ -76,7 +77,7 @@ public class CpsModulePersistenceServiceTest {
     private SchemaSetRepository schemaSetRepository;
 
 
-    @Test(expected = CpsValidationException.class)
+    @Test(expected = DataspaceNotFoundException.class)
     @Sql(CLEAR_DATA)
     public void testStoreSchemaSetToInvalidDataspace() {
         cpsModulePersistenceService
