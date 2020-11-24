@@ -28,28 +28,15 @@ import spock.lang.Specification
 class CpsAdminServiceImplSpec extends Specification {
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
     def objectUnderTest = new CpsAdminServiceImpl()
-    def anchor = new Anchor()
 
     def setup() {
         objectUnderTest.cpsAdminPersistenceService = mockCpsAdminPersistenceService
     }
 
-    def 'Create an anchor'() {
-        given: 'that the persistence service returns the name of the anchor'
-            def anchorName = 'some anchor name'
-            mockCpsAdminPersistenceService.createAnchor(_) >> anchorName
-        expect: 'the same anchor name is returned by CPS Admin service'
-            objectUnderTest.createAnchor(anchor) == anchorName
-    }
-
-    def 'Create an anchor with some exception in the persistence layer'() {
-        given: 'that the persistence service throws some exception'
-            def exceptionThrownInPersistenceLayer = new RuntimeException()
-            mockCpsAdminPersistenceService.createAnchor(_) >> { throw exceptionThrownInPersistenceLayer }
-        when: 'we try to create an anchor'
-            objectUnderTest.createAnchor(anchor)
-        then: 'the same exception is thrown by the CPS Admin Service'
-            def exceptionThrownInServiceLayer = thrown(Exception)
-            exceptionThrownInServiceLayer == exceptionThrownInPersistenceLayer
+    def 'Create anchor method invokes persistence service'() {
+        when: 'Create anchor method is invoked'
+            objectUnderTest.createAnchor('dummyDataspace', 'dummySchemaSet', 'dummyAnchorName')
+        then: 'The persistence service method is invoked with same parameters'
+            1 * mockCpsAdminPersistenceService.createAnchor('dummyDataspace', 'dummySchemaSet', 'dummyAnchorName')
     }
 }

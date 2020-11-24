@@ -23,12 +23,12 @@ package org.onap.cps.spi.impl;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
-import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
-import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
-import org.onap.cps.spi.repository.ModuleRepository;
+import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -40,25 +40,32 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private DataspaceRepository dataspaceRepository;
 
     @Autowired
-    private FragmentRepository fragmentRepository;
+    private SchemaSetRepository schemaSetRepository;
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private FragmentRepository fragmentRepository;
 
     @Override
-    public String createAnchor(final Anchor anchor) {
-        final String anchorName = anchor.getAnchorName();
-        try {
-            final Dataspace dataspace = dataspaceRepository.getByName(anchor.getDataspaceName());
-            final Module module = moduleRepository
-                .getByDataspaceAndNamespaceAndRevision(dataspace, anchor.getNamespace(), anchor.getRevision());
-            final Fragment fragment =
-                Fragment.builder().xpath(anchorName).anchorName(anchorName).dataspace(dataspace).module(module).build();
+    public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
 
-            fragmentRepository.save(fragment);
-            return anchorName;
-        } catch (final DataIntegrityViolationException ex) {
-            throw new AnchorAlreadyDefinedException(anchor.getDataspaceName(), anchorName, ex);
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSet schemaSet = schemaSetRepository.findByDataspaceAndName(dataspace, schemaSetName)
+            .orElseThrow(
+                () -> new NotFoundInDataspaceException(
+                    String.format("Schema set with name %s", schemaSetName), dataspaceName)
+            );
+
+        final Fragment anchor = Fragment.builder()
+            .xpath(anchorName)
+            .anchorName(anchorName)
+            .dataspace(dataspace)
+            .schemaSet(schemaSet)
+            .build();
+
+        try {
+            fragmentRepository.save(anchor);
+        } catch (final DataIntegrityViolationException e) {
+            throw new AnchorAlreadyDefinedException(dataspaceName, anchorName, e);
         }
     }
 }

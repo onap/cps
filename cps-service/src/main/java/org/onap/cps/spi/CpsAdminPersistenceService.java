@@ -30,8 +30,10 @@ public interface CpsAdminPersistenceService {
     /**
      * Create an Anchor.
      *
-     * @param anchor the anchorDetails object.
-     * @return the anchor name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchor name
+     *
      */
-    String createAnchor(Anchor anchor);
+    void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 }
