@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "65698f3a_18fd8c04",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-27T15:14:11Z",
+      "side": 1,
+      "message": "moved to separate method",
+      "parentUuid": "ae4ded08_a19d3002",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 195,
+        "endChar": 47
+      },
+      "revId": "9325d7c8805560ae2bf412c7fc9c0c17c6cdb243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87c931a0_d1be7404",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 9
