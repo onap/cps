@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cde98fc_994abe5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-27T15:19:32Z",
+      "side": 1,
+      "message": "I prefer the way the identation was before, I am not sure if there are any guidelines on this, I wint reject but I do think in the team we should all use the same formatting if we can!",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
