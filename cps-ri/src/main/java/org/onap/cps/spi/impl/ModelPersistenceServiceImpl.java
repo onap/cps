@@ -22,8 +22,8 @@ package org.onap.cps.spi.impl;
 
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.ModelPersistenceService;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.ModuleEntity;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +42,12 @@ public class ModelPersistenceServiceImpl implements ModelPersistenceService {
     @Override
     public void storeModule(final String namespace, final String moduleContent, final String revision,
         final String dataspaceName) {
-        final Dataspace dataspace = new Dataspace(dataspaceName);
+        final DataspaceEntity dataspaceEntity = new DataspaceEntity(dataspaceName);
         if (Boolean.FALSE.equals(dataspaceRepository.existsByName(dataspaceName))) {
-            dataspaceRepository.save(dataspace);
+            dataspaceRepository.save(dataspaceEntity);
         }
-        dataspace.setId(dataspaceRepository.getByName(dataspaceName).getId());
-        final Module module = new Module(namespace, moduleContent, revision, dataspace);
+        dataspaceEntity.setId(dataspaceRepository.getByName(dataspaceName).getId());
+        final ModuleEntity module = new ModuleEntity(namespace, moduleContent, revision, dataspaceEntity);
         try {
             moduleRepository.save(module);
         } catch (final DataIntegrityViolationException ex) {

@@ -23,17 +23,17 @@ package org.onap.cps.spi.repository;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.exceptions.CpsNotFoundException;
-import org.onap.cps.spi.entities.Dataspace;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
+public interface DataspaceRepository extends JpaRepository<DataspaceEntity, Integer> {
     Boolean existsByName(String name); //Checks if there are any records by name()
 
-    Optional<Dataspace> findByName(@NotNull String name);
+    Optional<DataspaceEntity> findByName(@NotNull String name);
 
-    default Dataspace getByName(@NotNull String name) {
+    default DataspaceEntity getByName(@NotNull String name) {
         return findByName(name).orElseThrow(
             () -> new CpsNotFoundException("Not Found", "Dataspace " + name + " does not exist."));
     }

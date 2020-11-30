@@ -24,9 +24,9 @@ import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.FragmentPersistenceService;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.Fragment;
-import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.entities.ModuleEntity;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.ModuleRepository;
@@ -49,16 +49,16 @@ public class FragmentPersistenceServiceImpl implements FragmentPersistenceServic
     @Override
     public String createAnchor(final AnchorDetails anchorDetails) {
         try {
-            final Dataspace dataspace = dataspaceRepository.getByName(anchorDetails.getDataspace());
-            final Module module =
-                moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspace,
+            final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(anchorDetails.getDataspace());
+            final ModuleEntity module =
+                moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspaceEntity,
                 anchorDetails.getNamespace(), anchorDetails.getRevision());
 
-            final Fragment fragment = Fragment.builder().xpath(anchorDetails.getAnchorName())
+            final FragmentEntity fragmentEntity = FragmentEntity.builder().xpath(anchorDetails.getAnchorName())
                 .anchorName(anchorDetails.getAnchorName())
-                .dataspace(dataspace).module(module).build();
+                .dataspaceEntity(dataspaceEntity).module(module).build();
 
-            fragmentRepository.save(fragment);
+            fragmentRepository.save(fragmentEntity);
             return anchorDetails.getAnchorName();
         } catch (final CpsNotFoundException ex) {
             throw new CpsValidationException("Validation Error",
