@@ -18,34 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.spi;
 
 /**
- * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
+ * Service to manage modules.
+ *
  */
-public interface CpService {
+public interface CpsModuleStorePersistenceService {
 
     /**
-     * Store the JSON structure in the database.
+     * TODO
+     * clean up method to conform with spi proposal - https://jira.onap.org/browse/CPS-103
+     * Store the module from a yang model in the database.
      *
-     * @param jsonStructure the JSON structure.
-     * @return entity ID.
+     * @param namespace module namespace
+     * @param moduleContent module content
+     * @param revision module revision
+     * @param dataspaceName the name of the dataspace the module is associated with
      */
-    Integer storeJsonStructure(String jsonStructure);
-
-    /**
-     * Read a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     * @return the JSON structure.
-     */
-    String getJsonById(int jsonObjectId);
-
-    /**
-     * Delete a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     */
-    void deleteJsonById(int jsonObjectId);
+    void storeModule(final String namespace, final String moduleContent, final String revision,
+        final String dataspaceName);
 
 }

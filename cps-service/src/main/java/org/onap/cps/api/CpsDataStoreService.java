@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,32 +19,9 @@
 
 package org.onap.cps.api;
 
-/**
- * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
+/*
+ * Datastore interface for handling CPS data.
  */
-public interface CpService {
-
-    /**
-     * Store the JSON structure in the database.
-     *
-     * @param jsonStructure the JSON structure.
-     * @return entity ID.
-     */
-    Integer storeJsonStructure(String jsonStructure);
-
-    /**
-     * Read a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     * @return the JSON structure.
-     */
-    String getJsonById(int jsonObjectId);
-
-    /**
-     * Delete a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     */
-    void deleteJsonById(int jsonObjectId);
+public interface CpsDataStoreService {
 
 }
