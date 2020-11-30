@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "837e75fe_e34183ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-30T16:23:36Z",
+      "side": 1,
+      "message": "i don\u0027t think we need to rename properties\nit makes generated getter/setter methods harder to read",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aee62ec_b1c15760",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-30T16:23:36Z",
+      "side": 1,
+      "message": "same as for FragmentEntity: no need to rename property name\nit makes generated getter/setter methods harder to read",
+      "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d634573f_0bd5341c",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Module.java",
         "patchSetId": 1
