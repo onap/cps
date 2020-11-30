@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b742c22f_f7eff39d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-30T13:14:18Z",
+      "side": 1,
+      "message": "sure, still wondering why CheckStyle isn\u0027t set up to capture it, \nMy advise to all developers is to use save actions (both available in Eclipse and IntelliJ and I am sure there is something similar for other IDEs) to fix all final, organise import etc. We shouldn\u0027t have to eyeball that kind of stuff!\nAlso related to formatting, can we ensure all use the same formatting rules (even is there no strict convention, see change in indents for method parameters below) I wont fail a review on it but it would be good if commits are not polluted by such changes so we can focus on the functional changes!\nThere are setting provided in ONAP Wikis: see https://wiki.onap.org/display/DW/Setting+Up+Your+Development+Environment",
+      "parentUuid": "5e74649b_0c7dcf3d",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 18
+      },
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4d15eb0_105d8b41",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
         "patchSetId": 12
