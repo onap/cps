@@ -20,32 +20,20 @@
 
 package org.onap.cps.api;
 
+import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.spi.model.Anchor;
+
 /**
- * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
+ * CPS Admin Service.
  */
-public interface CpService {
+public interface CpsAdminService {
 
     /**
-     * Store the JSON structure in the database.
+     * Create an anchor using provided anchorDetails object.
      *
-     * @param jsonStructure the JSON structure.
-     * @return entity ID.
+     * @param anchor the anchor details object.
+     * @return the anchor name.
+     * @throws CpsValidationException if input data is invalid.
      */
-    Integer storeJsonStructure(String jsonStructure);
-
-    /**
-     * Read a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     * @return the JSON structure.
-     */
-    String getJsonById(int jsonObjectId);
-
-    /**
-     * Delete a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     */
-    void deleteJsonById(int jsonObjectId);
-
+    String createAnchor(Anchor anchor);
 }

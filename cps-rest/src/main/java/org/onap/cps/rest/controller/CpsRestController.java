@@ -29,11 +29,12 @@ import java.io.OutputStream;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpService;
-import org.onap.cps.api.model.AnchorDetails;
+import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsModuleStoreService;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.api.CpsRestApi;
-import org.onap.cps.rest.model.Anchor;
+import org.onap.cps.spi.model.Anchor;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,28 +54,35 @@ public class CpsRestController implements CpsRestApi {
     private CpService cpService;
 
     @Autowired
+    private CpsModuleStoreService cpsModuleStoreService;
+
+    @Autowired
+    private CpsAdminService cpsAdminService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     /**
      * Create a new anchor.
      *
-     * @param anchor the anchor details object.
+     * @param anchor        the anchor details object.
      * @param dataspaceName the dataspace name.
      * @return a ResponseEntity with the anchor name.
      */
     @Override
-    public final ResponseEntity<String> createAnchor(@Valid Anchor anchor, String dataspaceName) {
-        final AnchorDetails anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
-        anchorDetails.setDataspace(dataspaceName);
-        final String anchorName = cpService.createAnchor(anchorDetails);
+    public final ResponseEntity<String> createAnchor(@Valid org.onap.cps.rest.model.Anchor anchor,
+        String dataspaceName) {
+        final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
+        anchorDetails.setDataspaceName(dataspaceName);
+        final String anchorName = cpsAdminService.createAnchor(anchorDetails);
         return new ResponseEntity<String>(anchorName, HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Object> createModules(@Valid MultipartFile multipartFile, String dataspaceName) {
         final File fileToParse = saveToFile(multipartFile);
-        final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
-        cpService.storeSchemaContext(schemaContext, dataspaceName);
+        final SchemaContext schemaContext = cpsModuleStoreService.parseAndValidateModel(fileToParse);
+        cpsModuleStoreService.storeSchemaContext(schemaContext, dataspaceName);
         return new ResponseEntity<>("Resource successfully created", HttpStatus.CREATED);
     }
 
