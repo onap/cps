@@ -22,6 +22,64 @@
       "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61c3c361_0720e0e5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T09:18:33Z",
+      "side": 1,
+      "message": "indeed I think none of you followed next step\nhttps://wiki.onap.org/display/DW/Configure+Onap+Code+Style+for+Idea+IDE\n\nResult totally differs from both presented here, since everything is an single line because is not longer that 120",
+      "parentUuid": "8cde98fc_994abe5b",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4383d87d_9f769c6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T09:18:33Z",
+      "side": 1,
+      "message": "missing final",
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ad72c84_49eb6e7b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T09:18:33Z",
+      "side": 1,
+      "message": "same here and next line",
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
