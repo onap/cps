@@ -18,34 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.api.impl;
 
-/**
- * Configuration and persistency service interface which holds methods for parsing and storing yang models and data.
- */
-public interface CpService {
+import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.spi.model.Anchor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-    /**
-     * Store the JSON structure in the database.
-     *
-     * @param jsonStructure the JSON structure.
-     * @return entity ID.
-     */
-    Integer storeJsonStructure(String jsonStructure);
+@Component("CpsAdminServiceImpl")
+public class CpsAdminServiceImpl implements CpsAdminService {
 
-    /**
-     * Read a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     * @return the JSON structure.
-     */
-    String getJsonById(int jsonObjectId);
+    @Autowired
+    private org.onap.cps.spi.CpsAdminService cpsAdminService;
 
-    /**
-     * Delete a JSON Object using the object identifier.
-     *
-     * @param jsonObjectId the JSON object identifier.
-     */
-    void deleteJsonById(int jsonObjectId);
-
+    @Override
+    public String createAnchor(Anchor anchor) {
+        return cpsAdminService.createAnchor(anchor);
+    }
 }

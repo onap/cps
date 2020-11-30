@@ -18,22 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi;
+package org.onap.cps.api;
+
+import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.spi.model.Anchor;
 
 /**
- * Defines methods to access and manipulate data using the chosen database solution.
+ * CPS Admin Service.
  */
-public interface ModelPersistenceService {
+public interface CpsAdminService {
 
     /**
-     * Store the module from a yang model in the database.
+     * Create an anchor using provided anchorDetails object.
      *
-     * @param namespace module namespace
-     * @param moduleContent module content
-     * @param revision module revision
-     * @param dataspaceName the name of the dataspace the module is associated with
+     * @param anchor the anchor details object.
+     * @return the anchor name.
+     * @throws CpsValidationException if input data is invalid.
      */
-    void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName);
-
+    String createAnchor(Anchor anchor);
 }

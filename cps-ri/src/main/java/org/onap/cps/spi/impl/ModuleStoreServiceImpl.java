@@ -21,7 +21,7 @@
 package org.onap.cps.spi.impl;
 
 import org.onap.cps.exceptions.CpsValidationException;
-import org.onap.cps.spi.ModelPersistenceService;
+import org.onap.cps.spi.ModuleStoreService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Module;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -31,7 +31,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ModelPersistenceServiceImpl implements ModelPersistenceService {
+public class ModuleStoreServiceImpl implements ModuleStoreService {
 
     @Autowired
     private ModuleRepository moduleRepository;
