@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d634573f_0bd5341c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-30T15:30:22Z",
+      "side": 1,
+      "message": "This will probably be replaced by a YangFile object (if we even need it, it depends on outcome of Rusland user story) but just go ahead and add what was agreed in the API proposal for now",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
