@@ -111,6 +111,29 @@
       "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc056fb_1b1e80ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-30T15:25:00Z",
+      "side": 1,
+      "message": "still some formatting issues but I have to check which one is correct or whether this is not configured in any onap-provided setting files\n(I did follow formatting setup originally but have noticed issues with this getting undone and/or not followed by all comitters)",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 68
+      },
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

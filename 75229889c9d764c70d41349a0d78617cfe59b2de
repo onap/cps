@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0c6738ba_94779b69",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-11-30T15:25:00Z",
+      "side": 1,
+      "message": "much better thanks!",
+      "parentUuid": "91bc9af8_5281d18f",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4383d87d_9f769c6a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 11
