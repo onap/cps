@@ -23,11 +23,14 @@ package org.onap.cps.spi;
 import java.util.Set;
 
 /**
- * Defines methods to access and manipulate data using the chosen database solution.
+ * Service to manage modules.
+ *
  */
-public interface ModelPersistenceService {
+public interface CpsModulePersistenceService {
 
     /**
+     * TODO
+     * clean up method to conform with spi proposal - https://jira.onap.org/browse/CPS-103
      * Store the module from a yang model in the database.
      *
      * @param namespace     module namespace
