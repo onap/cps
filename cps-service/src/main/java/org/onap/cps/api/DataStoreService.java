@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,34 +17,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.api;
 
-import org.onap.cps.api.CpService;
-import org.onap.cps.spi.DataPersistenceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
-public class CpServiceImpl implements CpService {
-
-    @Autowired
-    private DataPersistenceService dataPersistenceService;
-
-
-    @Override
-    public final Integer storeJsonStructure(final String jsonStructure) {
-        return dataPersistenceService.storeJsonStructure(jsonStructure);
-    }
-
-    @Override
-    public final String getJsonById(final int jsonObjectId) {
-        return dataPersistenceService.getJsonById(jsonObjectId);
-    }
-
-    @Override
-    public void deleteJsonById(int jsonObjectId) {
-        dataPersistenceService.deleteJsonById(jsonObjectId);
-    }
-
+/*
+ * Datastore interface for handling CPS data.
+ */
+public interface DataStoreService {
 
 }

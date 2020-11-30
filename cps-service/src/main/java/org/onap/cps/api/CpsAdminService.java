@@ -18,34 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.api;
 
-import org.onap.cps.api.CpService;
-import org.onap.cps.spi.DataPersistenceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.spi.model.Anchor;
 
-@Component
-public class CpServiceImpl implements CpService {
+/**
+ * CPS Admin Service.
+ */
+public interface CpsAdminService {
 
-    @Autowired
-    private DataPersistenceService dataPersistenceService;
-
-
-    @Override
-    public final Integer storeJsonStructure(final String jsonStructure) {
-        return dataPersistenceService.storeJsonStructure(jsonStructure);
-    }
-
-    @Override
-    public final String getJsonById(final int jsonObjectId) {
-        return dataPersistenceService.getJsonById(jsonObjectId);
-    }
-
-    @Override
-    public void deleteJsonById(int jsonObjectId) {
-        dataPersistenceService.deleteJsonById(jsonObjectId);
-    }
-
-
+    /**
+     * Create an anchor using provided anchorDetails object.
+     *
+     * @param anchor the anchor details object.
+     * @return the anchor name.
+     * @throws CpsValidationException if input data is invalid.
+     */
+    String createAnchor(Anchor anchor);
 }

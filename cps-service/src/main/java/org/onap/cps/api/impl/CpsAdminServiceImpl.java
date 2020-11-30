@@ -18,22 +18,19 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi;
+package org.onap.cps.api.impl;
 
-/**
- * Defines methods to access and manipulate data using the chosen database solution.
- */
-public interface ModelPersistenceService {
+import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.spi.model.Anchor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    /**
-     * Store the module from a yang model in the database.
-     *
-     * @param namespace module namespace
-     * @param moduleContent module content
-     * @param revision module revision
-     * @param dataspaceName the name of the dataspace the module is associated with
-     */
-    void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName);
+public class CpsAdminServiceImpl implements CpsAdminService {
 
+    @Autowired
+    private org.onap.cps.spi.CpsAdminService cpsAdminService;
+
+    @Override
+    public String createAnchor(Anchor anchor) {
+        return cpsAdminService.createAnchor(anchor);
+    }
 }

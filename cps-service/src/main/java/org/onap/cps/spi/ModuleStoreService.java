@@ -18,34 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.spi;
 
-import org.onap.cps.api.CpService;
-import org.onap.cps.spi.DataPersistenceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+/**
+ * Service to manage modules.
+ *
+ */
+public interface ModuleStoreService {
 
-@Component
-public class CpServiceImpl implements CpService {
-
-    @Autowired
-    private DataPersistenceService dataPersistenceService;
-
-
-    @Override
-    public final Integer storeJsonStructure(final String jsonStructure) {
-        return dataPersistenceService.storeJsonStructure(jsonStructure);
-    }
-
-    @Override
-    public final String getJsonById(final int jsonObjectId) {
-        return dataPersistenceService.getJsonById(jsonObjectId);
-    }
-
-    @Override
-    public void deleteJsonById(int jsonObjectId) {
-        dataPersistenceService.deleteJsonById(jsonObjectId);
-    }
-
+    /**
+     * TODO
+     * clean up method to conform with spi proposal - https://jira.onap.org/browse/CPS-103
+     * Store the module from a yang model in the database.
+     *
+     * @param namespace module namespace
+     * @param moduleContent module content
+     * @param revision module revision
+     * @param dataspaceName the name of the dataspace the module is associated with
+     */
+    void storeModule(final String namespace, final String moduleContent, final String revision,
+        final String dataspaceName);
 
 }
