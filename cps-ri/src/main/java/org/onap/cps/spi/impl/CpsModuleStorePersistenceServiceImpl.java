@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
-import org.onap.cps.spi.ModelPersistenceService;
+import org.onap.cps.spi.CpsModuleStorePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
@@ -42,7 +42,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
 @Component
-public class ModelPersistenceServiceImpl implements ModelPersistenceService {
+public class CpsModuleStorePersistenceServiceImpl implements CpsModuleStorePersistenceService {
 
     @Autowired
     private YangResourceRepository yangResourceRepository;
