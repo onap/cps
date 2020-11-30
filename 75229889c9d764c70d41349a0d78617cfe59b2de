@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "91bc9af8_5281d18f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-30T11:37:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61c3c361_0720e0e5",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4383d87d_9f769c6a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 11
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "2ec5f7f5_2496b86a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-30T11:37:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4383d87d_9f769c6a",
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ad72c84_49eb6e7b",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 11
@@ -80,6 +122,24 @@
       "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfdc72a5_f5b78fee",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-11-30T11:37:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ad72c84_49eb6e7b",
+      "revId": "75229889c9d764c70d41349a0d78617cfe59b2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
