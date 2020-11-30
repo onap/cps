@@ -20,12 +20,11 @@
 package org.onap.cps.rest.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.hibernate.exception.ConstraintViolationException;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.controller.CpsRestController;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.onap.cps.rest.model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,25 +42,6 @@ public class CpsRestExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<Object> handleInternalErrorException(Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
-    }
-
-    /*
-        TODO: Rid off extra dependencies.
-
-        Generic exception handler and CpsException (incl. children) are the only
-        exceptions to be handled here. All the other exceptions which require a special
-        treatment should be rethrown as CpsException in the place of occurrence ->
-        e.g. persistence exceptions are to be handled in cps-ri module.
-     */
-
-    @ExceptionHandler({ConstraintViolationException.class})
-    public ResponseEntity<Object> handleBadRequestException(Exception exception) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
-    }
-
-    @ExceptionHandler({EmptyResultDataAccessException.class})
-    public ResponseEntity<Object> handleNotFoundException(Exception exception) {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
     @ExceptionHandler({CpsException.class})
@@ -84,10 +64,11 @@ public class CpsRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> buildErrorResponse(HttpStatus status, String message, String details) {
-        return new ResponseEntity<>(
-            ErrorMessage.builder().status(status.toString()).message(message).details(details).build(),
-            status
-        );
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatus(status.toString());
+        errorMessage.setMessage(message);
+        errorMessage.setDetails(details);
+        return new ResponseEntity<>(errorMessage, status);
     }
 
     private static String extractDetails(CpsException exception) {
