@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0542f289_71c6c673",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T14:00:27Z",
+      "side": 1,
+      "message": "right, I sent the link on previous comment. I just added the link on the wiki.\nI  have my doubts if the checkstyle is configured or if it is configured to only show warns.\nI  will take a look later.",
+      "parentUuid": "b742c22f_f7eff39d",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 18
+      },
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4d15eb0_105d8b41",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
         "patchSetId": 12
