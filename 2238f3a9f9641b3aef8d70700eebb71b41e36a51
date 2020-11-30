@@ -22,6 +22,47 @@
       "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e74649b_0c7dcf3d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T12:44:07Z",
+      "side": 1,
+      "message": "immutability + keep consistency. I don\u0027t see reason why not",
+      "parentUuid": "0656878e_208c10e1",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 18
+      },
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4d15eb0_105d8b41",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-11-30T12:44:07Z",
+      "side": 1,
+      "message": "missing final",
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
