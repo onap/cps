@@ -32,7 +32,7 @@ public class CpsNotFoundException extends CpsException {
      *
      * @param cause the cause of the exception
      */
-    public CpsNotFoundException(Throwable cause) {
+    public CpsNotFoundException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -42,7 +42,7 @@ public class CpsNotFoundException extends CpsException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsNotFoundException(String message, Throwable cause) {
+    public CpsNotFoundException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -52,7 +52,7 @@ public class CpsNotFoundException extends CpsException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsNotFoundException(String message, String details) {
+    public CpsNotFoundException(final String message, final String details) {
         super(message, details);
     }
 }

@@ -88,7 +88,7 @@ public class CpServiceImpl implements CpService {
     }
 
     @Override
-    public void deleteJsonById(int jsonObjectId) {
+    public void deleteJsonById(final int jsonObjectId) {
         dataPersistenceService.deleteJsonById(jsonObjectId);
     }
 
@@ -103,7 +103,7 @@ public class CpServiceImpl implements CpService {
     }
 
     @Override
-    public String createAnchor(AnchorDetails anchorDetails) {
+    public String createAnchor(final AnchorDetails anchorDetails) {
         return fragmentPersistenceService.createAnchor(anchorDetails);
     }
 }
