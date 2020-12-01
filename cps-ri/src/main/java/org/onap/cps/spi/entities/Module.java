@@ -36,7 +36,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
  * Entity to store a yang module.
  */
@@ -73,12 +72,13 @@ public class Module implements Serializable {
     /**
      * Initialize a module entity.
      *
-     * @param namespace the module namespace.
+     * @param namespace     the module namespace.
      * @param moduleContent the module content.
-     * @param revision the revision number of the module.
-     * @param dataspace the dataspace related to the module.
+     * @param revision      the revision number of the module.
+     * @param dataspace     the dataspace related to the module.
      */
-    public Module(String namespace, String moduleContent, String revision, Dataspace dataspace) {
+    public Module(final String namespace, final String moduleContent, final String revision,
+            final Dataspace dataspace) {
         this.namespace = namespace;
         this.moduleContent = moduleContent;
         this.revision = revision;

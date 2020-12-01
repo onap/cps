@@ -59,7 +59,7 @@ public class Dataspace implements Serializable {
      *
      * @param name the Dataspace name.
      */
-    public Dataspace(String name) {
+    public Dataspace(final String name) {
         this.name = name;
     }
 }

@@ -63,7 +63,7 @@ public class CpsRestController implements CpsRestApi {
      * @return a ResponseEntity with the anchor name.
      */
     @Override
-    public final ResponseEntity<String> createAnchor(@Valid Anchor anchor, String dataspaceName) {
+    public final ResponseEntity<String> createAnchor(@Valid final Anchor anchor, final String dataspaceName) {
         final AnchorDetails anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
         anchorDetails.setDataspace(dataspaceName);
         final String anchorName = cpService.createAnchor(anchorDetails);
@@ -71,7 +71,7 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-    public ResponseEntity<Object> createModules(@Valid MultipartFile multipartFile, String dataspaceName) {
+    public ResponseEntity<Object> createModules(@Valid final MultipartFile multipartFile, final String dataspaceName) {
         final File fileToParse = saveToFile(multipartFile);
         final SchemaContext schemaContext = cpService.parseAndValidateModel(fileToParse);
         cpService.storeSchemaContext(schemaContext, dataspaceName);
@@ -79,42 +79,43 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-    public ResponseEntity<Object> createNode(@Valid MultipartFile multipartFile, String dataspaceName) {
+    public ResponseEntity<Object> createNode(@Valid final MultipartFile multipartFile, final String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> deleteAnchor(String dataspaceName, String anchorName) {
+    public ResponseEntity<Object> deleteAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> deleteDataspace(String dataspaceName) {
+    public ResponseEntity<Object> deleteDataspace(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getAnchor(String dataspaceName, String anchorName) {
+    public ResponseEntity<Object> getAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getAnchors(String dataspaceName) {
+    public ResponseEntity<Object> getAnchors(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getModule(String dataspaceName, @Valid String namespaceName, @Valid String revision) {
+    public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
+            @Valid final String revision) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getNode(String dataspaceName) {
+    public ResponseEntity<Object> getNode(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(String dataspaceName, String anchorName) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
 
@@ -129,13 +130,11 @@ public class CpsRestController implements CpsRestApi {
      * @return a ResponseEntity.
      */
     @PostMapping("/upload-yang-json-data-file")
-    public final ResponseEntity<String> uploadYangJsonDataFile(
-        @RequestParam("file") MultipartFile uploadedFile) {
+    public final ResponseEntity<String> uploadYangJsonDataFile(@RequestParam("file") final MultipartFile uploadedFile) {
         validateJsonStructure(uploadedFile);
         final int persistenceObjectId = cpService.storeJsonStructure(getJsonString(uploadedFile));
-        return new ResponseEntity<String>(
+        return new ResponseEntity<>(
             "Object stored in CPS with identity: " + persistenceObjectId, HttpStatus.OK);
-
     }
 
     /**

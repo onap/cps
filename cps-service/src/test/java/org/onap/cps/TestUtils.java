@@ -35,7 +35,7 @@ public class TestUtils {
      * @throws IOException when there is an IO issue
      */
     public static String getResourceFileContent(final String filename) throws IOException {
-        File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
+        final File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
         return new String(Files.readAllBytes(file.toPath()));
     }
 }

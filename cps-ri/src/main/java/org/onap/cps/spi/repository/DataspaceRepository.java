@@ -19,7 +19,6 @@
 
 package org.onap.cps.spi.repository;
 
-
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.exceptions.CpsNotFoundException;

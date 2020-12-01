@@ -76,7 +76,7 @@ public class Fragment {
      * @param qnames         array of qualified names that points the schema node for this fragment
      * @param xpath          the xpath for this fragment
      */
-    private Fragment(final Fragment parentFragment, final Module module, final QName[] qnames, String xpath) {
+    private Fragment(final Fragment parentFragment, final Module module, final QName[] qnames, final String xpath) {
         this.parentFragment = parentFragment;
         this.module = module;
         this.qnames = qnames;

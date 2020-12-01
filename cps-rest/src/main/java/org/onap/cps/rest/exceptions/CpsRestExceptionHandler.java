@@ -40,38 +40,39 @@ public class CpsRestExceptionHandler {
      * @return response with response code 500.
      */
     @ExceptionHandler
-    public ResponseEntity<Object> handleInternalErrorException(Exception exception) {
+    public ResponseEntity<Object> handleInternalErrorException(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
     @ExceptionHandler({CpsException.class})
-    public ResponseEntity<Object> handleCpsException(CpsException exception) {
+    public ResponseEntity<Object> handleCpsException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
     }
 
     @ExceptionHandler({CpsValidationException.class})
-    public ResponseEntity<Object> handleCpsValidationException(CpsException exception) {
+    public ResponseEntity<Object> handleCpsValidationException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }
 
     @ExceptionHandler({CpsNotFoundException.class})
-    public ResponseEntity<Object> handleCpsNotFoundException(CpsException exception) {
+    public ResponseEntity<Object> handleCpsNotFoundException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
     }
 
-    private static ResponseEntity<Object> buildErrorResponse(HttpStatus status, Exception exception) {
+    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
         return buildErrorResponse(status, exception.getMessage(), ExceptionUtils.getStackTrace(exception));
     }
 
-    private static ResponseEntity<Object> buildErrorResponse(HttpStatus status, String message, String details) {
-        ErrorMessage errorMessage = new ErrorMessage();
+    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
+            final String details) {
+        final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(message);
         errorMessage.setDetails(details);
         return new ResponseEntity<>(errorMessage, status);
     }
 
-    private static String extractDetails(CpsException exception) {
+    private static String extractDetails(final CpsException exception) {
         return exception.getCause() == null
             ? exception.getDetails()
             : ExceptionUtils.getStackTrace(exception.getCause());

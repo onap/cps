@@ -48,7 +48,7 @@ public class JsonDataEntity {
     @Column
     private String jsonStructure;
 
-    public JsonDataEntity(String jsonStructure) {
+    public JsonDataEntity(final String jsonStructure) {
         this.jsonStructure = jsonStructure;
     }
 }
