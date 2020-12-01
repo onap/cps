@@ -160,6 +160,63 @@
       "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "effe6dfb_ea380b8c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleSet.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-01T12:48:48Z",
+      "side": 1,
+      "message": "I think this file should be in the SPI",
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90e9b37f_b8ac9310",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/YangFile.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-01T12:48:48Z",
+      "side": 1,
+      "message": "This should be in the SPI",
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e1354c9_9e672f7f",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-01T12:48:48Z",
+      "side": 1,
+      "message": "Define as a constant",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 64
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
