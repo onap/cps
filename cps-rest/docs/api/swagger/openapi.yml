@@ -364,18 +364,28 @@ paths:
           description: Not Found
           content: {}
 components:
-    schemas:
-       Anchor:
-           type: object
-           title: Anchor
-           required:
-              - anchorName
-              - namespace
-              - revision
-           properties:
-               anchorName:
-                   type: string
-               namespace:
-                   type: string
-               revision:
-                   type: string
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    Anchor:
+      type: object
+      title: Anchor
+      required:
+        - anchorName
+        - namespace
+        - revision
+      properties:
+        anchorName:
+          type: string
+        namespace:
+          type: string
+        revision:
+          type: string
