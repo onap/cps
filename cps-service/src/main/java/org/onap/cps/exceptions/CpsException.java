@@ -36,7 +36,7 @@ public class CpsException extends RuntimeException {
      *
      * @param cause the cause of the exception
      */
-    public CpsException(Throwable cause) {
+    public CpsException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -46,7 +46,7 @@ public class CpsException extends RuntimeException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsException(String message, Throwable cause) {
+    public CpsException(final  String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -56,7 +56,7 @@ public class CpsException extends RuntimeException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsException(String message, String details) {
+    public CpsException(final String message, final String details) {
         super(message);
         this.details = details;
     }

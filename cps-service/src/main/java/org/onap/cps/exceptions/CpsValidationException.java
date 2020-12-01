@@ -29,7 +29,7 @@ public class CpsValidationException extends CpsException {
      *
      * @param cause the cause of the exception
      */
-    public CpsValidationException(Throwable cause) {
+    public CpsValidationException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -39,7 +39,7 @@ public class CpsValidationException extends CpsException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsValidationException(String message, Throwable cause) {
+    public CpsValidationException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -49,7 +49,7 @@ public class CpsValidationException extends CpsException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsValidationException(String message, String details) {
+    public CpsValidationException(final String message, final String details) {
         super(message, details);
     }
 }
