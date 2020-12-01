@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5828c5cd_d88b203c",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "580d9c2b_3c79b6bf",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b573275a_409ee989",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b935c2ce_cffa7335",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "When profile is enable (by default) the tests are excluded from the scope of surefire plugin,\nbut not disables the plugin execution. When profile is disabled the test files are executed \nbecause these files are in scope now.",
+      "parentUuid": "b573275a_409ee989",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7daa8a15_601d92e9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleSet.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "updated: modules are no longer used as part of moduleset",
+      "parentUuid": "0f82c54e_e92a3b66",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3776a12a_02edb8e5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecd690cb_e163c20b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3776a12a_02edb8e5",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 54
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "8697d9b3_e7292dde",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "217deb1d_970efccd",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1befffb7_49dc85e8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1f73f82_1c7b214f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1befffb7_49dc85e8",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 5
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "849aacac_b083355c",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4185539f_d717f069",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5b19c38_d69df9a2",
         "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleDescriptor.java",
         "patchSetId": 3
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "c009203f_cb8b08c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "No longer used\nYangFile object is used instead",
+      "parentUuid": "f5b19c38_d69df9a2",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "230d9eea_681c6235",
         "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleSetDescriptor.java",
         "patchSetId": 3
@@ -206,6 +398,30 @@
       "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98a24730_1c424b37",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ModuleSetDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:29:44Z",
+      "side": 1,
+      "message": "updated: the set of YangFile artifacts is used now",
+      "parentUuid": "230d9eea_681c6235",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "b9d7f4604a8881ad44729d44d41f70eeb06bac56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
