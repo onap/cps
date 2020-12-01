@@ -134,6 +134,30 @@
       "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c89c5a6_8e0692bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:57:45Z",
+      "side": 1,
+      "message": "we may cleanup all outdated module references\nafter moduleset is implemented",
+      "parentUuid": "d634573f_0bd5341c",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
