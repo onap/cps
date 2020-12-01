@@ -114,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "23336315_d728f66f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/Fragment.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:32:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4d15eb0_105d8b41",
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc056fb_1b1e80ad",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 12
@@ -134,6 +152,30 @@
       "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0d3b822_bee30d26",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-01T11:32:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bcc056fb_1b1e80ad",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 68
+      },
+      "revId": "2238f3a9f9641b3aef8d70700eebb71b41e36a51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
