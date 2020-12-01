@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d47b2160_6e87e603",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-01T04:48:05Z",
+      "side": 1,
+      "message": "For our internal state db we have the other way around: pojos at the controller level have the DTO suffix (ex: StateDto) and entities are kept as is (ex: State).\n\nSorry to bring another option to the table :(\n\nI\u0027m not used to the Entity suffix. I like the idea to be able to quickly and easily identify the class with its name in the ide. That\u0027s being said, I still don\u0027t have a strong opinion.",
+      "parentUuid": "b5ea0593_7f7b998d",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "012a568e54c0d099ef3935137f66b08bbcdcb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9aee62ec_b1c15760",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleEntity.java",
         "patchSetId": 1
