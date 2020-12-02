@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35156abf_3b3e51ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Anchor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:14:39Z",
+      "side": 1,
+      "message": "i\u0027d suggest using lombock\u0027 @Data and @Builder annotations\n+ implements Serializable\nsame for all other classes",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 21
+      },
+      "revId": "af467b4523e44c1fda6524043df38bc8b9669a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
