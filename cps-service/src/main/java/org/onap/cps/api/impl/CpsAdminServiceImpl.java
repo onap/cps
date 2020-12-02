@@ -20,6 +20,7 @@
 
 package org.onap.cps.api.impl;
 
+import java.util.Collection;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
@@ -35,5 +36,10 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public String createAnchor(final Anchor anchor) {
         return cpsAdminPersistenceService.createAnchor(anchor);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName) {
+        return cpsAdminPersistenceService.getAnchors(dataspaceName);
     }
 }
