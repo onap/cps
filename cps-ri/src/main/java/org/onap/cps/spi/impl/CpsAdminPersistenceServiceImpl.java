@@ -20,6 +20,10 @@
 
 package org.onap.cps.spi.impl;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsAdminPersistenceService;
@@ -67,7 +71,15 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         } catch (final DataIntegrityViolationException ex) {
             throw new CpsValidationException("Duplication Error",
                 String.format("Anchor with name %s already exist in dataspace %s.",
-                    anchorName, anchor.getDataspaceName()));
+                    anchor.getAnchorName(), anchor.getDataspaceName()));
         }
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final Collection<Fragment> fragments = fragmentRepository.findFragmentByDataspace(dataspace);
+        final Type anchorListType = new TypeToken<Collection<Anchor>>() {}.getType();
+        return new ModelMapper().map(fragments, anchorListType);
     }
 }

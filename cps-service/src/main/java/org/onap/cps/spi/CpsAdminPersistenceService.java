@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import org.onap.cps.spi.model.Anchor;
 
 /*
@@ -34,4 +35,12 @@ public interface CpsAdminPersistenceService {
      * @return the anchor name.
      */
     String createAnchor(Anchor anchor);
+
+    /**
+     * Read all anchors in the given a dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName);
 }
