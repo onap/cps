@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import org.onap.cps.api.model.AnchorDetails;
 
 public interface FragmentPersistenceService {
@@ -31,4 +32,12 @@ public interface FragmentPersistenceService {
      * @return the anchor name.
      */
     String createAnchor(AnchorDetails anchorDetails);
+
+    /**
+     * Read all anchors in the given a dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return a collection of anchors
+     */
+    Collection<AnchorDetails> getAnchors(String dataspaceName);
 }

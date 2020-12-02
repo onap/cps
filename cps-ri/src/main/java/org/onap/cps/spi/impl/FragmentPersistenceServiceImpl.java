@@ -20,6 +20,10 @@
 
 package org.onap.cps.spi.impl;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
@@ -68,5 +72,14 @@ public class FragmentPersistenceServiceImpl implements FragmentPersistenceServic
                 String.format("Anchor with name %s already exist in dataspace %s.",
                     anchorDetails.getAnchorName(), anchorDetails.getDataspace()));
         }
+    }
+
+    @Override
+    public Collection<AnchorDetails> getAnchors(String dataspaceName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        Collection<Fragment> anchors = fragmentRepository.findFragmentByDataspace(dataspace);
+        Type anchorDetailsListType = new TypeToken<Collection<AnchorDetails>>() {}.getType();
+        Collection<AnchorDetails> anchorDetails = new ModelMapper().map(anchors, anchorDetailsListType);
+        return anchorDetails;
     }
 }

@@ -20,10 +20,17 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
+import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<Fragment, Integer> {
+
+    @Query("SELECT e from Fragment e where e.dataspace = :dataspace")
+    Collection<Fragment> findFragmentByDataspace(@Param("dataspace") Dataspace dataspace);
 }

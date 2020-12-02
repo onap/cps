@@ -24,6 +24,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 import org.onap.cps.api.CpService;
 import org.onap.cps.api.model.AnchorDetails;
@@ -105,5 +106,10 @@ public class CpServiceImpl implements CpService {
     @Override
     public String createAnchor(AnchorDetails anchorDetails) {
         return fragmentPersistenceService.createAnchor(anchorDetails);
+    }
+
+    @Override
+    public Collection<AnchorDetails> getAnchors(String dataspaceName) {
+        return fragmentPersistenceService.getAnchors(dataspaceName);
     }
 }
