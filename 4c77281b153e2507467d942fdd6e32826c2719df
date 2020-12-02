@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a27da49d_7497055e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangFileEntity.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8c25e11c_6320d984",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 28
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e632fdb3_1274a6bf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -139,6 +163,30 @@
       "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "185c421f_3781e60c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "i think separate story to remove the obsolete Module references would be ok,\nfor now there are a plenty of dependencies",
+      "parentUuid": "e632fdb3_1274a6bf",
+      "range": {
+        "startLine": 62,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 58
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "85794e08_02702ac8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "removed from api",
+      "parentUuid": "6a04d2f9_1290916e",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6eef19a_a80a0df2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -188,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "93b7b6a6_ea87bdef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c6eef19a_a80a0df2",
+      "range": {
+        "startLine": 103,
+        "startChar": 32,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4449d29a_1c012d7f",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 8
@@ -208,6 +304,30 @@
       "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c9524d_5a1fbc9c",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4449d29a_1c012d7f",
+      "range": {
+        "startLine": 20,
+        "startChar": 28,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "4c77281b153e2507467d942fdd6e32826c2719df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

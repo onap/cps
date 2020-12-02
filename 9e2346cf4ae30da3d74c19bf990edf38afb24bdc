@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f55bd971_a92cca25",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44747b1a_2e6a1f5c",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0236407_46393411",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/SchemaSetEntity.java",
         "patchSetId": 12
@@ -69,6 +93,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ae1a1f7_c250c87c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/SchemaSetEntity.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b0236407_46393411",
+      "range": {
+        "startLine": 48,
+        "startChar": 22,
+        "endLine": 48,
+        "endChar": 28
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "a54114f9_b279c96c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c5bc6d2c_9488e56d",
+      "range": {
+        "startLine": 44,
+        "startChar": 25,
+        "endLine": 44,
+        "endChar": 31
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56507a8a_e809030d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
         "patchSetId": 12
@@ -115,6 +187,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04669895_f5f233c9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56507a8a_e809030d",
+      "range": {
+        "startLine": 61,
+        "startChar": 33,
+        "endLine": 61,
+        "endChar": 43
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "c347f5c7_0e9ded11",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "204b8373_bff04021",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 5
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2b07fed_fb514b49",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -161,6 +281,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec86f191_6230052a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "it can be in case there is an archive uploaded with no\nyang files within\nremoved from here, to be handled on an upper level",
+      "parentUuid": "f2b07fed_fb514b49",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "ca49af26_39b29d0c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7368abe_d1caf057",
+      "range": {
+        "startLine": 74,
+        "startChar": 50,
+        "endLine": 74,
+        "endChar": 58
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "435afad8_04c0d49e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -207,6 +375,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a25abc6_f0e61e4f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "answered in prior patchset",
+      "parentUuid": "435afad8_04c0d49e",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -233,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "72bafaad_f9ed810f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "this is not saving all action,\nit retrieving ids to create references,\nstoring those which are absent.\nrenamed to process...",
+      "parentUuid": "bd20d229_6d0aada6",
+      "range": {
+        "startLine": 103,
+        "startChar": 36,
+        "endLine": 103,
+        "endChar": 56
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18b4fce0_fa392413",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -253,6 +469,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dce946d_86962b42",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "18b4fce0_fa392413",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 53
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -279,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "21c48baa_02150c64",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15adfed5_640e228b",
+      "range": {
+        "startLine": 123,
+        "startChar": 60,
+        "endLine": 123,
+        "endChar": 62
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f91833e0_b2452f6b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 12
@@ -302,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "6127f931_e0889399",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "u need to use exact name of the field",
+      "parentUuid": "f91833e0_b2452f6b",
+      "range": {
+        "startLine": 35,
+        "startChar": 48,
+        "endLine": 35,
+        "endChar": 52
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03b17461_fc4cc142",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
         "patchSetId": 12
@@ -316,6 +604,24 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63890a4e_12b65fc4",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "03b17461_fc4cc142",
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -385,6 +691,30 @@
       "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bb25458_3d77fd35",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/YangResource.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7269b2fe_6122cd29",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "9e2346cf4ae30da3d74c19bf990edf38afb24bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

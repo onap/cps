@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "93ce82ff_c99a1129",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2357fc79_5413dafe",
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac7e7c97_6477d285",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 11
@@ -39,6 +57,30 @@
       "revId": "988a2835180d16b017742ea485a8f549f55ce302",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac8b33e_b87b6321",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "the exception is thrown if there is constraint violation error returned by database on insert.\nwe have two constraints for schema_set table: \n1) FK to dataspace table\n2) unique name + dataspace_id combination\n\ndue to we check dataspace referenced before schema_set insert, \nthe only case remaining is the schema_set name duplication (within same dataspace)",
+      "parentUuid": "ac7e7c97_6477d285",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "32dc6010_22141051",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "446e1d43_277d5b6e",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3125e8b3_fe82698d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangFileRepository.java",
         "patchSetId": 11
@@ -85,6 +151,30 @@
       "revId": "988a2835180d16b017742ea485a8f549f55ce302",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640e5351_ae1f30c0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangFileRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "it\u0027s required spring framework to build query",
+      "parentUuid": "3125e8b3_fe82698d",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 44
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "3e2113b6_01f28902",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44829668_1a204f41",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7cb86c20_179f43af",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 11
@@ -131,6 +245,30 @@
       "revId": "988a2835180d16b017742ea485a8f549f55ce302",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "743fece2_11216b62",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7cb86c20_179f43af",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "c3275946_157b1ecc",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "moved to separate change",
+      "parentUuid": "606deb06_5dd7cc29",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 41
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "379667bd_64e5fbd0",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
         "patchSetId": 11
@@ -177,6 +339,30 @@
       "revId": "988a2835180d16b017742ea485a8f549f55ce302",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1bce697_c1274404",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-02T16:55:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "379667bd_64e5fbd0",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 68
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
