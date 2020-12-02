@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24ba3782_0f6ad3ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T11:48:47Z",
+      "side": 1,
+      "message": "maybe fix if you get a chance",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "795575be_b2002d19",
+        "filename": "checkstyle/src/main/resources/cps-java-style.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T11:48:47Z",
+      "side": 1,
+      "message": "question: where can I find information about this options?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 75
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a250e56_401f9588",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T11:48:47Z",
+      "side": 1,
+      "message": "I assume this is adding a check for the copyright in each file?",
+      "range": {
+        "startLine": 218,
+        "startChar": 24,
+        "endLine": 218,
+        "endChar": 45
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc9ecb4_402ac091",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T11:48:47Z",
+      "side": 1,
+      "message": "I am a bit confused what file is this referring too? Is this a file outside our repo?",
+      "range": {
+        "startLine": 224,
+        "startChar": 44,
+        "endLine": 224,
+        "endChar": 77
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc58658_a8342a84",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T11:48:47Z",
+      "side": 1,
+      "message": "I am a bit confused what files is this referring too? Is this a file outside our repo?",
+      "range": {
+        "startLine": 243,
+        "startChar": 44,
+        "endLine": 243,
+        "endChar": 79
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
