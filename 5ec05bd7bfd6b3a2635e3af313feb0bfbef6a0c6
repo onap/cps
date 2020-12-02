@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "a44a2f48_e552a065",
+        "filename": "checkstyle/src/main/resources/cps-java-style.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-02T12:15:35Z",
+      "side": 1,
+      "message": "https://checkstyle.sourceforge.io/config_coding.html",
+      "parentUuid": "795575be_b2002d19",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 75
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a250e56_401f9588",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 3
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "f4bfc66c_813f2ccb",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-02T12:15:35Z",
+      "side": 1,
+      "message": "right",
+      "parentUuid": "9a250e56_401f9588",
+      "range": {
+        "startLine": 218,
+        "startChar": 24,
+        "endLine": 218,
+        "endChar": 45
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "adc9ecb4_402ac091",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 3
@@ -82,6 +130,30 @@
       "writtenOn": "2020-12-02T11:48:47Z",
       "side": 1,
       "message": "I am a bit confused what file is this referring too? Is this a file outside our repo?",
+      "range": {
+        "startLine": 224,
+        "startChar": 44,
+        "endLine": 224,
+        "endChar": 77
+      },
+      "revId": "5ec05bd7bfd6b3a2635e3af313feb0bfbef6a0c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6ce558_37596271",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-02T12:15:35Z",
+      "side": 1,
+      "message": "Gere I repond for all questions 😊\nFile is coming from \n                    \u003cdependency\u003e\n                        \u003cgroupId\u003eorg.onap.oparent\u003c/groupId\u003e\n                        \u003cartifactId\u003echeckstyle\u003c/artifactId\u003e\n                        \u003cversion\u003e${oparent.version}\u003c/version\u003e\n                    \u003c/dependency\u003e\n\nThose checkstyle are defined oparent, but with FailOnViolation false. Since the definitions are not in dependency management we can not reuse it and we need to override.\nI hope is more clear now.\nRegards",
+      "parentUuid": "adc9ecb4_402ac091",
       "range": {
         "startLine": 224,
         "startChar": 44,
