@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac7e7c97_6477d285",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "in what circumstance is this exception thrown, is it only on duplciate?",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "446e1d43_277d5b6e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "I prefer just to remove these (better for code-coverage too)",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3125e8b3_fe82698d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangFileRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "why \u0027In\u0027 ?!",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 44
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44829668_1a204f41",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "SCHEMA_SET for oncistency",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cb86c20_179f43af",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "SCHEMA_SET",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "606deb06_5dd7cc29",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "Please do walktrough and explain to teh team how this test",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 41
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "379667bd_64e5fbd0",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-02T08:45:03Z",
+      "side": 1,
+      "message": "as before, just add what is needed for current user story",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 68
+      },
+      "revId": "988a2835180d16b017742ea485a8f549f55ce302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
