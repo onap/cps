@@ -21,6 +21,7 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.exceptions.CpsValidationException
+import org.onap.cps.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
@@ -83,4 +84,25 @@ class CpsAdminPersistenceServiceImplSpec extends Specification {
             objectUnderTest.createAnchor(anchor) == 'dummyAnchorName'
     }
 
+    def 'Retrieve all anchors for a non existing dataspace'() {
+        given: 'that the dataspace does not exist service throws an exception'
+        mockCpsAdminService.getAnchors('dummyDataspace') >> { throw new DataspaceNotFoundException(_ as String) }
+        when: 'we try to retieve a anchor with a non-existant dataspace'
+        objectUnderTest.getAnchors('dummyDataspace')
+        then: 'the same exception is thrown by CPS'
+        thrown(CpsValidationException)
+    }
+
+    def 'Retrieve all anchors for an existing dataspace'() {
+        given: 'that the dataspace exist and an anchor is associated with the dataspace'
+        Anchor anchor = new Anchor()
+        anchor.setDataspaceName('dummyDataspace')
+        anchor.setNamespace('dummyNamespace')
+        anchor.setRevision('dummyRevision')
+        anchor.setRevision('dummyAnchorName')
+        Collection<Anchor> anchorCollection = Arrays.asList(anchor);
+        mockCpsAdminService.getAnchors('dummyDataspace') >> { anchorCollection }
+        expect: 'we try to retrieve an anchor, a collection of anchor is returned by the service'
+        objectUnderTest.getAnchors('dummyDataspace') == anchorCollection
+    }
 }
