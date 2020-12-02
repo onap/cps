@@ -21,6 +21,7 @@
 package org.onap.cps.api;
 
 import java.io.File;
+import java.util.Collection;
 import org.onap.cps.api.model.AnchorDetails;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -86,4 +87,12 @@ public interface CpService {
      * @throws CpsValidationException if input data is invalid.
      */
     String createAnchor(AnchorDetails anchorDetails);
+
+    /**
+     * Read all anchors in the given a dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return a collection of anchors
+     */
+    Collection<AnchorDetails> getAnchors(String dataspaceName);
 }
