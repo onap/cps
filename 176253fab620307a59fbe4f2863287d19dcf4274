@@ -137,6 +137,30 @@
     },
     {
       "key": {
+        "uuid": "a5ca26cf_502c7519",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T09:31:45Z",
+      "side": 1,
+      "message": "I think one exception should be good for both cases, and the output should suit for both cases.\nwe can keep invalidDataspaceException and remove the other",
+      "parentUuid": "31398669_a07e27ab",
+      "range": {
+        "startLine": 68,
+        "startChar": 56,
+        "endLine": 68,
+        "endChar": 66
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efa2cd05_d6d9afa1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 14
@@ -166,6 +190,24 @@
       "side": 1,
       "message": "we don\u0027t need checksums, we need entities with valid ids\nin order to create many-to-many relationships",
       "parentUuid": "efa2cd05_d6d9afa1",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a32f0c4_5f1ded47",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T09:31:45Z",
+      "side": 1,
+      "message": "my bad, I saw next line you were consuming checksum, but I missed L106",
+      "parentUuid": "8c60b03f_2d622424",
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -318,6 +360,24 @@
       "side": 1,
       "message": "its agreed to do it as a separate task",
       "parentUuid": "bc3b7261_50913f2f",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "183057af_27548576",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T09:31:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b39d665_70f7ec07",
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
