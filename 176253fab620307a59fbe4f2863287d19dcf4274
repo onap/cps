@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "96db3455_5a1c09b1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "ruslan is correct, we have separate clean up task. On the other hand if it is not too much effort some clean up can be done in ongoing commits if it is closely related",
+      "parentUuid": "d25a20ab_39926d0c",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d80e37f5_9df335c8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 14
@@ -173,6 +191,30 @@
       "side": 1,
       "message": "it means there will be 404 response when 400 is expected.\nsame reference missing is \u0027not found\u0027 for data retrieval case\nbut validation error for \u0027insert\u0027 case",
       "parentUuid": "a5ca26cf_502c7519",
+      "range": {
+        "startLine": 68,
+        "startChar": 56,
+        "endLine": 68,
+        "endChar": 66
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4468b13_d3fb2a8e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "see my email, we need to think about java api response and REST response separately! a dedicated exception for dataspace not found is a good idea I think!",
+      "parentUuid": "e95c8514_82207551",
       "range": {
         "startLine": 68,
         "startChar": 56,

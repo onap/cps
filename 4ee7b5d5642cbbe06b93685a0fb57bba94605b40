@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb4a1813_38c8057a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "make the difference clear by renaming to \u0027yangResourcesAsStrings\u0027",
+      "range": {
+        "startLine": 66,
+        "startChar": 49,
+        "endLine": 66,
+        "endChar": 62
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b864072_b82817ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "now you can name this correctly yangResources :-)",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 53
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "777c5c5c_a297c6e1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "always tricky when a method does 2 things at the same time, sometime sit is worth splitting sometimes it is not to prevent double iteration. Not clear in this case...\nIt can also be OK for t methodName to reflect it is doing to thing, Liek \u0027uncle bob; I dont mind long methods names if the clarify what the code does\nin this case i would  propose\n\ncreateYangResourcesAndSaveNewResource",
+      "range": {
+        "startLine": 83,
+        "startChar": 30,
+        "endLine": 83,
+        "endChar": 50
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9592a11_cca19ef4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "make the difference clear by renaming to \u0027yangResourcesAsStrings\u0027",
+      "range": {
+        "startLine": 83,
+        "startChar": 69,
+        "endLine": 83,
+        "endChar": 82
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29c25a4d_16271439",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "existingYangResources",
+      "range": {
+        "startLine": 90,
+        "startChar": 33,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da60b3ff_007413a0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "newYangResources",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 46
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15989c33_ab8a496c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "yangResource",
+      "range": {
+        "startLine": 96,
+        "startChar": 35,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e268e659_25de6077",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "SCHEMA_SET_YANG_RESOURCES for consistency",
+      "range": {
+        "startLine": 37,
+        "startChar": 27,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9739ddec_7ae1f377",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "as suggested before I would like a more fine-grained CPSException (could be subclass) for this case",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6fb4e08_646e49e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-03T11:26:41Z",
+      "side": 1,
+      "message": "yangResourcesAsStrings",
+      "range": {
+        "startLine": 50,
+        "startChar": 80,
+        "endLine": 50,
+        "endChar": 93
+      },
+      "revId": "4ee7b5d5642cbbe06b93685a0fb57bba94605b40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
