@@ -19,6 +19,42 @@
     },
     {
       "key": {
+        "uuid": "760d1af1_9f68fab1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "06f11e66_32869327",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfc34a04_525fdf43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "06f11e66_32869327",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a330476_c584a8e8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 14
@@ -33,6 +69,24 @@
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d25a20ab_39926d0c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "its agreed to do it via separate task.\nthere are dependencies up to rest controller.",
+      "parentUuid": "8a330476_c584a8e8",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "31398669_a07e27ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "it returns \"not found\" exception instead of validation one",
+      "parentUuid": "d80e37f5_9df335c8",
+      "range": {
+        "startLine": 68,
+        "startChar": 56,
+        "endLine": 68,
+        "endChar": 66
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efa2cd05_d6d9afa1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
         "patchSetId": 14
@@ -73,6 +151,24 @@
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c60b03f_2d622424",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "we don\u0027t need checksums, we need entities with valid ids\nin order to create many-to-many relationships",
+      "parentUuid": "efa2cd05_d6d9afa1",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +195,30 @@
     },
     {
       "key": {
+        "uuid": "5538fd60_f3299f5f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3f55267_7c70d971",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 22
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fc31638_547e8c9e",
         "filename": "cps-ri/src/main/resources/schema.sql",
         "patchSetId": 14
@@ -113,6 +233,24 @@
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a64a0f8_a7ef1ed8",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "out of scope for entire task",
+      "parentUuid": "0fc31638_547e8c9e",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +271,24 @@
     },
     {
       "key": {
+        "uuid": "6a4a4cfa_0fb7700c",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "it\u0027s not, http response code for rest depends on exception type",
+      "parentUuid": "cf7493bc_c2e0b040",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc3b7261_50913f2f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
         "patchSetId": 14
@@ -147,6 +303,24 @@
       "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b39d665_70f7ec07",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-03T09:01:31Z",
+      "side": 1,
+      "message": "its agreed to do it as a separate task",
+      "parentUuid": "bc3b7261_50913f2f",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
