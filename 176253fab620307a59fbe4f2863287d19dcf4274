@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06f11e66_32869327",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "Fix description, tests are not longer present",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a330476_c584a8e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "we can remove it on this commit",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d80e37f5_9df335c8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "getByName already verify and throws Exception",
+      "range": {
+        "startLine": 68,
+        "startChar": 56,
+        "endLine": 68,
+        "endChar": 66
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efa2cd05_d6d9afa1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "may be wort to return Checksum straight instead of YangResource",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3f55267_7c70d971",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/ModelPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "ImmutableSet.\u003cYangResource\u003ebuilder()\n                .addAll(existingYangFiles)\n                .addAll(newYangFiles)\n                .build();",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 22
+      },
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc31638_547e8c9e",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "Is this old table the new table YANG_RESOURCE? if yes, can be removed and anything releated",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf7493bc_c2e0b040",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "this is similar to dataspaceNotFoundException, lets keep it simple and have only one",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3b7261_50913f2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/ModelPersistenceService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:16:28Z",
+      "side": 1,
+      "message": "Do this still make sense? this should be removed, isnt it?",
+      "revId": "176253fab620307a59fbe4f2863287d19dcf4274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
