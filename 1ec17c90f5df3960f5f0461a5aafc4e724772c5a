@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1a3b5966_e403c5d9",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T11:01:11Z",
+      "side": 1,
+      "message": "ok, then check that the image used for builds have the *docker on name on ci-managemen. That should solve the requirement",
+      "parentUuid": "215f8681_3364b33a",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575e6ca3_ce1056ff",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "we have all code lines covered, \ntesting a case which is a combination of existing two seems extra",
       "parentUuid": "dcfab147_46bd31d9",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bbcf2c6_f476a01d",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T11:01:11Z",
+      "side": 1,
+      "message": "test are for cover scenarios no lines...\nI dont those test covering given scenario e.g. yang file A imports B, and file b is not pushed",
+      "parentUuid": "b785bbb0_63069284",
       "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
