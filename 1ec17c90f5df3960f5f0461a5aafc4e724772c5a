@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9061f99c_a9989d4a",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:36:44Z",
+      "side": 1,
+      "message": "What configuration is required on Jenkins?\nDid you check if those test generate coverage report?",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575e6ca3_ce1056ff",
+        "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:36:44Z",
+      "side": 1,
+      "message": "you can move \"DB_URL and others to static variables, similar you did for IMAGE_VERSION",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcfab147_46bd31d9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-03T08:36:44Z",
+      "side": 1,
+      "message": "can we have a test where one file is missing",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
