@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "cbbb0fe1_64ab11b8",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T10:42:56Z",
+      "side": 1,
+      "message": "i think jenkins jobs configuration is out of scope for entire task",
+      "parentUuid": "1a3b5966_e403c5d9",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575e6ca3_ce1056ff",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 3
@@ -140,6 +158,24 @@
       "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3693b542_abe55925",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T10:42:56Z",
+      "side": 1,
+      "message": "persistence service does not validate the content.\nit\u0027s the responsibility of core service (logic layer),\nwhich is not implemented yet",
+      "parentUuid": "9bbcf2c6_f476a01d",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
