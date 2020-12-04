@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e121560e_d2a49433",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T10:07:27Z",
+      "side": 1,
+      "message": "this service seems obsolete, the service name does not reflect the purpose.\nif it\u0027s responsible for serving data it should be renamed to DataService\nsimilar to one in SPI",
+      "revId": "03016c1e65f6a07bc60dcc29948f1ac4614013dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65799289_d00b7e63",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/DataStoreService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T10:07:27Z",
+      "side": 1,
+      "message": "what\u0027s the difference comparing to DataPersistenceService ?\n\nThe naming is inconsistent\ni\u0027d suggest renaming all service names within spi package to contain\n\u0027Persistence\u0027 word in name to differentiate from api services",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "03016c1e65f6a07bc60dcc29948f1ac4614013dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
