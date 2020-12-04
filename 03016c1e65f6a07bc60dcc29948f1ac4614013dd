@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dabef8b9_6195455e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-04T11:53:34Z",
+      "side": 1,
+      "message": "This class will be removed as part of a different commit.",
+      "parentUuid": "e121560e_d2a49433",
+      "revId": "03016c1e65f6a07bc60dcc29948f1ac4614013dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65799289_d00b7e63",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/DataStoreService.java",
         "patchSetId": 4
@@ -30,6 +48,30 @@
       "writtenOn": "2020-12-04T10:07:27Z",
       "side": 1,
       "message": "what\u0027s the difference comparing to DataPersistenceService ?\n\nThe naming is inconsistent\ni\u0027d suggest renaming all service names within spi package to contain\n\u0027Persistence\u0027 word in name to differentiate from api services",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "03016c1e65f6a07bc60dcc29948f1ac4614013dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99a2d234_2268a023",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/DataStoreService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-04T11:53:34Z",
+      "side": 1,
+      "message": "DataPersistenceService will be removed as part of a different commit to remove old code. I aggree on inconsistent naming, we will use \u0027Persistence\u0027in class names to differentiate from the api service.",
+      "parentUuid": "65799289_d00b7e63",
       "range": {
         "startLine": 28,
         "startChar": 17,
