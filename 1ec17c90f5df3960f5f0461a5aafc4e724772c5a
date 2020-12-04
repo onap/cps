@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "31479390_5d75f845",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T13:35:10Z",
+      "side": 1,
+      "message": "there is a task related to persistence layer testing\nhttps://jira.onap.org/browse/CPS-95",
+      "parentUuid": "a0e906ea_81bd473a",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575e6ca3_ce1056ff",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 3
@@ -229,6 +247,24 @@
       "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fab10189_cde09768",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-04T13:35:10Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "cdcda9e5_efdc0c25",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
