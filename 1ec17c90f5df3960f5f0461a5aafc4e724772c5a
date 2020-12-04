@@ -212,6 +212,23 @@
       "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdcda9e5_efdc0c25",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-04T11:36:56Z",
+      "side": 1,
+      "message": "all most all lines are duplicate code with next test, just expecting diff result.\nCan you please extract the code to a method and reuse it.",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
