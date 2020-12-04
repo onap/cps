@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "a0e906ea_81bd473a",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-04T11:31:33Z",
+      "side": 1,
+      "message": "I agree that it should be part of different task, but the whole set of changes.\nWith that I mean this commit, which introduces this new type of test. \nTogether with the corresponding enabling of Jenkins jobs or any type of change required by the introductions of this changes. \nAll shall be tracked on the same place. Has this task been created already?",
+      "parentUuid": "cbbb0fe1_64ab11b8",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "575e6ca3_ce1056ff",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 3
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "persistence service does not validate the content.\nit\u0027s the responsibility of core service (logic layer),\nwhich is not implemented yet",
       "parentUuid": "9bbcf2c6_f476a01d",
+      "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec216d8c_28a7be50",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-04T11:31:33Z",
+      "side": 1,
+      "message": "you are right",
+      "parentUuid": "3693b542_abe55925",
       "revId": "1ec17c90f5df3960f5f0461a5aafc4e724772c5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
