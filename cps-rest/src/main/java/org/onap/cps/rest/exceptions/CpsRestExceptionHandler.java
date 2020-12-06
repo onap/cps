@@ -20,6 +20,7 @@
 package org.onap.cps.rest.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.onap.cps.exceptions.CpsAdminException;
 import org.onap.cps.exceptions.CpsException;
 import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.exceptions.CpsValidationException;
@@ -57,6 +58,11 @@ public class CpsRestExceptionHandler {
     @ExceptionHandler({CpsNotFoundException.class})
     public ResponseEntity<Object> handleCpsNotFoundException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
+    }
+
+    @ExceptionHandler({CpsAdminException.class})
+    public ResponseEntity<Object> handleCpsAdminException(final CpsException exception) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
