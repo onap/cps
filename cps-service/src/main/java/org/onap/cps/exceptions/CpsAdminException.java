@@ -17,23 +17,44 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.exceptions;
 
-import java.util.Optional;
-import javax.validation.constraints.NotNull;
-import org.onap.cps.exceptions.DataspaceNotFoundException;
-import org.onap.cps.spi.entities.Dataspace;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import lombok.Getter;
 
-@Repository
-public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
-    Boolean existsByName(String name); //Checks if there are any records by name()
+/**
+ * CPS Admin exception.
+ */
+public class CpsAdminException extends CpsValidationException {
 
-    Optional<Dataspace> findByName(@NotNull String name);
+    private static final long serialVersionUID = 5573438585188332404L;
 
-    default Dataspace getByName(@NotNull String name) {
-        return findByName(name).orElseThrow(
-            () -> new DataspaceNotFoundException("Dataspace " + name + " does not exist."));
+    /**
+     * Constructor.
+     *
+     * @param cause the cause of the exception
+     */
+    public CpsAdminException(final Throwable cause) {
+        super(cause.getMessage(), cause);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param cause   the cause of the exception
+     */
+    public CpsAdminException(final  String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     */
+    public CpsAdminException(final String message, final String details) {
+        super(message, details);
+        this.details = details;
     }
 }
