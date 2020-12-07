@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f91376e5_d2d9d982",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T14:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "123f9198_95e62bd3",
+      "range": {
+        "startLine": 104,
+        "startChar": 40,
+        "endLine": 104,
+        "endChar": 47
+      },
+      "revId": "8d27aebec0b607cf63e55cf1084317707e5bbfbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a57d96ca_8c0605ac",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 1
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "8df825cd_5d4a03da",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T14:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7ece272_2428c554",
+      "range": {
+        "startLine": 80,
+        "startChar": 29,
+        "endLine": 80,
+        "endChar": 37
+      },
+      "revId": "8d27aebec0b607cf63e55cf1084317707e5bbfbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "accbc62a_ab7c64f5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "c417ae06_83822c53",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/FragmentPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T14:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "accbc62a_ab7c64f5",
+      "range": {
+        "startLine": 82,
+        "startChar": 19,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "8d27aebec0b607cf63e55cf1084317707e5bbfbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f85e98d_5a4483e2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -114,6 +186,30 @@
       "revId": "8d27aebec0b607cf63e55cf1084317707e5bbfbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a576080_f995a0bc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T14:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f85e98d_5a4483e2",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "8d27aebec0b607cf63e55cf1084317707e5bbfbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
