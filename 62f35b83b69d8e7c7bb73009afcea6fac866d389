@@ -22,6 +22,23 @@
       "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66cae679_76f4a6a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-07T08:03:56Z",
+      "side": 1,
+      "message": "can we hide all this[0] under constructor, same for other exceptions\n[0]CpsValidationException(\"Duplication Error\",\n                String.format(\"Anchor with name %s already exist in dataspace %s.\"",
+      "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
