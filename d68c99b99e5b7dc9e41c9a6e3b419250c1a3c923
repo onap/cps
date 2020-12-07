@@ -22,6 +22,30 @@
       "revId": "d68c99b99e5b7dc9e41c9a6e3b419250c1a3c923",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "870ec030_18918b65",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-07T17:17:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44b44bf6_157c4982",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "d68c99b99e5b7dc9e41c9a6e3b419250c1a3c923",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
