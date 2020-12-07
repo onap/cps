@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "374d7586_79909bf6",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T17:04:54Z",
+      "side": 1,
+      "message": "perfect, thanks!",
+      "parentUuid": "fd94c1b2_b393b33d",
+      "range": {
+        "startLine": 102,
+        "startChar": 58,
+        "endLine": 102,
+        "endChar": 95
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec9123bb_906a044b",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 7
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "e5022292_9df5e1bc",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T17:04:54Z",
+      "side": 1,
+      "message": "it would add a bit more context ...\nAnother maybe better option is to extract out 0L as a private constant in this class\nlike final Long NO_ID_ASSERT \u003d 0L  or something similar\nI a(I actually would do both but constant alone is good enough...",
+      "parentUuid": "b51d5e72_5b8ded82",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a7875dd_d2eef5f0",
         "filename": "cps-ri/src/test/resources/data/schemaset.sql",
         "patchSetId": 7
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "initially this data set was used to test all the schema set related cases\nincluding retrieval and deletion. It seems reasonable to finalize the \ntest data set when all the tests (using this data) are in place.",
       "parentUuid": "9a7875dd_d2eef5f0",
+      "range": {
+        "startLine": 14,
+        "startChar": 46,
+        "endLine": 14,
+        "endChar": 58
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e94884c_4b82f21d",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T17:04:54Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "6845210e_60bed5fc",
       "range": {
         "startLine": 14,
         "startChar": 46,
