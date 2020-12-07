@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "180ecfda_8e13002c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataStorePersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T10:21:37Z",
+      "side": 1,
+      "message": "CpsDataPersistenceService\n\u0027Store\u0027 seems extra here",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 47
+      },
+      "revId": "27635665aefb45863bc3d744753a979f2729d49e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
