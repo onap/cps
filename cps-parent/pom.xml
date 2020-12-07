@@ -22,7 +22,6 @@
         <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
         <minimum-coverage>0.20</minimum-coverage>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <oparent.version>3.1.0</oparent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
@@ -30,7 +29,6 @@
         <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
         <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
-        <stagingNexusPath>/content/repositories/staging/</stagingNexusPath>
         <tag.version>${project.version}</tag.version>
     </properties>
 

@@ -18,14 +18,12 @@
         <groovy.version>3.0.6</groovy.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <modelmapper.version>2.3.8</modelmapper.version>
         <spock-core.version>2.0-M2-groovy-3.0</spock-core.version>
         <springboot.version>2.3.3.RELEASE</springboot.version>
         <springfox.version>3.0.0</springfox.version>
-        <stagingNexusPath>/content/repositories/staging/</stagingNexusPath>
         <swagger.version>2.1.4</swagger.version>
         <yangtools.version>5.0.6</yangtools.version>
     </properties>
