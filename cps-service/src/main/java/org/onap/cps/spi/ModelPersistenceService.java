@@ -20,6 +20,8 @@
 
 package org.onap.cps.spi;
 
+import java.util.Set;
+
 /**
  * Defines methods to access and manipulate data using the chosen database solution.
  */
@@ -28,12 +30,23 @@ public interface ModelPersistenceService {
     /**
      * Store the module from a yang model in the database.
      *
-     * @param namespace module namespace
+     * @param namespace     module namespace
      * @param moduleContent module content
-     * @param revision module revision
+     * @param revision      module revision
      * @param dataspaceName the name of the dataspace the module is associated with
      */
+    @Deprecated
     void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName);
+                     final String dataspaceName);
+
+
+    /**
+     * Stores Schema Set.
+     *
+     * @param dataspaceName          dataspace name
+     * @param schemaSetName          schema set name
+     * @param yangResourcesAsStrings the content of YANG resources (files)
+     */
+    void storeSchemaSet(String dataspaceName, String schemaSetName, Set<String> yangResourcesAsStrings);
 
 }
