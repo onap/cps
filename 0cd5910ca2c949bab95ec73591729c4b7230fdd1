@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d731403_e0a9a537",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-07T14:41:24Z",
+      "side": 1,
+      "message": "I\u0027m a bit worry about this benchmark results for ModelMapper:\nhttps://www.baeldung.com/java-performance-mapping-frameworks\n\nFor Bell State DB we are using MapStruct.",
+      "revId": "0cd5910ca2c949bab95ec73591729c4b7230fdd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
