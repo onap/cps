@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9c1f2289_a2b9711c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-07T10:13:20Z",
+      "side": 1,
+      "message": "Yes I also wanted to discuss on this, as handling the CpsAdminException is similar to CPSValidationException. And as per the wiki, all the Admin exceptions are supposed to be throwing the same - 400: Bad Request, so do we really want to handle separate methods here generating the same response?",
+      "parentUuid": "8705f8f9_4771534e",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "2264b0c6d6261d7bb9e46f0448c7c59db9e52552",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "325ed70f_f0ae2184",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
         "patchSetId": 2
