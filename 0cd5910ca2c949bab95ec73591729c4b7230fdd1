@@ -16,6 +16,24 @@
       "revId": "0cd5910ca2c949bab95ec73591729c4b7230fdd1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69195ac0_c97b8e45",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T14:44:49Z",
+      "side": 1,
+      "message": "ModelMapper was introduced and approved in previous commits not related to this task. Feel free to raise a new issue in Jira and/or discuss with team in next grooming meeting but it shouldn\u0027t affect this commit",
+      "parentUuid": "3d731403_e0a9a537",
+      "revId": "0cd5910ca2c949bab95ec73591729c4b7230fdd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
