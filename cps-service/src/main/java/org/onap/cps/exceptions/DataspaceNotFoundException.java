@@ -17,23 +17,41 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.exceptions;
 
-import java.util.Optional;
-import javax.validation.constraints.NotNull;
-import org.onap.cps.exceptions.DataspaceNotFoundException;
-import org.onap.cps.spi.entities.Dataspace;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
-    Boolean existsByName(String name); //Checks if there are any records by name()
+/**
+ * Dataspace Not Found Exception. Indicates the requested data being absent.
+ */
+public class DataspaceNotFoundException extends CpsAdminException {
 
-    Optional<Dataspace> findByName(@NotNull String name);
+    private static final long serialVersionUID = -1852996415384288431L;
 
-    default Dataspace getByName(@NotNull String name) {
-        return findByName(name).orElseThrow(
-            () -> new DataspaceNotFoundException("Dataspace " + name + " does not exist."));
+    /**
+     * Constructor.
+     *
+     * @param cause the cause of the exception
+     */
+    public DataspaceNotFoundException(final Throwable cause) {
+        super(cause.getMessage(), cause);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param cause   the cause of the exception
+     */
+    public DataspaceNotFoundException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param details the error details
+     */
+    public DataspaceNotFoundException(final String details) {
+        super("Dataspace Not Found", details);
     }
 }
