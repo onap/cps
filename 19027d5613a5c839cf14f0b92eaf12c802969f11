@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fd94c1b2_b393b33d",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T16:55:48Z",
+      "side": 1,
+      "message": "https://jira.onap.org/browse/CPS-124",
+      "parentUuid": "6df08c68_e517597a",
+      "range": {
+        "startLine": 102,
+        "startChar": 58,
+        "endLine": 102,
+        "endChar": 95
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec9123bb_906a044b",
         "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "51126517_a2270529",
+        "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T16:55:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec9123bb_906a044b",
+      "range": {
+        "startLine": 31,
+        "startChar": 41,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1026d92_a49892a7",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2020-12-07T09:54:30Z",
       "side": 1,
       "message": "create 2 methods to explain behavior without comments\nassertSchemaSetPersisted\nassertSchemaSetPersistedWithId\n\nOne overloads and uses the other method of course",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b51d5e72_5b8ded82",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T16:55:48Z",
+      "side": 1,
+      "message": "this method wont make the comment extra\nbecause the zero will be passed as expectedYangResourceId value \nanyway (just from other place) and it requires explanation anyway.\n\nupdated the comment body and test method names instead",
+      "parentUuid": "c1026d92_a49892a7",
       "range": {
         "startLine": 96,
         "startChar": 8,
@@ -91,6 +163,30 @@
       "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6845210e_60bed5fc",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T16:55:48Z",
+      "side": 1,
+      "message": "initially this data set was used to test all the schema set related cases\nincluding retrieval and deletion. It seems reasonable to finalize the \ntest data set when all the tests (using this data) are in place.",
+      "parentUuid": "9a7875dd_d2eef5f0",
+      "range": {
+        "startLine": 14,
+        "startChar": 46,
+        "endLine": 14,
+        "endChar": 58
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
