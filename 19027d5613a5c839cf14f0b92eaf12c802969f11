@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6df08c68_e517597a",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T09:54:30Z",
+      "side": 1,
+      "message": "Can you add a task in JIra please to do this, mail me with Jira when done\nThanks",
+      "range": {
+        "startLine": 102,
+        "startChar": 58,
+        "endLine": 102,
+        "endChar": 95
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec9123bb_906a044b",
+        "filename": "cps-ri/src/test/java/org/onap/cps/DatabaseTestContainer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T09:54:30Z",
+      "side": 1,
+      "message": "databaseTestContainer\n\n(basic rule to always follow classname and don\u0027t shorten, your IDE will always suggest the same)",
+      "range": {
+        "startLine": 31,
+        "startChar": 41,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1026d92_a49892a7",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/ModelPersistenceServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T09:54:30Z",
+      "side": 1,
+      "message": "create 2 methods to explain behavior without comments\nassertSchemaSetPersisted\nassertSchemaSetPersistedWithId\n\nOne overloads and uses the other method of course",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a7875dd_d2eef5f0",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T09:54:30Z",
+      "side": 1,
+      "message": "just to show the behavior would it be more intrestring and illustrate behavior better if set 2002 also includes content-003 ? (you could remove content-004 if that is the case)",
+      "range": {
+        "startLine": 14,
+        "startChar": 46,
+        "endLine": 14,
+        "endChar": 58
+      },
+      "revId": "19027d5613a5c839cf14f0b92eaf12c802969f11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
