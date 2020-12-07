@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "325ed70f_f0ae2184",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-07T07:46:30Z",
+      "side": 1,
+      "message": "Can we hide this [0] on the constructor itself?\n[0] \"Bad Request\", \"Dataspace \" + name + \" does not exist.\"",
+      "revId": "2264b0c6d6261d7bb9e46f0448c7c59db9e52552",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
