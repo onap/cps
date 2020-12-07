@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a8448f2f_080b35e2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-07T08:48:54Z",
+      "side": 1,
+      "message": "there is already handler for CpsValidationException\nthe CpsAdminException is a subclass of.\nit generates same response. \nremove as extra.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "2264b0c6d6261d7bb9e46f0448c7c59db9e52552",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "325ed70f_f0ae2184",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
         "patchSetId": 2
