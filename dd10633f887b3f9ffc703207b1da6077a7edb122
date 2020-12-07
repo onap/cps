@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f83816b9_51d23eb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/DataspaceNotFoundException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T12:23:45Z",
+      "side": 1,
+      "message": "why this string? This seems REST specific\nWhy is it public?\nWhy is it extrcated out as a contant at all?",
+      "range": {
+        "startLine": 29,
+        "startChar": 54,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "dd10633f887b3f9ffc703207b1da6077a7edb122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66339ec8_ef94f64e",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/DataspaceNotFoundException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T12:23:45Z",
+      "side": 1,
+      "message": "See comments above, I would remove constants and just have  string literal here\n\"Dataspace not found\"",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "dd10633f887b3f9ffc703207b1da6077a7edb122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
