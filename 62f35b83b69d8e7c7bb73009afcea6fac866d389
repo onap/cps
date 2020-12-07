@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6214e4da_4fdd90b6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-07T10:01:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1307ad4d_2f53ac47",
+      "range": {
+        "startLine": 57,
+        "startChar": 63,
+        "endLine": 57,
+        "endChar": 85
+      },
+      "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66cae679_76f4a6a1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 6
@@ -60,6 +84,24 @@
       "writtenOn": "2020-12-07T08:03:56Z",
       "side": 1,
       "message": "can we hide all this[0] under constructor, same for other exceptions\n[0]CpsValidationException(\"Duplication Error\",\n                String.format(\"Anchor with name %s already exist in dataspace %s.\"",
+      "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3ad208_f6a0cb64",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-07T10:01:46Z",
+      "side": 1,
+      "message": "this will be done in future story. https://jira.onap.org/browse/CPS-99",
+      "parentUuid": "66cae679_76f4a6a1",
       "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -86,6 +128,30 @@
       "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1503f59_537a4cf3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-07T10:01:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "72094b0e_abfe8337",
+      "range": {
+        "startLine": 26,
+        "startChar": 29,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
