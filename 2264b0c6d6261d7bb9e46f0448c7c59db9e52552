@@ -63,6 +63,23 @@
       "revId": "2264b0c6d6261d7bb9e46f0448c7c59db9e52552",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "824f7c4e_f33d5d35",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsAdminException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-07T10:05:30Z",
+      "side": 1,
+      "message": "This class increases the max (inheritance) depth to 6, thus violating the SONAR rule of max 5.",
+      "revId": "2264b0c6d6261d7bb9e46f0448c7c59db9e52552",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
