@@ -39,6 +39,29 @@
       "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72094b0e_abfe8337",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-07T09:44:23Z",
+      "side": 1,
+      "message": "... admin data",
+      "range": {
+        "startLine": 26,
+        "startChar": 29,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "62f35b83b69d8e7c7bb73009afcea6fac866d389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
