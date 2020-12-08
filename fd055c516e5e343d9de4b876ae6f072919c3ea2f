@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "92ed6557_9287fc99",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T10:33:37Z",
+      "side": 1,
+      "message": "I\u0027m not a big fan of empty lines\n(wont give you a minus score on it but just to let you know)",
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a5e7790_7e187246",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -42,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "1bcba05f_afd8e57e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T10:33:37Z",
+      "side": 1,
+      "message": "inside the SPI impl these are Fragment (entities) and then they get converted to Anchor or DataNode objects, in this case Anchors as happens ion teh next line",
+      "parentUuid": "77bd200c_af0d3b91",
+      "range": {
+        "startLine": 81,
+        "startChar": 35,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8458a40c_a787cf07",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 3
@@ -53,6 +94,24 @@
       "writtenOn": "2020-12-08T03:02:21Z",
       "side": 1,
       "message": "Should be findFragmentsByDataspace() plural as it returns a collections of fragments.",
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38142874_e2efcd83",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T10:33:37Z",
+      "side": 1,
+      "message": "agrred",
+      "parentUuid": "8458a40c_a787cf07",
       "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
