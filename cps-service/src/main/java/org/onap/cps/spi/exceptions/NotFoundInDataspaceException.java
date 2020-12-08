@@ -17,47 +17,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
 
-import lombok.Getter;
 
 /**
- * CP Service exception.
+ * CP Service exception. Indicates the requested data being absent in a given dataspace
  */
-public class CpsException extends RuntimeException {
+public class NotFoundInDataspaceException extends CpsException {
 
-    private static final long serialVersionUID = 5573438585188332404L;
+    private static final long serialVersionUID = -1852996415384288431L;
 
-    @Getter
-    String details;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param cause   the cause of the exception
-     */
-    public CpsException(final  String message, final Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param details the error details
-     */
-    public CpsException(final String message, final String details) {
-        super(message);
-        this.details = details;
+    public NotFoundInDataspaceException(final String dataspaceName, final String descriptionOfObject) {
+        super("Object not found",
+                String.format("%s does not exist in namespace %s.", descriptionOfObject, dataspaceName));
     }
 }

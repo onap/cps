@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,22 +17,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.spi.exceptions;
 
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.model.Anchor;
+public class DuplicateSchemaSetException extends CpsAdminException {
 
-/**
- * CPS Admin Service.
- */
-public interface CpsAdminService {
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
-     * Create an anchor using provided anchorDetails object.
+     * Constructor.
      *
-     * @param anchor the anchor details object.
-     * @return the anchor name.
-     * @throws CpsException if input data is invalid.
+     * @param dataspaceName the name dataspace
+     * @param schemaSetName teh name of the schema set
+     * @param cause         the cause of the exception
      */
-    String createAnchor(Anchor anchor);
+    public DuplicateSchemaSetException(final String dataspaceName,
+                                       final String schemaSetName,
+                                       final Throwable cause) {
+        super("Duplicate Schema Set",
+                String.format("Schema Set with name %s already exists for dataspace %s.",
+                        schemaSetName, dataspaceName), cause);
+    }
 }

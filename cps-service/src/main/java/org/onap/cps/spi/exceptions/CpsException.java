@@ -17,22 +17,26 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
 
+import lombok.Getter;
 
 /**
- * CP Service exception. Indicates the requested data being absent.
+ * CP Service exception.
  */
-public class CpsNotFoundException extends CpsException {
+public class CpsException extends RuntimeException {
 
-    private static final long serialVersionUID = -1852996415384288431L;
+    private static final long serialVersionUID = 5573438585188332404L;
+
+    @Getter
+    String details;
 
     /**
      * Constructor.
      *
      * @param cause the cause of the exception
      */
-    public CpsNotFoundException(final Throwable cause) {
+    public CpsException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -42,7 +46,7 @@ public class CpsNotFoundException extends CpsException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsNotFoundException(final String message, final Throwable cause) {
+    public CpsException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -52,7 +56,21 @@ public class CpsNotFoundException extends CpsException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsNotFoundException(final String message, final String details) {
-        super(message, details);
+    public CpsException(final String message, final String details) {
+        super(message);
+        this.details = details;
     }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     * @param cause   the cause of the exception
+     */
+    public CpsException(final String message, final String details, final Throwable cause) {
+        super(message, cause);
+        this.details = details;
+    }
+
 }

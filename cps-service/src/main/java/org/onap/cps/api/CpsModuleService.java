@@ -20,7 +20,7 @@
 package org.onap.cps.api;
 
 import java.io.File;
-import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /**
@@ -49,7 +49,7 @@ public interface CpsModuleService {
      *
      * @param schemaContext the schema context
      * @param dataspaceName the dataspace name
-     * @throws CpsValidationException if input data already exists.
+     * @throws CpsException if input data already exists.
      */
     void storeSchemaContext(SchemaContext schemaContext, String dataspaceName);
 }

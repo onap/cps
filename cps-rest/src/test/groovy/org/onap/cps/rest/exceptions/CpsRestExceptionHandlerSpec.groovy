@@ -21,9 +21,9 @@ package org.onap.cps.rest.exceptions
 
 import groovy.json.JsonSlurper
 import org.onap.cps.api.CpService
-import org.onap.cps.exceptions.CpsException
-import org.onap.cps.exceptions.CpsNotFoundException
-import org.onap.cps.exceptions.CpsValidationException
+import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
+import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.rest.controller.CpsRestController
 import spock.lang.Specification
 
@@ -35,9 +35,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 class CpsRestExceptionHandlerSpec extends Specification {
 
-    def cpsRestController = new CpsRestController();
+    def cpsRestController = new CpsRestController()
     def mockCpService = Mock(CpService.class)
-    def objectUnderTest = new CpsRestExceptionHandler();
+    def objectUnderTest = new CpsRestExceptionHandler()
     def mockMvc = standaloneSetup(cpsRestController).setControllerAdvice(objectUnderTest).build()
 
     def setup() {
@@ -70,21 +70,22 @@ class CpsRestExceptionHandlerSpec extends Specification {
     def 'Get request with no data found CPS exception returns HTTP Status Not Found'() {
 
         when: 'no data found CPS exception is thrown by the service'
-            def errorMessage = 'cps no data error message'
-            def errorDetails = 'cps no data error details'
-            setupTestException(new CpsNotFoundException(errorMessage, errorDetails))
-            def response = performTestRequest()
+        def dataspaceName = 'My name'
+        def descriptionOfObject = 'Description'
+        setupTestException(new NotFoundInDataspaceException(dataspaceName, descriptionOfObject))
+        def response = performTestRequest()
 
         then: 'an HTTP Not Found response is returned with the correct message'
-            assertTestResponse(response, NOT_FOUND, errorMessage, errorDetails)
+        assertTestResponse(response, NOT_FOUND, 'Object not found',
+                'Description does not exist in namespace My name.')
     }
 
-    def 'Get request with CPS validation exception returns HTTP Status Bad Request'() {
+    def 'Get request with a Model validation exception returns HTTP Status Bad Request'() {
 
         when: 'CPS validation exception is thrown by the service'
             def errorMessage = 'cps validation error message'
             def errorDetails = 'cps validation error details'
-            setupTestException(new CpsValidationException(errorMessage, errorDetails))
+        setupTestException(new ModelValidationException(errorMessage, errorDetails, null))
             def response = performTestRequest()
 
         then: 'an HTTP Bad Request response is returned with the correct message'
@@ -111,5 +112,5 @@ class CpsRestExceptionHandlerSpec extends Specification {
         assert content['message'] == expectedErrorMessage
         assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
     }
-    
+
 }

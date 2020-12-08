@@ -20,12 +20,11 @@
 
 package org.onap.cps.spi.impl;
 
-import org.onap.cps.exceptions.CpsNotFoundException;
-import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -48,26 +47,24 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public String createAnchor(final Anchor anchor) {
+        final String dataspaceName = anchor.getDataspaceName();
         final String anchorName = anchor.getAnchorName();
         try {
-            final Dataspace dataspace = dataspaceRepository.getByName(anchor.getDataspaceName());
+            final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+            final String namespace = anchor.getNamespace();
+            final String revision = anchor.getRevision();
             final Module module =
-                moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspace,
-                    anchor.getNamespace(), anchor.getRevision());
-
+                    moduleRepository.getByDataspaceAndNamespaceAndRevision(dataspace, namespace, revision);
             final Fragment fragment = Fragment.builder().xpath(anchorName)
-                .anchorName(anchorName)
-                .dataspace(dataspace).module(module).build();
+                    .anchorName(anchorName)
+                    .dataspace(dataspace).module(module).build();
 
             fragmentRepository.save(fragment);
             return anchorName;
-        } catch (final CpsNotFoundException ex) {
-            throw new CpsValidationException("Validation Error",
-                "Dataspace and/or Module do not exist.");
         } catch (final DataIntegrityViolationException ex) {
-            throw new CpsValidationException("Duplication Error",
-                String.format("Anchor with name %s already exist in dataspace %s.",
-                    anchorName, anchor.getDataspaceName()));
+            throw new CpsException("Duplication Error",
+                    String.format("Anchor with name %s already exist in dataspace %s.",
+                            anchorName, dataspaceName));
         }
     }
 }

@@ -20,9 +20,6 @@
 
 package org.onap.cps.spi.impl;
 
-import static org.onap.cps.exceptions.CpsExceptionBuilder.duplicateSchemaSetException;
-import static org.onap.cps.exceptions.CpsExceptionBuilder.invalidDataspaceException;
-
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +30,7 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.exceptions.DuplicateSchemaSetException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
@@ -65,9 +63,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
                                final Set<String> yangResourcesAsStrings) {
 
-        final Dataspace dataspace = dataspaceRepository.findByName(dataspaceName)
-            .orElseThrow(() -> invalidDataspaceException(dataspaceName));
-
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesAsStrings);
         final SchemaSet schemaSet = new SchemaSet();
         schemaSet.setName(schemaSetName);
@@ -76,7 +72,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         try {
             schemaSetRepository.save(schemaSet);
         } catch (final DataIntegrityViolationException e) {
-            throw duplicateSchemaSetException(dataspaceName, schemaSetName);
+            throw new DuplicateSchemaSetException(dataspaceName, schemaSetName, e);
         }
     }
 

@@ -22,9 +22,9 @@ package org.onap.cps.spi.repository;
 
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
-import org.onap.cps.exceptions.CpsNotFoundException;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Module;
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,24 +32,24 @@ import org.springframework.stereotype.Repository;
 public interface ModuleRepository extends JpaRepository<Module, Integer> {
 
     Optional<Module> findByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace,
-        @NotNull String namespace,
-        @NotNull String revision);
+                                                            @NotNull String namespace,
+                                                            @NotNull String revision);
 
     /**
      * This method gets a Module by dataspace, namespace and revision.
      *
      * @param dataspace the dataspace
      * @param namespace the namespace
-     * @param revision the revision
+     * @param revision  the revision
      * @return the Module
-     * @throws CpsNotFoundException if Module not found
+     * @throws NotFoundInDataspaceException if Module not found
      */
-    default Module getByDataspaceAndNamespaceAndRevision(@NotNull Dataspace dataspace, @NotNull String namespace,
-        @NotNull String revision) {
-        return findByDataspaceAndNamespaceAndRevision(dataspace, namespace,
-            revision)
-            .orElseThrow(() -> new CpsNotFoundException("Validation Error", String.format(
-                "Module with dataspace %s, revision %s does not exist in namespace %s.",
-                dataspace.getName(), revision, namespace)));
+    default Module getByDataspaceAndNamespaceAndRevision(@NotNull final Dataspace dataspace,
+                                                         @NotNull final String namespace,
+                                                         @NotNull final String revision) {
+        return findByDataspaceAndNamespaceAndRevision(dataspace, namespace, revision)
+                .orElseThrow(() -> new NotFoundInDataspaceException("Validation Error", String.format(
+                        "Module with dataspace %s, revision %s does not exist in namespace %s.",
+                        dataspace.getName(), revision, namespace)));
     }
 }

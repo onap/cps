@@ -17,35 +17,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
-
-import lombok.Getter;
+package org.onap.cps.spi.exceptions;
 
 /**
  * CPS Admin exception.
  */
-public class CpsAdminException extends CpsValidationException {
+public class CpsAdminException extends CpsException {
 
     private static final long serialVersionUID = 5573438585188332404L;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsAdminException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param cause   the cause of the exception
-     */
-    public CpsAdminException(final  String message, final Throwable cause) {
-        super(message, cause);
-    }
 
     /**
      * Constructor.
@@ -55,6 +34,16 @@ public class CpsAdminException extends CpsValidationException {
      */
     public CpsAdminException(final String message, final String details) {
         super(message, details);
-        this.details = details;
     }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     */
+    public CpsAdminException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
+    }
+
 }
