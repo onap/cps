@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a5e7790_7e187246",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-08T03:02:21Z",
+      "side": 1,
+      "message": "I\u0027m not able to find unit tests. Am I missing something ?",
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8458a40c_a787cf07",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-08T03:02:21Z",
+      "side": 1,
+      "message": "Should be findFragmentsByDataspace() plural as it returns a collections of fragments.",
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
