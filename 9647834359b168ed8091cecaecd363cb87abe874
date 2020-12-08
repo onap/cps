@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be52384d_56973f5b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T18:31:31Z",
+      "side": 0,
+      "message": "I now think this is OK to do this in repository class as we have a dedicated exception for this! Let\u0027s discuss!",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "9647834359b168ed8091cecaecd363cb87abe874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

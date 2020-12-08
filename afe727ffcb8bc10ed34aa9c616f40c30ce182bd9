@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b072fb06_5b1b75b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T18:31:31Z",
+      "side": 1,
+      "message": "I dont see the need for a separate builder class, I\u0027d rather have good constructor (but limited) methods in the actual exception so we have consistent message and details!",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
