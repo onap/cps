@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2020 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,39 +17,23 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
 
-/**
- * CP Service exception. Indicates the parameter validation failure.
- */
-public class CpsValidationException extends CpsException {
+public class SchemaSetAlreadyDefinedException extends CpsAdminException {
 
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsValidationException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
      * Constructor.
      *
-     * @param message the error message
-     * @param cause   the cause of the exception
+     * @param dataspaceName the name dataspace
+     * @param schemaSetName teh name of the schema set
+     * @param cause         the cause of the exception
      */
-    public CpsValidationException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param details the error details
-     */
-    public CpsValidationException(final String message, final String details) {
-        super(message, details);
+    public SchemaSetAlreadyDefinedException(final String dataspaceName, final String schemaSetName,
+        final Throwable cause) {
+        super("Duplicate Schema Set",
+            String.format("Schema Set with name %s already exists for dataspace %s.", schemaSetName, dataspaceName),
+            cause);
     }
 }

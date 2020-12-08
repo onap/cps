@@ -18,22 +18,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.spi.exceptions;
 
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.model.Anchor;
+public class DataValidationException extends CpsException {
 
-/**
- * CPS Admin Service.
- */
-public interface CpsAdminService {
+    private static final long serialVersionUID = 7747941311132087621L;
 
     /**
-     * Create an anchor using provided anchorDetails object.
+     * Constructor.
      *
-     * @param anchor the anchor details object.
-     * @return the anchor name.
-     * @throws CpsException if input data is invalid.
+     * @param message the error message
+     * @param details the error details
+     * @param cause   the error cause
      */
-    String createAnchor(Anchor anchor);
+    public DataValidationException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
+    }
 }
