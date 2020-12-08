@@ -26,9 +26,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.exceptions.CpsException;
-import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
@@ -47,7 +47,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public SchemaContext parseAndValidateModel(final String yangModelContent) {
         try {
             final File tempFile = File.createTempFile("yang", ".yang");
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+            try (final BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
                 writer.write(yangModelContent);
             }
             return parseAndValidateModel(tempFile);
@@ -61,7 +61,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         try {
             return YangUtils.parseYangModelFile(yangModelFile);
         } catch (final YangParserException e) {
-            throw new CpsValidationException("Yang file validation failed", e.getMessage());
+            throw new ModelValidationException("Yang file validation failed", e.getMessage());
         } catch (final IOException e) {
             throw new CpsException(e);
         }

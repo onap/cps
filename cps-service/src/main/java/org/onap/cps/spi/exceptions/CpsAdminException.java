@@ -17,14 +17,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
-
-import lombok.Getter;
+package org.onap.cps.spi.exceptions;
 
 /**
  * CPS Admin exception.
  */
-public class CpsAdminException extends CpsValidationException {
+public class CpsAdminException extends CpsException {
 
     private static final long serialVersionUID = 5573438585188332404L;
 

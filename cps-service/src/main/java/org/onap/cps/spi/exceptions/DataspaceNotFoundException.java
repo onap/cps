@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,26 +17,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
 
-import lombok.Getter;
 
 /**
- * CP Service exception.
+ * Dataspace Not Found Exception. Indicates the requested data being absent.
  */
-public class CpsException extends RuntimeException {
+public class DataspaceNotFoundException extends CpsAdminException {
 
-    private static final long serialVersionUID = 5573438585188332404L;
-
-    @Getter
-    String details;
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
      * Constructor.
      *
      * @param cause the cause of the exception
      */
-    public CpsException(final Throwable cause) {
+    public DataspaceNotFoundException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -46,18 +42,16 @@ public class CpsException extends RuntimeException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsException(final  String message, final Throwable cause) {
+    public DataspaceNotFoundException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
      * Constructor.
      *
-     * @param message the error message
      * @param details the error details
      */
-    public CpsException(final String message, final String details) {
-        super(message);
-        this.details = details;
+    public DataspaceNotFoundException(final String details) {
+        super("Dataspace Not Found", details);
     }
 }

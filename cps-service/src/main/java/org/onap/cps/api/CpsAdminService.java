@@ -20,7 +20,7 @@
 
 package org.onap.cps.api;
 
-import org.onap.cps.exceptions.CpsValidationException;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
 
 /**
@@ -33,7 +33,7 @@ public interface CpsAdminService {
      *
      * @param anchor the anchor details object.
      * @return the anchor name.
-     * @throws CpsValidationException if input data is invalid.
+     * @throws CpsException if input data is invalid.
      */
     String createAnchor(Anchor anchor);
 }

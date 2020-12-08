@@ -17,22 +17,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
-
+package org.onap.cps.spi.exceptions;
 
 /**
- * Dataspace Not Found Exception. Indicates the requested data being absent.
+ * Yang Model Validation exception.
  */
-public class DataspaceNotFoundException extends CpsAdminException {
+public class ModelValidationException extends CpsException {
 
-    private static final long serialVersionUID = -1852996415384288431L;
+    private static final long serialVersionUID = 5573438585188332404L;
 
     /**
      * Constructor.
      *
      * @param cause the cause of the exception
      */
-    public DataspaceNotFoundException(final Throwable cause) {
+    public ModelValidationException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -42,16 +41,18 @@ public class DataspaceNotFoundException extends CpsAdminException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public DataspaceNotFoundException(final String message, final Throwable cause) {
+    public ModelValidationException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
      * Constructor.
      *
+     * @param message the error message
      * @param details the error details
      */
-    public DataspaceNotFoundException(final String details) {
-        super("Dataspace Not Found", details);
+    public ModelValidationException(final String message, final String details) {
+        super(message, details);
+        this.details = details;
     }
 }

@@ -21,7 +21,6 @@ package org.onap.cps.spi.repository;
 
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
-import org.onap.cps.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.entities.Dataspace;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -31,9 +30,4 @@ public interface DataspaceRepository extends JpaRepository<Dataspace, Integer> {
     Boolean existsByName(String name); //Checks if there are any records by name()
 
     Optional<Dataspace> findByName(@NotNull String name);
-
-    default Dataspace getByName(@NotNull String name) {
-        return findByName(name).orElseThrow(
-            () -> new DataspaceNotFoundException("Dataspace " + name + " does not exist."));
-    }
 }

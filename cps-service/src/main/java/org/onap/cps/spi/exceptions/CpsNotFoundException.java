@@ -17,19 +17,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
+
 
 /**
- * CP Service exception. Indicates the parameter validation failure.
+ * CP Service exception. Indicates the requested data being absent.
  */
-public class CpsValidationException extends CpsException {
+public class CpsNotFoundException extends CpsException {
+
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
      * Constructor.
      *
      * @param cause the cause of the exception
      */
-    public CpsValidationException(final Throwable cause) {
+    public CpsNotFoundException(final Throwable cause) {
         super(cause.getMessage(), cause);
     }
 
@@ -39,7 +42,7 @@ public class CpsValidationException extends CpsException {
      * @param message the error message
      * @param cause   the cause of the exception
      */
-    public CpsValidationException(final String message, final Throwable cause) {
+    public CpsNotFoundException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -49,7 +52,7 @@ public class CpsValidationException extends CpsException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsValidationException(final String message, final String details) {
+    public CpsNotFoundException(final String message, final String details) {
         super(message, details);
     }
 }
