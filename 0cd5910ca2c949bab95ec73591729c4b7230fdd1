@@ -34,6 +34,24 @@
       "revId": "0cd5910ca2c949bab95ec73591729c4b7230fdd1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6abdf0_c943a195",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-08T03:04:38Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "69195ac0_c97b8e45",
+      "revId": "0cd5910ca2c949bab95ec73591729c4b7230fdd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
