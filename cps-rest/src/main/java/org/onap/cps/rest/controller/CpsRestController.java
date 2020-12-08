@@ -31,9 +31,9 @@ import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpService;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.exceptions.CpsException;
-import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.api.CpsRestApi;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CpsRestController implements CpsRestApi {
         final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
         anchorDetails.setDataspaceName(dataspaceName);
         final String anchorName = cpsAdminService.createAnchor(anchorDetails);
-        return new ResponseEntity<String>(anchorName, HttpStatus.CREATED);
+        return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class CpsRestController implements CpsRestApi {
     @GetMapping("/json-object/{id}")
     public final ResponseEntity<String> getJsonObjectById(
         @PathVariable("id") final int jsonObjectId) {
-        return new ResponseEntity<String>(cpService.getJsonById(jsonObjectId), HttpStatus.OK);
+        return new ResponseEntity<>(cpService.getJsonById(jsonObjectId), HttpStatus.OK);
     }
 
     /**
@@ -175,7 +175,7 @@ public class CpsRestController implements CpsRestApi {
             final Gson gson = new Gson();
             gson.fromJson(getJsonString(multipartFile), Object.class);
         } catch (final JsonSyntaxException e) {
-            throw new CpsValidationException("Not a valid JSON file.", e);
+            throw new DataValidationException("Not a valid JSON file.", e.getMessage(), e);
         }
     }
 
@@ -183,7 +183,7 @@ public class CpsRestController implements CpsRestApi {
         try {
             final File file = File.createTempFile("tempFile", ".yang");
             file.deleteOnExit();
-            try (OutputStream outputStream = new FileOutputStream(file)) {
+            try (final OutputStream outputStream = new FileOutputStream(file)) {
                 outputStream.write(multipartFile.getBytes());
             }
             return file;

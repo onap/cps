@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,38 +17,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
-
-import lombok.Getter;
+package org.onap.cps.spi.exceptions;
 
 /**
- * CP Service exception.
+ * CPS Admin exception.
  */
-public class CpsException extends RuntimeException {
+public class CpsAdminException extends CpsException {
 
     private static final long serialVersionUID = 5573438585188332404L;
-
-    @Getter
-    String details;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param cause   the cause of the exception
-     */
-    public CpsException(final  String message, final Throwable cause) {
-        super(message, cause);
-    }
 
     /**
      * Constructor.
@@ -56,8 +32,19 @@ public class CpsException extends RuntimeException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsException(final String message, final String details) {
-        super(message);
-        this.details = details;
+    public CpsAdminException(final String message, final String details) {
+        super(message, details);
     }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     * @param cause   the error cause
+     */
+    public CpsAdminException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
+    }
+
 }
