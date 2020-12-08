@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcc29854_8ca1043f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T11:25:29Z",
+      "side": 1,
+      "message": "need a new method:\nfindFragmentsThatAreAnchorsByDataspace \nbot sure if/how it can be generated, see comment on next class",
+      "range": {
+        "startLine": 82,
+        "startChar": 66,
+        "endLine": 82,
+        "endChar": 90
+      },
+      "revId": "83e8ff4d8305567d5eb8fcd90a86bd69dd9fabaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b67654e5_57d13c65",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T11:25:29Z",
+      "side": 1,
+      "message": "need a new method like findFragmentsThatAreAnchorsByDataspace \n\nthe above method wil return ALL fragments (anchors and datanodes) not sure if we actually ever will need that....\nto find just the anchors you will nee to filter, I think the easiest is to filter on parent_id being null!",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 49
+      },
+      "revId": "83e8ff4d8305567d5eb8fcd90a86bd69dd9fabaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
