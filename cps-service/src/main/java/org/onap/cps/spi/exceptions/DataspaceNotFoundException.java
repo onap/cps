@@ -17,44 +17,23 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
+package org.onap.cps.spi.exceptions;
 
-import lombok.Getter;
 
 /**
- * CPS Admin exception.
+ * Dataspace Not Found Exception. Indicates the requested data being absent.
  */
-public class CpsAdminException extends CpsValidationException {
+public class DataspaceNotFoundException extends CpsAdminException {
 
-    private static final long serialVersionUID = 5573438585188332404L;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsAdminException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
+    private static final long serialVersionUID = -1852996415384288431L;
 
     /**
      * Constructor.
      *
-     * @param message the error message
-     * @param cause   the cause of the exception
+     * @param dataspaceName the name of the dataspace
      */
-    public CpsAdminException(final  String message, final Throwable cause) {
-        super(message, cause);
-    }
 
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param details the error details
-     */
-    public CpsAdminException(final String message, final String details) {
-        super(message, details);
-        this.details = details;
+    public DataspaceNotFoundException(final String dataspaceName) {
+        super("Dataspace not found", String.format("Dataspace with name %s does not exist.", dataspaceName));
     }
 }

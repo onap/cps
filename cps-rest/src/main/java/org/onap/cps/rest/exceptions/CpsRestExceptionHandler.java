@@ -20,11 +20,14 @@
 package org.onap.cps.rest.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.onap.cps.exceptions.CpsException;
-import org.onap.cps.exceptions.CpsNotFoundException;
-import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.rest.controller.CpsRestController;
 import org.onap.cps.rest.model.ErrorMessage;
+import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
+import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,24 +42,25 @@ public class CpsRestExceptionHandler {
      * @param exception the exception to handle
      * @return response with response code 500.
      */
-    @ExceptionHandler
-    public ResponseEntity<Object> handleInternalErrorException(final Exception exception) {
+    @ExceptionHandler public static ResponseEntity<Object> handleInternalServerErrorExceptions(
+        final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({CpsException.class})
-    public ResponseEntity<Object> handleCpsException(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
-    }
-
-    @ExceptionHandler({CpsValidationException.class})
-    public ResponseEntity<Object> handleCpsValidationException(final CpsException exception) {
+    @ExceptionHandler({ModelValidationException.class, DataValidationException.class,
+        SchemaSetAlreadyDefinedException.class, AnchorAlreadyDefinedException.class})
+    public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }
 
-    @ExceptionHandler({CpsNotFoundException.class})
-    public ResponseEntity<Object> handleCpsNotFoundException(final CpsException exception) {
+    @ExceptionHandler({NotFoundInDataspaceException.class})
+    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
+    }
+
+    @ExceptionHandler({CpsException.class})
+    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
@@ -64,7 +68,7 @@ public class CpsRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
-            final String details) {
+        final String details) {
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(message);
