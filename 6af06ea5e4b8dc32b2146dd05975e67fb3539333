@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6e33fff_06b5ec67",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T13:39:53Z",
+      "side": 1,
+      "message": "so query is generated based on this, cool!",
+      "range": {
+        "startLine": 39,
+        "startChar": 66,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "6af06ea5e4b8dc32b2146dd05975e67fb3539333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e87241e_3d1f4a1c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T13:39:53Z",
+      "side": 1,
+      "message": "can you fix indentation please\n(check in IDE indentation for \u0027labels\u0027 in groovy specific settings)",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 113
+      },
+      "revId": "6af06ea5e4b8dc32b2146dd05975e67fb3539333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5818eaa_28f1ab49",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T13:39:53Z",
+      "side": 1,
+      "message": "do you need to set all of these really?!, in general try to avoid unnecessary dat (code) in testware",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 43
+      },
+      "revId": "6af06ea5e4b8dc32b2146dd05975e67fb3539333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bbf7fbe_86df186c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-08T13:39:53Z",
+      "side": 1,
+      "message": "duplicate (copy and past legacy issue :-)",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 45
+      },
+      "revId": "6af06ea5e4b8dc32b2146dd05975e67fb3539333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
