@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "07e336fc_49b9cd8f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-09T08:53:35Z",
+      "side": 1,
+      "message": "please keep consistency with CpsModulePersistenceServiceImpl  Line 69\nalso my opinion is to keep the exception in repository, code is cleaner in that way\nanother thing is that there is no extra value on having DataspaceNotFoundException\nwith CpsNotFoundException and correct message is more than enough. \nOr we keep consistency and line 62 needs is own exception",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b072fb06_5b1b75b3",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
