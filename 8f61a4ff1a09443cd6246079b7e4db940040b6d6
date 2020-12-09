@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af8e8bf3_adac31d0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T12:08:05Z",
+      "side": 1,
+      "message": "not really an issue unless we update again; I always would like to see the positive test scenario BEFORE the negative case",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 5
+      },
+      "revId": "8f61a4ff1a09443cd6246079b7e4db940040b6d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
