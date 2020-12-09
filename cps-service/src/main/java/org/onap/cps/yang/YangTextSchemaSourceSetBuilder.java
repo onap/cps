@@ -75,6 +75,12 @@ public final class YangTextSchemaSourceSetBuilder {
         }
 
         @Override
+        public List<ModuleRef> getModules() {
+            return schema.getModules().stream().map(module -> ModuleRef.builder().namespace(module.getName()).revision(
+                    module.getRevision().map(Revision::toString).orElse(null)).build()).collect(Collectors.toList());
+        }
+
+        @Override
         public SchemaContext getSchemaContext() {
             return schema;
         }
