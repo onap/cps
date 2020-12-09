@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4532e65f_6d5ea60b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T08:24:42Z",
+      "side": 1,
+      "message": "this will result response with status 500\ninternal server error",
+      "range": {
+        "startLine": 177,
+        "startChar": 22,
+        "endLine": 177,
+        "endChar": 34
+      },
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1408057_9d04e9fc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T08:24:42Z",
+      "side": 1,
+      "message": "it\u0027s a generic validation error handler. not just model.\n_any_ validation case resulting BAD REQUEST response",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 71
+      },
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b072fb06_5b1b75b3",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
@@ -13,6 +59,47 @@
       "writtenOn": "2020-12-08T18:31:31Z",
       "side": 1,
       "message": "I dont see the need for a separate builder class, I\u0027d rather have good constructor (but limited) methods in the actual exception so we have consistent message and details!",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "366f7a75_71e95cbd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T08:24:42Z",
+      "side": 1,
+      "message": "The purpose of the class is clearly described:\nit\u0027s a message consistency for similar cases.\n\nIt\u0027s a bad idea making different exception classes \nif the only purpose is encapsulation of error message.",
+      "parentUuid": "b072fb06_5b1b75b3",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c711c359_f416816f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T08:24:42Z",
+      "side": 1,
+      "message": "how schema set name conflict became model validation exception?\nit\u0027s just invalid \u0027name\u0027 parameter case\nwhy CpsValidationException was removed?",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 70
+      },
       "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
