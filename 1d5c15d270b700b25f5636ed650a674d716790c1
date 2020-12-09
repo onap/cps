@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "42cba1f5_139f29f2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T16:36:18Z",
+      "side": 1,
+      "message": "All the exception classes (grouping classes) causing 400 response\nshould be listed here",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 55
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b40abe9c_915d71c7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -30,6 +53,47 @@
       "writtenOn": "2020-12-09T12:11:28Z",
       "side": 1,
       "message": "this is the same than dataspaceName, isnt it?",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0641a63_35aa071b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T16:36:18Z",
+      "side": 1,
+      "message": "this method is updated via CPS-99\nhttps://gerrit.onap.org/r/c/cps/+/116191",
+      "parentUuid": "b40abe9c_915d71c7",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bc428b8_8ad86a76",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T16:36:18Z",
+      "side": 1,
+      "message": "defining a method within interface with default implementation\nis not a proper way to extend the functionality of repository\n\nplease follow the documentation\nhttps://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.custom-implementations\n\nalso define other name for this method. \nthere should be clear difference from findByName",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 5
+      },
       "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -93,6 +157,29 @@
       "writtenOn": "2020-12-09T16:18:45Z",
       "side": 1,
       "message": "Is cause actually required here ?",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e86c5240_0047270b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/NotFoundInDataspaceException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T16:36:18Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 32,
+        "startChar": 52,
+        "endLine": 32,
+        "endChar": 61
+      },
       "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
