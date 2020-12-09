@@ -19,19 +19,29 @@
 
 package org.onap.cps.utils;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.io.Files;
 import com.google.gson.stream.JsonReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ServiceLoader;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
+import org.onap.cps.spi.model.ModuleRef;
 import org.opendaylight.yangtools.yang.common.QName;
+import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
@@ -48,44 +58,43 @@ import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeS
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParser;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserFactory;
-import org.opendaylight.yangtools.yang.model.repo.api.StatementParserMode;
+import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
+import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.parser.rfc7950.reactor.RFC7950Reactors;
+import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangStatementStreamSource;
+import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
+import org.opendaylight.yangtools.yang.parser.stmt.reactor.CrossSourceStatementReactor;
 
 public class YangUtils {
-
-    private static final YangParserFactory PARSER_FACTORY;
-
     private static final Logger LOGGER = Logger.getLogger(YangUtils.class.getName());
 
     private YangUtils() {
         throw new IllegalStateException("Utility class");
     }
 
-    static {
-        final Iterator<YangParserFactory> it = ServiceLoader.load(YangParserFactory.class).iterator();
-        if (!it.hasNext()) {
-            throw new IllegalStateException("No YangParserFactory found");
-        }
-        PARSER_FACTORY = it.next();
-    }
-
     /**
      * Parse a file containing yang modules.
      *
-     * @param yangModelFile a file containing one or more yang modules. The file has to have a .yang extension.
+     * @param yangModelFiles list of files containing one or more yang modules. The file has to have a .yang extension.
      * @return a SchemaContext representing the yang model
      * @throws IOException         when the system as an IO issue
      * @throws YangParserException when the file does not contain a valid yang structure
      */
-    public static SchemaContext parseYangModelFile(final File yangModelFile) throws IOException, YangParserException {
-        final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
-        final YangParser yangParser = PARSER_FACTORY
-                .createParser(StatementParserMode.DEFAULT_MODE);
-        yangParser.addSource(yangTextSchemaSource);
-        return yangParser.buildEffectiveModel();
+    public static SchemaContext parseYangModelFile(final List<File> yangModelFiles)
+            throws IOException, YangParserException, ReactorException {
+        final ImmutableMap.Builder<String, String> yangModelsMapBuilder = new ImmutableMap.Builder<>();
+        for (final File file :yangModelFiles) {
+            final String fileNameWithExtension = file.getName();
+            checkArgument(fileNameWithExtension.endsWith(RFC6020_YANG_FILE_EXTENSION),
+                    "Filename %s does not end with '%s'", RFC6020_YANG_FILE_EXTENSION,
+                    fileNameWithExtension);
+            final String fileName = Files.getNameWithoutExtension(fileNameWithExtension);
+            final String content = Files.asCharSource(file, Charsets.UTF_8).read();
+            yangModelsMapBuilder.put(fileName, content);
+        }
+        return generateSchemaContext(yangModelsMapBuilder.build());
     }
 
     /**
@@ -204,5 +213,58 @@ public class YangUtils {
             Collections.sort(keyAttributes);
             return "[" + String.join(" and ", keyAttributes) + "]";
         }
+    }
+
+    /**
+     * Parse and validate a string representing a yang model to generate a schema context.
+     *
+     * @param yangModelMap  is a {@link Map} collection that contains the name of the model represented
+     *                      on yangModelContent as key and the yangModelContent as value.
+     * @return the schema context
+     */
+    public static SchemaContext generateSchemaContext(final Map<String, String> yangModelMap)
+            throws IOException, ReactorException, YangSyntaxErrorException {
+        final CrossSourceStatementReactor.BuildAction reactor = RFC7950Reactors.defaultReactor().newBuild();
+        final  List<YangTextSchemaSource>  yangTextSchemaSources = forResources(yangModelMap);
+        for (final YangTextSchemaSource yangTextSchemaSource : yangTextSchemaSources) {
+            reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
+        }
+        return reactor.buildEffective();
+    }
+
+    private static List<YangTextSchemaSource> forResources(final Map<String, String> yangResources) {
+        return yangResources.entrySet().stream().map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue()))
+                       .collect(Collectors.toList());
+    }
+
+    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
+        return new YangTextSchemaSource(RevisionSourceIdentifier.create(sourceName)) {
+            @Override
+            protected MoreObjects.ToStringHelper addToStringAttributes(
+                    final MoreObjects.ToStringHelper toStringHelper) {
+                return toStringHelper;
+            }
+
+            @Override
+            public InputStream openStream() {
+                return new ByteArrayInputStream(source.getBytes());
+            }
+        };
+    }
+
+    /**
+     * Parse and validate a string representing a yang model to generate a schema context.
+     *
+     * @param yangResources  is a {@link Map} collection that contains the name of the model represented
+     *                      on yangModelContent as key and the yangModelContent as value.
+     * @return the schema context
+     */
+    public static List<ModuleRef> getModules(final Map<String, String> yangResources)
+            throws IOException, ReactorException, YangSyntaxErrorException {
+        final SchemaContext schema = YangUtils.generateSchemaContext(yangResources);
+        return schema.getModules().stream()
+            .map(module -> ModuleRef.builder().namespace(module.getName())
+            .revision(module.getRevision().map(Revision::toString).orElse(null)).build())
+                       .collect(Collectors.toList());
     }
 }

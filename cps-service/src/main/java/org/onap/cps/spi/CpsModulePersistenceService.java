@@ -20,11 +20,12 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import java.util.Set;
+import org.onap.cps.spi.model.ModuleRef;
 
 /**
  * Service to manage modules.
- *
  */
 public interface CpsModulePersistenceService {
 
@@ -40,7 +41,7 @@ public interface CpsModulePersistenceService {
      */
     @Deprecated
     void storeModule(final String namespace, final String moduleContent, final String revision,
-                     final String dataspaceName);
+            final String dataspaceName);
 
 
     /**
@@ -52,4 +53,12 @@ public interface CpsModulePersistenceService {
      */
     void storeSchemaSet(String dataspaceName, String schemaSetName, Set<String> yangResourcesAsStrings);
 
+    /**
+     * Returns Modules references per specific namespace / schemaSetName.
+     *
+     * @param namespace     module namespace
+     * @param schemaSetName schema set name
+     * @return collection of ModuleRef
+     */
+    Collection<ModuleRef> getModuleReferences(String namespace, String schemaSetName);
 }

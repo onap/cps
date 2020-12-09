@@ -24,6 +24,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.exceptions.CpsException;
@@ -34,6 +37,7 @@ import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
+import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,23 +48,21 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private CpsModulePersistenceService cpsModulePersistenceService;
 
     @Override
-    public SchemaContext parseAndValidateModel(final String yangModelContent) {
+    public SchemaContext parseAndValidateModel(final Map<String, String> yangModelMap) {
         try {
-            final File tempFile = File.createTempFile("yang", ".yang");
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-                writer.write(yangModelContent);
-            }
-            return parseAndValidateModel(tempFile);
+            return YangUtils.generateSchemaContext(yangModelMap);
+        } catch (final YangParserException | ReactorException e) {
+            throw new CpsValidationException("Yang file validation failed", e.getMessage());
         } catch (final IOException e) {
             throw new CpsException(e);
         }
     }
 
     @Override
-    public SchemaContext parseAndValidateModel(final File yangModelFile) {
+    public SchemaContext parseAndValidateModel(final List<File> yangModelFile) {
         try {
             return YangUtils.parseYangModelFile(yangModelFile);
-        } catch (final YangParserException e) {
+        } catch (final YangParserException | ReactorException e) {
             throw new CpsValidationException("Yang file validation failed", e.getMessage());
         } catch (final IOException e) {
             throw new CpsException(e);

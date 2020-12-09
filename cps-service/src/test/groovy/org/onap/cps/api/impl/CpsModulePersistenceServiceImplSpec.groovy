@@ -39,7 +39,7 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         given: 'a yang model (file)'
             def yangModel = TestUtils.getResourceFileContent('bookstore.yang')
         when: 'a valid model is parsed and validated'
-            def result = objectUnderTest.parseAndValidateModel(yangModel)
+            def result = objectUnderTest.parseAndValidateModel(Collections.singletonMap("bookstore", yangModel));
         then: 'Verify a schema context for that model is created with the correct identity'
             assertModule(result)
     }
@@ -48,7 +48,7 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         given: 'a yang file that contains a yang model'
             File file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
         when: 'a model is parsed and validated'
-            def result = objectUnderTest.parseAndValidateModel(file)
+            def result = objectUnderTest.parseAndValidateModel(Collections.singletonList(file))
         then: 'Verify a schema context for that model is created with the correct identity'
             assertModule(result)
 
@@ -63,7 +63,7 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         given: 'a yang file that contains a invalid yang model'
             File file = new File(ClassLoader.getSystemClassLoader().getResource('invalid.yang').getFile())
         when: 'the model is parsed and validated'
-            objectUnderTest.parseAndValidateModel(file)
+            objectUnderTest.parseAndValidateModel(Collections.singletonList(file))
         then: 'a CpsValidationException is thrown'
             thrown(CpsValidationException)
     }

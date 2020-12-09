@@ -20,12 +20,11 @@
 
 package org.onap.cps.rest.controller;
 
+import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.Collections;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpService;
@@ -71,7 +70,7 @@ public class CpsRestController implements CpsRestApi {
      */
     @Override
     public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
+            final String dataspaceName) {
         final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
         anchorDetails.setDataspaceName(dataspaceName);
         final String anchorName = cpsAdminService.createAnchor(anchorDetails);
@@ -80,9 +79,15 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> createModules(@Valid final MultipartFile multipartFile, final String dataspaceName) {
-        final File fileToParse = saveToFile(multipartFile);
-        final SchemaContext schemaContext = cpsModuleService.parseAndValidateModel(fileToParse);
-        cpsModuleService.storeSchemaContext(schemaContext, dataspaceName);
+        try {
+            final String yangModelName = Files.getNameWithoutExtension(multipartFile.getOriginalFilename());
+            final String content = new String(multipartFile.getBytes());
+            final SchemaContext schemaContext =
+                    cpsModuleService.parseAndValidateModel(Collections.singletonMap(yangModelName, content));
+            cpsModuleService.storeSchemaContext(schemaContext, dataspaceName);
+        } catch (final IOException e) {
+            throw new CpsException(e);
+        }
         return new ResponseEntity<>("Resource successfully created", HttpStatus.CREATED);
     }
 
@@ -113,7 +118,7 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
+            @Valid final String revision) {
         return null;
     }
 
@@ -141,8 +146,7 @@ public class CpsRestController implements CpsRestApi {
     public final ResponseEntity<String> uploadYangJsonDataFile(@RequestParam("file") final MultipartFile uploadedFile) {
         validateJsonStructure(uploadedFile);
         final int persistenceObjectId = cpService.storeJsonStructure(getJsonString(uploadedFile));
-        return new ResponseEntity<>(
-            "Object stored in CPS with identity: " + persistenceObjectId, HttpStatus.OK);
+        return new ResponseEntity<>("Object stored in CPS with identity: " + persistenceObjectId, HttpStatus.OK);
     }
 
     /**
@@ -152,8 +156,7 @@ public class CpsRestController implements CpsRestApi {
      * @return a ResponseEntity.
      */
     @GetMapping("/json-object/{id}")
-    public final ResponseEntity<String> getJsonObjectById(
-        @PathVariable("id") final int jsonObjectId) {
+    public final ResponseEntity<String> getJsonObjectById(@PathVariable("id") final int jsonObjectId) {
         return new ResponseEntity<String>(cpService.getJsonById(jsonObjectId), HttpStatus.OK);
     }
 
@@ -164,8 +167,7 @@ public class CpsRestController implements CpsRestApi {
      * @return a ResponseEntity.
      */
     @DeleteMapping("json-object/{id}")
-    public final ResponseEntity<Object> deleteJsonObjectById(
-        @PathVariable("id") final int jsonObjectId) {
+    public final ResponseEntity<Object> deleteJsonObjectById(@PathVariable("id") final int jsonObjectId) {
         cpService.deleteJsonById(jsonObjectId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -176,20 +178,6 @@ public class CpsRestController implements CpsRestApi {
             gson.fromJson(getJsonString(multipartFile), Object.class);
         } catch (final JsonSyntaxException e) {
             throw new CpsValidationException("Not a valid JSON file.", e);
-        }
-    }
-
-    private static File saveToFile(final MultipartFile multipartFile) {
-        try {
-            final File file = File.createTempFile("tempFile", ".yang");
-            file.deleteOnExit();
-            try (OutputStream outputStream = new FileOutputStream(file)) {
-                outputStream.write(multipartFile.getBytes());
-            }
-            return file;
-
-        } catch (final IOException e) {
-            throw new CpsException(e);
         }
     }
 

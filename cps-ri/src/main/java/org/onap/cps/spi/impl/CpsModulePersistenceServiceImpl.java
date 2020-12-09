@@ -24,18 +24,26 @@ import static org.onap.cps.exceptions.CpsExceptionBuilder.duplicateSchemaSetExce
 import static org.onap.cps.exceptions.CpsExceptionBuilder.invalidDataspaceException;
 
 import com.google.common.collect.ImmutableSet;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.onap.cps.exceptions.CpsException;
+import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.model.ModuleRef;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.utils.YangUtils;
+import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
+import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -108,4 +116,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             .build();
     }
 
+    @Override
+    public Collection<ModuleRef> getModuleReferences(final String namespace, final String schemaSetName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(namespace);
+        final SchemaSet schemas = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
+        final Map<String, String> yangResources = schemas.getYangResources().stream().collect(
+                Collectors.toMap(YangResource::getName, YangResource::getContent));
+        try {
+            return YangUtils.getModules(yangResources);
+        } catch (final ReactorException | YangSyntaxErrorException e) {
+            throw new CpsValidationException("Yang file validation failed", e.getMessage());
+        } catch (final IOException e) {
+            throw new CpsException(e);
+        }
+    }
 }
