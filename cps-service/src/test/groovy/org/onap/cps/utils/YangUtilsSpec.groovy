@@ -29,6 +29,17 @@ import spock.lang.Unroll
 
 class YangUtilsSpec extends Specification{
 
+    def 'Building schema context from resource'(){
+        given:
+            def yangResourcesNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        when:
+            def result = YangUtils.buildSchemaContext(yangResourcesNameToContent);
+        then:
+            result.modules.size() == 1
+            def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
+            optionalModule.isPresent()
+    }
+
     def 'Parsing a valid Yang Model'() {
         given: 'a yang model (file)'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())

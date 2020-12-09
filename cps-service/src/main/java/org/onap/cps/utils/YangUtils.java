@@ -19,18 +19,22 @@
 
 package org.onap.cps.utils;
 
+import com.google.common.io.ByteSource;
 import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
@@ -73,6 +77,51 @@ public class YangUtils {
     }
 
     /**
+     * Builds schema context from given yang resources.
+     *
+     * @param yangResourcesNameToContentMap yang resources as map where key is name and value is content
+     * @return schema context object representing schema set
+     */
+    public static SchemaContext buildSchemaContext(final Map<String, String> yangResourcesNameToContentMap) {
+
+        final YangParser yangParser = PARSER_FACTORY.createParser(StatementParserMode.DEFAULT_MODE);
+        for (final Map.Entry<String, String> entry : yangResourcesNameToContentMap.entrySet()) {
+            try {
+                yangParser.addSource(YangTextSchemaSource
+                    .delegateForByteSource(entry.getKey(), ByteSource.wrap(entry.getValue().getBytes())));
+            } catch (final IOException | YangParserException e) {
+                throw new ModelValidationException("Invalid resource.",
+                    String.format("The resource %s is not a valid YANG definition.", entry.getKey()), e);
+            }
+        }
+        try {
+            return yangParser.buildEffectiveModel();
+        } catch (final YangParserException e) {
+            final List<String> yangResourceNames = new ArrayList(yangResourcesNameToContentMap.entrySet());
+            throw new ModelValidationException("Invalid schema set.",
+                String.format("Schema context build failure using resources %s.", yangResourceNames), e);
+        }
+    }
+
+    /**
+     * Normalizes yang resource names before persistence to avoid cases when resource (file) name
+     * matches recommended format.
+     * <p/>See https://tools.ietf.org/html/rfc6020#section-5.2
+     *
+     * @param yangResourcesNameToContentMap yang resources as map where key is name and value is content
+     * @param schemaContext                 schema context built using yang resources
+     * @return yang resources as map where key contains normalized name and value is content
+     */
+    public static Map<String, String> normalizeYangResourceNames(
+        final Map<String, String> yangResourcesNameToContentMap, final SchemaContext schemaContext) {
+
+        // TODO: ensure resource names are presented as {[sub]module-name}[@revision].yang
+
+        return yangResourcesNameToContentMap;
+    }
+
+
+    /**
      * Parse a file containing yang modules.
      *
      * @param yangModelFile a file containing one or more yang modules. The file has to have a .yang extension.
@@ -83,7 +132,7 @@ public class YangUtils {
     public static SchemaContext parseYangModelFile(final File yangModelFile) throws IOException, YangParserException {
         final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
         final YangParser yangParser = PARSER_FACTORY
-                .createParser(StatementParserMode.DEFAULT_MODE);
+            .createParser(StatementParserMode.DEFAULT_MODE);
         yangParser.addSource(yangTextSchemaSource);
         return yangParser.buildEffectiveModel();
     }
@@ -96,14 +145,14 @@ public class YangUtils {
      * @return the NormalizedNode representing the json data
      */
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext)
-            throws IOException {
+        throws IOException {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-                .getShared(schemaContext);
+            .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
+            .from(normalizedNodeResult);
         try (final JsonParserStream jsonParserStream = JsonParserStream
-                .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
+            .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
             final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
         }
@@ -118,8 +167,8 @@ public class YangUtils {
      * @return the 'root' Fragment for the tree contain all relevant children etc.
      */
     public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
+        final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
+        final Module module) {
         final QName[] nodeTypes = {tree.getNodeType()};
         final String xpath = buildXpathId(tree.getIdentifier());
         final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);

@@ -24,7 +24,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -42,6 +44,17 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Autowired
     private CpsModulePersistenceService cpsModulePersistenceService;
+
+    @Override
+    public void createSchemaSet(final String dataspaceName, final String schemaSetName,
+                                final Map<String, String> yangResourcesNameToContentMap) {
+
+        final SchemaContext schemaContext = YangUtils.buildSchemaContext(yangResourcesNameToContentMap);
+        final Map<String, String> yangResourcesNormalizedNameToContentMap =
+            YangUtils.normalizeYangResourceNames(yangResourcesNameToContentMap, schemaContext);
+        cpsModulePersistenceService
+            .storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNormalizedNameToContentMap);
+    }
 
     @Override
     public SchemaContext parseAndValidateModel(final String yangModelContent) {

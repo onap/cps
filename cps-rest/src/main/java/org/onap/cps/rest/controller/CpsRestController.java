@@ -20,6 +20,7 @@
 
 package org.onap.cps.rest.controller;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
@@ -35,6 +36,7 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsRestApi;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,38 @@ public class CpsRestController implements CpsRestApi {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
+    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
+                                                  final String dataspaceName) {
+        final String resourceName = extractSchemaSetResourceName(multipartFile);
+        final String resourceContent = extractSchemaSetResourceContent(multipartFile);
+        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName,
+            ImmutableMap.<String, String>builder().put(resourceName, resourceContent).build()
+        );
+        return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
+    }
+
+    private static String extractSchemaSetResourceName(final MultipartFile multipartFile) {
+        final String fileName = multipartFile.getOriginalFilename();
+        if (!fileName.endsWith(".yang")) {
+            throw new ModelValidationException("Unsupported file type.", "Filename should end with .yang.");
+        }
+        return fileName;
+    }
+
+    private static String extractSchemaSetResourceContent(final MultipartFile multipartFile) {
+        try {
+            final String content = new String(multipartFile.getBytes());
+            if (content.isEmpty()) {
+                throw new ModelValidationException("Invalid file.",
+                    String.format("File %s is empty.", multipartFile.getOriginalFilename()));
+            }
+            return content;
+        } catch (final IOException e) {
+            throw new CpsException("Cannot read the resource file.", e);
+        }
+    }
+
     /**
      * Create a new anchor.
      *
@@ -72,7 +106,7 @@ public class CpsRestController implements CpsRestApi {
      */
     @Override
     public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
+                                               final String dataspaceName) {
         final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
         anchorDetails.setDataspaceName(dataspaceName);
         final String anchorName = cpsAdminService.createAnchor(anchorDetails);
@@ -108,7 +142,6 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-
     public ResponseEntity<Object> getAnchors(final String dataspaceName) {
         final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
@@ -116,7 +149,7 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
+                                            @Valid final String revision) {
         return null;
     }
 
