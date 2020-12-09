@@ -61,11 +61,16 @@ paths:
         401:
           description: Unauthorized
           content: {}
+        400:
+          description: Bad Request
+          content: {}
         403:
           description: Forbidden
-          content: {}
         404:
           description: Not Found
+          content: {}
+        204:
+          description: No Content
           content: {}
     post:
       tags:
