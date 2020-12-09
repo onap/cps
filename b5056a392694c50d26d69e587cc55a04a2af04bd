@@ -16,6 +16,24 @@
       "revId": "b5056a392694c50d26d69e587cc55a04a2af04bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10d96d92_0afa0f02",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-09T12:48:39Z",
+      "side": 0,
+      "message": "data existence validation is not a responsibility of repository.",
+      "parentUuid": "99a73388_532d288c",
+      "revId": "b5056a392694c50d26d69e587cc55a04a2af04bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
