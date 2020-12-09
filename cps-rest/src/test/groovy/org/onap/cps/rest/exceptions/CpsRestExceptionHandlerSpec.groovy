@@ -27,9 +27,7 @@ import org.onap.cps.exceptions.CpsValidationException
 import org.onap.cps.rest.controller.CpsRestController
 import spock.lang.Specification
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 

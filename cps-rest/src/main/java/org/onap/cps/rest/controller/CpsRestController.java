@@ -20,12 +20,15 @@
 
 package org.onap.cps.rest.controller;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Locale;
+import java.util.Set;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpService;
@@ -62,6 +65,28 @@ public class CpsRestController implements CpsRestApi {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
+    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
+                                                  final String dataspaceName) {
+
+        final String filename = multipartFile.getOriginalFilename().toLowerCase();
+        if (!filename.endsWith(".yang")) {
+            throw new CpsValidationException("Invalid file type.", "Filename should end with .yang.");
+        }
+        try {
+            final String content = new String(multipartFile.getBytes());
+            if(content.isEmpty()){
+                throw new CpsValidationException("Invalid file.", String.format("File %s is empty.", filename));
+            }
+            cpsModuleService.createSchemaSet(dataspaceName, schemaSetName,
+                ImmutableMap.<String, String>builder().put(filename, content).build()
+            );
+        } catch (final IOException e) {
+            throw new CpsException(e);
+        }
+        return new ResponseEntity<String>(schemaSetName, HttpStatus.CREATED);
+    }
+
     /**
      * Create a new anchor.
      *
@@ -71,7 +96,7 @@ public class CpsRestController implements CpsRestApi {
      */
     @Override
     public ResponseEntity<String> createAnchor(final org.onap.cps.rest.model.@Valid Anchor anchor,
-        final String dataspaceName) {
+                                               final String dataspaceName) {
         final Anchor anchorDetails = modelMapper.map(anchor, Anchor.class);
         anchorDetails.setDataspaceName(dataspaceName);
         final String anchorName = cpsAdminService.createAnchor(anchorDetails);
@@ -113,7 +138,7 @@ public class CpsRestController implements CpsRestApi {
 
     @Override
     public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
+                                            @Valid final String revision) {
         return null;
     }
 

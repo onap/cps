@@ -20,6 +20,9 @@
 package org.onap.cps.api;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.onap.cps.exceptions.CpsValidationException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
@@ -27,6 +30,16 @@ import org.opendaylight.yangtools.yang.model.api.SchemaContext;
  * Responsible for managing module sets.
  */
 public interface CpsModuleService {
+
+    /**
+     * Create schema set.
+     *
+     * @param dataspaceName                 dataspace name
+     * @param schemaSetName                 schema set name
+     * @param yangResourcesNameToContentMap yang resources (files) as a mep where key is resource name
+     *                                      and value is content
+     */
+    void createSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
 
     /**
      * Parse and validate a string representing a yang model to generate a schema context.
