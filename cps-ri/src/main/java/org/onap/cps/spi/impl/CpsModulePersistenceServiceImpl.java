@@ -21,6 +21,7 @@
 package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +32,17 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
+import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
+import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -106,4 +114,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             .build();
     }
 
+    @Override
+    public Collection<ModuleReference> getModuleReferences(final String dataspaceName, final String schemaSetName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
+        final Map<String, String> yangResourceNameToContent = schemaSet.getYangResources().stream().collect(
+                Collectors.toMap(YangResource::getName, YangResource::getContent));
+        try {
+            final YangTextSchemaSourceSet schemaSourceSet = YangTextSchemaSourceSetBuilder
+                .of(yangResourceNameToContent);
+            return schemaSourceSet.getModuleReferences();
+        } catch (final ReactorException | YangSyntaxErrorException e) {
+            throw new ModelValidationException("Yang file validation failed", e.getMessage(), e);
+        }
+    }
 }

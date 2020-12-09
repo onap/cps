@@ -27,8 +27,11 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.common.YangNames;
+import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
@@ -55,13 +58,13 @@ public final class YangTextSchemaSourceSetBuilder {
         return this;
     }
 
-    public YangTextSchemaSourceSet build() throws ReactorException, IOException, YangSyntaxErrorException {
+    public YangTextSchemaSourceSet build() throws ReactorException, YangSyntaxErrorException {
         final SchemaContext schemaContext = generateSchemaContext(yangModelMap.build());
         return new YangTextSchemaSourceSetImpl(schemaContext);
     }
 
     public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent)
-            throws ReactorException, IOException, YangSyntaxErrorException {
+            throws ReactorException, YangSyntaxErrorException {
         return new YangTextSchemaSourceSetBuilder().putAll(yangResourceNameToContent).build();
     }
 
@@ -71,6 +74,20 @@ public final class YangTextSchemaSourceSetBuilder {
 
         public YangTextSchemaSourceSetImpl(final SchemaContext schemaContext) {
             this.schemaContext = schemaContext;
+        }
+
+        @Override
+        public List<ModuleReference> getModuleReferences() {
+            return schemaContext.getModules().stream()
+                           .map(YangTextSchemaSourceSetImpl::toModuleReference)
+                           .collect(Collectors.toList());
+        }
+
+        private static ModuleReference toModuleReference(final Module module) {
+            return ModuleReference.builder()
+                           .namespace(module.getName())
+                           .revision(module.getRevision().map(Revision::toString).orElse(null))
+                           .build();
         }
 
         @Override
@@ -87,11 +104,16 @@ public final class YangTextSchemaSourceSetBuilder {
      * @return the schema context
      */
     private SchemaContext generateSchemaContext(final Map<String, String> yangResourceNameToContent)
-            throws IOException, ReactorException, YangSyntaxErrorException {
+            throws ReactorException, YangSyntaxErrorException {
         final CrossSourceStatementReactor.BuildAction reactor = RFC7950Reactors.defaultReactor().newBuild();
         final List<YangTextSchemaSource> yangTextSchemaSources = forResources(yangResourceNameToContent);
         for (final YangTextSchemaSource yangTextSchemaSource : yangTextSchemaSources) {
-            reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
+            try {
+                reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
+            } catch (final IOException e) {
+                throw new CpsException("Failed to read yangTextSchemaSource %s.",
+                        yangTextSchemaSource.getIdentifier().getName(), e);
+            }
         }
         return reactor.buildEffective();
     }

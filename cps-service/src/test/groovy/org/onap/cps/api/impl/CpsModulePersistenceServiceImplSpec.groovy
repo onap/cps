@@ -20,9 +20,7 @@
 
 package org.onap.cps.api.impl
 
-import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
-import org.onap.cps.spi.exceptions.CpsException
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
