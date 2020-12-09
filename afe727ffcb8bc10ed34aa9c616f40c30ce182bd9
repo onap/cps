@@ -220,6 +220,24 @@
     },
     {
       "key": {
+        "uuid": "114f8296_b695b67d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-09T21:43:42Z",
+      "side": 1,
+      "message": "I\u0027m also ok to leave the builder.",
+      "parentUuid": "63b73c04_df296a4b",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c711c359_f416816f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
