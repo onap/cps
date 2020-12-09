@@ -202,6 +202,24 @@
     },
     {
       "key": {
+        "uuid": "63b73c04_df296a4b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-09T15:03:37Z",
+      "side": 1,
+      "message": "I agree, I think specific handling is good rather than just having a generic error.",
+      "parentUuid": "17cc5523_f6d7a124",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c711c359_f416816f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
