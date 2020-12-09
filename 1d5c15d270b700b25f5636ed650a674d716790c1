@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7db9bf5f_672f586e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-09T16:18:45Z",
+      "side": 1,
+      "message": "This should be DataValidationException",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b40abe9c_915d71c7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -13,6 +30,69 @@
       "writtenOn": "2020-12-09T12:11:28Z",
       "side": 1,
       "message": "this is the same than dataspaceName, isnt it?",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a5aa991_7a99370d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-09T16:18:45Z",
+      "side": 1,
+      "message": "why this change in formating? This is not the normal formatting suggested and used in ONAP chekstyle. This could lead to non uniform coding style in the same repo.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 60
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13167ab5_01a948da",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-09T16:18:45Z",
+      "side": 1,
+      "message": "still using the deprecated method. Can we replace this with the newly added storeSchemaSet()?",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 51
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe8493c_95a05e99",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DuplicateSchemaSetException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-09T16:18:45Z",
+      "side": 1,
+      "message": "Is cause actually required here ?",
       "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
