@@ -24,6 +24,7 @@ import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +33,18 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSet, Integer> {
 
     List<SchemaSet> findAllByDataspace(@NotNull Dataspace dataspace);
 
-    Optional<SchemaSet> findByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String name);
+    Optional<SchemaSet> findByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String schemaSetName);
+
+    /**
+     * This method gets a SchemaSet by dataspace, namespace and schemaSetName.
+     * @param dataspace the dataspace
+     * @param schemaSetName the schemaSet Name
+     * @return schemaSet
+     */
+    default SchemaSet getByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String schemaSetName) {
+        return findByDataspaceAndName(dataspace, schemaSetName)
+                       .orElseThrow(() -> new NotFoundInDataspaceException("Schema Set was not found.",
+                        String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName,
+                                dataspace)));
+    }
 }
