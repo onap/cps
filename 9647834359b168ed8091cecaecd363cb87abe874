@@ -46,6 +46,30 @@
       "revId": "9647834359b168ed8091cecaecd363cb87abe874",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c359c299_35826306",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 0,
+      "message": "that\u0027s where it is now :-)",
+      "parentUuid": "d4b72d50_2a6d1f22",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "9647834359b168ed8091cecaecd363cb87abe874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

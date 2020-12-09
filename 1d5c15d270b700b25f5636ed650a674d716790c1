@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e7ec5941_e08db8b0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "I didn\u0027t do earlier as this is code we need to replace shortly, but it is good to add this example now and the replacement needs it too!",
+      "parentUuid": "7db9bf5f_672f586e",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42cba1f5_139f29f2",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2020-12-09T16:36:18Z",
       "side": 1,
       "message": "All the exception classes (grouping classes) causing 400 response\nshould be listed here",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 55
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36310bc3_f64800f3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "not sure which I am missing (but I\u0027ll try to add),\nalso It will break teh naming convention in this class, \u003dbut let me suggests something...",
+      "parentUuid": "42cba1f5_139f29f2",
       "range": {
         "startLine": 52,
         "startChar": 21,
@@ -95,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "f4ba31c1_b548b4d1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "I just tried to clean up something here, but it is not in scope and will revert",
+      "parentUuid": "1ff9f3ab_67bfd18d",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bc428b8_8ad86a76",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
         "patchSetId": 2
@@ -106,6 +166,30 @@
       "writtenOn": "2020-12-09T16:36:18Z",
       "side": 1,
       "message": "defining a method within interface with default implementation\nis not a proper way to extend the functionality of repository\n\nplease follow the documentation\nhttps://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.custom-implementations\n\nalso define other name for this method. \nthere should be clear difference from findByName",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af38e876_0f71e8fc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "out of scope, this commit is about fix the exception classes\nre the name I actually think the difference between find and get is clear and it is logical that an exception is thrown, as \u0027you cannot get it\u0027\nbut if you can think of a better name please propose it...",
+      "parentUuid": "9bc428b8_8ad86a76",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -141,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "67decf77_a8a73902",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "I meant to ask the team about that, I seems to have issues align my IntelliJ auto formatting and imports with check style, however in this particular case check style does not complain.\nBut I agree with your comment will fix it",
+      "parentUuid": "7a5aa991_7a99370d",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 60
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13167ab5_01a948da",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 2
@@ -152,6 +260,30 @@
       "writtenOn": "2020-12-09T16:18:45Z",
       "side": 1,
       "message": "still using the deprecated method. Can we replace this with the newly added storeSchemaSet()?",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 51
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc09d14f_320221bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "not in the scope of this commit",
+      "parentUuid": "13167ab5_01a948da",
       "range": {
         "startLine": 75,
         "startChar": 40,
@@ -181,6 +313,24 @@
     },
     {
       "key": {
+        "uuid": "581c1e3d_62504cf8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DuplicateSchemaSetException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "I think it might be good, when you see where this method is called it is \u0027assumed\u0027 that the DB exception is because of duplication, in case (in fyutre0 there is other reason it might be good to have this information for troubleshooting.\nIn general I think it is good to NOT drop cause exception information as long as we don\u0027t always print stacktraces!\nI have often bene stuck in troubleshooting because some developer thought it was a good ides to \u0027hide\u0027 the root cause...",
+      "parentUuid": "dfe8493c_95a05e99",
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e86c5240_0047270b",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/NotFoundInDataspaceException.java",
         "patchSetId": 2
@@ -192,6 +342,30 @@
       "writtenOn": "2020-12-09T16:36:18Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 32,
+        "startChar": 52,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "1d5c15d270b700b25f5636ed650a674d716790c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc244d9f_e07ee175",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/NotFoundInDataspaceException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "oops, missed this will do another patch",
+      "parentUuid": "e86c5240_0047270b",
       "range": {
         "startLine": 32,
         "startChar": 52,

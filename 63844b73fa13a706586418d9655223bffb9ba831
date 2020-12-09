@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00da3da4_8152a48c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T17:44:34Z",
+      "side": 1,
+      "message": "I cant get my IntelliJ to do teh exact same formatting is before, both are accepted by CheckStyle so I wont waste much more time on this now, I will try later to reimport formatting settings (but not sure if I have it wrong or someone else before me)",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 56,
+        "endChar": 120
+      },
+      "revId": "63844b73fa13a706586418d9655223bffb9ba831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
