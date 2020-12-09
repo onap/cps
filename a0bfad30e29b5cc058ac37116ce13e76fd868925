@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb604d61_faf578a4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-09T21:20:56Z",
+      "side": 1,
+      "message": "Typo: retrieve",
+      "revId": "a0bfad30e29b5cc058ac37116ce13e76fd868925",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
