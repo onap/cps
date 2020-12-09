@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "edd6d7fc_5a40a28c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-09T19:35:41Z",
+      "side": 1,
+      "message": "CPSException is mapped to HttpStatus.INTERNAL_SERVER_ERROR (500) in CpsRestExceptionHandler.\n\nIt implies that a client providing an anchor name that is already existing will receive a 500 Internal Server Error response. For more relevant feedback to the client, it seems to me that he should receive BAD_REQUEST (400) in this case, as no error occurred from an internal server processing point of view.\n\n* Should we throw DataValidationException here instead of CpsException ?\n\n* Should we throw CPSAdminException or another subclass of this one ?",
+      "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5323a982_54faa85c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 4
