@@ -22,19 +22,20 @@ package org.onap.cps.spi.model;
 
 import java.util.Collection;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataNode {
 
     private String dataspace;
     private String moduleSetName;
-    private ModuleRef moduleRef;
+    private ModuleReference moduleReference;
     private String xpath;
     private Map<String, Object> leaves;
     private Collection<String> xpathsChildren;
