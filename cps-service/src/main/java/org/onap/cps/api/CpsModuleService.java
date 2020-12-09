@@ -20,6 +20,8 @@
 package org.onap.cps.api;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
@@ -31,18 +33,19 @@ public interface CpsModuleService {
     /**
      * Parse and validate a string representing a yang model to generate a schema context.
      *
-     * @param yangModelContent the input stream
+     * @param yangModelMap  is a {@link Map} collection that contains the name of the model represented
+     *                      on yangModelContent as key and the yangModelContent as value.
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(String yangModelContent);
+    SchemaContext parseAndValidateModel(Map<String, String> yangModelMap);
 
     /**
-     * Parse and validate a file representing a yang model to generate a schema context.
+     * Parse and validate a list of file representing a yang model to generate a schema context.
      *
      * @param yangModelFile the yang file
      * @return the schema context
      */
-    SchemaContext parseAndValidateModel(File yangModelFile);
+    SchemaContext parseAndValidateModel(List<File> yangModelFile);
 
     /**
      * Store schema context for a yang model.
