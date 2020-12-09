@@ -17,30 +17,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.yang;
+package org.onap.cps.spi.exceptions;
 
-import java.util.List;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.model.ModuleReference;
-import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+public class SchemaSetNotFoundException extends CpsAdminException {
 
-/**
- * CPS YangTextSchemaSource.
- */
-public interface YangTextSchemaSourceSet {
+    private static final long serialVersionUID = 7422782395935450035L;
 
     /**
-     * Returns list of modules references for given YangSchema.
+     * Constructor.
      *
-     * @return list of ModuleRef
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
      */
-    @NonNull
-    List<ModuleReference> getModuleReferences();
-
-    /**
-     *  Return SchemaContext for given YangSchema.
-     * @return SchemaContext
-     */
-    @NonNull
-    SchemaContext getSchemaContext();
+    public SchemaSetNotFoundException(final String dataspaceName, final String schemaSetName) {
+        super("Schema Set not found.",
+                String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName, dataspaceName));
+    }
 }

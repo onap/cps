@@ -27,8 +27,10 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.common.YangNames;
+import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
@@ -71,6 +73,20 @@ public final class YangTextSchemaSourceSetBuilder {
 
         public YangTextSchemaSourceSetImpl(final SchemaContext schemaContext) {
             this.schemaContext = schemaContext;
+        }
+
+        @Override
+        public List<ModuleReference> getModuleReferences() {
+            return schemaContext.getModules().stream()
+                           .map(YangTextSchemaSourceSetImpl::toModuleReference)
+                           .collect(Collectors.toList());
+        }
+
+        private static ModuleReference toModuleReference(final Module module) {
+            return ModuleReference.builder()
+                           .namespace(module.getName())
+                           .revision(module.getRevision().map(Revision::toString).orElse(null))
+                           .build();
         }
 
         @Override

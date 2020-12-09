@@ -20,12 +20,16 @@
 
 package org.onap.cps.spi.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class ModuleRef {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ModuleReference {
 
     private String namespace;
     private String revision;
