@@ -19,6 +19,47 @@
     },
     {
       "key": {
+        "uuid": "4250032e_57bef9c9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "agreed, lets leave the exception generation in the repository class",
+      "parentUuid": "1a4614af_016ab959",
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e4d5565_f1b68e17",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "1) please see discussion in my commit on exception handling, Claudio and I prefer specialized constructors.\n\n2) what is the conflict here exactly? Please note different anchors can have the same schema set. If the schemaSet does not exists I think we should use a CpsNotFoundException",
+      "range": {
+        "startLine": 69,
+        "startChar": 18,
+        "endLine": 69,
+        "endChar": 83
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f03f40cf_c875fccb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 4
@@ -30,6 +71,116 @@
       "writtenOn": "2020-12-09T11:04:52Z",
       "side": 1,
       "message": "since you throw now dataspaceNotFoundException, you can use current dataspaceRepository.get ...\nand no need to replicate code",
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7137385f_6224675f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "as before,\nI think we need to prioritize exception handling improvement commit here: https://gerrit.onap.org/r/c/cps/+/116230",
+      "parentUuid": "f03f40cf_c875fccb",
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60a3efb5_3a23a0b2",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "not sure what you mean with conflict?! I dont think this is an error scenario! If it is you are using the wrong terminology\nI see now, I think you mean anchor already associated!\nSo the scenario is associating with an anchor that is already associated with a different set, correct? Please update your terminology e.g. for the constant i would use ALREADY_ASSCOIATED_ANCHOR",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5b9870a_4c0acd0e",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "I always like to see positive tets scenario first",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 5
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c870c7_9276225e",
+        "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "the schema set name is irrelevant, it is not allowed to have multiple anchors with the same in name in one dataspace (even if they have different schema sets)\n\nall code related to this whole senario needs to be removed",
+      "range": {
+        "startLine": 92,
+        "startChar": 65,
+        "endLine": 92,
+        "endChar": 91
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f67bc3c_53bb8bff",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 1,
+      "message": "yep, this is the correct approach for testing this",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 103
+      },
       "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true

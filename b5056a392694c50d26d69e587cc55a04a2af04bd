@@ -34,6 +34,24 @@
       "revId": "b5056a392694c50d26d69e587cc55a04a2af04bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af0e8734_49a43a09",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/DataspaceRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T13:57:49Z",
+      "side": 0,
+      "message": "sorry Ruslan, I have looked at this but I think it is the best place to put it.\ndepending on the need you choose a the find method or the get method. the getMethod will thrown an exception, it will be consistent no matter what usecase/ IF we dont do it here we have to do it in many oterh places and \u0027hope\u0027 future developers will use a common approach...",
+      "parentUuid": "10d96d92_0afa0f02",
+      "revId": "b5056a392694c50d26d69e587cc55a04a2af04bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
