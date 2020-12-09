@@ -19,13 +19,24 @@
 
 package org.onap.cps.yang;
 
+import java.util.List;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.spi.model.ModuleRef;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /**
  * CPS YangTextSchemaSource.
  */
 public interface YangTextSchemaSourceSet {
+
+    /**
+     * Returns list of modules references for given YangSchema.
+     *
+     * @return list of ModuleRef
+     */
+    @NonNull
+    List<ModuleRef> getModulesRef();
+
     /**
      *  Return SchemaContext for given YangSchema.
      * @return SchemaContext
