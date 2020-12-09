@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "b1ab458a_87906bc1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-09T09:22:20Z",
+      "side": 1,
+      "message": "there is a mix up in this class, it is NOT testing the persistenceService (as the name of teh class suggested) but the CpsAdminService instead (please see my commit https://gerrit.onap.org/r/c/cps/+/116230/1/cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy for teh correct name and impl of these tests)",
+      "range": {
+        "startLine": 31,
+        "startChar": 30,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "6af06ea5e4b8dc32b2146dd05975e67fb3539333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e87241e_3d1f4a1c",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
         "patchSetId": 6
