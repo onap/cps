@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5323a982_54faa85c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-09T18:25:45Z",
+      "side": 1,
+      "message": "alignments on this class doesnt seems to be correct. Anyway I dont see it as a reason to block the merge.\nCan be changed later",
+      "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
