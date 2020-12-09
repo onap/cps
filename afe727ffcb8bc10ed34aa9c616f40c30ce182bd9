@@ -100,6 +100,24 @@
     },
     {
       "key": {
+        "uuid": "beb04fb9_bc0d31fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-09T12:14:49Z",
+      "side": 1,
+      "message": "I agree with Toine, there is not need for this builder class. Each exception can handle the needs on their own class definition.",
+      "parentUuid": "366f7a75_71e95cbd",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c711c359_f416816f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
