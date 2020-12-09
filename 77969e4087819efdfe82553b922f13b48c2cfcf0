@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a4614af_016ab959",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-09T11:04:52Z",
+      "side": 1,
+      "message": "no reason for change this line",
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f03f40cf_c875fccb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-09T11:04:52Z",
+      "side": 1,
+      "message": "since you throw now dataspaceNotFoundException, you can use current dataspaceRepository.get ...\nand no need to replicate code",
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
