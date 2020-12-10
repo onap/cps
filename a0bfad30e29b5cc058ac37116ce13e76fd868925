@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "8c824716_5eb73d12",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T11:37:41Z",
+      "side": 1,
+      "message": "I think it was mention to move to mapstruct. But it should be done on different task, Toine do we have task for it? or was the subject consider during meetings?",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "a0bfad30e29b5cc058ac37116ce13e76fd868925",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43630a7c_58e0334a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T11:37:41Z",
+      "side": 1,
+      "message": "what is the difference aside from the name with findFragmentsByDataspaceAndParentFragmentIsNull?",
+      "revId": "a0bfad30e29b5cc058ac37116ce13e76fd868925",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb604d61_faf578a4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 8
