@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3784ae17_ecf6b661",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-10T13:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60188900_a69d0f60",
+      "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5323a982_54faa85c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 4
