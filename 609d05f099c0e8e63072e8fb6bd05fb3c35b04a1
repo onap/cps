@@ -96,6 +96,23 @@
       "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16bd563_53c0d5d1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T11:25:37Z",
+      "side": 1,
+      "message": "Toine, here is where it comes the need for the name",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
