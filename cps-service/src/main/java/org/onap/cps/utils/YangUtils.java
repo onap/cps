@@ -61,14 +61,14 @@ public class YangUtils {
      * @return the NormalizedNode representing the json data
      */
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext)
-            throws IOException {
+        throws IOException {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-                .getShared(schemaContext);
+            .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
+            .from(normalizedNodeResult);
         try (final JsonParserStream jsonParserStream = JsonParserStream
-                .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
+            .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
             final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
         }
@@ -83,8 +83,8 @@ public class YangUtils {
      * @return the 'root' Fragment for the tree contain all relevant children etc.
      */
     public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
+        final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
+        final Module module) {
         final QName[] nodeTypes = {tree.getNodeType()};
         final String xpath = buildXpathId(tree.getIdentifier());
         final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);

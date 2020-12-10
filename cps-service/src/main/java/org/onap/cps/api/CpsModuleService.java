@@ -19,6 +19,8 @@
 
 package org.onap.cps.api;
 
+import java.util.Map;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
@@ -28,11 +30,15 @@ import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 public interface CpsModuleService {
 
     /**
-     * Store schema context for a yang model.
+     * Create schema set.
      *
-     * @param schemaContext the schema context
-     * @param dataspaceName the dataspace name
-     * @throws CpsException if input data already exists.
+     * @param dataspaceName                 dataspace name
+     * @param schemaSetName                 schema set name
+     * @param yangResourcesNameToContentMap yang resources (files) as a mep where key is resource name
+     *                                      and value is content
      */
-    void storeSchemaContext(SchemaContext schemaContext, String dataspaceName);
+    void createSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
+                         @NonNull Map<String, String> yangResourcesNameToContentMap);
+
+    
 }

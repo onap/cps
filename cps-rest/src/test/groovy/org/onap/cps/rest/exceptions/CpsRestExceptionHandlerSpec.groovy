@@ -22,6 +22,7 @@ package org.onap.cps.rest.exceptions
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -36,9 +37,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
@@ -46,6 +45,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsModuleService mockCpsModuleService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
