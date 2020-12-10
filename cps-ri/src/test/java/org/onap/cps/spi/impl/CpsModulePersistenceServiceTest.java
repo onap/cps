@@ -28,11 +28,12 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
-import org.onap.cps.exceptions.CpsValidationException;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
+import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
@@ -76,14 +77,14 @@ public class CpsModulePersistenceServiceTest {
     private SchemaSetRepository schemaSetRepository;
 
 
-    @Test(expected = CpsValidationException.class)
+    @Test(expected = DataspaceNotFoundException.class)
     @Sql(CLEAR_DATA)
     public void testStoreSchemaSetToInvalidDataspace() {
         cpsModulePersistenceService
             .storeSchemaSet(DATASPACE_NAME_INVALID, SCHEMA_SET_NAME_NEW, toSet(NEW_RESOURCE_CONTENT));
     }
 
-    @Test(expected = CpsValidationException.class)
+    @Test(expected = SchemaSetAlreadyDefinedException.class)
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
     public void testStoreDuplicateSchemaSet() {
         cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME, toSet(NEW_RESOURCE_CONTENT));
