@@ -55,6 +55,10 @@ public class YangResource implements Serializable {
 
     @NotNull
     @Column
+    private String name;
+
+    @NotNull
+    @Column
     private String content;
 
     @ManyToMany(mappedBy = "yangResources")

@@ -20,11 +20,10 @@
 
 package org.onap.cps.spi;
 
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Service to manage modules.
- *
  */
 public interface CpsModulePersistenceService {
 
@@ -46,10 +45,10 @@ public interface CpsModulePersistenceService {
     /**
      * Stores Schema Set.
      *
-     * @param dataspaceName          dataspace name
-     * @param schemaSetName          schema set name
-     * @param yangResourcesAsStrings the content of YANG resources (files)
+     * @param dataspaceName                 dataspace name
+     * @param schemaSetName                 schema set name
+     * @param yangResourcesNameToContentMap YANG resources (files) map where key is a name and value is content
      */
-    void storeSchemaSet(String dataspaceName, String schemaSetName, Set<String> yangResourcesAsStrings);
+    void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
 
 }
