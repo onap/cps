@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +21,10 @@
 
 package org.onap.cps.spi.impl;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
@@ -60,5 +65,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         } catch (final DataIntegrityViolationException ex) {
             throw new AnchorAlreadyDefinedException(anchor.getDataspaceName(), anchorName, ex);
         }
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final Collection<Fragment> fragments = fragmentRepository.findFragmentsThatAreAnchorsByDataspace(dataspace);
+        final Type anchorListType = new TypeToken<Collection<Anchor>>() {}.getType();
+        return new ModelMapper().map(fragments, anchorListType);
     }
 }

@@ -20,8 +20,8 @@
 
 package org.onap.cps.api.impl
 
-
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
 
@@ -49,6 +49,26 @@ class CpsAdminServiceImplSpec extends Specification {
         when: 'we try to create an anchor'
             objectUnderTest.createAnchor(anchor)
         then: 'the same exception is thrown by the CPS Admin Service'
+            def exceptionThrownInServiceLayer = thrown(Exception)
+            exceptionThrownInServiceLayer == exceptionThrownInPersistenceLayer
+    }
+
+    def 'Retrieve all anchors for an existing dataspace'() {
+        given: 'that the dataspace exist and an anchor is associated with the dataspace'
+            Collection<Anchor> anchorCollection = Arrays.asList(anchor)
+            mockCpsAdminPersistenceService.getAnchors('dummyDataspace') >> { anchorCollection }
+        expect: 'we try to retrieve an anchor, a collection of anchor is returned by the service'
+            objectUnderTest.getAnchors('dummyDataspace') == anchorCollection
+    }
+
+    def 'Retrieve all anchors for a non existing dataspace'() {
+        given: 'that the dataspace does not exist, service throws an exception'
+            def exceptionThrownInPersistenceLayer = new DataspaceNotFoundException(_ as String)
+            mockCpsAdminPersistenceService.getAnchors('dummyDataspace') >>
+                    { throw exceptionThrownInPersistenceLayer }
+        when: 'we try to retrieve a anchor with a non-existant dataspace'
+            objectUnderTest.getAnchors('dummyDataspace')
+        then: 'the same exception is thrown by CPS'
             def exceptionThrownInServiceLayer = thrown(Exception)
             exceptionThrownInServiceLayer == exceptionThrownInPersistenceLayer
     }

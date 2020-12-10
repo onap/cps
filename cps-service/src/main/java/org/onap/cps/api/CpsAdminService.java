@@ -20,6 +20,7 @@
 
 package org.onap.cps.api;
 
+import java.util.Collection;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
 
@@ -36,4 +37,12 @@ public interface CpsAdminService {
      * @throws CpsException if input data is invalid.
      */
     String createAnchor(Anchor anchor);
+
+    /**
+     * Read all anchors in the given a dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName);
 }

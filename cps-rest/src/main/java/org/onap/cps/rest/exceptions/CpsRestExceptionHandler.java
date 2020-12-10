@@ -23,6 +23,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.rest.controller.CpsRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
@@ -48,7 +49,7 @@ public class CpsRestExceptionHandler {
     }
 
     @ExceptionHandler({ModelValidationException.class, DataValidationException.class,
-        SchemaSetAlreadyDefinedException.class, AnchorAlreadyDefinedException.class})
+        SchemaSetAlreadyDefinedException.class, AnchorAlreadyDefinedException.class, CpsAdminException.class})
     public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }
