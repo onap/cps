@@ -20,7 +20,9 @@
 
 package org.onap.cps.spi.impl;
 
+
 import com.google.common.collect.ImmutableSet;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -61,10 +63,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Override
     @Transactional
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
-                               final Set<String> yangResourcesAsStrings) {
+                               final Map<String, String> yangResourcesNameToContentMap) {
 
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesAsStrings);
+        final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesNameToContentMap);
         final SchemaSet schemaSet = new SchemaSet();
         schemaSet.setName(schemaSetName);
         schemaSet.setDataspace(dataspace);
@@ -76,24 +78,25 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         }
     }
 
-    private Set<YangResource> synchronizeYangResources(final Set<String> yangResourcesAsStrings) {
-        final Map<String, String> checksumToContentMap = yangResourcesAsStrings.stream()
-            .collect(Collectors.toMap(
-                content -> DigestUtils.md5DigestAsHex(content.getBytes()),
-                content -> content)
-            );
-
-        final List<YangResource> existingYangResources =
-            yangResourceRepository.findAllByChecksumIn(checksumToContentMap.keySet());
-        existingYangResources.forEach(yangFile -> checksumToContentMap.remove(yangFile.getChecksum()));
-
-        final List<YangResource> newYangResources = checksumToContentMap.entrySet().stream()
+    private Set<YangResource> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, YangResource> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final YangResource yangResource = new YangResource();
-                yangResource.setChecksum(entry.getKey());
+                yangResource.setName(entry.getKey());
                 yangResource.setContent(entry.getValue());
+                yangResource.setChecksum(DigestUtils.md5DigestAsHex(entry.getValue().getBytes()));
                 return yangResource;
-            }).collect(Collectors.toList());
+            })
+            .collect(Collectors.toMap(
+                YangResource::getChecksum,
+                entity -> entity
+            ));
+
+        final List<YangResource> existingYangResources =
+            yangResourceRepository.findAllByChecksumIn(checksumToEntityMap.keySet());
+        existingYangResources.forEach(yangFile -> checksumToEntityMap.remove(yangFile.getChecksum()));
+
+        final Collection<YangResource> newYangResources = checksumToEntityMap.values();
         if (!newYangResources.isEmpty()) {
             yangResourceRepository.saveAll(newYangResources);
         }
