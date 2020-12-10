@@ -22,11 +22,12 @@ package org.onap.cps.rest.exceptions
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -46,6 +47,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsModuleService mockCpsModuleService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
