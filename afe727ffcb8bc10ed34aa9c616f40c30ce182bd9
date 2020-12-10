@@ -238,6 +238,24 @@
     },
     {
       "key": {
+        "uuid": "78a0d14c_c1010b89",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T10:17:48Z",
+      "side": 1,
+      "message": "the consensus is to use dedicated exceptions where appropriate with specialize constructors to create consistent messages. No need for an exception builder class (at the moment)",
+      "parentUuid": "114f8296_b695b67d",
+      "revId": "afe727ffcb8bc10ed34aa9c616f40c30ce182bd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c711c359_f416816f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 1
