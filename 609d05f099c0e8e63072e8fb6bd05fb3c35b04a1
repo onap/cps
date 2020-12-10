@@ -59,6 +59,24 @@
     },
     {
       "key": {
+        "uuid": "6bf6e9c6_9a65cc66",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T11:37:09Z",
+      "side": 1,
+      "message": "you mean plain text option? Yes if we can do taht then yes please change to text...",
+      "parentUuid": "6bf0a516_d89f67fe",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "486f733a_bea49432",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -70,6 +88,29 @@
       "writtenOn": "2020-12-10T10:45:49Z",
       "side": 1,
       "message": "will be simple to support only plain type instead of both",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79755774_2790fdab",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T11:37:09Z",
+      "side": 1,
+      "message": "add \u0027s\u0027 :-)",
+      "range": {
+        "startLine": 85,
+        "startChar": 32,
+        "endLine": 85,
+        "endChar": 50
+      },
       "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -99,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "9194c235_d06c5fed",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T11:37:09Z",
+      "side": 1,
+      "message": "need to think about this...",
+      "parentUuid": "a241316f_f5321348",
+      "range": {
+        "startLine": 240,
+        "startChar": 19,
+        "endLine": 240,
+        "endChar": 40
+      },
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b16bd563_53c0d5d1",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -110,6 +175,24 @@
       "writtenOn": "2020-12-10T11:25:37Z",
       "side": 1,
       "message": "Toine, here is where it comes the need for the name",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "503875ba_fe41278d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T11:37:09Z",
+      "side": 1,
+      "message": "OK, I need to downlaod this code and examine in my IDE when I have more time",
+      "parentUuid": "b16bd563_53c0d5d1",
       "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
