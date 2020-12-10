@@ -20,22 +20,33 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
+
+import com.google.common.collect.ImmutableMap;
+import java.io.IOException;
 import java.util.Collection;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class AdminRestController implements CpsAdminApi {
 
     @Autowired
     private CpsAdminService cpsAdminService;
+
+    @Autowired
+    CpsModuleService cpsModuleService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -53,6 +64,39 @@ public class AdminRestController implements CpsAdminApi {
                                                final String anchorName) {
         cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
+                                                  final String dataspaceName) {
+        final String resourceName = extractSchemaSetResourceName(multipartFile);
+        final String resourceContent = extractSchemaSetResourceContent(multipartFile);
+        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName,
+            ImmutableMap.<String, String>builder().put(resourceName, resourceContent).build()
+        );
+        return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
+    }
+
+    private static String extractSchemaSetResourceName(final MultipartFile multipartFile) {
+        final String fileName = multipartFile.getOriginalFilename();
+        if (!fileName.endsWith(RFC6020_YANG_FILE_EXTENSION)) {
+            throw new ModelValidationException("Unsupported file type.",
+                String.format("Filename %s does not end with '%s'", fileName, RFC6020_YANG_FILE_EXTENSION));
+        }
+        return fileName;
+    }
+
+    private static String extractSchemaSetResourceContent(final MultipartFile multipartFile) {
+        try {
+            final String content = new String(multipartFile.getBytes());
+            if (content.isEmpty()) {
+                throw new ModelValidationException("Invalid file.",
+                    String.format("File %s is empty.", multipartFile.getOriginalFilename()));
+            }
+            return content;
+        } catch (final IOException e) {
+            throw new CpsException("Cannot read the resource file.", e.getMessage(), e);
+        }
     }
 
     @Override

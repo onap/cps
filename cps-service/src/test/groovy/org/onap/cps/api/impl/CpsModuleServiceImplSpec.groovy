@@ -20,12 +20,15 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.utils.YangUtils
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
 
-class CpsModulePersistenceServiceImplSpec extends Specification {
+class CpsModuleServiceImplSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def objectUnderTest = new CpsModuleServiceImpl()
 
@@ -33,14 +36,22 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
     }
 
-    def assertModule(SchemaContext schemaContext) {
-        def optionalModule = schemaContext.findModule('stores', Revision.of('2020-09-15'))
-        return schemaContext.modules.size() == 1 && optionalModule.isPresent()
+    def 'Create schema set'() {
+        given: 'Valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        when: 'Create schema set method is invoked'
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+        then: 'Parameters are validated and processing is delegated to persistence service'
+            1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
     }
 
-    def 'Store a SchemaContext'() {
-        expect: 'No exception to be thrown when a valid model (schema) is stored'
-            objectUnderTest.storeSchemaContext(Stub(SchemaContext.class), "sampleDataspace")
+    def 'Create schema set from invalid resources'() {
+        given: 'Invalid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('invalid.yang')
+        when: 'Create schema set method is invoked'
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+        then: 'Model validation exception is thrown'
+            thrown(ModelValidationException.class)
     }
 
 }
