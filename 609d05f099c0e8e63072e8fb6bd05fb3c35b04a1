@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b3f7a04_8e4412de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T10:45:49Z",
+      "side": 1,
+      "message": "this will come from other task done by ruslan, done ATM just for keep working",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cd732c6_f29c133d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T10:45:49Z",
+      "side": 1,
+      "message": "instead of Map we could have an specific CPS type across all layers. I will leave a not on the type in YangUtil class. Negative point about introducing such type is how tide we want to be with yang Parsers dependencies.\nATM I used String, which makes dependency free",
+      "range": {
+        "startLine": 40,
+        "startChar": 40,
+        "endLine": 40,
+        "endChar": 59
+      },
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bf0a516_d89f67fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T10:45:49Z",
+      "side": 1,
+      "message": "Shall we still supporting File type? when we have the plain option?",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "486f733a_bea49432",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T10:45:49Z",
+      "side": 1,
+      "message": "will be simple to support only plain type instead of both",
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
