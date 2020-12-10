@@ -61,14 +61,14 @@ public class YangUtils {
      * @return the NormalizedNode representing the json data
      */
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext)
-            throws IOException {
+        throws IOException {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-                .getShared(schemaContext);
+            .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
+            .from(normalizedNodeResult);
         try (final JsonParserStream jsonParserStream = JsonParserStream
-                .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
+            .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
             final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
         }
@@ -83,8 +83,8 @@ public class YangUtils {
      * @return the 'root' Fragment for the tree contain all relevant children etc.
      */
     public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
+        final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
+        final Module module) {
         final QName[] nodeTypes = {tree.getNodeType()};
         final String xpath = buildXpathId(tree.getIdentifier());
         final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);
@@ -93,7 +93,7 @@ public class YangUtils {
     }
 
     private static void fragmentNormalizedNode(final Fragment currentFragment,
-                                               final NormalizedNode normalizedNode) {
+        final NormalizedNode normalizedNode) {
         if (normalizedNode instanceof DataContainerNode) {
             inspectContainer(currentFragment, (DataContainerNode) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
@@ -108,13 +108,13 @@ public class YangUtils {
     }
 
     private static void inspectLeaf(final Fragment currentFragment,
-                                    final ValueNode valueNode) {
+        final ValueNode valueNode) {
         final Object value = valueNode.getValue();
         currentFragment.addLeafValue(valueNode.getNodeType().getLocalName(), value);
     }
 
     private static void inspectLeafList(final Fragment currentFragment,
-                                        final LeafSetNode leafSetNode) {
+        final LeafSetNode leafSetNode) {
         currentFragment.addLeafListName(leafSetNode.getNodeType().getLocalName());
         for (final NormalizedNode value : (Collection<NormalizedNode>) leafSetNode.getValue()) {
             fragmentNormalizedNode(currentFragment, value);
@@ -122,7 +122,7 @@ public class YangUtils {
     }
 
     private static void inspectContainer(final Fragment currentFragment,
-                                         final DataContainerNode dataContainerNode) {
+        final DataContainerNode dataContainerNode) {
         final Collection<NormalizedNode> leaves = (Collection) dataContainerNode.getValue();
         for (final NormalizedNode leaf : leaves) {
             fragmentNormalizedNode(currentFragment, leaf);
@@ -130,7 +130,7 @@ public class YangUtils {
     }
 
     private static void inspectKeyedList(final Fragment currentFragment,
-                                         final MapNode mapNode) {
+        final MapNode mapNode) {
         createNodeForEachListElement(currentFragment, mapNode);
     }
 
@@ -158,7 +158,8 @@ public class YangUtils {
         final List<String> keyAttributes = nodeIdentifier.entrySet().stream().map(
             entry -> {
                 final String name = entry.getKey().getLocalName();
-                final String value = String.valueOf(entry.getValue()).replace("'", "\\'");
+                final String value =
+                    String.valueOf(entry.getValue()).replace("'", "\\'");
                 return String.format("@%s='%s'", name, value);
             }
         ).collect(Collectors.toList());
