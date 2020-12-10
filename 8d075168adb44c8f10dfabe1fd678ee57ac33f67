@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d668f35d_27fc0a52",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T15:07:19Z",
+      "side": 1,
+      "message": "this could also be saved in the two fields instead of using one with format \"module1@2020-02-02.yang\"\nname -\u003e module1\nrevision-\u003e 2020-02-02 (where this is optional, not mandatory information)\n\nInformation can be get from\nyangTextSchemaSource.getIdentifier() .getName / getRevision\n\nafter validating the files",
+      "range": {
+        "startLine": 58,
+        "startChar": 19,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "8d075168adb44c8f10dfabe1fd678ee57ac33f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
