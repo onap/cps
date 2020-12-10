@@ -20,6 +20,7 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
+import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException
@@ -48,8 +49,9 @@ class YangTextSchemaSourceSetSpec extends Specification {
         then: 'an exception is thrown'
             thrown(expectedException)
         where: 'the following parameters are used'
-             filename           | description          || expectedException
-            'invalid.yang'      | 'invalid content'   || YangSyntaxErrorException
-            'invalid-empty.yang'| 'no valid content'   || YangSyntaxErrorException
+            filename                      | description            || expectedException
+            'invalid.yang'                | 'invalid content'      || ModelValidationException
+            'invalid-empty.yang'          | 'no valid content'     || ModelValidationException
+            'invalid-missing-import.yang' | 'no dependency module' || ModelValidationException
     }
 }
