@@ -24,6 +24,7 @@ import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -50,7 +51,7 @@ class AdminRestControllerSpec extends Specification {
     CpsAdminService mockCpsAdminService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = Mock()
+    ModelMapper modelMapper = Mock();
 
     @Autowired
     MockMvc mvc
@@ -59,6 +60,25 @@ class AdminRestControllerSpec extends Specification {
 
     def anchor = new Anchor(name: 'my_anchor')
     def anchorList = [anchor]
+
+    def 'Create new dataspace'() {
+        when:
+            def response = performCreateDataspaceRequest("new-dataspace")
+        then: 'Service method is invoked with expected parameters'
+            1 * mockCpsAdminService.createDataspace("new-dataspace")
+        and:
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Create dataspace over existing with same name'() {
+        given:
+            def thrownException = new DataspaceAlreadyDefinedException("", new RuntimeException())
+            mockCpsAdminService.createDataspace("existing-dataspace") >> { throw thrownException }
+        when:
+            def response = performCreateDataspaceRequest("existing-dataspace")
+        then:
+            response.status == HttpStatus.BAD_REQUEST.value()
+    }
 
     def 'Create schema set from yang file'() {
         def yangResourceMapCapture
@@ -81,6 +101,14 @@ class AdminRestControllerSpec extends Specification {
             def response = performCreateSchemaSetRequest(multipartFile)
         then:
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def performCreateDataspaceRequest(String dataspaceName) {
+        return mvc.perform(
+                MockMvcRequestBuilders
+                        .post('/v1/dataspaces')
+                        .param('dataspace-name', dataspaceName)
+        ).andReturn().response
     }
 
     def createMultipartFile(filename, content) {

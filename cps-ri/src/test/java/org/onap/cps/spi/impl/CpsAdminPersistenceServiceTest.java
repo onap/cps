@@ -32,6 +32,7 @@ import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.Anchor;
@@ -75,6 +76,24 @@ public class CpsAdminPersistenceServiceTest {
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
+
+    @Test
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testCreateDataspace() {
+        final String dataspaceName = "DATASPACE-NEW";
+        cpsAdminPersistenceService.createDataspace(dataspaceName);
+
+        final Dataspace dataspace = dataspaceRepository.findByName(dataspaceName).orElseThrow();
+        assertNotNull(dataspace);
+        assertNotNull(dataspace.getId());
+        assertEquals(dataspaceName, dataspace.getName());
+    }
+
+    @Test(expected = DataspaceAlreadyDefinedException.class)
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testCreateDataspaceWithNameAlreadyDefined() {
+        cpsAdminPersistenceService.createDataspace(DATASPACE_NAME);
+    }
 
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})

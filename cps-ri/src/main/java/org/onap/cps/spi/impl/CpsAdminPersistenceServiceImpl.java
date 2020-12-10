@@ -28,6 +28,7 @@ import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -47,6 +48,15 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
+
+    @Override
+    public void createDataspace(final String dataspaceName) {
+        try {
+            dataspaceRepository.save(new Dataspace(dataspaceName));
+        } catch (final DataIntegrityViolationException e) {
+            throw new DataspaceAlreadyDefinedException(dataspaceName, e);
+        }
+    }
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
