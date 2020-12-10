@@ -38,6 +38,47 @@ paths:
         403:
           description: Forbidden
           content: {}
+  /v1/dataspaces/{dataspace-name}/schema-sets:
+    post:
+      tags:
+        - cps-admin
+      summary: Create a new schema set in the given dataspace
+      operationId: createSchemaSet
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - schemaSetName
+                - multipartFile
+              properties:
+                schemaSetName:
+                  type: string
+                multipartFile:
+                  type: string
+                  description: multipartFile
+                  format: binary
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:

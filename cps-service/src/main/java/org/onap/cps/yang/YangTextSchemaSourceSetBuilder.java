@@ -24,10 +24,14 @@ import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.common.YangNames;
@@ -41,12 +45,10 @@ import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangStatementStreamSo
 import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 import org.opendaylight.yangtools.yang.parser.stmt.reactor.CrossSourceStatementReactor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class YangTextSchemaSourceSetBuilder {
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
-
-    public YangTextSchemaSourceSetBuilder() {
-    }
 
     public YangTextSchemaSourceSetBuilder put(final String fileName, final String content) {
         this.yangModelMap.put(fileName, content);
@@ -58,13 +60,12 @@ public final class YangTextSchemaSourceSetBuilder {
         return this;
     }
 
-    public YangTextSchemaSourceSet build() throws ReactorException, YangSyntaxErrorException {
+    public YangTextSchemaSourceSet build() {
         final SchemaContext schemaContext = generateSchemaContext(yangModelMap.build());
         return new YangTextSchemaSourceSetImpl(schemaContext);
     }
 
-    public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent)
-            throws ReactorException, YangSyntaxErrorException {
+    public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent) {
         return new YangTextSchemaSourceSetBuilder().putAll(yangResourceNameToContent).build();
     }
 
@@ -72,22 +73,22 @@ public final class YangTextSchemaSourceSetBuilder {
 
         private final SchemaContext schemaContext;
 
-        public YangTextSchemaSourceSetImpl(final SchemaContext schemaContext) {
+        private YangTextSchemaSourceSetImpl(final SchemaContext schemaContext) {
             this.schemaContext = schemaContext;
         }
 
         @Override
         public List<ModuleReference> getModuleReferences() {
             return schemaContext.getModules().stream()
-                           .map(YangTextSchemaSourceSetImpl::toModuleReference)
-                           .collect(Collectors.toList());
+                .map(YangTextSchemaSourceSetImpl::toModuleReference)
+                .collect(Collectors.toList());
         }
 
         private static ModuleReference toModuleReference(final Module module) {
             return ModuleReference.builder()
-                           .namespace(module.getName())
-                           .revision(module.getRevision().map(Revision::toString).orElse(null))
-                           .build();
+                .namespace(module.getNamespace().toString())
+                .revision(module.getRevision().map(Revision::toString).orElse(null))
+                .build();
         }
 
         @Override
@@ -100,38 +101,48 @@ public final class YangTextSchemaSourceSetBuilder {
      * Parse and validate a string representing a yang model to generate a SchemaContext context.
      *
      * @param yangResourceNameToContent is a {@link Map} collection that contains the name of the model represented
-     *                     on yangModelContent as key and the yangModelContent as value.
+     *                                  on yangModelContent as key and the yangModelContent as value.
      * @return the schema context
      */
-    private SchemaContext generateSchemaContext(final Map<String, String> yangResourceNameToContent)
-            throws ReactorException, YangSyntaxErrorException {
+    private SchemaContext generateSchemaContext(final Map<String, String> yangResourceNameToContent) {
         final CrossSourceStatementReactor.BuildAction reactor = RFC7950Reactors.defaultReactor().newBuild();
-        final List<YangTextSchemaSource> yangTextSchemaSources = forResources(yangResourceNameToContent);
-        for (final YangTextSchemaSource yangTextSchemaSource : yangTextSchemaSources) {
+        for (final YangTextSchemaSource yangTextSchemaSource : forResources(yangResourceNameToContent)) {
+            final String resourceName = yangTextSchemaSource.getIdentifier().getName();
             try {
                 reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
             } catch (final IOException e) {
-                throw new CpsException("Failed to read yangTextSchemaSource %s.",
-                        yangTextSchemaSource.getIdentifier().getName(), e);
+                throw new CpsException("Failed to read yang resource.",
+                    String.format("Exception occurred on reading resource %s.", resourceName), e);
+            } catch (final YangSyntaxErrorException e) {
+                throw new ModelValidationException("Yang resource is invalid.",
+                    String.format("Yang syntax validation failed for resource %s.", resourceName), e);
             }
         }
-        return reactor.buildEffective();
+        try {
+            return reactor.buildEffective();
+        } catch (final ReactorException e) {
+            final List<String> resourceNames = yangResourceNameToContent.keySet().stream().collect(Collectors.toList());
+            Collections.sort(resourceNames);
+            throw new ModelValidationException("Invalid schema set.",
+                String.format("Effective schema context build failed for resources %s.", resourceNames.toString()), e);
+        }
     }
 
-    private List<YangTextSchemaSource> forResources(final Map<String, String> yangResourceNameToContent) {
+    private static List<YangTextSchemaSource> forResources(final Map<String, String> yangResourceNameToContent) {
         return yangResourceNameToContent.entrySet().stream()
-                       .map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue()))
-                       .collect(Collectors.toList());
+            .map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList());
     }
 
-    private YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
+    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
         final Map.Entry<String, String> sourceNameParsed = YangNames.parseFilename(sourceName);
         final RevisionSourceIdentifier revisionSourceIdentifier = RevisionSourceIdentifier
             .create(sourceNameParsed.getKey(), Revision.ofNullable(sourceNameParsed.getValue()));
+
         return new YangTextSchemaSource(revisionSourceIdentifier) {
             @Override
             protected MoreObjects.ToStringHelper addToStringAttributes(
-                    final MoreObjects.ToStringHelper toStringHelper) {
+                final MoreObjects.ToStringHelper toStringHelper) {
                 return toStringHelper;
             }
 

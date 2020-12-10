@@ -31,6 +31,16 @@ public class ModelValidationException extends CpsException {
      *
      * @param message the error message
      * @param details the error details
+     */
+    public ModelValidationException(final String message, final String details) {
+        super(message, details);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
      * @param cause   the cause of the exception
      */
     public ModelValidationException(final String message, final String details, final Throwable cause) {

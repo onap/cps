@@ -20,12 +20,10 @@
 package org.onap.cps.api.impl;
 
 
-import java.util.Optional;
+import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsModulePersistenceService;
-import org.opendaylight.yangtools.yang.common.Revision;
-import org.opendaylight.yangtools.yang.model.api.Module;
-import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,12 +34,12 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private CpsModulePersistenceService cpsModulePersistenceService;
 
     @Override
-    public void storeSchemaContext(final SchemaContext schemaContext, final String dataspaceName) {
-        for (final Module module : schemaContext.getModules()) {
-            final Optional<Revision> optionalRevision = module.getRevision();
-            final String revisionValue = optionalRevision.map(Object::toString).orElse(null);
-            cpsModulePersistenceService.storeModule(module.getNamespace().toString(), module.toString(),
-                revisionValue, dataspaceName);
-        }
+    public void createSchemaSet(final String dataspaceName, final String schemaSetName,
+                                final Map<String, String> yangResourcesNameToContentMap) {
+
+        YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext(); // validation
+        cpsModulePersistenceService
+            .storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
     }
+
 }
