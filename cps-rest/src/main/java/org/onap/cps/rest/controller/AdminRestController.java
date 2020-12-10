@@ -20,16 +20,19 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
+
 import java.util.Collection;
-import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class AdminRestController implements CpsAdminApi {
@@ -38,7 +41,17 @@ public class AdminRestController implements CpsAdminApi {
     private CpsAdminService cpsAdminService;
 
     @Autowired
+    private CpsModuleService cpsModuleService;
+
+    @Autowired
     private ModelMapper modelMapper;
+
+    @Override
+    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
+                                                  final String dataspaceName) {
+        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
+        return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
+    }
 
     /**
      * Create a new anchor.
