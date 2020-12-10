@@ -21,6 +21,7 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
@@ -32,6 +33,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Autowired
     private CpsAdminPersistenceService cpsAdminPersistenceService;
+
+    @Override
+    public void createDataspace(final String dataspaceName) {
+        cpsAdminPersistenceService.createDataspace(dataspaceName);
+    }
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
