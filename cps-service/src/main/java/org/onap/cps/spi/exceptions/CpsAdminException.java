@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,34 +17,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.exceptions;
-
+package org.onap.cps.spi.exceptions;
 
 /**
- * CP Service exception. Indicates the requested data being absent.
+ * CPS Admin exception.
  */
-public class CpsNotFoundException extends CpsException {
+public class CpsAdminException extends CpsException {
 
-    private static final long serialVersionUID = -1852996415384288431L;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsNotFoundException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param cause   the cause of the exception
-     */
-    public CpsNotFoundException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+    private static final long serialVersionUID = 5573438585188332404L;
 
     /**
      * Constructor.
@@ -52,7 +32,19 @@ public class CpsNotFoundException extends CpsException {
      * @param message the error message
      * @param details the error details
      */
-    public CpsNotFoundException(final String message, final String details) {
+    public CpsAdminException(final String message, final String details) {
         super(message, details);
     }
+
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     * @param cause   the error cause
+     */
+    public CpsAdminException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
+    }
+
 }

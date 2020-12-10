@@ -21,11 +21,16 @@ package org.onap.cps.rest.exceptions
 
 import groovy.json.JsonSlurper
 import org.onap.cps.api.CpService
-import org.onap.cps.exceptions.CpsException
-import org.onap.cps.exceptions.CpsNotFoundException
-import org.onap.cps.exceptions.CpsValidationException
+import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
+import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
+import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.rest.controller.CpsRestController
+import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
+import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -35,9 +40,18 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 class CpsRestExceptionHandlerSpec extends Specification {
 
-    def cpsRestController = new CpsRestController();
+    @Shared
+    def errorMessage = 'some error message'
+    @Shared
+    def errorDetails = 'some error details'
+    @Shared
+    def dataspaceName = 'MyDataSpace'
+    @Shared
+    def existingObjectName = 'MyAdminObject'
+
+    def cpsRestController = new CpsRestController()
     def mockCpService = Mock(CpService.class)
-    def objectUnderTest = new CpsRestExceptionHandler();
+    def objectUnderTest = new CpsRestExceptionHandler()
     def mockMvc = standaloneSetup(cpsRestController).setControllerAdvice(objectUnderTest).build()
 
     def setup() {
@@ -47,48 +61,67 @@ class CpsRestExceptionHandlerSpec extends Specification {
     def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
 
         when: 'runtime exception is thrown by the service'
-            def errorMessage = 'runtime error message'
             setupTestException(new IllegalStateException(errorMessage))
             def response = performTestRequest()
 
-        then: 'an HTTP Internal Server Error response is returned with the correct message'
+        then: 'an HTTP Internal Server Error response is returned with correct message and details'
             assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, null)
     }
 
     def 'Get request with generic CPS exception returns HTTP Status Internal Server Error'() {
 
         when: 'generic CPS exception is thrown by the service'
-            def errorMessage = 'cps generic error message'
-            def errorDetails = 'cps generic error details'
             setupTestException(new CpsException(errorMessage, errorDetails))
             def response = performTestRequest()
 
-        then: 'an HTTP Internal Server Error response is returned with the correct message'
+        then: 'an HTTP Internal Server Error response is returned with correct message and details'
             assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, errorDetails)
     }
 
     def 'Get request with no data found CPS exception returns HTTP Status Not Found'() {
 
         when: 'no data found CPS exception is thrown by the service'
-            def errorMessage = 'cps no data error message'
-            def errorDetails = 'cps no data error details'
-            setupTestException(new CpsNotFoundException(errorMessage, errorDetails))
+            def dataspaceName = 'MyDataSpace'
+            def descriptionOfObject = 'Description'
+            setupTestException(new NotFoundInDataspaceException(dataspaceName, descriptionOfObject))
             def response = performTestRequest()
 
-        then: 'an HTTP Not Found response is returned with the correct message'
-            assertTestResponse(response, NOT_FOUND, errorMessage, errorDetails)
+        then: 'an HTTP Not Found response is returned with correct message and details'
+            assertTestResponse(response, NOT_FOUND, 'Object not found',
+                    'Description does not exist in dataspace MyDataSpace.')
     }
 
-    def 'Get request with CPS validation exception returns HTTP Status Bad Request'() {
+    @Unroll
+    def 'request with an expectedObjectTypeInMessage object already defined exception returns HTTP Status Bad Request'() {
 
-        when: 'CPS validation exception is thrown by the service'
-            def errorMessage = 'cps validation error message'
-            def errorDetails = 'cps validation error details'
-            setupTestException(new CpsValidationException(errorMessage, errorDetails))
+        when: 'no data found CPS exception is thrown by the service'
+            setupTestException(exceptionThrown)
             def response = performTestRequest()
 
-        then: 'an HTTP Bad Request response is returned with the correct message'
+        then: 'an HTTP Bad Request response is returned with correct message an details'
+            assertTestResponse(response, BAD_REQUEST,
+                    "Duplicate ${expectedObjectTypeInMessage}",
+                    "${expectedObjectTypeInMessage} with name ${existingObjectName} " +
+                            'already exists for dataspace MyDataSpace.')
+        where: 'the following exceptions are thrown'
+            exceptionThrown                                                               || expectedObjectTypeInMessage
+            new SchemaSetAlreadyDefinedException(dataspaceName, existingObjectName, null) || 'Schema Set'
+            new AnchorAlreadyDefinedException(dataspaceName, existingObjectName, null)    || 'Anchor'
+    }
+
+    @Unroll
+    def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
+
+        when: 'CPS validation exception is thrown by the service'
+            setupTestException(exceptionThrown)
+            def response = performTestRequest()
+
+        then: 'an HTTP Bad Request response is returned with correct message and details'
             assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
+
+        where: 'the following exceptions are thrown'
+            exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
+                                new DataValidationException(errorMessage, errorDetails, null)]
     }
 
     /*
@@ -111,5 +144,5 @@ class CpsRestExceptionHandlerSpec extends Specification {
         assert content['message'] == expectedErrorMessage
         assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
     }
-    
+
 }
