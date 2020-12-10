@@ -73,6 +73,29 @@
       "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a241316f_f5321348",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-10T11:22:59Z",
+      "side": 1,
+      "message": "almost forgot, the option mentioned before is to have our own type of YangTextSchemaSource.\ne.g. CPSYangTextSchemaSource, and it could be shared across the layers. Problem I see is that we will have more tide dependency as already mentioned. So, people what do you think? Unless we plan to support multiple types of yang handlers is not an issue.",
+      "range": {
+        "startLine": 240,
+        "startChar": 19,
+        "endLine": 240,
+        "endChar": 40
+      },
+      "revId": "609d05f099c0e8e63072e8fb6bd05fb3c35b04a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
