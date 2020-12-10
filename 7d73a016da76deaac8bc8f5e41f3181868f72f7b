@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38b8f5ef_e6810d49",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-10T17:32:42Z",
+      "side": 1,
+      "message": "This is not the spacing as followed by the ONAP checkstyle. Introducing new code format may create non uniform indentation.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8f8adc4_ea414e90",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-10T17:32:42Z",
+      "side": 1,
+      "message": "This would be suggested by SONAR to be removed.",
+      "range": {
+        "startLine": 76,
+        "startChar": 34,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "222080d5_f94a72e0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-10T17:32:42Z",
+      "side": 1,
+      "message": "extra line",
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e2451b2_336d64fe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-10T17:32:42Z",
+      "side": 1,
+      "message": "can this be handled in the Repository class as it is done for all those to maintain uniformity",
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
