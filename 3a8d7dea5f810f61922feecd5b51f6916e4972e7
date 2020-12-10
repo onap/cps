@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "60188900_a69d0f60",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T09:30:25Z",
+      "side": 1,
+      "message": "introduced AnchorAlreadyDefinedException\n#*inline with our discussions and what we have doen already I think its is OK to have dedicated exception for our 3 main admin objects, dataspace, schemaset and anchors)",
+      "parentUuid": "edd6d7fc_5a40a28c",
+      "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5323a982_54faa85c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2020-12-09T18:25:45Z",
       "side": 1,
       "message": "alignments on this class doesnt seems to be correct. Anyway I dont see it as a reason to block the merge.\nCan be changed later",
+      "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "341b3add_785c4529",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-10T09:30:25Z",
+      "side": 1,
+      "message": "at this stage I am unsure what is the correct alignment I thought my IDE was set up correctly...",
+      "parentUuid": "5323a982_54faa85c",
       "revId": "3a8d7dea5f810f61922feecd5b51f6916e4972e7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
