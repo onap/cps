@@ -28,6 +28,18 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 class YangUtilsSpec extends Specification{
+
+    def 'Building schema context from resource'(){
+        given:
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        when:
+            def result = YangUtils.buildSchemaContext(yangResourcesNameToContentMap);
+        then:
+            result.modules.size() == 1
+            def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
+            optionalModule.isPresent()
+    }
+
     def 'Parsing a valid Json String.'() {
         given: 'a yang model (file)'
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
