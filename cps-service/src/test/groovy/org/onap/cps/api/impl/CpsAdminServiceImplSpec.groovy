@@ -32,6 +32,13 @@ class CpsAdminServiceImplSpec extends Specification {
         objectUnderTest.cpsAdminPersistenceService = mockCpsAdminPersistenceService
     }
 
+    def 'Create dataspace method invokes persistence service'() {
+        when: 'Create dataspace method is invoked'
+            objectUnderTest.createDataspace('someDataspace')
+        then: 'The persistence service method is invoked with same parameters'
+            1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
+    }
+
     def 'Create anchor method invokes persistence service'() {
         when: 'Create anchor method is invoked'
             objectUnderTest.createAnchor('dummyDataspace', 'dummySchemaSet', 'dummyAnchorName')

@@ -9,6 +9,35 @@ tags:
   - name: cps-rest
     description: cps Resource
 paths:
+  /v1/dataspaces:
+    post:
+      tags:
+        - cps-admin
+      summary: Create a new dataspace
+      operationId: createDataspace
+      parameters:
+        - name: dataspace-name
+          in: query
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+        400:
+          description: Bad Request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
   /v1/dataspaces/{dataspace-name}/:
     delete:
       tags:

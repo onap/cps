@@ -34,6 +34,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     private CpsAdminPersistenceService cpsAdminPersistenceService;
 
     @Override
+    public void createDataspace(final String dataspaceName) {
+        cpsAdminPersistenceService.createDataspace(dataspaceName);
+    }
+
+    @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
     }
