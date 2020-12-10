@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "30ad79d1_3ab583e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2020-12-10T14:21:02Z",
+      "side": 1,
+      "message": "It has been agreed with the team to implement unit tests in a different change.",
+      "parentUuid": "15e506ab_b8db8c10",
+      "revId": "fd055c516e5e343d9de4b876ae6f072919c3ea2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77bd200c_af0d3b91",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 3
