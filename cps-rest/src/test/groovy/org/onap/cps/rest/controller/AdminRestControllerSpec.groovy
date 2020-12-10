@@ -22,6 +22,7 @@ package org.onap.cps.rest.controller
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -46,13 +47,32 @@ class AdminRestControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
+    def 'Create new dataspace'() {
+        when:
+            def response = performCreateDataspaceRequest("new-dataspace")
+        then: 'Service method is invoked with expected parameters'
+            1 * mockCpsAdminService.createDataspace("new-dataspace")
+        and:
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Create dataspace over existing with same name'() {
+        given:
+            def thrownException = new DataspaceAlreadyDefinedException("", new RuntimeException())
+            mockCpsAdminService.createDataspace("existing-dataspace") >> { throw thrownException }
+        when:
+            def response = performCreateDataspaceRequest("existing-dataspace")
+        then:
+            response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
     def 'Create schema set from yang file'() {
-        def yangResourceMapCapture
         given:
             def multipartFile = createMultipartFile("filename.yang", "content")
         when:
             def response = performCreateSchemaSetRequest(multipartFile)
         then: 'Service method is invoked with expected parameters'
+            def yangResourceMapCapture
             1 * mockCpsModuleService.createSchemaSet('test-dataspace', 'test-schema-set', _) >>
                     { args -> yangResourceMapCapture = args[2] }
             yangResourceMapCapture['filename.yang'] == 'content'
@@ -67,6 +87,14 @@ class AdminRestControllerSpec extends Specification {
             def response = performCreateSchemaSetRequest(multipartFile)
         then:
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def performCreateDataspaceRequest(String dataspaceName) {
+        return mvc.perform(
+                MockMvcRequestBuilders
+                        .post('/v1/dataspaces')
+                        .param('dataspace-name', dataspaceName)
+        ).andReturn().response
     }
 
     def createMultipartFile(filename, content) {
