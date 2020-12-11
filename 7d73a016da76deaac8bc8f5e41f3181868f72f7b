@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "60bb674f_851421dd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T09:43:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8f8adc4_ea414e90",
+      "range": {
+        "startLine": 76,
+        "startChar": 34,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "222080d5_f94a72e0",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
         "patchSetId": 6
@@ -65,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5ebf5971_7128c8c0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T09:43:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "222080d5_f94a72e0",
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e2451b2_336d64fe",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 6
@@ -79,6 +121,24 @@
       "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d53d6477_2a79b372",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T09:43:46Z",
+      "side": 1,
+      "message": "it\u0027s not a responsibility of repository.\nit\u0027s over-complicated if you follow the rules on repository extension\nhttps://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.custom-implementations",
+      "parentUuid": "8e2451b2_336d64fe",
+      "revId": "7d73a016da76deaac8bc8f5e41f3181868f72f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
