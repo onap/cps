@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b54d01ab_53a5fc6e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:29:54Z",
+      "side": 1,
+      "message": "avoid unnecessary blank lines",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "18f2f50e6c5c3f363d07d56c47de4628dc683e4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b41448dd_4c9aec94",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:29:54Z",
+      "side": 1,
+      "message": "in the context of your test would EXISTSING_ be a better prefix?",
+      "range": {
+        "startLine": 60,
+        "startChar": 32,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "18f2f50e6c5c3f363d07d56c47de4628dc683e4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
