@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4195c79c_996bbbfb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T16:39:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e2606c27_01c02ebd",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 44
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3138a8e1_b8479ab4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 11
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4997f3e7_30bb84fb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T16:39:52Z",
+      "side": 1,
+      "message": "probably lost on conflict resolution... returned back )",
+      "parentUuid": "3138a8e1_b8479ab4",
+      "range": {
+        "startLine": 3,
+        "startChar": 61,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ec65bd7_e5251bfa",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 11
@@ -68,6 +116,30 @@
       "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89213704_97c18d4c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T16:39:52Z",
+      "side": 1,
+      "message": "moved to description. this is to indicate the behavior difference with findX() method. also fixed the actual exception name",
+      "parentUuid": "6ec65bd7_e5251bfa",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 62
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
