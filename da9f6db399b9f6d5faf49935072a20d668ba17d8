@@ -85,6 +85,24 @@
       "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd8f87f5_1522a757",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T16:04:46Z",
+      "side": 1,
+      "message": "it is verifying that it is delegated which is correct. No need for negative scneario either\ntheer is no logic to UNIT test here...",
+      "parentUuid": "0183bcec_c117f2d3",
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
