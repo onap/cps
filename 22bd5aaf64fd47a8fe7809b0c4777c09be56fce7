@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "be1db391_321e168d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T11:53:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d33d5fdb_27f5db27",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "22bd5aaf64fd47a8fe7809b0c4777c09be56fce7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9904cdd4_bc463287",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 9
@@ -69,6 +93,30 @@
       "revId": "22bd5aaf64fd47a8fe7809b0c4777c09be56fce7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a41c559_d093fe6c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T11:53:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95a2f38f_d693e08f",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 14
+      },
+      "revId": "22bd5aaf64fd47a8fe7809b0c4777c09be56fce7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
