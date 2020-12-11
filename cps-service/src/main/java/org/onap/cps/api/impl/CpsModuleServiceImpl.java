@@ -20,20 +20,12 @@
 package org.onap.cps.api.impl;
 
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Optional;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsModulePersistenceService;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.ModelValidationException;
-import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,30 +34,6 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Autowired
     private CpsModulePersistenceService cpsModulePersistenceService;
-
-    @Override
-    public SchemaContext parseAndValidateModel(final String yangModelContent) {
-        try {
-            final File tempFile = File.createTempFile("yang", ".yang");
-            try (final BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-                writer.write(yangModelContent);
-            }
-            return parseAndValidateModel(tempFile);
-        } catch (final IOException e) {
-            throw new CpsException(e);
-        }
-    }
-
-    @Override
-    public SchemaContext parseAndValidateModel(final File yangModelFile) {
-        try {
-            return YangUtils.parseYangModelFile(yangModelFile);
-        } catch (final YangParserException e) {
-            throw new ModelValidationException("Yang file validation failed", e.getMessage(), e);
-        } catch (final IOException e) {
-            throw new CpsException(e);
-        }
-    }
 
     @Override
     public void storeSchemaContext(final SchemaContext schemaContext, final String dataspaceName) {

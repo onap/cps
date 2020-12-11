@@ -19,7 +19,6 @@
 
 package org.onap.cps.api;
 
-import java.io.File;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
@@ -27,22 +26,6 @@ import org.opendaylight.yangtools.yang.model.api.SchemaContext;
  * Responsible for managing module sets.
  */
 public interface CpsModuleService {
-
-    /**
-     * Parse and validate a string representing a yang model to generate a schema context.
-     *
-     * @param yangModelContent the input stream
-     * @return the schema context
-     */
-    SchemaContext parseAndValidateModel(String yangModelContent);
-
-    /**
-     * Parse and validate a file representing a yang model to generate a schema context.
-     *
-     * @param yangModelFile the yang file
-     * @return the schema context
-     */
-    SchemaContext parseAndValidateModel(File yangModelFile);
 
     /**
      * Store schema context for a yang model.

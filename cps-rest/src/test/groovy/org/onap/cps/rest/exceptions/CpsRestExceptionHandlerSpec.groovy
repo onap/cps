@@ -20,7 +20,7 @@
 package org.onap.cps.rest.exceptions
 
 import groovy.json.JsonSlurper
-import org.onap.cps.api.CpService
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -50,12 +50,12 @@ class CpsRestExceptionHandlerSpec extends Specification {
     def existingObjectName = 'MyAdminObject'
 
     def cpsRestController = new CpsRestController()
-    def mockCpService = Mock(CpService.class)
+    def mockCpsAdminService = Mock(CpsAdminService.class)
     def objectUnderTest = new CpsRestExceptionHandler()
     def mockMvc = standaloneSetup(cpsRestController).setControllerAdvice(objectUnderTest).build()
 
     def setup() {
-        cpsRestController.cpService = mockCpService
+        cpsRestController.cpsAdminService = mockCpsAdminService
     }
 
     def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
@@ -130,11 +130,11 @@ class CpsRestExceptionHandlerSpec extends Specification {
      */
 
     def setupTestException(exception) {
-        mockCpService.getJsonById(_) >> { throw exception }
+        mockCpsAdminService.getAnchors(_) >> { throw exception}
     }
 
     def performTestRequest() {
-        return mockMvc.perform(get('/json-object/1')).andReturn().response
+        return mockMvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
     }
 
     void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {

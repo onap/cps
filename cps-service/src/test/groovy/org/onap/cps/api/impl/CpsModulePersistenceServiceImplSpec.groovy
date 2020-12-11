@@ -35,37 +35,9 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
     }
 
-    def 'Parse and Validate a Yang Model with a Valid Yang Model'() {
-        given: 'a yang model (file)'
-            def yangModel = TestUtils.getResourceFileContent('bookstore.yang')
-        when: 'a valid model is parsed and validated'
-            def result = objectUnderTest.parseAndValidateModel(yangModel)
-        then: 'Verify a schema context for that model is created with the correct identity'
-            assertModule(result)
-    }
-
-    def 'Parse and Validate a Yang Model Using a File'() {
-        given: 'a yang file that contains a yang model'
-            File file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-        when: 'a model is parsed and validated'
-            def result = objectUnderTest.parseAndValidateModel(file)
-        then: 'Verify a schema context for that model is created with the correct identity'
-            assertModule(result)
-
-    }
-
     def assertModule(SchemaContext schemaContext) {
         def optionalModule = schemaContext.findModule('stores', Revision.of('2020-09-15'))
         return schemaContext.modules.size() == 1 && optionalModule.isPresent()
-    }
-
-    def 'Parse and Validate an Invalid Model'() {
-        given: 'a yang file that contains a invalid yang model'
-            File file = new File(ClassLoader.getSystemClassLoader().getResource('invalid.yang').getFile())
-        when: 'the model is parsed and validated'
-            objectUnderTest.parseAndValidateModel(file)
-        then: 'a CpsValidationException is thrown'
-            thrown(CpsException)
     }
 
     def 'Store a SchemaContext'() {

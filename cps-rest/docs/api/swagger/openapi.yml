@@ -252,49 +252,6 @@ paths:
         404:
           description: Not Found
           content: {}
-    post:
-      tags:
-        - cps-rest
-      summary: Create modules for the given dataspace
-      operationId: createModules
-      parameters:
-        - name: dataspace-name
-          in: path
-          description: dataspace-name
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              required:
-                - file
-              properties:
-                multipartFile:
-                  type: string
-                  description: multipartFile
-                  format: binary
-        required: true
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-        201:
-          description: Created
-          content: {}
-        401:
-          description: Unauthorized
-          content: {}
-        403:
-          description: Forbidden
-          content: {}
-        404:
-          description: Not Found
-          content: {}
   /v1/dataspaces/{dataspace-name}/nodes:
     get:
       tags:
