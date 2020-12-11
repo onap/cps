@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "49991263_dce68850",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T13:27:50Z",
+      "side": 1,
+      "message": "provided new exception class",
+      "parentUuid": "4e634564_efd9fd02",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 54
+      },
+      "revId": "7a7f6c7cb1254b2a53cdec89da6e73915bdda429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "476a2f73_69921362",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "7a7f6c7cb1254b2a53cdec89da6e73915bdda429",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75266233_b861fd09",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-11T13:27:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "476a2f73_69921362",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 39
+      },
+      "revId": "7a7f6c7cb1254b2a53cdec89da6e73915bdda429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
