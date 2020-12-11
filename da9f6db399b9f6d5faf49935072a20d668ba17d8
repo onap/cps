@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2606c27_01c02ebd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-11T15:58:34Z",
+      "side": 1,
+      "message": "extra space.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 44
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3138a8e1_b8479ab4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-11T15:58:34Z",
+      "side": 1,
+      "message": "not sure why the Bell copyright is removed :)",
+      "range": {
+        "startLine": 3,
+        "startChar": 61,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ec65bd7_e5251bfa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-11T15:58:34Z",
+      "side": 1,
+      "message": "I think we discussed to not mention the exception in the Java doc",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 62
+      },
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0183bcec_c117f2d3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-11T15:58:34Z",
+      "side": 1,
+      "message": "Is this really testing something as the expect is removed ?\ny are the negative test scenarios removed from here?",
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
