@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e634564_efd9fd02",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:19:48Z",
+      "side": 1,
+      "message": "we could consider a dedicated CpsAdminException for SchemaSetNotFound but I don\u0027t mind either way",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 54
+      },
+      "revId": "7a7f6c7cb1254b2a53cdec89da6e73915bdda429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "476a2f73_69921362",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:19:48Z",
+      "side": 1,
+      "message": "dataspace name is the first parameter (check constructor)\nIts an important consistency rule for all our method that the order for our \u0027admin\u0027 object are always the same order...",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 39
+      },
+      "revId": "7a7f6c7cb1254b2a53cdec89da6e73915bdda429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
