@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5473343f_b5ec53a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:57:58Z",
+      "side": 1,
+      "message": "so you will change this to take text (maybe have an overload method that takes collection of files and in the future a method that takes  a zip file?",
+      "range": {
+        "startLine": 85,
+        "startChar": 52,
+        "endLine": 85,
+        "endChar": 84
+      },
+      "revId": "8a1710c8c2a91a106dc2faa55106c22dbcf612aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc8091c7_ae6e67ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-11T12:57:58Z",
+      "side": 1,
+      "message": "refactor to new class",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8a1710c8c2a91a106dc2faa55106c22dbcf612aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
