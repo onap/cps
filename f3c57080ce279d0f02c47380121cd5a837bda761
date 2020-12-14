@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "376b3ce8_feb43319",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "ok, that\u0027s what I suspected, you have a commit in WiP to replace this correct",
+      "parentUuid": "07600b0d_c05eb50e",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d500d908_823a35ea",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
         "patchSetId": 1
@@ -136,6 +160,53 @@
     },
     {
       "key": {
+        "uuid": "26550aa5_d3a1326f",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7864c4ff_7f75427a",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b805b8c6_b9ee077a",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "see comment below on name of Map",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3fe6f9c3_39041fed",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -176,6 +247,121 @@
         "startChar": 28,
         "endLine": 60,
         "endChar": 35
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8005c05_ff8fb98a",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "can you clarify the name please (I am not sure what map this is and I think I saw better names in another commit)\nI like the e...To...  naming convention for maps but without ending in the word \u0027Map\u0027 that seems superfluous to me...",
+      "range": {
+        "startLine": 64,
+        "startChar": 71,
+        "endLine": 64,
+        "endChar": 83
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e83630bd_b504070e",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "schemaContext (please use full classnames default)",
+      "range": {
+        "startLine": 73,
+        "startChar": 63,
+        "endLine": 73,
+        "endChar": 69
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4ef75aa_92f59195",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "suggested name: yangResourceNameToContent",
+      "range": {
+        "startLine": 100,
+        "startChar": 78,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d6c9a70_d3c48328",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "same name as before just preceded by \u0027parsed\u0027",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 47
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f1873d_f1f1a78d",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:31:07Z",
+      "side": 1,
+      "message": "revsionSourceIdentifier",
+      "range": {
+        "startLine": 108,
+        "startChar": 39,
+        "endLine": 108,
+        "endChar": 50
       },
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
