@@ -22,7 +22,8 @@ package org.onap.cps.spi.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableMap;
+import java.util.Map;
 import java.util.Set;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -55,8 +56,13 @@ public class CpsModulePersistenceServiceTest {
     private static final String DATASPACE_NAME_INVALID = "DATASPACE-X";
     private static final String SCHEMA_SET_NAME = "SCHEMA-SET-001";
     private static final String SCHEMA_SET_NAME_NEW = "SCHEMA-SET-NEW";
-    private static final String OLD_RESOURCE_CONTENT = "CONTENT-001";
-    private static final String OLD_RESOURCE_CHECKSUM = "877e65a9f36d54e7702c3f073f6bc42b";
+
+    private static final String EXISTING_RESOURCE_NAME = "module1@2020-02-02.yang";
+    private static final String EXISTING_RESOURCE_CONTENT = "CONTENT-001";
+    private static final String EXISTING_RESOURCE_CHECKSUM = "877e65a9f36d54e7702c3f073f6bc42b";
+    private static final Long EXISTING_RESOURCE_ID = 3001L;
+
+    private static final String NEW_RESOURCE_NAME = "new-module@2020-02-02.yang";
     private static final String NEW_RESOURCE_CONTENT = "CONTENT-NEW";
     private static final String NEW_RESOURCE_CHECKSUM = "c94d40a1350eb1c0b1c1949eac84fc59";
     private static final Long NEW_RESOURCE_ABSTRACT_ID = 0L;
@@ -80,34 +86,38 @@ public class CpsModulePersistenceServiceTest {
     @Test(expected = DataspaceNotFoundException.class)
     @Sql(CLEAR_DATA)
     public void testStoreSchemaSetToInvalidDataspace() {
-        cpsModulePersistenceService
-            .storeSchemaSet(DATASPACE_NAME_INVALID, SCHEMA_SET_NAME_NEW, toSet(NEW_RESOURCE_CONTENT));
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME_INVALID, SCHEMA_SET_NAME_NEW,
+            toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT));
     }
 
     @Test(expected = SchemaSetAlreadyDefinedException.class)
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
     public void testStoreDuplicateSchemaSet() {
-        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME, toSet(NEW_RESOURCE_CONTENT));
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME,
+            toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT));
     }
 
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
     public void testStoreSchemaSetWithNewYangResource() {
-        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, toSet(NEW_RESOURCE_CONTENT));
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
+            toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT));
         assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
-            NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM);
+            NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM);
     }
 
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
     public void testStoreSchemaSetWithExistingYangResourceReuse() {
-        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, toSet(OLD_RESOURCE_CONTENT));
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
+            toMap(NEW_RESOURCE_NAME, EXISTING_RESOURCE_CONTENT));
         assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
-            3001L, OLD_RESOURCE_CONTENT, OLD_RESOURCE_CHECKSUM);
+            EXISTING_RESOURCE_ID, EXISTING_RESOURCE_NAME, EXISTING_RESOURCE_CONTENT, EXISTING_RESOURCE_CHECKSUM);
     }
 
     private void assertSchemaSetPersisted(final String expectedDataspaceName, final String expectedSchemaSetName,
-                                          final Long expectedYangResourceId, final String expectedYangResourceContent,
+                                          final Long expectedYangResourceId, final String expectedYangResourceName,
+                                          final String expectedYangResourceContent,
                                           final String expectedYangResourceChecksum) {
 
         // assert the schema set is persisted
@@ -127,12 +137,13 @@ public class CpsModulePersistenceServiceTest {
             // existing resource with known id
             assertEquals(expectedYangResourceId, yangResource.getId());
         }
+        assertEquals(expectedYangResourceName, yangResource.getName());
         assertEquals(expectedYangResourceContent, yangResource.getContent());
         assertEquals(expectedYangResourceChecksum, yangResource.getChecksum());
     }
 
-    private static Set<String> toSet(final String... elements) {
-        return ImmutableSet.<String>builder().add(elements).build();
+    private static Map<String, String> toMap(final String key, final String value) {
+        return ImmutableMap.<String, String>builder().put(key, value).build();
     }
 
     private SchemaSet getSchemaSetFromDatabase(final String dataspaceName, final String schemaSetName) {
