@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d500d908_823a35ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-14T10:56:25Z",
+      "side": 1,
+      "message": "add javadoc",
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
