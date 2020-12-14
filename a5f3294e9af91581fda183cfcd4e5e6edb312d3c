@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bc80022_4b0c78cd",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "this suggest the name itself is (an) empty (string)\nI would just call this EMPTY_DATASPACE\n(the positive scenario, which should be the first tets wil already made clear it is the parameter is the name of the relevant dataspace)",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 53
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20b2197f_f51512b9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "NON_EXISTING_DATASPACE(_NAME) adding _NAME is OK in this case but whatever you prefer",
+      "range": {
+        "startLine": 56,
+        "startChar": 32,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c551c298_85e9b1ee",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "suggestion: I often use string content to make it even more obvious e.g.\nNON_EXISTING_DATASPACE \u003d \"DOES NO EXISTS\"",
+      "range": {
+        "startLine": 56,
+        "startChar": 58,
+        "endLine": 56,
+        "endChar": 69
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13e32d0e_3a953d61",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "NON_EXISTING_SCHEMA_SET(_NAME)",
+      "range": {
+        "startLine": 57,
+        "startChar": 32,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfef661b_3326d1ae",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "NonExistsing",
+      "range": {
+        "startLine": 81,
+        "startChar": 33,
+        "endLine": 81,
+        "endChar": 41
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feafedc5_5b744a03",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "please move positive tests to the top",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8573413d_aaec7357",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "NonExisting",
+      "range": {
+        "startLine": 115,
+        "startChar": 32,
+        "endLine": 115,
+        "endChar": 39
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7a108d_6b4a0637",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetNotFoundException.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "Schema Set not found",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f0051ae_f898b647",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:07:15Z",
+      "side": 1,
+      "message": "use the same tets approach is in the previous test (just verify the call is delegated with the same parameters",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 76
+      },
+      "revId": "a5f3294e9af91581fda183cfcd4e5e6edb312d3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
