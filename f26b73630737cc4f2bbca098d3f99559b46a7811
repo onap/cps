@@ -22,6 +22,122 @@
       "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28165f2c_c78c35d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:38:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45d950d9_e68f6fc8",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e99c00b_b786f9c5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:38:59Z",
+      "side": 1,
+      "message": "schemaSet",
+      "range": {
+        "startLine": 120,
+        "startChar": 24,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d76efb81_bc35a612",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:38:59Z",
+      "side": 1,
+      "message": "please try to come up with a clear and consistent set of names for these maps, see also my comment in other commit",
+      "range": {
+        "startLine": 121,
+        "startChar": 34,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f50b1ce_2e349572",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:38:59Z",
+      "side": 1,
+      "message": "getModuleRefs",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2efe30c5_2f5d9d66",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T15:38:59Z",
+      "side": 1,
+      "message": "hard to read, but OK\n( I am not a big fan of this functional approach, but it is something I can get used to I suppose)\nJust dont think it will perform better than more traditional code, for some reason people often think that. I have doen test and there is also much online material that debunk that myth",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 117
+      },
+      "revId": "f26b73630737cc4f2bbca098d3f99559b46a7811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
