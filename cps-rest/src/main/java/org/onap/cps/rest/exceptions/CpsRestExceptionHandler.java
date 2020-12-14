@@ -32,10 +32,15 @@ import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice(assignableTypes = {CpsRestController.class})
 public class CpsRestExceptionHandler {
+
+    private CpsRestExceptionHandler() {
+        throw new IllegalStateException(RestController.class.getSimpleName());
+    }
 
     /**
      * Default exception handler.

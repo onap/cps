@@ -28,26 +28,8 @@ public class CpsException extends RuntimeException {
 
     private static final long serialVersionUID = 1592619410918497467L;
 
-    @Getter String details;
-
-    /**
-     * Constructor.
-     *
-     * @param cause the cause of the exception
-     */
-    public CpsException(final Throwable cause) {
-        super(cause.getMessage(), cause);
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param cause   the cause of the exception
-     */
-    public CpsException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+    @Getter
+    final String details;
 
     /**
      * Constructor.
