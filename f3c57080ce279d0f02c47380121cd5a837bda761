@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "07600b0d_c05eb50e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T12:00:37Z",
+      "side": 1,
+      "message": "this method goes away, notice the @deprecated annotation added.\nFiles handling should be done only on REST layer, from there we should move only with YangTextSchemaSourceSet",
+      "parentUuid": "2ceacb45_8c4ccc46",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d500d908_823a35ea",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
         "patchSetId": 1
@@ -76,6 +100,30 @@
       "writtenOn": "2020-12-14T11:30:35Z",
       "side": 1,
       "message": "what is the consensus on JavaDoc? I personally think it is only really needed on outward facing APIs....",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7864c4ff_7f75427a",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T12:00:37Z",
+      "side": 1,
+      "message": "I dont see much value on document the builder, but what it returns. And that is already done.\nIf anyone still want some doc here I can add it",
+      "parentUuid": "daa7b49f_32f5cbfc",
       "range": {
         "startLine": 42,
         "startChar": 19,
