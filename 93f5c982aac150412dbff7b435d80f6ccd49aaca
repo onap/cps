@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b3d4e475_3ac8617b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T09:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550f6250_62159af9",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45c3d499_5e254d28",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
         "patchSetId": 13
@@ -33,6 +51,24 @@
       "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c6328e1_b184c15b",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T09:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45c3d499_5e254d28",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
