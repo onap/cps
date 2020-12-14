@@ -19,18 +19,23 @@
 
 package org.onap.cps.utils;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ServiceLoader;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
@@ -48,44 +53,37 @@ import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeS
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParser;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserFactory;
-import org.opendaylight.yangtools.yang.model.repo.api.StatementParserMode;
-import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 
 public class YangUtils {
-
-    private static final YangParserFactory PARSER_FACTORY;
-
     private static final Logger LOGGER = Logger.getLogger(YangUtils.class.getName());
 
     private YangUtils() {
         throw new IllegalStateException("Utility class");
     }
 
-    static {
-        final Iterator<YangParserFactory> it = ServiceLoader.load(YangParserFactory.class).iterator();
-        if (!it.hasNext()) {
-            throw new IllegalStateException("No YangParserFactory found");
-        }
-        PARSER_FACTORY = it.next();
-    }
-
     /**
      * Parse a file containing yang modules.
      *
-     * @param yangModelFile a file containing one or more yang modules. The file has to have a .yang extension.
+     * @param yangModelFiles list of files containing one or more yang modules. The file has to have a .yang extension.
      * @return a SchemaContext representing the yang model
      * @throws IOException         when the system as an IO issue
      * @throws YangParserException when the file does not contain a valid yang structure
      */
-    public static SchemaContext parseYangModelFile(final File yangModelFile) throws IOException, YangParserException {
-        final YangTextSchemaSource yangTextSchemaSource = YangTextSchemaSource.forFile(yangModelFile);
-        final YangParser yangParser = PARSER_FACTORY
-                .createParser(StatementParserMode.DEFAULT_MODE);
-        yangParser.addSource(yangTextSchemaSource);
-        return yangParser.buildEffectiveModel();
+    @Deprecated
+    public static YangTextSchemaSourceSet parseYangModelFiles(final List<File> yangModelFiles)
+            throws IOException, YangParserException, ReactorException {
+        final YangTextSchemaSourceSetBuilder yangModelsMapBuilder = new YangTextSchemaSourceSetBuilder();
+        for (final File file :yangModelFiles) {
+            final String fileNameWithExtension = file.getName();
+            checkArgument(fileNameWithExtension.endsWith(RFC6020_YANG_FILE_EXTENSION),
+                    "Filename %s does not end with '%s'", RFC6020_YANG_FILE_EXTENSION,
+                    fileNameWithExtension);
+            final String content = Files.asCharSource(file, Charsets.UTF_8).read();
+            yangModelsMapBuilder.put(fileNameWithExtension, content);
+        }
+        return yangModelsMapBuilder.build();
     }
 
     /**

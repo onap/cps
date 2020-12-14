@@ -33,7 +33,7 @@ class YangUtilsSpec extends Specification{
         given: 'a yang model (file)'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
         when: 'the file is parsed'
-            def result = YangUtils.parseYangModelFile(file)
+            def result = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
         then: 'the result contain 1 module of the correct name and revision'
             result.modules.size() == 1
             def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
@@ -45,7 +45,7 @@ class YangUtilsSpec extends Specification{
         given: 'a file with #description'
             File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile())
         when: 'the file is parsed'
-            YangUtils.parseYangModelFile(file)
+            YangUtils.parseYangModelFiles(Collections.singletonList(file))
         then: 'an exception is thrown'
             thrown(expectedException)
         where: 'the following parameters are used'
@@ -59,7 +59,7 @@ class YangUtilsSpec extends Specification{
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
         and: 'a model for that data'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFile(file)
+            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
         when: 'the json data is parsed'
             NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
         then: 'the result is a normalized node of the correct type'
@@ -70,7 +70,7 @@ class YangUtilsSpec extends Specification{
     def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFile(file)
+            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
         when: 'invalid data is parsed'
             YangUtils.parseJsonData(invalidJson, schemaContext)
         then: 'an exception is thrown'
@@ -84,7 +84,7 @@ class YangUtilsSpec extends Specification{
     def 'Breaking a Json Data Object into fragments.'() {
         given: 'a Yang module'
             def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFile(file)
+            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
             def module = schemaContext.findModule('stores', Revision.of('2020-09-15')).get()
         and: 'a normalized node for that model'
             def jsonData = TestUtils.getResourceFileContent('bookstore.json')
