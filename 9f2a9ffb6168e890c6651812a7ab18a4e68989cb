@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e516802e_1ba4d5dc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T17:19:25Z",
+      "side": 1,
+      "message": "throw illegalstate exception as per SonarQube recommendation",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "9f2a9ffb6168e890c6651812a7ab18a4e68989cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
