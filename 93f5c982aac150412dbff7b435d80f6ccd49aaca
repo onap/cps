@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "550f6250_62159af9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T07:31:17Z",
+      "side": 1,
+      "message": "document exception",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45c3d499_5e254d28",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T07:31:17Z",
+      "side": 1,
+      "message": "either getAnchor never returns null, or you have possible NPE on [0]\nMight be good to add @Nonnull return annotation to the method. And remove this line\n\n[0] https://gerrit.onap.org/r/c/cps/+/116191/13/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java#77",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39081bdb_e97aa95b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T07:31:17Z",
+      "side": 1,
+      "message": "add annotations to parameters and return",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88df44d_ebda33d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-14T07:31:17Z",
+      "side": 1,
+      "message": "add annotations to parameters and return",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
