@@ -37,6 +37,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(assignableTypes = {CpsRestController.class})
 public class CpsRestExceptionHandler {
 
+    private CpsRestExceptionHandler() {
+        super();
+    }
+
     /**
      * Default exception handler.
      *
