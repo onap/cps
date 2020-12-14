@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "76fcad9a_3bb55b45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:30:35Z",
+      "side": 1,
+      "message": "missing Jira",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ceacb45_8c4ccc46",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:30:35Z",
+      "side": 1,
+      "message": "so this will throw an illegalArgumentException, should we consider wrapping that in a ModelValidationExcption or is good enough as it is? I can be persuaded either way. Ot is it not relevant as you plan no to handle files here anymore?!",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d500d908_823a35ea",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
         "patchSetId": 1
@@ -13,6 +59,52 @@
       "writtenOn": "2020-12-14T10:56:25Z",
       "side": 1,
       "message": "add javadoc",
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daa7b49f_32f5cbfc",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:30:35Z",
+      "side": 1,
+      "message": "what is the consensus on JavaDoc? I personally think it is only really needed on outward facing APIs....",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fe6f9c3_39041fed",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-14T11:30:35Z",
+      "side": 1,
+      "message": "schemaContext",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 35
+      },
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
