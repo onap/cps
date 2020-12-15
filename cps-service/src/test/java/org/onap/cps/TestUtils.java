@@ -22,11 +22,25 @@ package org.onap.cps;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Common convenience methods for testing.
  */
 public class TestUtils {
+
+    /**
+     * Convert a file in the test resource folder to file.
+     *
+     * @param filename to name of the file in test/resources
+     * @return the content of the file as a String
+     * @throws IOException when there is an IO issue
+     */
+    public static File readFile(final String filename) {
+        return new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
+    }
+
     /**
      * Convert a file in the test resource folder to a string.
      *
@@ -35,7 +49,24 @@ public class TestUtils {
      * @throws IOException when there is an IO issue
      */
     public static String getResourceFileContent(final String filename) throws IOException {
-        final File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile());
+        final File file = readFile(filename);
         return new String(Files.readAllBytes(file.toPath()));
+    }
+
+    /**
+     * Reads yang resources into map.
+     *
+     * @param resources list of file paths
+     * @return yang resource map where key is filename and value is file content
+     * @throws IOException when there an I/O issue
+     */
+    public static Map<String, String> getYangResourcesAsMap(final String... resources) throws IOException {
+        final Map<String, String> yangResourcesMap = new HashMap<>();
+        for (final String resourcePath : resources) {
+            final File file = readFile(resourcePath);
+            final String content = new String(Files.readAllBytes(file.toPath()));
+            yangResourcesMap.put(file.getName(), content);
+        }
+        return yangResourcesMap;
     }
 }
