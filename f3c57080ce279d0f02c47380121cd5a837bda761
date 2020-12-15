@@ -113,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "6c70c482_402598fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d500d908_823a35ea",
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daa7b49f_32f5cbfc",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -207,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "0388a8d0_b03d9198",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b805b8c6_b9ee077a",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fe6f9c3_39041fed",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -254,6 +296,30 @@
     },
     {
       "key": {
+        "uuid": "e9fb03d4_6b65e538",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e36c667e_1690fd99",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8005c05_ff8fb98a",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -274,6 +340,30 @@
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1424b036_93d27815",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8005c05_ff8fb98a",
+      "range": {
+        "startLine": 64,
+        "startChar": 71,
+        "endLine": 64,
+        "endChar": 83
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -300,6 +390,30 @@
     },
     {
       "key": {
+        "uuid": "692e981f_c1b62dd7",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e83630bd_b504070e",
+      "range": {
+        "startLine": 73,
+        "startChar": 63,
+        "endLine": 73,
+        "endChar": 69
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4ef75aa_92f59195",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -320,6 +434,30 @@
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "475e2672_1f53ca41",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4ef75aa_92f59195",
+      "range": {
+        "startLine": 100,
+        "startChar": 78,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -346,6 +484,30 @@
     },
     {
       "key": {
+        "uuid": "c33f332b_0f5690fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d6c9a70_d3c48328",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 47
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91f1873d_f1f1a78d",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 1
@@ -366,6 +528,30 @@
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5742b2e3_7eaca086",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-15T16:37:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91f1873d_f1f1a78d",
+      "range": {
+        "startLine": 108,
+        "startChar": 39,
+        "endLine": 108,
+        "endChar": 50
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
