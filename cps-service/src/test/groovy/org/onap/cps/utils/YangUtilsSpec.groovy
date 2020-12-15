@@ -20,46 +20,20 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
-import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class YangUtilsSpec extends Specification{
-
-    def 'Parsing a valid Yang Model'() {
-        given: 'a yang model (file)'
-            def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-        when: 'the file is parsed'
-            def result = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
-        then: 'the result contain 1 module of the correct name and revision'
-            result.modules.size() == 1
-            def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
-            optionalModule.isPresent()
-    }
-
-    @Unroll
-    def 'Parsing invalid yang file (#description).'() {
-        given: 'a file with #description'
-            File file = new File(ClassLoader.getSystemClassLoader().getResource(filename).getFile())
-        when: 'the file is parsed'
-            YangUtils.parseYangModelFiles(Collections.singletonList(file))
-        then: 'an exception is thrown'
-            thrown(expectedException)
-        where: 'the following parameters are used'
-             filename           | description          || expectedException
-            'invalid.yang'      | 'no valid content'   || YangSyntaxErrorException
-            'someOtherFile.txt' | 'no .yang extension' || IllegalArgumentException
-    }
-
     def 'Parsing a valid Json String.'() {
         given: 'a yang model (file)'
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
         and: 'a model for that data'
-            def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the json data is parsed'
             NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
         then: 'the result is a normalized node of the correct type'
@@ -69,8 +43,8 @@ class YangUtilsSpec extends Specification{
     @Unroll
     def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
-            def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'invalid data is parsed'
             YangUtils.parseJsonData(invalidJson, schemaContext)
         then: 'an exception is thrown'
@@ -83,8 +57,8 @@ class YangUtilsSpec extends Specification{
 
     def 'Breaking a Json Data Object into fragments.'() {
         given: 'a Yang module'
-            def file = new File(ClassLoader.getSystemClassLoader().getResource('bookstore.yang').getFile())
-            def schemaContext = YangUtils.parseYangModelFiles(Collections.singletonList(file)).getSchemaContext()
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)getSchemaContext()
             def module = schemaContext.findModule('stores', Revision.of('2020-09-15')).get()
         and: 'a normalized node for that model'
             def jsonData = TestUtils.getResourceFileContent('bookstore.json')
@@ -101,5 +75,4 @@ class YangUtilsSpec extends Specification{
             assert result.childFragments.collect { it.xpath }
                 .containsAll(["/bookstore/categories[@code='01']", "/bookstore/categories[@code='02']"])
     }
-
 }

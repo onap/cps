@@ -19,13 +19,7 @@
 
 package org.onap.cps.utils;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import com.google.gson.stream.JsonReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
@@ -34,8 +28,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onap.cps.api.impl.Fragment;
-import org.onap.cps.yang.YangTextSchemaSourceSet;
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
@@ -53,8 +45,6 @@ import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeS
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
-import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 
 public class YangUtils {
     private static final Logger LOGGER = Logger.getLogger(YangUtils.class.getName());
@@ -64,30 +54,7 @@ public class YangUtils {
     }
 
     /**
-     * Parse a file containing yang modules.
-     *
-     * @param yangModelFiles list of files containing one or more yang modules. The file has to have a .yang extension.
-     * @return a SchemaContext representing the yang model
-     * @throws IOException         when the system as an IO issue
-     * @throws YangParserException when the file does not contain a valid yang structure
-     */
-    @Deprecated
-    public static YangTextSchemaSourceSet parseYangModelFiles(final List<File> yangModelFiles)
-            throws IOException, YangParserException, ReactorException {
-        final YangTextSchemaSourceSetBuilder yangModelsMapBuilder = new YangTextSchemaSourceSetBuilder();
-        for (final File file :yangModelFiles) {
-            final String fileNameWithExtension = file.getName();
-            checkArgument(fileNameWithExtension.endsWith(RFC6020_YANG_FILE_EXTENSION),
-                    "Filename %s does not end with '%s'", RFC6020_YANG_FILE_EXTENSION,
-                    fileNameWithExtension);
-            final String content = Files.asCharSource(file, Charsets.UTF_8).read();
-            yangModelsMapBuilder.put(fileNameWithExtension, content);
-        }
-        return yangModelsMapBuilder.build();
-    }
-
-    /**
-     * Parse a file containing json data for a certain model (schemaContext).
+     * Parse a string containing json data for a certain model (schemaContext).
      *
      * @param jsonData      a string containing json data for the given model
      * @param schemaContext the SchemaContext for the given data
