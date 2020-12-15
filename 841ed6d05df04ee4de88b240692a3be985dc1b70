@@ -22,6 +22,29 @@
       "revId": "841ed6d05df04ee4de88b240692a3be985dc1b70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef107963_d1762320",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-15T13:53:38Z",
+      "side": 1,
+      "message": "Looks like we cant thrown an exception at all.\nSee mail mail and suggested updates in https://gerrit.nordix.org/c/onap/cps/+/6864",
+      "range": {
+        "startLine": 42,
+        "startChar": 40,
+        "endLine": 42,
+        "endChar": 54
+      },
+      "revId": "841ed6d05df04ee4de88b240692a3be985dc1b70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
