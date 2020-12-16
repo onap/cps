@@ -31,8 +31,8 @@ import java.io.StringReader;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.impl.Fragment;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
@@ -56,8 +56,8 @@ import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangParserException;
 import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 
+@Slf4j
 public class YangUtils {
-    private static final Logger LOGGER = Logger.getLogger(YangUtils.class.getName());
 
     private YangUtils() {
         throw new IllegalStateException("Utility class");
@@ -136,7 +136,7 @@ public class YangUtils {
         } else if (normalizedNode instanceof LeafSetNode) {
             inspectLeafList(currentFragment, (LeafSetNode) normalizedNode);
         } else {
-            LOGGER.warning("Cannot normalize " + normalizedNode.getClass());
+            log.warn("Cannot normalize " + normalizedNode.getClass());
         }
     }
 
