@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ec53360_4a4b267d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-16T07:22:43Z",
+      "side": 1,
+      "message": "@SpringBean\nCpsAdminService mockCpsAdminService \u003d Mock()\n\n@SpringBean\nModelMapper modelMapper \u003d Mock()",
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f71909a_b517d16c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-16T07:22:43Z",
+      "side": 1,
+      "message": "remove, no longer need it",
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
