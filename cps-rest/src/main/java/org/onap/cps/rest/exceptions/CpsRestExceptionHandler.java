@@ -20,7 +20,8 @@
 package org.onap.cps.rest.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.onap.cps.rest.controller.CpsRestController;
+import org.onap.cps.rest.controller.AdminRestController;
+import org.onap.cps.rest.controller.DataRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
@@ -34,7 +35,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice(assignableTypes = {CpsRestController.class})
+@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class})
 public class CpsRestExceptionHandler {
 
     private CpsRestExceptionHandler() {
