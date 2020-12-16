@@ -45,6 +45,30 @@
       "revId": "63b3e15393b3a8d9bc0a0a6fd4f78bc6b46db122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6ae296_1087c817",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-16T17:59:08Z",
+      "side": 1,
+      "message": "I thought we agreed on this in the Jira comments review today. Still open for suggestions.",
+      "parentUuid": "8dfeb947_4a02243a",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "63b3e15393b3a8d9bc0a0a6fd4f78bc6b46db122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
