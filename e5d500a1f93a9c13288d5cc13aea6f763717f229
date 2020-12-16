@@ -302,6 +302,30 @@
       "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ce1ab12_8f41ef1e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T13:14:47Z",
+      "side": 1,
+      "message": "yes if there is  plugin that can warn for potential null values being passed in that would add value...",
+      "parentUuid": "df30659a_b599a35d",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
