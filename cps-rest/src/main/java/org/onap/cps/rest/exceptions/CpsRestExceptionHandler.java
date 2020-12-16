@@ -19,6 +19,7 @@
 
 package org.onap.cps.rest.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.rest.controller.CpsRestController;
 import org.onap.cps.rest.model.ErrorMessage;
@@ -34,6 +35,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@Slf4j
 @RestControllerAdvice(assignableTypes = {CpsRestController.class})
 public class CpsRestExceptionHandler {
 
@@ -46,7 +48,8 @@ public class CpsRestExceptionHandler {
      * @param exception the exception to handle
      * @return response with response code 500.
      */
-    @ExceptionHandler public static ResponseEntity<Object> handleInternalServerErrorExceptions(
+    @ExceptionHandler
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
         final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
@@ -73,6 +76,7 @@ public class CpsRestExceptionHandler {
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
         final String details) {
+        log.error("Building Error Response for Message: {} Status: {} Details: {}", message, status, details);
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(message);
