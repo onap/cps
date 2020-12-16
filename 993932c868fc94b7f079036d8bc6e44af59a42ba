@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74451f2c_2feabc59",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:52:49Z",
+      "side": 1,
+      "message": "we need to fix this inconsistency.\nI think its probably best to rename the class using the full name: ModuleReference",
+      "range": {
+        "startLine": 118,
+        "startChar": 33,
+        "endLine": 118,
+        "endChar": 52
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5d5c663_2552ede7",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:52:49Z",
+      "side": 1,
+      "message": "getModuleReferences",
+      "range": {
+        "startLine": 38,
+        "startChar": 20,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "674ccc24_91beb9a8",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:52:49Z",
+      "side": 1,
+      "message": "if we change className this method name should follow suit",
+      "range": {
+        "startLine": 85,
+        "startChar": 33,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
