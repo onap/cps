@@ -12,7 +12,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/:
     delete:
       tags:
-        - cps-rest
+        - cps-admin
       summary: Delete the given dataspace
       operationId: deleteDataspace
       parameters:
@@ -41,7 +41,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
-        - cps-rest
+        - cps-admin
       summary: Read all anchors, given a dataspace
       operationId: getAnchors
       parameters:
@@ -74,7 +74,7 @@ paths:
           content: {}
     post:
       tags:
-        - cps-rest
+        - cps-admin
       summary: Create a new anchor in the given dataspace
       operationId: createAnchor
       parameters:
@@ -111,7 +111,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
     get:
       tags:
-        - cps-rest
+        - cps-admin
       summary: Read an anchor given a anchor and a dataspace
       operationId: getAnchor
       parameters:
@@ -145,7 +145,7 @@ paths:
           content: {}
     delete:
       tags:
-        - cps-rest
+        - cps-admin
       summary: Delete an anchor given a anchor and a dataspace
       operationId: deleteAnchor
       parameters:
@@ -180,7 +180,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     get:
       tags:
-        - cps-rest
+        - cps-data
       summary: Get a node given an anchor for the given dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
@@ -213,49 +213,10 @@ paths:
           description: Not Found
           content: {}
       x-codegen-request-body-name: xpath
-  /v1/dataspaces/{dataspace-name}/modules:
-    get:
-      tags:
-        - cps-rest
-      summary: Read all yang modules in the store
-      operationId: getModule
-      parameters:
-        - name: dataspace-name
-          in: path
-          description: dataspace-name
-          required: true
-          schema:
-            type: string
-        - name: namespace-name
-          in: query
-          description: namespace-name
-          schema:
-            type: string
-        - name: revision
-          in: query
-          description: revision
-          schema:
-            type: string
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-        401:
-          description: Unauthorized
-          content: {}
-        403:
-          description: Forbidden
-          content: {}
-        404:
-          description: Not Found
-          content: {}
   /v1/dataspaces/{dataspace-name}/nodes:
     get:
       tags:
-        - cps-rest
+        - cps-data
       summary: Get all nodes for a given dataspace using an xpath or schema node identifier
       operationId: getNode
       parameters:
@@ -284,7 +245,7 @@ paths:
       x-codegen-request-body-name: requestBody
     post:
       tags:
-        - cps-rest
+        - cps-data
       summary: Create a node for a given anchor for the given dataspace
       operationId: createNode
       parameters:

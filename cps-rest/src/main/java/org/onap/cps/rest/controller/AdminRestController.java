@@ -24,16 +24,15 @@ import java.util.Collection;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
-import org.onap.cps.rest.api.CpsRestApi;
+import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-public class CpsRestController implements CpsRestApi {
+public class AdminRestController implements CpsAdminApi {
 
     @Autowired
     private CpsAdminService cpsAdminService;
@@ -58,11 +57,6 @@ public class CpsRestController implements CpsRestApi {
     }
 
     @Override
-    public ResponseEntity<Object> createNode(@Valid final MultipartFile multipartFile, final String dataspaceName) {
-        return null;
-    }
-
-    @Override
     public ResponseEntity<Object> deleteAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
@@ -82,21 +76,5 @@ public class CpsRestController implements CpsRestApi {
     public ResponseEntity<Object> getAnchors(final String dataspaceName) {
         final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<Object> getModule(final String dataspaceName, @Valid final String namespaceName,
-        @Valid final String revision) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Object> getNode(final String dataspaceName) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName) {
-        return null;
     }
 }
