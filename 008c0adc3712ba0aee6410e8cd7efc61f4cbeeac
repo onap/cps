@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d879125b_524a9c07",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-16T12:06:13Z",
+      "side": 1,
+      "message": "restore it as it was",
+      "revId": "008c0adc3712ba0aee6410e8cd7efc61f4cbeeac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
