@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "eca8a887_8196d65d",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "Question : i do need to catchup while i was away on vacation, but how we now pass the namespace and revision. looks like schema set is only what is required now.",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9bed866_ffbc287c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "try adding soemthing like - using below params",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a87714e_300934ae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "already mentioned below.",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 60
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0396c0c0_2662498a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "correct spacing",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 39
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d755720a_d20ded03",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "should this still exist?",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "792176b1_e16bd61e",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
         "patchSetId": 17
@@ -64,6 +179,29 @@
         "startChar": 32,
         "endLine": 103,
         "endChar": 34
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "236aa8aa_9c4db366",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:58:14Z",
+      "side": 1,
+      "message": "what benefit we are getting from this Nullness Checker? what if no anchors exist at all?",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 12
       },
       "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
