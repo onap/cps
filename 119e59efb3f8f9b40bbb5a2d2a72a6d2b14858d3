@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67459531_026ad874",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-16T17:52:00Z",
+      "side": 1,
+      "message": "indentation can be fixed",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 8
+      },
+      "revId": "119e59efb3f8f9b40bbb5a2d2a72a6d2b14858d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59cbbf02_0dc52bc5",
+        "filename": "cps-service/src/test/java/org/onap/cps/TestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2020-12-16T17:52:00Z",
+      "side": 1,
+      "message": "returning a File and not a String",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 50
+      },
+      "revId": "119e59efb3f8f9b40bbb5a2d2a72a6d2b14858d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
