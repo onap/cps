@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a53278b_a14b0629",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:51:06Z",
+      "side": 1,
+      "message": "not sure what you are asking\nthe parameetr are now (just) dataspaceName, schemaSetName and anchorName",
+      "parentUuid": "eca8a887_8196d65d",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9bed866_ffbc287c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 17
@@ -117,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "96276b33_49b4c010",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:51:06Z",
+      "side": 1,
+      "message": "Niamh has a clean up taks pending to remove stuff",
+      "parentUuid": "d755720a_d20ded03",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "792176b1_e16bd61e",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
         "patchSetId": 17
@@ -197,6 +245,30 @@
       "writtenOn": "2020-12-16T10:58:14Z",
       "side": 1,
       "message": "what benefit we are getting from this Nullness Checker? what if no anchors exist at all?",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d93a62f7_8da53977",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:51:06Z",
+      "side": 1,
+      "message": "1) I was wondering about the same, I am not sure of the benefit of @NonNull annotation, it just thrown another exception... But there is no harm either so I didn\u0027t comment \n2) Its possible and valid to return an empty collection (as can bee seen in Aditya\u0027s demo)",
+      "parentUuid": "236aa8aa_9c4db366",
       "range": {
         "startLine": 49,
         "startChar": 5,

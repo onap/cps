@@ -22,6 +22,30 @@
       "revId": "c040bcb4ae61177b1aa691f059d19c96c6cfff7b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b346c146_4882e3cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Anchor.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:51:06Z",
+      "side": 0,
+      "message": "I proposed it but it is correct that it should not be in the code at the moment. Instead I will add a user story to the backlog: Add external ID to anchor (remove external ID from anchor)",
+      "parentUuid": "e3894620_e8c9d749",
+      "range": {
+        "startLine": 41,
+        "startChar": 32,
+        "endLine": 41,
+        "endChar": 50
+      },
+      "revId": "c040bcb4ae61177b1aa691f059d19c96c6cfff7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
