@@ -19,6 +19,7 @@
 
 package org.onap.cps.rest.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
@@ -35,6 +36,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@Slf4j
 @RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class})
 public class CpsRestExceptionHandler {
 
@@ -74,6 +76,7 @@ public class CpsRestExceptionHandler {
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
         final String details) {
+        log.error("An error has occurred : {} Status: {} Details: {}", message, status, details);
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(message);
