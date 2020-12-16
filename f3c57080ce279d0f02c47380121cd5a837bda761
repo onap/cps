@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "767a27bd_8cb413c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:40:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76fcad9a_3bb55b45",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ceacb45_8c4ccc46",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -93,6 +117,30 @@
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "077eb9a4_bdb41229",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:40:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "376b3ce8_feb43319",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -246,6 +294,29 @@
       "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07e52f83_afd570e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:40:59Z",
+      "side": 1,
+      "message": "should this be yangResourceNameToContent too?!",
+      "range": {
+        "startLine": 54,
+        "startChar": 75,
+        "endLine": 54,
+        "endChar": 87
+      },
+      "revId": "f3c57080ce279d0f02c47380121cd5a837bda761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
