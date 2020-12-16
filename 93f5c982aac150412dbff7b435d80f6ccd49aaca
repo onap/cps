@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ad4ecf44_5e38ca4d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T09:51:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39081bdb_e97aa95b",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b88df44d_ebda33d4",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
         "patchSetId": 13
@@ -103,6 +121,24 @@
       "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cffc9f1_5b3ca717",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T09:51:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b88df44d_ebda33d4",
+      "revId": "93f5c982aac150412dbff7b435d80f6ccd49aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
