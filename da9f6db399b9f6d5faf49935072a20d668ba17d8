@@ -175,6 +175,24 @@
       "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aa170b8_4378fa70",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T08:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd8f87f5_1522a757",
+      "revId": "da9f6db399b9f6d5faf49935072a20d668ba17d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

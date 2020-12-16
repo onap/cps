@@ -225,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "1bda2dc7_2f851f5b",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T08:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5b9870a_4c0acd0e",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 5
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89c870c7_9276225e",
         "filename": "cps-service/src/main/java/org/onap/cps/exceptions/CpsExceptionBuilder.java",
         "patchSetId": 4
@@ -292,6 +316,30 @@
       "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc599ca_e54cfe52",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T08:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f67bc3c_53bb8bff",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 103
+      },
+      "revId": "77969e4087819efdfe82553b922f13b48c2cfcf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
