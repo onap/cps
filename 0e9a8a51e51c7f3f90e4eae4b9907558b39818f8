@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73b43f06_15a51853",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:36:34Z",
+      "side": 1,
+      "message": "question: do we have something in backlog to remove this at some point since this is deprecated",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 15
+      },
+      "revId": "0e9a8a51e51c7f3f90e4eae4b9907558b39818f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c420cd0_58c36620",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-16T10:36:34Z",
+      "side": 1,
+      "message": "well if you are adding javadoc to private methods, include the throws as well",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 47
+      },
+      "revId": "0e9a8a51e51c7f3f90e4eae4b9907558b39818f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
