@@ -46,6 +46,30 @@
       "revId": "931fe69fc5249f4ca3352a7ce5ec93572e0b6573",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7003919_36291346",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T10:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82127ddd_f6a2dfbc",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "931fe69fc5249f4ca3352a7ce5ec93572e0b6573",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
