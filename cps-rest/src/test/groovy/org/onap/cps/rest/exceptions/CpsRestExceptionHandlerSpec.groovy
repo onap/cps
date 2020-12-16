@@ -20,14 +20,18 @@
 package org.onap.cps.rest.exceptions
 
 import groovy.json.JsonSlurper
+import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.rest.controller.CpsRestController
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -36,9 +40,18 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 
+@WebMvcTest
 class CpsRestExceptionHandlerSpec extends Specification {
+
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    ModelMapper modelMapper = Mock()
+
+    @Autowired
+    MockMvc mvc
 
     @Shared
     def errorMessage = 'some error message'
@@ -49,14 +62,6 @@ class CpsRestExceptionHandlerSpec extends Specification {
     @Shared
     def existingObjectName = 'MyAdminObject'
 
-    def cpsRestController = new CpsRestController()
-    def mockCpsAdminService = Mock(CpsAdminService.class)
-    def objectUnderTest = new CpsRestExceptionHandler()
-    def mockMvc = standaloneSetup(cpsRestController).setControllerAdvice(objectUnderTest).build()
-
-    def setup() {
-        cpsRestController.cpsAdminService = mockCpsAdminService
-    }
 
     def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
 
@@ -134,15 +139,15 @@ class CpsRestExceptionHandlerSpec extends Specification {
     }
 
     def performTestRequest() {
-        return mockMvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
+        return mvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
     }
 
-    void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {
+    void assertTestResponse(response, expectedStatus,
+                            expectedErrorMessage, expectedErrorDetails) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'] == expectedStatus.toString()
         assert content['message'] == expectedErrorMessage
         assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
     }
-
 }
