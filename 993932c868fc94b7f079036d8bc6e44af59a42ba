@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "068b1a91_b800d7e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T10:09:19Z",
+      "side": 1,
+      "message": "dataspaceName",
+      "range": {
+        "startLine": 118,
+        "startChar": 66,
+        "endLine": 118,
+        "endChar": 75
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ea61190_1bcdef7c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T10:09:19Z",
+      "side": 1,
+      "message": "NotFoundInDataspaceException is child of CpsException and treated as \ninternal server error. The dedicated exception SchemaSetNotFoundException was introduced via\nhttps://gerrit.onap.org/r/c/cps/+/116191",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "809fb1ef_b2f31a92",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-16T10:09:19Z",
+      "side": 1,
+      "message": "there is a known issue  of lombok\u0027 \n@Data and @Builder using together \n(the default constructor became unavailable)\nplease add also \n@NoArgsConstructor\n@AllArgsConstructor\nsame to ModuleRef",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 8
+      },
+      "revId": "993932c868fc94b7f079036d8bc6e44af59a42ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5d5c663_2552ede7",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
         "patchSetId": 6
