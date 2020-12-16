@@ -278,6 +278,30 @@
       "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df30659a_b599a35d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-16T13:02:39Z",
+      "side": 1,
+      "message": "if no anchors, empty collections is returned\nThose annotation should be checked by plugin and throw error if there is any violation.\nIDE also will highlight error based on those annotations.\nI need to check the name of the plugin, I will add it later here. But I dont have it at my hand right now",
+      "parentUuid": "d93a62f7_8da53977",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
