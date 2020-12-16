@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c9d834d_e914c013",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:12:41Z",
+      "side": 1,
+      "message": "legacy issue: if you get other comment maybe update this to \u0027string\u0027",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "fe14fd0ef98180fd22a09d81088d8f2d411be181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f628280d_0fff65eb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:12:41Z",
+      "side": 1,
+      "message": "just to describe the difference between the 2 tests we need to update the descriptions slightly\n\u0027invalid content\u0027\n\u0027no content\u0027",
+      "range": {
+        "startLine": 52,
+        "startChar": 35,
+        "endLine": 52,
+        "endChar": 50
+      },
+      "revId": "fe14fd0ef98180fd22a09d81088d8f2d411be181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a10a3af_6160bb5d",
+        "filename": "cps-service/src/test/java/org/onap/cps/TestUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T12:12:41Z",
+      "side": 1,
+      "message": "always forget about immutable, it really good practice...",
+      "range": {
+        "startLine": 64,
+        "startChar": 14,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "fe14fd0ef98180fd22a09d81088d8f2d411be181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
