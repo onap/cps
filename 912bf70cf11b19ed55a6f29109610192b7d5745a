@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "c02a583f_9ba81221",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "add: added spock-spring testing",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d67e73aa_1b1f7863",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "this can be increased!\nset it to 0.99 and then see what if fails on and set it accordingly",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58e94c5f_be54fe2a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "I am used to SQ complaining about empty methods but it doesn\u0027t seem in this set-up. Hoever I would add a comment like:\n //Empty constructor only used for been creation",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 5
+      },
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ec53360_4a4b267d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 6
@@ -19,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "98733962_51975c56",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "Thanks Claudio, that is even better again!\nbut instead of Mock() it is better to use Stub() as it is a lighter object and is sufficient in this test",
+      "parentUuid": "5ec53360_4a4b267d",
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f71909a_b517d16c",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 6
@@ -30,6 +117,24 @@
       "writtenOn": "2020-12-16T07:22:43Z",
       "side": 1,
       "message": "remove, no longer need it",
+      "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a643608f_dfef3caa",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "agreed, thanks for the tip Claudio!",
+      "parentUuid": "1f71909a_b517d16c",
       "revId": "912bf70cf11b19ed55a6f29109610192b7d5745a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true

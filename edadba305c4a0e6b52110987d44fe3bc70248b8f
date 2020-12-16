@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e912b5b_fc605852",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-16T09:17:59Z",
+      "side": 1,
+      "message": "Thsi should be move (as I did in Nordix patch)",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "edadba305c4a0e6b52110987d44fe3bc70248b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
