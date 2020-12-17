@@ -93,6 +93,24 @@
     },
     {
       "key": {
+        "uuid": "cb862468_9867b721",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T16:49:50Z",
+      "side": 1,
+      "message": "this requires checked exception handling, updating YangUtils",
+      "parentUuid": "3406442b_9e8119b3",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00539023_ab8cc8d1",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -110,6 +128,24 @@
     },
     {
       "key": {
+        "uuid": "2a35092b_b3e964a6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T16:49:50Z",
+      "side": 1,
+      "message": "i need this to deal with checked exceptions.",
+      "parentUuid": "00539023_ab8cc8d1",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8b832bc_ff2fa6db",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -121,6 +157,24 @@
       "writtenOn": "2020-12-17T16:01:05Z",
       "side": 1,
       "message": "we must enforce consumers to provide given format defined by RFC. this is not need it, remove it please",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca48f5e_c099da7f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T16:49:50Z",
+      "side": 1,
+      "message": "it\u0027s recommended in rfc.\nwhy it\u0027s mandatory in cps?\nneed more opinions on this",
+      "parentUuid": "d8b832bc_ff2fa6db",
       "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
