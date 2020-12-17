@@ -19,6 +19,8 @@
 
 package org.onap.cps.yang;
 
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayInputStream;
@@ -85,7 +87,7 @@ public final class YangTextSchemaSourceSetBuilder {
 
         private static ModuleReference toModuleReference(final Module module) {
             return ModuleReference.builder()
-                           .namespace(module.getName())
+                           .namespace(module.getNamespace().toString())
                            .revision(module.getRevision().map(Revision::toString).orElse(null))
                            .build();
         }
@@ -125,7 +127,9 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     private YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
-        final Map.Entry<String, String> sourceNameParsed = YangNames.parseFilename(sourceName);
+        final String sourceNameWithoutExtension =
+                sourceName.substring(0, sourceName.length() - RFC6020_YANG_FILE_EXTENSION.length());
+        final Map.Entry<String, String> sourceNameParsed = YangNames.parseFilename(sourceNameWithoutExtension);
         final RevisionSourceIdentifier revisionSourceIdentifier = RevisionSourceIdentifier
             .create(sourceNameParsed.getKey(), Revision.ofNullable(sourceNameParsed.getValue()));
         return new YangTextSchemaSource(revisionSourceIdentifier) {

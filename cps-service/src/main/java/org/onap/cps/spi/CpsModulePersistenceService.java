@@ -22,6 +22,7 @@ package org.onap.cps.spi;
 
 import java.util.Collection;
 import java.util.Map;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -61,5 +62,6 @@ public interface CpsModulePersistenceService {
      * @param schemaSetName schema set name
      * @return collection of ModuleRef
      */
-    Collection<ModuleReference> getModuleReferences(String namespace, String schemaSetName);
+    @NonNull
+    Collection<ModuleReference> getModuleReferences(@NonNull String namespace, @NonNull String schemaSetName);
 }

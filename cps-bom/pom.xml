@@ -37,6 +37,12 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>cps-service</artifactId>
+                <type>test-jar</type>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.onap.cps</groupId>
                 <artifactId>cps-rest</artifactId>
                 <version>${project.version}</version>

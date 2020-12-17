@@ -23,18 +23,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.common.collect.ImmutableMap;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
+import org.onap.cps.TestUtils;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
@@ -66,6 +71,19 @@ public class CpsModulePersistenceServiceTest {
     private static final String NEW_RESOURCE_CONTENT = "CONTENT-NEW";
     private static final String NEW_RESOURCE_CHECKSUM = "c94d40a1350eb1c0b1c1949eac84fc59";
     private static final Long NEW_RESOURCE_ABSTRACT_ID = 0L;
+
+    private static final String BOOKSTORE_RESOURCE_NAME = "bookstore@2020-09-15.yang";
+    private static final String BOOKSTORE_SET_NAME = "BOOKSTORE-SCHEMA-SET";
+    private static final String BOOKSTORE_RESOURCE_CHECKSUM = "a13beb250de6954e6e8d82c51e35f2c8";
+    private static final String BOOKSTORE_RESOURCE_NAMESPACE = "org:onap:ccsdk:sample";
+    private static final String BOOKSTORE_RESOURCE_VERSION = "2020-09-15";
+
+    private String bookstoreResourceContent;
+
+    @Before
+    public void setup() throws IOException {
+        bookstoreResourceContent = TestUtils.getResourceFileContent(BOOKSTORE_RESOURCE_NAME);
+    }
 
     @ClassRule
     public static DatabaseTestContainer testContainer = DatabaseTestContainer.getInstance();
@@ -113,6 +131,22 @@ public class CpsModulePersistenceServiceTest {
             toMap(NEW_RESOURCE_NAME, EXISTING_RESOURCE_CONTENT));
         assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
             EXISTING_RESOURCE_ID, EXISTING_RESOURCE_NAME, EXISTING_RESOURCE_CONTENT, EXISTING_RESOURCE_CHECKSUM);
+    }
+
+    @Test
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testGetModuleReferences() {
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, BOOKSTORE_SET_NAME,
+                toMap(BOOKSTORE_RESOURCE_NAME, bookstoreResourceContent));
+        final Collection<ModuleReference> modules =
+                cpsModulePersistenceService.getModuleReferences(DATASPACE_NAME, BOOKSTORE_SET_NAME);
+        assertNotNull(modules);
+        assertEquals(1, modules.size());
+        assertSchemaSetPersisted(DATASPACE_NAME, BOOKSTORE_SET_NAME, NEW_RESOURCE_ABSTRACT_ID, BOOKSTORE_RESOURCE_NAME,
+                bookstoreResourceContent, BOOKSTORE_RESOURCE_CHECKSUM);
+        final ModuleReference moduleReference = modules.iterator().next();
+        assertEquals(BOOKSTORE_RESOURCE_VERSION, moduleReference.getRevision());
+        assertEquals(BOOKSTORE_RESOURCE_NAMESPACE, moduleReference.getNamespace());
     }
 
     private void assertSchemaSetPersisted(final String expectedDataspaceName, final String expectedSchemaSetName,
