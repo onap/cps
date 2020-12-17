@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2357f67f_9492a96f",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T13:16:16Z",
+      "side": 1,
+      "message": "ah, now I get whey your were adding the dependency stuff...",
+      "range": {
+        "startLine": 85,
+        "startChar": 35,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0af158_454a5ec5",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T13:16:16Z",
+      "side": 1,
+      "message": "note sure about this approach, we are doing integration testing over several layers in the DB layer... This is the kind of stuff we need to discuss as part of our test Strategy\n\nFor now can you please just build a Collection of (1) ModuleReferences manually here and leave this test for DB testing only...",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 74
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f32e12e8_b6670c2c",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T13:16:16Z",
+      "side": 1,
+      "message": "moduleReferences",
+      "range": {
+        "startLine": 141,
+        "startChar": 42,
+        "endLine": 141,
+        "endChar": 50
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10a995c2_5fc92702",
+        "filename": "cps-ri/src/test/resources/bookstore@2020-09-15.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T13:16:16Z",
+      "side": 1,
+      "message": "as my previous comment this should not be needed here",
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
