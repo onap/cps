@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "cf2fb482_2bd7daab",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-17T16:16:57Z",
+      "side": 1,
+      "message": "remove unused import",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "550baa07_48769114",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 4
@@ -30,6 +53,23 @@
       "writtenOn": "2020-12-17T16:01:05Z",
       "side": 1,
       "message": "once created the util, decouple the testing part of the util from the endpoint test part",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d9cf402_63dac215",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-17T16:16:57Z",
+      "side": 1,
+      "message": "Unused imports",
       "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
