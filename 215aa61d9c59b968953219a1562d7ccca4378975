@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "860d7936_00ce98ff",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-17T11:35:13Z",
+      "side": 1,
+      "message": "As discussed, this will be discussed and moved later to a better place. IMO this method is only responsible for building error response and should not log errors.it should be upto caller whether to log or not.",
+      "range": {
+        "startLine": 77,
+        "startChar": 42,
+        "endLine": 77,
+        "endChar": 60
+      },
+      "revId": "215aa61d9c59b968953219a1562d7ccca4378975",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
