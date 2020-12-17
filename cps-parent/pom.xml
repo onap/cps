@@ -94,26 +94,6 @@
                 </pluginManagement>
             </build>
         </profile>
-        <profile>
-            <id>skip-db-tests</id>
-            <activation>
-                <!-- exclude module tests by default till Jenkins is configured to support test containers -->
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/spi/impl/*Test.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -334,6 +314,14 @@
                     <excludes>
                         <exclude>**/IT*.java</exclude>
                     </excludes>
+                    <environmentVariables>
+                        <!--
+                            disable privileged container usage to cleanup the test containers;
+                            these will be removed automatically on jvm termination;
+                            see https://www.testcontainers.org/features/configuration/#disabling-ryuk
+                         -->
+                        <TESTCONTAINERS_RYUK_DISABLED>true</TESTCONTAINERS_RYUK_DISABLED>
+                    </environmentVariables>
                 </configuration>
             </plugin>
             <plugin>
