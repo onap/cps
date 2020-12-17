@@ -45,6 +45,54 @@
       "revId": "9616af27e9140ef225fa114dbe6806196794e115",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e1fcb1_8542de2e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-17T09:14:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b8a8c0c_fa1756e4",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "9616af27e9140ef225fa114dbe6806196794e115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "025ea9bb_8205c866",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2020-12-17T09:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "403b0786_69d783d0",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "9616af27e9140ef225fa114dbe6806196794e115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
