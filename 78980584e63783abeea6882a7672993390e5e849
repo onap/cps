@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "49137930_0b3b8232",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T14:48:50Z",
+      "side": 1,
+      "message": "yep I am glad we have clarified that now in the stand-up. Just a misunderstanding (easy to to get lost when you are context-switching all the time)",
+      "parentUuid": "1145cb6b_81ec8394",
+      "range": {
+        "startLine": 141,
+        "startChar": 42,
+        "endLine": 141,
+        "endChar": 50
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10a995c2_5fc92702",
         "filename": "cps-ri/src/test/resources/bookstore@2020-09-15.yang",
         "patchSetId": 1
