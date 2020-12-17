@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "575d4f3e_d6a8bb68",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T10:01:01Z",
+      "side": 1,
+      "message": "can we agree that exceptions should be logged using level \u0027error\u0027?\nSee https://www.tutorialspoint.com/log4j/log4j_logging_levels.htm",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 16
+      },
+      "revId": "40eb47ff765f82a768ac1cd7a28d486fe765c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
