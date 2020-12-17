@@ -21,6 +21,7 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
 
@@ -30,13 +31,14 @@ import org.onap.cps.spi.model.Anchor;
 public interface CpsAdminService {
 
     /**
-     * Create an anchor using provided anchorDetails object.
+     * Create an Anchor.
      *
-     * @param anchor the anchor details object.
-     * @return the anchor name.
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchor name
      * @throws CpsException if input data is invalid.
      */
-    String createAnchor(Anchor anchor);
+    void createAnchor(@NonNull String dataspaceName, @NonNull String schemaSetName, @NonNull String anchorName);
 
     /**
      * Read all anchors in the given a dataspace.
@@ -44,5 +46,6 @@ public interface CpsAdminService {
      * @param dataspaceName dataspace name
      * @return a collection of anchors
      */
-    Collection<Anchor> getAnchors(String dataspaceName);
+    @NonNull
+    Collection<Anchor> getAnchors(@NonNull String dataspaceName);
 }
