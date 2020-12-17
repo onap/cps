@@ -26,7 +26,7 @@
         <springboot.version>2.3.3.RELEASE</springboot.version>
         <springfox.version>3.0.0</springfox.version>
         <swagger.version>2.1.4</swagger.version>
-        <testcontainers.version>1.15.0</testcontainers.version>
+        <testcontainers.version>1.15.1</testcontainers.version>
         <yangtools.version>5.0.6</yangtools.version>
     </properties>
 
