@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "550baa07_48769114",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "Can you extract this to an util class please (MultipartFileUtil)",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "477d2086_9d2cc80d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "once created the util, decouple the testing part of the util from the endpoint test part",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3406442b_9e8119b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00539023_ab8cc8d1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "remove this, is not need it,you already have YangTextSchemaSourceSetBuilder.of(..)",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8b832bc_ff2fa6db",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "we must enforce consumers to provide given format defined by RFC. this is not need it, remove it please",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bb3a946_856e73fd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T16:01:05Z",
+      "side": 1,
+      "message": "YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
