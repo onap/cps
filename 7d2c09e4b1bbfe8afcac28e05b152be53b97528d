@@ -146,6 +146,24 @@
     },
     {
       "key": {
+        "uuid": "fd97481b_d93472cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T17:39:45Z",
+      "side": 1,
+      "message": "then you might want to move that exception handling on the YangTextSchemaSourceSetBuilder.of itself",
+      "parentUuid": "2a35092b_b3e964a6",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8b832bc_ff2fa6db",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -175,6 +193,24 @@
       "side": 1,
       "message": "it\u0027s recommended in rfc.\nwhy it\u0027s mandatory in cps?\nneed more opinions on this",
       "parentUuid": "d8b832bc_ff2fa6db",
+      "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a22529c2_773fcb8a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T17:39:45Z",
+      "side": 1,
+      "message": "is expected and enforced by Parser in addition. There is no much to discuss.\nAt any point adding an empty method doesnt help, if you want create a task for this subject and it can be discussed later.\nUntil then remove it",
+      "parentUuid": "8ca48f5e_c099da7f",
       "revId": "7d2c09e4b1bbfe8afcac28e05b152be53b97528d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
