@@ -14,35 +14,49 @@
     <property name="debugPattern"
         value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|%thread|%X{RequestID}| %logger{50} - %msg%n" />
 
-    <appender name="Debug"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>../log/${logName}.log</file>
-        <rollingPolicy
-            class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logName}.%d{yyyy-MM-dd}.%i.log.zip
-            </fileNamePattern>
-            <maxFileSize>${maxFileSize}</maxFileSize>
-            <maxHistory>${maxHistory}</maxHistory>
-            <totalSizeCap>${totalSizeCap}</totalSizeCap>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${debugPattern}</pattern>
-        </encoder>
+    <property name="all-log-pattern"
+      value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|%thread|%X{RequestID}| %logger{50} - %msg%n" />
+
+    <appender name="CONSOLE"
+      class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${all-log-pattern}</Pattern>
+        </layout>
     </appender>
-
-    <appender name="asyncDebug" class="ch.qos.logback.classic.AsyncAppender">
-        <queueSize>256</queueSize>
-        <appender-ref ref="Debug" />
-        <includeCallerData>true</includeCallerData>
-    </appender>
-
-    <logger name="org.onap.cps" level="DEBUG" additivity="false">
-        <appender-ref ref="asyncDebug" />
-    </logger>
-
 
     <root level="INFO">
-        <appender-ref ref="asyncDebug" />
+        <appender-ref ref="CONSOLE" />
     </root>
+
+<!--  Send logs to File & Rotate File  -->
+<!--    <appender name="Debug"-->
+<!--        class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>../log/${logName}.log</file>-->
+<!--        <rollingPolicy-->
+<!--            class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>${logName}.%d{yyyy-MM-dd}.%i.log.zip-->
+<!--            </fileNamePattern>-->
+<!--            <maxFileSize>${maxFileSize}</maxFileSize>-->
+<!--            <maxHistory>${maxHistory}</maxHistory>-->
+<!--            <totalSizeCap>${totalSizeCap}</totalSizeCap>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder>-->
+<!--            <pattern>${debugPattern}</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <appender name="asyncDebug" class="ch.qos.logback.classic.AsyncAppender">-->
+<!--        <queueSize>256</queueSize>-->
+<!--        <appender-ref ref="Debug" />-->
+<!--        <includeCallerData>true</includeCallerData>-->
+<!--    </appender>-->
+
+<!--    <logger name="org.onap.cps" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="asyncDebug" />-->
+<!--    </logger>-->
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="asyncDebug" />-->
+<!--    </root>-->
 
 </configuration>
