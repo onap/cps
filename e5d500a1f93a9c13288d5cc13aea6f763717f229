@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "df55a7b1_54cb7947",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T08:40:31Z",
+      "side": 1,
+      "message": "answering question: yes, we addressing schema set now which may contain multiple modules, not the single one (identified by namespace and revision). same module may be used by musltiple schema sets",
+      "parentUuid": "2a53278b_a14b0629",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9bed866_ffbc287c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 17
@@ -72,6 +96,54 @@
     },
     {
       "key": {
+        "uuid": "7bdaa5bd_64c357d9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T08:40:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9bed866_ffbc287c",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "076e7bcf_a621776e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T08:40:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9bed866_ffbc287c",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a87714e_300934ae",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 17
@@ -92,6 +164,30 @@
       "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "051f2bda_2aa98b24",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-17T08:40:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1a87714e_300934ae",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 60
+      },
+      "revId": "e5d500a1f93a9c13288d5cc13aea6f763717f229",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
