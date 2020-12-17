@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f354e232_68409ac9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T13:56:04Z",
+      "side": 1,
+      "message": "yes for now just test the repository and DB functionality not the service layer (cpsModulePersistenceService).\nYou are now use cpsModulePersistenceService to (test?) and create and store a SchemaSet and then verify the module references store. \nInstead can you store a schemaSet using manually grafted Strings (or resource files) without the use of cpsModulePersistenceService we can talk in standup about this too",
+      "parentUuid": "43a1f963_defb92ce",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 74
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f32e12e8_b6670c2c",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
         "patchSetId": 1
