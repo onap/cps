@@ -69,6 +69,30 @@
       "revId": "63b3e15393b3a8d9bc0a0a6fd4f78bc6b46db122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f06ec483_20859eaf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2020-12-17T10:10:31Z",
+      "side": 1,
+      "message": "yah I dont mind either way, but I am not sure which comments you are referring to. I cant find them can you send me a link please",
+      "parentUuid": "7b6ae296_1087c817",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "63b3e15393b3a8d9bc0a0a6fd4f78bc6b46db122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
