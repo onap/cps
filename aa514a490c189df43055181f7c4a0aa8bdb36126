@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c74bb88_3d90034f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-17T09:16:53Z",
+      "side": 1,
+      "message": "apologies, it seemed like an error but this is actually an INFO.",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "aa514a490c189df43055181f7c4a0aa8bdb36126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
