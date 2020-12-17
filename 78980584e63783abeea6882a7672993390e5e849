@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "6e3b3bd1_1fa71fde",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T13:32:31Z",
+      "side": 1,
+      "message": "not sure what \"approach\" you mean. Neither what you want to obtain with  Collection of*.\nCould you extend the comments please.",
+      "parentUuid": "be0af158_454a5ec5",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 74
+      },
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f32e12e8_b6670c2c",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
         "patchSetId": 1
@@ -82,6 +106,24 @@
       "writtenOn": "2020-12-17T13:16:16Z",
       "side": 1,
       "message": "as my previous comment this should not be needed here",
+      "revId": "78980584e63783abeea6882a7672993390e5e849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5545497_e529dc1f",
+        "filename": "cps-ri/src/test/resources/bookstore@2020-09-15.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-17T13:32:31Z",
+      "side": 1,
+      "message": "not sure which comment, neither I find any reason why this dont belong here",
+      "parentUuid": "10a995c2_5fc92702",
       "revId": "78980584e63783abeea6882a7672993390e5e849",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
