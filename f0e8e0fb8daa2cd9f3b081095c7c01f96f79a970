@@ -19,6 +19,46 @@
     },
     {
       "key": {
+        "uuid": "52d8d38e_d5c6775c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:31:25Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 37,
+        "startChar": 31,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b111b130_12782b36",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:31:25Z",
+      "side": 1,
+      "message": "ImmutableMap.of(..)",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c195ce32_059ef3f5",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -30,6 +70,23 @@
       "writtenOn": "2020-12-18T12:00:05Z",
       "side": 1,
       "message": "parser already do this empty validation, no need to do the same validation twice",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d6696fd_20139ba4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:31:25Z",
+      "side": 1,
+      "message": "this is not allowed import * . Is documented somewhere.\n You can configure your IDE, CodeStyle-\u003e Java -\u003e import tab, in the class count and static count set 999",
       "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
