@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "68b5ba40_9685e7e6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T13:49:48Z",
+      "side": 1,
+      "message": "alignment is 4, next line +4 .you can check that other classes follow same alignment.",
+      "parentUuid": "167ab34d_3d12c6b4",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52d8d38e_d5c6775c",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -189,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "864fcbd2_bf4e9d26",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T13:49:48Z",
+      "side": 1,
+      "message": "anyway try to keep consistency if possible",
+      "parentUuid": "7afc73a8_911bbfff",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a6b7b9c_eab935e6",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 6
@@ -305,6 +341,24 @@
       "side": 1,
       "message": "predictable output, error message easier to read",
       "parentUuid": "38612631_3e09f3fd",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb1f8c3_31d79a80",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T13:49:48Z",
+      "side": 1,
+      "message": "imho unnecessary, but ok",
+      "parentUuid": "113dae51_3533643e",
       "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
