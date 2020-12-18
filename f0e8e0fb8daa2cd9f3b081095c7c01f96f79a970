@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "167ab34d_3d12c6b4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "i have contradictory alignment requirements from different team members.",
+      "parentUuid": "6a0d414c_58cb4eb3",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52d8d38e_d5c6775c",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "0b55948c_c43f6687",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "52d8d38e_d5c6775c",
+      "range": {
+        "startLine": 37,
+        "startChar": 31,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b111b130_12782b36",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -56,6 +98,24 @@
       "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012c405e_7136c227",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b111b130_12782b36",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "b2b7bcbe_eb00eb7e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c195ce32_059ef3f5",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d6696fd_20139ba4",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 6
@@ -90,6 +168,24 @@
       "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7afc73a8_911bbfff",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "it\u0027s a groovy, not java\nupdated",
+      "parentUuid": "4d6696fd_20139ba4",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -127,6 +223,24 @@
     },
     {
       "key": {
+        "uuid": "83313577_a747b9e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "facc0b8e_9598ae9f",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e971ff0_30fd0ffc",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 6
@@ -144,6 +258,24 @@
     },
     {
       "key": {
+        "uuid": "25fa0a22_1b4cc625",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "updated to public access",
+      "parentUuid": "2e971ff0_30fd0ffc",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38612631_3e09f3fd",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 6
@@ -155,6 +287,24 @@
       "writtenOn": "2020-12-18T12:00:05Z",
       "side": 1,
       "message": "any reason for sorting?",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "113dae51_3533643e",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T13:20:35Z",
+      "side": 1,
+      "message": "predictable output, error message easier to read",
+      "parentUuid": "38612631_3e09f3fd",
       "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
