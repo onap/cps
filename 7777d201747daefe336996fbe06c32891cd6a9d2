@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0a0382d_7e146276",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T15:06:20Z",
+      "side": 1,
+      "message": "this is not accurate testing of the controller method.\nwe need assurance the service method is executed with exact same parameters were in the request,\nnot _any_ parameters.\nalso CpsAdminService.createAnchor(...) is void, this method does not return anything,\nit\u0027s unclear what was mocked there\n\nsee the examples here\nhttps://gerrit.onap.org/r/c/cps/+/116293/8/cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy\nor here\nhttps://gerrit.onap.org/r/c/cps/+/116480/1/cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 62
+      },
+      "revId": "7777d201747daefe336996fbe06c32891cd6a9d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32da8b09_9ee1cd1f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-18T15:06:20Z",
+      "side": 1,
+      "message": "the formatting makes it hard to separate the actual request \nfrom the response processing. it seams reasonable the split the action \nto multiple lines. smth like below\n\nwhen:\ndef response \u003d mvc.perform(...).andReturn().response\nthen:\nassert response.status \u003d\u003d ...",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 84
+      },
+      "revId": "7777d201747daefe336996fbe06c32891cd6a9d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
