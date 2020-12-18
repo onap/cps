@@ -21,7 +21,6 @@
 package org.onap.cps.rest.controller;
 
 import java.util.Collection;
-import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.rest.api.CpsAdminApi;
