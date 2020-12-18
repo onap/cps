@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a0d414c_58cb4eb3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "wrong alignment",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c195ce32_059ef3f5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "parser already do this empty validation, no need to do the same validation twice",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a6b7b9c_eab935e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "alignment",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "facc0b8e_9598ae9f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "remote comment //validation",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e971ff0_30fd0ffc",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "if you idea is to only expose method \"of\" for generate YangTextSchemaSourceSet.\nThen align as well the others methods as well to private e.g. put, putAll, build.\nOtherwise leave it as it was",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38612631_3e09f3fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-18T12:00:05Z",
+      "side": 1,
+      "message": "any reason for sorting?",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
