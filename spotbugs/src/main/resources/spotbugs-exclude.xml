@@ -1,0 +1,27 @@
+<FindBugsFilter>
+  <Match>
+    <Or>
+      <!-- Anonymous inner classes are very common. -->
+      <Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
+
+      <!-- We use static slf4j Logger (this rule is from KengoTODA/findbugs-slf4j jp.skypencil.findbugs.slf4:bug-pattern) -->
+      <Bug pattern="SLF4J_LOGGER_SHOULD_BE_NON_STATIC" />
+
+      <!-- Guava 25.1+ uses the Checker Framework's @Nullable which SpotBugs doesn't handle correctly, even though it's
+           supposed to; see https://github.com/spotbugs/spotbugs/issues/743 -->
+      <Bug pattern="NP_NONNULL_PARAM_VIOLATION" />
+      <Bug pattern="NP_NULL_PARAM_DEREF" />
+      <Bug pattern="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE" />
+      <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+
+      <!-- https://github.com/spotbugs/spotbugs/issues/511. Strict reading of Object.equals() contract means that
+           evenever equals() behaviour is defined, all implementations need to adhere to it. The only reason
+           to override the method (assuming correct API design, of course) is to provide a more efficient
+           implementation. This rule would be forcing a @SuppressFBWarnings on perfectly compliant classes. -->
+      <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS"/>
+
+      <!-- https://github.com/spotbugs/spotbugs/issues/756. spotbugs does not grok Java 11's try-with-resources -->
+      <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
+    </Or>
+  </Match>
+</FindBugsFilter>
