@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3886d770_d4e1997c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-18T13:51:39Z",
+      "side": 1,
+      "message": "what about negative test cases?",
+      "range": {
+        "startLine": 42,
+        "startChar": 6,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "1dfaed3abbf9e23dc9e7ad37ca6396509f8cb6d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f82c7c_945b0716",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-18T13:51:39Z",
+      "side": 1,
+      "message": "Suggestion : when createAnchor API is called the response status is 201.",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "1dfaed3abbf9e23dc9e7ad37ca6396509f8cb6d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e6a2120_719d7c8b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-18T13:51:39Z",
+      "side": 1,
+      "message": "should be 201",
+      "range": {
+        "startLine": 69,
+        "startChar": 27,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "1dfaed3abbf9e23dc9e7ad37ca6396509f8cb6d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e6a3850_2dd12c1d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-18T13:51:39Z",
+      "side": 1,
+      "message": "similar to above",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 75,
+        "endChar": 27
+      },
+      "revId": "1dfaed3abbf9e23dc9e7ad37ca6396509f8cb6d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
