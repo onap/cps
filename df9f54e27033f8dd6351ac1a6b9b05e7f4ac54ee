@@ -16,6 +16,24 @@
       "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdac6d2f_ef9f9d78",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-21T10:59:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba8c333e_e6967e70",
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

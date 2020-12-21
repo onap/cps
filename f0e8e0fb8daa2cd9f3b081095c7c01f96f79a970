@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "5170925b_df99507f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-21T10:59:48Z",
+      "side": 1,
+      "message": "this breaks checkstyle validation on build, removed parameters alignment only",
+      "parentUuid": "68b5ba40_9685e7e6",
+      "revId": "f0e8e0fb8daa2cd9f3b081095c7c01f96f79a970",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52d8d38e_d5c6775c",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
