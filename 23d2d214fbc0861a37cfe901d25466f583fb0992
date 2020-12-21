@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6ebbfb0_08faa238",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-21T12:04:15Z",
+      "side": 1,
+      "message": "what about 400 , bad request ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6e965ed_67b8e318",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-21T12:04:15Z",
+      "side": 1,
+      "message": "remove extra lines",
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16a50cfb_ec4b2010",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-21T12:04:15Z",
+      "side": 1,
+      "message": "this file can be excluded from review, only contains formatting changes",
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
