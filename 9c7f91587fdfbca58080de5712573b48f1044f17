@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "677395c8_b6bcee53",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-22T13:10:15Z",
+      "side": 1,
+      "message": "revert this change",
+      "revId": "9c7f91587fdfbca58080de5712573b48f1044f17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2645483c_dc5fc91c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -13,6 +30,23 @@
       "writtenOn": "2020-12-22T12:28:39Z",
       "side": 1,
       "message": "remove from review",
+      "revId": "9c7f91587fdfbca58080de5712573b48f1044f17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26a9c091_4d7cd1f6",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2020-12-22T13:10:15Z",
+      "side": 1,
+      "message": "remove comment",
       "revId": "9c7f91587fdfbca58080de5712573b48f1044f17",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
