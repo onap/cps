@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2645483c_dc5fc91c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2020-12-22T12:28:39Z",
+      "side": 1,
+      "message": "remove from review",
+      "revId": "9c7f91587fdfbca58080de5712573b48f1044f17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
