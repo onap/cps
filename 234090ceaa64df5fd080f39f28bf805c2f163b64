@@ -16,6 +16,24 @@
       "revId": "234090ceaa64df5fd080f39f28bf805c2f163b64",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e957ddc1_1ee4e790",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-23T07:41:52Z",
+      "side": 1,
+      "message": "validation.\nit was mentioned in a comment initially, but you requested the comment removal\nhttps://gerrit.onap.org/r/c/cps/+/116293/6/cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+      "parentUuid": "bedf207e_c3e741fa",
+      "revId": "234090ceaa64df5fd080f39f28bf805c2f163b64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
