@@ -52,6 +52,24 @@
       "revId": "234090ceaa64df5fd080f39f28bf805c2f163b64",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7a83d04_9872e596",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2020-12-24T08:45:46Z",
+      "side": 1,
+      "message": "replaced with validate() method",
+      "parentUuid": "cb1e7710_2834ecf4",
+      "revId": "234090ceaa64df5fd080f39f28bf805c2f163b64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
