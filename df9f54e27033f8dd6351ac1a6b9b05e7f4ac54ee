@@ -34,6 +34,63 @@
       "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f2170cb_c270916f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-04T16:17:42Z",
+      "side": 1,
+      "message": "could be moved to the top of import just to maintain uniformity with other classes static imports.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af79a86_0a3038b5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-04T16:17:42Z",
+      "side": 1,
+      "message": "not being used anywhere?",
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25278c53_8de9ddad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-04T16:17:42Z",
+      "side": 1,
+      "message": "extra line",
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
