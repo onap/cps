@@ -44,6 +44,7 @@ public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestConta
     public static DatabaseTestContainer getInstance() {
         if (databaseTestContainer == null) {
             databaseTestContainer = new DatabaseTestContainer();
+            Runtime.getRuntime().addShutdownHook(new Thread(databaseTestContainer::terminate));
         }
         return databaseTestContainer;
     }
@@ -58,7 +59,10 @@ public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestConta
 
     @Override
     public void stop() {
-        //do nothing, JVM handles shut down
+        // do nothing on test completion, image removal will be performed via terminate() on JVM shutdown
     }
 
+    private void terminate() {
+        super.stop();
+    }
 }
