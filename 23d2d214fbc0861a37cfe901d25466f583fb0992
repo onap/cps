@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d2699ca3_bc17d2cb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-05T14:02:37Z",
+      "side": 1,
+      "message": "can be renamed later",
+      "parentUuid": "f5b79afa_586a9994",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6e965ed_67b8e318",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 11
@@ -89,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "81f01115_d2162ad2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-05T14:02:37Z",
+      "side": 1,
+      "message": "this is a kind of comment that can be ignored if there is nothing else..",
+      "parentUuid": "d6e965ed_67b8e318",
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9eefa2c6_c16e3358",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 11
@@ -100,6 +142,30 @@
       "writtenOn": "2021-01-05T13:44:01Z",
       "side": 1,
       "message": "Suggestion : yangResourcesMap is clear enough",
+      "range": {
+        "startLine": 38,
+        "startChar": 58,
+        "endLine": 38,
+        "endChar": 87
+      },
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da9bf993_48e9f5a6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-05T14:02:37Z",
+      "side": 1,
+      "message": "disagree, I think aToB convention for maps is better",
+      "parentUuid": "9eefa2c6_c16e3358",
       "range": {
         "startLine": 38,
         "startChar": 58,
@@ -141,6 +207,24 @@
       "side": 1,
       "message": "missed",
       "parentUuid": "16a50cfb_ec4b2010",
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1f334f_4715a930",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-05T14:02:37Z",
+      "side": 1,
+      "message": "can be ignore, I am actually nor sure which formatting is more correct,,,",
+      "parentUuid": "f4e9e00a_d497d8a6",
       "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
