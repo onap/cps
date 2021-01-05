@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "c92dab6a_4837b819",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-05T17:20:12Z",
+      "side": 1,
+      "message": "so please update you groovy config on intellj, same for the rest of the team. Lets keep consistency",
+      "parentUuid": "9840edf9_c2b670c3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4af79a86_0a3038b5",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 8
