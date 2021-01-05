@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f5f9b899_dbf7194b",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-05T16:12:10Z",
+      "side": 1,
+      "message": "i think this needs to be addressed globally:\nany of the request may return 400 response.\nto be resolved as separate task",
+      "parentUuid": "ebac49f1_02dfba68",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "23d2d214fbc0861a37cfe901d25466f583fb0992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5b79afa_586a9994",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 11

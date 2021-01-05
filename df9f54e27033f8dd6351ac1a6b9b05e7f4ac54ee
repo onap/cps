@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "9840edf9_c2b670c3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-05T16:12:10Z",
+      "side": 1,
+      "message": "it\u0027s a default groovy style from intellij. \nit makes no sense changing it unless same style is shared across the team",
+      "parentUuid": "6f2170cb_c270916f",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4af79a86_0a3038b5",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 8
@@ -74,6 +98,24 @@
       "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0857e17_fed721dd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-05T16:12:10Z",
+      "side": 1,
+      "message": "MockMvc object won\u0027t initialize unless all the components used by all the controllers are mocked",
+      "parentUuid": "4af79a86_0a3038b5",
+      "revId": "df9f54e27033f8dd6351ac1a6b9b05e7f4ac54ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
