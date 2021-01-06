@@ -29,11 +29,13 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
+import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
@@ -53,6 +55,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Override
     public void storeModule(final String namespace, final String moduleContent, final String revision,
@@ -115,5 +120,17 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Map<String, String> yangResourceNameToContent = schemaSet.getYangResources().stream().collect(
             Collectors.toMap(YangResource::getName, YangResource::getContent));
         return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getModuleReferences();
+    }
+
+    @Override
+    public Map<String, String> getYangResources(final String dataspaceName,
+        final String anchorName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final Fragment anchor =
+            fragmentRepository.getByDataspaceAndAnchorName(dataspace, anchorName);
+        final SchemaSet schemaSet = anchor.getSchemaSet();
+        final Map<String, String> yangResourceNameToContent = schemaSet.getYangResources().stream()
+            .collect(Collectors.toMap(YangResource::getName, YangResource::getContent));
+        return yangResourceNameToContent;
     }
 }

@@ -62,4 +62,13 @@ public interface CpsModulePersistenceService {
      * @return collection of ModuleRef
      */
     Collection<ModuleReference> getModuleReferences(String namespace, String schemaSetName);
+
+    /**
+     * Returns Yang Resources as a map, where key is resource name and value is resource content.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return map having key as resource name and value as resource content.
+     */
+    Map<String, String> getYangResources(String dataspaceName, String anchorName);
 }
