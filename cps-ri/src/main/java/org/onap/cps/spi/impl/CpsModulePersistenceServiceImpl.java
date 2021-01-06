@@ -21,7 +21,6 @@
 package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -32,17 +31,12 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
-import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
-import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
-import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -62,7 +56,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public void storeModule(final String namespace, final String moduleContent, final String revision,
-                            final String dataspaceName) {
+        final String dataspaceName) {
         // TODO this method should be removed as obsolete.
         // Modules to be processed within schema sets only.
     }
@@ -70,7 +64,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Override
     @Transactional
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
-                               final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, String> yangResourcesNameToContentMap) {
 
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesNameToContentMap);
@@ -119,13 +113,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
         final Map<String, String> yangResourceNameToContent = schemaSet.getYangResources().stream().collect(
-                Collectors.toMap(YangResource::getName, YangResource::getContent));
-        try {
-            final YangTextSchemaSourceSet schemaSourceSet = YangTextSchemaSourceSetBuilder
-                .of(yangResourceNameToContent);
-            return schemaSourceSet.getModuleReferences();
-        } catch (final ReactorException | YangSyntaxErrorException e) {
-            throw new ModelValidationException("Yang file validation failed", e.getMessage(), e);
-        }
+            Collectors.toMap(YangResource::getName, YangResource::getContent));
+        return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getModuleReferences();
     }
 }
