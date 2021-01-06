@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "213cef23_a4637b9c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T17:44:22Z",
+      "side": 1,
+      "message": "extract (exactly what I highlighted) out into a new private method that can also be used below\nI do wonder if the result of both new methods should be one step further ie create a \u0027SchemaSource\u0027 with YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)...",
+      "range": {
+        "startLine": 117,
+        "startChar": 116,
+        "endLine": 121,
+        "endChar": 79
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94079465_67099a82",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T17:44:22Z",
+      "side": 1,
+      "message": "this could be refactored to use most of the the method above, see previous comment",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 88
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1169a803_98dbce11",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T17:44:22Z",
+      "side": 1,
+      "message": "as per previous comment, should we build a SchemaContetx I though that was mentioned in the user story description?",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
