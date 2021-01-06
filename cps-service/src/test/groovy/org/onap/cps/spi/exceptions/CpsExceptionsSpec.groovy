@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -103,5 +103,11 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception details contains the correct message with dataspace and schema set names'
             (new SchemaSetNotFoundException(dataspaceName,schemaSetName)).details
                     == "Schema Set with name ${schemaSetName} was not found for dataspace ${dataspaceName}."
+    }
+    
+    def 'Creating a exception that an anchor cannot be found.'() {
+        expect: 'the exception details contains the correct message with dataspace and anchor name'
+            (new AnchorNotFoundException(anchorName, dataspaceName)).details
+                    == "Anchor with name ${anchorName} does not exist in dataspace ${dataspaceName}."
     }
 }
