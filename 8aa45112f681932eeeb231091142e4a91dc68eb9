@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "dc5312c6_1abc1399",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T11:10:49Z",
+      "side": 1,
+      "message": "Tip: all of these lines can be simplified to just 2 lines:\n\n    def anchor \u003d new Anchor(name: \u0027my_anchor\u0027)\n    def anchorList \u003d [anchor]\n\nThe Power of Groovy :-)",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "8aa45112f681932eeeb231091142e4a91dc68eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbbd4c0f_f9bbbdcd",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
