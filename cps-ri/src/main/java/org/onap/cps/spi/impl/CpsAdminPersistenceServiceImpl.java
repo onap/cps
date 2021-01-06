@@ -82,6 +82,14 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
     }
 
+    @Override
+    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity =
+            anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        return toAnchor(anchorEntity);
+    }
+
     private static Anchor toAnchor(final AnchorEntity anchorEntity) {
         return Anchor.builder()
             .name(anchorEntity.getName())

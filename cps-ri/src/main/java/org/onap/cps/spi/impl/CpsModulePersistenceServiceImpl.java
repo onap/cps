@@ -28,11 +28,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
@@ -52,6 +54,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private CpsAdminPersistenceService cpsAdminPersistenceService;
 
     @Override
     @Transactional
@@ -108,5 +113,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
             Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+    }
+
+    @Override
+    public Map<String, String> getYangSchemaSetResources(final String dataspaceName,
+        final String anchorName) {
+        final Anchor anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+        return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
     }
 }

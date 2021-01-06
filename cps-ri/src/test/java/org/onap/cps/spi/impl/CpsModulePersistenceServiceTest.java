@@ -29,6 +29,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
+import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
@@ -37,7 +38,6 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
-import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -52,6 +52,7 @@ public class CpsModulePersistenceServiceTest {
     private static final String CLEAR_DATA = "/data/clear-all.sql";
     private static final String SET_DATA = "/data/schemaset.sql";
 
+    private static final String ANCHOR_NAME = "ANCHOR-001";
     private static final String DATASPACE_NAME = "DATASPACE-001";
     private static final String DATASPACE_NAME_INVALID = "DATASPACE-X";
     private static final String SCHEMA_SET_NAME = "SCHEMA-SET-001";
@@ -74,10 +75,10 @@ public class CpsModulePersistenceServiceTest {
     private CpsModulePersistenceService cpsModulePersistenceService;
 
     @Autowired
-    private DataspaceRepository dataspaceRepository;
+    private CpsAdminPersistenceService cpsAdminPersistenceService;
 
     @Autowired
-    private YangResourceRepository yangResourceRepository;
+    private DataspaceRepository dataspaceRepository;
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
@@ -107,6 +108,19 @@ public class CpsModulePersistenceServiceTest {
             NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM);
         assertEquals(yangResourcesNameToContentMap,
                 cpsModulePersistenceService.getYangSchemaResources(DATASPACE_NAME, SCHEMA_SET_NAME_NEW));
+    }
+
+    @Test
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testGetYangResourcesWithAnchorName() {
+        final Map<String, String> yangResourcesNameToContentMap =
+            toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT);
+        cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
+            yangResourcesNameToContentMap);
+
+        cpsAdminPersistenceService.createAnchor(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, ANCHOR_NAME);
+        assertEquals(yangResourcesNameToContentMap,
+            cpsModulePersistenceService.getYangSchemaSetResources(DATASPACE_NAME, ANCHOR_NAME));
     }
 
     @Test

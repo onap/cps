@@ -24,11 +24,18 @@ import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Optional<AnchorEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity, @NotNull String name);
+
+    default AnchorEntity getByDataspaceAndName(@NotNull DataspaceEntity dataspace,
+        @NotNull String anchorName) {
+        return findByDataspaceAndName(dataspace, anchorName)
+            .orElseThrow(() -> new AnchorNotFoundException(anchorName, dataspace.getName()));
+    }
 
     Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 }
