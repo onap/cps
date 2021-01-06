@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2c4b9376_ec3cf786",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T11:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83c76bb7_15677c6d",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 34
+      },
+      "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2eae67d9_76788be1",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5be089ff_5d3fd817",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T11:54:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2eae67d9_76788be1",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6538485_2d3f4205",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2021-01-04T16:57:41Z",
       "side": 1,
       "message": "redundant given the next lines...",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f1c8f2d_97dc5ec8",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-06T11:54:56Z",
+      "side": 1,
+      "message": "optional :-)\nI always try for the minimum number of lines in testware unless they improve readability or make tets more strict. Neither applies to this assert",
+      "parentUuid": "b6538485_2d3f4205",
       "range": {
         "startLine": 87,
         "startChar": 8,
