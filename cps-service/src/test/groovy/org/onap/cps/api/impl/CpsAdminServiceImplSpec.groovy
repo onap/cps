@@ -21,6 +21,7 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
 
@@ -54,4 +55,20 @@ class CpsAdminServiceImplSpec extends Specification {
             objectUnderTest.getAnchors('dummyDataspace') == anchorCollection
     }
 
+    def 'Retrieve anchor for dataspace and provided anchor name'() {
+        given: 'that anchor name is associated with the dataspace'
+            Anchor anchor = new Anchor()
+            mockCpsAdminPersistenceService.getAnchor('dummyDataspace','dummyAnchor') >> { anchor }
+        expect: 'the anchor provided by persistence service is returned as result'
+            objectUnderTest.getAnchor('dummyDataspace','dummyAnchor') == anchor
+    }
+
+    def 'Retrieve anchor for dataspace and non existing anchor name'() {
+        given: 'that anchor name is non existing within the dataspace'
+            mockCpsAdminPersistenceService.getAnchor('_','_') >> {throw new AnchorNotFoundException('_','_')}
+        when:
+            objectUnderTest.getAnchor('_','_')
+        then: 'AnchorNotFoundException is thrown'
+            thrown(AnchorNotFoundException.class)
+    }
 }

@@ -80,11 +80,20 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final Collection<Fragment> fragments = fragmentRepository.findFragmentsThatAreAnchorsByDataspace(dataspace);
         return fragments.stream().map(
-            entity -> Anchor.builder()
-                .name(entity.getAnchorName())
-                .dataspaceName(dataspaceName)
-                .schemaSetName(entity.getSchemaSet().getName())
-                .build()
-        ).collect(Collectors.toList());
+            entity -> convertToAnchor(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final Fragment anchor =
+            fragmentRepository.getByDataspaceAndAnchorName(dataspace, anchorName);
+        return convertToAnchor(anchor);
+    }
+
+    private Anchor convertToAnchor(final Fragment fragmentEntity) {
+        return Anchor.builder().name(fragmentEntity.getAnchorName())
+            .dataspaceName(fragmentEntity.getDataspace().getName())
+            .schemaSetName(fragmentEntity.getSchemaSet().getName()).build();
     }
 }
