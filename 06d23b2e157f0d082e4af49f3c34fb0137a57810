@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8f6ce997_f59d17d8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-06T13:02:55Z",
+      "side": 1,
+      "message": "we can do it, but first we need to establish the response format for insert operations.\nfor now we return the request parameter response body as a plain text, not even json.\na point for discussion. i think we dont need response body at all (for these operations)",
+      "parentUuid": "5be089ff_5d3fd817",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6538485_2d3f4205",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
         "patchSetId": 3
@@ -140,6 +164,30 @@
       "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38bd33b8_6cde9eec",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-06T13:02:55Z",
+      "side": 1,
+      "message": "it\u0027s about the [possible] failure reason:\ntest should not fail because of NullPointerException occurrence on execution,\nit should fail because the expectation was not met.",
+      "parentUuid": "b6538485_2d3f4205",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "06d23b2e157f0d082e4af49f3c34fb0137a57810",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
