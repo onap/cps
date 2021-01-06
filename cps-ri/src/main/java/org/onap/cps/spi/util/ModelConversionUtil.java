@@ -1,7 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Copyright (C) 2021 Nordix Foundation. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +18,23 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.util;
 
-import org.onap.cps.spi.entities.FragmentEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.model.Anchor;
 
-@Repository
-public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
+public final class ModelConversionUtil {
+
+    /**
+     * This util method is used to convert {@link org.onap.cps.spi.entities.AnchorEntity} to
+     * {@link org.onap.cps.spi.model.Anchor}.
+     *
+     * @param anchorEntity anchorEntity
+     * @return anchor anchor
+     */
+    public static Anchor toAnchor(final AnchorEntity anchorEntity) {
+        return Anchor.builder().name(anchorEntity.getName())
+            .dataspaceName(anchorEntity.getDataspace().getName())
+            .schemaSetName(anchorEntity.getSchemaSet().getName()).build();
+    }
 }

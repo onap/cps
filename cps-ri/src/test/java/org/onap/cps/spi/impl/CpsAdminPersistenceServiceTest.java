@@ -38,7 +38,6 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -73,9 +72,6 @@ public class CpsAdminPersistenceServiceTest {
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
-
-    @Autowired
-    private SchemaSetRepository schemaSetRepository;
 
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
@@ -138,10 +134,10 @@ public class CpsAdminPersistenceServiceTest {
         assertEquals(2, anchors.size());
         assertTrue(anchors.contains(
             Anchor.builder().name(ANCHOR_NAME1).schemaSetName(SCHEMA_SET_NAME1).dataspaceName(DATASPACE_NAME).build()
-        ));
+            ));
         assertTrue(anchors.contains(
             Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()
-        ));
+            ));
     }
 
     @Test(expected = DataspaceNotFoundException.class)

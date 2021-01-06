@@ -23,6 +23,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 

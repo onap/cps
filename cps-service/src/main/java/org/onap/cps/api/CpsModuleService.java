@@ -47,4 +47,15 @@ public interface CpsModuleService {
      * @return a SchemaSet
      */
     SchemaSet getSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName);
+
+    /**
+     * Returns YANG resources per specific dataspace / anchor Name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return YANG resources (files) map where key is a name and value is content
+     */
+    @NonNull
+    Map<String, String> getYangSchemaSetResources(@NonNull final String dataspaceName,
+        @NonNull final String anchorName);
 }
