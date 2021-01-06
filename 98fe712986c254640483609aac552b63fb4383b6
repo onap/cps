@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "27f98ad4_1cf0a7e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-06T15:30:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85f7f13e_8c079f91",
+      "range": {
+        "startLine": 129,
+        "startChar": 23,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de243af7_4c00d178",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "30633d35_fe131641",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-06T15:30:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de243af7_4c00d178",
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f33f31c_84835e38",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -53,6 +95,30 @@
       "writtenOn": "2021-01-06T14:37:02Z",
       "side": 1,
       "message": "this is not a good exception choice, it\u0027s an extension of CpsException\nit means on a REST level it will be converted into internal server error. \nsee https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+API+HTTP+Response+Codes\nsuggested the new exception AnchorNotFoundException (extends CpsAdminException)",
+      "range": {
+        "startLine": 41,
+        "startChar": 35,
+        "endLine": 41,
+        "endChar": 63
+      },
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6694b29d_58cc3d26",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-06T15:30:04Z",
+      "side": 1,
+      "message": "I am happy to change this. This is used as a reference from ModuleRepository. Please raise a bug/let me know incase that is incorrect too.",
+      "parentUuid": "6f33f31c_84835e38",
       "range": {
         "startLine": 41,
         "startChar": 35,
