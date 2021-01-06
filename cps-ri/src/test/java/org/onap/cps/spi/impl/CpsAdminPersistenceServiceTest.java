@@ -32,13 +32,13 @@ import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
-import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -56,6 +56,7 @@ public class CpsAdminPersistenceServiceTest {
     private static final String EMPTY_DATASPACE_NAME = "DATASPACE-002";
     private static final String NON_EXISTING_DATASPACE_NAME = "NON EXISTING DATASPACE";
     private static final String NON_EXISTING_SCHEMA_SET_NAME = "NON EXISTING SCHEMA SET";
+    private static final String NON_EXISTING_ANCHOR_NAME = "NON EXISTING ANCHOR NAME";
     private static final String SCHEMA_SET_NAME1 = "SCHEMA-SET-001";
     private static final String SCHEMA_SET_NAME2 = "SCHEMA-SET-002";
     private static final String ANCHOR_NAME1 = "ANCHOR-001";
@@ -73,9 +74,6 @@ public class CpsAdminPersistenceServiceTest {
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
-
-    @Autowired
-    private SchemaSetRepository schemaSetRepository;
 
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
@@ -157,6 +155,28 @@ public class CpsAdminPersistenceServiceTest {
 
         assertNotNull(anchors);
         assertTrue(anchors.isEmpty());
+    }
+
+    @Test
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testGetAnchorsByDataspaceAndAnchorName() {
+        final Anchor anchor = cpsAdminPersistenceService.getAnchor(DATASPACE_NAME, ANCHOR_NAME1);
+
+        assertNotNull(anchor);
+        assertEquals(anchor.getName(), ANCHOR_NAME1);
+        assertEquals(anchor.getDataspaceName(), DATASPACE_NAME);
+    }
+
+    @Test(expected = DataspaceNotFoundException.class)
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testGetAnchorFromNonExistingDataspace() {
+        cpsAdminPersistenceService.getAnchor(NON_EXISTING_DATASPACE_NAME, ANCHOR_NAME1);
+    }
+
+    @Test(expected = AnchorNotFoundException.class)
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    public void testGetAnchorByNonExistingAnchorName() {
+        cpsAdminPersistenceService.getAnchor(DATASPACE_NAME, NON_EXISTING_ANCHOR_NAME);
     }
 
 }

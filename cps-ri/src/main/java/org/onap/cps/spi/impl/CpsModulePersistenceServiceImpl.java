@@ -33,6 +33,7 @@ import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Override
     @Transactional

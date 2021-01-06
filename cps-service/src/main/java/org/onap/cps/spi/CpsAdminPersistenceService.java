@@ -57,4 +57,14 @@ public interface CpsAdminPersistenceService {
      */
     @NonNull
     Collection<Anchor> getAnchors(@NonNull String dataspaceName);
+
+    /**
+     * Get an anchor in the given dataspace using the anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return an anchor
+     */
+    @NonNull
+    Anchor getAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
 }

@@ -23,6 +23,7 @@ package org.onap.cps.spi.impl;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.Fragment;
@@ -80,11 +81,21 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final Collection<Fragment> fragments = fragmentRepository.findFragmentsThatAreAnchorsByDataspace(dataspace);
         return fragments.stream().map(
-            entity -> Anchor.builder()
-                .name(entity.getAnchorName())
-                .dataspaceName(dataspaceName)
-                .schemaSetName(entity.getSchemaSet().getName())
-                .build()
-        ).collect(Collectors.toList());
+            entity -> convertToAnchor(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public @NonNull Anchor getAnchor(@NonNull final String dataspaceName,
+        @NonNull final String anchorName) {
+        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
+        final Fragment anchor =
+            fragmentRepository.getByDataspaceAndAnchorName(dataspace, anchorName);
+        return convertToAnchor(anchor);
+    }
+
+    private Anchor convertToAnchor(final Fragment fragmentEntity) {
+        return Anchor.builder().name(fragmentEntity.getAnchorName())
+            .dataspaceName(fragmentEntity.getDataspace().getName())
+            .schemaSetName(fragmentEntity.getSchemaSet().getName()).build();
     }
 }
