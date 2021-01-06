@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85f7f13e_8c079f91",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-06T14:37:02Z",
+      "side": 1,
+      "message": "rename to anchor",
+      "range": {
+        "startLine": 129,
+        "startChar": 23,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de243af7_4c00d178",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-06T14:37:02Z",
+      "side": 1,
+      "message": "this seems over-complicated.\nfinal SchemaSet schemaSet \u003d fragment.getSchemaSet();\nwill do the same",
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f33f31c_84835e38",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-06T14:37:02Z",
+      "side": 1,
+      "message": "this is not a good exception choice, it\u0027s an extension of CpsException\nit means on a REST level it will be converted into internal server error. \nsee https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+API+HTTP+Response+Codes\nsuggested the new exception AnchorNotFoundException (extends CpsAdminException)",
+      "range": {
+        "startLine": 41,
+        "startChar": 35,
+        "endLine": 41,
+        "endChar": 63
+      },
+      "revId": "98fe712986c254640483609aac552b63fb4383b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
