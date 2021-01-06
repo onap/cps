@@ -55,4 +55,10 @@ public class CpsModuleServiceImpl implements CpsModuleService {
                        .moduleReferences(yangTextSchemaSourceSet.getModuleReferences())
                 .build();
     }
+
+    @Override
+    public Map<String, String> getYangSchemaSetResources(final String dataspaceName,
+                                                         final String anchorName) {
+        return cpsModulePersistenceService.getYangSchemaSetResources(dataspaceName, anchorName);
+    }
 }

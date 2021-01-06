@@ -33,11 +33,12 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
+import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
-import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -51,7 +52,10 @@ public class CpsModulePersistenceServiceTest {
 
     private static final String CLEAR_DATA = "/data/clear-all.sql";
     private static final String SET_DATA = "/data/schemaset.sql";
+    private static final String SET_DATA_ANCHOR = "/data/anchor.sql";
 
+    private static final String ANCHOR_NAME1 = "ANCHOR-001";
+    private static final String NON_EXISTING_ANCHOR_NAME = "NON EXISTING ANCHOR NAME";
     private static final String DATASPACE_NAME = "DATASPACE-001";
     private static final String DATASPACE_NAME_INVALID = "DATASPACE-X";
     private static final String SCHEMA_SET_NAME = "SCHEMA-SET-001";
@@ -75,9 +79,6 @@ public class CpsModulePersistenceServiceTest {
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
-
-    @Autowired
-    private YangResourceRepository yangResourceRepository;
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
@@ -143,6 +144,28 @@ public class CpsModulePersistenceServiceTest {
         assertEquals(expectedYangResourceName, yangResourceEntity.getName());
         assertEquals(expectedYangResourceContent, yangResourceEntity.getContent());
         assertEquals(expectedYangResourceChecksum, yangResourceEntity.getChecksum());
+    }
+
+    @Test
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA_ANCHOR)})
+    public void testGetAnchorByDataspaceAndAnchorName() {
+        final Anchor anchor = cpsModulePersistenceService.getAnchor(DATASPACE_NAME, ANCHOR_NAME1);
+
+        assertNotNull(anchor);
+        assertEquals(ANCHOR_NAME1, anchor.getName());
+        assertEquals(DATASPACE_NAME, anchor.getDataspaceName());
+    }
+
+    @Test(expected = DataspaceNotFoundException.class)
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA_ANCHOR)})
+    public void testGetAnchorFromNonExistingDataspace() {
+        cpsModulePersistenceService.getAnchor(DATASPACE_NAME_INVALID, ANCHOR_NAME1);
+    }
+
+    @Test(expected = AnchorNotFoundException.class)
+    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA_ANCHOR)})
+    public void testGetAnchorByNonExistingAnchorName() {
+        cpsModulePersistenceService.getAnchor(DATASPACE_NAME, NON_EXISTING_ANCHOR_NAME);
     }
 
     private static Map<String, String> toMap(final String key, final String value) {

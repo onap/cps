@@ -33,6 +33,7 @@ import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.util.ModelConversionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -79,14 +80,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
-        return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+        return anchorEntities.stream().map(ModelConversionUtil::toAnchor).collect(Collectors.toList());
     }
 
-    private static Anchor toAnchor(final AnchorEntity anchorEntity) {
-        return Anchor.builder()
-            .name(anchorEntity.getName())
-            .dataspaceName(anchorEntity.getDataspace().getName())
-            .schemaSetName(anchorEntity.getSchemaSet().getName())
-            .build();
-    }
 }

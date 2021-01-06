@@ -22,6 +22,7 @@ package org.onap.cps.spi;
 
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.spi.model.Anchor;
 
 /**
  * Service to manage modules.
@@ -36,15 +37,38 @@ public interface CpsModulePersistenceService {
      * @param yangResourcesNameToContentMap YANG resources (files) map where key is a name and value is content
      */
     void storeSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-            @NonNull Map<String, String> yangResourcesNameToContentMap);
+        @NonNull Map<String, String> yangResourcesNameToContentMap);
 
     /**
-     * Returns YANG resources per specific namespace / schemaSetName.
+     * Returns YANG resources per specific dataspace / schemaSetName.
      *
-     * @param namespace     module namespace
+     * @param dataspaceName   dataspace name
      * @param schemaSetName schema set name
      * @return YANG resources (files) map where key is a name and value is content
      */
     @NonNull
-    Map<String, String> getYangSchemaResources(@NonNull String namespace, @NonNull String schemaSetName);
+    Map<String, String> getYangSchemaResources(@NonNull String dataspaceName,
+        @NonNull String schemaSetName);
+
+    /**
+     * Get an anchor in the given dataspace using the anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return an anchor
+     */
+    @NonNull
+    Anchor getAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
+
+    /**
+     * Returns YANG resources per specific dataspace / anchorName.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return YANG resources (files) map where key is a name and value is content
+     */
+    @NonNull
+    Map<String, String> getYangSchemaSetResources(@NonNull String dataspaceName,
+        @NonNull String anchorName);
+
 }

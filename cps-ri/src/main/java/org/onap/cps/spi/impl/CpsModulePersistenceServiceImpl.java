@@ -28,14 +28,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.spi.util.ModelConversionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -52,6 +57,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private AnchorRepository anchorRepository;
 
     @Override
     @Transactional
@@ -108,5 +116,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
             Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+    }
+
+    @Override
+    public @NonNull Anchor getAnchor(@NonNull final String dataspaceName,
+                                     @NonNull final String anchorName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity =
+            anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        return ModelConversionUtil.toAnchor(anchorEntity);
+    }
+
+    @Override
+    public @NonNull Map<String, String> getYangSchemaSetResources(
+        @NonNull final String dataspaceName, @NonNull final String anchorName) {
+        final Anchor anchor = getAnchor(dataspaceName, anchorName);
+        return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
     }
 }
