@@ -55,13 +55,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private DataspaceRepository dataspaceRepository;
 
     @Override
-    public void storeModule(final String namespace, final String moduleContent, final String revision,
-        final String dataspaceName) {
-        // TODO this method should be removed as obsolete.
-        // Modules to be processed within schema sets only.
-    }
-
-    @Override
     @Transactional
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
