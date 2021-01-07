@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "21c21d2f_f04ad425",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-07T16:25:05Z",
+      "side": 1,
+      "message": "that setup is already done on line 36. \n\n    def setup() {\n        objectUnderTest.cpsModulePersistenceService \u003d mockModuleStoreService\n    }",
+      "parentUuid": "11cdff21_cfc5d7c4",
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d28d5e57_eb7e78c4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
