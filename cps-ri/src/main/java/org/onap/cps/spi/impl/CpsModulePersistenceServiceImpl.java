@@ -32,10 +32,10 @@ import org.onap.cps.spi.entities.Dataspace;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.entities.YangResource;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
-import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -109,11 +109,11 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public Collection<ModuleReference> getModuleReferences(final String dataspaceName, final String schemaSetName) {
+    public YangTextSchemaSourceSet getYangTextSchemaSourceSet(final String dataspaceName, final String schemaSetName) {
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
         final Map<String, String> yangResourceNameToContent = schemaSet.getYangResources().stream().collect(
             Collectors.toMap(YangResource::getName, YangResource::getContent));
-        return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getModuleReferences();
+        return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
     }
 }
