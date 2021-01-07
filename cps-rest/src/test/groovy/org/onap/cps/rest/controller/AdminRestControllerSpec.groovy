@@ -25,9 +25,9 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
+import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -57,6 +57,8 @@ class AdminRestControllerSpec extends Specification {
     MockMvc mvc
 
     def anchorsEndpoint = '/v1/dataspaces/my_dataspace/anchors'
+    def schemaSetsEndpoint = '/v1/dataspaces/test-dataspace/schema-sets'
+    def schemaSetEndpoint = schemaSetsEndpoint + '/my_schema_set'
 
     def anchor = new Anchor(name: 'my_anchor')
     def anchorList = [anchor]
@@ -118,10 +120,21 @@ class AdminRestControllerSpec extends Specification {
     def performCreateSchemaSetRequest(multipartFile) {
         return mvc.perform(
                 MockMvcRequestBuilders
-                        .multipart('/v1/dataspaces/test-dataspace/schema-sets')
+                        .multipart(schemaSetsEndpoint)
                         .file(multipartFile)
                         .param('schemaSetName', 'test-schema-set')
         ).andReturn().response
+    }
+
+    def 'when get schema set for a dataspace API is called, the response status is 200 '() {
+        given:
+            mockCpsModuleService.getSchemaSet('test-dataspace', 'my_schema_set') >>
+                    new SchemaSet(name: 'my_schema_set', dataspaceName: 'test-dataspace')
+        when: 'get schema set API is invoked'
+            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
+            then: 'Status is 200 and the response is a schema set containing schema set name -> my_schema_set'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains('my_schema_set')
     }
 
     def 'when createAnchor API is called, the response status is 201. '() {
@@ -134,8 +147,8 @@ class AdminRestControllerSpec extends Specification {
                     .params(requestParams as MultiValueMap)).andReturn().response
         then: 'Status is 201 and the response is the name of the created anchor -> my_anchor'
             1 * mockCpsAdminService.createAnchor('my_dataspace', 'my_schema-set', 'my_anchor')
-            assert response.status == HttpStatus.CREATED.value()
-            assert response.getContentAsString().contains('my_anchor')
+            response.status == HttpStatus.CREATED.value()
+            response.getContentAsString().contains('my_anchor')
     }
 
     def 'when get all anchors for a dataspace API is called, the response status is 200 '() {
@@ -144,7 +157,7 @@ class AdminRestControllerSpec extends Specification {
         when: 'get all anchors API is invoked'
             def response = mvc.perform(get(anchorsEndpoint)).andReturn().response
         then: 'Status is 200 and the response is Collection of Anchors containing anchor name -> my_anchor'
-            assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString().contains('my_anchor')
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains('my_anchor')
     }
 }

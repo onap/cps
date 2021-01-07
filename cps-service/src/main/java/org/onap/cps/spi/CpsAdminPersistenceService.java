@@ -57,5 +57,4 @@ public interface CpsAdminPersistenceService {
      */
     @NonNull
     Collection<Anchor> getAnchors(@NonNull String dataspaceName);
-
 }
