@@ -30,22 +30,6 @@ import org.onap.cps.spi.model.ModuleReference;
 public interface CpsModulePersistenceService {
 
     /**
-     * TODO
-     * clean up method to conform with spi proposal - https://jira.onap.org/browse/CPS-103
-     * Store the module from a yang model in the database.
-     * @deprecated
-     *
-     * @param namespace     module namespace
-     * @param moduleContent module content
-     * @param revision      module revision
-     * @param dataspaceName the name of the dataspace the module is associated with
-     */
-    @Deprecated(forRemoval = true)
-    void storeModule(final String namespace, final String moduleContent, final String revision,
-                     final String dataspaceName);
-
-
-    /**
      * Stores Schema Set.
      *
      * @param dataspaceName                 dataspace name
