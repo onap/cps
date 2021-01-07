@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af17ee0_196b68c0",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-07T13:25:19Z",
+      "side": 1,
+      "message": "Ignore this, this will be reverted once I fix the test that is @Ignored",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34bc44b4_7e999e7e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-07T13:25:19Z",
+      "side": 1,
+      "message": "I need to fix this test, mockModuleStoreService is returning null instead of the mocked mockYangTextSchemaSourceSet",
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
