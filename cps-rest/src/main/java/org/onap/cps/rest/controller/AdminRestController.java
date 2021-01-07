@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.SchemaSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +58,12 @@ public class AdminRestController implements CpsAdminApi {
         final String dataspaceName) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Object> getSchemaSet(final String dataspaceName, final String schemaSetName) {
+        final SchemaSet schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
+        return new ResponseEntity<>(schemaSet, HttpStatus.OK);
     }
 
     /**
