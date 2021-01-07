@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "11cdff21_cfc5d7c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T14:47:13Z",
+      "side": 1,
+      "message": "I think you are setting up the mocks incorrectly, they are now just objects in your tets class, different instances then what the service uses.\n\nYou need to inject or set your mocks on the real service\nlike here in the CpsAdminServiceImpl Spec:\n\nclass CpsAdminServiceImplSpec extends Specification {\ndef mockCpsAdminPersistenceService \u003d Mock(CpsAdminPersistenceService)\ndef objectUnderTest \u003d new CpsAdminServiceImpl()\n\ndef setup() {\nobjectUnderTest.cpsAdminPersistenceService \u003d mockCpsAdminPersistenceService\n}",
+      "parentUuid": "34bc44b4_7e999e7e",
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d28d5e57_eb7e78c4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
