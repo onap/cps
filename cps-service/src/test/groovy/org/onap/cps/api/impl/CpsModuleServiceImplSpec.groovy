@@ -23,12 +23,13 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.utils.YangUtils
-import org.opendaylight.yangtools.yang.common.Revision
-import org.opendaylight.yangtools.yang.model.api.SchemaContext
+import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.yang.YangTextSchemaSourceSet
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class CpsModuleServiceImplSpec extends Specification {
+    def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def objectUnderTest = new CpsModuleServiceImpl()
 
@@ -54,4 +55,22 @@ class CpsModuleServiceImplSpec extends Specification {
             thrown(ModelValidationException.class)
     }
 
+    @Ignore
+    def 'Get schema set by name and namespace'() {
+        given: 'an already present schema set'
+            def moduleReference = new ModuleReference(namespace: 'org:onap:ccsdk:sample', revision: '2020-09-15');
+            mockYangTextSchemaSourceSet.getModuleReferences() >> { moduleReference }
+            mockModuleStoreService.getYangTextSchemaSourceSet('test-dataspace', 'my_schema_set') >> mockYangTextSchemaSourceSet
+        when: 'get schema set method is invoked'
+            def result = objectUnderTest.getSchemaSet('test-dataspace', 'my_schema_set')
+        then: 'schema set model is returned as a result'
+            1 * mockModuleStoreService.getYangTextSchemaSourceSet('test-dataspace', 'my_schema_set')
+            1 * mockYangTextSchemaSourceSet.getModuleReferences()
+            assert result.getName().contains('my_schema_set',)
+            assert result.getDataspaceName().contains('test-dataspace')
+            assert !result.getModuleReferences().isEmpty()
+            def firstModuleReference = result.getModuleReferences().get(0);
+            assert firstModuleReference.getNamespace().contains('org:onap:ccsdk:sample')
+            assert firstModuleReference.getRevision().contains('2020-09-15')
+    }
 }
