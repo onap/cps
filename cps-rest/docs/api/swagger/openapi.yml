@@ -67,6 +67,41 @@ paths:
         403:
           description: Forbidden
           content: {}
+  /v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
+    get:
+      tags:
+        - cps-admin
+      summary: Read a schema set given a schema set and a dataspace
+      operationId: getSchemaSet
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: path
+          description: schema-name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
   /v1/dataspaces/{dataspace-name}/schema-sets:
     post:
       tags:

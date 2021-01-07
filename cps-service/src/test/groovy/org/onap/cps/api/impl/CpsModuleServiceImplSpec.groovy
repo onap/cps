@@ -21,11 +21,10 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.utils.YangUtils
-import org.opendaylight.yangtools.yang.common.Revision
-import org.opendaylight.yangtools.yang.model.api.SchemaContext
+import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.yang.YangTextSchemaSourceSet
 import spock.lang.Specification
 
 class CpsModuleServiceImplSpec extends Specification {
@@ -54,4 +53,16 @@ class CpsModuleServiceImplSpec extends Specification {
             thrown(ModelValidationException.class)
     }
 
+    def 'Get schema set by name and namespace'() {
+        given: 'an already present schema set'
+            YangTextSchemaSourceSet mockYangTextSchemaSourceSet = Mock()
+            mockYangTextSchemaSourceSet.getModuleReferences() >> [ new ModuleReference('org:onap:ccsdk:sample', '2020-09-15') ]
+            mockModuleStoreService.getYangTextSchemaSourceSet('test-dataspace', 'my_schema_set') >> mockYangTextSchemaSourceSet
+        when: 'get schema set method is invoked'
+            def result = objectUnderTest.getSchemaSet('test-dataspace', 'my_schema_set')
+        then: 'schema set model is returned as a result'
+            result.getName().contains('my_schema_set')
+            result.getDataspaceName().contains('test-dataspace')
+            result.getModuleReferences().contains(new ModuleReference('org:onap:ccsdk:sample', '2020-09-15'))
+    }
 }

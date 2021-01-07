@@ -20,9 +20,8 @@
 
 package org.onap.cps.spi;
 
-import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
 
 /**
  * Service to manage modules.
@@ -55,11 +54,11 @@ public interface CpsModulePersistenceService {
     void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
 
     /**
-     * Returns Modules references per specific namespace / schemaSetName.
+     * Returns YangTextSchemaSourceSet per specific namespace / schemaSetName.
      *
      * @param namespace     module namespace
      * @param schemaSetName schema set name
-     * @return collection of ModuleRef
+     * @return yang schema source set
      */
-    Collection<ModuleReference> getModuleReferences(String namespace, String schemaSetName);
+    YangTextSchemaSourceSet getYangTextSchemaSourceSet(String namespace, String schemaSetName);
 }

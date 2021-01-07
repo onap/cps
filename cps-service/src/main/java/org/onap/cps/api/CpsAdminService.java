@@ -50,7 +50,7 @@ public interface CpsAdminService {
     void createAnchor(@NonNull String dataspaceName, @NonNull String schemaSetName, @NonNull String anchorName);
 
     /**
-     * Read all anchors in the given a dataspace.
+     * Read all anchors in the given dataspace.
      *
      * @param dataspaceName dataspace name
      * @return a collection of anchors
