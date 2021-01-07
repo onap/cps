@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "cfeda76e_d6e8e202",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "dont define this here as you only need it in 1 test (at the moment)",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 67
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7695828c_213d2652",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "dont think it matter but recommended way to set up the mocks in like this:\n\n    CpsModulePersistenceService mockCpsModulePersistenceService \u003d Mock()\n    CpsModuleServiceImpl objectUnderTest \u003d new CpsModuleServiceImpl()\n\n    def setup() {\n        objectUnderTest.cpsModulePersistenceService \u003d mockCpsModulePersistenceService\n    }",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34bc44b4_7e999e7e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
@@ -78,6 +124,52 @@
     },
     {
       "key": {
+        "uuid": "51abcf66_790bc0e1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "no need for named parameters as you are using an existing constructor",
+      "range": {
+        "startLine": 61,
+        "startChar": 54,
+        "endLine": 61,
+        "endChar": 113
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f56753cb_94025d06",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "need to use Sq brackets otherwise you get a groovy map :-)",
+      "range": {
+        "startLine": 62,
+        "startChar": 65,
+        "endLine": 62,
+        "endChar": 84
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d28d5e57_eb7e78c4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
@@ -89,6 +181,98 @@
       "writtenOn": "2021-01-07T14:23:33Z",
       "side": 1,
       "message": "for some reason this return null instead of mockYangTextSchemaSo",
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "489b26d3_d8f24912",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "this causes problems and there is no need to both mock and expect calls when you use mocking with specific parameters! You usually do one or the other.\nSince you test depend on mocks behavior which only happens with the correct paarmeters there is no need. I don\u0027t fully understand why it doesn\u0027t work but I normally only use this when I don\u0027t depend on return from Mock or when I use wildcards when mocking the behavior",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e65f7928_486d97f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "assert is not needed in then block anything that is a boolean will automcatilly \u0027asserted\u0027 I used it depending on readability\neg NOT for: result \u003d\u003d 21\nbut DO for: assert result.booleanProperty \u003d\u003d true    ( \u003d\u003d true is optional but I think it helps)\n\nprobably not for result.contains(something)\n\nJust some advise I will normally not reject on the absence or inclusion of assets it is personal choice...",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f1945d6_6b50d0bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "can be sticter and more readable, see my  suggested solution",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 58
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb9e8e26_bce0eb3c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-07T18:08:46Z",
+      "side": 1,
+      "message": "this is testing the moduleReference constructor no need to do that in this unit test",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 76
+      },
       "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
