@@ -21,16 +21,15 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.utils.YangUtils
-import org.opendaylight.yangtools.yang.common.Revision
-import org.opendaylight.yangtools.yang.model.api.SchemaContext
+import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.yang.YangTextSchemaSourceSet
 import spock.lang.Specification
 
 class CpsModuleServiceImplSpec extends Specification {
-    def mockModuleStoreService = Mock(CpsModulePersistenceService)
-    def objectUnderTest = new CpsModuleServiceImpl()
+    CpsModulePersistenceService mockModuleStoreService = Mock()
+    CpsModuleServiceImpl objectUnderTest = new CpsModuleServiceImpl()
 
     def setup() {
         objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
@@ -54,4 +53,22 @@ class CpsModuleServiceImplSpec extends Specification {
             thrown(ModelValidationException.class)
     }
 
+    def 'Get schema set by name and namespace'() {
+        given: 'an already present schema set'
+            def schemaSetName = 'my_schema_set';
+            def dataspaceName = 'test-dataspace';
+            def revision = '2020-09-15';
+            def namespace = 'org:onap:ccsdk:sample';
+            def moduleReference = new ModuleReference(namespace, revision);
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSet.getModuleReferences() >> [ moduleReference ]
+            mockModuleStoreService.getYangTextSchemaSourceSet(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        when: 'get schema set method is invoked'
+            def result = objectUnderTest.getSchemaSet(dataspaceName, schemaSetName)
+        then: 'schema set model is returned as a result'
+            1 * mockModuleStoreService.getYangTextSchemaSourceSet(dataspaceName, schemaSetName)
+            result.getName().contains(schemaSetName)
+            result.getDataspaceName().contains(dataspaceName)
+            result.getModuleReferences().contains(moduleReference)
+    }
 }

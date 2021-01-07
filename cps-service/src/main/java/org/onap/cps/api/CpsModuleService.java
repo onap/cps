@@ -21,8 +21,7 @@ package org.onap.cps.api;
 
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.onap.cps.spi.model.SchemaSet;
 
 /**
  * Responsible for managing module sets.
@@ -40,5 +39,12 @@ public interface CpsModuleService {
     void createSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
                          @NonNull Map<String, String> yangResourcesNameToContentMap);
 
-    
+    /**
+     * Read schema set in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @return a collection of anchors
+     */
+    SchemaSet getSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName);
 }
