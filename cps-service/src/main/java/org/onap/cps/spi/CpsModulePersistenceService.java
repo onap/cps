@@ -20,9 +20,8 @@
 
 package org.onap.cps.spi;
 
-import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.spi.model.ModuleReference;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
  * Service to manage modules.
@@ -36,14 +35,16 @@ public interface CpsModulePersistenceService {
      * @param schemaSetName                 schema set name
      * @param yangResourcesNameToContentMap YANG resources (files) map where key is a name and value is content
      */
-    void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
+    void storeSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
+            @NonNull Map<String, String> yangResourcesNameToContentMap);
 
     /**
-     * Returns Modules references per specific namespace / schemaSetName.
+     * Returns YANG resources per specific namespace / schemaSetName.
      *
      * @param namespace     module namespace
      * @param schemaSetName schema set name
-     * @return collection of ModuleRef
+     * @return YANG resources (files) map where key is a name and value is content
      */
-    Collection<ModuleReference> getModuleReferences(String namespace, String schemaSetName);
+    @NonNull
+    Map<String, String> getYangSchemaResources(@NonNull String namespace, @NonNull String schemaSetName);
 }

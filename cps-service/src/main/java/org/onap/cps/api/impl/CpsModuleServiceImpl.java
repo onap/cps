@@ -19,10 +19,11 @@
 
 package org.onap.cps.api.impl;
 
-
 import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,4 +43,16 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             .storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
     }
 
+    @Override
+    public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
+        final Map<String, String> yangResourceNameToContent =
+                cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder
+                                                                        .of(yangResourceNameToContent);
+        return SchemaSet.builder()
+                       .name(schemaSetName)
+                       .dataspaceName(dataspaceName)
+                       .moduleReferences(yangTextSchemaSourceSet.getModuleReferences())
+                .build();
+    }
 }

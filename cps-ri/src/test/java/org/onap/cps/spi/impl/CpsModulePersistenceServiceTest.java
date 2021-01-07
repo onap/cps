@@ -100,10 +100,13 @@ public class CpsModulePersistenceServiceTest {
     @Test
     @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
     public void testStoreSchemaSetWithNewYangResource() {
+        final Map<String, String> yangResourcesNameToContentMap = toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT);
         cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
-            toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT));
+            yangResourcesNameToContentMap);
         assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
             NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM);
+        assertEquals(yangResourcesNameToContentMap,
+                cpsModulePersistenceService.getYangSchemaResources(DATASPACE_NAME, SCHEMA_SET_NAME_NEW));
     }
 
     @Test

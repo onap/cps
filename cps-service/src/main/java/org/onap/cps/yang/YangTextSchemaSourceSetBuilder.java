@@ -49,11 +49,6 @@ public final class YangTextSchemaSourceSetBuilder {
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
 
-    public YangTextSchemaSourceSetBuilder put(final String fileName, final String content) {
-        this.yangModelMap.put(fileName, content);
-        return this;
-    }
-
     public YangTextSchemaSourceSetBuilder putAll(final Map<String, String> yangResourceNameToContent) {
         this.yangModelMap.putAll(yangResourceNameToContent);
         return this;
@@ -95,6 +90,7 @@ public final class YangTextSchemaSourceSetBuilder {
 
         private static ModuleReference toModuleReference(final Module module) {
             return ModuleReference.builder()
+                .name(module.getName())
                 .namespace(module.getNamespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();

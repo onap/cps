@@ -31,6 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ModuleReference {
 
+    private String name;
     private String namespace;
     private String revision;
 }
