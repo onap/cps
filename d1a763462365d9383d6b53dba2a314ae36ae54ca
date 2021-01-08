@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81130da0_422c87ad",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:48:40Z",
+      "side": 1,
+      "message": "Do we need a task to change this later?",
+      "range": {
+        "startLine": 243,
+        "startChar": 37,
+        "endLine": 243,
+        "endChar": 42
+      },
+      "revId": "d1a763462365d9383d6b53dba2a314ae36ae54ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d188a92_46d34e90",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:48:40Z",
+      "side": 1,
+      "message": "Is this an INclusion or EXclusion filter (that why I had teh name \u0027filter\u0027 :-)",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "d1a763462365d9383d6b53dba2a314ae36ae54ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
