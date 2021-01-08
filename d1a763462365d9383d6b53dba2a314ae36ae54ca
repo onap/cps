@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "575ad87c_0d0e3897",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T12:08:50Z",
+      "side": 1,
+      "message": "I was thinking of a subtask, but at low priority task can do the same. And we close this one once the commit is merged.\nI don\u0027t have any preference",
+      "parentUuid": "81130da0_422c87ad",
+      "range": {
+        "startLine": 243,
+        "startChar": 37,
+        "endLine": 243,
+        "endChar": 42
+      },
+      "revId": "d1a763462365d9383d6b53dba2a314ae36ae54ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0d188a92_46d34e90",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 1
