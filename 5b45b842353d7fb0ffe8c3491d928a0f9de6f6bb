@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e4ddd77_b7005317",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T10:44:07Z",
+      "side": 1,
+      "message": "as discuss you can make these common properties of the class and use in all tests",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d068692_9d5d45fb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T10:44:07Z",
+      "side": 1,
+      "message": "this is cause the problem. You basically override the definition on the mock behavior on line 65. I agree it doesn\u0027t \u0027look\u0027 wrong and this could be considered a Spock bug!\nSince you test outcome depends on the mock behavior which is dependent on the correct parameter values. So there is no need to verify the method is called with those parameters, you typically only do that for void methods or method that return null (in your scenario) and don\u0027t need to be mocked...\nHowever if you want you can do BOTH but you need to remove line 65 and define the expectation and the mock behavior in one line here (in the then: block, which seems a bit strange) like so:\n            1 * mockModuleStoreService.getYangTextSchemaSourceSet(dataspaceName, schemaSetName) \u003e\u003e mockYangTextSchemaSourceSet",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 70,
+        "endChar": 52
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
