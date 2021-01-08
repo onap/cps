@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a4bc7d0_0f378c4a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T16:26:54Z",
+      "side": 1,
+      "message": "well, you are asking to change the whole test. Meanwhile I\u0027m trying to keep consistency about something was already approved.\nSame apply for next comment.",
+      "parentUuid": "ca2a7327_589582e4",
+      "range": {
+        "startLine": 129,
+        "startChar": 9,
+        "endLine": 129,
+        "endChar": 87
+      },
+      "revId": "c181c3189acd44395ebb3653d5eba34c859a971f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2659a82c_5786591c",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 7
