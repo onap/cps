@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "02ff6a38_bd6a8241",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T08:33:17Z",
+      "side": 1,
+      "message": "this is result of multiple combinations trying to spot a solution for the issue. I agree it must go under the test using it",
+      "parentUuid": "cfeda76e_d6e8e202",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 67
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7695828c_213d2652",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
@@ -68,6 +92,30 @@
       "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fda88ff_93ccc634",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T08:33:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7695828c_213d2652",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -147,6 +195,30 @@
     },
     {
       "key": {
+        "uuid": "ac6d6ec7_1f8928f4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T08:33:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51abcf66_790bc0e1",
+      "range": {
+        "startLine": 61,
+        "startChar": 54,
+        "endLine": 61,
+        "endChar": 113
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f56753cb_94025d06",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 3
@@ -167,6 +239,30 @@
       "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35d51e8_8b1ed8e0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T08:33:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f56753cb_94025d06",
+      "range": {
+        "startLine": 62,
+        "startChar": 65,
+        "endLine": 62,
+        "endChar": 84
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -276,6 +372,30 @@
       "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19685206_a2aafba2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-08T08:33:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb9e8e26_bce0eb3c",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "466c3774ea047d45b51c788a3c998c268b730a36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
