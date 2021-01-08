@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "ac1fb636_a1e23660",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "assert is optional in then block (but NOT in assert-methods)\nI don\u0027t think it is needed whene using \u0027\u003d\u003d\u0027  but it is personal preference",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 15
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16dedd2d_3f63cc0d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "correct indentation",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 0
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11eaf1a0_b506d57f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "a \u0027good scout\u0027 might update other test descriptions now for consistency :-)",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 141,
+        "endChar": 69
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa847c70_d3830092",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "this implies a Java Collection. \n@return a SchemaSet",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "226bdf4c_a4ded930",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "should this not be the actually class name?",
+      "range": {
+        "startLine": 61,
+        "startChar": 14,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17a4ee96_666c76b9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "just add full stop \u0027.\u0027 :-)",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e4ddd77_b7005317",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 4
@@ -18,6 +156,29 @@
         "startChar": 0,
         "endLine": 60,
         "endChar": 40
+      },
+      "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9923c888_572438a6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T11:42:28Z",
+      "side": 1,
+      "message": "\u0027the correct schema set is returned\u0027\nOR\n\u0027the schemas set with the correct dataspace name and module references is returned\u0027\n\nI think the first option is better as the 2nd option easily can get out of date as test is extended/improved.\nThe way I see it the label is a high level description and will be in reports. The groovy code provides the details in very readable format no need to \u0027duplicate\u0027 in description",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 55
       },
       "revId": "5b45b842353d7fb0ffe8c3491d928a0f9de6f6bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
