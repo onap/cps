@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0475a96c_1e94ae79",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T16:42:17Z",
+      "side": 1,
+      "message": "OK, we can improve these later...",
+      "parentUuid": "5a4bc7d0_0f378c4a",
+      "range": {
+        "startLine": 129,
+        "startChar": 9,
+        "endLine": 129,
+        "endChar": 87
+      },
+      "revId": "c181c3189acd44395ebb3653d5eba34c859a971f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2659a82c_5786591c",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 7
@@ -92,6 +116,54 @@
       "revId": "c181c3189acd44395ebb3653d5eba34c859a971f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fed3238_dfdeec18",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T16:42:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "93c8323f_6701d2af",
+      "range": {
+        "startLine": 135,
+        "startChar": 17,
+        "endLine": 135,
+        "endChar": 110
+      },
+      "revId": "c181c3189acd44395ebb3653d5eba34c859a971f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b994a92e_3f84e42f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-08T16:42:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2659a82c_5786591c",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 12
+      },
+      "revId": "c181c3189acd44395ebb3653d5eba34c859a971f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
