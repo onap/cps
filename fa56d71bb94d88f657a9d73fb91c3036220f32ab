@@ -22,6 +22,30 @@
       "revId": "fa56d71bb94d88f657a9d73fb91c3036220f32ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "133bd1fe_fd946bdc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-11T11:50:55Z",
+      "side": 1,
+      "message": "the second, plus we are not storing it. We just retrieve it Schema, from the yang resources same as other data.\nIt can be reverted, but I see it as useful information.",
+      "parentUuid": "04cd48d7_be28050b",
+      "range": {
+        "startLine": 34,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "fa56d71bb94d88f657a9d73fb91c3036220f32ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
