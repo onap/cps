@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "a0d15625_bb308399",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-11T13:42:57Z",
+      "side": 1,
+      "message": "each module has his own responsibility. I don\u0027t agree on have a common one.",
+      "parentUuid": "dbf8daea_9d22cc7a",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c39417_0ff29473",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 2
@@ -228,6 +252,30 @@
       "side": 1,
       "message": "Since you are impl this, i would expect you to do this search. Better to make it correct first time (as this isn\u0027t urgent) than add future stories to correct this.\nPlease do check few other ONAP projects, if not done already.",
       "parentUuid": "f89d326a_b0d75f64",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97fd9fba_ec041ef1",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-11T13:42:57Z",
+      "side": 1,
+      "message": "as mention already, onap doesn\u0027t provide it, I already searched 😊.  But if you find something I\u0027m ok with any proposal improvement",
+      "parentUuid": "0ab3719d_9300c988",
       "range": {
         "startLine": 1,
         "startChar": 1,
