@@ -34,5 +34,6 @@
         <module>cps-rest</module>
         <module>cps-ri</module>
         <module>checkstyle</module>
+        <module>spotbugs</module>
     </modules>
 </project>
