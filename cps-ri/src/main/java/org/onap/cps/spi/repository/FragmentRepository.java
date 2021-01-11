@@ -39,4 +39,9 @@ public interface FragmentRepository extends JpaRepository<Fragment, Integer> {
     }
 
     Collection<Fragment> findFragmentsByDataspaceAndParentFragmentIsNull(Dataspace dataspace);
+
+    default Fragment getByDataspaceAndAnchorName(@NotNull Dataspace dataspace,
+        @NotNull String anchorName) {
+        return findByDataspaceAndAnchorName(dataspace, anchorName).orElseThrow();
+    }
 }
