@@ -23,8 +23,9 @@ package org.onap.cps.rest.controller
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
+import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -38,6 +39,7 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -105,6 +107,26 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.BAD_REQUEST.value()
     }
 
+    def 'Delete schema set'() {
+        when:
+            def response = performDeleteRequest(schemaSetEndpoint)
+        then: 'Service method is invoked with expected parameters'
+            1 * mockCpsModuleService.deleteSchemaSet('test-dataspace', 'my_schema_set', CASCADE_DELETE_PROHIBITED)
+        and: 'Response code indicates success'
+            response.status == HttpStatus.OK.value()
+    }
+
+    def 'Delete schema set while there is associated anchor yet'() {
+        given:
+            def thrownException = new SchemaSetInUseException('test-dataspace', 'my_schema_set')
+            mockCpsModuleService.deleteSchemaSet('test-dataspace', 'my_schema_set', CASCADE_DELETE_PROHIBITED) >>
+                    { throw thrownException }
+        when:
+            def response = performDeleteRequest(schemaSetEndpoint)
+        then: 'Schema set deletion fails with response code indicating conflict'
+            response.status == HttpStatus.CONFLICT.value()
+    }
+
     def performCreateDataspaceRequest(String dataspaceName) {
         return mvc.perform(
                 MockMvcRequestBuilders
@@ -124,6 +146,10 @@ class AdminRestControllerSpec extends Specification {
                         .file(multipartFile)
                         .param('schema-set-name', 'test-schema-set')
         ).andReturn().response
+    }
+
+    def performDeleteRequest(String uri) {
+        return mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn().response
     }
 
     def 'Get existing schema set'() {
