@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0b489873_ae5af4d0",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T12:39:47Z",
+      "side": 1,
+      "message": "I like the way hibernate has impl it.  They dnt have spotbug but if they do have further global config they will keep it here. What are your thoughts?\nhttps://github.com/hibernate/hibernate-orm/tree/master/shared/config/checkstyle",
+      "parentUuid": "74a7440d_ee7f255f",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c39417_0ff29473",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "inspired by https://github.com/opendaylight/odlparent/blob/master/spotbugs/src/main/resources/spotbugs-exclude.xml\nFeel free to propose improvements, or push any change on top once merged",
       "parentUuid": "90c39417_0ff29473",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7b0b7d2_a5f410e4",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T12:39:47Z",
+      "side": 1,
+      "message": "do check if ONAP has it own version of this file.",
+      "parentUuid": "2725a7e1_c43f778f",
       "range": {
         "startLine": 1,
         "startChar": 1,
