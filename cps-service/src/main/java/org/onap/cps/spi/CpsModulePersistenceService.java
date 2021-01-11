@@ -22,6 +22,7 @@ package org.onap.cps.spi;
 
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.spi.exceptions.CpsInUseException;
 
 /**
  * Service to manage modules.
@@ -37,6 +38,18 @@ public interface CpsModulePersistenceService {
      */
     void storeSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
             @NonNull Map<String, String> yangResourcesNameToContentMap);
+
+    /**
+     * Deletes Schema Set.
+     *
+     * @param dataspaceName                  dataspace name
+     * @param schemaSetName                  schema set name
+     * @param removeAssociatedAnchorsAndData instructs to also remove associated anchors and data if existing
+     * @throws CpsInUseException if removeAssociatedAnchorsAndData=false and there is
+     *                           at list single anchor associated
+     */
+    void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
+        boolean removeAssociatedAnchorsAndData);
 
     /**
      * Returns YANG resources per specific namespace / schemaSetName.

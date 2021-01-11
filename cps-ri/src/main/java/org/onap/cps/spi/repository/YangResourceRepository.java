@@ -19,11 +19,14 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -31,4 +34,8 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
 
     List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
 
+    @Modifying
+    @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
+        + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
+    void deleteOrphans();
 }
