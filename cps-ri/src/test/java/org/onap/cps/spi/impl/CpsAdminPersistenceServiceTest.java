@@ -29,15 +29,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -69,7 +69,7 @@ public class CpsAdminPersistenceServiceTest {
     private CpsAdminPersistenceService cpsAdminPersistenceService;
 
     @Autowired
-    private FragmentRepository fragmentRepository;
+    private AnchorRepository anchorRepository;
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
@@ -102,13 +102,13 @@ public class CpsAdminPersistenceServiceTest {
 
         // validate anchor persisted
         final Dataspace dataspace = dataspaceRepository.findByName(DATASPACE_NAME).orElseThrow();
-        final Fragment anchor =
-            fragmentRepository.findByDataspaceAndAnchorName(dataspace, ANCHOR_NAME_NEW).orElseThrow();
+        final AnchorEntity anchorEntity =
+            anchorRepository.findByDataspaceAndName(dataspace, ANCHOR_NAME_NEW).orElseThrow();
 
-        assertNotNull(anchor.getId());
-        assertEquals(ANCHOR_NAME_NEW, anchor.getAnchorName());
-        assertEquals(DATASPACE_NAME, anchor.getDataspace().getName());
-        assertEquals(SCHEMA_SET_NAME2, anchor.getSchemaSet().getName());
+        assertNotNull(anchorEntity.getId());
+        assertEquals(ANCHOR_NAME_NEW, anchorEntity.getName());
+        assertEquals(DATASPACE_NAME, anchorEntity.getDataspace().getName());
+        assertEquals(SCHEMA_SET_NAME2, anchorEntity.getSchemaSet().getName());
     }
 
     @Test(expected = DataspaceNotFoundException.class)

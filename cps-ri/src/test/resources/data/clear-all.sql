@@ -1,6 +1,7 @@
 DELETE FROM FRAGMENT;
--- clear all via dataspace table cleanup
--- all other data will be removed by cascade
+DELETE FROM ANCHOR;
 DELETE FROM DATASPACE;
--- explicit clear
+-- following tables are cleared by CASCADE constraint:
+-- SCHEMA_SET
+-- SCHEMA_SET_YANG_RESOURCES
 DELETE FROM YANG_RESOURCE;
