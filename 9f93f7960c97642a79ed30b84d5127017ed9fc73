@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "dbf8daea_9d22cc7a",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T13:34:07Z",
+      "side": 1,
+      "message": "If you closely look at the package, it is shared/config.\nWHich implies other config will rest there.",
+      "parentUuid": "1ae69ea6_06bd91a1",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c39417_0ff29473",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 2
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Not sure if you are saying that you will search for it? but Im ok with that.\noparent doesnt provide such resources, but maybe you find something I didnt.",
       "parentUuid": "d7b0b7d2_a5f410e4",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ab3719d_9300c988",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T13:34:07Z",
+      "side": 1,
+      "message": "Since you are impl this, i would expect you to do this search. Better to make it correct first time (as this isn\u0027t urgent) than add future stories to correct this.\nPlease do check few other ONAP projects, if not done already.",
+      "parentUuid": "f89d326a_b0d75f64",
       "range": {
         "startLine": 1,
         "startChar": 1,
