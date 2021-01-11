@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdea1bdf_3711d97b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "rename to anchorEntity for consistency",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 34
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "151aa71d_dc52db56",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "anchorEntities",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 49
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0dab9c5_056a44d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "so, this class is current not being used (as we don\u0027t store/get DataNodes/Fragments yet) OK to leave as place-holder I suppose...",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab71b980_a35d60d5",
+        "filename": "cps-ri/src/main/resources/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "Do we need another index for anchor_id in the Fragment table?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 12
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be2a6b34_7e9c2ada",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "anchorEntity",
+      "range": {
+        "startLine": 105,
+        "startChar": 27,
+        "endLine": 105,
+        "endChar": 34
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3df58c1_4a49519a",
+        "filename": "cps-ri/src/test/resources/data/clear-all.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-11T16:20:55Z",
+      "side": 1,
+      "message": "I would not remove the clean up FRAGMENT as we need it soon enough\n(just to be pragmatic, technically you could consider it out of scope)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 19
+      },
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
