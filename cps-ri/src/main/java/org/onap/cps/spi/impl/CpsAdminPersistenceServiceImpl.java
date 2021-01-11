@@ -24,14 +24,14 @@ package org.onap.cps.spi.impl;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.Fragment;
 import org.onap.cps.spi.entities.SchemaSet;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -44,7 +44,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private DataspaceRepository dataspaceRepository;
 
     @Autowired
-    private FragmentRepository fragmentRepository;
+    private AnchorRepository anchorRepository;
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
@@ -62,14 +62,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
         final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
-        final Fragment anchor = Fragment.builder()
-            .xpath(anchorName)
-            .anchorName(anchorName)
+        final AnchorEntity anchorEntity = AnchorEntity.builder()
+            .name(anchorName)
             .dataspace(dataspace)
             .schemaSet(schemaSet)
             .build();
         try {
-            fragmentRepository.save(anchor);
+            anchorRepository.save(anchorEntity);
         } catch (final DataIntegrityViolationException e) {
             throw new AnchorAlreadyDefinedException(dataspaceName, anchorName, e);
         }
@@ -78,13 +77,15 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final Collection<Fragment> fragments = fragmentRepository.findFragmentsThatAreAnchorsByDataspace(dataspace);
-        return fragments.stream().map(
-            entity -> Anchor.builder()
-                .name(entity.getAnchorName())
-                .dataspaceName(dataspaceName)
-                .schemaSetName(entity.getSchemaSet().getName())
-                .build()
-        ).collect(Collectors.toList());
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspace);
+        return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+    }
+
+    private static Anchor toAnchor(final AnchorEntity anchorEntity) {
+        return Anchor.builder()
+            .name(anchorEntity.getName())
+            .dataspaceName(anchorEntity.getDataspace().getName())
+            .schemaSetName(anchorEntity.getSchemaSet().getName())
+            .build();
     }
 }
