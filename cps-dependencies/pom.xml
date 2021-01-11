@@ -115,6 +115,11 @@
                 <artifactId>spotbugs</artifactId>
                 <version>${spotbugs.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-annotations</artifactId>
+                <version>${spotbugs.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

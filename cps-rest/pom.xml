@@ -54,6 +54,11 @@
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <version>${spotbugs.version}</version>
+        </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>

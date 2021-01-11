@@ -20,8 +20,10 @@
 package org.onap.cps.rest.utils;
 
 import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
+import static org.postgresql.shaded.com.ongres.scram.common.util.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.util.Map;
 import lombok.AccessLevel;
@@ -47,7 +49,7 @@ public class MultipartFileUtil {
     }
 
     private static String extractYangResourceName(final MultipartFile multipartFile) {
-        final String fileName = multipartFile.getOriginalFilename();
+        final String fileName = checkNotNull(multipartFile.getOriginalFilename(), "Missing filename.");
         if (!fileName.endsWith(RFC6020_YANG_FILE_EXTENSION)) {
             throw new ModelValidationException("Unsupported file type.",
                 String.format("Filename %s does not end with '%s'", fileName, RFC6020_YANG_FILE_EXTENSION));
@@ -55,6 +57,7 @@ public class MultipartFileUtil {
         return fileName;
     }
 
+    @SuppressFBWarnings(value = "DM_DEFAULT_ENCODING", justification = "False positive for getBytes")
     private static String extractYangResourceContent(final MultipartFile multipartFile) {
         try {
             return new String(multipartFile.getBytes());

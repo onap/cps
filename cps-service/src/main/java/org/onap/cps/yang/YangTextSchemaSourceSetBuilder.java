@@ -19,11 +19,14 @@
 
 package org.onap.cps.yang;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -140,8 +143,9 @@ public final class YangTextSchemaSourceSetBuilder {
             .collect(Collectors.toList());
     }
 
-    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
-        final Map.Entry<String, String> sourceNameParsed = YangNames.parseFilename(sourceName);
+    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName,
+            final String source) {
+        final Map.Entry<String, String> sourceNameParsed = checkNotNull(YangNames.parseFilename(sourceName));
         final RevisionSourceIdentifier revisionSourceIdentifier = RevisionSourceIdentifier
             .create(sourceNameParsed.getKey(), Revision.ofNullable(sourceNameParsed.getValue()));
 
@@ -154,7 +158,7 @@ public final class YangTextSchemaSourceSetBuilder {
 
             @Override
             public InputStream openStream() {
-                return new ByteArrayInputStream(source.getBytes());
+                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
             }
         };
     }
