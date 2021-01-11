@@ -21,11 +21,21 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
+import javax.validation.constraints.NotNull;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
+
+    @Modifying
+    @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
+    void deleteAllByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
 
 }

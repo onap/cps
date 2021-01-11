@@ -17,21 +17,16 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.exceptions;
 
-import java.util.Collection;
-import java.util.Optional;
-import javax.validation.constraints.NotNull;
-import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.DataspaceEntity;
-import org.onap.cps.spi.entities.SchemaSetEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+public class SchemaSetInUseException extends CpsInUseException {
 
-public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
+    private static final long serialVersionUID = -3729328573253023683L;
 
-    Optional<AnchorEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity, @NotNull String name);
-
-    Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
-
-    Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
+    public SchemaSetInUseException(final String dataspaceName, final String schemaSetName) {
+        super("Schema Set is being used.",
+            String.format("Schema Set with name %s in dataspace %s is having Anchor records associated.",
+                schemaSetName, dataspaceName)
+        );
+    }
 }
