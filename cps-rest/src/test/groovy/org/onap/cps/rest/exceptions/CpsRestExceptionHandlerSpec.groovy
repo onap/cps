@@ -25,10 +25,12 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
+import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -38,6 +40,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -131,6 +134,21 @@ class CpsRestExceptionHandlerSpec extends Specification {
         where: 'the following exceptions are thrown'
             exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
                                 new DataValidationException(errorMessage, errorDetails, null)]
+    }
+
+    @Unroll
+    def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {
+
+        when: 'CPS validation exception is thrown by the service'
+            setupTestException(exceptionThrown)
+            def response = performTestRequest()
+
+        then: 'an HTTP Conflict response is returned with correct message and details'
+            assertTestResponse(response, CONFLICT, exceptionThrown.getMessage(), exceptionThrown.getDetails())
+
+        where: 'the following exceptions are thrown'
+            exceptionThrown << [new DataInUseException(dataspaceName, existingObjectName),
+                                new SchemaSetInUseException(dataspaceName, existingObjectName)]
     }
 
     /*

@@ -21,10 +21,15 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
+import spock.lang.Unroll
+
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModuleServiceImplSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
@@ -52,7 +57,7 @@ class CpsModuleServiceImplSpec extends Specification {
             thrown(ModelValidationException.class)
     }
 
-    def 'Get schema set by name and namespace.'() {
+    def 'Get schema set by name and dataspace.'() {
         given: 'an already present schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
@@ -62,5 +67,17 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
+    }
+
+    @Unroll
+    def 'Delete set by name and dataspace with #cascadeDeleteOption.'(){
+        when: 'schema set deletion is requested'
+            objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
+        then: 'persistence service method is invoked with same parameters'
+            mockModuleStoreService.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
+        where: 'following parameters are used'
+            dataspaceName | schemaSetname | cascadeDeleteOption
+            'dataspace-1'  | 'schemas-set-1' | CASCADE_DELETE_ALLOWED
+            'dataspace-2'  | 'schemas-set-2' | CASCADE_DELETE_PROHIBITED
     }
 }

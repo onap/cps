@@ -23,8 +23,9 @@ package org.onap.cps.rest.controller
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
+import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,12 +34,14 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest
@@ -105,11 +108,29 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.BAD_REQUEST.value()
     }
 
+    def 'Delete schema set.'() {
+        when: 'delete schema set endpoint is invoked'
+            def response = performDeleteRequest(schemaSetEndpoint)
+        then: 'associated service method is invoked with expected parameters'
+            1 * mockCpsModuleService.deleteSchemaSet('test-dataspace', 'my_schema_set', CASCADE_DELETE_PROHIBITED)
+        and: 'response code indicates success'
+            response.status == HttpStatus.NO_CONTENT.value()
+    }
+
+    def 'Delete schema set which is in use.'() {
+        given: 'the service method throws an exception indicating the schema set is in use'
+            def thrownException = new SchemaSetInUseException('test-dataspace', 'my_schema_set')
+            mockCpsModuleService.deleteSchemaSet('test-dataspace', 'my_schema_set', CASCADE_DELETE_PROHIBITED) >>
+                    { throw thrownException }
+        when: 'delete schema set endpoint is invoked'
+            def response = performDeleteRequest(schemaSetEndpoint)
+        then: 'schema set deletion fails with conflict response code'
+            response.status == HttpStatus.CONFLICT.value()
+    }
+
     def performCreateDataspaceRequest(String dataspaceName) {
         return mvc.perform(
-                MockMvcRequestBuilders
-                        .post('/v1/dataspaces')
-                        .param('dataspace-name', dataspaceName)
+                post('/v1/dataspaces').param('dataspace-name', dataspaceName)
         ).andReturn().response
     }
 
@@ -119,11 +140,14 @@ class AdminRestControllerSpec extends Specification {
 
     def performCreateSchemaSetRequest(multipartFile) {
         return mvc.perform(
-                MockMvcRequestBuilders
-                        .multipart(schemaSetsEndpoint)
+                multipart(schemaSetsEndpoint)
                         .file(multipartFile)
                         .param('schema-set-name', 'test-schema-set')
         ).andReturn().response
+    }
+
+    def performDeleteRequest(String uri) {
+        return mvc.perform(delete(uri)).andReturn().response
     }
 
     def 'Get existing schema set'() {
