@@ -28,14 +28,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +59,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private AnchorRepository anchorRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Autowired
     private CpsAdminPersistenceService cpsAdminPersistenceService;
@@ -120,5 +131,25 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final String anchorName) {
         final Anchor anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
         return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
+    }
+
+    @Override
+    @Transactional
+    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
+        final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);
+        if (!anchorEntities.isEmpty()) {
+            if (cascadeDeleteAllowed != CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) {
+                throw new SchemaSetInUseException(dataspaceName, schemaSetName);
+            }
+            fragmentRepository.deleteByAnchorIn(anchorEntities);
+            anchorRepository.deleteAll(anchorEntities);
+        }
+        schemaSetRepository.delete(schemaSetEntity);
+        yangResourceRepository.deleteOrphans();
     }
 }
