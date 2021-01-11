@@ -22,6 +22,7 @@ package org.onap.cps.spi.entities;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,6 +32,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -79,4 +81,7 @@ public class Fragment implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Fragment parentFragment;
+
+    @Transient
+    private Set<Fragment> childFragments;
 }
