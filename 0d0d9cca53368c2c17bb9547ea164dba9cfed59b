@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "466dad1d_7e5f5484",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-11T16:24:55Z",
+      "side": 1,
+      "message": "since you will have to do changes, please decouple this mapping to a method. Rishi will reuse it",
+      "revId": "0d0d9cca53368c2c17bb9547ea164dba9cfed59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0dab9c5_056a44d2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
