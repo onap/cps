@@ -34,9 +34,11 @@ import lombok.NoArgsConstructor;
 public class DataNode {
 
     private String dataspace;
-    private String moduleSetName;
+    private String schemaSetName;
+    private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
     private Map<String, Object> leaves;
     private Collection<String> xpathsChildren;
+    private Collection<DataNode> childDataNodes;
 }
