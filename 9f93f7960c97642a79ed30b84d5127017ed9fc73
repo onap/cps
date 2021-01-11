@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "020c01cb_996368ab",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T12:17:27Z",
+      "side": 1,
+      "message": "do we necessary need a new module? can we club checkstyle and this and future project config in one module?",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90c39417_0ff29473",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-11T12:17:27Z",
+      "side": 1,
+      "message": "What ONAP list/filter does this track ? I mean how did we choose this set of exclusions?",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "9f93f7960c97642a79ed30b84d5127017ed9fc73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
