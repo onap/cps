@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "b5b708d5_4331a62f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-11T14:25:55Z",
+      "side": 1,
+      "message": "here you need just to add Anchor getAnchors(...);\non consumer side then you will call later getYangResources()",
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "213cef23_a4637b9c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
