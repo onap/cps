@@ -31,6 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,7 @@ import org.hibernate.annotations.TypeDefs;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "fragment")
 @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
 public class FragmentEntity implements Serializable {
 

@@ -21,11 +21,16 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
+import javax.validation.constraints.NotNull;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
+
+    void deleteByAnchorIn(@NotNull Collection<AnchorEntity> anchorEntities);
 
 }
