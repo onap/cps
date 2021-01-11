@@ -103,7 +103,7 @@ public class YangUtils {
         } else if (normalizedNode instanceof LeafSetNode) {
             inspectLeafList(currentFragment, (LeafSetNode) normalizedNode);
         } else {
-            log.warn("Cannot normalize " + normalizedNode.getClass());
+            log.warn("Cannot normalize {}", normalizedNode.getClass());
         }
     }
 

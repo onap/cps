@@ -21,6 +21,7 @@
 package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +77,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 final YangResource yangResource = new YangResource();
                 yangResource.setName(entry.getKey());
                 yangResource.setContent(entry.getValue());
-                yangResource.setChecksum(DigestUtils.md5DigestAsHex(entry.getValue().getBytes()));
+                yangResource.setChecksum(DigestUtils.md5DigestAsHex(entry.getValue().getBytes(StandardCharsets.UTF_8)));
                 return yangResource;
             })
             .collect(Collectors.toMap(
