@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,24 +17,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.exceptions;
 
-import java.util.List;
-import java.util.Set;
-import javax.validation.constraints.NotNull;
-import org.onap.cps.spi.entities.YangResourceEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+/**
+ * Runtime exception. Thrown when schema set record rejected to be deleted because it has anchor records associated.
+ */
+public class SchemaSetInUseException extends DataInUseException {
 
-@Repository
-public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long> {
+    private static final long serialVersionUID = -3729328573253023683L;
 
-    List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
-
-    @Modifying
-    @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
-        + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
-    void deleteOrphans();
+    /**
+     * Constructor.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     */
+    public SchemaSetInUseException(final String dataspaceName, final String schemaSetName) {
+        super("Schema Set is being used.",
+            String.format("Schema Set with name %s in dataspace %s is having Anchor records associated.",
+                schemaSetName, dataspaceName)
+        );
+    }
 }

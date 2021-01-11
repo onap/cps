@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,24 +17,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.exceptions;
 
-import java.util.List;
-import java.util.Set;
-import javax.validation.constraints.NotNull;
-import org.onap.cps.spi.entities.YangResourceEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+/**
+ * Runtime exception. Thrown when data record rejected to be deleted because it's being referenced by other data.
+ */
+public class DataInUseException extends CpsException {
 
-@Repository
-public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long> {
+    private static final long serialVersionUID = 5011830482789788314L;
 
-    List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
-
-    @Modifying
-    @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
-        + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
-    void deleteOrphans();
+    /**
+     * Constructor.
+     *
+     * @param message error message
+     * @param details error details
+     */
+    public DataInUseException(final String message, final String details) {
+        super(message, details);
+    }
 }
