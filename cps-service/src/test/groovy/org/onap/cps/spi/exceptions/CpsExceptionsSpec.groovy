@@ -52,7 +52,7 @@ class CpsExceptionsSpec extends Specification {
                     == "Dataspace with name ${dataspaceName} does not exist."
     }
 
-    def'Creating a data validation exception.'() {
+    def 'Creating a data validation exception.'() {
         given: 'a data validation exception is created'
             def exception = new DataValidationException(providedMessage, providedDetails, rootCause)
         expect: 'the exception has the provided message'
@@ -63,7 +63,7 @@ class CpsExceptionsSpec extends Specification {
             exception.cause == rootCause
     }
 
-    def'Creating a model validation exception.'() {
+    def 'Creating a model validation exception.'() {
         given: 'a data validation exception is created'
             def exception = new ModelValidationException(providedMessage, providedDetails)
         expect: 'the exception has the provided message'
@@ -86,7 +86,7 @@ class CpsExceptionsSpec extends Specification {
     def 'Creating a exception for an object not found in a dataspace.'() {
         def descriptionOfObject = 'some object'
         expect: 'the exception details contains the correct message with dataspace name and description of the object'
-            (new NotFoundInDataspaceException(dataspaceName,descriptionOfObject)).details
+            (new NotFoundInDataspaceException(dataspaceName, descriptionOfObject)).details
                     == "${descriptionOfObject} does not exist in dataspace ${dataspaceName}."
     }
 
@@ -101,7 +101,14 @@ class CpsExceptionsSpec extends Specification {
 
     def 'Creating a exception that a schema set cannot be found.'() {
         expect: 'the exception details contains the correct message with dataspace and schema set names'
-            (new SchemaSetNotFoundException(dataspaceName,schemaSetName)).details
+            (new SchemaSetNotFoundException(dataspaceName, schemaSetName)).details
                     == "Schema Set with name ${schemaSetName} was not found for dataspace ${dataspaceName}."
+    }
+
+    def 'Creating an exception that the schema set being used and cannot be deleted.'() {
+        expect: 'the exception details contains the correct message with dataspace and schema set names'
+            (new SchemaSetInUseException(dataspaceName, schemaSetName)).details
+                    == ("Schema Set with name ${schemaSetName} in dataspace ${dataspaceName} is having "
+                        + "Anchor records associated.")
     }
 }
