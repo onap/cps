@@ -21,6 +21,7 @@
 package org.onap.cps.spi.model;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,9 +35,11 @@ import lombok.NoArgsConstructor;
 public class DataNode {
 
     private String dataspace;
-    private String moduleSetName;
+    private String schemaSetName;
+    private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
     private Map<String, Object> leaves;
     private Collection<String> xpathsChildren;
+    private Collection<DataNode> childDataNodes = Collections.emptySet();
 }
