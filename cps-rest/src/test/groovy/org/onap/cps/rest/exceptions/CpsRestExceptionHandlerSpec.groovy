@@ -25,21 +25,26 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
+import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
@@ -133,6 +138,21 @@ class CpsRestExceptionHandlerSpec extends Specification {
                                 new DataValidationException(errorMessage, errorDetails, null)]
     }
 
+    @Unroll
+    def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {
+
+        when: 'CPS validation exception is thrown by the service'
+            setupTestException(exceptionThrown)
+            def response = performTestRequest()
+
+        then: 'an HTTP Bad Request response is returned with correct message and details'
+            assertTestResponse(response, CONFLICT, exceptionThrown.getMessage(), exceptionThrown.getDetails())
+
+        where: 'the following exceptions are thrown'
+            exceptionThrown << [new DataInUseException(errorMessage, errorDetails),
+                                new SchemaSetInUseException(errorMessage, errorDetails)]
+    }
+
     /*
      * NB. The test uses 'get JSON by id' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
@@ -144,6 +164,10 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     def performTestRequest() {
         return mvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
+    }
+
+    def performTestDeleteRequest() {
+        return mvc.perform(delete('/v1/dataspaces/dataspace-name')).andReturn().response
     }
 
     void assertTestResponse(response, expectedStatus,
