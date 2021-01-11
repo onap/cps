@@ -21,6 +21,7 @@
 package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import java.util.Collection;
 import org.modelmapper.ModelMapper;
@@ -64,6 +65,12 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<Object> getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final SchemaSet schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         return new ResponseEntity<>(schemaSet, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> deleteSchemaSet(final String dataspaceName, final String schemaSetName) {
+        cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

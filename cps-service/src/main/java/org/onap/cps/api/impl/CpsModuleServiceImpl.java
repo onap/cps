@@ -20,7 +20,9 @@
 package org.onap.cps.api.impl;
 
 import java.util.Map;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
@@ -54,5 +56,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
                        .dataspaceName(dataspaceName)
                        .moduleReferences(yangTextSchemaSourceSet.getModuleReferences())
                 .build();
+    }
+
+    @Override
+    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
+        final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName, cascadeDeleteAllowed);
     }
 }
