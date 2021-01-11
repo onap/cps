@@ -46,10 +46,10 @@ import org.hibernate.annotations.TypeDefs;
  */
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
 public class Fragment implements Serializable {
 
@@ -67,9 +67,6 @@ public class Fragment implements Serializable {
     @Column(columnDefinition = "jsonb")
     private String attributes;
 
-    @Column(columnDefinition = "text")
-    private String anchorName;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id")
@@ -77,13 +74,9 @@ public class Fragment implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
-    private Fragment anchorFragment;
+    private AnchorEntity anchor;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Fragment parentFragment;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schema_set_id")
-    private SchemaSet schemaSet;
 }
