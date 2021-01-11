@@ -20,7 +20,9 @@
 package org.onap.cps.spi.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
@@ -35,13 +37,16 @@ import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.SchemaSetInUseException;
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -56,6 +61,8 @@ public class CpsModulePersistenceServiceTest {
     private static final String DATASPACE_NAME_INVALID = "DATASPACE-X";
     private static final String SCHEMA_SET_NAME = "SCHEMA-SET-001";
     private static final String SCHEMA_SET_NAME_NEW = "SCHEMA-SET-NEW";
+    private static final String SCHEMA_SET_NAME_NO_ANCHORS = "SCHEMA-SET-100";
+    private static final String SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA = "SCHEMA-SET-101";
 
     private static final String EXISTING_RESOURCE_NAME = "module1@2020-02-02.yang";
     private static final String EXISTING_RESOURCE_CONTENT = "CONTENT-001";
@@ -66,6 +73,14 @@ public class CpsModulePersistenceServiceTest {
     private static final String NEW_RESOURCE_CONTENT = "CONTENT-NEW";
     private static final String NEW_RESOURCE_CHECKSUM = "c94d40a1350eb1c0b1c1949eac84fc59";
     private static final Long NEW_RESOURCE_ABSTRACT_ID = 0L;
+
+    private static final Long SHARED_RESOURCE_ID1 = 3003L;
+    private static final Long SHARED_RESOURCE_ID2 = 3004L;
+    private static final Long ORPHAN_RESOURCE_ID = 3100L;
+    private static final Integer REMOVED_ANCHOR_ID1 = 6001;
+    private static final Integer REMOVED_ANCHOR_ID2 = 6002;
+    private static final Long REMOVED_FRAGMENT_ID = 7001L;
+
 
     @ClassRule
     public static DatabaseTestContainer testContainer = DatabaseTestContainer.getInstance();
@@ -82,6 +97,11 @@ public class CpsModulePersistenceServiceTest {
     @Autowired
     private SchemaSetRepository schemaSetRepository;
 
+    @Autowired
+    private AnchorRepository anchorRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Test(expected = DataspaceNotFoundException.class)
     @Sql(CLEAR_DATA)
@@ -91,14 +111,14 @@ public class CpsModulePersistenceServiceTest {
     }
 
     @Test(expected = SchemaSetAlreadyDefinedException.class)
-    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreDuplicateSchemaSet() {
         cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME,
             toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT));
     }
 
     @Test
-    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreSchemaSetWithNewYangResource() {
         final Map<String, String> yangResourcesNameToContentMap = toMap(NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT);
         cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
@@ -106,11 +126,11 @@ public class CpsModulePersistenceServiceTest {
         assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
             NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_NAME, NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM);
         assertEquals(yangResourcesNameToContentMap,
-                cpsModulePersistenceService.getYangSchemaResources(DATASPACE_NAME, SCHEMA_SET_NAME_NEW));
+            cpsModulePersistenceService.getYangSchemaResources(DATASPACE_NAME, SCHEMA_SET_NAME_NEW));
     }
 
     @Test
-    @SqlGroup({@Sql(CLEAR_DATA), @Sql(SET_DATA)})
+    @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreSchemaSetWithExistingYangResourceReuse() {
         cpsModulePersistenceService.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
             toMap(NEW_RESOURCE_NAME, EXISTING_RESOURCE_CONTENT));
@@ -119,9 +139,9 @@ public class CpsModulePersistenceServiceTest {
     }
 
     private void assertSchemaSetPersisted(final String expectedDataspaceName, final String expectedSchemaSetName,
-                                          final Long expectedYangResourceId, final String expectedYangResourceName,
-                                          final String expectedYangResourceContent,
-                                          final String expectedYangResourceChecksum) {
+        final Long expectedYangResourceId, final String expectedYangResourceName,
+        final String expectedYangResourceContent,
+        final String expectedYangResourceChecksum) {
 
         // assert the schema set is persisted
         final SchemaSetEntity schemaSetEntity = getSchemaSetFromDatabase(expectedDataspaceName, expectedSchemaSetName);
@@ -143,6 +163,60 @@ public class CpsModulePersistenceServiceTest {
         assertEquals(expectedYangResourceName, yangResourceEntity.getName());
         assertEquals(expectedYangResourceContent, yangResourceEntity.getContent());
         assertEquals(expectedYangResourceChecksum, yangResourceEntity.getChecksum());
+    }
+
+    @Test
+    @Sql({CLEAR_DATA, SET_DATA})
+    public void testStrictDeleteSchemaSetNoAnchors() {
+        cpsModulePersistenceService.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NO_ANCHORS, false);
+
+        // validate schema set removed
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME);
+        assertFalse(schemaSetRepository
+            .findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_NO_ANCHORS).isPresent());
+
+        // validate shared resource remain, but orphan one is removed
+        assertTrue(yangResourceRepository.findById(SHARED_RESOURCE_ID1).isPresent());
+        assertFalse(yangResourceRepository.findById(ORPHAN_RESOURCE_ID).isPresent());
+    }
+
+
+    @Test
+    @Sql({CLEAR_DATA, SET_DATA})
+    public void testFullDeleteSchemaSetWithAnchorsAndData() {
+        cpsModulePersistenceService.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA, true);
+
+        // validate schema set removed
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME);
+        assertFalse(schemaSetRepository
+            .findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA).isPresent());
+
+        // validate shared resources remain
+        assertTrue(yangResourceRepository.findById(SHARED_RESOURCE_ID1).isPresent());
+        assertTrue(yangResourceRepository.findById(SHARED_RESOURCE_ID2).isPresent());
+
+        // validate associated anchors and data are removed
+        assertFalse(anchorRepository.findById(REMOVED_ANCHOR_ID1).isPresent());
+        assertFalse(anchorRepository.findById(REMOVED_ANCHOR_ID2).isPresent());
+        assertFalse(fragmentRepository.findById(REMOVED_FRAGMENT_ID).isPresent());
+    }
+
+    @Test(expected = DataspaceNotFoundException.class)
+    @Sql(CLEAR_DATA)
+    public void testDeleteSchemaSetWithinInvalidDataspace() {
+        cpsModulePersistenceService.deleteSchemaSet(DATASPACE_NAME_INVALID, SCHEMA_SET_NAME, true);
+    }
+
+    @Test(expected = SchemaSetNotFoundException.class)
+    @Sql({CLEAR_DATA, SET_DATA})
+    public void testDeleteNonExistingSchemaSet() {
+        cpsModulePersistenceService.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, true);
+    }
+
+    @Test(expected = SchemaSetInUseException.class)
+    @Sql({CLEAR_DATA, SET_DATA})
+    public void testStrictDeleteSchemaSetInUse() {
+        cpsModulePersistenceService.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA, false);
     }
 
     private static Map<String, String> toMap(final String key, final String value) {

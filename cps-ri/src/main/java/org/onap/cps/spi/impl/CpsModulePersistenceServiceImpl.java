@@ -28,12 +28,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.SchemaSetInUseException;
+import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +57,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
+
+    @Autowired
+    private AnchorRepository anchorRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Override
     @Transactional
@@ -108,5 +119,26 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
             Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+    }
+
+    @Override
+    @Transactional
+    public void deleteSchemaSet(@NonNull final String dataspaceName, @NonNull final String schemaSetName,
+        final boolean removeAssociatedAnchorsAndData) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);
+        if (!anchorEntities.isEmpty()) {
+            if (removeAssociatedAnchorsAndData) {
+                fragmentRepository.deleteAllByAnchorIn(anchorEntities);
+                anchorRepository.deleteAll(anchorEntities);
+            } else {
+                throw new SchemaSetInUseException(dataspaceName, schemaSetName);
+            }
+        }
+        schemaSetRepository.delete(schemaSetEntity);
+        yangResourceRepository.deleteOrphans();
     }
 }
