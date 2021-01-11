@@ -24,6 +24,7 @@ import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -38,4 +39,6 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
     }
 
     Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+
+    Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
 }
