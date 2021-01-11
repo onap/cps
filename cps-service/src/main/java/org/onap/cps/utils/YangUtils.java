@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.impl.Fragment;
+import org.onap.cps.spi.model.DataNode;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
@@ -169,5 +170,24 @@ public class YangUtils {
             Collections.sort(keyAttributes);
             return "[" + String.join(" and ", keyAttributes) + "]";
         }
+    }
+
+    /**
+     * Create a child DataNode under the given parent DataNode.
+     *
+     * @param parentDataNode parent DataNode
+     * @param childDataNode child DataNode
+     * @return the child DataNode
+     */
+    public static DataNode createChildDataNode(final DataNode parentDataNode, final String childDataNode) {
+        final DataNode dataNode = DataNode.builder()
+            .dataspace(parentDataNode.getDataspace())
+            .anchorName(parentDataNode.getAnchorName())
+            .moduleReference(parentDataNode.getModuleReference())
+            .xpath(parentDataNode.getXpath() + childDataNode)
+            .build();
+
+        parentDataNode.getChildDataNodes().add(dataNode);
+        return dataNode;
     }
 }

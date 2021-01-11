@@ -20,6 +20,7 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.common.Revision
@@ -75,4 +76,17 @@ class YangUtilsSpec extends Specification{
             assert result.childFragments.collect { it.xpath }
                 .containsAll(["/bookstore/categories[@code='01']", "/bookstore/categories[@code='02']"])
     }
+
+    def 'Create a child DataNode under the given parent DataNode.'() {
+        given: 'a parent DataNode'
+            def parentDataNode = DataNode.builder().xpath("/Parent").build();
+        and: 'a child xpath'
+            def ChildXpath = "/Child";
+        when: 'a child is created under the given parent DataNode'
+            YangUtils.createChildDataNode(parentDataNode,ChildXpath)
+        then: 'the child DataNode will have the correct xpath'
+            DataNode childDataNode = parentDataNode.getChildDataNodes().first()
+            assert childDataNode.getXpath() =='/Parent/Child'
+    }
+
 }
