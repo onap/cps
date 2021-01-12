@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "5ce7a239_478630af",
+        "filename": "cps-service/lombok.config",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:52:02Z",
+      "side": 1,
+      "message": "I am happy to leave it here.",
+      "parentUuid": "0958a886_0a9bc970",
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de161517_9181f33b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 4
