@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "486dad12_3b8eb27a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T11:17:48Z",
+      "side": 1,
+      "message": "ok,accepted",
+      "parentUuid": "4f67dee6_692c5c4d",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ebf92a9_731d14e7",
         "filename": "cps-service/lombok.config",
         "patchSetId": 4
@@ -298,6 +322,24 @@
       "side": 1,
       "message": "Having a task already for that (CPS-87) and doing correctly something that takes 30 sec max, is not about being pragmatic...",
       "parentUuid": "62a62ba7_e2f6b2e0",
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a7d41ec_252e3a97",
+        "filename": "cps-service/lombok.config",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T11:17:48Z",
+      "side": 1,
+      "message": "a bit more then 30 seconds but OK and I see Rishi has done that now. In general I would advise that we do create separate tasks and separate commits for such unrelated activities. SO hopefully we wont need such discussion in future :-)",
+      "parentUuid": "5a1a67c6_9e0da170",
       "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -554,6 +596,30 @@
       "side": 1,
       "message": "it is thrown internally, and do check the lines covered in Jacoco too.",
       "parentUuid": "72c81a4d_e76f9023",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "383df619_516639cb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T11:17:48Z",
+      "side": 1,
+      "message": "\u0027_\u0027 is NOT a groovy wildcard! _ without quotes IS. just to clarify.\nThe object Under test does NOT have any code handling this exception so this test does NOT add anything here and can be removed. I\nInstead there should be a Data Integration test  for the same usecase, maybe that is there already",
+      "parentUuid": "669a19ab_62d9e45c",
       "range": {
         "startLine": 70,
         "startChar": 39,
