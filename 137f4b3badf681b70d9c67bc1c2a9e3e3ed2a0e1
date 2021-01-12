@@ -82,6 +82,30 @@
     },
     {
       "key": {
+        "uuid": "906cde63_bf620ea0",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T15:53:37Z",
+      "side": 1,
+      "message": "Niahm and I were actually talking about the use of immutable collections in tests. I though tit was OK not to as it is only a test. But maybe it is better to always use immutable collections and related utility classes to get used to them, even in tests",
+      "parentUuid": "3a74bc34_682a7619",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 57
+      },
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dea31b2f_7002468b",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 5
@@ -93,6 +117,30 @@
       "writtenOn": "2021-01-12T15:44:03Z",
       "side": 1,
       "message": "its an immutable collection, why to explicitly define it, if it should be replaced anyway.\nkeep consistency then - let it be not initialized by default as leaves map is",
+      "range": {
+        "startLine": 44,
+        "startChar": 50,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad385f40_3e734ef2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T15:53:37Z",
+      "side": 1,
+      "message": "yes null might be better, we realized the lombok-generated builder wil use null anyway even if properties are set here...",
+      "parentUuid": "dea31b2f_7002468b",
       "range": {
         "startLine": 44,
         "startChar": 50,
