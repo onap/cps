@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "86347b84_3013a248",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/AnchorEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T11:48:46Z",
+      "side": 1,
+      "message": "using package names within a code makes it just extremely hard to read for humans.\nno benefits keeping same names. current approach is a compromise.",
+      "parentUuid": "e6fe7270_ded2c550",
+      "range": {
+        "startLine": 49,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e78aadf5_4b53e878",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -217,6 +241,54 @@
       "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24531f1c_54611409",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T11:48:46Z",
+      "side": 1,
+      "message": "the change was reverted",
+      "parentUuid": "cd0e578b_5cbe9c80",
+      "range": {
+        "startLine": 84,
+        "startChar": 71,
+        "endLine": 84,
+        "endChar": 97
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03c5ee06_174376d6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T11:48:46Z",
+      "side": 1,
+      "message": "the logic was extracted into method by Claudio\u0027s request in order to be reused in Rishi\u0027s change.\nreverted back as being not in scope for current task, but causing merge blocked",
+      "parentUuid": "82e4c4ab_ab67eb7e",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 36
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
