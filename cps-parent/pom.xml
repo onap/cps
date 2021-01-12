@@ -240,7 +240,7 @@
                         <!-- Reports all bugs (other values are medium and max) -->
                         <threshold>Low</threshold>
                         <!-- Build doesn't fail if problems are found -->
-                        <failOnError>false</failOnError>
+                        <failOnError>true</failOnError>
                         <!-- References the excluded rules -->
                         <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
                         <!-- Produces XML report -->

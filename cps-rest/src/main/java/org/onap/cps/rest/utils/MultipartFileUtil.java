@@ -19,10 +19,12 @@
 
 package org.onap.cps.rest.utils;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
 
 import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -47,7 +49,7 @@ public class MultipartFileUtil {
     }
 
     private static String extractYangResourceName(final MultipartFile multipartFile) {
-        final String fileName = multipartFile.getOriginalFilename();
+        final String fileName = checkNotNull(multipartFile.getOriginalFilename(), "Missing filename.");
         if (!fileName.endsWith(RFC6020_YANG_FILE_EXTENSION)) {
             throw new ModelValidationException("Unsupported file type.",
                 String.format("Filename %s does not end with '%s'", fileName, RFC6020_YANG_FILE_EXTENSION));
@@ -57,7 +59,7 @@ public class MultipartFileUtil {
 
     private static String extractYangResourceContent(final MultipartFile multipartFile) {
         try {
-            return new String(multipartFile.getBytes());
+            return new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
         } catch (final IOException e) {
             throw new CpsException("Cannot read the resource file.", e.getMessage(), e);
         }
