@@ -539,6 +539,30 @@
       "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669a19ab_62d9e45c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T10:23:36Z",
+      "side": 1,
+      "message": "it is thrown internally, and do check the lines covered in Jacoco too.",
+      "parentUuid": "72c81a4d_e76f9023",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
