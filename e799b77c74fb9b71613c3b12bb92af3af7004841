@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "dcde1ee0_16e12d6e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T13:20:12Z",
+      "side": 1,
+      "message": "better performance when putting data.",
+      "parentUuid": "c14a9a40_bd7cb0c9",
+      "range": {
+        "startLine": 52,
+        "startChar": 48,
+        "endLine": 52,
+        "endChar": 58
+      },
+      "revId": "e799b77c74fb9b71613c3b12bb92af3af7004841",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e473a9d8_43878f18",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
