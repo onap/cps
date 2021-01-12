@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5450f1a8_1adc4543",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "you should also validate the references of fragments persisted:\nsmth like \nassertEquals(DATASPACE_NAME, childFragment.getDataspace().getName());\nassertEquals(ANCHOR_NAME1, childFragment.getAnchor().getAnchorName());\nsame for parent",
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eae707f_d1ad45b9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "it seems reasonable to create both parent and child within this method, \nit\u0027s not justified creating parent in test, but child in method",
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6528ca9_03048af9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "this data is not expected in DataNode object when data is passed for persistence.\nit also null here (in the test)",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a74bc34_682a7619",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "parrentDataSet.setChildDataNodes(ImmutableSet.of(childDataNode));\ncom.google.common.collect.ImmutableSet",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 57
+      },
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dea31b2f_7002468b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "its an immutable collection, why to explicitly define it, if it should be replaced anyway.\nkeep consistency then - let it be not initialized by default as leaves map is",
+      "range": {
+        "startLine": 44,
+        "startChar": 50,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "137f4b3badf681b70d9c67bc1c2a9e3e3ed2a0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

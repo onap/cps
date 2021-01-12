@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "057fdad5_e3fd92cc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "this is incorrect. the anchorName will not be a part of Fragment\nafter Anchor decoupling, you need to set the AnchorEntity (currently Fragment)\nobject as .anchor(anchor) in order to populate the reference (anchor_id in database)",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 35
+      },
+      "revId": "6d1d6cb3b96629c1974efac36beb48e565289a10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82c5ee0c_be91948e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T15:44:03Z",
+      "side": 1,
+      "message": "anchor object here, not a string",
+      "range": {
+        "startLine": 93,
+        "startChar": 76,
+        "endLine": 93,
+        "endChar": 106
+      },
+      "revId": "6d1d6cb3b96629c1974efac36beb48e565289a10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
