@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eca5c7ea_6d8e435b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/AnchorEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T10:31:23Z",
+      "side": 1,
+      "message": "because it conflict with Anchor object, this was greed in yesterday\u0027s standup",
+      "parentUuid": "6468d28c_e80da769",
+      "range": {
+        "startLine": 49,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e78aadf5_4b53e878",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2021-01-12T08:08:16Z",
       "side": 1,
       "message": "Wouldn\u0027t be useful to keep xpath as well on Anchor?. E.g. querying all Anchors under specific dataspace and xpath\nI could be done as well from fragments but then we would need to filter to get only the anchors one.\nI\u0027m trowing an idea, but I need to check better what type of queries we expect",
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7709b1ef_2bb5fcb1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T10:31:23Z",
+      "side": 1,
+      "message": "not quiet sure what you mean Claudio, xPath does only apply to fragments (yang data nodes) now. \nYes we need to do the kind of query you suggest but taht doesn\u0027t mean Anchor needs an xPath property...",
+      "parentUuid": "e78aadf5_4b53e878",
       "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -58,6 +100,29 @@
         "startChar": 71,
         "endLine": 84,
         "endChar": 97
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0d29f5c_835d43fe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T10:31:23Z",
+      "side": 1,
+      "message": "I think this methdod would be clearer and better placed as a (static) toAnchor() methdod on the entity class. But that is just my opinion. If you hold the purist view that entity should only represent data then you might not want to. Opinions requested :-)",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 36
       },
       "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
