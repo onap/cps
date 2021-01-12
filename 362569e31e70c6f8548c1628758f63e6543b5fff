@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cffc8461_04f0b98d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-12T09:29:44Z",
+      "side": 1,
+      "message": "good catch, let me fix it",
+      "parentUuid": "d16d5dbc_e8b7f50c",
+      "revId": "362569e31e70c6f8548c1628758f63e6543b5fff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "297ecdc1_1f19a64f",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2021-01-12T09:14:58Z",
       "side": 1,
       "message": "i think encoding should be used here when reading file content to string object,\ninstead of warning suppression, because you use encoding when string to bytes (reverse)\nconversion when calculating file checksum in CpsModulePersistenceServiceImpl\nit makes sense to keep same encoding for both ways conversions",
+      "revId": "362569e31e70c6f8548c1628758f63e6543b5fff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb651b2b_c30e2006",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-12T09:29:44Z",
+      "side": 1,
+      "message": "multipartFile API doesnt support it",
+      "parentUuid": "297ecdc1_1f19a64f",
       "revId": "362569e31e70c6f8548c1628758f63e6543b5fff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
