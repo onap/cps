@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e78aadf5_4b53e878",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-12T08:08:16Z",
+      "side": 1,
+      "message": "Wouldn\u0027t be useful to keep xpath as well on Anchor?. E.g. querying all Anchors under specific dataspace and xpath\nI could be done as well from fragments but then we would need to filter to get only the anchors one.\nI\u0027m trowing an idea, but I need to check better what type of queries we expect",
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
