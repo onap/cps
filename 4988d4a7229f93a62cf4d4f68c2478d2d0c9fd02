@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f70324b_d23db456",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorNotFoundException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T15:38:18Z",
+      "side": 1,
+      "message": "as agreed, just add a quick groovy test to cover the constructor in this module.\nIt need to verify the resulting string in the exception",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "4988d4a7229f93a62cf4d4f68c2478d2d0c9fd02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9265c1c6_c4dd1404",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T15:38:18Z",
+      "side": 1,
+      "message": "just for future reference, all scenario descriptions (title of the tests) should end in a full stop \u0027.\u0027 as per our conventions. (I forgot about this myself and there are many legacy test that don\u0027t have this but its really not important and will fix as we go)\n\nthe descriptions for labels like given: then: do NOT start with capital or have full stop. The reason for this is that the label itself is already part of the \u0027sentence\u0027 as we cannot control its casing...",
+      "range": {
+        "startLine": 57,
+        "startChar": 60,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "4988d4a7229f93a62cf4d4f68c2478d2d0c9fd02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
