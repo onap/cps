@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fd91d537_4c1c3725",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0232cce4_216e6c23",
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5b708d5_4331a62f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2021-01-11T14:25:55Z",
       "side": 1,
       "message": "here you need just to add Anchor getAnchors(...);\non consumer side then you will call later getYangResources()",
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e05983b_ede655fb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:17:01Z",
+      "side": 1,
+      "message": "added in cpsAdminservice",
+      "parentUuid": "b5b708d5_4331a62f",
       "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "0e8040f5_26f21963",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "213cef23_a4637b9c",
+      "range": {
+        "startLine": 117,
+        "startChar": 116,
+        "endLine": 121,
+        "endChar": 79
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94079465_67099a82",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "465cad47_77049812",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94079465_67099a82",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 88
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1169a803_98dbce11",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
         "patchSetId": 2
@@ -93,6 +177,30 @@
       "writtenOn": "2021-01-06T17:44:22Z",
       "side": 1,
       "message": "as per previous comment, should we build a SchemaContetx I though that was mentioned in the user story description?",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "825edeaa5339e37b8a46f1ec3800c2336a761594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "661630b5_29aa0eec",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T08:17:01Z",
+      "side": 1,
+      "message": "NA",
+      "parentUuid": "1169a803_98dbce11",
       "range": {
         "startLine": 73,
         "startChar": 4,
