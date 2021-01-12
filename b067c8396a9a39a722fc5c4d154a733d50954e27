@@ -497,6 +497,30 @@
       "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72c81a4d_e76f9023",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T09:56:34Z",
+      "side": 1,
+      "message": "no exception thrown in method being tested,\nthis test is unnecessary",
+      "parentUuid": "ed112078_cd6de202",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
