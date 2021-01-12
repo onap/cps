@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "d3245064_d1084947",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T12:18:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "486dad12_3b8eb27a",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ebf92a9_731d14e7",
         "filename": "cps-service/lombok.config",
         "patchSetId": 4
@@ -629,6 +653,30 @@
       "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac973083_2520ede5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-12T12:18:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "383df619_516639cb",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
