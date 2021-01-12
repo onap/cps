@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "e170622e_d3898e6e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-12T10:46:35Z",
+      "side": 1,
+      "message": "it was just an open question, whether would be a benefit if we would keep xPath property at the moment of querying. \nIm not asking for keeping it :)",
+      "parentUuid": "7709b1ef_2bb5fcb1",
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd0e578b_5cbe9c80",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
