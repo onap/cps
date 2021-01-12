@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "b41bc9ef_c7d4dfff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T09:01:10Z",
+      "side": 1,
+      "message": "add more details especially the fact you have disabled code coverage measuring on lombok generated code\n\nthat you have increase the code coverage threshold",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80b85411_f05ee065",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T09:01:10Z",
+      "side": 1,
+      "message": "Brilliant!",
+      "range": {
+        "startLine": 23,
+        "startChar": 25,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a12a19_f1288fdd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T09:01:10Z",
+      "side": 1,
+      "message": "suggestion: woudl it be betetr places in method called (convert)ToAnchor() on the Fragment class?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ebf92a9_731d14e7",
         "filename": "cps-service/lombok.config",
         "patchSetId": 4
@@ -109,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "356971d2_f602bdef",
+        "filename": "cps-service/lombok.config",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T09:01:10Z",
+      "side": 1,
+      "message": "although a separate commit would have been better let\u0027s be pragmatic and include it here.\nIt should be mentioned in the commit message though!\n\nAlso, this might NOT affect code coverage in SonarQube, let\u0027s wait and see. If not ew need to take some action on that with the team that maintains those jobs.",
+      "parentUuid": "5ce7a239_478630af",
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de161517_9181f33b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 4
@@ -168,6 +255,30 @@
       "side": 1,
       "message": "I know, I wanted to change all tests. To keep consistency with other test classes.",
       "parentUuid": "9887088c_2a659a0c",
+      "range": {
+        "startLine": 63,
+        "startChar": 39,
+        "endLine": 63,
+        "endChar": 53
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e687b298_ae8a616b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-12T09:01:10Z",
+      "side": 1,
+      "message": "consistency is important but find-replace all is easy... I wont block the the commit on this but I also prefer someXXXXX in all tests",
+      "parentUuid": "2f446985_ebd73179",
       "range": {
         "startLine": 63,
         "startChar": 39,
