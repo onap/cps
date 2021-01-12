@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "1327c64c_73948f68",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/AnchorEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-12T12:06:15Z",
+      "side": 1,
+      "message": "I\u0027m more fan of keep it as Anchor, and user read correctly the package. But is an small detail, that will be hidden and done on this module. We are draw 2:2 :D",
+      "parentUuid": "215cf383_be6dcc21",
+      "range": {
+        "startLine": 49,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "0a8480fd0919c1da774cce4f425040c9825432b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e78aadf5_4b53e878",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 2
