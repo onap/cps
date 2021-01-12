@@ -677,6 +677,30 @@
       "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e78ec04_c14a3216",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-12T13:32:58Z",
+      "side": 1,
+      "message": "this method will only fail in case the CpsAdminPersistenceService.getAnchor() \nmethod is no longer invoked from the service layer. this case is already covered with \nprevious test (positive scenario). current test is extra",
+      "parentUuid": "669a19ab_62d9e45c",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "b067c8396a9a39a722fc5c4d154a733d50954e27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
