@@ -29,9 +29,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsModulePersistenceService;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.SchemaSet;
-import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
+import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -58,53 +58,55 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
 
-        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final Set<YangResource> yangResources = synchronizeYangResources(yangResourcesNameToContentMap);
-        final SchemaSet schemaSet = new SchemaSet();
-        schemaSet.setName(schemaSetName);
-        schemaSet.setDataspace(dataspace);
-        schemaSet.setYangResources(yangResources);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
+        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
+        schemaSetEntity.setName(schemaSetName);
+        schemaSetEntity.setDataspace(dataspaceEntity);
+        schemaSetEntity.setYangResources(yangResourceEntities);
         try {
-            schemaSetRepository.save(schemaSet);
+            schemaSetRepository.save(schemaSetEntity);
         } catch (final DataIntegrityViolationException e) {
             throw new SchemaSetAlreadyDefinedException(dataspaceName, schemaSetName, e);
         }
     }
 
-    private Set<YangResource> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
-        final Map<String, YangResource> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
+    private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
-                final YangResource yangResource = new YangResource();
-                yangResource.setName(entry.getKey());
-                yangResource.setContent(entry.getValue());
-                yangResource.setChecksum(DigestUtils.md5DigestAsHex(entry.getValue().getBytes(StandardCharsets.UTF_8)));
-                return yangResource;
+                final String checksum = DigestUtils.md5DigestAsHex(entry.getValue().getBytes(StandardCharsets.UTF_8));
+                final YangResourceEntity yangResourceEntity = new YangResourceEntity();
+                yangResourceEntity.setName(entry.getKey());
+                yangResourceEntity.setContent(entry.getValue());
+                yangResourceEntity.setChecksum(checksum);
+                return yangResourceEntity;
             })
             .collect(Collectors.toMap(
-                YangResource::getChecksum,
+                YangResourceEntity::getChecksum,
                 entity -> entity
             ));
 
-        final List<YangResource> existingYangResources =
+        final List<YangResourceEntity> existingYangResourceEntities =
             yangResourceRepository.findAllByChecksumIn(checksumToEntityMap.keySet());
-        existingYangResources.forEach(yangFile -> checksumToEntityMap.remove(yangFile.getChecksum()));
+        existingYangResourceEntities.forEach(yangFile -> checksumToEntityMap.remove(yangFile.getChecksum()));
 
-        final Collection<YangResource> newYangResources = checksumToEntityMap.values();
-        if (!newYangResources.isEmpty()) {
-            yangResourceRepository.saveAll(newYangResources);
+        final Collection<YangResourceEntity> newYangResourceEntities = checksumToEntityMap.values();
+        if (!newYangResourceEntities.isEmpty()) {
+            yangResourceRepository.saveAll(newYangResourceEntities);
         }
 
-        return ImmutableSet.<YangResource>builder()
-            .addAll(existingYangResources)
-            .addAll(newYangResources)
+        return ImmutableSet.<YangResourceEntity>builder()
+            .addAll(existingYangResourceEntities)
+            .addAll(newYangResourceEntities)
             .build();
     }
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
-        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
-        return schemaSet.getYangResources().stream().collect(
-            Collectors.toMap(YangResource::getName, YangResource::getContent));
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        return schemaSetEntity.getYangResources().stream().collect(
+            Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
     }
 }

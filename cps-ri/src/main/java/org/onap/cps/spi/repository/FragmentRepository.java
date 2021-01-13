@@ -21,11 +21,11 @@
 
 package org.onap.cps.spi.repository;
 
-import org.onap.cps.spi.entities.Fragment;
+import org.onap.cps.spi.entities.FragmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FragmentRepository extends JpaRepository<Fragment, Long> {
+public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
 
 }

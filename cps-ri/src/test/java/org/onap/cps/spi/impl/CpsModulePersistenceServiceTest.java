@@ -30,9 +30,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
 import org.onap.cps.spi.CpsModulePersistenceService;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.SchemaSet;
-import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
+import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -124,33 +124,33 @@ public class CpsModulePersistenceServiceTest {
                                           final String expectedYangResourceChecksum) {
 
         // assert the schema set is persisted
-        final SchemaSet schemaSet = getSchemaSetFromDatabase(expectedDataspaceName, expectedSchemaSetName);
-        assertEquals(expectedDataspaceName, schemaSet.getDataspace().getName());
-        assertEquals(expectedSchemaSetName, schemaSet.getName());
+        final SchemaSetEntity schemaSetEntity = getSchemaSetFromDatabase(expectedDataspaceName, expectedSchemaSetName);
+        assertEquals(expectedDataspaceName, schemaSetEntity.getDataspace().getName());
+        assertEquals(expectedSchemaSetName, schemaSetEntity.getName());
 
         // assert the attached yang resource is persisted
-        final Set<YangResource> yangResources = schemaSet.getYangResources();
-        assertNotNull(yangResources);
-        assertEquals(1, yangResources.size());
+        final Set<YangResourceEntity> yangResourceEntities = schemaSetEntity.getYangResources();
+        assertNotNull(yangResourceEntities);
+        assertEquals(1, yangResourceEntities.size());
 
         // assert the attached yang resource content
-        final YangResource yangResource = yangResources.iterator().next();
-        assertNotNull(yangResource.getId());
+        final YangResourceEntity yangResourceEntity = yangResourceEntities.iterator().next();
+        assertNotNull(yangResourceEntity.getId());
         if (expectedYangResourceId != NEW_RESOURCE_ABSTRACT_ID) {
             // existing resource with known id
-            assertEquals(expectedYangResourceId, yangResource.getId());
+            assertEquals(expectedYangResourceId, yangResourceEntity.getId());
         }
-        assertEquals(expectedYangResourceName, yangResource.getName());
-        assertEquals(expectedYangResourceContent, yangResource.getContent());
-        assertEquals(expectedYangResourceChecksum, yangResource.getChecksum());
+        assertEquals(expectedYangResourceName, yangResourceEntity.getName());
+        assertEquals(expectedYangResourceContent, yangResourceEntity.getContent());
+        assertEquals(expectedYangResourceChecksum, yangResourceEntity.getChecksum());
     }
 
     private static Map<String, String> toMap(final String key, final String value) {
         return ImmutableMap.<String, String>builder().put(key, value).build();
     }
 
-    private SchemaSet getSchemaSetFromDatabase(final String dataspaceName, final String schemaSetName) {
-        final Dataspace dataspace = dataspaceRepository.findByName(dataspaceName).orElseThrow();
-        return schemaSetRepository.findByDataspaceAndName(dataspace, schemaSetName).orElseThrow();
+    private SchemaSetEntity getSchemaSetFromDatabase(final String dataspaceName, final String schemaSetName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.findByName(dataspaceName).orElseThrow();
+        return schemaSetRepository.findByDataspaceAndName(dataspaceEntity, schemaSetName).orElseThrow();
     }
 }

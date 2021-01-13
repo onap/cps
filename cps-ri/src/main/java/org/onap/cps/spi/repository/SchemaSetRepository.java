@@ -22,29 +22,31 @@ package org.onap.cps.spi.repository;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.SchemaSet;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SchemaSetRepository extends JpaRepository<SchemaSet, Integer> {
+public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Integer> {
 
-    List<SchemaSet> findAllByDataspace(@NotNull Dataspace dataspace);
+    List<SchemaSetEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
-    Optional<SchemaSet> findByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String schemaSetName);
+    Optional<SchemaSetEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity,
+        @NotNull String schemaSetName);
 
     /**
      * Gets a schema set by dataspace and schema set name.
      *
-     * @param dataspace     dataspace entity
-     * @param schemaSetName schema set name
+     * @param dataspaceEntity dataspace entity
+     * @param schemaSetName   schema set name
      * @return schema set entity
      * @throws SchemaSetNotFoundException if SchemaSet not found
      */
-    default SchemaSet getByDataspaceAndName(@NotNull final Dataspace dataspace, @NotNull final String schemaSetName) {
-        return findByDataspaceAndName(dataspace, schemaSetName)
-            .orElseThrow(() -> new SchemaSetNotFoundException(dataspace.getName(), schemaSetName));
+    default SchemaSetEntity getByDataspaceAndName(@NotNull final DataspaceEntity dataspaceEntity,
+        @NotNull final String schemaSetName) {
+        return findByDataspaceAndName(dataspaceEntity, schemaSetName)
+            .orElseThrow(() -> new SchemaSetNotFoundException(dataspaceEntity.getName(), schemaSetName));
     }
 }

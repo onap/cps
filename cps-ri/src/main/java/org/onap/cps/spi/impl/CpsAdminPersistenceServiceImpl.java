@@ -25,8 +25,8 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.Dataspace;
-import org.onap.cps.spi.entities.SchemaSet;
+import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
@@ -52,7 +52,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public void createDataspace(final String dataspaceName) {
         try {
-            dataspaceRepository.save(new Dataspace(dataspaceName));
+            dataspaceRepository.save(new DataspaceEntity(dataspaceName));
         } catch (final DataIntegrityViolationException e) {
             throw new DataspaceAlreadyDefinedException(dataspaceName, e);
         }
@@ -60,12 +60,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSet schemaSet = schemaSetRepository.getByDataspaceAndName(dataspace, schemaSetName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         final AnchorEntity anchorEntity = AnchorEntity.builder()
             .name(anchorName)
-            .dataspace(dataspace)
-            .schemaSet(schemaSet)
+            .dataspace(dataspaceEntity)
+            .schemaSet(schemaSetEntity)
             .build();
         try {
             anchorRepository.save(anchorEntity);
@@ -76,8 +77,8 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
-        final Dataspace dataspace = dataspaceRepository.getByName(dataspaceName);
-        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspace);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
     }
 

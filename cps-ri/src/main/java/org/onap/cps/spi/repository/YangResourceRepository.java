@@ -22,13 +22,13 @@ package org.onap.cps.spi.repository;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
-import org.onap.cps.spi.entities.YangResource;
+import org.onap.cps.spi.entities.YangResourceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YangResourceRepository extends JpaRepository<YangResource, Long> {
+public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long> {
 
-    List<YangResource> findAllByChecksumIn(@NotNull Set<String> checksum);
+    List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
 
 }

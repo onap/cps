@@ -23,11 +23,12 @@ import java.util.Collection;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.Dataspace;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
-    Optional<AnchorEntity> findByDataspaceAndName(@NotNull Dataspace dataspace, @NotNull String name);
 
-    Collection<AnchorEntity> findAllByDataspace(@NotNull Dataspace dataspace);
+    Optional<AnchorEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity, @NotNull String name);
+
+    Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 }
