@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b31c0342_25c542e5",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-01-13T21:44:19Z",
+      "side": 1,
+      "message": "Not related to the split directly, but as acceptance criteria are mentioning completeness, quality and consistency of the api, I have these questions:\n\nWhat is the status in the error here?\nIt does not seem to belong to CpsException.\nIs it different from http response status code?\n\nIf it is the same, why not removing it to avoid duplication? \nIf it is a different one why not giving it a different name?",
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
