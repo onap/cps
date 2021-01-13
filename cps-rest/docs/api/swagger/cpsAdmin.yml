@@ -1,0 +1,162 @@
+dataspace:
+  post:
+    tags:
+      - cps-admin
+    summary: Create a new dataspace
+    operationId: createDataspace
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInQuery'
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+dataspaceByDataspaceName:
+  delete:
+    tags:
+      - cps-admin
+    summary: Delete the given dataspace
+    operationId: deleteDataspace
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      204:
+        $ref: 'components.yaml#/components/responses/NoContent'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+
+schemaSet:
+  post:
+    tags:
+      - cps-admin
+    summary: Create a new schema set in the given dataspace
+    operationId: createSchemaSet
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/schemaSetNameInQuery'
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: 'components.yaml#/components/schemas/MultipartFile'
+
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+schemaSetBySchemaSetName:
+  get:
+    tags:
+      - cps-admin
+    summary: Read a schema set given a schema set and a dataspace
+    operationId: getSchemaSet
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/schemaSetNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
+anchorsByDataspace:
+  get:
+    tags:
+      - cps-admin
+    summary: Read all anchors, given a dataspace
+    operationId: getAnchors
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      204:
+        $ref: 'components.yaml#/components/responses/NoContent'
+  post:
+    tags:
+      - cps-admin
+    summary: Create a new anchor in the given dataspace
+    operationId: createAnchor
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/schemaSetNameInQuery'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInQuery'
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+anchorByDataspaceAndAnchorName:
+  get:
+    tags:
+      - cps-admin
+    summary: Read an anchor given a anchor and a dataspace
+    operationId: getAnchor
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
+  delete:
+    tags:
+      - cps-admin
+    summary: Delete an anchor given a anchor and a dataspace
+    operationId: deleteAnchor
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      204:
+        $ref: 'components.yaml#/components/responses/NoContent'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'

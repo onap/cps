@@ -54,8 +54,8 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
-        final String dataspaceName) {
+    public ResponseEntity<String> createSchemaSet(final MultipartFile multipartFile,
+        final String schemaSetName, final String dataspaceName) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
     }
