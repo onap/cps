@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "99344819_d8218bae",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-13T18:13:03Z",
+      "side": 1,
+      "message": "It seems that Aditya is following OPen API 3 recommendations so we should accept",
+      "parentUuid": "2cae02b4_b8a4ae30",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7396d379_8c580818",
         "filename": "cps-rest/docs/api/swagger/components.yaml",
         "patchSetId": 3
