@@ -73,7 +73,7 @@ public final class YangTextSchemaSourceSetBuilder {
      * @throws ModelValidationException if validation fails
      */
     public static void validate(final Map<String, String> yangResourceNameToContent) {
-        generateSchemaContext(yangResourceNameToContent);
+        YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
     }
 
     private static class YangTextSchemaSourceSetImpl implements YangTextSchemaSourceSet {
