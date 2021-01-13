@@ -19,9 +19,17 @@
 
 package org.onap.cps.api.impl;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
@@ -30,7 +38,15 @@ import org.springframework.stereotype.Component;
 
 @Component("CpsModuleServiceImpl")
 public class CpsModuleServiceImpl implements CpsModuleService {
-
+    private final LoadingCache<YangTextSchemaSourceSetKey, YangTextSchemaSourceSet> yangSchemaResourcesLoader
+        = CacheBuilder.newBuilder()
+            .expireAfterAccess(10, TimeUnit.SECONDS)
+            .build(new CacheLoader<>() {
+                @Override
+                public YangTextSchemaSourceSet load(final YangTextSchemaSourceSetKey key) {
+                    return getYangTextSchemaSourceSet(key.getDataspaceName(), key.getSchemaSetName());
+                }
+            });
     @Autowired
     private CpsModulePersistenceService cpsModulePersistenceService;
 
@@ -38,21 +54,42 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
                                 final Map<String, String> yangResourcesNameToContentMap) {
 
-        YangTextSchemaSourceSetBuilder.validate(yangResourcesNameToContentMap);
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet =
+                YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+        final YangTextSchemaSourceSetKey key = new YangTextSchemaSourceSetKey(dataspaceName, schemaSetName);
+        yangSchemaResourcesLoader.put(key, yangTextSchemaSourceSet);
         cpsModulePersistenceService
             .storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
     }
 
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
-        final Map<String, String> yangResourceNameToContent =
-                cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
-        final YangTextSchemaSourceSet yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder
-                                                                        .of(yangResourceNameToContent);
+        final YangTextSchemaSourceSetKey key = new YangTextSchemaSourceSetKey(dataspaceName, schemaSetName);
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet;
+        try {
+            yangTextSchemaSourceSet = yangSchemaResourcesLoader.getUnchecked(key);
+        } catch (final Exception e) {
+            throw new CpsException("Failed to load YangTextSchemaSourceSet.",
+                    String.format("Exception occurred on loading cached YangTextSchemaSourceSet %s.", key), e);
+        }
         return SchemaSet.builder()
                        .name(schemaSetName)
                        .dataspaceName(dataspaceName)
                        .moduleReferences(yangTextSchemaSourceSet.getModuleReferences())
                 .build();
+    }
+
+    private YangTextSchemaSourceSet getYangTextSchemaSourceSet(final String dataspaceName, final String schemaSetName) {
+        final Map<String, String> yangResourceNameToContent =
+                cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
+        return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
+    }
+
+    @Getter
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    private static class YangTextSchemaSourceSetKey {
+        private final String dataspaceName;
+        private final String schemaSetName;
     }
 }

@@ -55,11 +55,12 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get schema set by name and namespace.'() {
         given: 'an already present schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
-        when: 'get schema set method is invoked'
+        when: 'get schema set method is invoked twice'
             def result = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
-        then: 'the correct schema set is returned'
-            result.getName().contains('someSchemaSet')
+            def result1 = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
+        then: 'the correct schema set is returned and persistency service called only once'
+        1 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
+        result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
     }
