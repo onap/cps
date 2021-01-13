@@ -22,6 +22,11 @@ spring:
         driverClassName: org.postgresql.Driver
         initialization-mode: always
 
+    cache:
+        type: caffeine
+        cache-names: schema
+        #caffeine:
+        #    spec: expireAfterAccess=30s
 # Actuator
 management:
     endpoints:
