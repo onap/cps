@@ -11,3 +11,6 @@ spring:
     password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver
     initialization-mode: always
+  cache:
+    type: caffeine
+    cache-names: schema
