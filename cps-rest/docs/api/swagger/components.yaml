@@ -1,0 +1,105 @@
+components:
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    MultipartFile:
+      required:
+        - file
+      properties:
+        multipartFile:
+          type: string
+          description: multipartFile
+          format: binary
+
+  parameters:
+    dataspaceNameInQuery:
+      name: dataspace-name
+      in: query
+      description: dataspace-name
+      required: true
+      schema:
+        type: string
+    dataspaceNameInPath:
+      name: dataspace-name
+      in: path
+      description: dataspace-name
+      required: true
+      schema:
+        type: string
+    anchorNameInPath:
+      name: anchor-name
+      in: path
+      description: anchor-name
+      required: true
+      schema:
+        type: string
+    schemaSetNameInQuery:
+      name: schema-set-name
+      in: query
+      description: schema-set-name
+      required: true
+      schema:
+        type: string
+    schemaSetNameInPath:
+      name: schema-set-name
+      in: path
+      description: schema-set-name
+      required: true
+      schema:
+        type: string
+    anchorNameInQuery:
+      name: anchor-name
+      in: query
+      description: anchor-name
+      required: true
+      schema:
+        type: string
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Ok:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Created:
+      description: Created
+      content:
+        text/plain:
+          schema:
+            type: string
+    NoContent:
+      description: No Content
+      content: {}
