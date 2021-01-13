@@ -127,8 +127,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public Map<String, String> getYangSchemaSetResources(final String dataspaceName,
-        final String anchorName) {
+    public Map<String, String> getYangSchemaSetResources(final String dataspaceName, final String anchorName) {
         final Anchor anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
         return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
     }
