@@ -8,7 +8,12 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../cps-parent/pom.xml</relativePath>
     </parent>
+
     <artifactId>cps-ri</artifactId>
+
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-aggregate/jacoco.xml,${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
 
     <dependencies>
         <dependency>
