@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
 import org.onap.cps.DatabaseTestContainer;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.Dataspace;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
@@ -83,10 +83,10 @@ public class CpsAdminPersistenceServiceTest {
         final String dataspaceName = "DATASPACE-NEW";
         cpsAdminPersistenceService.createDataspace(dataspaceName);
 
-        final Dataspace dataspace = dataspaceRepository.findByName(dataspaceName).orElseThrow();
-        assertNotNull(dataspace);
-        assertNotNull(dataspace.getId());
-        assertEquals(dataspaceName, dataspace.getName());
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.findByName(dataspaceName).orElseThrow();
+        assertNotNull(dataspaceEntity);
+        assertNotNull(dataspaceEntity.getId());
+        assertEquals(dataspaceName, dataspaceEntity.getName());
     }
 
     @Test(expected = DataspaceAlreadyDefinedException.class)
@@ -101,9 +101,9 @@ public class CpsAdminPersistenceServiceTest {
         cpsAdminPersistenceService.createAnchor(DATASPACE_NAME, SCHEMA_SET_NAME2, ANCHOR_NAME_NEW);
 
         // validate anchor persisted
-        final Dataspace dataspace = dataspaceRepository.findByName(DATASPACE_NAME).orElseThrow();
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.findByName(DATASPACE_NAME).orElseThrow();
         final AnchorEntity anchorEntity =
-            anchorRepository.findByDataspaceAndName(dataspace, ANCHOR_NAME_NEW).orElseThrow();
+            anchorRepository.findByDataspaceAndName(dataspaceEntity, ANCHOR_NAME_NEW).orElseThrow();
 
         assertNotNull(anchorEntity.getId());
         assertEquals(ANCHOR_NAME_NEW, anchorEntity.getName());

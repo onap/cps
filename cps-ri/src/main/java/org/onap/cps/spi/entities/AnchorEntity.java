@@ -61,10 +61,10 @@ public class AnchorEntity implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schema_set_id")
-    private SchemaSet schemaSet;
+    private SchemaSetEntity schemaSet;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id")
-    private Dataspace dataspace;
+    private DataspaceEntity dataspace;
 }

@@ -23,10 +23,14 @@ import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -34,34 +38,34 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Entity to store a Yang files.
+ * Entity to store a Schema Set.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "yang_resource")
-public class YangResource implements Serializable {
+@Table(name = "schema_set")
+public class SchemaSetEntity implements Serializable {
 
-    private static final long serialVersionUID = -4496883162142106774L;
+    private static final long serialVersionUID = 6665056955069047269L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @Column
-    private String checksum;
+    private Integer id;
 
     @NotNull
     @Column
     private String name;
 
     @NotNull
-    @Column
-    private String content;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dataspace_id", referencedColumnName = "ID")
+    private DataspaceEntity dataspace;
 
-    @ManyToMany(mappedBy = "yangResources")
-    private Set<SchemaSet> moduleSets;
-
+    @NotNull
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schema_set_yang_resources",
+        joinColumns = @JoinColumn(name = "schema_set_id"),
+        inverseJoinColumns = @JoinColumn(name = "yang_resource_id"))
+    private Set<YangResourceEntity> yangResources;
 }

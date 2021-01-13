@@ -1,6 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2020 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,46 +20,48 @@
 package org.onap.cps.spi.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * Entity to store a dataspace.
+ * Entity to store a Yang files.
  */
 @Getter
 @Setter
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "dataspace")
-public class Dataspace implements Serializable {
+@Entity
+@Table(name = "yang_resource")
+public class YangResourceEntity implements Serializable {
 
-    private static final long serialVersionUID = 8395254649813051882L;
+    private static final long serialVersionUID = -4496883162142106774L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotNull
-    @Column(columnDefinition = "text")
+    @Column
+    private String checksum;
+
+    @NotNull
+    @Column
     private String name;
 
-    /**
-     * Initialize a Dataspace .
-     *
-     * @param name the Dataspace name.
-     */
-    public Dataspace(final String name) {
-        this.name = name;
-    }
+    @NotNull
+    @Column
+    private String content;
+
+    @ManyToMany(mappedBy = "yangResources")
+    private Set<SchemaSetEntity> schemaSets;
+
 }
