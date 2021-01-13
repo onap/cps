@@ -23,6 +23,8 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 import java.util.Collection;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
@@ -54,8 +56,8 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-    public ResponseEntity<String> createSchemaSet(final String schemaSetName, final MultipartFile multipartFile,
-        final String dataspaceName) {
+    public ResponseEntity<String> createSchemaSet(final MultipartFile multipartFile,
+        final String schemaSetName, final String dataspaceName) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
     }
