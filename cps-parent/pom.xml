@@ -422,6 +422,18 @@
                             </rules>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <dataFileIncludes>
+                                <fileInclude>**/code-coverage/jacoco-ut.exec</fileInclude>
+                            </dataFileIncludes>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
