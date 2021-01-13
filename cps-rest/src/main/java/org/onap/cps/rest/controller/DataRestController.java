@@ -38,7 +38,7 @@ public class DataRestController implements CpsDataApi {
     private ModelMapper modelMapper;
 
     @Override
-    public ResponseEntity<Object> createNode(@Valid final MultipartFile multipartFile, final String dataspaceName) {
+    public ResponseEntity<String> createNode(@Valid final MultipartFile multipartFile, final String dataspaceName) {
         return null;
     }
 

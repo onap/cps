@@ -122,7 +122,7 @@ class AdminRestControllerSpec extends Specification {
                 MockMvcRequestBuilders
                         .multipart(schemaSetsEndpoint)
                         .file(multipartFile)
-                        .param('schemaSetName', 'test-schema-set')
+                        .param('schema-set-name', 'test-schema-set')
         ).andReturn().response
     }
 
