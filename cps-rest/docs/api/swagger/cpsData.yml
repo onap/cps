@@ -1,0 +1,65 @@
+nodesByDataspaceAndAnchor:
+  get:
+    tags:
+      - cps-data
+    summary: Get a node given an anchor for the given dataspace
+    operationId: getNodeByDataspaceAndAnchor
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+    x-codegen-request-body-name: xpath
+
+nodesByDataspace:
+  get:
+    tags:
+      - cps-data
+    summary: Get all nodes for a given dataspace using an xpath or schema node identifier
+    operationId: getNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+    x-codegen-request-body-name: requestBody
+
+  post:
+    tags:
+      - cps-data
+    summary: Create a node for a given anchor for the given dataspace
+    operationId: createNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: 'components.yaml#/components/schemas/MultipartFile'
+      required: true
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
