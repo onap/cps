@@ -20,6 +20,9 @@
 
 package org.onap.cps.spi.impl;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableSet;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -28,10 +31,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -43,7 +50,14 @@ import org.springframework.util.DigestUtils;
 
 @Component
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
-
+    private final LoadingCache<YangSchemaResourcesKey, Map<String, String>> yangSchemaResourcesLoader = CacheBuilder.newBuilder()
+            .build(new CacheLoader<>() {
+                @Override
+                public Map<String, String> load(final YangSchemaResourcesKey key) {
+                    return getCachedYangSchemaResources(key.getDataspaceName(), key.getSchemaSetName());
+                }
+            });
+    
     @Autowired
     private YangResourceRepository yangResourceRepository;
 
@@ -69,6 +83,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         } catch (final DataIntegrityViolationException e) {
             throw new SchemaSetAlreadyDefinedException(dataspaceName, schemaSetName, e);
         }
+        final YangSchemaResourcesKey key = new YangSchemaResourcesKey(dataspaceName, schemaSetName);
+        yangSchemaResourcesLoader.put(key, yangResourcesNameToContentMap);
     }
 
     private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
@@ -103,10 +119,28 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
+        final YangSchemaResourcesKey key = new YangSchemaResourcesKey(dataspaceName, schemaSetName);
+        try {
+            return yangSchemaResourcesLoader.getUnchecked(key);
+        } catch (final Exception e) {
+            throw new CpsException("Failed to load yang schema resources.",
+                    String.format("Exception occurred on loading cached yang schema resource %s.", key), e);
+        }
+    }
+
+    private Map<String, String> getCachedYangSchemaResources(final String dataspaceName, final String schemaSetName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final SchemaSetEntity schemaSetEntity =
-            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+                schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
-            Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+                Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+    }
+
+    @Getter
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    private static class YangSchemaResourcesKey {
+        private final String dataspaceName;
+        private final String schemaSetName;
     }
 }
