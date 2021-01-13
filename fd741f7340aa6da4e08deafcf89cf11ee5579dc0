@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2cae02b4_b8a4ae30",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:04:15Z",
+      "side": 1,
+      "message": "This is as per the openapi documentation. I suggest to use the same structure and the same filename.\n@Team please suggest",
+      "parentUuid": "a43896aa_181b30ad",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7396d379_8c580818",
         "filename": "cps-rest/docs/api/swagger/components.yaml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-13T14:03:00Z",
       "side": 1,
       "message": "i\u0027d suggest extracting this to separate file\nto be used from root (openapi.yml) as\n```\nschemas:\n \u0027$ref\u0027: \u0027schemas.yml\u0027\n```",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87f9bcd5_abd06c57",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:04:15Z",
+      "side": 1,
+      "message": "done as per the openapi documentation.",
+      "parentUuid": "7396d379_8c580818",
       "range": {
         "startLine": 2,
         "startChar": 0,
