@@ -20,7 +20,6 @@
 package org.onap.cps.api.impl;
 
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
@@ -28,34 +27,32 @@ import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component("CpsModuleServiceImpl")
+@Service("CpsModuleServiceImpl")
 public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Autowired
     private CpsModulePersistenceService cpsModulePersistenceService;
 
+    @Autowired
+    private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
+
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
-                                final Map<String, String> yangResourcesNameToContentMap) {
-
-        YangTextSchemaSourceSetBuilder.validate(yangResourcesNameToContentMap);
-        cpsModulePersistenceService
-            .storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+            final Map<String, String> yangResourcesNameToContentMap) {
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet
+                = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+        yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
 
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
-        final Map<String, String> yangResourceNameToContent =
-                cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
-        final YangTextSchemaSourceSet yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder
-                                                                        .of(yangResourceNameToContent);
-        return SchemaSet.builder()
-                       .name(schemaSetName)
-                       .dataspaceName(dataspaceName)
-                       .moduleReferences(yangTextSchemaSourceSet.getModuleReferences())
-                .build();
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
+                                                                        .get(dataspaceName, schemaSetName);
+        return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
+                       .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
     }
 
     @Override

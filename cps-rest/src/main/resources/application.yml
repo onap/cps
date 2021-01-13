@@ -22,6 +22,11 @@ spring:
         driverClassName: org.postgresql.Driver
         initialization-mode: always
 
+    cache:
+        type: caffeine
+        cache-names: yangSchema
+        caffeine:
+            spec: maximumSize=10000,expireAfterAccess=10m
 # Actuator
 management:
     endpoints:
