@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "11a0a6fe_c6e9572c",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "I suggest to keep both now and when we implement the API in case, any of these is unused, can be removed.",
+      "parentUuid": "7d012393_7bb1c6e1",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "49866332_92310e01",
         "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
         "patchSetId": 3
@@ -130,6 +154,30 @@
       "writtenOn": "2021-01-13T12:41:24Z",
       "side": 1,
       "message": "Question:  are both required? the above get does not have both",
+      "range": {
+        "startLine": 98,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 63
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ba4db97_29f5403d",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "NoContent removed",
+      "parentUuid": "49866332_92310e01",
       "range": {
         "startLine": 98,
         "startChar": 6,
@@ -165,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ab9160c7_abf5a1d8",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "as per the discussion above have retained it",
+      "parentUuid": "fb6fbddf_443bf6fb",
+      "range": {
+        "startLine": 153,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 11
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec8d612f_2512e651",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 3
@@ -188,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "77e66568_5a307b9d",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec8d612f_2512e651",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d46277cc_9263d18c",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 3
@@ -199,6 +295,30 @@
       "writtenOn": "2021-01-13T12:41:24Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 9
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64379e20_63e0e276",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "d46277cc_9263d18c",
       "range": {
         "startLine": 56,
         "startChar": 6,
@@ -231,6 +351,30 @@
       "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd10e22_c161febf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-13T18:00:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45de5ac0_e8d0a777",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
