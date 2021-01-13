@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a43896aa_181b30ad",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-13T14:03:00Z",
+      "side": 1,
+      "message": "this seems like extra level, you need to always use it in a path.\ni\u0027d suggest to remove it, it seems safe, the file isn\u0027t going to be referenced fully\n\n+ i\u0027d rename the file itself to smth like common.yml (or generic.yml or else)\nthen references will be like below:\n```\ncommon.yml/parameters/..\ncommon.yml/responses/..\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7396d379_8c580818",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-13T14:03:00Z",
+      "side": 1,
+      "message": "i\u0027d suggest extracting this to separate file\nto be used from root (openapi.yml) as\n```\nschemas:\n \u0027$ref\u0027: \u0027schemas.yml\u0027\n```",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72e67490_d7bfdb62",
         "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
         "patchSetId": 3
@@ -13,6 +59,30 @@
       "writtenOn": "2021-01-13T12:41:24Z",
       "side": 1,
       "message": "dont think 200 and 204 both need to be here.only 204",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "fd741f7340aa6da4e08deafcf89cf11ee5579dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "480ac488_4639e995",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-13T14:03:00Z",
+      "side": 1,
+      "message": "on deletion there could be cases when there was a success delete, \nor there was nothing to delete these \nanyway, the actual responses definition for cases which are not implemented yet\nare out of scope for current task",
+      "parentUuid": "72e67490_d7bfdb62",
       "range": {
         "startLine": 28,
         "startChar": 6,
