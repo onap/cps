@@ -21,18 +21,27 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.api.CpsAdminService
+import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ModuleReference
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+@SpringBootTest(classes = [CpsModuleServiceImpl, YangTextSchemaSourceSetCacheService])
+@ComponentScan("org.onap.cps")
+@ContextConfiguration(classes = CpsModuleServiceImplSpec.class)
 class CpsModuleServiceImplSpec extends Specification {
-    def mockModuleStoreService = Mock(CpsModulePersistenceService)
-    def objectUnderTest = new CpsModuleServiceImpl()
-
-    def setup() {
-        objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
-    }
+    @SpringBean
+    CpsModulePersistenceService mockModuleStoreService = Mock()
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
+    @Autowired
+    CpsModuleServiceImpl objectUnderTest = new CpsModuleServiceImpl()
 
     def 'Create schema set'() {
         given: 'Valid yang resource as name-to-content map'
@@ -55,12 +64,13 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get schema set by name and namespace.'() {
         given: 'an already present schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
-        when: 'get schema set method is invoked'
+        when: 'get schema set method is invoked twice'
             def result = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
-        then: 'the correct schema set is returned'
+            def result1 = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
+        then: 'the correct schema set is returned and persistency service called only once'
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
+            0 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
     }
 }
