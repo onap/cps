@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "2ccef8ba_a3b271cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorAlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T16:14:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f097c5f3_8064d25c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "b7359210ff315cf9b1daf251da452fb48217b051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e9da357_ff51229e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
         "patchSetId": 2
