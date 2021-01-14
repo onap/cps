@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "ba485804_ed5c2219",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T09:32:06Z",
+      "side": 1,
+      "message": "addChildFragments",
+      "range": {
+        "startLine": 95,
+        "startChar": 24,
+        "endLine": 95,
+        "endChar": 46
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c84bf5a_0de67185",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
         "patchSetId": 8
@@ -41,6 +64,76 @@
         "startChar": 44,
         "endLine": 48,
         "endChar": 62
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6d228b3_39fd4a02",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T09:32:06Z",
+      "side": 1,
+      "message": "agree with both points\n- need to split in separate test files (we can extend come base tets class if needed)\n- additional test etc can be done in separate commit",
+      "parentUuid": "7c84bf5a_0de67185",
+      "range": {
+        "startLine": 48,
+        "startChar": 44,
+        "endLine": 48,
+        "endChar": 62
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6d28f4a_33f201c1",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T09:32:06Z",
+      "side": 1,
+      "message": "I would like this test to have at least 3 generations to proof recursion is working\nalso reflect this in the names\n\ntestStoreDataNodeWithDecendants\nor\ntestStoreDataNodeWithChidlrenAndGrandChildren",
+      "range": {
+        "startLine": 66,
+        "startChar": 16,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d26b5396_44461ef7",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T09:32:06Z",
+      "side": 1,
+      "message": "createDataNodeWithChildAndGrandChild",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 36
       },
       "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
