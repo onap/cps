@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae7c7993_307c3dcf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T13:45:26Z",
+      "side": 1,
+      "message": "any specific reason for use LinkedList?",
+      "revId": "06ac260432786d0107a11e1b3c819cd9540c2c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5779d88_8ca4b869",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T13:45:26Z",
+      "side": 1,
+      "message": "why this returns Fragment, return is never used\ncorrect impl, will be to convert all fragments, then collect into list, and then process addChildFragments",
+      "revId": "06ac260432786d0107a11e1b3c819cd9540c2c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a835b1_1bed52f3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T13:45:26Z",
+      "side": 1,
+      "message": "missing nonnull annotations",
+      "revId": "06ac260432786d0107a11e1b3c819cd9540c2c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
