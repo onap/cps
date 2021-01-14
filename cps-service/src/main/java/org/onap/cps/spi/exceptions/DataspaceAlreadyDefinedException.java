@@ -22,6 +22,8 @@ package org.onap.cps.spi.exceptions;
 /**
  * Dataspace already defined exception. Indicates the dataspace with same name already exists.
  */
+
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataspaceAlreadyDefinedException extends CpsAdminException {
 
     private static final long serialVersionUID = -5813793951842079228L;

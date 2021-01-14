@@ -19,6 +19,11 @@
 
 package org.onap.cps.spi.exceptions;
 
+/**
+ * Schema set not found exception. Indicates the schema set is not found in a given dataspace
+ */
+
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class SchemaSetNotFoundException extends CpsAdminException {
 
     private static final long serialVersionUID = 7422782395935450035L;

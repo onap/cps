@@ -19,10 +19,11 @@
 
 package org.onap.cps.spi.exceptions;
 
-
 /**
  * Dataspace Not Found Exception. Indicates the requested data being absent.
  */
+
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataspaceNotFoundException extends CpsAdminException {
 
     private static final long serialVersionUID = -1852996415384288431L;

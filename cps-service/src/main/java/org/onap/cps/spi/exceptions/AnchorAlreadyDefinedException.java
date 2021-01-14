@@ -19,6 +19,11 @@
 
 package org.onap.cps.spi.exceptions;
 
+/**
+ * Anchor already defined exception. Indicates the an anchor with same name already exists in the same dataspace
+ */
+
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class AnchorAlreadyDefinedException extends CpsAdminException {
 
     private static final long serialVersionUID = 5744381546778730691L;
