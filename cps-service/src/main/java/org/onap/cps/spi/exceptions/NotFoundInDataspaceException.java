@@ -19,12 +19,11 @@
 
 package org.onap.cps.spi.exceptions;
 
-
 /**
- * CP Service exception. Indicates the requested data being absent in a given dataspace
+ * Not found in dataspace exception. Indicates the requested data being absent in a given dataspace
  */
 public class NotFoundInDataspaceException extends CpsException {
-    
+
     private static final long serialVersionUID = 3838769447129047713L;
 
     public NotFoundInDataspaceException(final String dataspaceName, final String descriptionOfObject) {
