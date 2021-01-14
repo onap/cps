@@ -16,6 +16,24 @@
       "revId": "94240087e58f901d0c83714120209195ddadf70c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "481202df_d0671401",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T07:22:02Z",
+      "side": 1,
+      "message": "the status is a text representation of a digital value, which is delivered via http header.\nthe actual content/format of an error message returned is a subject to discuss.\nthe requirements requirements are not specified yet.",
+      "parentUuid": "b31c0342_25c542e5",
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
