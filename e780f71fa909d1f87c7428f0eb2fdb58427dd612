@@ -22,6 +22,30 @@
       "revId": "e780f71fa909d1f87c7428f0eb2fdb58427dd612",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5d31306_556a62d2",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-14T12:11:11Z",
+      "side": 1,
+      "message": "At present I dont see a scenario where Bad Request would be thrown for a delete API. \nCan be added at the time of implementation of the delete api in case the use case demands so.",
+      "parentUuid": "dbb43263_eff1de43",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "e780f71fa909d1f87c7428f0eb2fdb58427dd612",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
