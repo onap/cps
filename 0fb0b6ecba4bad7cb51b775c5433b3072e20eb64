@@ -25,6 +25,64 @@
     },
     {
       "key": {
+        "uuid": "2a3efe41_ef1f046a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T15:13:10Z",
+      "side": 1,
+      "message": "right, this belongs to Admin service",
+      "parentUuid": "5c0ef5e7_3b9fcdf0",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9cbe26b_4a9e40f2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T15:13:10Z",
+      "side": 1,
+      "message": "annotations goes only on interface, same for previous method",
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "424f4c0f_2eae78a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/util/ModelConversionUtil.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T15:13:10Z",
+      "side": 1,
+      "message": "missing private constructor. Also could you add a test for this single util class",
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5beae18_a754377c",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
         "patchSetId": 8
