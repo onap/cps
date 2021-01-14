@@ -34,6 +34,52 @@
       "revId": "94240087e58f901d0c83714120209195ddadf70c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e69752f_a80f036d",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-14T09:29:17Z",
+      "side": 1,
+      "message": "would be good if in descending order. in other places as well.",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d282dc04_669012e3",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-14T09:29:17Z",
+      "side": 1,
+      "message": "missing 400. I see 400 as being present in all.",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 9
+      },
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
