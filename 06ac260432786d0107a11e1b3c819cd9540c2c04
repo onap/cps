@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9c250b44_84317af9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T15:21:16Z",
+      "side": 1,
+      "message": "-Im looking to obtain immutable list and then process. Other type of approach all the times ends on some race condition or issue when passing a list and modifying it.\n- Sorry, I missed the line where it is used. If it can be reworked as per my intentions, great. I will take another look later, maybe I can provide another input",
+      "parentUuid": "5f87865a_bac65214",
+      "revId": "06ac260432786d0107a11e1b3c819cd9540c2c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7a835b1_1bed52f3",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 9
