@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "64f68843_f478df07",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "sometimes refactoring, cleaning up code will actually decrease coverage...\nBut in this case I suspect some code has been added that has not been covered (yet)",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5844a6e7_2469ee82",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -13,6 +36,30 @@
       "writtenOn": "2021-01-14T13:39:47Z",
       "side": 1,
       "message": "remove @nonull annotations",
+      "range": {
+        "startLine": 126,
+        "startChar": 32,
+        "endLine": 126,
+        "endChar": 40
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "084ee40d_5872b687",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "can you explain when should we use these and when not?",
+      "parentUuid": "5844a6e7_2469ee82",
       "range": {
         "startLine": 126,
         "startChar": 32,
@@ -42,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d2ab130c_096efe99",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "just to clarify, we do support cascade-delete from the java API but the options on the REST API will be more limited. It has been documented here: https://wiki.onap.org/pages/viewpage.action?pageId\u003d92998259  issue #4\n\nSo the Persistence layer should support is and that is the scope of this user story",
+      "parentUuid": "cf13653b_017d7b68",
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f138632_187783b4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
         "patchSetId": 3
@@ -53,6 +118,98 @@
       "writtenOn": "2021-01-14T13:43:31Z",
       "side": 1,
       "message": "unused",
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7be51852_060748a0",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "this class is getting too big! can it be split as part of this commit?",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 45
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7843b16_9007c610",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "dont need 2 variations see comment in next class",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b811cc64_a3a6134a",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "use constants to convey meaning",
+      "range": {
+        "startLine": 187,
+        "startChar": 107,
+        "endLine": 187,
+        "endChar": 111
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe81182f_8a07aba8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:00:56Z",
+      "side": 1,
+      "message": "not sure if we should provide this option.\nThe system should check if it is allowed first (ie. when coming from the REST interface) the call should terminate there.\nIf it is allowed ie. initiated form the Java API or there is NO associated data the call should go through ie. teh Persistence Layer does not care...",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 46
+      },
       "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
