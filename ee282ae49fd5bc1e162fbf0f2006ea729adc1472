@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "459d8b2e_a5c76f7b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T13:49:51Z",
+      "side": 1,
+      "message": "Should it finish with\".\". Breaking your own rules 😊 Same for other test def\ntype \"dat\"",
+      "revId": "ee282ae49fd5bc1e162fbf0f2006ea729adc1472",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed55af13_dfe9a7ae",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T13:49:51Z",
+      "side": 1,
+      "message": "type \"dat\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 29,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "ee282ae49fd5bc1e162fbf0f2006ea729adc1472",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
