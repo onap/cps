@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a8078f4_15def5c3",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T16:24:09Z",
+      "side": 1,
+      "message": "as it was discussed it\u0027s coverage decrease caused by \njacoco maven plugin is not supporting (yet) \ncross-module aggregation which it does himself.\nThis particular change is caused by 2 new exceptions\nare not covered with tests within same module.\nthis change was done only to avoid build failure",
+      "parentUuid": "64f68843_f478df07",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5844a6e7_2469ee82",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -204,6 +228,30 @@
       "writtenOn": "2021-01-14T14:00:56Z",
       "side": 1,
       "message": "not sure if we should provide this option.\nThe system should check if it is allowed first (ie. when coming from the REST interface) the call should terminate there.\nIf it is allowed ie. initiated form the Java API or there is NO associated data the call should go through ie. teh Persistence Layer does not care...",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 46
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "342fde9e_8aa5df0d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T16:24:09Z",
+      "side": 1,
+      "message": "persistence layer already does not care. it just behaves as it requested to behave.\ncurrent parameter is allowance flag, and it is required to serve behavior duality.\non API as well. because the service should not care where the method is called from,\nthe service should fulfill the caller expectation. input parameter is a best option. \n\nfor REST service (when it calls the core service) this allowance flag will be \nhard-coded to false, so the auto-deletion will be disabled for REST; but this behavior \nwill be applied for REST requests only. for any other API consumer there will be an option.",
+      "parentUuid": "fe81182f_8a07aba8",
       "range": {
         "startLine": 52,
         "startChar": 16,
