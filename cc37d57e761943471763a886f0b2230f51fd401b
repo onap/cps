@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07ab4962_253a57bf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T17:03:49Z",
+      "side": 1,
+      "message": "the order is incorrect, we are try to always have teh common data in teh same (hierarchical) order to avoid confusion\nin this case \n1) dataspaceName\n2) anchorName\n3) multipartFile",
+      "range": {
+        "startLine": 57,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 62
+      },
+      "revId": "cc37d57e761943471763a886f0b2230f51fd401b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a02d11e_4f3615d0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T17:03:49Z",
+      "side": 1,
+      "message": "change order, dataspacename first",
+      "range": {
+        "startLine": 41,
+        "startChar": 45,
+        "endLine": 41,
+        "endChar": 116
+      },
+      "revId": "cc37d57e761943471763a886f0b2230f51fd401b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
