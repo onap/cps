@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f097c5f3_8064d25c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorAlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-14T15:15:11Z",
+      "side": 1,
+      "message": "lets handle it per case, not in generic mode. So approaching it via config is not the best. If we get access to handle it via sonar, it will be the best. But as well just per case",
+      "parentUuid": "44743469_f06e93d4",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "b7359210ff315cf9b1daf251da452fb48217b051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e9da357_ff51229e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
         "patchSetId": 2
