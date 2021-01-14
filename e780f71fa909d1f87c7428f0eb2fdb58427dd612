@@ -46,6 +46,30 @@
       "revId": "e780f71fa909d1f87c7428f0eb2fdb58427dd612",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77e00a84_0b5dd94f",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T13:25:48Z",
+      "side": 1,
+      "message": "it could be DataspaceNotFoundException causing 400 response,\ni\u0027d suggest using it instead of 204, \ncan be updated on implementation later",
+      "parentUuid": "d5d31306_556a62d2",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "e780f71fa909d1f87c7428f0eb2fdb58427dd612",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
