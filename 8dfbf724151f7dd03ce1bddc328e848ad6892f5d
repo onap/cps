@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f283e4c5_f868d1e5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T07:51:55Z",
+      "side": 1,
+      "message": "as a reminder this needs to be replaced with getByDataspaceAndName() instead of findByDataspaceAndName().orElseThrow(); this will provide the validation as well.\n\nit seems as dependency on https://gerrit.onap.org/r/c/cps/+/116629/6/cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java.\n\ndepends on which change to be merged first",
+      "range": {
+        "startLine": 55,
+        "startChar": 42,
+        "endLine": 55,
+        "endChar": 119
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c84bf5a_0de67185",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T07:51:55Z",
+      "side": 1,
+      "message": "i\u0027d suggest creating separate data file i.e. fragments.sql\nit seems reasonable to test cases with data being in db already\n\nalso it\u0027s necessary to test the error cases (dataspace or anchor missing, integrity violation as well), \nsee no problem if these updates will be provided as additional change of same story",
+      "range": {
+        "startLine": 48,
+        "startChar": 44,
+        "endLine": 48,
+        "endChar": 62
+      },
+      "revId": "8dfbf724151f7dd03ce1bddc328e848ad6892f5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
