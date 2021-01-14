@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "c0b2a3b3_88cf400d",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-14T11:18:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e69752f_a80f036d",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d282dc04_669012e3",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 5
@@ -80,6 +104,30 @@
       "revId": "94240087e58f901d0c83714120209195ddadf70c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f60bc8ec_c4225ee0",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-14T11:18:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d282dc04_669012e3",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 9
+      },
+      "revId": "94240087e58f901d0c83714120209195ddadf70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
