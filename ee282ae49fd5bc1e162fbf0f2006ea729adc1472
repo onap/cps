@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cf350dd7_195d5c7e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:53:16Z",
+      "side": 1,
+      "message": "indeed, was rushing too much...",
+      "parentUuid": "459d8b2e_a5c76f7b",
+      "revId": "ee282ae49fd5bc1e162fbf0f2006ea729adc1472",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed55af13_dfe9a7ae",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
         "patchSetId": 1

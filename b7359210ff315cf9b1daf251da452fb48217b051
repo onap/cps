@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "44743469_f06e93d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorAlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:53:16Z",
+      "side": 1,
+      "message": "it can I looked into it. It would means the rule is ignore in a module/package etc. But I think is better this way with a decision  records for each individual point where we break the rule (even now we don\u0027t need it for all exceptions)",
+      "parentUuid": "2f51c74f_1d511ac2",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "b7359210ff315cf9b1daf251da452fb48217b051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e9da357_ff51229e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-14T14:33:02Z",
       "side": 1,
       "message": "2021",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "b7359210ff315cf9b1daf251da452fb48217b051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1a62d65_1bc7cf5a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T14:53:16Z",
+      "side": 1,
+      "message": "Happy new year!!!",
+      "parentUuid": "3e9da357_ff51229e",
       "range": {
         "startLine": 3,
         "startChar": 18,
