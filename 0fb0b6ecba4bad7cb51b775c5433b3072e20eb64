@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c0ef5e7_3b9fcdf0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T14:59:51Z",
+      "side": 1,
+      "message": "this belongs to in CpsAdminPersistenceService which serves the AnchorEntity.\nit makes sense to move the method there. then access it using service autowired:\n```\n@Autowired\nCpsAdminPersistenceService adminPersistenceService;\n... \nfinal Anchor anchor \u003d adminPersistenceService.getAnchor(dataspaceName, anchorName);\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5beae18_a754377c",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T14:59:51Z",
+      "side": 1,
+      "message": "these are anchor only extraction testing \nthese need to be moved to *Admin*Test,\n\nthe tests regarding yang resources retrieval by anchor name\nare expected here but missing",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d34be85_8108fc00",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T14:59:51Z",
+      "side": 1,
+      "message": "as it was discussed we are not exposing yang resources in API, \nno need for this functionality implementation and testing in cps-service,\nit makes sense to expose getAnchor instead, probably it was the intention",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81dda138_7e6ee229",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorNotFoundException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-14T14:59:51Z",
+      "side": 1,
+      "message": "does not exist in dataspace %s.",
+      "range": {
+        "startLine": 35,
+        "startChar": 47,
+        "endLine": 35,
+        "endChar": 68
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
