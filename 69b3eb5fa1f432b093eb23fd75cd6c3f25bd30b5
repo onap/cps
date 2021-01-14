@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1421e9fc_b3ed776e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/Fragment.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T16:13:14Z",
+      "side": 1,
+      "message": "I wonder WHY to do store parent instead of children in FragmentEntity, can this be changed, which is better for later use case like adding/removing child fragments?!",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "69b3eb5fa1f432b093eb23fd75cd6c3f25bd30b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "3b66dcd9_a9b61720",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-14T16:13:14Z",
+      "side": 1,
+      "message": "we tried, see patch #10. The problem is for some reason the Fragment Entity stores its parent and not its children (unlike the dataNode object). the only way to split the code into 2 separate iterations (which I do prefer) is to add a a transient collection in fragment. Not sure if I like that...\n\nwe need to make a choice which approach we prefer this oen in patch #9 recursing and populating in one method (we can come up with better names) or the approach in patch #10 with the additional transient field... \n\nIn any case i do wonder WHY to do store parent instead of children in FragmentEntity, can this be changed, which is better for later use case like adding/removing child fragments?!\nI\u0027ll ask the same question in patch 10 in case we do want to continue with that alternative",
+      "parentUuid": "9c250b44_84317af9",
+      "revId": "06ac260432786d0107a11e1b3c819cd9540c2c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7a835b1_1bed52f3",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 9
