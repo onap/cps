@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "923e42d9_eb37304c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T09:40:59Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "3bb8611e_8b281f6d",
+      "range": {
+        "startLine": 126,
+        "startChar": 32,
+        "endLine": 126,
+        "endChar": 40
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf13653b_017d7b68",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -390,6 +414,30 @@
       "side": 1,
       "message": "replaced a boolean with enum to make the interface and implementation usage more clear",
       "parentUuid": "342fde9e_8aa5df0d",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 46
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39a5c77e_d0e26630",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T09:40:59Z",
+      "side": 1,
+      "message": "we dont need it at all!",
+      "parentUuid": "44cda7c2_ee322c98",
       "range": {
         "startLine": 52,
         "startChar": 16,
