@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "82b44ee1_d8887940",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CascadeDeleteAllowed.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T16:58:05Z",
+      "side": 1,
+      "message": "yeah, good names",
+      "parentUuid": "c670dc67_0acc297e",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba8c15a2_88e79f05",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CascadeOption.java",
         "patchSetId": 4
@@ -296,6 +320,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "d95c27f0_5a3ae338",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa8d008d_cf03ebf3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T16:58:05Z",
+      "side": 1,
+      "message": "seen it, thanks!",
+      "parentUuid": "b527f416_47892e6c",
       "range": {
         "startLine": 22,
         "startChar": 13,
