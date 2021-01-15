@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27941656_c85655a3",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-15T15:23:00Z",
+      "side": 1,
+      "message": "some short time ago I was pointed that this test is only for cover persistence. Not sure if that has changed.\nI\u0027m ok with the test here",
+      "revId": "a16c3fb5f7f0bbe7bda9e4f21f71a3e958ed523f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
