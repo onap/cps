@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "36c5cea7_8184eb1c",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T08:49:52Z",
+      "side": 1,
+      "message": "added the exception test, change rolled back as unnecessar",
+      "parentUuid": "211b0488_888af65a",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5844a6e7_2469ee82",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -117,6 +141,30 @@
       "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bb8611e_8b281f6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T08:49:52Z",
+      "side": 1,
+      "message": "removed, seems it\u0027s for consistency, these are defined in interface, not needed in implementation",
+      "parentUuid": "084ee40d_5872b687",
+      "range": {
+        "startLine": 126,
+        "startChar": 32,
+        "endLine": 126,
+        "endChar": 40
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -169,6 +217,24 @@
       "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58390f28_98635d60",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T08:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f138632_187783b4",
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -241,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "cb702038_46d296f0",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T08:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b811cc64_a3a6134a",
+      "range": {
+        "startLine": 187,
+        "startChar": 107,
+        "endLine": 187,
+        "endChar": 111
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe81182f_8a07aba8",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
         "patchSetId": 3
@@ -285,6 +375,30 @@
       "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cda7c2_ee322c98",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T08:49:52Z",
+      "side": 1,
+      "message": "replaced a boolean with enum to make the interface and implementation usage more clear",
+      "parentUuid": "342fde9e_8aa5df0d",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 46
+      },
+      "revId": "5bec6a7d136522906697c6386eeb458d90e66d52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
