@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4aacd10f_3392b807",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-15T09:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a3efe41_ef1f046a",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9cbe26b_4a9e40f2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 8
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "cc557ccb_132bf98e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-15T09:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9cbe26b_4a9e40f2",
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "424f4c0f_2eae78a8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/util/ModelConversionUtil.java",
         "patchSetId": 8
@@ -80,6 +122,24 @@
       "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de7e8c69_b25f9a1e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/util/ModelConversionUtil.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-15T09:55:09Z",
+      "side": 1,
+      "message": "reverted and removed",
+      "parentUuid": "424f4c0f_2eae78a8",
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -129,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "82a3e8b7_bfb5febf",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-15T09:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d34be85_8108fc00",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81dda138_7e6ee229",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorNotFoundException.java",
         "patchSetId": 8
@@ -149,6 +233,30 @@
       "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11743c2_9519bd19",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AnchorNotFoundException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-15T09:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81dda138_7e6ee229",
+      "range": {
+        "startLine": 35,
+        "startChar": 47,
+        "endLine": 35,
+        "endChar": 68
+      },
+      "revId": "0fb0b6ecba4bad7cb51b775c5433b3072e20eb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
