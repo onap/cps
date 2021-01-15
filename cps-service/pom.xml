@@ -11,6 +11,10 @@
 
   <artifactId>cps-service</artifactId>
 
+  <properties>
+    <minimum-coverage>0.77</minimum-coverage>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
