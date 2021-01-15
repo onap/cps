@@ -11,6 +11,10 @@
 
     <artifactId>cps-rest</artifactId>
 
+    <properties>
+        <minimum-coverage>0.81</minimum-coverage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
