@@ -22,6 +22,145 @@
       "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2478cf38_c339400a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "Ignore above comment, maybe the name of the option mislead me",
+      "parentUuid": "92506ad2_4dc16764",
+      "range": {
+        "startLine": 128,
+        "startChar": 14,
+        "endLine": 128,
+        "endChar": 41
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8755a40d_fe4119a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "Maybe CascadeAllowed, let me look at teh enum itself...",
+      "range": {
+        "startLine": 128,
+        "startChar": 14,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c393c740_6cdddcd8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "just a question, why does this need a query definition, can the framework not generate it?",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 73
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba8c15a2_88e79f05",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CascadeOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "CascadeDeleteAllowed\n  YES_DELETE_DEPENDENTS\n  NO_FAIL_ON_DEPENDENTS",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13994ec8_5755e217",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsInUseException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "No need for CPS prefix (we only really should have it on the top level CpsException)\n\nsuggestion: DataInUseException",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d95c27f0_5a3ae338",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T10:26:08Z",
+      "side": 1,
+      "message": "please add scenario and details to tabel on this page\nhttps://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+API+HTTP+Response+Codes\n\nif you want you can add a suggested HTTP Error code for the REST part too",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
