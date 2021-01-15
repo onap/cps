@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3506a615_631e9c4b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T12:08:12Z",
+      "side": 1,
+      "message": "We can choose to create another common method with the common code LN 112 to 115. Refer below comment as well.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 93
+      },
+      "revId": "4059897c324b455be6aba5f38eff00637b14b733",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8654bed_a0ee41e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T12:08:12Z",
+      "side": 1,
+      "message": "dataspaceRepository.getByName(dataspaceName) invoked twice in this method, one in getAnchor() and other in getYangSchemaResources().",
+      "range": {
+        "startLine": 119,
+        "startChar": 31,
+        "endLine": 119,
+        "endChar": 56
+      },
+      "revId": "4059897c324b455be6aba5f38eff00637b14b733",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
