@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "96f7a38a_1933291f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T13:32:30Z",
+      "side": 1,
+      "message": "Its good to have DB cache, but I still think when there is an option to reduce the duplicate DB calls, that should be done.\nGet APIs can often be hit by performance issues.",
+      "parentUuid": "a71f4ec6_5c21c0ab",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 93
+      },
+      "revId": "4059897c324b455be6aba5f38eff00637b14b733",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8654bed_a0ee41e6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 9
