@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "d9fac4bd_b5f2e4f7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:27:04Z",
+      "side": 1,
+      "message": "I thought you originally were taling about code duplication.\n\nI think some refactoring is required to have one common method to get the resources and build a SchemaContext which can later be cached (I already suggested that in one of the first iterations)\n\nthe acceptance criteria for the Cache userstory clearly state that the additional call should be prevented, see https://jira.onap.org/browse/CPS-163\n\nBut this is not in the scope of this user story",
+      "parentUuid": "96f7a38a_1933291f",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 93
+      },
+      "revId": "4059897c324b455be6aba5f38eff00637b14b733",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8654bed_a0ee41e6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 9
