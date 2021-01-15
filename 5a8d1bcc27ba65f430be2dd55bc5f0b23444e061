@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "aeb35798_8f317027",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T16:47:58Z",
+      "side": 1,
+      "message": "should be handled in the AnchorRepository",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32077101_dc42b208",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -94,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "f730f10a_83b46f5a",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T16:47:58Z",
+      "side": 1,
+      "message": "I agree this can be extracted to a common method",
+      "parentUuid": "2e767f52_a2d34680",
+      "range": {
+        "startLine": 131,
+        "startChar": 1,
+        "endLine": 142,
+        "endChar": 5
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca5eda15_7713bb94",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
         "patchSetId": 12
@@ -111,6 +158,23 @@
         "endLine": 161,
         "endChar": 73
       },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66ba8c23_e15fd671",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-15T16:47:58Z",
+      "side": 1,
+      "message": "extra space",
       "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
