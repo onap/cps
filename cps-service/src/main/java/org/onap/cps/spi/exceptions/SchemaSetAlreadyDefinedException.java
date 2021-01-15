@@ -19,6 +19,9 @@
 
 package org.onap.cps.spi.exceptions;
 
+/**
+ * Schema set already defined exception. Indicates the a schema set with same name already exists in the same dataspace
+ */
 public class SchemaSetAlreadyDefinedException extends CpsAdminException {
 
     private static final long serialVersionUID = 501929839139881112L;
