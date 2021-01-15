@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32077101_dc42b208",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:57:06Z",
+      "side": 1,
+      "message": "maybe DataNodeToBeConverted?",
+      "range": {
+        "startLine": 73,
+        "startChar": 23,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aace2379_a7c3a292",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:57:06Z",
+      "side": 1,
+      "message": "why are you using findAll? why find by key (hardcode) \nfinding by xPath will be another user story anyway",
+      "range": {
+        "startLine": 73,
+        "startChar": 46,
+        "endLine": 75,
+        "endChar": 37
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3d0afda_8d3c73dd",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:57:06Z",
+      "side": 1,
+      "message": "see comment below on extracting out common method",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e767f52_a2d34680",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:57:06Z",
+      "side": 1,
+      "message": "3 similar blocks -\u003e extract out assertFragment method",
+      "range": {
+        "startLine": 131,
+        "startChar": 1,
+        "endLine": 142,
+        "endChar": 5
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5eda15_7713bb94",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:57:06Z",
+      "side": 1,
+      "message": "i would probably swap these 2 lines :-)",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 73
+      },
+      "revId": "5a8d1bcc27ba65f430be2dd55bc5f0b23444e061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
