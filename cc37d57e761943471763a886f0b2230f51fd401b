@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0405d8ca_f71db221",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-01-15T02:55:26Z",
+      "side": 1,
+      "message": "It seems inconsistent to me to have 200 and 204 here that are both success codes.\n\nOnce deleted successfully, we still have to choose to return either `200 OK` or `204 No Content`.\n\nSame comment below for deleting an anchor.\n\nIf we already have decided, let\u0027s reflect it here. If we don\u0027t know yet, as these are draft requests, we can still leave them as is for now until we make the decision.\n\nMy preference is for 204 for successful deletion.",
+      "revId": "cc37d57e761943471763a886f0b2230f51fd401b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07ab4962_253a57bf",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 7
