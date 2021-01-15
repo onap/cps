@@ -16,6 +16,24 @@
       "revId": "a16c3fb5f7f0bbe7bda9e4f21f71a3e958ed523f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61141d5a_42a5986a",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-15T15:30:41Z",
+      "side": 1,
+      "message": "not sure what is meant here, anyway I am OK with this tets too\n\n(at some stage I would like to see if we can convert these tets to make them more readable so we see more clearly what behavior is being testes and what exactly is asserted)",
+      "parentUuid": "27941656_c85655a3",
+      "revId": "a16c3fb5f7f0bbe7bda9e4f21f71a3e958ed523f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
