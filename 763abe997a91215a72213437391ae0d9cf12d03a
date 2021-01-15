@@ -72,6 +72,54 @@
     },
     {
       "key": {
+        "uuid": "2bc96c43_d3ae121c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2478cf38_c339400a",
+      "range": {
+        "startLine": 128,
+        "startChar": 14,
+        "endLine": 128,
+        "endChar": 41
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bab7acd_8cd0ae15",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "updated according to enum name - cascadeDeleteAllowed",
+      "parentUuid": "8755a40d_fe4119a5",
+      "range": {
+        "startLine": 128,
+        "startChar": 14,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c393c740_6cdddcd8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -92,6 +140,30 @@
       "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "959907cf_87473166",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "updated to use derived method",
+      "parentUuid": "c393c740_6cdddcd8",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 73
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "c670dc67_0acc297e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CascadeOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "using\nCASCADE_DELETE_ALLOWED\nCASCADE_DELETE_PROHIBITED\nto be clear when no enum name used (on static import)",
+      "parentUuid": "ba8c15a2_88e79f05",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13994ec8_5755e217",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsInUseException.java",
         "patchSetId": 4
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "5ad4f2a5_b7d00c91",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsInUseException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13994ec8_5755e217",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d95c27f0_5a3ae338",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
         "patchSetId": 4
@@ -161,6 +281,30 @@
       "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b527f416_47892e6c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-15T12:47:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d95c27f0_5a3ae338",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "763abe997a91215a72213437391ae0d9cf12d03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
