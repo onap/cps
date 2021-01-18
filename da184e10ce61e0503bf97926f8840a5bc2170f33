@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "77e4993b_0d71f5df",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-18T09:55:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e615d43d_1b6e2b1c",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a837cb9_22fc5d87",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
@@ -39,6 +63,24 @@
       "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccd44584_8890b55d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-18T09:55:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a837cb9_22fc5d87",
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "235b7782_3f20b6f5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-18T09:55:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "743968d5_369a2c75",
+      "range": {
+        "startLine": 86,
+        "startChar": 41,
+        "endLine": 86,
+        "endChar": 84
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
