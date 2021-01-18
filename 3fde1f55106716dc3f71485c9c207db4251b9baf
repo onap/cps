@@ -113,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "f1b58776_18df735b",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-18T11:08:47Z",
+      "side": 1,
+      "message": "From my understanding it is best practice to avoid javadoc on test code. IMO we should try avoid complex test code that require javadoc and make the test names/parameters self descriptive.",
+      "parentUuid": "c51dd4d8_adfbed15",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f487ad2f_490ef082",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataInUseException.java",
         "patchSetId": 6
