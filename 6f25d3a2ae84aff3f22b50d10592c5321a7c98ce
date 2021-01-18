@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97e8a95c_6fd352d0",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-18T18:00:22Z",
+      "side": 1,
+      "message": "recommend using assertThat wherever possible",
+      "range": {
+        "startLine": 196,
+        "startChar": 8,
+        "endLine": 196,
+        "endChar": 19
+      },
+      "revId": "6f25d3a2ae84aff3f22b50d10592c5321a7c98ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
