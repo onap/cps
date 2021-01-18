@@ -109,6 +109,30 @@
       "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db1be07_86e40c86",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-18T09:43:40Z",
+      "side": 1,
+      "message": "Hi Claudio, we are currently following the SPI proposal. \nhttps://wiki.onap.org/pages/viewpage.action?pageId\u003d92999716",
+      "parentUuid": "82475e71_66a44968",
+      "range": {
+        "startLine": 31,
+        "startChar": 17,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
