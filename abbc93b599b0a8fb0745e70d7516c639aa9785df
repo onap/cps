@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ef3c735_a72d930a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-18T14:31:40Z",
+      "side": 1,
+      "message": "add the SonarQube excemption annotation as in other exceptions on this level:\n\n@SuppressWarnings(\"squid:S110\")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "abbc93b599b0a8fb0745e70d7516c639aa9785df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

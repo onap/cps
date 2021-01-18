@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "9f79c938_87cff715",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-18T14:31:40Z",
+      "side": 1,
+      "message": "actually bets practice is to use the positive block first as (a ! in !\u003d is often over looked) I think there might even be a SQ rule for this.\nMu maybe only when there is a return in that block  but since you thrown an exception you can reduce complexity by doing the swap you just did, so on balance I think it is good (now)\n\nIgnore my first comment that does only apply to .equals()",
+      "parentUuid": "414f0d8a_77c0491b",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30d77200_a20b637b",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
         "patchSetId": 6
@@ -125,6 +143,24 @@
       "side": 1,
       "message": "From my understanding it is best practice to avoid javadoc on test code. IMO we should try avoid complex test code that require javadoc and make the test names/parameters self descriptive.",
       "parentUuid": "c51dd4d8_adfbed15",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e57c6d_78939a58",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-18T14:31:40Z",
+      "side": 1,
+      "message": "I love to get time to try these test in Groovy/Spock I think it is possible without much change and it get much more readable tests...",
+      "parentUuid": "f1b58776_18df735b",
       "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
