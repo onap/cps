@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c65f7ba_005033fb",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-18T17:54:27Z",
+      "side": 1,
+      "message": "Question: Did we come to a conclusion on the code for successful deletion?",
+      "revId": "513cd2ce29b12ed2350502c36ff87d9e0610b467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
