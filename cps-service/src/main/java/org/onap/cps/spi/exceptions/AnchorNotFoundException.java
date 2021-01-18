@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.exceptions;
 
+@SuppressWarnings("squid:S110") // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class AnchorNotFoundException extends CpsAdminException {
 
     private static final long serialVersionUID = -1821064664642194882L;
