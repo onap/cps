@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "414f0d8a_77c0491b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T08:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bf4eb66_38151590",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30d77200_a20b637b",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
         "patchSetId": 6
@@ -53,6 +71,24 @@
       "writtenOn": "2021-01-15T17:05:24Z",
       "side": 1,
       "message": "global comment, I think it will be good to start adding headers on each test with description of what is being testes, etc..",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "716498c8_4f95ad72",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T08:01:48Z",
+      "side": 1,
+      "message": "labels are available in junit5, currently we are using junit4 (comes with spring-boot-test)",
+      "parentUuid": "30d77200_a20b637b",
       "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -76,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "4d241740_4d0dafdc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataInUseException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T08:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f487ad2f_490ef082",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78547d3f_c4403e92",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
         "patchSetId": 6
@@ -90,6 +144,24 @@
       "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "963053c1_638f78fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T08:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78547d3f_c4403e92",
+      "revId": "3fde1f55106716dc3f71485c9c207db4251b9baf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
