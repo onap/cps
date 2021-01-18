@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e615d43d_1b6e2b1c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-18T07:46:27Z",
+      "side": 1,
+      "message": "why is not @Service?",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60ca3a7b_c550bff5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-18T07:46:27Z",
+      "side": 1,
+      "message": "why not use CpsAdminPersistenceService? implementation for this service duplicate codes already present on CpsAdminPersistenceService implementation",
+      "range": {
+        "startLine": 31,
+        "startChar": 17,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
