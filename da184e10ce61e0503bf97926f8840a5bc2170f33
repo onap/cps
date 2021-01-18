@@ -133,6 +133,30 @@
       "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be2a67dc_aa9d5d6c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-18T09:54:43Z",
+      "side": 1,
+      "message": "OK, thanks Niamh 😊",
+      "parentUuid": "8db1be07_86e40c86",
+      "range": {
+        "startLine": 31,
+        "startChar": 17,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
