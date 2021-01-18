@@ -20,6 +20,9 @@
 
 package org.onap.cps.spi;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.spi.model.DataNode;
+
 /*
     Data Store interface that is responsible for handling yang data.
     Please follow guidelines in https://gerrit.nordix.org/#/c/onap/ccsdk/features/+/6698/19/cps/interface-proposal/src/main/java/cps/javadoc/spi/DataStoreService.java
@@ -27,4 +30,13 @@ package org.onap.cps.spi;
  */
 public interface CpsDataPersistenceService {
 
+    /**
+     * Store a datanode.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param dataNode      data node
+     */
+    void storeDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
+        @NonNull DataNode dataNode);
 }
