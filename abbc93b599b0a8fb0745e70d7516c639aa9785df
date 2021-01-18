@@ -22,6 +22,30 @@
       "revId": "abbc93b599b0a8fb0745e70d7516c639aa9785df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1279c94_fc6ca999",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetInUseException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T15:54:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ef3c735_a72d930a",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "abbc93b599b0a8fb0745e70d7516c639aa9785df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
