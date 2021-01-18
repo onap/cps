@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46f7445b_23835bfb",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImplTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-18T12:44:05Z",
+      "side": 1,
+      "message": "the caching is implemented in a CpsModuleServiceImpl, but for some reason \nthe test is performed on CpsModulePersistenceServiceImpl class\nalso this is a groovy test allocated in java folder, it means it never executed.\nwhen placed to correct folder it fails (as expected)",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "7089079127fb1751720597a5acd0e5bbe1629e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
