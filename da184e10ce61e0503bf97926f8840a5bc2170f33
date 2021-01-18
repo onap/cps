@@ -85,6 +85,30 @@
       "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82475e71_66a44968",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-18T07:56:13Z",
+      "side": 1,
+      "message": "ignore comment about duplication, regarding CpsAdminPersistenceService I still think that we could keep everything in only 2 types of persistence service (Admin / Module)",
+      "parentUuid": "60ca3a7b_c550bff5",
+      "range": {
+        "startLine": 31,
+        "startChar": 17,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da184e10ce61e0503bf97926f8840a5bc2170f33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
