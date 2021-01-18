@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79a72bb9_8b65b8ef",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-18T10:43:40Z",
+      "side": 1,
+      "message": "I assume as we implement yet unimplemented rest api methods we wil be over 90% soon",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "3e38d766da84e08254ec1b736ae342d850f9d5be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
