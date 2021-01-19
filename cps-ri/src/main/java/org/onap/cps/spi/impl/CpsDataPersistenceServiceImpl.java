@@ -49,6 +49,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static Gson GSON = new GsonBuilder().create();
 
     @Override
+    public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
+        final DataNode dataNode) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final FragmentEntity parentFragment =
+            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, parentXpath);
+        final FragmentEntity childFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNode);
+        parentFragment.getChildFragments().add(childFragment);
+        fragmentRepository.save(parentFragment);
+    }
+
+    @Override
     public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
@@ -68,21 +80,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
      */
     private static FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
         final AnchorEntity anchorEntity, final DataNode dataNodeToBeConverted) {
-        final FragmentEntity parentFragment = FragmentEntity.builder()
-            .dataspace(dataspaceEntity)
-            .anchor(anchorEntity)
-            .xpath(dataNodeToBeConverted.getXpath())
-            .attributes(GSON.toJson(dataNodeToBeConverted.getLeaves()))
-            .build();
-
-        final Builder<FragmentEntity> fragmentEntityBuilder = ImmutableSet.builder();
+        final FragmentEntity parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
+        final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
         for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
             final FragmentEntity childFragment =
                 convertToFragmentWithAllDescendants(parentFragment.getDataspace(), parentFragment.getAnchor(),
                     childDataNode);
-            fragmentEntityBuilder.add(childFragment);
+            childFragmentsImmutableSetBuilder.add(childFragment);
         }
-        parentFragment.setChildFragments(fragmentEntityBuilder.build());
+        parentFragment.setChildFragments(childFragmentsImmutableSetBuilder.build());
         return parentFragment;
+    }
+
+    private static FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
+        final AnchorEntity anchorEntity,
+        final DataNode dataNode) {
+        return FragmentEntity.builder()
+            .dataspace(dataspaceEntity)
+            .anchor(anchorEntity)
+            .xpath(dataNode.getXpath())
+            .attributes(GSON.toJson(dataNode.getLeaves()))
+            .build();
     }
 }
