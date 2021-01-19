@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1aa4bb7c_8a369cbe",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T17:29:59Z",
+      "side": 1,
+      "message": "Since this tets is specific for the E2E model you could name it accordingly, \nactually, put this in a dedicated groovy class\nE2ENetworkSliceSpec.groovy\ndef\u0027 E2E model can be parsed by CPS\u0027\n\n(we will add another tets to this for the json data in the next user story)",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "13e57b78cfc1597644e5f82988c95a315e82b0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "158379bc_ac917180",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
@@ -13,6 +36,30 @@
       "writtenOn": "2021-01-19T14:35:02Z",
       "side": 1,
       "message": "would you also like to add a test scenario when one of these file is invalid.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 185
+      },
+      "revId": "13e57b78cfc1597644e5f82988c95a315e82b0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "117483d4_4903a9ea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T17:29:59Z",
+      "side": 1,
+      "message": "Out the scope of the user story is specifically to positively test the E2E Network slicing model!\n\nProbably should be added as part of Ruslans user story which will use that functionality when supplying a zip-file through the REST interface",
+      "parentUuid": "158379bc_ac917180",
       "range": {
         "startLine": 48,
         "startChar": 0,
