@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3ae1c387_44f26e9f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:33:48Z",
+      "side": 1,
+      "message": "is there anyway of find out what happens under the hood here, maybe ask Ruslan advice",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "077a6eff155e0aec23c2e96e866f90483f148abb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34fd1e81_c791167b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
