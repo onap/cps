@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "af11cf8b_d19702d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T16:37:07Z",
+      "side": 1,
+      "message": "the hibernate will determine a new record (as having no id) and persist it\nwhile other entries remain as is. these entries remain within parent, and content \nof these entries was updated)\n\nthe question however is there empty mutable collection to persist new child \nif there was no child before. this needs to be tested (and handled if there \nis null by default).",
+      "parentUuid": "3ae1c387_44f26e9f",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "077a6eff155e0aec23c2e96e866f90483f148abb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34fd1e81_c791167b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
