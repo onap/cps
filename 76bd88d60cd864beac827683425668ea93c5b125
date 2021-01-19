@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2667331e_a292ce80",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:49:58Z",
+      "side": 1,
+      "message": "what happens if is not cached?",
+      "range": {
+        "startLine": 48,
+        "startChar": 77,
+        "endLine": 48,
+        "endChar": 85
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "691809e5_4b647651",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:49:58Z",
+      "side": 1,
+      "message": "bit cryptic, might need to explanation, can you maye add seem explanation in comments or a brief chat with team?",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a7278ec_b39df58a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:49:58Z",
+      "side": 1,
+      "message": "suggestion getCachedYangTextSchemaSourceSet",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ce1c6b5_eb76dd04",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CacheConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:49:58Z",
+      "side": 1,
+      "message": "can we control expiry here?",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426fdcef_2ca75770",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T13:49:58Z",
+      "side": 1,
+      "message": "is this because of the cache? If so is this tets order dependant ie what tets ran before it?",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 16
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
