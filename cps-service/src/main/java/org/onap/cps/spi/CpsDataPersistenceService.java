@@ -39,4 +39,15 @@ public interface CpsDataPersistenceService {
      */
     void storeDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
         @NonNull DataNode dataNode);
+
+    /**
+     * Add a child to a Fragment.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param parentXpath   parent xpath
+     * @param dataNode      dataNode
+     */
+    void addChildDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentXpath,
+        @NonNull DataNode dataNode);
 }
