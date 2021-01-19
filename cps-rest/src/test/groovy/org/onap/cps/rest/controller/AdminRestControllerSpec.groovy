@@ -37,6 +37,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -85,26 +86,53 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.BAD_REQUEST.value()
     }
 
-    def 'Create schema set from yang file'() {
+    def 'Create schema set from yang file.'() {
         def yangResourceMapCapture
-        given:
+        given: 'single yang file'
             def multipartFile = createMultipartFile("filename.yang", "content")
-        when:
+        when: 'file uploaded with schema set create request'
             def response = performCreateSchemaSetRequest(multipartFile)
-        then: 'Service method is invoked with expected parameters'
+        then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.createSchemaSet('test-dataspace', 'test-schema-set', _) >>
                     { args -> yangResourceMapCapture = args[2] }
             yangResourceMapCapture['filename.yang'] == 'content'
-        and: 'Response code indicates success'
+        and: 'response code indicates success'
             response.status == HttpStatus.CREATED.value()
     }
 
-    def 'Create schema set from file with invalid filename extension'() {
-        given:
-            def multipartFile = createMultipartFile("filename.doc", "content")
-        when:
+    def 'Create schema set from zip archive.'() {
+        def yangResourceMapCapture
+        given: 'zip archive with multiple .yang files inside'
+            def multipartFile = createZipMultipartFileFromResource("/yang-files-set.zip")
+        when: 'file uploaded with schema set create request'
             def response = performCreateSchemaSetRequest(multipartFile)
-        then: 'Create schema fails'
+        then: 'associated service method is invoked with expected parameters'
+            1 * mockCpsModuleService.createSchemaSet('test-dataspace', 'test-schema-set', _) >>
+                    { args -> yangResourceMapCapture = args[2] }
+            yangResourceMapCapture['assembly.yang'] == "fake assembly content 1\n"
+            yangResourceMapCapture['component.yang'] == "fake component content 1\n"
+        and: 'response code indicates success'
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    @Unroll
+    def 'Create schema set from zip archive having #caseDescriptor.'() {
+        when: 'zip archive having #caseDescriptor is uploaded with create schema set request'
+            def response = performCreateSchemaSetRequest(multipartFile)
+        then: 'create schema set rejected'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'following cases are tested'
+            caseDescriptor                        | multipartFile
+            'no .yang files inside'               | createZipMultipartFileFromResource("/no-yang-files.zip")
+            'multiple .yang files with same name' | createZipMultipartFileFromResource("/yang-files-multiple-sets.zip")
+    }
+
+    def 'Create schema set from file with unsupported filename extension.'() {
+        given: 'file with unsupported filename extension (.doc)'
+            def multipartFile = createMultipartFile("filename.doc", "content")
+        when: 'file uploaded with schema set create request'
+            def response = performCreateSchemaSetRequest(multipartFile)
+        then: 'create schema set rejected'
             response.status == HttpStatus.BAD_REQUEST.value()
     }
 
@@ -136,6 +164,11 @@ class AdminRestControllerSpec extends Specification {
 
     def createMultipartFile(filename, content) {
         return new MockMultipartFile("file", filename, "text/plain", content.getBytes())
+    }
+
+    def createZipMultipartFileFromResource(resourcePath) {
+        return new MockMultipartFile("file", "test.zip", "application/zip",
+                getClass().getResource(resourcePath).getBytes())
     }
 
     def performCreateSchemaSetRequest(multipartFile) {
