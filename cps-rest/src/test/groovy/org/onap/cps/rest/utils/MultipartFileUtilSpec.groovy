@@ -25,7 +25,7 @@ import spock.lang.Specification
 
 class MultipartFileUtilSpec extends Specification {
 
-    def 'Extract yang resource from multipart file'() {
+    def 'Extract yang resource from yang file.'() {
         given:
             def multipartFile = new MockMultipartFile("file", "filename.yang", "text/plain", "content".getBytes())
         when:
@@ -36,7 +36,30 @@ class MultipartFileUtilSpec extends Specification {
             assert result.get("filename.yang") == "content"
     }
 
-    def 'Extract yang resource from  file with invalid filename extension'() {
+    def 'Extract yang resources from zip archive.'() {
+        given:
+            def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
+                    getClass().getResource("/assembly.zip").getBytes())
+        when:
+            def result = MultipartFileUtil.extractYangResourcesMap(multipartFile)
+        then:
+            assert result != null
+            assert result.size() == 2
+            assert result.containsKey("assembly.yang")
+            assert result.containsKey("component.yang")
+    }
+
+    def 'Extract resources from zip archive having no yang files.'() {
+        given:
+            def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
+                    getClass().getResource("/no-yang-files.zip").getBytes())
+        when:
+            MultipartFileUtil.extractYangResourcesMap(multipartFile)
+        then:
+            thrown(ModelValidationException)
+    }
+
+    def 'Extract yang resource from  file with invalid filename extension.'() {
         given:
             def multipartFile = new MockMultipartFile("file", "filename.doc", "text/plain", "content".getBytes())
         when:
