@@ -49,6 +49,25 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static Gson GSON = new GsonBuilder().create();
 
     @Override
+    public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
+        final DataNode dataNode) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final FragmentEntity parentFragment =
+            fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, parentXpath);
+
+        final FragmentEntity childFragment = FragmentEntity.builder()
+            .dataspace(dataspaceEntity)
+            .anchor(anchorEntity)
+            .xpath(dataNode.getXpath())
+            .attributes(GSON.toJson(dataNode.getLeaves()))
+            .build();
+
+        parentFragment.getChildFragments().add(childFragment);
+        fragmentRepository.save(parentFragment);
+    }
+
+    @Override
     public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);

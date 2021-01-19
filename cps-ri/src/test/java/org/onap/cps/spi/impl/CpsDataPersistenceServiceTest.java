@@ -23,6 +23,7 @@ import static junit.framework.TestCase.assertEquals;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Collections;
+import org.assertj.core.api.Assertions;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +56,8 @@ public class CpsDataPersistenceServiceTest {
     private static final String CHILD_XPATH = "/parent/child";
     private static final String GRAND_CHILD_XPATH = "/parent/child/grandchild";
     private static final String PARENT_XPATH_NEW = "/parent-new";
-    private static final String CHILD_XPATH_NEW = "/parent/child-new";
+    private static final String CHILD_XPATH_NEW1 = "/parent/child-1-new";
+    private static final String CHILD_XPATH_NEW2 = "/parent/child-2-new";
     private static final String GRAND_CHILD_XPATH_NEW = "/parent/child/grandchild-new";
     private static final long PARENT_ID = 3001;
     private static final long CHILD_ID = 3002;
@@ -88,7 +90,7 @@ public class CpsDataPersistenceServiceTest {
     public void testStoreDataNodeAtNonExistingDataspace() {
         cpsDataPersistenceService
             .storeDataNode(NON_EXISTING_DATASPACE_NAME, ANCHOR_NAME1,
-                createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW, GRAND_CHILD_XPATH_NEW));
+                createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW1, GRAND_CHILD_XPATH_NEW));
     }
 
     @Test(expected = AnchorNotFoundException.class)
@@ -96,7 +98,7 @@ public class CpsDataPersistenceServiceTest {
     public void testStoreDataNodeAtNonExistingAnchor() {
         cpsDataPersistenceService
             .storeDataNode(DATASPACE_NAME, NON_EXISTING_ANCHOR_NAME,
-                createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW, GRAND_CHILD_XPATH_NEW));
+                createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW1, GRAND_CHILD_XPATH_NEW));
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -108,16 +110,46 @@ public class CpsDataPersistenceServiceTest {
 
     @Test
     @Sql({CLEAR_DATA, SET_DATA})
-    public void testStoreDataNodeWithChildrenAndGrandChildren() {
+    public void testStoreDataNodeWithChildAndGrandChild() {
         cpsDataPersistenceService.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1,
-            createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW, GRAND_CHILD_XPATH_NEW));
+            createDataNodeWithChildAndGrandChild(PARENT_XPATH_NEW, CHILD_XPATH_NEW1, GRAND_CHILD_XPATH_NEW));
 
         final FragmentEntity parentFragment = fragmentRepository.findById(PARENT_ID_NEW).orElseThrow();
         final FragmentEntity childFragment = fragmentRepository.findById(CHILD_ID_NEW).orElseThrow();
         final FragmentEntity grandChildFragment = fragmentRepository.findById(GRAND_CHILD_ID_NEW).orElseThrow();
 
-        assertFragment(parentFragment, childFragment, grandChildFragment, PARENT_XPATH_NEW, CHILD_XPATH_NEW,
+        assertFragment(parentFragment, childFragment, grandChildFragment, PARENT_XPATH_NEW, CHILD_XPATH_NEW1,
             GRAND_CHILD_XPATH_NEW);
+    }
+
+    @Test
+    @Sql({CLEAR_DATA, SET_DATA})
+    public void testAddChildToFragmentThatHasOneChild() {
+        final DataNode parentDataNode = createDataNode(PARENT_XPATH_NEW);
+        final DataNode childDataNode1 = createDataNode(CHILD_XPATH_NEW1);
+        final DataNode childDataNode2 = createDataNode(CHILD_XPATH_NEW2);
+
+        parentDataNode.setChildDataNodes(ImmutableSet.of(childDataNode1));
+        cpsDataPersistenceService.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentDataNode);
+
+        cpsDataPersistenceService
+            .addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentDataNode.getXpath(), childDataNode2);
+
+        final FragmentEntity parentFragment = fragmentRepository.findById((long) 5).orElseThrow();
+
+        Assertions.assertThat(parentFragment.getChildFragments())
+            .hasSize(2)
+            .extracting(FragmentEntity::getXpath)
+            .containsExactlyInAnyOrder(CHILD_XPATH_NEW1, CHILD_XPATH_NEW2);
+    }
+
+    private DataNode createDataNode(final String xpath) {
+        final DataNode dataNode = DataNode.builder()
+            .xpath(xpath)
+            .childDataNodes(Collections.emptySet())
+            .build();
+
+        return dataNode;
     }
 
     private void assertFragment(final FragmentEntity parentFragment, final FragmentEntity childFragment,
