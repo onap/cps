@@ -52,6 +52,24 @@
       "revId": "513cd2ce29b12ed2350502c36ff87d9e0610b467",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "931408b9_beee2b33",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-19T14:16:06Z",
+      "side": 1,
+      "message": "204 is good to me as well",
+      "parentUuid": "574f9d65_2ce0d40a",
+      "revId": "513cd2ce29b12ed2350502c36ff87d9e0610b467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
