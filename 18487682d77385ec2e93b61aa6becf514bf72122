@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9621c7a4_77991484",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T12:24:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdecc2b5_59c5823e",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "469ce9b1_60d6cb92",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b046a38_1c998116",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T12:24:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "469ce9b1_60d6cb92",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 13
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2b258bda_b3856194",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T12:24:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f10ea_ba09cb62",
+      "range": {
+        "startLine": 114,
+        "startChar": 15,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e9cbfef_ebe3daef",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "6038662c_bd236bec",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T12:24:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e9cbfef_ebe3daef",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 63
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99bfa874_37307931",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "254ae382_349122fe",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-19T12:24:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99bfa874_37307931",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
