@@ -40,6 +40,15 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
+        1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+    }
+
+    def 'Create schema set with multiple yang files.'() {
+        given: 'Valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('e2e/basic/ietf-inet-types.yang','e2e/basic/ietf-yang-types.yang','e2e/basic/ran-network2020-08-06.yang')
+        when: 'Create schema set method is invoked'
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+        then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
     }
 
