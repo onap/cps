@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "158379bc_ac917180",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-19T14:35:02Z",
+      "side": 1,
+      "message": "would you also like to add a test scenario when one of these file is invalid.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 185
+      },
+      "revId": "13e57b78cfc1597644e5f82988c95a315e82b0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
