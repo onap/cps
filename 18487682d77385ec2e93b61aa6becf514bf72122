@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdecc2b5_59c5823e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T11:17:55Z",
+      "side": 1,
+      "message": "Add full stop . (scenario def desrptions only)",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "469ce9b1_60d6cb92",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T11:17:55Z",
+      "side": 1,
+      "message": "I know there is a legacy issue with all these tests but for the new tests please provided descriptions for ALL labels as per our conventions.\nI\u0027ll provide some suggestions\n\nwhen: \u0027the endpoint is invoked\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 13
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff0f10ea_ba09cb62",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T11:17:55Z",
+      "side": 1,
+      "message": "label do not start with capital (the label itself is start of the sentence)",
+      "range": {
+        "startLine": 114,
+        "startChar": 15,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e9cbfef_ebe3daef",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T11:17:55Z",
+      "side": 1,
+      "message": "Delete a schema which is in use,",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 63
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99bfa874_37307931",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-19T11:17:55Z",
+      "side": 1,
+      "message": "\u0027the service method throws an exception that the schema set is in use\u0027",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "18487682d77385ec2e93b61aa6becf514bf72122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
