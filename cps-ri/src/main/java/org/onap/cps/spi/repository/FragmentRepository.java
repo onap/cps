@@ -23,7 +23,9 @@ package org.onap.cps.spi.repository;
 
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -33,6 +35,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
+
+    FragmentEntity findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
+        @NonNull AnchorEntity anchorEntity, @NonNull String xpath);
 
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")

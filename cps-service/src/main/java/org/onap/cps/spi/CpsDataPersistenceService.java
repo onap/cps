@@ -39,4 +39,14 @@ public interface CpsDataPersistenceService {
      */
     void storeDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
         @NonNull DataNode dataNode);
+
+    /**
+     * Add another child to a FragmentEntity that has already at least one child.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param dataNode      dataNode
+     */
+    void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
+        final DataNode dataNode);
 }
