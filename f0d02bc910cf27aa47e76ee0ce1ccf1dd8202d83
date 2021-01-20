@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0da7fcb9_800585cf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T13:59:22Z",
+      "side": 1,
+      "message": "else is extra, if there is return in previous if block",
+      "parentUuid": "b1d75714_6fb8ac08",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24061d8e_0ae0da9a",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -92,6 +116,30 @@
       "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "039308e9_eb41e5ed",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T13:59:22Z",
+      "side": 1,
+      "message": "yang files taken, txt files ignored, please check tests",
+      "parentUuid": "24061d8e_0ae0da9a",
+      "range": {
+        "startLine": 105,
+        "startChar": 40,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -292,6 +340,30 @@
       "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31f875f2_aec2a03c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T13:59:22Z",
+      "side": 1,
+      "message": "updated with tests covering IOException cases",
+      "parentUuid": "8794566d_8168b36c",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
