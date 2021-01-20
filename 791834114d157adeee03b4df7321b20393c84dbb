@@ -49,6 +49,57 @@
     },
     {
       "key": {
+        "uuid": "dde9f0df_e3e84ff5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T09:02:53Z",
+      "side": 1,
+      "message": "avoid infine loop\n\n            while ((entry \u003d zipInputStream.getNextEntry()) !\u003d null) {",
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37b2a4e0_0d266934",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T09:02:53Z",
+      "side": 1,
+      "message": "decouple validate from \"toMap\"",
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cac0e3c_170ff229",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T09:02:53Z",
+      "side": 1,
+      "message": "throw exception",
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01ec7e47_f25efe2f",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 3
