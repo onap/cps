@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8ea596b5_d2446ba7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-20T13:58:07Z",
+      "side": 1,
+      "message": "so #p0 stand for the first parameter? #p1 teh next etc?",
+      "parentUuid": "44702c7c_a54e741e",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a7278ec_b39df58a",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheService.java",
         "patchSetId": 4
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "methods name needs to be understandable same for variable. it doesnt need to involve to have the object returned as part of the name.\nIndeed is not best practice.\n\nin this case YangTextSchemaSourceSetCacheService.getCache is more than clear imho. Also if we want to keep easy to read lines, we should avoid long methods names or variables.",
       "parentUuid": "2a7278ec_b39df58a",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "76bd88d60cd864beac827683425668ea93c5b125",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da41d225_824ca09e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-20T13:58:07Z",
+      "side": 1,
+      "message": "I dint mind long names (nd Uncle bob doen\u0027ts either :-)\nBut yes with the class name is does make sense (I would actually remove the word service from the class name, that what misled me first)\n\nI stil don\u0027t like getCacce though, to me that would mean you get the whole cache...\n\nInstead i would prefer\n- get\nor\n- getFromCache",
+      "parentUuid": "e2115c46_79438f43",
       "range": {
         "startLine": 50,
         "startChar": 35,
