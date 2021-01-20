@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "637189a2_3569f140",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T11:51:24Z",
+      "side": 1,
+      "message": "sentence is confusing\ne.g. what happens if it doesnt have child? Do I need to use other method?\n\n \"Add child to a Fragment\" is more clear",
+      "parentUuid": "dd49c078_1298c674",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "49f10b2385a2b7d3d1c46a4deec83a0e600560b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b28a687b_9f526792",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 4
