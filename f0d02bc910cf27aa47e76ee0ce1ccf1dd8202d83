@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eb179770_4dee1960",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T12:52:30Z",
+      "side": 1,
+      "message": "gzip assumes single file compression\nmultiple files require tar over gzip\n\nthe logic of extraction differs anyway,\nseems out of scope (extra feature)",
+      "parentUuid": "5f7fa5e9_3ab3bf89",
+      "range": {
+        "startLine": 43,
+        "startChar": 54,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1033d597_c685ddec",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -120,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "ad3a5e48_0c2cecf8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T12:52:30Z",
+      "side": 1,
+      "message": "in a context of zip, the folder is just a descriptors indicated by a flag zipEntry.isDirectory() \nand a path of course\nthe file belonging to particular folder is indicated by file\u0027s path -\u003e zipEntry.getName()\nall the archives in test resources contain files within folders, \nso this case is already being handled.\nusing folders to organize files should not be a stopper on resource extraction\n\ncurrent (implemented) case is the most simple one: we extract any yang file we find, \nthen try to process them together.",
+      "parentUuid": "6a813de9_641d308e",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 34
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56fc989d_1b78e333",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -131,6 +179,24 @@
       "writtenOn": "2021-01-20T11:04:51Z",
       "side": 1,
       "message": "is there some reason/scenario where the zip wont just contain the yang files?",
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe869c2a_1af58876",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T12:52:30Z",
+      "side": 1,
+      "message": "the scenario with no yang files found is checked on upper level \nwhen stream processing is finished and map.isEmpty() checked\nthe case cannot by determined while in the middle of stream processing",
+      "parentUuid": "56fc989d_1b78e333",
       "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
