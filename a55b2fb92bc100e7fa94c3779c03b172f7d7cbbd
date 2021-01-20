@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1a0de89_5ebaf8aa",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T17:14:19Z",
+      "side": 1,
+      "message": "dont we have a get that already throws exception?",
+      "revId": "a55b2fb92bc100e7fa94c3779c03b172f7d7cbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c038f2ca_0076dca7",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-20T17:14:19Z",
+      "side": 1,
+      "message": "static",
+      "revId": "a55b2fb92bc100e7fa94c3779c03b172f7d7cbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
