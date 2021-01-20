@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87a43152_08eae86f",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T12:04:32Z",
+      "side": 1,
+      "message": "how is this related to this commit?",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "52de2cdd7068a80fff47351ba5616a4b309247ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
