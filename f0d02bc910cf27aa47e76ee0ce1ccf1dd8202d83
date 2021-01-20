@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "130f7c4c_a204066e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T12:33:21Z",
+      "side": 1,
+      "message": "There is this case I had in mind. ---\u003e A zip having  yang files and also containing imports contained in a \u0027imports\u0027 folder.",
+      "parentUuid": "6a813de9_641d308e",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 34
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56fc989d_1b78e333",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
