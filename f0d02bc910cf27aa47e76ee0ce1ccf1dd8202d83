@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f7fa5e9_3ab3bf89",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:33:38Z",
+      "side": 1,
+      "message": "Gzip can be supported too.. Library already supports it.",
+      "range": {
+        "startLine": 43,
+        "startChar": 54,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1033d597_c685ddec",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:33:38Z",
+      "side": 1,
+      "message": "what about scenario having folders within zip having yang files?",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 34
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56fc989d_1b78e333",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -13,6 +59,29 @@
       "writtenOn": "2021-01-20T11:04:51Z",
       "side": 1,
       "message": "is there some reason/scenario where the zip wont just contain the yang files?",
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8794566d_8168b36c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:33:38Z",
+      "side": 1,
+      "message": "file is missing coverage for IOexception case.",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 28
+      },
       "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
