@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7cb2713d_4f40e332",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-20T17:52:46Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "754a39d6_0cc8be4d",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dde9f0df_e3e84ff5",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 3
@@ -207,6 +231,30 @@
       "side": 1,
       "message": "it\u0027s to prevent build failure on check style stage.\nthere is a rule prohibiting character case transformation with no locale defined.\nin our case we just need the case insensitive check for extension match, English is OK for this",
       "parentUuid": "01ec7e47_f25efe2f",
+      "range": {
+        "startLine": 109,
+        "startChar": 64,
+        "endLine": 109,
+        "endChar": 78
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38adb0cd_81c7e6f5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-20T17:52:46Z",
+      "side": 1,
+      "message": "ok, thanks",
+      "parentUuid": "7c7cdc54_cfa05bf6",
       "range": {
         "startLine": 109,
         "startChar": 64,
