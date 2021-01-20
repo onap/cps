@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f14fcdd_6a4e2891",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:43:52Z",
+      "side": 1,
+      "message": "should it not throw an Exception",
+      "range": {
+        "startLine": 39,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "49f10b2385a2b7d3d1c46a4deec83a0e600560b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98bb3132_dcb5fd95",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:43:52Z",
+      "side": 1,
+      "message": "Suggestion : does not go well with method name. Try changing this or the other.",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "49f10b2385a2b7d3d1c46a4deec83a0e600560b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b28a687b_9f526792",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-20T11:43:52Z",
+      "side": 1,
+      "message": "missing param for parentXpath",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "49f10b2385a2b7d3d1c46a4deec83a0e600560b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
