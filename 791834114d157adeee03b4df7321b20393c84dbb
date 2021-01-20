@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "754a39d6_0cc8be4d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "it makes sense if there are higher number (4+) of options to handle.\nfor our case it would be over-complication, imo",
+      "parentUuid": "61ca96d0_a9798bdf",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01ec7e47_f25efe2f",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "791834114d157adeee03b4df7321b20393c84dbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c7cdc54_cfa05bf6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "it\u0027s to prevent build failure on check style stage.\nthere is a rule prohibiting character case transformation with no locale defined.\nin our case we just need the case insensitive check for extension match, English is OK for this",
+      "parentUuid": "01ec7e47_f25efe2f",
+      "range": {
+        "startLine": 109,
+        "startChar": 64,
+        "endLine": 109,
+        "endChar": 78
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4ad3df45_6bf4628e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5110de5_62475516",
+      "range": {
+        "startLine": 128,
+        "startChar": 26,
+        "endLine": 128,
+        "endChar": 31
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d46e23e4_435afe6e",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "791834114d157adeee03b4df7321b20393c84dbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "688a1b7f_0c96bfe7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "provided descriptions for affected (schema set create) test cases",
+      "parentUuid": "d46e23e4_435afe6e",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "506be784_714c80c7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "renamed to yang-files-set.zip",
+      "parentUuid": "82c0d8cd_acc387c1",
+      "range": {
+        "startLine": 105,
+        "startChar": 69,
+        "endLine": 105,
+        "endChar": 77
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96809b59_cf437aeb",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 3
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ad3f6189_7d03209a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96809b59_cf437aeb",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9ce79d3_6efb18a8",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 3
@@ -160,6 +304,30 @@
       "revId": "791834114d157adeee03b4df7321b20393c84dbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aedd547d_36ff464b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T08:39:06Z",
+      "side": 1,
+      "message": "the case with files to ignore is already handled within a success case.\nthe zip with yang files also contains json file, which is ignored.\nprovided descriptions for tests within this class",
+      "parentUuid": "c9ce79d3_6efb18a8",
+      "range": {
+        "startLine": 52,
+        "startChar": 10,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "791834114d157adeee03b4df7321b20393c84dbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
