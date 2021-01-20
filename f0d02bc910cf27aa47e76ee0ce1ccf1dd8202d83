@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "b1d75714_6fb8ac08",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-20T13:22:41Z",
+      "side": 1,
+      "message": "should be in else block",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24061d8e_0ae0da9a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-20T13:22:41Z",
+      "side": 1,
+      "message": "Question: what would this method return when the zip contains both .yaml and .txt files?",
+      "range": {
+        "startLine": 105,
+        "startChar": 40,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1033d597_c685ddec",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 6
@@ -197,6 +243,29 @@
       "side": 1,
       "message": "the scenario with no yang files found is checked on upper level \nwhen stream processing is finished and map.isEmpty() checked\nthe case cannot by determined while in the middle of stream processing",
       "parentUuid": "56fc989d_1b78e333",
+      "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0855889c_2c968b20",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-20T13:22:41Z",
+      "side": 1,
+      "message": "alignment",
+      "range": {
+        "startLine": 104,
+        "startChar": 8,
+        "endLine": 104,
+        "endChar": 34
+      },
       "revId": "f0d02bc910cf27aa47e76ee0ce1ccf1dd8202d83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
