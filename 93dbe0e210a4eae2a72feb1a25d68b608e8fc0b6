@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "626acd04_7de2fdb3",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T09:13:45Z",
+      "side": 1,
+      "message": "no need updating this file.\nno cache is involved on db functionality testing",
+      "revId": "93dbe0e210a4eae2a72feb1a25d68b608e8fc0b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59bab1ad_01fc88c1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-20T09:13:45Z",
+      "side": 1,
+      "message": "cache update should be done _after_ data persistence, not before\nthe exception can be thrown on writing data to db, causing cache content broken",
+      "revId": "93dbe0e210a4eae2a72feb1a25d68b608e8fc0b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
