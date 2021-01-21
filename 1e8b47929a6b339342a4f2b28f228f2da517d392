@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8acbb64f_34779a0b",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T09:49:57Z",
+      "side": 1,
+      "message": "why not just /cps as base path? I havent seen many applications with endpoints starting with \"api\"",
+      "range": {
+        "startLine": 6,
+        "startChar": 19,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
