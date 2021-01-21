@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "c4e12ca3_75e68be9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T12:36:13Z",
+      "side": 1,
+      "message": "if you want you could change the numbering but I dont find it important (parent 3001,302,3003, children 3004 and 3005)",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4bc9e77_44c98f0f",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T12:36:13Z",
+      "side": 1,
+      "message": "No need for constants for variables that are used in only one tets. \nThis confuses this block of \u0027common data\u0027 data already defined in the SQL database",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efb50445_a1e74646",
         "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
         "patchSetId": 8
@@ -81,6 +127,29 @@
         "startChar": 0,
         "endLine": 184,
         "endChar": 24
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fdc1058_d00ed57f",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T12:36:13Z",
+      "side": 1,
+      "message": "see comment on tets class, if we put parent first here and number them 3001-3003 we have have nice consistent order and at est for the parent xpath and id number consistency \n\nAlso since the anchor is now in a different table, the numbers here should be 4xxx\n\n    (4001, \u0027/parent-1\u0027, 3001, null, 1001),\n    (4002, \u0027/parent-2\u0027, 3001, null, 1001),\n    (4003, \u0027/parent-3\u0027, 3001, null, 1001);\n    (4004, \u0027/parent-1/child-1\u0027, 3001, 4001, 1001),\n    (4005, \u0027/parent-2/child-2\u0027, 3001, 4002, 1001),\n    (4006, \u0027/parent-1/child-1/grandchild-1\u0027, 3001, 4004, 1001),",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 42
       },
       "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
