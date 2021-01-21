@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "29a2de97_4763bdaf",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T12:40:40Z",
+      "side": 1,
+      "message": "ok, that is what we want, thanks!",
+      "parentUuid": "078588a5_125c850f",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 1
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d0b60c6_fe5d3728",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 9
