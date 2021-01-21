@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efb50445_a1e74646",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:30:14Z",
+      "side": 1,
+      "message": "this object is a part of validation, move it below the test method invocation",
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83c1b4a1_0d77cbd3",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:30:14Z",
+      "side": 1,
+      "message": "this object is a part of validation, move it below the test method invocation",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 100
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc4eea9f_8c14a17b",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:30:14Z",
+      "side": 1,
+      "message": "replace with constant, the line with parentFragment is extra here",
+      "range": {
+        "startLine": 167,
+        "startChar": 60,
+        "endLine": 167,
+        "endChar": 85
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f8e6372_a4b83ba3",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:30:14Z",
+      "side": 1,
+      "message": "no need to create object, return immediate\nit will be marked as issue by SonarQube",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "6e74d8485b77e9664fbc1e6b2fec5bd8559b3a63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
