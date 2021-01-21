@@ -20,7 +20,6 @@
 package org.onap.cps.api.impl;
 
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;

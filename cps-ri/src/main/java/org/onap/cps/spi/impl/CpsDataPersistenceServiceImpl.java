@@ -46,7 +46,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Autowired
     private FragmentRepository fragmentRepository;
 
-    private static Gson GSON = new GsonBuilder().create();
+    private static final Gson GSON = new GsonBuilder().create();
 
     @Override
     public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
