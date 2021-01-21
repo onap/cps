@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "19b4518c_e963a183",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-21T17:25:57Z",
+      "side": 1,
+      "message": "Should version be part of the base path?",
+      "parentUuid": "4fe8b09d_da8e047a",
+      "range": {
+        "startLine": 6,
+        "startChar": 7,
+        "endLine": 6,
+        "endChar": 27
+      },
+      "revId": "708fd6615c97756eade415a6295b1fb663e4d3ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46e1dadc_4db4a17d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 6
