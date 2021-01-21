@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7032b8cc_39916bf8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T09:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aabc81be_c2707cc3",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5121aa2_f9caf864",
         "filename": "cps-service/src/main/java/org/onap/cps/config/CacheConfig.java",
         "patchSetId": 9
@@ -59,6 +83,30 @@
       "writtenOn": "2021-01-21T09:20:57Z",
       "side": 1,
       "message": "why exactly is this needs too, does this make the ServiceLayer a \u0027Spring controlled application\u0027 (not sure how to phrase it)",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 1
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67dc16bb_6c0badf8",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T09:44:02Z",
+      "side": 1,
+      "message": "it enables cache Manager Service",
+      "parentUuid": "f5121aa2_f9caf864",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "29368917_1a7a4cfd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T09:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d0b60c6_fe5d3728",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f947e198_3b2e5d85",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 9
@@ -114,6 +186,30 @@
       "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e105dca_c8fe6f15",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T09:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f947e198_3b2e5d85",
+      "range": {
+        "startLine": 29,
+        "startChar": 40,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
