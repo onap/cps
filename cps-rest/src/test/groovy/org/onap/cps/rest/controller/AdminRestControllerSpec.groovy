@@ -29,6 +29,7 @@ import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -58,6 +59,9 @@ class AdminRestControllerSpec extends Specification {
 
     @Autowired
     MockMvc mvc
+
+    @Value('${rest.api.base-path}')
+    def restUri
 
     def anchorsEndpoint = '/v1/dataspaces/my_dataspace/anchors'
     def schemaSetsEndpoint = '/v1/dataspaces/test-dataspace/schema-sets'
@@ -130,7 +134,7 @@ class AdminRestControllerSpec extends Specification {
 
     def performCreateDataspaceRequest(String dataspaceName) {
         return mvc.perform(
-                post('/v1/dataspaces').param('dataspace-name', dataspaceName)
+                post("$restUri/v1/dataspaces").param('dataspace-name', dataspaceName)
         ).andReturn().response
     }
 
@@ -140,14 +144,14 @@ class AdminRestControllerSpec extends Specification {
 
     def performCreateSchemaSetRequest(multipartFile) {
         return mvc.perform(
-                multipart(schemaSetsEndpoint)
+                multipart("$restUri$schemaSetsEndpoint")
                         .file(multipartFile)
                         .param('schema-set-name', 'test-schema-set')
         ).andReturn().response
     }
 
-    def performDeleteRequest(String uri) {
-        return mvc.perform(delete(uri)).andReturn().response
+    def performDeleteRequest(String deleteUri) {
+        return mvc.perform(delete("$restUri$deleteUri")).andReturn().response
     }
 
     def 'Get existing schema set'() {
@@ -155,7 +159,7 @@ class AdminRestControllerSpec extends Specification {
             mockCpsModuleService.getSchemaSet('test-dataspace', 'my_schema_set') >>
                     new SchemaSet(name: 'my_schema_set', dataspaceName: 'test-dataspace')
         when: 'get schema set API is invoked'
-            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
+            def response = mvc.perform(get("$restUri$schemaSetEndpoint")).andReturn().response
         then: 'the correct schema set is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains('my_schema_set')
@@ -167,7 +171,7 @@ class AdminRestControllerSpec extends Specification {
             requestParams.add('schema-set-name', 'my_schema-set')
             requestParams.add('anchor-name', 'my_anchor')
         when: 'post is invoked'
-            def response = mvc.perform(post(anchorsEndpoint).contentType(MediaType.APPLICATION_JSON)
+            def response = mvc.perform(post("$restUri$anchorsEndpoint").contentType(MediaType.APPLICATION_JSON)
                     .params(requestParams as MultiValueMap)).andReturn().response
         then: 'Anchor is created successfully'
             1 * mockCpsAdminService.createAnchor('my_dataspace', 'my_schema-set', 'my_anchor')
@@ -179,7 +183,7 @@ class AdminRestControllerSpec extends Specification {
         given:
             mockCpsAdminService.getAnchors('my_dataspace') >> anchorList
         when: 'get all anchors API is invoked'
-            def response = mvc.perform(get(anchorsEndpoint)).andReturn().response
+            def response = mvc.perform(get("$restUri$anchorsEndpoint")).andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains('my_anchor')

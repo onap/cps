@@ -29,5 +29,5 @@ java -DDB_HOST=localhost -DDB_USERNAME=cps -DDB_PASSWORD=cps -jar cps-rest/targe
 ```
 
 * Browse
-  * [Swagger UI](http://localhost:8080/api/cps/swagger-ui/index.html)
-  * [Api Documentation](http://localhost:8080/api/cps/v3/api-docs)
+  * [Swagger UI](http://localhost:8080/swagger-ui/index.html)
+  * [Api Documentation](http://localhost:8080/v3/api-docs)
