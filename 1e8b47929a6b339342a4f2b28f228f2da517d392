@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a9bce391_5722d494",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T11:12:04Z",
+      "side": 1,
+      "message": "can you had an example for the admin interface too, might help in our discussions",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 58
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d66a75d_fc4f240b",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 3
@@ -25,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "4b046a39_94e8061b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T11:12:04Z",
+      "side": 1,
+      "message": "it did mention in the commit message that this path \"fix /cps/api URI being for REST API only\"\nBut some further clarification would be welcome.\nI understand there are management interfaces (ie. logging) what mapping to they use now?",
+      "parentUuid": "6d66a75d_fc4f240b",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8acbb64f_34779a0b",
         "filename": "cps-rest/src/main/resources/application.yml",
         "patchSetId": 3
@@ -36,6 +83,30 @@
       "writtenOn": "2021-01-21T09:49:57Z",
       "side": 1,
       "message": "why not just /cps as base path? I havent seen many applications with endpoints starting with \"api\"",
+      "range": {
+        "startLine": 6,
+        "startChar": 19,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a57db41_f7971a96",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T11:12:04Z",
+      "side": 1,
+      "message": "i have :-)\nThe main thins is we need to conform with the agreed public rest interface, which I think include \\api ?\n\n\nBut we can change, I would be guided by other recent ONAP aps, can we make a decision at todays stand up please?",
+      "parentUuid": "8acbb64f_34779a0b",
       "range": {
         "startLine": 6,
         "startChar": 19,
