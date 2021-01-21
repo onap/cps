@@ -32,25 +32,33 @@ class CpsAdminServiceImplSpec extends Specification {
         objectUnderTest.cpsAdminPersistenceService = mockCpsAdminPersistenceService
     }
 
-    def 'Create dataspace method invokes persistence service'() {
+    def 'Create dataspace method invokes persistence service.'() {
         when: 'Create dataspace method is invoked'
             objectUnderTest.createDataspace('someDataspace')
         then: 'The persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
     }
 
-    def 'Create anchor method invokes persistence service'() {
+    def 'Create anchor method invokes persistence service.'() {
         when: 'Create anchor method is invoked'
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
         then: 'The persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
     }
 
-    def 'Retrieve all anchors for dataspace'() {
+    def 'Retrieve all anchors for dataspace.'() {
         given: 'that anchor is associated with the dataspace'
             Collection<Anchor> anchorCollection = Arrays.asList(new Anchor())
             mockCpsAdminPersistenceService.getAnchors('someDataspace') >> { anchorCollection }
         expect: 'the collection provided by persistence service is returned as result'
             objectUnderTest.getAnchors('someDataspace') == anchorCollection
     }
+    
+    def 'Retrieve anchor for dataspace and provided anchor name'() {
+        given: 'that anchor name is associated with the dataspace'
+            Anchor anchor = new Anchor()
+            mockCpsAdminPersistenceService.getAnchor('someDataspace','someAnchor') >> { anchor }
+        expect: 'the anchor provided by persistence service is returned as result'
+            objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
+    }   
 }
