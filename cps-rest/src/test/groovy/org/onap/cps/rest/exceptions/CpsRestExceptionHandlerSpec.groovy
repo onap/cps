@@ -161,7 +161,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
     }
 
     def performTestRequest() {
-        return mvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
+        return mvc.perform(get('/api/cps/v1/dataspaces/dataspace-name/anchors')).andReturn().response
     }
 
     void assertTestResponse(response, expectedStatus,

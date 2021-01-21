@@ -1,7 +1,9 @@
 server:
     port: 8080
-    servlet:
-        context-path: /api/cps
+
+rest:
+    api:
+        base-path: /api/cps
 
 spring:
     main:
@@ -27,12 +29,16 @@ management:
     endpoints:
         web:
             base-path: /manage
+            exposure:
+                include: health,loggers
     endpoint:
         health:
             show-details: always
             # kubernetes probes: liveness and readiness
             probes:
                 enabled: true
+        looging:
+            enabled: true
 
 logging:
     level:

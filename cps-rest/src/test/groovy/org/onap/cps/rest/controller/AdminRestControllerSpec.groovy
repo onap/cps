@@ -59,8 +59,8 @@ class AdminRestControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
-    def anchorsEndpoint = '/v1/dataspaces/my_dataspace/anchors'
-    def schemaSetsEndpoint = '/v1/dataspaces/test-dataspace/schema-sets'
+    def anchorsEndpoint = '/api/cps/v1/dataspaces/my_dataspace/anchors'
+    def schemaSetsEndpoint = '/api/cps/v1/dataspaces/test-dataspace/schema-sets'
     def schemaSetEndpoint = schemaSetsEndpoint + '/my_schema_set'
 
     def anchor = new Anchor(name: 'my_anchor')
@@ -130,7 +130,7 @@ class AdminRestControllerSpec extends Specification {
 
     def performCreateDataspaceRequest(String dataspaceName) {
         return mvc.perform(
-                post('/v1/dataspaces').param('dataspace-name', dataspaceName)
+                post('/api/cps/v1/dataspaces').param('dataspace-name', dataspaceName)
         ).andReturn().response
     }
 
