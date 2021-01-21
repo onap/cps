@@ -116,6 +116,30 @@
       "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bef7e67b_9fe7c393",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-21T11:37:49Z",
+      "side": 1,
+      "message": "AFAIK there is nothing enforcing us to have it like that, since it is configurable.\nAnd even if for some reason we want to have \"api\", it is more logical \"cps/api\" than \"api/cps\"\nI\u0027m trying to understand why it was decided to use that type of base path, I might be missing some information why it is like that.\nimho\n\nthe best option\ncps/v1/getAnchors...\nsecond option\ncps/api/v1/getAnchors...\nand the last and actual which I dont like\napi/cps/v1/getAnchors...",
+      "parentUuid": "5a57db41_f7971a96",
+      "range": {
+        "startLine": 6,
+        "startChar": 19,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
