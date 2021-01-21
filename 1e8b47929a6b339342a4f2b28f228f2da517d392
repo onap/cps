@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "40d535b0_a34066f2",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:07:16Z",
+      "side": 1,
+      "message": "first i was intended to include these,\nthen found these endpoints are already listed in swagger-ui",
+      "parentUuid": "a9bce391_5722d494",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 58
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d66a75d_fc4f240b",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "it did mention in the commit message that this path \"fix /cps/api URI being for REST API only\"\nBut some further clarification would be welcome.\nI understand there are management interfaces (ie. logging) what mapping to they use now?",
       "parentUuid": "6d66a75d_fc4f240b",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2bfdd58_ad044a6a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:07:16Z",
+      "side": 1,
+      "message": "\u003e why is this required here when the Interface contains the RequestMapping?\n\ninterface contains mapping on per method basis only, not the class level one (to be used as URI prefix). \nfor this purpose there was special property basePath in OpenAPI v2, which was replaced with server.url\nin OpenAPI.v3, the swagger-codegen-maven-plugin does not use this property same way as baseBath.\nso current approach is a workaround. cheapest version.",
+      "parentUuid": "4b046a39_94e8061b",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "AFAIK there is nothing enforcing us to have it like that, since it is configurable.\nAnd even if for some reason we want to have \"api\", it is more logical \"cps/api\" than \"api/cps\"\nI\u0027m trying to understand why it was decided to use that type of base path, I might be missing some information why it is like that.\nimho\n\nthe best option\ncps/v1/getAnchors...\nsecond option\ncps/api/v1/getAnchors...\nand the last and actual which I dont like\napi/cps/v1/getAnchors...",
       "parentUuid": "5a57db41_f7971a96",
+      "range": {
+        "startLine": 6,
+        "startChar": 19,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "1e8b47929a6b339342a4f2b28f228f2da517d392",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf4b650e_ef95b04a",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-21T12:07:16Z",
+      "side": 1,
+      "message": "/cps/api/v1/* sounds good for me\nneed confirmation",
+      "parentUuid": "bef7e67b_9fe7c393",
       "range": {
         "startLine": 6,
         "startChar": 19,
