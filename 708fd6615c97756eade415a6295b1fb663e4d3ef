@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d25bbe0_d4ff1ac0",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T16:00:00Z",
+      "side": 1,
+      "message": "can you answer my comment in patch #3 please",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 58
+      },
+      "revId": "708fd6615c97756eade415a6295b1fb663e4d3ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf7563ed_6253f7f1",
+        "filename": "cps-rest/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T16:00:00Z",
+      "side": 1,
+      "message": "apologies, I don\u0027t know what was agreed in meeting can someone else confirm please?",
+      "range": {
+        "startLine": 6,
+        "startChar": 7,
+        "endLine": 6,
+        "endChar": 27
+      },
+      "revId": "708fd6615c97756eade415a6295b1fb663e4d3ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e1dadc_4db4a17d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T16:00:00Z",
+      "side": 1,
+      "message": "Now I am confused :-)",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "708fd6615c97756eade415a6295b1fb663e4d3ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
