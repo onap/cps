@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
@@ -59,6 +60,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @Autowired
     MockMvc mvc
+
+    @Value('${rest.api.base-path}')
+    def basePath
 
     @Shared
     def errorMessage = 'some error message'
@@ -161,7 +165,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
     }
 
     def performTestRequest() {
-        return mvc.perform(get('/v1/dataspaces/dataspace-name/anchors')).andReturn().response
+        return mvc.perform(get("$basePath/v1/dataspaces/dataspace-name/anchors")).andReturn().response
     }
 
     void assertTestResponse(response, expectedStatus,
