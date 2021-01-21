@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8651607c_a8ad3b50",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T09:20:57Z",
+      "side": 1,
+      "message": "rename class to YangTextSchemaSourceCache (no need for \u0027service\u0027, I find it confusing)",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aabc81be_c2707cc3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T09:20:57Z",
+      "side": 1,
+      "message": "yangTextSchemaSourceCache",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5121aa2_f9caf864",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T09:20:57Z",
+      "side": 1,
+      "message": "why exactly is this needs too, does this make the ServiceLayer a \u0027Spring controlled application\u0027 (not sure how to phrase it)",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 1
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d0b60c6_fe5d3728",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T09:20:57Z",
+      "side": 1,
+      "message": "I would prefer 2 different test\n1) \u0027Get schema set by name and dataspace.\u0027\n2) \u0027Schema set caching.\u0027  (notice the use of times. in the 2nd test )\n\n\n    def \u0027Get schema set by name and dataspace.\u0027() {\n        given: \u0027an schema set is returned by the persistence service\u0027\n            def yangResourcesNameToContentMap \u003d TestUtils.getYangResourcesAsMap(\u0027bookstore.yang\u0027)\n            mockModuleStoreService.getYangSchemaResources(\u0027someDataspace\u0027, \u0027someSchemaSet\u0027) \u003e\u003e yangResourcesNameToContentMap\n        when: \u0027get schema set method is invoked twice\u0027\n            def result \u003d objectUnderTest.getSchemaSet(\u0027someDataspace\u0027, \u0027someSchemaSet\u0027)\n        then: \u0027the correct schema set is returned and persistency service called only once\u0027\n            result.getName().contains(\u0027someSchemaSet\u0027)\n            result.getDataspaceName().contains(\u0027someDataspace\u0027)\n            result.getModuleReferences().contains(new ModuleReference(\u0027stores\u0027, \u0027org:onap:ccsdk:sample\u0027, \u00272020-09-15\u0027))\n    }\n\n\n    def \u0027Schema set caching.\u0027() {\n        given: \u0027an  schema set\u0027\n            def yangResourcesNameToContentMap \u003d TestUtils.getYangResourcesAsMap(\u0027bookstore.yang\u0027)\n        when: \u0027get schema set method is invoked twice\u0027\n            2.times(objectUnderTest.getSchemaSet(\u0027someDataspace\u0027, \u0027someSchemaSet\u0027)\n        then: \u0027the persistency service called only once\u0027\n15\u0027))\n            1 * mockModuleStoreService.getYangSchemaResources(\u0027someDataspace\u0027, \u0027someSchemaSet\u0027) \u003e\u003e yangResourcesNameToContentMap\n    }",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f947e198_3b2e5d85",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-21T09:20:57Z",
+      "side": 1,
+      "message": "update naming here too (your IDE might do it automatically upon renaming the class)",
+      "range": {
+        "startLine": 29,
+        "startChar": 40,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "b59ed20772fa6ed021473a20c7a6f19cfc0af80a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
