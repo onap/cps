@@ -21,23 +21,35 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.CascadeDeleteAllowed
-import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.api.CpsAdminService
+import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ModuleReference
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.cache.CacheManager
+import org.springframework.cache.caffeine.CaffeineCacheManager
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 import spock.lang.Unroll
 
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
+@SpringBootTest
+@ComponentScan("org.onap.cps")
+@ContextConfiguration(classes = CpsModuleServiceImplSpec.class)
 class CpsModuleServiceImplSpec extends Specification {
-    def mockModuleStoreService = Mock(CpsModulePersistenceService)
-    def objectUnderTest = new CpsModuleServiceImpl()
-
-    def setup() {
-        objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
-    }
+    @SpringBean
+    CpsModulePersistenceService mockModuleStoreService = Mock()
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
+    @Autowired
+    CpsModuleServiceImpl objectUnderTest = new CpsModuleServiceImpl()
+    @SpringBean
+    CacheManager cacheManager = new CaffeineCacheManager("yangSchema");
 
     def 'Create schema set'() {
         given: 'Valid yang resource as name-to-content map'
@@ -67,6 +79,17 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
+    }
+
+    def 'Schema set caching.'() {
+        given: 'an  schema set'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        when: 'get schema set method is invoked twice'
+            2.times {
+                objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
+            }
+        then: 'the persistency service called only once'
+            1 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
     }
 
     @Unroll

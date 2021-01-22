@@ -24,13 +24,14 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
 import spock.lang.Specification
 
-
 class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
+    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def objectUnderTest = new CpsModuleServiceImpl()
 
     def setup() {
         objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
+        objectUnderTest.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
     }
 
     def 'E2E model can be parsed by CPS.'() {
