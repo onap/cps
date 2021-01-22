@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f42f55ea_b48623a2",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-22T08:04:46Z",
+      "side": 1,
+      "message": "As per our last backlog grooming, we need this config now for a new \"to be introduced\" module xnfproxy as well, so would it not make sense to keep in parent as is today  and re-use in the two modules as required.",
+      "range": {
+        "startLine": 111,
+        "startChar": 16,
+        "endLine": 111,
+        "endChar": 22
+      },
+      "revId": "69a8d3b8feed25a11b1898fc94b79711195b1a60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
