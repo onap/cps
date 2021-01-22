@@ -20,6 +20,12 @@
 
 package org.onap.cps.rest.controller
 
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
@@ -40,12 +46,6 @@ import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-
 @WebMvcTest
 class AdminRestControllerSpec extends Specification {
 
@@ -65,6 +65,7 @@ class AdminRestControllerSpec extends Specification {
     def basePath
 
     def anchorsEndpoint = '/v1/dataspaces/my_dataspace/anchors'
+    def anchorEndpoint = '/v1/dataspaces/my_dataspace/anchors/my_anchorname'
     def schemaSetsEndpoint = '/v1/dataspaces/test-dataspace/schema-sets'
     def schemaSetEndpoint = schemaSetsEndpoint + '/my_schema_set'
 
@@ -238,5 +239,15 @@ class AdminRestControllerSpec extends Specification {
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains('my_anchor')
+    }
+
+    def 'Get existing anchor by dataspace and anchor name.'() {
+        given:
+            mockCpsAdminService.getAnchor('my_dataspace','my_anchorname') >> anchor
+        when: 'get anchor API is invoked'
+            def response = mvc.perform(get("$basePath$anchorEndpoint")).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains('anchor')
     }
 }
