@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "a2576be4_5182a4be",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "from this builder class point of view it is just a DataNode (not a parent)",
+      "range": {
+        "startLine": 36,
+        "startChar": 33,
+        "endLine": 36,
+        "endChar": 39
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09cede11_aa75cbd5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "xPath\n\n(capital P)",
+      "range": {
+        "startLine": 36,
+        "startChar": 61,
+        "endLine": 36,
+        "endChar": 66
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "800c7727_a6ad523e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "explain that the chidlNode will be added to the collection of child nodes for the parent too",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 70
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27179382_96884543",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 1
@@ -36,6 +105,47 @@
       "writtenOn": "2021-01-22T15:55:00Z",
       "side": 1,
       "message": "too many logic was added to a simple POJO while it was intended to move all the logic into builder utility\n\nplease move all of it (incl immutable data manipulation) into DataNodeBuilder class.\nfollowing methods are expected (names may differ):\n\naddChildNode(DataNode currentDataNode, DataNode childDataNode)\nsetAttributeValue(DataNode currentDataNode, String attrName, Object attrValue) -\u003e\nsame method to be invoked for both single Object and a collection as attrValue\n\ntake into account the attributes setting is a single action per attribute name,\nno dynamic list value updating is expected for attributes - see comment in YangUtils",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cffec32_f28fb6b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "ok, to me it seems more natural in the DataNode itself, that it knows how to add a child but since we have a builder and what to keep this a simple PoJo lets move it to the builder",
+      "parentUuid": "27179382_96884543",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9156406_51ddc595",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "Below is just a brain-dump. Looking for reactions....\nI am not sure about these now, these are like the attributes of the Pojo but should it go to the builder too as it is \u0027business logic\u0027 ?! I think it would be all a lot easier to have just oen class no need for a builder no need for decision what goes where... \n\nBut if we do have a builder, it should just about creating NEW objects. not modifying existing objects. and in from taht perspective these method belong here correct?\n\nhence the dilemma with the create child, It does 2 things: create a child AND add it to the parent! Weighing everything up that probably does belong to the builder class (assuming we agree we need one)",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 5
+      },
       "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -88,6 +198,168 @@
     },
     {
       "key": {
+        "uuid": "ea4624f7_73a12ffc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "can you explain what exactly is lost, the unit tets are passing. But maybe the tests don\u0027t cover it...r",
+      "parentUuid": "4f681b7a_3e3d0225",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 72
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb8d65e8_ddde1fa7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "no \u0027parent\u0027 !",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10b48737_90c38e31",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "Scenarios (test names) are full sentences start with Capital and end in full stop",
+      "range": {
+        "startLine": 28,
+        "startChar": 9,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f55de0a2_6ce1d479",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "a data node is created for a given xPath",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96c5524e_47d1abd1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "data node",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a72bec_a3513fb1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "follow suggestion from previous test",
+      "range": {
+        "startLine": 40,
+        "startChar": 14,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fbd04d4_2d6bdf2d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/CpsDataNodeBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "you can assert it contain the correct child!",
+      "range": {
+        "startLine": 46,
+        "startChar": 42,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53e77991_a683e3c0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 1
@@ -99,6 +371,24 @@
       "writtenOn": "2021-01-22T15:55:00Z",
       "side": 1,
       "message": "this test is incomplete.\n\nit expected to validate all the supported node types are parsed as expected\n(container, keyed list, leaf and leaf-list).\n\nplease pay attention to the bug case described in comment for YangUtils.inspectContainer method\nthis case with transitional container node may require both test yang model and data update",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47bbdde9_7ccc8963",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T16:42:55Z",
+      "side": 1,
+      "message": "I am still not sure about any bug. The xPaths are verified below!\n\nIt has always bene my intention to handle list, leaves and leaves list in separate user stories. Some already are on the backlog. Although some code already is there to handle it it was not in the scope of this user story to handle all of those.  The purpose of this user story was to REFACTOR what was the Fragment class and use the new DataNode class from the API (and a builder for some reason). Please keep in mind the scope of a user story before commenting\n\nWhat is happening is her that some if this functionality is already \u0027poc-ed\u0027. No need to throw away that code and we have user stories coming up to flesh out the details and add the required validation etc.",
+      "parentUuid": "53e77991_a683e3c0",
       "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
