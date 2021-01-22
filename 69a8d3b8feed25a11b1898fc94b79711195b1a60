@@ -46,6 +46,30 @@
       "revId": "69a8d3b8feed25a11b1898fc94b79711195b1a60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad988c5_ae3209f2",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-22T09:08:01Z",
+      "side": 1,
+      "message": "Thanks, i am well aware. what difference do you see in other module config to this?",
+      "parentUuid": "4a8d23dc_7adde1d2",
+      "range": {
+        "startLine": 111,
+        "startChar": 16,
+        "endLine": 111,
+        "endChar": 22
+      },
+      "revId": "69a8d3b8feed25a11b1898fc94b79711195b1a60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
