@@ -44,6 +44,11 @@
             </dependency>
             <dependency>
                 <groupId>org.onap.cps</groupId>
+                <artifactId>cps-nf-proxy-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.onap.cps</groupId>
                 <artifactId>cps-ri</artifactId>
                 <version>${project.version}</version>
             </dependency>
