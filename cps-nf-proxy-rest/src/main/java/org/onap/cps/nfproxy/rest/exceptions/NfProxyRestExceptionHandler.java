@@ -1,6 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,30 +17,27 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.rest.exceptions;
+package org.onap.cps.nfproxy.rest.exceptions;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.onap.cps.rest.controller.AdminRestController;
-import org.onap.cps.rest.controller.DataRestController;
-import org.onap.cps.rest.model.ErrorMessage;
-import org.onap.cps.spi.exceptions.CpsAdminException;
+import org.onap.cps.nfproxy.rest.controller.NfProxyController;
+import org.onap.cps.nfproxy.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.DataInUseException;
-import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.exceptions.ModelValidationException;
-import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Exception handler with error message return.
+ */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class})
-public class CpsRestExceptionHandler {
+@RestControllerAdvice(assignableTypes = {NfProxyController.class})
+public class NfProxyRestExceptionHandler {
 
     /**
      * Default exception handler.
@@ -48,24 +45,10 @@ public class CpsRestExceptionHandler {
      * @param exception the exception to handle
      * @return response with response code 500.
      */
-    @ExceptionHandler public static ResponseEntity<Object> handleInternalServerErrorExceptions(
+    @ExceptionHandler
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
         final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
-    }
-
-    @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class})
-    public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
-    }
-
-    @ExceptionHandler({NotFoundInDataspaceException.class})
-    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
-    }
-
-    @ExceptionHandler({DataInUseException.class})
-    public static ResponseEntity<Object> handleDataInUseException(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.CONFLICT, exception.getMessage(), extractDetails(exception));
     }
 
     @ExceptionHandler({CpsException.class})
