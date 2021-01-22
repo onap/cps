@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +22,10 @@
 package org.onap.cps.spi.model;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +42,12 @@ public class DataNode {
     private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
-    private Map<String, Object> leaves;
+    private Map<String, Object> leaves = new HashMap<>();
     private Collection<String> xpathsChildren;
     private Collection<DataNode> childDataNodes;
+    private Optional<Set<String>> optionalLeafListNames = Optional.empty();
+
+    public DataNode(final String xpath) {
+        this.xpath = xpath;
+    }
 }
