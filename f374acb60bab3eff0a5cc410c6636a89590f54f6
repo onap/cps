@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27179382_96884543",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-22T15:55:00Z",
+      "side": 1,
+      "message": "too many logic was added to a simple POJO while it was intended to move all the logic into builder utility\n\nplease move all of it (incl immutable data manipulation) into DataNodeBuilder class.\nfollowing methods are expected (names may differ):\n\naddChildNode(DataNode currentDataNode, DataNode childDataNode)\nsetAttributeValue(DataNode currentDataNode, String attrName, Object attrValue) -\u003e\nsame method to be invoked for both single Object and a collection as attrValue\n\ntake into account the attributes setting is a single action per attribute name,\nno dynamic list value updating is expected for attributes - see comment in YangUtils",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42368a7d_907bb8ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-22T15:55:00Z",
+      "side": 1,
+      "message": "leaf-list defines the collection of simple types,\ntwo-stages (first placeholder, then list values one-by-one) is extra here.\ncreate a collection of values and set under attribute by single call,\nall within current method no need to invoke createDataNodeTreeFromNormalizedNode()",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f681b7a_3e3d0225",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-22T15:55:00Z",
+      "side": 1,
+      "message": "this method contains error which should be fixed.\n\nthis method is expected to create a DataNode object representing current which then\nthen children nodes to be populated into this object.\ninstead all the children of current container node are populated under container\u0027s parent,\nmaking current node information (incl xpath) being lost.\n\nit\u0027s a bug to be fixed.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 72
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53e77991_a683e3c0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-22T15:55:00Z",
+      "side": 1,
+      "message": "this test is incomplete.\n\nit expected to validate all the supported node types are parsed as expected\n(container, keyed list, leaf and leaf-list).\n\nplease pay attention to the bug case described in comment for YangUtils.inspectContainer method\nthis case with transitional container node may require both test yang model and data update",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
