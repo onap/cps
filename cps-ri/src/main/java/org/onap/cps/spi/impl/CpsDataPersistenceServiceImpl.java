@@ -71,7 +71,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final FragmentEntity parentFragment = FragmentEntity.builder()
             .dataspace(dataspaceEntity)
             .anchor(anchorEntity)
-            .xpath(dataNodeToBeConverted.getXpath())
+            .xpath(dataNodeToBeConverted.getXPath())
             .attributes(GSON.toJson(dataNodeToBeConverted.getLeaves()))
             .build();
 

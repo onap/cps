@@ -139,16 +139,16 @@ public class CpsDataPersistenceServiceTest {
     private DataNode createDataNodeWithChildAndGrandChild(final String parentXpath, final String childXpath,
         final String grandChildXpath) {
         final DataNode parentDataNode = DataNode.builder()
-            .xpath(parentXpath)
+            .xPath(parentXpath)
             .build();
 
         final DataNode childDataNode = DataNode.builder()
-            .xpath(childXpath)
+            .xPath(childXpath)
             .childDataNodes(Collections.emptySet())
             .build();
 
         final DataNode grandChildDataNode = DataNode.builder()
-            .xpath(grandChildXpath)
+            .xPath(grandChildXpath)
             .childDataNodes(Collections.emptySet())
             .build();
 
