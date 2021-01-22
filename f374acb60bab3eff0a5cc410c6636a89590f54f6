@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6f98a0d9_2caa858e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-22T15:59:51Z",
+      "side": 1,
+      "message": "move to utils package \nthis artifact does not belong to API",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27179382_96884543",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 1
