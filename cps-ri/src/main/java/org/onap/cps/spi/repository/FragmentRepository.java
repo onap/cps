@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
-import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
+import org.onap.cps.spi.exceptions.FragmentNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -44,7 +44,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
         @NonNull AnchorEntity anchorEntity, @NonNull String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
-            .orElseThrow(() -> new NotFoundInDataspaceException(dataspaceEntity.getName(), xpath));
+            .orElseThrow(() -> new FragmentNotFoundException(dataspaceEntity.getName(), xpath));
     }
 
     @Modifying

@@ -27,6 +27,7 @@ class CpsExceptionsSpec extends Specification {
     def rootCause = new Throwable()
     def providedMessage = 'some message'
     def providedDetails = 'some details'
+    def xpath = 'some xpath'
 
     def 'Creating an exception that the Anchor already exist.'() {
         given: 'an exception dat the Anchor already exist is created'
@@ -52,7 +53,7 @@ class CpsExceptionsSpec extends Specification {
                     == "Dataspace with name ${dataspaceName} does not exist."
     }
 
-    def 'Creating a data validation exception.'() {
+    def 'Creating a data validation exception with root cause.'() {
         given: 'a data validation exception is created'
             def exception = new DataValidationException(providedMessage, providedDetails, rootCause)
         expect: 'the exception has the provided message'
@@ -61,6 +62,15 @@ class CpsExceptionsSpec extends Specification {
             exception.details == providedDetails
         and: 'the correct root cause is maintained'
             exception.cause == rootCause
+    }
+
+    def 'Creating a data validation exception.'() {
+        given: 'a data validation exception is created'
+            def exception = new DataValidationException(providedMessage, providedDetails)
+        expect: 'the exception has the provided message'
+            exception.message == providedMessage
+        and: 'the exception has the provided details'
+            exception.details == providedDetails
     }
 
     def 'Creating a model validation exception.'() {
@@ -116,5 +126,11 @@ class CpsExceptionsSpec extends Specification {
             (new SchemaSetInUseException(dataspaceName, schemaSetName)).details
                     == ("Schema Set with name ${schemaSetName} in dataspace ${dataspaceName} is having "
                     + "Anchor records associated.")
+    }
+
+    def 'Creating a exception that a fragment does not exist.'() {
+        expect: 'the exception details contains the correct message with dataspace name and xpath.'
+            (new FragmentNotFoundException(dataspaceName, xpath)).details
+                    == "Fragment with xpath ${xpath} was not found for dataspace ${dataspaceName}."
     }
 }
