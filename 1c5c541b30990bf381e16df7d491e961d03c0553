@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "904baf5f_f745e65b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T15:40:20Z",
+      "side": 1,
+      "message": "add full stop :-)",
+      "range": {
+        "startLine": 57,
+        "startChar": 59,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "1c5c541b30990bf381e16df7d491e961d03c0553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baa79f24_d509f053",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T15:40:20Z",
+      "side": 1,
+      "message": "this is not a collection, curly brackets not needed",
+      "range": {
+        "startLine": 60,
+        "startChar": 86,
+        "endLine": 60,
+        "endChar": 96
+      },
+      "revId": "1c5c541b30990bf381e16df7d491e961d03c0553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
