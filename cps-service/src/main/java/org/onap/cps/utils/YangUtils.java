@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,10 +28,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.impl.Fragment;
-import org.opendaylight.yangtools.yang.common.QName;
+import org.onap.cps.api.CpsDataNodeBuilder;
+import org.onap.cps.spi.model.DataNode;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.PathArgument;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
@@ -43,7 +45,6 @@ import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
-import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 @Slf4j
@@ -79,71 +80,75 @@ public class YangUtils {
      * Break a Normalized Node tree into fragments that can be stored by the persistence service.
      *
      * @param tree   the normalized node tree
-     * @param module the module applicable for the data in the normalized node
-     * @return the 'root' Fragment for the tree contain all relevant children etc.
+     * @return the 'parent' DataNode for the tree contain all relevant children etc.
      */
-    public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
-        final QName[] nodeTypes = {tree.getNodeType()};
+    public static DataNode createDataNodeTreeFromNormalizedNode(final NormalizedNode<? extends PathArgument, ?> tree) {
         final String xpath = buildXpathId(tree.getIdentifier());
-        final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);
-        fragmentNormalizedNode(rootFragment, tree);
-        return rootFragment;
+        final DataNode parentDataNode = CpsDataNodeBuilder.createParentDataNode(xpath);
+        createDataNodeTreeFromNormalizedNode(parentDataNode, tree);
+        return parentDataNode;
     }
 
-    private static void fragmentNormalizedNode(final Fragment currentFragment,
-                                               final NormalizedNode normalizedNode) {
+    private static void createDataNodeTreeFromNormalizedNode(final DataNode currentDataNode,
+        final NormalizedNode normalizedNode) {
         if (normalizedNode instanceof DataContainerNode) {
-            inspectContainer(currentFragment, (DataContainerNode) normalizedNode);
+            inspectContainer(currentDataNode, (DataContainerNode) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
-            inspectKeyedList(currentFragment, (MapNode) normalizedNode);
+            inspectKeyedList(currentDataNode, (MapNode) normalizedNode);
         } else if (normalizedNode instanceof ValueNode) {
-            inspectLeaf(currentFragment, (ValueNode) normalizedNode);
+            inspectLeaf(currentDataNode, (ValueNode) normalizedNode);
         } else if (normalizedNode instanceof LeafSetNode) {
-            inspectLeafList(currentFragment, (LeafSetNode) normalizedNode);
+            inspectLeafList(currentDataNode, (LeafSetNode) normalizedNode);
         } else {
             log.warn("Cannot normalize {}", normalizedNode.getClass());
         }
     }
 
-    private static void inspectLeaf(final Fragment currentFragment,
-                                    final ValueNode valueNode) {
+    private static void inspectLeaf(final DataNode currentDataNode, final ValueNode valueNode) {
         final Object value = valueNode.getValue();
-        currentFragment.addLeafValue(valueNode.getNodeType().getLocalName(), value);
+        currentDataNode.addLeafValue(valueNode.getNodeType().getLocalName(), value);
     }
 
-    private static void inspectLeafList(final Fragment currentFragment,
-                                        final LeafSetNode leafSetNode) {
-        currentFragment.addLeafListName(leafSetNode.getNodeType().getLocalName());
+    private static void inspectLeafList(final DataNode currentDataNode, final LeafSetNode leafSetNode) {
+        currentDataNode.addLeafListName(leafSetNode.getNodeType().getLocalName());
         for (final NormalizedNode value : (Collection<NormalizedNode>) leafSetNode.getValue()) {
-            fragmentNormalizedNode(currentFragment, value);
+            createDataNodeTreeFromNormalizedNode(currentDataNode, value);
         }
     }
 
-    private static void inspectContainer(final Fragment currentFragment,
-                                         final DataContainerNode dataContainerNode) {
+    private static void inspectContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
         final Collection<NormalizedNode> leaves = (Collection) dataContainerNode.getValue();
         for (final NormalizedNode leaf : leaves) {
-            fragmentNormalizedNode(currentFragment, leaf);
+            createDataNodeTreeFromNormalizedNode(currentDataNode, leaf);
         }
     }
 
-    private static void inspectKeyedList(final Fragment currentFragment,
-                                         final MapNode mapNode) {
-        createNodeForEachListElement(currentFragment, mapNode);
+    private static void inspectKeyedList(final DataNode currentDataNode, final MapNode mapNode) {
+        createNodeForEachListElement(currentDataNode, mapNode);
     }
 
-    private static void createNodeForEachListElement(final Fragment currentFragment, final MapNode mapNode) {
+    /**
+     * Create a node for each list element.
+     *
+     * @param currentDataNode   the current data Node
+     * @param mapNode the map node
+     */
+    private static void createNodeForEachListElement(final DataNode currentDataNode, final MapNode mapNode) {
         final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
             final String xpathId = buildXpathId(mapEntryNode.getIdentifier());
-            final Fragment listElementFragment =
-                currentFragment.createChildFragment(mapNode.getNodeType(), xpathId);
-            fragmentNormalizedNode(listElementFragment, mapEntryNode);
+            final DataNode listElementNodes =
+                CpsDataNodeBuilder.createChildNode(currentDataNode, xpathId);
+            createDataNodeTreeFromNormalizedNode(listElementNodes, mapEntryNode);
         }
     }
 
+    /**
+     * Build xpathId from the YangInstanceIdentifier.
+     *
+     * @param nodeIdentifier   te identifier of each node
+     * @return the generated xpathId for each node
+     */
     private static String buildXpathId(final YangInstanceIdentifier.PathArgument nodeIdentifier) {
         final StringBuilder xpathIdBuilder = new StringBuilder();
         xpathIdBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
