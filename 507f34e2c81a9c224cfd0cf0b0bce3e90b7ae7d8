@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60630019_1027d387",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T15:35:43Z",
+      "side": 1,
+      "message": "this should not e in the SPI \nthee SPI is outward facing, The term fragment should be remain internal.\nI think you might as well throw a DataNodeException here, there is no value in converting it...",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "507f34e2c81a9c224cfd0cf0b0bce3e90b7ae7d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
