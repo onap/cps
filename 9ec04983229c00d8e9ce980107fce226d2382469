@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "35d9b343_7b20d6e6",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-22T14:50:34Z",
+      "side": 1,
+      "message": "we are missing the jib properties for generate a correct image, otherwise we will override the cps image",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cae06dc_ac2f2936",
         "filename": "cps-nf-proxy-rest/pom.xml",
         "patchSetId": 2
