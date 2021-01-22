@@ -32,8 +32,8 @@ import org.onap.cps.DatabaseTestContainer;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AnchorNotFoundException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
-import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,7 +159,7 @@ public class CpsDataPersistenceServiceTest {
             .addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, PARENT_XPATH1, createDataNodeTree(CHILD_XPATH1));
     }
 
-    @Test(expected = NotFoundInDataspaceException.class)
+    @Test(expected = DataNodeNotFoundException.class)
     @Sql({CLEAR_DATA, SET_DATA})
     public void testAddAChildWithToAParentThatDoesNotExist() {
         cpsDataPersistenceService

@@ -1,7 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,28 +19,24 @@
 
 package org.onap.cps.spi.exceptions;
 
-public class DataValidationException extends CpsException {
+/**
+ * DataNode Not Found Exception. Indicates the requested data being absent.
+ */
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
+public class DataNodeNotFoundException extends DataValidationException {
 
-    private static final long serialVersionUID = 7747941311132087621L;
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param details the error details
-     */
-    public DataValidationException(final String message, final String details) {
-        super(message, details);
-    }
+    private static final long serialVersionUID = 7786740001662205407L;
 
     /**
      * Constructor.
      *
-     * @param message the error message
-     * @param details the error details
-     * @param cause   the error cause
+     * @param dataspaceName the name of the dataspace
+     * @param anchorName    the anchor name
+     * @param xpath         datanode xpath
      */
-    public DataValidationException(final String message, final String details, final Throwable cause) {
-        super(message, details, cause);
+    public DataNodeNotFoundException(final String dataspaceName, final String anchorName, final String xpath) {
+        super("DataNode not found", String
+            .format("DataNode with xpath %s was not found for anchor %s and dataspace %s.", xpath,
+                anchorName, dataspaceName));
     }
 }
