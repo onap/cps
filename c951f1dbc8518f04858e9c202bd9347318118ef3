@@ -70,6 +70,30 @@
       "revId": "c951f1dbc8518f04858e9c202bd9347318118ef3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21834587_78298812",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-22T09:33:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d54a299_2f58353c",
+      "range": {
+        "startLine": 37,
+        "startChar": 27,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "c951f1dbc8518f04858e9c202bd9347318118ef3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
