@@ -43,6 +43,8 @@
             ../cps-service/target/site/jacoco-aggregate/jacoco.xml,
             ../cps-rest/target/site/jacoco-ut/jacoco.xml,
             ../cps-rest/target/site/jacoco-aggregate/jacoco.xml,
+            ../cps-nf-proxy-rest/target/site/jacoco-ut/jacoco.xml,
+            ../cps-nf-proxy-rest/target/site/jacoco-aggregate/jacoco.xml,
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
@@ -169,27 +171,14 @@
                     <groupId>io.swagger.codegen.v3</groupId>
                     <artifactId>swagger-codegen-maven-plugin</artifactId>
                     <version>${swagger-codegen-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
-                                <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
-                                <modelPackage>org.onap.cps.rest.model</modelPackage>
-                                <apiPackage>org.onap.cps.rest.api</apiPackage>
-                                <language>spring</language>
-                                <generateSupportingFiles>false</generateSupportingFiles>
-                                <configOptions>
-                                    <sourceFolder>src/gen/java</sourceFolder>
-                                    <dateLibrary>java11</dateLibrary>
-                                    <interfaceOnly>true</interfaceOnly>
-                                    <useTags>true</useTags>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <configuration>
+                        <configOptions>
+                            <sourceFolder>src/gen/java</sourceFolder>
+                            <dateLibrary>java11</dateLibrary>
+                            <interfaceOnly>true</interfaceOnly>
+                            <useTags>true</useTags>
+                        </configOptions>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>

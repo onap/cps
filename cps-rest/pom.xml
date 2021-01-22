@@ -106,6 +106,21 @@
             <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
+                            <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
+                            <modelPackage>org.onap.cps.rest.model</modelPackage>
+                            <apiPackage>org.onap.cps.rest.api</apiPackage>
+                            <language>spring</language>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
