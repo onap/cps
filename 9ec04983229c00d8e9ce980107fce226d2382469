@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cae06dc_ac2f2936",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-22T14:42:07Z",
+      "side": 1,
+      "message": "are we really using all those dependencies?",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fad1d91_10c567d1",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-22T14:42:07Z",
+      "side": 1,
+      "message": "thy this method have doc and not the others?",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bff96ed4_6658fd33",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-22T14:42:07Z",
+      "side": 1,
+      "message": "cps-nf-proxy?",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
