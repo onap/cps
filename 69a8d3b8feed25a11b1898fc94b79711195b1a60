@@ -22,6 +22,30 @@
       "revId": "69a8d3b8feed25a11b1898fc94b79711195b1a60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8d23dc_7adde1d2",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-22T08:27:05Z",
+      "side": 1,
+      "message": "this execution configuration is per module, thus we will have the same on the new xNF module that will require to create the  docker image. What it goes is in parent is the common configuration -\u003e pluginManagement",
+      "parentUuid": "f42f55ea_b48623a2",
+      "range": {
+        "startLine": 111,
+        "startChar": 16,
+        "endLine": 111,
+        "endChar": 22
+      },
+      "revId": "69a8d3b8feed25a11b1898fc94b79711195b1a60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
