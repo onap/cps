@@ -12,6 +12,8 @@
     <artifactId>cps-nf-proxy-rest</artifactId>
 
     <properties>
+        <app>org.onap.cps.nfproxy.Application</app>
+        <repository.name>nexus3.onap.org:10001/onap/cps-nf-proxy</repository.name>
         <minimum-coverage>0.44</minimum-coverage>
     </properties>
 
@@ -93,6 +95,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
             </plugin>
             <!-- Swagger code generation. -->
             <plugin>
