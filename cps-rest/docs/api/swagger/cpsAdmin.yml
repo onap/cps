@@ -146,7 +146,7 @@ anchorByDataspaceAndAnchorName:
   get:
     tags:
       - cps-admin
-    summary: Read an anchor given a anchor and a dataspace - DRAFT
+    summary: Read an anchor given a anchor and a dataspace
     operationId: getAnchor
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
