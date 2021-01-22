@@ -1,0 +1,31 @@
+helloWorld:
+  get:
+    tags:
+      - nf-proxy
+    summary: rest interface validation
+    operationId: helloWorld
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+helloError:
+  get:
+    tags:
+      - nf-proxy
+    summary: error handler validation
+    operationId: helloError
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
