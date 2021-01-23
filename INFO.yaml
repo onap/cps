@@ -48,9 +48,3 @@ repositories:
     - cps
 tsc:
     approval: 'https://lists.onap.org/g/onap-tsc'
-    changes:
-        - type: 'Addition'
-          name: 'cps'
-          # yamllint disable rule:line-length
-          link: 'https://lists.onap.org/g/onap-tsc/topic/cps_ask_for_new_repo/77844208'
-          # yamllint enable rule:line-length
