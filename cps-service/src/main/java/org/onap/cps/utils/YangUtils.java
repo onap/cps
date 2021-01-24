@@ -53,7 +53,7 @@ public class YangUtils {
      * @param schemaContext the SchemaContext for the given data
      * @return the NormalizedNode representing the json data
      */
-    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
+    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
                 .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
