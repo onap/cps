@@ -54,7 +54,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
-        final NormalizedNode normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
+        final NormalizedNode<?, ?> normalizedNode =
+            YangUtils.parseJsonData(jsonData, schemaContext);
         final DataNode dataNode = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchor.getName(), dataNode);
     }
