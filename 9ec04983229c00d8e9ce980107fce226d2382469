@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1504a7fb_f51504a6",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T09:11:16Z",
+      "side": 1,
+      "message": "provided missing properties",
+      "parentUuid": "35d9b343_7b20d6e6",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cae06dc_ac2f2936",
         "filename": "cps-nf-proxy-rest/pom.xml",
         "patchSetId": 2
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "df2a2078_e441dff6",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T09:11:16Z",
+      "side": 1,
+      "message": "yes, all of these dependencies are used already,\nexcept modelmapper - removed this one.\nwould gladly remove spock dependencies if team decides to use junit instead",
+      "parentUuid": "e843b66a_19818e8d",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8fad1d91_10c567d1",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
         "patchSetId": 2
@@ -65,6 +101,24 @@
       "writtenOn": "2021-01-22T14:42:07Z",
       "side": 1,
       "message": "thy this method have doc and not the others?",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daddf238_a768a21f",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T09:11:16Z",
+      "side": 1,
+      "message": "this one is default handler.\nit serves all the exceptions having no handler by class name explicitly defined below.",
+      "parentUuid": "8fad1d91_10c567d1",
       "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "a03b6648_38257387",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T09:11:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bff96ed4_6658fd33",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59d9257f_6a5362a7",
         "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
         "patchSetId": 2
@@ -99,6 +171,30 @@
       "writtenOn": "2021-01-25T06:22:11Z",
       "side": 1,
       "message": "Maybe we decided to keep the same DB ? impl stories without grooming raises all this questions. what is acceptance criteria for this story?",
+      "range": {
+        "startLine": 21,
+        "startChar": 47,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c5ed1ce_658cc19b",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T09:11:16Z",
+      "side": 1,
+      "message": "i see no problems using same db\nthen it will be possible to access to same data in a various context\n- fill one (exposed dataspace, anchor and schema set) using cps-rest\n- limited one (hidden dataspace, anchor and schema set) via cps-nf-proxy-rest\n\nthe story is about to create a module within cps project which\n- will use existing cps core functionality (service and persistence layers)\n- expose own REST API\n- starting point for addition of xNF-Proxy functionality",
+      "parentUuid": "59d9257f_6a5362a7",
       "range": {
         "startLine": 21,
         "startChar": 47,
