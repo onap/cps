@@ -23,7 +23,6 @@ import static junit.framework.TestCase.assertEquals;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Arrays;
-import java.util.Collections;
 import org.assertj.core.api.Assertions;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -41,7 +40,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -188,7 +186,8 @@ public class CpsDataPersistenceServiceTest {
     }
 
     private static DataNode createDataNodeTree(final String... xpaths) {
-        final DataNode dataNode = DataNode.builder().xpath(xpaths[0]).childDataNodes(Collections.emptySet()).build();
+        final DataNode dataNode = new DataNode();
+        dataNode.setXpath(xpaths[0]);
         if (xpaths.length > 1) {
             final String[] xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length);
             final DataNode childDataNode = createDataNodeTree(xPathsDescendant);
