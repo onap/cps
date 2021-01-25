@@ -286,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "ff030035_71a5e070",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-25T10:26:56Z",
+      "side": 1,
+      "message": "This story was to replace Fragment class with DataNode. Hence any code change in YangUtils can be taken up as part of another story to store the DataNode.",
+      "parentUuid": "42368a7d_907bb8ad",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f681b7a_3e3d0225",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -321,6 +345,30 @@
       "side": 1,
       "message": "can you explain what exactly is lost, the unit tets are passing. But maybe the tests don\u0027t cover it...r",
       "parentUuid": "4f681b7a_3e3d0225",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 72
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb24f7e2_441e7fc8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-25T10:26:56Z",
+      "side": 1,
+      "message": "As mentioned above, this story is only to replace Fragments with DataNode class. These suggested changes can be taken up in other tasks/stories",
+      "parentUuid": "ea4624f7_73a12ffc",
       "range": {
         "startLine": 122,
         "startChar": 0,
@@ -500,6 +548,24 @@
       "side": 1,
       "message": "I am still not sure about any bug. The xPaths are verified below!\n\nIt has always bene my intention to handle list, leaves and leaves list in separate user stories. Some already are on the backlog. Although some code already is there to handle it it was not in the scope of this user story to handle all of those.  The purpose of this user story was to REFACTOR what was the Fragment class and use the new DataNode class from the API (and a builder for some reason). Please keep in mind the scope of a user story before commenting\n\nWhat is happening is her that some if this functionality is already \u0027poc-ed\u0027. No need to throw away that code and we have user stories coming up to flesh out the details and add the required validation etc.",
       "parentUuid": "53e77991_a683e3c0",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d62e02b0_0af9c748",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-25T10:26:56Z",
+      "side": 1,
+      "message": "As discussed in YangUtils, the above discussed bug case can be handled in a different task/story.",
+      "parentUuid": "47bbdde9_7ccc8963",
       "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
