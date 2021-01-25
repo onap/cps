@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "07cd1d3e_f3157f75",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T13:29:37Z",
+      "side": 1,
+      "message": "Why does the builder need getter methods?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef81453b_aa35d289",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
         "patchSetId": 3
@@ -93,6 +116,29 @@
       "writtenOn": "2021-01-25T13:11:05Z",
       "side": 1,
       "message": "why is this builder here?",
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c04e503b_5b6e2617",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T13:29:37Z",
+      "side": 1,
+      "message": "I think this method (and everything that comes with it) should move to the builder, then anything else can remain private in the builder class",
+      "range": {
+        "startLine": 88,
+        "startChar": 10,
+        "endLine": 88,
+        "endChar": 55
+      },
       "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
