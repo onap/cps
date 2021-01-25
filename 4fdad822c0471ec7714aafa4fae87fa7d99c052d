@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c3f8667_03d289bb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T10:43:52Z",
+      "side": 1,
+      "message": "capital P",
+      "range": {
+        "startLine": 45,
+        "startChar": 61,
+        "endLine": 45,
+        "endChar": 62
+      },
+      "revId": "4fdad822c0471ec7714aafa4fae87fa7d99c052d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0669f9c_e8db951a",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T10:43:52Z",
+      "side": 1,
+      "message": "it seem to be a legacy Issue",
+      "range": {
+        "startLine": 185,
+        "startChar": 58,
+        "endLine": 185,
+        "endChar": 64
+      },
+      "revId": "4fdad822c0471ec7714aafa4fae87fa7d99c052d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5705b9e_56c42e5d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataNodeNotFoundException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T10:43:52Z",
+      "side": 1,
+      "message": "capital P",
+      "range": {
+        "startLine": 37,
+        "startChar": 104,
+        "endLine": 37,
+        "endChar": 105
+      },
+      "revId": "4fdad822c0471ec7714aafa4fae87fa7d99c052d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95a2159b_274100a1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-25T10:43:52Z",
+      "side": 1,
+      "message": "capital P",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "4fdad822c0471ec7714aafa4fae87fa7d99c052d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
