@@ -204,6 +204,30 @@
       "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a99c9a44_f066335d",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:24:40Z",
+      "side": 1,
+      "message": "my point was not against using db, I am ok with that, but where exactly do we have this documented?",
+      "parentUuid": "3c5ed1ce_658cc19b",
+      "range": {
+        "startLine": 21,
+        "startChar": 47,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
