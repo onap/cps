@@ -23,7 +23,6 @@ import static junit.framework.TestCase.assertEquals;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Arrays;
-import java.util.Collections;
 import org.assertj.core.api.Assertions;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -35,6 +34,7 @@ import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -67,7 +67,6 @@ public class CpsDataPersistenceServiceTest {
     private static final long GRAND_CHILD_ID_4006 = 4006;
     private static final String GRAND_CHILD_XPATH1 = "/parent-1/child-1/grandchild-1";
 
-
     @ClassRule
     public static DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance();
 
@@ -91,14 +90,16 @@ public class CpsDataPersistenceServiceTest {
     @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreDataNodeAtNonExistingDataspace() {
         cpsDataPersistenceService
-            .storeDataNode("Non Existing Dataspace Name", ANCHOR_NAME1, new DataNode());
+            .storeDataNode("Non Existing Dataspace Name", ANCHOR_NAME1,
+                    new DataNodeBuilder().build());
     }
 
     @Test(expected = AnchorNotFoundException.class)
     @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreDataNodeAtNonExistingAnchor() {
         cpsDataPersistenceService
-            .storeDataNode(DATASPACE_NAME, "Non Existing Anchor Name", new DataNode());
+            .storeDataNode(DATASPACE_NAME, "Non Existing Anchor Name",
+                    new DataNodeBuilder().build());
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -188,12 +189,12 @@ public class CpsDataPersistenceServiceTest {
     }
 
     private static DataNode createDataNodeTree(final String... xpaths) {
-        final DataNode dataNode = DataNode.builder().xpath(xpaths[0]).childDataNodes(Collections.emptySet()).build();
+        ImmutableSet<DataNode> childNodes = null;
         if (xpaths.length > 1) {
             final String[] xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length);
             final DataNode childDataNode = createDataNodeTree(xPathsDescendant);
-            dataNode.setChildDataNodes(ImmutableSet.of(childDataNode));
+            childNodes = ImmutableSet.of(childDataNode);
         }
-        return dataNode;
+        return new DataNodeBuilder().withXpath(xpaths[0]).withChildDataNodes(childNodes).build();
     }
 }
