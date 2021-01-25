@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "253ed550_3eeb97ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-25T12:52:58Z",
+      "side": 1,
+      "message": "I see the checkstyle failing when this is renamed to xPath. Hence reverted here as well as in DatsNode.",
+      "parentUuid": "9e046266_038ed639",
+      "range": {
+        "startLine": 36,
+        "startChar": 61,
+        "endLine": 36,
+        "endChar": 66
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "800c7727_a6ad523e",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
         "patchSetId": 1
