@@ -54,25 +54,4 @@ class YangUtilsSpec extends Specification{
             '{incomplete json'                                | 'incomplete json'
             '{"test:bookstore": {"address": "Parnell st." }}' | 'json with un-modelled data'
     }
-
-    def 'Breaking a Json Data Object into fragments.'() {
-        given: 'a Yang module'
-            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)getSchemaContext()
-            def module = schemaContext.findModule('stores', Revision.of('2020-09-15')).get()
-        and: 'a normalized node for that model'
-            def jsonData = TestUtils.getResourceFileContent('bookstore.json')
-            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
-        when: 'the json data is fragmented'
-            def result = YangUtils.fragmentNormalizedNode(normalizedNode, module)
-        then: 'the system creates a (root) fragment without a parent and 2 children (categories)'
-            result.parentFragment == null
-            result.childFragments.size() == 2
-        and: 'each child (category) has the root fragment (result) as parent and in turn as 1 child (a list of books)'
-            result.childFragments.each { it.parentFragment == result && it.childFragments.size() == 1 }
-        and: 'the fragments have the correct xpaths'
-            assert result.xpath == '/bookstore'
-            assert result.childFragments.collect { it.xpath }
-                .containsAll(["/bookstore/categories[@code='01']", "/bookstore/categories[@code='02']"])
-    }
 }
