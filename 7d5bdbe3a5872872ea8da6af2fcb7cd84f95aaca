@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c2f4474_667555cc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataNodeNotFoundException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-25T07:57:20Z",
+      "side": 1,
+      "message": "and anchor %s\nanchor name should be mentioned in the error message,\nupdate to accept 3 args in constructor, fragmentRepository method to be updated accordingly",
+      "range": {
+        "startLine": 38,
+        "startChar": 58,
+        "endLine": 38,
+        "endChar": 75
+      },
+      "revId": "7d5bdbe3a5872872ea8da6af2fcb7cd84f95aaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
