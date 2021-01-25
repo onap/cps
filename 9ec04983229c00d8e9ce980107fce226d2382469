@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "e843b66a_19818e8d",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T06:22:11Z",
+      "side": 1,
+      "message": "exactly, we dont have anything impl yet, better to add we need them, else removing them becomes a pain.",
+      "parentUuid": "1cae06dc_ac2f2936",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8fad1d91_10c567d1",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
         "patchSetId": 2
@@ -64,6 +82,29 @@
       "writtenOn": "2021-01-22T14:42:07Z",
       "side": 1,
       "message": "cps-nf-proxy?",
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59d9257f_6a5362a7",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T06:22:11Z",
+      "side": 1,
+      "message": "Maybe we decided to keep the same DB ? impl stories without grooming raises all this questions. what is acceptance criteria for this story?",
+      "range": {
+        "startLine": 21,
+        "startChar": 47,
+        "endLine": 21,
+        "endChar": 52
+      },
       "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
