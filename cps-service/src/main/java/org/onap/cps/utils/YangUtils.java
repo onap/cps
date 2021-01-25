@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,35 +23,26 @@ package org.onap.cps.utils;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.impl.Fragment;
-import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
-import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifierWithPredicates;
-import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
-import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
-import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
-import org.opendaylight.yangtools.yang.data.api.schema.MapNode;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
-import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactory;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
-import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 @Slf4j
 public class YangUtils {
 
+
     private YangUtils() {
-        throw new IllegalStateException("Utility class");
+        // Private constructor fo security reasons
     }
 
     /**
@@ -60,7 +52,7 @@ public class YangUtils {
      * @param schemaContext the SchemaContext for the given data
      * @return the NormalizedNode representing the json data
      */
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext)
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext)
             throws IOException {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
                 .getShared(schemaContext);
@@ -76,85 +68,23 @@ public class YangUtils {
     }
 
     /**
-     * Break a Normalized Node tree into fragments that can be stored by the persistence service.
-     *
-     * @param tree   the normalized node tree
-     * @param module the module applicable for the data in the normalized node
-     * @return the 'root' Fragment for the tree contain all relevant children etc.
+     * Create an xpath form a Yang Tools NodeIdentifier (i.e. PathArgument).
+     * @param nodeIdentifier the NodeIdentifier
+     * @return an xpath
      */
-    public static Fragment fragmentNormalizedNode(
-            final NormalizedNode<? extends YangInstanceIdentifier.PathArgument, ?> tree,
-            final Module module) {
-        final QName[] nodeTypes = {tree.getNodeType()};
-        final String xpath = buildXpathId(tree.getIdentifier());
-        final Fragment rootFragment = Fragment.createRootFragment(module, nodeTypes, xpath);
-        fragmentNormalizedNode(rootFragment, tree);
-        return rootFragment;
-    }
+    public static String buildXpath(final YangInstanceIdentifier.PathArgument nodeIdentifier) {
+        final StringBuilder xpathBuilder = new StringBuilder();
+        xpathBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
 
-    private static void fragmentNormalizedNode(final Fragment currentFragment,
-                                               final NormalizedNode normalizedNode) {
-        if (normalizedNode instanceof DataContainerNode) {
-            inspectContainer(currentFragment, (DataContainerNode) normalizedNode);
-        } else if (normalizedNode instanceof MapNode) {
-            inspectKeyedList(currentFragment, (MapNode) normalizedNode);
-        } else if (normalizedNode instanceof ValueNode) {
-            inspectLeaf(currentFragment, (ValueNode) normalizedNode);
-        } else if (normalizedNode instanceof LeafSetNode) {
-            inspectLeafList(currentFragment, (LeafSetNode) normalizedNode);
-        } else {
-            log.warn("Cannot normalize {}", normalizedNode.getClass());
+        if (nodeIdentifier instanceof YangInstanceIdentifier.NodeIdentifierWithPredicates) {
+            xpathBuilder.append(getKeyAttributesStatement(
+                    (YangInstanceIdentifier.NodeIdentifierWithPredicates) nodeIdentifier));
         }
+        return xpathBuilder.toString();
     }
 
-    private static void inspectLeaf(final Fragment currentFragment,
-                                    final ValueNode valueNode) {
-        final Object value = valueNode.getValue();
-        currentFragment.addLeafValue(valueNode.getNodeType().getLocalName(), value);
-    }
-
-    private static void inspectLeafList(final Fragment currentFragment,
-                                        final LeafSetNode leafSetNode) {
-        currentFragment.addLeafListName(leafSetNode.getNodeType().getLocalName());
-        for (final NormalizedNode value : (Collection<NormalizedNode>) leafSetNode.getValue()) {
-            fragmentNormalizedNode(currentFragment, value);
-        }
-    }
-
-    private static void inspectContainer(final Fragment currentFragment,
-                                         final DataContainerNode dataContainerNode) {
-        final Collection<NormalizedNode> leaves = (Collection) dataContainerNode.getValue();
-        for (final NormalizedNode leaf : leaves) {
-            fragmentNormalizedNode(currentFragment, leaf);
-        }
-    }
-
-    private static void inspectKeyedList(final Fragment currentFragment,
-                                         final MapNode mapNode) {
-        createNodeForEachListElement(currentFragment, mapNode);
-    }
-
-    private static void createNodeForEachListElement(final Fragment currentFragment, final MapNode mapNode) {
-        final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
-        for (final MapEntryNode mapEntryNode : mapEntryNodes) {
-            final String xpathId = buildXpathId(mapEntryNode.getIdentifier());
-            final Fragment listElementFragment =
-                currentFragment.createChildFragment(mapNode.getNodeType(), xpathId);
-            fragmentNormalizedNode(listElementFragment, mapEntryNode);
-        }
-    }
-
-    private static String buildXpathId(final YangInstanceIdentifier.PathArgument nodeIdentifier) {
-        final StringBuilder xpathIdBuilder = new StringBuilder();
-        xpathIdBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
-
-        if (nodeIdentifier instanceof NodeIdentifierWithPredicates) {
-            xpathIdBuilder.append(getKeyAttributesStatement((NodeIdentifierWithPredicates) nodeIdentifier));
-        }
-        return xpathIdBuilder.toString();
-    }
-
-    private static String getKeyAttributesStatement(final NodeIdentifierWithPredicates nodeIdentifier) {
+    private static String getKeyAttributesStatement(
+            final YangInstanceIdentifier.NodeIdentifierWithPredicates nodeIdentifier) {
         final List<String> keyAttributes = nodeIdentifier.entrySet().stream().map(
             entry -> {
                 final String name = entry.getKey().getLocalName();
