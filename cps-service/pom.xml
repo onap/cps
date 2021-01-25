@@ -60,6 +60,11 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
     </dependency>
+    <dependency>
+      <!-- For using @VisibleForTesting annotation-->
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>

@@ -23,7 +23,6 @@ import static junit.framework.TestCase.assertEquals;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Arrays;
-import java.util.Collections;
 import org.assertj.core.api.Assertions;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -34,6 +33,7 @@ import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
+import org.onap.cps.spi.model.CpsDataNodeBuilder;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,14 +91,16 @@ public class CpsDataPersistenceServiceTest {
     @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreDataNodeAtNonExistingDataspace() {
         cpsDataPersistenceService
-            .storeDataNode("Non Existing Dataspace Name", ANCHOR_NAME1, new DataNode());
+            .storeDataNode("Non Existing Dataspace Name", ANCHOR_NAME1,
+                    CpsDataNodeBuilder.createEmptyDataNode());
     }
 
     @Test(expected = AnchorNotFoundException.class)
     @Sql({CLEAR_DATA, SET_DATA})
     public void testStoreDataNodeAtNonExistingAnchor() {
         cpsDataPersistenceService
-            .storeDataNode(DATASPACE_NAME, "Non Existing Anchor Name", new DataNode());
+            .storeDataNode(DATASPACE_NAME, "Non Existing Anchor Name",
+                    CpsDataNodeBuilder.createEmptyDataNode());
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -188,7 +190,8 @@ public class CpsDataPersistenceServiceTest {
     }
 
     private static DataNode createDataNodeTree(final String... xpaths) {
-        final DataNode dataNode = DataNode.builder().xpath(xpaths[0]).childDataNodes(Collections.emptySet()).build();
+        final DataNode dataNode = CpsDataNodeBuilder.createEmptyDataNode();
+        dataNode.setXpath(xpaths[0]);
         if (xpaths.length > 1) {
             final String[] xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length);
             final DataNode childDataNode = createDataNodeTree(xPathsDescendant);
