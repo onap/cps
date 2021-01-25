@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3d907ff8_02e2773f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:16:48Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "6f98a0d9_2caa858e",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2576be4_5182a4be",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataNodeBuilder.java",
         "patchSetId": 1
@@ -94,6 +118,29 @@
     },
     {
       "key": {
+        "uuid": "5b6e2f6c_79ed916d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:16:48Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27179382_96884543",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 1
@@ -123,6 +170,70 @@
       "side": 1,
       "message": "ok, to me it seems more natural in the DataNode itself, that it knows how to add a child but since we have a builder and what to keep this a simple PoJo lets move it to the builder",
       "parentUuid": "27179382_96884543",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbb05b54_d51febfa",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:16:48Z",
+      "side": 1,
+      "message": "This should be just a model class, with no logic inbuilt.",
+      "parentUuid": "5cffec32_f28fb6b1",
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24f6e6b3_f89d92fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:16:48Z",
+      "side": 1,
+      "message": "xPath",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 38
+      },
+      "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29a175f3_8da4b1eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-01-25T09:16:48Z",
+      "side": 1,
+      "message": "bit confusing, reword if you can.",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 60,
+        "endChar": 73
+      },
       "revId": "f374acb60bab3eff0a5cc410c6636a89590f54f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
