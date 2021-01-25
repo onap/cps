@@ -14,6 +14,19 @@ services:
     depends_on:
       - dbpostgresql
 
+  cps-nf-proxy:
+    container_name: cps-service
+    image: nexus3.onap.org:10001/onap/cps-nf-proxy:${VERSION}
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    restart: unless-stopped
+    depends_on:
+      - dbpostgresql
+
   dbpostgresql:
     container_name: dbpostgresql
     image: postgres
