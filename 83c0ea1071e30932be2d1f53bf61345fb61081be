@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3574aded_93f176b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-25T13:11:05Z",
+      "side": 1,
+      "message": "which one is the builder? this or CpsDataNodeBuilder ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 8
+      },
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4113a967_e0849641",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-25T13:11:05Z",
+      "side": 1,
+      "message": "since we have builder, why we needs this constructor?",
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ac5ef86_c300d196",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-25T13:11:05Z",
+      "side": 1,
+      "message": "this is the builder not an util class. It needs to sit together with the object builder.\nAnd the constructor from the object type created should be only reachable from this builder.\nOtherwise we are not enforcing the use of the builder.",
+      "range": {
+        "startLine": 20,
+        "startChar": 21,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef81453b_aa35d289",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-25T13:11:05Z",
+      "side": 1,
+      "message": "why CpsDataNodeBuilder  is returning something that is not an cpsDataNode?",
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db1e9f70_7ae9d8c4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-25T13:11:05Z",
+      "side": 1,
+      "message": "why is this builder here?",
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
