@@ -42,7 +42,7 @@ management:
             # kubernetes probes: liveness and readiness
             probes:
                 enabled: true
-        looging:
+        loggers:
             enabled: true
 
 logging:
