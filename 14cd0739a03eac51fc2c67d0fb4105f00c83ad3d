@@ -1,0 +1,204 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee9f3e8_a81d2d41",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "given that we are using builder, the use of constructor should not be allowed",
+      "range": {
+        "startLine": 189,
+        "startChar": 38,
+        "endLine": 189,
+        "endChar": 46
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5feabe1e_d400a382",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "remove constructor, create one package protected",
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb1bb32a_2625d867",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "move inside the pojo, or to the same package.\nIf you move this inside the pojo, make DataNode constructor private",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "209abb5f_c426cd24",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "of(",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 63
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f4df138_956080e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "can we have a single method with a good description instead of two with different name",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e2f24f1_904bce58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 103,
+        "startChar": 27,
+        "endLine": 103,
+        "endChar": 28
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c18b259e_8ecf2454",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "final",
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b831debc_2caa9b9a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "this could be reduced to one line with with Optional.map",
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f452d95_78a7d101",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "the next 2 methods could sit on the yang utils. if they wont be required to be consumed from someone else, then it is ok to leave it here. Size and responsibility could be reduced a little take those out, but not big deal",
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1525a69_8df8e63a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T08:18:56Z",
+      "side": 1,
+      "message": "a builder is not a service, anyway this going away. If you wanted to do something like service approach, you would have a Factory design pattern.",
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
