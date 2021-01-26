@@ -16,6 +16,24 @@
       "revId": "99e24fdf10ab7e1ae5f7aae22ac69288d691db80",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4237e87f_5deb447e",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-26T12:17:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40fcaa94_016bcf80",
+      "revId": "99e24fdf10ab7e1ae5f7aae22ac69288d691db80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
