@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3ce7af1_bc92b9dd",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T16:05:16Z",
+      "side": 1,
+      "message": "this should be done via builder as well\n CpsDataNodeBuilder.addPath(xpaths[0]).build()",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f519418_46f15bc3",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T16:05:16Z",
+      "side": 1,
+      "message": "I will say that is inherited already",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bf70860_1a413dd8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T16:05:16Z",
+      "side": 1,
+      "message": "this provides more that should, e.g. setters should be only accessible from package",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
