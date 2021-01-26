@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5905c17_2598e7c2",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-26T15:55:54Z",
+      "side": 1,
+      "message": "the error endpoint itself is only for testing\nthe error message (using model generated from openapi.yml)\nis built and returned when exception occurs,\nboth endpoints from this expected to be removed",
+      "parentUuid": "c04303e1_c066a7d2",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 56
+      },
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09127f09_f4d57208",
         "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-26T11:13:53Z",
       "side": 1,
       "message": "Check with Rishi if he has created new user story for this yet.\nPlease add reference to that Jira here",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3886aa6_73b10fa2",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-26T15:55:54Z",
+      "side": 1,
+      "message": "https://jira.onap.org/browse/CPS-195",
+      "parentUuid": "09127f09_f4d57208",
       "range": {
         "startLine": 11,
         "startChar": 0,
