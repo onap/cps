@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6e6f9e27_41b66e62",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T09:50:21Z",
+      "side": 1,
+      "message": "for this cases you need a constructor with annotation @Visiblefortesting",
+      "parentUuid": "65ce84f9_6a809022",
+      "range": {
+        "startLine": 189,
+        "startChar": 38,
+        "endLine": 189,
+        "endChar": 46
+      },
+      "revId": "14cd0739a03eac51fc2c67d0fb4105f00c83ad3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5feabe1e_d400a382",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 1
