@@ -251,6 +251,30 @@
       "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f1db919_b8ab51ed",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-26T07:01:13Z",
+      "side": 1,
+      "message": "as it was discussed on a scrum meeting \nit\u0027s the configuration only, it\u0027s required to initialize the cps-ri component used as jar\nthe spring boot app config file is a default location for datatsource properties",
+      "parentUuid": "741516f6_bd08cd9a",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "9ec04983229c00d8e9ce980107fce226d2382469",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
