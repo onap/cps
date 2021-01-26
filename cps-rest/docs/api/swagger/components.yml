@@ -6,10 +6,14 @@ components:
       properties:
         status:
           type: string
+          example: 400
         message:
           type: string
+          example: Dataspace not found
         details:
           type: string
+          example: Dataspace with name D1 does not exist.
+
     MultipartFile:
       required:
         - file
@@ -18,6 +22,7 @@ components:
           type: string
           description: multipartFile
           format: binary
+          example: http://example.com/examples/example.yang
 
   parameters:
     dataspaceNameInQuery:
