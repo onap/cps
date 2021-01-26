@@ -49,6 +49,63 @@
     },
     {
       "key": {
+        "uuid": "d001b140_7ee5965d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CpsDataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-26T13:55:07Z",
+      "side": 1,
+      "message": "add a private constructor",
+      "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5269e1a2_bf5b2037",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CpsDataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-26T13:55:07Z",
+      "side": 1,
+      "message": "Generic types shouldn\u0027t be used without type parameters in variable declarations or return values.",
+      "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77381da6_5d6b459a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CpsDataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-01-26T13:55:07Z",
+      "side": 1,
+      "message": "unnecessary cast",
+      "range": {
+        "startLine": 87,
+        "startChar": 65,
+        "endLine": 87,
+        "endChar": 75
+      },
+      "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28fa3d6e_d6180de4",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 2
