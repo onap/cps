@@ -1,35 +1,37 @@
 nodesByDataspaceAndAnchor:
   get:
+    description: Get a node with a possibility of getting all children for a given anchor and dataspace
     tags:
       - cps-data
-    summary: Get a node given an anchor for the given dataspace
+    summary: Get a node
     operationId: getNodeByDataspaceAndAnchor
     parameters:
-      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
-      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
-      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
-      200:
-        $ref: 'components.yaml#/components/responses/Ok'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
   post:
+    description: Create a node for a given anchor and dataspace
     tags:
       - cps-data
-    summary: Create a node for a given anchor for the given dataspace
+    summary: Create a node
     operationId: createNode
     parameters:
-      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
     requestBody:
       required: true
       content:
@@ -37,32 +39,33 @@ nodesByDataspaceAndAnchor:
           schema:
             type: string
     responses:
-      201:
-        $ref: 'components.yaml#/components/responses/Created'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
 
 nodesByDataspace:
   get:
+    description: Get all nodes for a given dataspace using an xpath or schema node identifier - DRAFT
     tags:
       - cps-data
-    summary: Get all nodes for a given dataspace using an xpath or schema node identifier - DRAFT
-    operationId: getNodeByDataspace
+    summary: Get nodes
+    operationId: getNodesByDataspace
     parameters:
-      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
-      200:
-        $ref: 'components.yaml#/components/responses/Ok'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: requestBody

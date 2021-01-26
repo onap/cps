@@ -3,11 +3,11 @@ info:
   title: ONAP Open API v3 Configuration Persistence Service
   description: Configuration Persistence Service is a Model Driven Generic Database
   version: "1.0.0"
-  contact: 
+  contact:
      name: ONAP
      url: "https://onap.readthedocs.io"
      email: "onap-discuss@lists.onap.org"
-  license: 
+  license:
       name: "Apache 2.0"
       url: "http://www.apache.org/licenses/LICENSE-2.0"
   x-planned-retirement-date: "202212"
@@ -16,15 +16,18 @@ info:
       url: "cps_logo.png"
 
 servers:
-  - url: //localhost:8088/
+  - url: //localhost:8088
 tags:
-  - name: cps-rest
-    description: cps Resource
+  - name: cps-admin
+    description: cps Admin
+  - name: cps-data
+    description: cps Data 
 paths:
+
   /v1/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspace'
 
-  /v1/dataspaces/{dataspace-name}/:
+  /v1/dataspaces/{dataspace-name}:
     $ref: 'cpsAdmin.yml#/dataspaceByDataspaceName'
 
   /v1/dataspaces/{dataspace-name}/anchors:
