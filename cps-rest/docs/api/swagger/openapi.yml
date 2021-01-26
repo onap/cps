@@ -16,15 +16,17 @@ info:
       url: "cps_logo.png"
 
 servers:
-  - url: //localhost:8088/
+  - url: //localhost:8088
 tags:
-  - name: cps-rest
-    description: cps Resource
+  - name: cps-admin
+    description: cps Admin
+  - name: cps-data
+    description: cps Data 
 paths:
   /v1/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspace'
 
-  /v1/dataspaces/{dataspace-name}/:
+  /v1/dataspaces/{dataspace-name}:
     $ref: 'cpsAdmin.yml#/dataspaceByDataspaceName'
 
   /v1/dataspaces/{dataspace-name}/anchors:

@@ -48,7 +48,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspace(final String dataspaceName) {
+    public ResponseEntity<Object> getNodesByDataspace(final String dataspaceName) {
         return null;
     }
 
