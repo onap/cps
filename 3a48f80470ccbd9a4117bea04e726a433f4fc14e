@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "be6e4194_51b03941",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T16:18:10Z",
+      "side": 1,
+      "message": "I thought something similar but we don\u0027t have actually build method we follow pattern we have already. I suggest\n\n CpsDataNodeBuilder.off(xPath)",
+      "parentUuid": "a3ce7af1_bc92b9dd",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f519418_46f15bc3",
         "filename": "cps-service/pom.xml",
         "patchSetId": 3
