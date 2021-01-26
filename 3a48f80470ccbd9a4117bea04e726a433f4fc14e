@@ -50,6 +50,24 @@
       "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67cbf4b4_ab708306",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T16:13:12Z",
+      "side": 1,
+      "message": "does that mean we have to create setter and getters manually?\nor is there some annotation that can make them package protected, do we need to address this right now?!",
+      "parentUuid": "5bf70860_1a413dd8",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

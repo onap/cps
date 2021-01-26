@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "f138c693_68f96a8d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CpsDataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T16:13:12Z",
+      "side": 1,
+      "message": "I looked into this before but YangTools is forcing us heer I think. Also SonarQube never complained about this in our report see https://sonarcloud.io/dashboard?id\u003donap_cps all this code is already there just in a different place.. Not sure why it complain locally....",
+      "parentUuid": "5269e1a2_bf5b2037",
+      "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77381da6_5d6b459a",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CpsDataNodeBuilder.java",
         "patchSetId": 2
