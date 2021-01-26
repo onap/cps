@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c04303e1_c066a7d2",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T11:13:53Z",
+      "side": 1,
+      "message": "does this make sense for an Error ennpoint?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 56
+      },
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09127f09_f4d57208",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T11:13:53Z",
+      "side": 1,
+      "message": "Check with Rishi if he has created new user story for this yet.\nPlease add reference to that Jira here",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
