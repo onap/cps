@@ -142,6 +142,29 @@
       "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feec50f0_13ce5fe5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-26T08:03:24Z",
+      "side": 1,
+      "message": "```\n    private void inspectLeafList(final DataNode currentDataNode, final LeafSetNode leafSetNode) {\n        final String leafName \u003d leafSetNode.getNodeType().getLocalName();\n        final Set\u003cObject\u003e leafListValue \u003d ImmutableSet.of(\n            ((Collection\u003cNormalizedNode\u003e) leafSetNode.getValue())\n                .stream().map(NormalizedNode::getValue).collect(Collectors.toSet())\n        );\n        cpsDataNodeBuilder.addLeafValue(leafName, leafListValue); // same method as for leafs\n    }\n```\nyou need just one (!) method, same one to set leaf value for both leaf and leaf-list nodes, \nthis will simplifies the logic significantly",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 5
+      },
+      "revId": "83c0ea1071e30932be2d1f53bf61345fb61081be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
