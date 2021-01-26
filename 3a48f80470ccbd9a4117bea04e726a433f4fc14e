@@ -86,6 +86,24 @@
       "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95e27e7_ba7bb92d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-26T16:39:36Z",
+      "side": 1,
+      "message": "https://projectlombok.org/features/Data\n\n  @Setter(AccessLevel.PROTECTED)\n\nhttps://projectlombok.org/features/GetterSetter",
+      "parentUuid": "67cbf4b4_ab708306",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
