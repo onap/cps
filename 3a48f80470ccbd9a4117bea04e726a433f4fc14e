@@ -104,6 +104,24 @@
       "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de92b547_93dacdd8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-26T17:23:09Z",
+      "side": 1,
+      "message": "cool!",
+      "parentUuid": "e95e27e7_ba7bb92d",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
