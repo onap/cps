@@ -69,6 +69,30 @@
       "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c124e4b_bb6dcd6f",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T14:07:51Z",
+      "side": 1,
+      "message": "https://gerrit.onap.org/r/c/cps/+/117118/8/cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java#46\n\nSo you need to check why you are hitting NPE",
+      "parentUuid": "b5a38c26_dbfee5e6",
+      "range": {
+        "startLine": 198,
+        "startChar": 62,
+        "endLine": 198,
+        "endChar": 80
+      },
+      "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
