@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "214b9677_5f5ab365",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T11:35:07Z",
+      "side": 1,
+      "message": "what happened with the package protected constructor?",
+      "revId": "0f8918c07cc4b12d112ed4e65f93b5be664ed348",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce3a1f4c_8bbf26a5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T11:35:07Z",
+      "side": 1,
+      "message": "I think the team was using annotation for those private constuctors",
+      "revId": "0f8918c07cc4b12d112ed4e65f93b5be664ed348",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
