@@ -168,6 +168,30 @@
       "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e72321a_a60ea0a3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-27T11:33:46Z",
+      "side": 1,
+      "message": "removed as we are now using it from Builder",
+      "parentUuid": "ce0548f4_ff9f930e",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "829a240ba7eddddf2278f1645be0ab88886d66d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

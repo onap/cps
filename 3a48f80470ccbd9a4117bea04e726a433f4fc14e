@@ -122,6 +122,24 @@
       "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8775396_0ba6d2b7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-27T11:33:46Z",
+      "side": 1,
+      "message": "setters removed from DataNode.java. All setters to be accessed using builder functions.",
+      "parentUuid": "de92b547_93dacdd8",
+      "revId": "3a48f80470ccbd9a4117bea04e726a433f4fc14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
