@@ -1,4 +1,4 @@
-nodesByDataspaceAndAnchor:
+nodeByDataspaceAndAnchor:
   get:
     description: Get a node with an option to retrieve all the children for a given anchor and dataspace
     tags:
@@ -23,6 +23,7 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
+nodesByDataspaceAndAnchor:
   post:
     description: Create a node for a given anchor and dataspace
     tags:

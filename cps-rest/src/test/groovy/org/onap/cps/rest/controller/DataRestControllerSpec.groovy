@@ -68,7 +68,7 @@ class DataRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    def dataNodeEndpoint
+    def dataNodeBaseEndpoint
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
 
@@ -81,15 +81,16 @@ class DataRestControllerSpec extends Specification {
             .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
 
     def setup() {
-        dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes"
+        dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
     }
 
     def 'Create a node.'() {
         given: 'some json to create a data node'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
             def json = 'some json (this is not validated)'
         when: 'post is invoked with datanode endpoint and json'
             def response = mvc.perform(
-                    post(dataNodeEndpoint).contentType(MediaType.APPLICATION_JSON).content(json)
+                    post(endpoint).contentType(MediaType.APPLICATION_JSON).content(json)
             ).andReturn().response
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
@@ -101,10 +102,11 @@ class DataRestControllerSpec extends Specification {
     def 'Get data node with leaves'() {
         given: 'the service returns data node leaves'
             def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
         when: 'get request is performed through REST API'
             def response = mvc.perform(
-                    get(dataNodeEndpoint).param('xpath', xpath)
+                    get(endpoint).param('xpath', xpath)
             ).andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
@@ -118,9 +120,10 @@ class DataRestControllerSpec extends Specification {
     def 'Get data node with #scenario.'() {
         given: 'the service returns data node with #scenario'
             def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
         when: 'get request is performed through REST API'
-            def response = mvc.perform(get(dataNodeEndpoint)
+            def response = mvc.perform(get(endpoint)
                     .param('xpath', xpath)
                     .param('include-descendants', includeDescendantsOption))
                     .andReturn().response
@@ -138,10 +141,11 @@ class DataRestControllerSpec extends Specification {
     @Unroll
     def 'Get data node error scenario: #scenario.'() {
         given: 'the service throws an exception'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
         when: 'get request is performed through REST API'
             def response = mvc.perform(
-                    get(dataNodeEndpoint).param("xpath", xpath)
+                    get(endpoint).param("xpath", xpath)
             ).andReturn().response
         then: 'a success response is returned'
             response.status == httpStatus.value()
@@ -157,9 +161,10 @@ class DataRestControllerSpec extends Specification {
     def 'Update data node leaves: #scenario.'() {
         given: 'json data'
             def jsonData = 'json data'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'patch request is performed'
             def response = mvc.perform(
-                    patch(dataNodeEndpoint)
+                    patch(endpoint)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', xpath)
@@ -178,9 +183,10 @@ class DataRestControllerSpec extends Specification {
     def 'Replace data node tree: #scenario.'() {
         given: 'json data'
             def jsonData = 'json data'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'put request is performed'
             def response = mvc.perform(
-                    put(dataNodeEndpoint)
+                    put(endpoint)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', xpath)
