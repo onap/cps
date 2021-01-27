@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "f362a0c0_68f5a608",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-27T17:31:46Z",
+      "side": 1,
+      "message": "I dont think SQ wil complain in this case as it is using code genrerated constructor",
+      "parentUuid": "994722b0_ba308bb4",
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9162d28b_79cb81ac",
         "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
         "patchSetId": 9
@@ -151,6 +169,30 @@
       "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04a4c89_90c11a38",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-27T17:31:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3886aa6_73b10fa2",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
