@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86adcb30_0a93a5df",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T12:54:35Z",
+      "side": 1,
+      "message": "already has empty set, isnt it?",
+      "range": {
+        "startLine": 198,
+        "startChar": 62,
+        "endLine": 198,
+        "endChar": 80
+      },
+      "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a3b2d81_c5654c13",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T12:54:35Z",
+      "side": 1,
+      "message": "this is duplicated with above line",
+      "range": {
+        "startLine": 198,
+        "startChar": 18,
+        "endLine": 198,
+        "endChar": 61
+      },
+      "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
