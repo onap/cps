@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "5a70f43d_1d1a452c",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-27T16:58:25Z",
+      "side": 1,
+      "message": "funny how Claudio gave you almost identical pseudo code as I gave you in Teams chat (and I swear I didn\u0027t see his comment till now :-)",
+      "parentUuid": "b2e7be7d_e001a34c",
+      "range": {
+        "startLine": 198,
+        "startChar": 18,
+        "endLine": 198,
+        "endChar": 61
+      },
+      "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98e2be27_81fbee28",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 8
