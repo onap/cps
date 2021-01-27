@@ -49,6 +49,40 @@
     },
     {
       "key": {
+        "uuid": "994722b0_ba308bb4",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T11:56:58Z",
+      "side": 1,
+      "message": "Aditya mentioned some sonar complain about using annotation for generate constructor.",
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9162d28b_79cb81ac",
+        "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T11:56:58Z",
+      "side": 1,
+      "message": "I will move this configuration to docker-compose folder, a pass it via docker-compose file",
+      "revId": "9f52f60a2e70f2344c671af28e62fe2315ee8e02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09127f09_f4d57208",
         "filename": "cps-nf-proxy-rest/src/main/resources/application.yml",
         "patchSetId": 9
