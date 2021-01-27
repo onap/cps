@@ -42,6 +42,9 @@ paths:
   /v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     $ref: 'cpsAdmin.yml#/schemaSetBySchemaSetName'
 
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsData.yml#/nodeByDataspaceAndAnchor'
+
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
 
