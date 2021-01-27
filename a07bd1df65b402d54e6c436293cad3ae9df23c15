@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "83182f5e_953980b4",
+        "filename": "cps-ri/src/test/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-27T15:45:11Z",
+      "side": 1,
+      "message": "my idea was more of\nbuilder \u003d new DataNodeBuilder().withXpath(xpaths[0])\nif() {\nbuilder.withChildDataNodes(Collections.emptySet())\n}\n\nreturn builder.build();",
+      "parentUuid": "4fe731c1_c03fb801",
+      "range": {
+        "startLine": 198,
+        "startChar": 18,
+        "endLine": 198,
+        "endChar": 61
+      },
+      "revId": "a07bd1df65b402d54e6c436293cad3ae9df23c15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98e2be27_81fbee28",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 8
