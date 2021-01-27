@@ -1,0 +1,13 @@
+openapi: 3.0.1
+info:
+  title: xNF to CPS Proxy API
+  description: xNF to CPS Proxy API
+  version: "1.0"
+servers:
+  - url: //localhost:8088/
+paths:
+  /v1/hello-world:
+    $ref: 'xnfProxy.yml#/helloWorld'
+  /v1/hello-error:
+    $ref: 'xnfProxy.yml#/helloError'
+
