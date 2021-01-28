@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81761b54_7738e1f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "looks like the previous refactoring of how leaves list were stored has made the optionalLeafListNames redundant. That was a hack an did need removal!",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 47
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d738acd7_15f22a83",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "I think these should be removed, I forgot to do that. And that contributed to the bug",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07e8d2a9_d6fe10e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "OK, I get it now we need to handle containers in the recursive methods so you added a \u0027ummy empty data node on top to get started but don\u0027t return it.\nJust trying to think of a better name, maybe \u0027dumyyRootDataNode\u0027 or \u0027emptyRootDataNode\u0027",
+      "range": {
+        "startLine": 103,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f151521_e82e07a8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "I am getting used to stream, I can read it now but would no be able to come up with this. \nThanks for refactoring",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 54
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b7a9ccc_ed369a88",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "I missed that, suprised how it passed the tests on xpaths...",
+      "range": {
+        "startLine": 161,
+        "startChar": 23,
+        "endLine": 161,
+        "endChar": 48
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ca83228_7692102c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "a bit tedious but needed in this case!\nI hope we wont have to change this tets too often...",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 5
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61590338_b5767431",
+        "filename": "cps-service/src/test/resources/test-tree.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-28T14:45:01Z",
+      "side": 1,
+      "message": "big birds in the big nest :-)\nI like your example!",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 11
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
