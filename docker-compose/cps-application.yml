@@ -3,12 +3,12 @@ server:
 
 rest:
     api:
-        base-path: /cps/api
+        cps-base-path: /cps/api # This requires fixes on code
+        xnf-base-path: /cps-nf-proxy/api # This requires fixes on code
 
 spring:
     main:
         banner-mode: "off"
-# for POC only, later this should move to cpi-ri module
     jpa:
         ddl-auto: create
         open-in-view: false
@@ -34,8 +34,8 @@ management:
     endpoints:
         web:
             base-path: /manage
-            exposure:
-                include: health,info,loggers
+        exposure:
+            include: info,health,loggers
     endpoint:
         health:
             show-details: always

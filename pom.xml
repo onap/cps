@@ -36,5 +36,6 @@
         <module>cps-ri</module>
         <module>checkstyle</module>
         <module>spotbugs</module>
+        <module>cps-application</module>
     </modules>
 </project>

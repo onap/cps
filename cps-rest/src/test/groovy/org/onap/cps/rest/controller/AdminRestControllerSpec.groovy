@@ -61,7 +61,7 @@ class AdminRestControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
-    @Value('${rest.api.base-path}')
+    @Value('${rest.api.cps-base-path}')
     def basePath
 
     def anchorsEndpoint = '/v1/dataspaces/my_dataspace/anchors'
