@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
@@ -52,17 +53,21 @@ public class YangUtils {
      * @param schemaContext the SchemaContext for the given data
      * @return the NormalizedNode representing the json data
      */
-    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext)
-            throws IOException {
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
                 .getShared(schemaContext);
         final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
                 .from(normalizedNodeResult);
-        try (final JsonParserStream jsonParserStream = JsonParserStream
-                .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
-            final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
-            jsonParserStream.parse(jsonReader);
+        try {
+            try (final JsonParserStream jsonParserStream = JsonParserStream
+                    .create(normalizedNodeStreamWriter, jsonCodecFactory)) {
+                final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
+                jsonParserStream.parse(jsonReader);
+            }
+        } catch (final IOException e) {
+            throw new CpsException("Failed to parse yang resource.", String
+                .format("Exception occurred on parsing resource %s.", jsonData), e);
         }
         return normalizedNodeResult.getResult();
     }

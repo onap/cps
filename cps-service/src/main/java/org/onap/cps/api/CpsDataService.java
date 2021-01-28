@@ -19,9 +19,18 @@
 
 package org.onap.cps.api;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 /*
  * Datastore interface for handling CPS data.
  */
 public interface CpsDataService {
 
+    /**
+     * Parse and validate yang data.
+     *  @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param jsonData  json data
+     */
+    void validateYangData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
 }
