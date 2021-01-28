@@ -66,6 +66,12 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!---To be removed once swagger-codegen-maven-plugin is upgraded-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.6.2</version>
+            </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>

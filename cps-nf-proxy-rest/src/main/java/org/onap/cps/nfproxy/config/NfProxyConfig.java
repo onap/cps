@@ -33,9 +33,11 @@ public class NfProxyConfig {
     /**
      * Swagger-ui configuration.
      */
-    @Bean
+    @Bean("nf-proxy-docket")
     public Docket api() {
-        return new Docket(DocumentationType.OAS_30).select()
+        return new Docket(DocumentationType.OAS_30)
+            .groupName("nf-proxy-docket")
+            .select()
             .apis(RequestHandlerSelectors.any())
             .paths(PathSelectors.any())
             .build();

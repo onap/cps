@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("${rest.api.base-path}")
+@RequestMapping("${rest.api.xnf-base-path}")
 public class NfProxyController implements NfProxyApi {
 
     @Override
