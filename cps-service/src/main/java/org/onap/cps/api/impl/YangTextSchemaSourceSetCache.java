@@ -1,7 +1,6 @@
-package org.onap.cps.api.impl;
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,6 +16,8 @@ package org.onap.cps.api.impl;
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
+package org.onap.cps.api.impl;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;

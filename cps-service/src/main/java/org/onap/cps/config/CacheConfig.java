@@ -1,8 +1,6 @@
-package org.onap.cps.config;
-
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,6 +16,8 @@ package org.onap.cps.config;
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
+package org.onap.cps.config;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
