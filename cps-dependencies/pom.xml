@@ -29,7 +29,7 @@
         <springfox.version>3.0.0</springfox.version>
         <swagger.version>2.1.4</swagger.version>
         <testcontainers.version>1.15.1</testcontainers.version>
-        <yangtools.version>5.0.6</yangtools.version>
+        <yangtools.version>5.0.7</yangtools.version>
     </properties>
 
     <distributionManagement>
