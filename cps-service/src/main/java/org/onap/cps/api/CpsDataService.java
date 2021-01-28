@@ -19,9 +19,20 @@
 
 package org.onap.cps.api;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.spi.exceptions.DataValidationException;
+
 /*
  * Datastore interface for handling CPS data.
  */
 public interface CpsDataService {
-
+    /**
+     * Persists data for the given anchor and dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param jsonData      json data
+     * @throws DataValidationException when json data is invalid
+     */
+    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
 }
