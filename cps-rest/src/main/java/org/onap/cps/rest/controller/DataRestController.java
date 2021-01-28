@@ -20,28 +20,27 @@
 package org.onap.cps.rest.controller;
 
 import javax.validation.Valid;
-import org.modelmapper.ModelMapper;
-import org.onap.cps.api.CpsAdminService;
+import javax.validation.constraints.NotNull;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("${rest.api.base-path}")
 public class DataRestController implements CpsDataApi {
 
     @Autowired
-    private CpsAdminService cpsAdminService;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private CpsDataService cpsDataService;
 
     @Override
-    public ResponseEntity<String> createNode(@Valid final MultipartFile multipartFile, final String dataspaceName) {
-        return null;
+    public ResponseEntity<String> createNode(@Valid final String jsonData, @NotNull final String dataspaceName,
+        @NotNull @Valid final String anchorName) {
+        cpsDataService.saveData(dataspaceName, anchorName, jsonData);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
@@ -53,4 +52,5 @@ public class DataRestController implements CpsDataApi {
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName) {
         return null;
     }
+
 }
