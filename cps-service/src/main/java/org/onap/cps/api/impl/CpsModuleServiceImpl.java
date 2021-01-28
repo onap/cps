@@ -26,6 +26,7 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
+import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +41,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
-            final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, String> yangResourcesNameToContentMap) {
         final YangTextSchemaSourceSet yangTextSchemaSourceSet
-                = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+            = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
@@ -50,9 +51,14 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final YangTextSchemaSourceSet yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
-                                                                        .get(dataspaceName, schemaSetName);
+            .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
-                       .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+            .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+    }
+
+    @Override
+    public SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
+        return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
     }
 
     @Override

@@ -48,6 +48,7 @@ nodesByDataspace:
     operationId: createNode
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
     requestBody:
       content:
         multipart/form-data:
