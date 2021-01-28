@@ -20,6 +20,30 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yaml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
+  post:
+    tags:
+      - cps-data
+    summary: Create a node for a given anchor for the given dataspace
+    operationId: createNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
 nodesByDataspace:
   get:
     tags:
@@ -40,26 +64,3 @@ nodesByDataspace:
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
     x-codegen-request-body-name: requestBody
-
-  post:
-    tags:
-      - cps-data
-    summary: Create a node for a given anchor for the given dataspace - DRAFT
-    operationId: createNode
-    parameters:
-      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
-    requestBody:
-      content:
-        multipart/form-data:
-          schema:
-            $ref: 'components.yaml#/components/schemas/MultipartFile'
-      required: true
-    responses:
-      201:
-        $ref: 'components.yaml#/components/responses/Created'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
