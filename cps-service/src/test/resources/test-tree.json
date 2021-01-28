@@ -1,0 +1,28 @@
+{
+  "test-tree": {
+    "branch": [
+      {
+        "name": "Left",
+        "nest": {
+          "name": "Small",
+          "birds": [
+            "Sparrow",
+            "Robin",
+            "Finch"
+          ]
+        }
+      },
+      {
+        "name": "Right",
+        "nest": {
+          "name": "Big",
+          "birds": [
+            "Owl",
+            "Raven",
+            "Crow"
+          ]
+        }
+      }
+    ]
+  }
+}

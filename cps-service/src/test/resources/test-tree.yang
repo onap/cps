@@ -1,0 +1,24 @@
+module test-tree {
+    yang-version 1.1;
+
+    namespace "org:onap:cps:test:test-tree";
+    prefix tree;
+    revision "2020-02-02";
+
+    container test-tree {
+        list branch {
+            key "name";
+            leaf name {
+                type string;
+            }
+            container nest {
+                leaf name {
+                    type string;
+                }
+                leaf-list birds {
+                    type string;
+                }
+            }
+        }
+    }
+}
