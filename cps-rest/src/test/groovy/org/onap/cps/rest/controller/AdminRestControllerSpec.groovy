@@ -22,6 +22,7 @@ package org.onap.cps.rest.controller
 
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
@@ -54,6 +55,9 @@ class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsDataService mockCpsDataService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
