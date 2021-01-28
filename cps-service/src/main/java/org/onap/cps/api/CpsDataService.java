@@ -19,9 +19,19 @@
 
 package org.onap.cps.api;
 
+import java.util.Map;
+
 /*
  * Datastore interface for handling CPS data.
  */
 public interface CpsDataService {
 
+    /**
+     * Parse and validate yang data.
+     *
+     * @param extractYangResourcesMap  yang resources (files) as a map where key is resource name and value is content
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     */
+    void parseAndValidateYangData(Map<String, String> extractYangResourcesMap, String dataspaceName, String anchorName);
 }
