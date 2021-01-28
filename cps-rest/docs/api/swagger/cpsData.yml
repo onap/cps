@@ -44,10 +44,11 @@ nodesByDataspace:
   post:
     tags:
       - cps-data
-    summary: Create a node for a given anchor for the given dataspace - DRAFT
+    summary: Create a node for a given anchor for the given dataspace
     operationId: createNode
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInQuery'
     requestBody:
       content:
         multipart/form-data:

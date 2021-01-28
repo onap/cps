@@ -22,6 +22,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ModuleReference
@@ -46,6 +47,8 @@ class CpsModuleServiceImplSpec extends Specification {
     CpsModulePersistenceService mockModuleStoreService = Mock()
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+    @SpringBean
+    CpsDataPersistenceService mockDataPersistenceService = Mock()
     @Autowired
     CpsModuleServiceImpl objectUnderTest = new CpsModuleServiceImpl()
     @SpringBean
@@ -81,6 +84,19 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
     }
 
+    def 'Get schema context by dataspace name and schema set name.'() {
+        given: 'an already present schema set.'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
+        when: 'get schema context method is invoked.'
+            def schemaContext = objectUnderTest.getSchemaContext('someDataspace', 'someSchemaSet')
+        then: 'the correct schema context is returned.'
+            def result = schemaContext.getModules().first()
+            result.getName() == 'stores'
+            result.getRevision().toString() == 'Optional[2020-09-15]'
+            result.getNamespace().toString() == 'org:onap:ccsdk:sample'
+    }
+
     def 'Schema set caching.'() {
         given: 'an  schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
@@ -93,14 +109,14 @@ class CpsModuleServiceImplSpec extends Specification {
     }
 
     @Unroll
-    def 'Delete set by name and dataspace with #cascadeDeleteOption.'(){
+    def 'Delete set by name and dataspace with #cascadeDeleteOption.'() {
         when: 'schema set deletion is requested'
             objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
         then: 'persistence service method is invoked with same parameters'
             mockModuleStoreService.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
         where: 'following parameters are used'
-            dataspaceName | schemaSetname | cascadeDeleteOption
-            'dataspace-1'  | 'schemas-set-1' | CASCADE_DELETE_ALLOWED
-            'dataspace-2'  | 'schemas-set-2' | CASCADE_DELETE_PROHIBITED
+            dataspaceName | schemaSetname   | cascadeDeleteOption
+            'dataspace-1' | 'schemas-set-1' | CASCADE_DELETE_ALLOWED
+            'dataspace-2' | 'schemas-set-2' | CASCADE_DELETE_PROHIBITED
     }
 }

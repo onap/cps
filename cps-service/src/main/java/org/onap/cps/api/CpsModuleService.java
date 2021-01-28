@@ -24,6 +24,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.model.SchemaSet;
+import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /**
  * Responsible for managing module sets.
@@ -61,4 +62,13 @@ public interface CpsModuleService {
      */
     void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
         @NonNull CascadeDeleteAllowed cascadeDeleteAllowed);
+
+    /**
+     * Get Schema Context.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @return schema context
+     */
+    SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName);
 }
