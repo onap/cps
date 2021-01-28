@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5ba9e5e6_0d335711",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-28T15:13:16Z",
+      "side": 1,
+      "message": "these are part of a builder pattern implementation.\nwe can use either direct parameter values to build an object, \nor complex structure to parse. the path is chosen in build() method",
+      "parentUuid": "3bf0a8fa_f8b745e9",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "054ccb863b657ed593387ec910489d2a1f0972df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07e8d2a9_d6fe10e6",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 3
