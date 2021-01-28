@@ -33,32 +33,37 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>cps-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>cps-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>cps-nf-proxy-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>cps-ri</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>cps-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>checkstyle</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.onap.cps</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>spotbugs</artifactId>
                 <version>${project.version}</version>
             </dependency>

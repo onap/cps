@@ -34,9 +34,12 @@ public class CpsConfig {
     /**
      * Swagger configuration.
      */
-    @Bean
+    @Bean("cps-docket")
     public Docket api() {
-        return new Docket(DocumentationType.OAS_30).select().apis(RequestHandlerSelectors.any())
+        return new Docket(DocumentationType.OAS_30)
+            .groupName("cps-docket")
+            .select()
+            .apis(RequestHandlerSelectors.any())
             .paths(PathSelectors.any()).build();
     }
 

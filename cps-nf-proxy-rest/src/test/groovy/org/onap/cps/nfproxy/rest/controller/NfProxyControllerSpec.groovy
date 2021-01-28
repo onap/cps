@@ -33,7 +33,7 @@ class NfProxyControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
-    @Value('${rest.api.base-path}')
+    @Value('${rest.api.xnf-base-path}')
     def basePath
 
     def 'Hello world method invocation.'(){

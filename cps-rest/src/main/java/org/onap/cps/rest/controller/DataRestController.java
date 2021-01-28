@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("${rest.api.base-path}")
+@RequestMapping("${rest.api.cps-base-path}")
 public class DataRestController implements CpsDataApi {
 
     @Autowired
