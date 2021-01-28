@@ -22,6 +22,7 @@ package org.onap.cps.rest.exceptions
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
@@ -54,6 +55,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsModuleService mockCpsModuleService = Mock()
+
+    @SpringBean
+    CpsDataService mockCpsDataService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
