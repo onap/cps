@@ -24,8 +24,6 @@ package org.onap.cps.spi.model;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,5 +42,4 @@ public class DataNode {
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;
     private Collection<DataNode> childDataNodes = Collections.emptySet();
-    private Optional<Set<String>> optionalLeafListNames = Optional.empty();
 }

@@ -23,11 +23,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
@@ -45,10 +44,10 @@ public class DataNodeBuilder {
     private Collection<DataNode> childDataNodes = Collections.emptySet();
 
 
-    /** To use {@link NormalizedNode} for creating {@link DataNode}.
+    /**
+     * To use {@link NormalizedNode} for creating {@link DataNode}.
      *
      * @param normalizedNodeTree used for creating the Data Node
-     *
      * @return this {@link DataNodeBuilder} object
      */
     public DataNodeBuilder withNormalizedNodeTree(final NormalizedNode normalizedNodeTree) {
@@ -58,6 +57,7 @@ public class DataNodeBuilder {
 
     /**
      * To use xpath for creating {@link DataNode}.
+     *
      * @param xpath for the data node
      * @return DataNodeBuilder
      */
@@ -68,6 +68,7 @@ public class DataNodeBuilder {
 
     /**
      * To specify child nodes needs to be used while creating {@link DataNode}.
+     *
      * @param childDataNodes to be added to the dataNode
      * @return DataNodeBuilder
      */
@@ -99,14 +100,14 @@ public class DataNodeBuilder {
     }
 
     private DataNode buildFromNormalizedNodeTree() {
-        xpath = YangUtils.buildXpath(normalizedNodeTree.getIdentifier());
-        final DataNode dataNode = new DataNodeBuilder().withXpath(xpath).build();
-        addDataNodeFromNormalizedNode(dataNode, normalizedNodeTree);
-        return dataNode;
+        final DataNode formalRootDataNode = new DataNodeBuilder().withXpath("").build();
+        addDataNodeFromNormalizedNode(formalRootDataNode, normalizedNodeTree);
+        return formalRootDataNode.getChildDataNodes().iterator().next();
     }
 
-    private void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
+    private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
         final NormalizedNode normalizedNode) {
+
         if (normalizedNode instanceof DataContainerNode) {
             addYangContainer(currentDataNode, (DataContainerNode) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
@@ -117,18 +118,20 @@ public class DataNodeBuilder {
         } else if (normalizedNode instanceof LeafSetNode) {
             addYangLeafList(currentDataNode, (LeafSetNode) normalizedNode);
         } else {
-            log.warn("Cannot normalize {}", normalizedNode.getClass());
+            log.warn("Unsupported NormalizedNode type detected: {}", normalizedNode.getClass());
         }
     }
 
-    private void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
+    private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
+        final DataNode dataContainerDataNode = createAndAddChildDataNode(currentDataNode,
+            YangUtils.buildXpath(dataContainerNode.getIdentifier()));
         final Collection<NormalizedNode> normalizedChildNodes = dataContainerNode.getValue();
         for (final NormalizedNode normalizedNode : normalizedChildNodes) {
-            addDataNodeFromNormalizedNode(currentDataNode, normalizedNode);
+            addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);
         }
     }
 
-    private void addYangLeaf(final DataNode currentDataNode, final String leafName, final Object leafValue) {
+    private static void addYangLeaf(final DataNode currentDataNode, final String leafName, final Object leafValue) {
         final Map leaves = new ImmutableMap.Builder<String, Object>()
             .putAll(currentDataNode.getLeaves())
             .put(leafName, leafValue)
@@ -136,34 +139,26 @@ public class DataNodeBuilder {
         currentDataNode.setLeaves(leaves);
     }
 
-    private void addYangLeafList(final DataNode currentDataNode, final LeafSetNode leafSetNode) {
-        final ImmutableSet.Builder builder = new ImmutableSet.Builder<String>();
+    private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode leafSetNode) {
         final String leafListName = leafSetNode.getNodeType().getLocalName();
-        final Optional<Set<String>> optionalLeafListNames = currentDataNode.getOptionalLeafListNames();
-        if (optionalLeafListNames.isPresent()) {
-            builder.addAll(optionalLeafListNames.get());
-        }
-        builder.add(leafListName);
-        final ImmutableSet leafListNames = builder.build();
-        currentDataNode.setOptionalLeafListNames(Optional.of(leafListNames));
-        final List leafListValues = new LinkedList();
-        for (final NormalizedNode normalizedNode : (Collection<NormalizedNode>) leafSetNode.getValue()) {
-            leafListValues.add(((ValueNode) normalizedNode).getValue());
-        }
+        final List<?> leafListValues = ((Collection<NormalizedNode>) leafSetNode.getValue())
+            .stream()
+            .map(normalizedNode -> ((ValueNode) normalizedNode).getValue())
+            .collect(Collectors.toUnmodifiableList());
         addYangLeaf(currentDataNode, leafListName, leafListValues);
     }
 
-    private void addDataNodeForEachListElement(final DataNode currentDataNode, final MapNode mapNode) {
+    private static void addDataNodeForEachListElement(final DataNode currentDataNode, final MapNode mapNode) {
         final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
-            final String xpathChild = YangUtils.buildXpath(mapEntryNode.getIdentifier());
-            final DataNode childDataNode = createAndAddChildDataNode(currentDataNode, xpathChild);
-            addDataNodeFromNormalizedNode(childDataNode, mapEntryNode);
+            addDataNodeFromNormalizedNode(currentDataNode, mapEntryNode);
         }
     }
 
-    private DataNode createAndAddChildDataNode(final DataNode parentDataNode, final String childXpath) {
-        final DataNode newChildDataNode = new DataNodeBuilder().withXpath(xpath + childXpath)
+    private static DataNode createAndAddChildDataNode(final DataNode parentDataNode, final String childXpath) {
+
+        final DataNode newChildDataNode = new DataNodeBuilder()
+            .withXpath(parentDataNode.getXpath() + childXpath)
             .build();
         final Set<DataNode> allChildDataNodes = new ImmutableSet.Builder<DataNode>()
             .addAll(parentDataNode.getChildDataNodes())
