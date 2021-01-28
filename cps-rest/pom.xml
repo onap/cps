@@ -12,7 +12,7 @@
     <artifactId>cps-rest</artifactId>
 
     <properties>
-        <minimum-coverage>0.88</minimum-coverage>
+        <minimum-coverage>0.52</minimum-coverage>
     </properties>
 
     <dependencies>
@@ -49,6 +49,10 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -94,48 +98,32 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <!-- Swagger code generation. -->
             <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
+                            <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
+                            <modelPackage>org.onap.cps.rest.model</modelPackage>
+                            <apiPackage>org.onap.cps.rest.api</apiPackage>
+                            <language>spring</language>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <dateLibrary>java11</dateLibrary>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useTags>true</useTags>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>docker</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.google.cloud.tools</groupId>
-                        <artifactId>jib-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <id>build</id>
-                                <goals>
-                                    <goal>dockerBuild</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <phase>deploy</phase>
-                                <id>buildAndPush</id>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
