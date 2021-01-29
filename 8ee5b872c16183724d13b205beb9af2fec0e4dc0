@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4fbf7608_bb1c5209",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "we don\u0027t need the endpoint to upload json data as file\nthis can be ok for testing, but it\u0027s an extra requirement\nfor data posting,\n\nthe json data is expected to be provided directly in a request body, \nnot encapsulated to file. please update an api and controller methods",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9169dae9_e98dbf76",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "this should accept json data as string, not file uploaded\nsee the comnent for openapi configuration",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 85
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da8c630b_79c7fc47",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -42,6 +88,29 @@
     },
     {
       "key": {
+        "uuid": "99ab3f9e_0816142e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "no yang resources here\nrename to storeData(String dataspacename, String anchorName, String jsonData)\n+ not null annotations",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7274b17_ec81d24b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 3
@@ -53,6 +122,29 @@
       "writtenOn": "2021-01-29T08:39:18Z",
       "side": 1,
       "message": "change \"final\" for annotations. My understanding was that SchemaContext  should be left outside of API",
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a75aecfd_b6498a06",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "SchemaContext is an ODL yangtools artifact.\nit should not be a part of API",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 34
+      },
       "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -75,6 +167,52 @@
         "startChar": 51,
         "endLine": 56,
         "endChar": 91
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f417d1f_9180dd3a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "no try/catch/IOException here\nupdate YangUtils to throw DataValidationException if data cannot be parsed",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e16eecd1_73d6fab2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T08:49:11Z",
+      "side": 1,
+      "message": "move this to CpsDataServiceImpl as private\n@Autowired the cache there",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
       },
       "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
