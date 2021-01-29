@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40f0b0f3_c941ef4f",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T11:36:20Z",
+      "side": 1,
+      "message": "or for generate an specific type",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "66ce02e9dabeff2ba8bc435218819059740ce4a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a0f96cf_d001bdaa",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T11:36:20Z",
+      "side": 1,
+      "message": "fix name to cps-and-nf-proxy",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "66ce02e9dabeff2ba8bc435218819059740ce4a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
