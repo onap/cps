@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ef198a8_4c792999",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T07:16:40Z",
+      "side": 1,
+      "message": "these definitions are specific to data being loaded via sql file\nwhich is different in each test. if these a shared constants\nthen there should be a shared data sql loaded.",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

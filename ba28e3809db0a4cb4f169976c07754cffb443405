@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19320cd5_437e7f5e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-01-29T07:16:40Z",
+      "side": 1,
+      "message": "@Sql({CLEAR_DATA, SET_DATA})\nthis a bit more clear version, does the same",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "ba28e3809db0a4cb4f169976c07754cffb443405",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
