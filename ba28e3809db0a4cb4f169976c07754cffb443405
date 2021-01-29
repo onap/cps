@@ -22,6 +22,53 @@
       "revId": "ba28e3809db0a4cb4f169976c07754cffb443405",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b9a1820_7657878a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "ok, will do",
+      "parentUuid": "19320cd5_437e7f5e",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "ba28e3809db0a4cb4f169976c07754cffb443405",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d3a819e_8e06c19f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "Before you comment on my (lack of) use of comments, consider below: \n(and then feel free to add your opinion)\n\nI am considering dropping this constant, it might be controversial but I find constant for String that don\u0027t add value and are unlikely to change (ie the name of the constant is almost identical to the string) pointless, especially in test code and if anything harder to read because of the use of CAPS....\n\nif might be more useful if it is given an appropriate name in the context of the test at hand (maybe not the same name for all tests! e.g. def existingParentXpath \u003d \u0027/parent-1\u0027",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "ba28e3809db0a4cb4f169976c07754cffb443405",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "c713220b_7c8d3048",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a41b600d_5eae8ca9",
+      "range": {
+        "startLine": 141,
+        "startChar": 31,
+        "endLine": 141,
+        "endChar": 32
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2db40a2d_27fbf804",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -91,6 +115,30 @@
       "revId": "105ec40471773459b9d02b83f596bfea4903db43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72d311dc_e5fdaf6a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "there where many more actually :-) Thanks",
+      "parentUuid": "2db40a2d_27fbf804",
+      "range": {
+        "startLine": 147,
+        "startChar": 90,
+        "endLine": 147,
+        "endChar": 91
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "93fd188d_aa5502d1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72896857_53d650fe",
+      "range": {
+        "startLine": 97,
+        "startChar": 52,
+        "endLine": 97,
+        "endChar": 54
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ef198a8_4c792999",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
         "patchSetId": 4
@@ -160,6 +232,30 @@
       "revId": "105ec40471773459b9d02b83f596bfea4903db43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ce33c72_3552559a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T10:30:34Z",
+      "side": 1,
+      "message": "yes in one test you used ANCHOR_NAME  (without 1) for ANCHOR-001 I just made them consistent...",
+      "parentUuid": "9ef198a8_4c792999",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
