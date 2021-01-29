@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da8c630b_79c7fc47",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T08:39:18Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "752563f5_25690004",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T08:39:18Z",
+      "side": 1,
+      "message": "validateYangData . Imho parse is part of the process, not need to mention what the method does for validate. Also short methods\nreduces line lengths.\n\nadd nonnull annotations",
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7274b17_ec81d24b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T08:39:18Z",
+      "side": 1,
+      "message": "change \"final\" for annotations. My understanding was that SchemaContext  should be left outside of API",
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce13091d_2cf98e82",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T08:39:18Z",
+      "side": 1,
+      "message": "is this a singletonMap?\nIs enforced that we never receive here an empty map?\nWill always be an singletonMap? if  yes, you could pass instead immutableEntry or SimpleEntry",
+      "range": {
+        "startLine": 56,
+        "startChar": 51,
+        "endLine": 56,
+        "endChar": 91
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
