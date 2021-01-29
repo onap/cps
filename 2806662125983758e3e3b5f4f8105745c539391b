@@ -16,6 +16,24 @@
       "revId": "2806662125983758e3e3b5f4f8105745c539391b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc71874b_22158298",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T15:59:27Z",
+      "side": 1,
+      "message": "I actually prefer this for redability\nI tried an assertThat for sometjhign else but got into ambiguous dependency issues.  So I decided not try try any assertimports....",
+      "parentUuid": "b2a6ab30_a7dee9ca",
+      "revId": "2806662125983758e3e3b5f4f8105745c539391b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
