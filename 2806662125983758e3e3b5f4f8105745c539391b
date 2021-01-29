@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2a6ab30_a7dee9ca",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-01-29T11:38:50Z",
+      "side": 1,
+      "message": "there are some validation like notNull, not sure if the approach differs on spock",
+      "revId": "2806662125983758e3e3b5f4f8105745c539391b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
