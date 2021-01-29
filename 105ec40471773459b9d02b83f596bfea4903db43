@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "300beab6_53109f7e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-29T10:21:55Z",
+      "side": 1,
+      "message": "; can be removed",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 78
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a00025d_482a71d2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-29T10:21:55Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 109,
+        "startChar": 68,
+        "endLine": 109,
+        "endChar": 69
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a41b600d_5eae8ca9",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -41,6 +87,29 @@
         "startChar": 90,
         "endLine": 147,
         "endChar": 91
+      },
+      "revId": "105ec40471773459b9d02b83f596bfea4903db43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "800b53a4_9646d3d3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-01-29T10:21:55Z",
+      "side": 1,
+      "message": "remove, Line No : 57 and 58 , 108",
+      "range": {
+        "startLine": 56,
+        "startChar": 69,
+        "endLine": 56,
+        "endChar": 70
       },
       "revId": "105ec40471773459b9d02b83f596bfea4903db43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
