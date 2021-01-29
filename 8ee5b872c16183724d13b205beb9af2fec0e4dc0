@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "120d11ce_2e9a9ac9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T08:53:00Z",
+      "side": 1,
+      "message": "this method was written for yang modules. IN this case we expect only one file and just need to get the content (we should use a json parser too to verify it is valid json, possibly in the service layer)",
+      "range": {
+        "startLine": 52,
+        "startChar": 48,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da8c630b_79c7fc47",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -59,6 +82,30 @@
       "writtenOn": "2021-01-29T08:39:18Z",
       "side": 1,
       "message": "why?",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40f42d99_4d4d8818",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T08:53:00Z",
+      "side": 1,
+      "message": "as ew discussed in teams, can you check this",
+      "parentUuid": "da8c630b_79c7fc47",
       "range": {
         "startLine": 37,
         "startChar": 1,
@@ -151,6 +198,24 @@
     },
     {
       "key": {
+        "uuid": "cd961bc1_35f5913a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T08:53:00Z",
+      "side": 1,
+      "message": "I was thinking about this. The CPSMOduleService is consider \u0027INTERNAL\u0027 maybe we should move the relevant interface (outside teh public SPI/API) we do need the SchemContetx somehow!\n\nActually Ruslan\u0027s prpposal to inject the cache in service sounds the right/eassiest thing to do",
+      "parentUuid": "f7274b17_ec81d24b",
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce13091d_2cf98e82",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 3
@@ -208,6 +273,30 @@
       "writtenOn": "2021-01-29T08:49:11Z",
       "side": 1,
       "message": "move this to CpsDataServiceImpl as private\n@Autowired the cache there",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "8ee5b872c16183724d13b205beb9af2fec0e4dc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfb44b79_6321995f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-01-29T08:53:00Z",
+      "side": 1,
+      "message": "yes that sounds good!",
+      "parentUuid": "e16eecd1_73d6fab2",
       "range": {
         "startLine": 59,
         "startChar": 0,
