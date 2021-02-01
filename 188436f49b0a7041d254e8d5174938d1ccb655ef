@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "18bc7476_fd810512",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-01T12:13:55Z",
+      "side": 1,
+      "message": "these are not used anywhere",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61b44af8_c4326256",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 7
@@ -42,6 +65,29 @@
         "startChar": 9,
         "endLine": 37,
         "endChar": 17
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46718686_89781021",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-01T12:13:55Z",
+      "side": 1,
+      "message": "too many duplicate DB calls for retrieving the Dataspace, anchor and Schemaset(can be done with as it is cached). Why not try smething like below if feasible:\n\nfinal Dataspace dataspace \u003d cpsAdminService.getDataspace(...)\nfinal Anchor anchor \u003d cpsAdminService.getAnchor(dataspace, anchorName);\n        final SchemaContext schemaContext \u003d getSchemaContext(dataspace, anchor.getSchemaSetName());\n        final NormalizedNode normalizedNode \u003d YangUtils.parseJsonData(jsonData, schemaContext);\n        final DataNode dataNode \u003d new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();\n        cpsDataPersistenceService.storeDataNode(dataspace, anchor, dataNode);",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 91
       },
       "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
