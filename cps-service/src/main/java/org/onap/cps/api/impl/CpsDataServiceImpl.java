@@ -24,6 +24,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchChildrenOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
@@ -59,5 +60,11 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
         return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
+    }
+
+    @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
+        final FetchChildrenOption fetchChildrenOption) {
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchChildrenOption);
     }
 }
