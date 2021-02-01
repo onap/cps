@@ -23,10 +23,13 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -37,10 +40,10 @@ class CpsDataServiceImplSpec extends Specification {
     def objectUnderTest = new CpsDataServiceImpl()
 
     def setup() {
-        objectUnderTest.cpsDataPersistenceService = mockCpsDataPersistenceService;
-        objectUnderTest.cpsAdminService = mockCpsAdminService;
-        objectUnderTest.cpsModuleService = mockCpsModuleService;
-        objectUnderTest.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache;
+        objectUnderTest.cpsDataPersistenceService = mockCpsDataPersistenceService
+        objectUnderTest.cpsAdminService = mockCpsAdminService
+        objectUnderTest.cpsModuleService = mockCpsModuleService
+        objectUnderTest.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
     }
 
     def dataspaceName = 'some dataspace'
@@ -55,16 +58,28 @@ class CpsDataServiceImplSpec extends Specification {
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
         and: 'the schema source set cache returns a schema source set'
             def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
-            mockYangTextSchemaSourceSetCache.get(dataspaceName,schemaSetName) >> mockYangTextSchemaSourceSet
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         and: 'the schema source sets returns the test-tree schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
             mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
         when: 'save data method is invoked with test-tree json data'
-            def jsonData = org.onap.cps.TestUtils.getResourceFileContent('test-tree.json')
+            def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             objectUnderTest.saveData(dataspaceName, anchorName, jsonData)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
                     { dataNode -> dataNode.xpath == '/test-tree' })
+    }
+
+    @Unroll
+    def 'Get data node with option #fetchChildrenOption'() {
+        def xpath = '/xpath'
+        def dataNode = new DataNodeBuilder().withXpath(xpath).build()
+        given: 'persistence service returns data for get data request'
+            mockCpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+        expect: 'service returns same data if uses same parameters'
+            objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+        where: 'all fetch options are supported'
+            fetchDescendantsOption << FetchDescendantsOption.values()
     }
 }

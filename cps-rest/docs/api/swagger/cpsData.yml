@@ -2,11 +2,13 @@ nodesByDataspaceAndAnchor:
   get:
     tags:
       - cps-data
-    summary: Get a node given an anchor for the given dataspace - DRAFT
+    summary: Get a node given an anchor for the given dataspace
     operationId: getNodeByDataspaceAndAnchor
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -49,7 +51,7 @@ nodesByDataspace:
     tags:
       - cps-data
     summary: Get all nodes for a given dataspace using an xpath or schema node identifier - DRAFT
-    operationId: getNode
+    operationId: getNodeByDataspace
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
     responses:

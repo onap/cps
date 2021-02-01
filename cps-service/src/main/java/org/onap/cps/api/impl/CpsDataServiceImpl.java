@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
@@ -59,5 +61,11 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
         return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
+    }
+
+    @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
     }
 }
