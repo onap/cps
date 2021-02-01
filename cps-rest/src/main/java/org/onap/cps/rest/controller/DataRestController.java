@@ -1,6 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
+import org.onap.cps.spi.FetchChildrenOption;
+import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,13 +47,20 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNode(final String dataspaceName) {
+    public ResponseEntity<Object> getNodeByDataspace(final String dataspaceName) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName) {
-        return null;
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
+        final String cpsPath, final Boolean includeChildren) {
+        if ("/".equals(cpsPath)) {
+            // TODO: extracting data by anchor only (root data node and below)
+            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        }
+        final FetchChildrenOption fetchChildrenOption = Boolean.TRUE.equals(includeChildren)
+            ? FetchChildrenOption.INCLUDE_ALL_CHILDREN : FetchChildrenOption.OMIT_CHILDREN;
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, cpsPath, fetchChildrenOption);
+        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
-
 }
