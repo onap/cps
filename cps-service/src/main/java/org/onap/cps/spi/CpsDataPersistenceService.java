@@ -50,4 +50,17 @@ public interface CpsDataPersistenceService {
      */
     void addChildDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentXpath,
         @NonNull DataNode dataNode);
+
+    /**
+     * Retrieves datanode by XPath for given dataspace and anchor.
+     *
+     * @param dataspaceName       dataspace name
+     * @param anchorName          anchor name
+     * @param xpath               xpath
+     * @param fetchChildrenOption defines ether child nodes require to be fetched as well
+     * @return data node object
+     */
+
+    DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
+        @NonNull FetchChildrenOption fetchChildrenOption);
 }
