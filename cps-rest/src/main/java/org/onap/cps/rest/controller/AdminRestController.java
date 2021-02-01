@@ -102,7 +102,8 @@ public class AdminRestController implements CpsAdminApi {
 
     @Override
     public ResponseEntity<Object> getAnchor(final String dataspaceName, final String anchorName) {
-        return null;
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        return new ResponseEntity<>(anchor, HttpStatus.OK);
     }
 
     @Override
