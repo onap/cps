@@ -62,6 +62,22 @@ components:
       required: true
       schema:
         type: string
+    xpathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+    includeDescendantsOptionInQuery:
+      name: include-descendants
+      in: query
+      description: include-descendants
+      required: false
+      schema:
+        type: boolean
+        default: false
 
   responses:
     NotFound:
