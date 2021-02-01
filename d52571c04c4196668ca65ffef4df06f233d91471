@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8bd90df5_bc7c5d39",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-01T09:14:50Z",
+      "side": 1,
+      "message": "this should be moved under nodesByDataspaceAndAnchor\nuse anchorNameInPath instead of anchorNameInQuery",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "d52571c04c4196668ca65ffef4df06f233d91471",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ff05d92_804f2f7c",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 5
