@@ -28,6 +28,10 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
+import spock.lang.Unroll
+
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
@@ -37,37 +41,22 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/fragment.sql'
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
+    static final String DATA_NODE_XPATH = '/PARENT-100'
 
     static final DataNode newDataNode = new DataNodeBuilder().build()
     static DataNode existingDataNode
     static DataNode existingChildDataNode
 
+    static Map<String, Map<String, Object>> expectedLeavesByXpathMap = [
+            '/PARENT-100'                      : ["x": "y"],
+            '/PARENT-100/CHILD-001'            : ["a": "b", "c": ["d", "e", "f"]],
+            '/PARENT-100/CHILD-002'            : ["g": "h", "i": ["j", "k"]],
+            '/PARENT-100/CHILD-002/GRAND-CHILD': ["l": "m", "n": ["o", "p"]]
+    ]
+
     static {
         existingDataNode = createDataNodeTree(XPATH_DATA_NODE_WITH_DESCENDANTS)
         existingChildDataNode = createDataNodeTree('/parent-1/child-1')
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get fragment with descendants.'() {
-        /*
-        TODO: This test is not really testing the object under test! Needs to be updated as part of CPS-71
-        Actually I think this test will become redundant once th store data node tests is asserted using
-        a new getByXpath() method in the service (object under test)
-        A lot of preloaded dat will become redundant then too
-         */
-        //
-        when: 'a fragment is retrieved from the repository'
-            def fragment = fragmentRepository.findById(ID_DATA_NODE_WITH_DESCENDANTS).orElseThrow()
-        then: 'it has the correct xpath'
-            fragment.xpath == '/parent-1'
-        and: 'it contains the children'
-            fragment.childFragments.size() == 1
-            def childFragment = fragment.childFragments[0]
-            childFragment.xpath == '/parent-1/child-1'
-        and: "and its children's children"
-            childFragment.childFragments.size() == 1
-            def grandchildFragment = childFragment.childFragments[0]
-            grandchildFragment.xpath == '/parent-1/child-1/grandchild-1'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -77,9 +66,9 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def childXpath = "/parent-new/child-new"
             def grandChildXpath = "/parent-new/child-new/grandchild-new"
             objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1,
-                createDataNodeTree(parentXpath, childXpath, grandChildXpath))
+                    createDataNodeTree(parentXpath, childXpath, grandChildXpath))
         then: 'it can be retrieved by its xpath'
-            def parentFragment = getFragmentByXpath(parentXpath)
+            def parentFragment = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, parentXpath)
         and: 'it contains the children'
             parentFragment.childFragments.size() == 1
             def childFragment = parentFragment.childFragments[0]
@@ -91,7 +80,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def  'Store datanode error scenario: #scenario.'() {
+    def 'Store datanode error scenario: #scenario.'() {
         when: 'attempt to store a data node with #scenario'
             objectUnderTest.storeDataNode(dataspaceName, anchorName, dataNode)
         then: 'a #expectedException is thrown'
@@ -113,14 +102,14 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def expectedExistingChildPath = '/parent-1/child-1'
             def parentFragment = fragmentRepository.findById(ID_DATA_NODE_WITH_DESCENDANTS).orElseThrow()
             parentFragment.getChildFragments().size() == 2
-        and : 'it still has the old child'
-            parentFragment.getChildFragments().find( {it.xpath == expectedExistingChildPath})
-        and : 'it has the new child'
-            parentFragment.getChildFragments().find( {it.xpath == newChild.xpath})
+        and: 'it still has the old child'
+            parentFragment.getChildFragments().find({ it.xpath == expectedExistingChildPath })
+        and: 'it has the new child'
+            parentFragment.getChildFragments().find({ it.xpath == newChild.xpath })
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def  'Add child error scenario: #scenario.'() {
+    def 'Add child error scenario: #scenario.'() {
         when: 'attempt to add a child data node with #scenario'
             objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, dataNode)
         then: 'a #expectedException is thrown'
@@ -141,10 +130,72 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         dataNodeBuilder.build()
     }
 
-    def getFragmentByXpath = xpath -> {
-        //TODO: Remove this method when CPS-71 gets implemented
-        fragmentRepository.findAll().stream()
-          .filter(fragment -> fragment.getXpath().contains(xpath)).findAny().orElseThrow()
+    def getFragmentByXpath(dataspaceName, anchorName, xpath) {
+        def dataspace = dataspaceRepository.getByName(dataspaceName)
+        def anchor = anchorRepository.getByDataspaceAndName(dataspace, anchorName)
+        return fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspace, anchor, xpath).orElseThrow()
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node by xpath without descendants.'() {
+        when: 'data node is requested'
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, DATA_NODE_XPATH, OMIT_DESCENDANTS)
+        then: 'data node is returned with no descendants'
+            assert result.getXpath() == DATA_NODE_XPATH
+        and: 'expected leaves'
+            assert result.getChildDataNodes().size() == 0
+            assertLeavesMaps(result.getLeaves(), expectedLeavesByXpathMap[DATA_NODE_XPATH])
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node by xpath with all descendants.'() {
+        when: 'data node is requested with all descendants'
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3,
+                    DATA_NODE_XPATH, INCLUDE_ALL_DESCENDANTS)
+            def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
+        then: 'data node is returned with all the descendants populated'
+            assert mappedResult.size() == 4
+            assert result.getChildDataNodes().size() == 2
+            assert mappedResult.get('/PARENT-100/CHILD-001').getChildDataNodes().size() == 0
+            assert mappedResult.get('/PARENT-100/CHILD-002').getChildDataNodes().size() == 1
+        and: 'extracted leaves maps are matching expected'
+            mappedResult.each {
+                xpath, dataNode -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
+            }
+    }
+
+    def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
+        expectedLeavesMap.each { key, value ->
+            {
+                def actualValue = actualLeavesMap[key]
+                if (value instanceof Collection<?> && actualValue instanceof Collection<?>) {
+                    assert value.size() == actualValue.size()
+                    assert value.containsAll(actualValue)
+                } else {
+                    assert value == actualValue
+                }
+            }
+        }
+    }
+
+    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
+        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
+        dataNodeTree.getChildDataNodes()
+                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
+        return flatMap
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node error scenario: #scenario.'() {
+        when: 'attempt to get data node with #scenario'
+            objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName  | anchorName     | xpath          || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant' | 'not relevant' || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'    | 'not relevant' || AnchorNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_NAME3   | 'NO XPATH'     || DataNodeNotFoundException
+    }
 }
