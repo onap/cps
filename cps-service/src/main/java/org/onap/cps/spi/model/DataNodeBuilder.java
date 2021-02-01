@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,6 +43,7 @@ public class DataNodeBuilder {
 
     private NormalizedNode<?, ?> normalizedNodeTree;
     private String xpath;
+    private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
 
 
@@ -64,6 +66,17 @@ public class DataNodeBuilder {
      */
     public DataNodeBuilder withXpath(final String xpath) {
         this.xpath = xpath;
+        return this;
+    }
+
+    /**
+     * To use attributes for creating {@link DataNode}.
+     *
+     * @param leaves for the data node
+     * @return DataNodeBuilder
+     */
+    public DataNodeBuilder withLeaves(final Map<String, Object> leaves) {
+        this.leaves = leaves;
         return this;
     }
 
@@ -96,6 +109,7 @@ public class DataNodeBuilder {
     private DataNode buildFromAttributes() {
         final DataNode dataNode = new DataNode();
         dataNode.setXpath(xpath);
+        dataNode.setLeaves(leaves);
         dataNode.setChildDataNodes(childDataNodes);
         return dataNode;
     }

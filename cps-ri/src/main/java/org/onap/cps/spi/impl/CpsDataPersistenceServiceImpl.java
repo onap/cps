@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,15 +20,23 @@
 
 package org.onap.cps.spi.impl;
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -93,13 +102,42 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
-        final AnchorEntity anchorEntity,
-        final DataNode dataNode) {
+        final AnchorEntity anchorEntity, final DataNode dataNode) {
         return FragmentEntity.builder()
             .dataspace(dataspaceEntity)
             .anchor(anchorEntity)
             .xpath(dataNode.getXpath())
             .attributes(GSON.toJson(dataNode.getLeaves()))
             .build();
+    }
+
+    @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final FragmentEntity fragmentEntity =
+            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
+        return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
+    private static DataNode toDataNode(final FragmentEntity fragmentEntity,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        final Map<String, Object> leaves = GSON.fromJson(fragmentEntity.getAttributes(), Map.class);
+        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        return new DataNodeBuilder()
+            .withXpath(fragmentEntity.getXpath())
+            .withLeaves(leaves)
+            .withChildDataNodes(childDataNodes).build();
+    }
+
+    private static List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        if (fetchDescendantsOption == INCLUDE_ALL_DESCENDANTS) {
+            return fragmentEntity.getChildFragments().stream()
+                .map(childFragmentEntity -> toDataNode(childFragmentEntity, fetchDescendantsOption))
+                .collect(Collectors.toUnmodifiableList());
+        }
+        return Collections.emptyList();
     }
 }
