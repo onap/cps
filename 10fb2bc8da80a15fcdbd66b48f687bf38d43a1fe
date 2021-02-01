@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "889255c0_9269955f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T12:18:40Z",
+      "side": 1,
+      "message": "not sure what are you not sure 😊. Please dont mix container generation with deployment. This is what has been agreed and is documented on wiki.",
+      "parentUuid": "2545e98c_e0c3aacf",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e425ec4_aaa45dcb",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 5
@@ -83,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "4136fd4a_22502a5a",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T12:18:40Z",
+      "side": 1,
+      "message": "this needs to be decouple, test should have different approach. I guess this will be fixed when this NF is developed.",
+      "parentUuid": "d2b0dc04_57e8130f",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8a3dc25_eea3e914",
         "filename": "cps-rest/pom.xml",
         "patchSetId": 5
@@ -94,6 +142,30 @@
       "writtenOn": "2021-02-01T12:08:41Z",
       "side": 1,
       "message": "temporary again I assume",
+      "range": {
+        "startLine": 15,
+        "startChar": 26,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8592a9e4_41895a06",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T12:18:40Z",
+      "side": 1,
+      "message": "well, you can create a task so it gets done at some point",
+      "parentUuid": "d8a3dc25_eea3e914",
       "range": {
         "startLine": 15,
         "startChar": 26,
