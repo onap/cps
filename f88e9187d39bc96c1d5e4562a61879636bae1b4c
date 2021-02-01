@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "74fcba82_426254f5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-01T16:16:31Z",
+      "side": 1,
+      "message": "we need to define the list of children before we build the object, \nthe setters (for existing object updates) are not accessible from this package",
+      "parentUuid": "11c20e6d_cba876e8",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 101
+      },
+      "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2dd50b0_580453f4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -92,6 +116,30 @@
       "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "111e1e15_827c0590",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-01T16:16:31Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "6081af97_79c66501",
+      "range": {
+        "startLine": 60,
+        "startChar": 42,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
