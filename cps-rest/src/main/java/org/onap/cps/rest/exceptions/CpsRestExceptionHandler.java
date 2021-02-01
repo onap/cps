@@ -27,6 +27,7 @@ import org.onap.cps.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataInUseException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
@@ -58,7 +59,7 @@ public class CpsRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }
 
-    @ExceptionHandler({NotFoundInDataspaceException.class})
+    @ExceptionHandler({NotFoundInDataspaceException.class, DataNodeNotFoundException.class})
     public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
     }
