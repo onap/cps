@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ab0d934_34b8b1bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-01T10:25:25Z",
+      "side": 1,
+      "message": "the functionality can be extended in the future via\nnew method mapped to text/xml or application/xml content-type,\ncurrent one is mapped to application/json",
+      "parentUuid": "61b44af8_c4326256",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a611eaf_080f63e5",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 7
