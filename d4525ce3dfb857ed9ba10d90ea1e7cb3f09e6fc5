@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8f28915_ab28d6b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/config/CpsPersistenceAutoConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-01T10:51:16Z",
+      "side": 1,
+      "message": "all these packages are still within \"org.onap.cps\" which is auto configured. what benefit are we getting from this?",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
