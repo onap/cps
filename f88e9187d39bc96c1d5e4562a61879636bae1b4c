@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11c20e6d_cba876e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-01T13:02:21Z",
+      "side": 1,
+      "message": "would it not be simpler if you initialize to Collections.emptyList() and on condition INCLUDE_ALL_CHILDREN call getChildDataNodes. Might look more readable.",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 101
+      },
+      "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2dd50b0_580453f4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-01T13:02:21Z",
+      "side": 1,
+      "message": "just wondering if there should be a limit on the level of children to fetch.",
+      "range": {
+        "startLine": 137,
+        "startChar": 44,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6081af97_79c66501",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-01T13:02:21Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 60,
+        "startChar": 42,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "f88e9187d39bc96c1d5e4562a61879636bae1b4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
