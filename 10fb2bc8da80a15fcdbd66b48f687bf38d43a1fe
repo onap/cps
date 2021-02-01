@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "8a937035_4a245bdb",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T17:16:21Z",
+      "side": 1,
+      "message": "reverted",
+      "parentUuid": "a3d722f7_1093d1f7",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8a3dc25_eea3e914",
         "filename": "cps-rest/pom.xml",
         "patchSetId": 5
@@ -250,6 +274,30 @@
       "side": 1,
       "message": "I don\u0027t understand why it it dropping?",
       "parentUuid": "8592a9e4_41895a06",
+      "range": {
+        "startLine": 15,
+        "startChar": 26,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2152e19_a3f7faf2",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T17:16:21Z",
+      "side": 1,
+      "message": "Moving the Application out, seems to have some effect on those Groovy tests. And reports show not coverage for controller 😕",
+      "parentUuid": "d4a9dce5_87e89b52",
       "range": {
         "startLine": 15,
         "startChar": 26,
