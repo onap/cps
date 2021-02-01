@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "9fcde047_f6822311",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-01T12:21:18Z",
+      "side": 1,
+      "message": "perfect, thanks. I added more information there",
+      "parentUuid": "77ebe11f_e8767dbf",
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2b0dc04_57e8130f",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 5
