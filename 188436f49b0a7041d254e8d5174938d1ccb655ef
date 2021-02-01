@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "bcb88d84_894b225f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T15:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beba2f6c_04a9f4f1",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61b44af8_c4326256",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 7
@@ -120,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "65f9309e_ef00980a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T15:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "973b9101_3400de37",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46718686_89781021",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -167,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "6bd74530_95e01815",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T15:36:34Z",
+      "side": 1,
+      "message": "create CPS-220 to deal with optimization",
+      "parentUuid": "b8bbd777_86d26af9",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 91
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a611eaf_080f63e5",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 7
@@ -187,6 +259,30 @@
       "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcdcbd68_2dc7df60",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T15:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a611eaf_080f63e5",
+      "range": {
+        "startLine": 70,
+        "startChar": 68,
+        "endLine": 70,
+        "endChar": 76
+      },
+      "revId": "188436f49b0a7041d254e8d5174938d1ccb655ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
