@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "ed69e66b_620f804f",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T16:06:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fcde047_f6822311",
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2b0dc04_57e8130f",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 5
@@ -149,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "a3d722f7_1093d1f7",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T16:06:43Z",
+      "side": 1,
+      "message": "will it be reverted in this commit or dependent on another task/commit can you clarify please",
+      "parentUuid": "4136fd4a_22502a5a",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8a3dc25_eea3e914",
         "filename": "cps-rest/pom.xml",
         "patchSetId": 5
@@ -184,6 +226,30 @@
       "side": 1,
       "message": "well, you can create a task so it gets done at some point",
       "parentUuid": "d8a3dc25_eea3e914",
+      "range": {
+        "startLine": 15,
+        "startChar": 26,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "10fb2bc8da80a15fcdbd66b48f687bf38d43a1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4a9dce5_87e89b52",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-01T16:06:43Z",
+      "side": 1,
+      "message": "I don\u0027t understand why it it dropping?",
+      "parentUuid": "8592a9e4_41895a06",
       "range": {
         "startLine": 15,
         "startChar": 26,
