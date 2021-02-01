@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d934a58a_9077d95d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-01T12:28:36Z",
+      "side": 1,
+      "message": "anchor object returned includes:\n- anchor name (\u0027my_anchor\u0027, not just \u0027anchor\u0027)\n- dataspace\n- schema set name\nnon of these values was checked in output (response)",
+      "range": {
+        "startLine": 251,
+        "startChar": 50,
+        "endLine": 251,
+        "endChar": 60
+      },
+      "revId": "49d82cdf66ca5e8d6f257748fffef78332f7583a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
