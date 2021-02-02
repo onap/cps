@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "702476fb_90ffd83d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-02T16:37:32Z",
+      "side": 1,
+      "message": "If I am not wrong in one of the previous reviews we agreed to use a common pattern like someDataspace, someAnchor and so on. As you are also refactoring the tests, would you like to follow the same pattern?",
+      "range": {
+        "startLine": 71,
+        "startChar": 25,
+        "endLine": 71,
+        "endChar": 37
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e87b0726_9da2d929",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-02T16:37:32Z",
+      "side": 1,
+      "message": "why not define them as class level variables as this is repeated even in line 193 and 179?",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 103
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61b990d1_aa63e9f5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-02T16:37:32Z",
+      "side": 1,
+      "message": "same comment as above, why not use a class variable? repeated thrice .",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 81
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34499043_5e3da7bc",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 2
@@ -42,6 +111,52 @@
         "startChar": 0,
         "endLine": 50,
         "endChar": 36
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ce4536d_cd710eed",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-02T16:37:32Z",
+      "side": 1,
+      "message": "if possible follow the common pattern which was discussed earlier.. someDataspace",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c7a2803_1f51a9c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-02T16:37:32Z",
+      "side": 1,
+      "message": "would be nice if we try to follow common pattern",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 46,
+        "endChar": 39
       },
       "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
