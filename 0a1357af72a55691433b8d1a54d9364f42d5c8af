@@ -22,6 +22,30 @@
       "revId": "0a1357af72a55691433b8d1a54d9364f42d5c8af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0872349d_24fa99c5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-02T13:41:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5d562b1_f0d50c10",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 89
+      },
+      "revId": "0a1357af72a55691433b8d1a54d9364f42d5c8af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
