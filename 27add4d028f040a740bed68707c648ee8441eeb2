@@ -22,6 +22,30 @@
       "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d3496d_9952dfa9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-02T15:23:19Z",
+      "side": 1,
+      "message": "yes, we need all of them to be defined to setup mvc mock",
+      "parentUuid": "34499043_5e3da7bc",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 36
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
