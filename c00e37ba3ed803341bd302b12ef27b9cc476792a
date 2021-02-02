@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15b47832_3fefe21f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-02T17:36:36Z",
+      "side": 1,
+      "message": "please keep all variables together",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "576c9020_aad67510",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-02T17:36:36Z",
+      "side": 1,
+      "message": "by CPS",
+      "range": {
+        "startLine": 71,
+        "startChar": 76,
+        "endLine": 71,
+        "endChar": 78
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a000eb9_7134ad1a",
+        "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-02T17:36:36Z",
+      "side": 1,
+      "message": "could we add more data on those arrays?",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35c85665_22988d02",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-cavsta-onap-internal2021-01-28.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-02T17:36:36Z",
+      "side": 1,
+      "message": "could you please remove those extra empty spaces highlighted",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
