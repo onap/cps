@@ -46,6 +46,30 @@
       "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d49969af_055552cc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/config/CpsPersistenceAutoConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-02T07:04:12Z",
+      "side": 1,
+      "message": "for now i see all classes belong to this package and its subpackages only. If in future this is still needed, lets do it then. even in that case, you will have to add that new package specifically to this file so No point adding something, which is adding no value and extra class files. I suggest to park this for now.",
+      "parentUuid": "93f6c69e_06466c8c",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
