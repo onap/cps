@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "367e27e5_0a7f7437",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-02T16:47:30Z",
+      "side": 1,
+      "message": "see next comment",
+      "parentUuid": "e87b0726_9da2d929",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 103
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61b990d1_aa63e9f5",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2021-02-02T16:37:32Z",
       "side": 1,
       "message": "same comment as above, why not use a class variable? repeated thrice .",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 81
+      },
+      "revId": "27add4d028f040a740bed68707c648ee8441eeb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3f4b4f4_3d41c74e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-02T16:47:30Z",
+      "side": 1,
+      "message": "i actually asked Niamh to leave it like this, I think it is important to see in the context of each test how the endpoint is created even if it is the same.\nIn my opinion overuse of constantst hides things, specially where it is important to show think like in in these tests... and in any case it still just one (g)string",
+      "parentUuid": "61b990d1_aa63e9f5",
       "range": {
         "startLine": 220,
         "startChar": 0,
