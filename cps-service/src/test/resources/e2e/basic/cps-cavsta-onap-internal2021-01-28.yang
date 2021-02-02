@@ -1,0 +1,153 @@
+module cps-cavsta-onap-internal {
+  yang-version 1.1;
+  namespace "org:onap:ccsdk:features:sdnr:northbound:cps-cavsta-onap-internal";
+  prefix onap-cavsta;
+
+    organization
+    "Open Network Automation Platform - ONAP
+     <https://www.onap.org>";
+  contact
+    "Editors:
+       Àhila Pandaram
+       <mailto:ahila.pandaram@wipro.com>
+
+       Swaminathan Seetharaman
+       <mailto:swaminathan.seetharaman@wipro.com>";
+  description
+    "This module contains YANG definitions for the relationship among coverage area, 
+     tracking area list and cells under each tracking area.
+     This relationship is used for internal purpose of ONAP to populate the details.
+
+    Copyright (C) 2020-2021 Wipro Limited.
+    
+    Licensed under the Apache License, Version 2.0 (the 'License')
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an 'AS IS' BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.";
+
+  revision 2021-01-28 {
+    description
+      "RAN Network YANG Model for ONAP/O-RAN POC";
+    reference
+      "https://wiki.onap.org/display/DW/E2E+Network+Slicing+Use+Case+in+R7+Guilin";
+  }
+
+   typedef Tac {
+    type int64 {
+      range "0..16777215";
+    }
+    description
+      "Tracking Area Code";
+    reference
+      "TS 23.003 clause 19.4.2.3";
+  }  
+   
+
+  typedef Mcc {
+    type string;
+    description
+      "The mobile country code consists of three decimal digits,
+       The first digit of the mobile country code identifies the geographic
+       region (the digits 1 and 8 are not used):";
+    reference
+      "3GPP TS 23.003 subclause 2.2 and 12.1";
+  }
+
+  typedef Mnc {
+    type string;
+    description
+      "The mobile network code consists of two or three
+       decimal digits (for example: MNC of 001 is not the same as MNC of 01)";
+    reference
+      "3GPP TS 23.003 subclause 2.2 and 12.1";
+  }
+
+          
+    grouping trackingAreaGroup{
+  		 leaf nRTAC {
+      type Tac;
+      description "Identity of the common Tracking Area Code for the PLMNs
+        allowedValues:
+        a) It is the TAC or Extended-TAC. 
+        b) A cell can only broadcast one TAC or Extended-TAC. 
+          See TS 36.300, subclause 10.1.7 (PLMNID and TAC relation).
+        c) TAC is defined in subclause 19.4.2.3 of 3GPP TS 23.003 and 
+          Extended-TAC is defined in subclause 9.3.1.29 of 3GPP TS 38.473.
+        d) For a 5G SA (Stand Alone), it has a non-null value.";
+    }
+  		list taCellsList{
+        key cellLocalId;
+        leaf cellLocalId {
+      description "Identifies an NR cell of a gNB. Together with corresponding
+        gNB ID it forms the NR Cell Identifier (NCI).";
+        mandatory true;
+        type int32 { range "0..16383"; }
+    }
+    }
+  	}
+    
+    grouping PLMNId {
+    description
+      "It specifies the PLMN identifier to be used as part of the global RAN node identity";
+    reference
+      "TS 23.658";
+    leaf mcc {
+      type Mcc;
+      mandatory true;
+      description
+        "The mobile country code consists of three decimal digits,
+       The first digit of the mobile country code identifies the geographic
+       region (the digits 1 and 8 are not used)";
+    }
+    leaf mnc {
+      type Mnc;
+      mandatory true;
+      description
+        "The mobile network code consists of two or three
+       decimal digits (for example: MNC of 001 is not the same as MNC of 01)";
+    }
+  }
+
+    
+    grouping coverageAreaGroup{
+      leaf coverageArea{
+      description "An attribute specifies the coverage area of the network slice, 
+      i.e. the geographic region where a 3GPP communication service is accessible,
+      see Table 7.1-1 of TS 22.261 [28]) and NG.116 [50].";
+      type string;
+    }
+    
+      list coverageAreaTAList{
+       uses trackingAreaGroup;
+       key "nRTAC";
+       description "This list contains the tracking area list for the coverageArea";
+    }
+    }
+    
+    container ran-coverage-area{
+    
+      list pLMNIdList {
+      description "List of at most six entries of PLMN Identifiers, but at least 
+        one (the primary PLMN Id).
+        The PLMN Identifier is composed of a Mobile Country Code (MCC) and a 
+        Mobile Network Code (MNC).";
+      key "mcc mnc";
+      uses PLMNId;
+    }
+
+      
+      list coverage-area{
+        uses coverageAreaGroup;
+        key "coverageArea";
+        description "This list contains the list of coverage area of a PLMNID";
+      }
+    
+    }
+    }

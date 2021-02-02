@@ -21,25 +21,71 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.api.CpsAdminService
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.model.Anchor
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
 class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
+    def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def mockCpsAdminService = Mock(CpsAdminService)
     def objectUnderTest = new CpsModuleServiceImpl()
+    def cpsDataServiceImple = new CpsDataServiceImpl()
 
     def setup() {
         objectUnderTest.cpsModulePersistenceService = mockModuleStoreService
         objectUnderTest.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
+        cpsDataServiceImple.cpsDataPersistenceService = mockDataStoreService
+        cpsDataServiceImple.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
+        cpsDataServiceImple.cpsAdminService = mockCpsAdminService
     }
+
+    def dataspaceName = 'someDataspace'
+    def anchorName = 'someAnchor'
+    def schemaSetName = 'someSchemaSet'
 
     def 'E2E model can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('e2e/basic/ietf-inet-types.yang','e2e/basic/ietf-yang-types.yang','e2e/basic/ran-network2020-08-06.yang')
         when: 'Create schema set method is invoked'
-            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+    }
+
+    def 'E2E Coverage Area-Tracking Area & TA-Cell mapping model can be parsed by CPS.'() {
+        given: 'Valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+                    'e2e/basic/ietf-inet-types.yang','e2e/basic/ietf-yang-types.yang',
+                    'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
+        when: 'Create schema set method is invoked'
+            objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+        then: 'Parameters are validated and processing is delegated to persistence service'
+            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+    }
+
+    def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed.'() {
+        given: 'Valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+                    'e2e/basic/ietf-inet-types.yang','e2e/basic/ietf-yang-types.yang',
+                    'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+        and : 'a valid json is provided for the model'
+            def jsonData = TestUtils.getResourceFileContent('e2e/basic/Data.txt')
+        and : 'all the further dependencies are mocked '
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
+                    new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).build()
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >>
+                    YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
+        when: 'saveData method is invoked'
+            cpsDataServiceImple.saveData(dataspaceName, anchorName, jsonData)
+        then: 'Parameters are validated and processing is delegated to persistence service'
+            1 * mockDataStoreService.storeDataNode(dataspaceName, anchorName,
+                    {dataNode -> dataNode.xpath == '/ran-coverage-area'})
     }
 }
