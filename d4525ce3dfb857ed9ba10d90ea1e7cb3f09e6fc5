@@ -22,6 +22,30 @@
       "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93f6c69e_06466c8c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/config/CpsPersistenceAutoConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-02T06:17:25Z",
+      "side": 1,
+      "message": "this removes the restriction the application should only belong\nto org.onap.cps package, allowing custom application builds\nwith simple inclusion of module jars",
+      "parentUuid": "a8f28915_ab28d6b5",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
