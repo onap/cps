@@ -25,6 +25,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
@@ -85,5 +86,46 @@ class E2ENetworkSliceSpec extends Specification {
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode(dataspaceName, anchorName,
                     {dataNode -> dataNode.xpath == '/ran-coverage-area' && dataNode.childDataNodes.size() == 4})
+    }
+
+    def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed for RAN inventory.'() {
+        def result
+        given: 'valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+                    'e2e/basic/cps-ran-inventory.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+        and : 'a valid json is provided for the model'
+            def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.txt')
+        and : 'all the further dependencies are mocked '
+            mockCpsAdminService.getAnchor('someDataspace', 'someAnchor') >>
+                    new Anchor().builder().name('someAnchor').schemaSetName('someSchemaSet').build()
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
+        when: 'saveData method is invoked'
+            cpsDataServiceImple.saveData('someDataspace', 'someAnchor', jsonData)
+        then: 'parameters are validated and processing is delegated to persistence service'
+            1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
+                    { args -> result = args[2]}
+        and: 'the size of the tree is correct'
+            def cpsRanInventory = treeToFlatMapByXpath(new HashMap<>(), result)
+            assert cpsRanInventory.size() == 3
+        and: 'ran-inventory contains the correct child node'
+            def ranInventory = cpsRanInventory.get('/ran-inventory')
+            def sliceProfilesList = cpsRanInventory.get('/ran-inventory/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']')
+            def pLMNIdList = cpsRanInventory.get('/ran-inventory/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']')
+            ranInventory.getChildDataNodes().size() == 1
+            ranInventory.getChildDataNodes().find( {it.xpath == sliceProfilesList.xpath})
+        and: 'sliceProfilesList contains the correct child node'
+            sliceProfilesList.getChildDataNodes().size() == 1
+            sliceProfilesList.getChildDataNodes().find( {it.xpath == pLMNIdList.xpath})
+        and: 'pLMNIdList contains the no child nodes'
+            pLMNIdList.getChildDataNodes().size() == 0
+    }
+
+    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
+        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
+        dataNodeTree.getChildDataNodes()
+                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
+        return flatMap
     }
 }
