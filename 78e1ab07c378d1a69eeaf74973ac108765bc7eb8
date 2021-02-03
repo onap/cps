@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0140c76a_60766be4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-03T17:03:55Z",
+      "side": 1,
+      "message": "yes once ruslans is merged I will rebase and remove this",
+      "parentUuid": "d05bd861_97a97710",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46378929_c49cc854",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory-data.txt",
         "patchSetId": 2
