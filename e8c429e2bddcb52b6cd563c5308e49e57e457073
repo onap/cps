@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33bb1f34_c65d76f1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T14:59:24Z",
+      "side": 1,
+      "message": "you could split this out (capture parameter) and describe better using another and: block. But not so important, we can do it later if we add more checks...",
+      "range": {
+        "startLine": 87,
+        "startChar": 50,
+        "endLine": 87,
+        "endChar": 111
+      },
+      "revId": "e8c429e2bddcb52b6cd563c5308e49e57e457073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9129997_d52cc445",
+        "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T14:59:24Z",
+      "side": 1,
+      "message": "did you verify this manually only\nI think we might need some more detailed test ie. try to find (by recursing over parent) the DataObject with this data node",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "e8c429e2bddcb52b6cd563c5308e49e57e457073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcc768b9_9adb800b",
+        "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T14:59:24Z",
+      "side": 1,
+      "message": "again you added data but apart from manual checks, can we verify. Would be good to get both DataNode with this TaCellsList and show we have stored that data correctly",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "e8c429e2bddcb52b6cd563c5308e49e57e457073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
