@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a7733c9_4115f8e3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-03T11:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15b47832_3fefe21f",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "232b20d6_e6b7bea1",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 3
@@ -66,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "e6745d65_8772b06e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-03T11:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d685170d_9edd3f52",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "576c9020_aad67510",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 3
@@ -86,6 +128,30 @@
       "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3f3b64_3b0d38ae",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-03T11:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "576c9020_aad67510",
+      "range": {
+        "startLine": 71,
+        "startChar": 76,
+        "endLine": 71,
+        "endChar": 78
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -171,6 +237,24 @@
     },
     {
       "key": {
+        "uuid": "7e9318ab_47f65cfa",
+        "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-03T11:57:45Z",
+      "side": 1,
+      "message": "Even though the data was also provided by E2E network slicing team, but I had to make minor changes to make it work. Hence also included more data to test the arrays.",
+      "parentUuid": "412c183a_b533f5d7",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35c85665_22988d02",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-cavsta-onap-internal2021-01-28.yang",
         "patchSetId": 3
@@ -200,6 +284,24 @@
       "side": 1,
       "message": "the models are not ours, we should NOT touch them!",
       "parentUuid": "35c85665_22988d02",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50cfc04a_fcb52889",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-cavsta-onap-internal2021-01-28.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-03T11:57:45Z",
+      "side": 1,
+      "message": "As suggested by Toine.. I dint touch the model",
+      "parentUuid": "dcd580d5_695c73fd",
       "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
