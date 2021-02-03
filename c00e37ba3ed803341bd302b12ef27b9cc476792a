@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "232b20d6_e6b7bea1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T07:36:03Z",
+      "side": 1,
+      "message": "there is no imports within cavsta yang file. it means it\u0027s expected to used as the only yang file in schema set,\nno need to include ietf yang files.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "576c9020_aad67510",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 3
@@ -35,6 +58,29 @@
         "startChar": 76,
         "endLine": 71,
         "endChar": 78
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba4fee66_7657f6a6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T07:36:03Z",
+      "side": 1,
+      "message": "you dont need to initialize all these services in order to test if data matches the model.\nusing YangUtils.parseJsonData() + DataNodeBuilder should be enough\nthese tests are about testing data vs models, not services",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 77
       },
       "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
