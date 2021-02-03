@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "d685170d_9edd3f52",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:00:55Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "232b20d6_e6b7bea1",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "576c9020_aad67510",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 3
@@ -88,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "9a2a5545_c8980d41",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:00:55Z",
+      "side": 1,
+      "message": "no sure, this might me the minimum required: the model and data get parsed by real code. the underlying services are mocked so far to pass the data around as needed",
+      "parentUuid": "ba4fee66_7657f6a6",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 77
+      },
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a000eb9_7134ad1a",
         "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
         "patchSetId": 3
@@ -105,6 +153,24 @@
     },
     {
       "key": {
+        "uuid": "412c183a_b533f5d7",
+        "filename": "cps-service/src/test/resources/e2e/basic/Data.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:00:55Z",
+      "side": 1,
+      "message": "these data sample are from e2E network slicing team, we should check with the before making any changes.\nIt sounds a re reasonable suggestion though.",
+      "parentUuid": "1a000eb9_7134ad1a",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35c85665_22988d02",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-cavsta-onap-internal2021-01-28.yang",
         "patchSetId": 3
@@ -116,6 +182,24 @@
       "writtenOn": "2021-02-02T17:36:36Z",
       "side": 1,
       "message": "could you please remove those extra empty spaces highlighted",
+      "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcd580d5_695c73fd",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-cavsta-onap-internal2021-01-28.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:00:55Z",
+      "side": 1,
+      "message": "the models are not ours, we should NOT touch them!",
+      "parentUuid": "35c85665_22988d02",
       "revId": "c00e37ba3ed803341bd302b12ef27b9cc476792a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
