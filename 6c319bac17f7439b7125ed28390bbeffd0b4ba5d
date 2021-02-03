@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8c0b05f7_942cd6cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T15:15:09Z",
+      "side": 1,
+      "message": "sounds good. So this solution recurs and get children\u0027s children etc? I saw a grand child tets so that is perfect!",
+      "parentUuid": "25a9b7d0_bbf54d72",
+      "range": {
+        "startLine": 136,
+        "startChar": 34,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31d631cf_d1a4d3fb",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "i feel strong including the assert keyword\nit clarifies the action which unclear",
       "parentUuid": "31d631cf_d1a4d3fb",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fadd40a_1943ea6b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T15:15:09Z",
+      "side": 1,
+      "message": "lets vote in the team tomorrow",
+      "parentUuid": "3be6e3b3_41a245c8",
       "range": {
         "startLine": 144,
         "startChar": 12,
@@ -295,6 +343,30 @@
       "side": 1,
       "message": "because having independent data sets for different test cases\nmakes it easier to maintain",
       "parentUuid": "16b77e97_a0a3b1e8",
+      "range": {
+        "startLine": 19,
+        "startChar": 62,
+        "endLine": 19,
+        "endChar": 79
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6b5e26_c467bcbe",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T15:15:09Z",
+      "side": 1,
+      "message": "ok, I accept that but then at least use same pattern in XPaths  \n\n/parent-1  v. /PARENT-100",
+      "parentUuid": "a7553bfc_6f8612e0",
       "range": {
         "startLine": 19,
         "startChar": 62,

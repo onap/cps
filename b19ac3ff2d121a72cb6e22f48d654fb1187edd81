@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89e6886f_a6744390",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T15:15:09Z",
+      "side": 1,
+      "message": "as you argued this is a special data node for this case so reflect that in the constant name (and then there is a good reason for using a constant)\n\nsuggestion: XPATH_DATA_NODE_WITH_LEAVES",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "b19ac3ff2d121a72cb6e22f48d654fb1187edd81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f6eaf90_35d02039",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T15:15:09Z",
+      "side": 1,
+      "message": "if there is significant data differences in the data under these nodes reflect that in the names of the constant:\n\ne.g ANNCHOR_DATANODE_WITH_LEAVES",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 0
+      },
+      "revId": "b19ac3ff2d121a72cb6e22f48d654fb1187edd81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
