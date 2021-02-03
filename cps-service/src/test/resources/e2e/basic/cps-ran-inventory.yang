@@ -1,0 +1,176 @@
+module cps-ran-inventory {
+  yang-version 1.1;
+  namespace "org:onap:ccsdk:features:sdnr:northbound:cps-ran-inventory";
+  prefix ran-info;
+
+    organization
+    "Open Network Automation Platform - ONAP
+     <https://www.onap.org>";
+  contact
+    "Editors:
+       Àhila Pandaram
+       <mailto:ahila.pandaram@wipro.com>
+
+       Swaminathan Seetharaman
+       <mailto:swaminathan.seetharaman@wipro.com>";
+  description
+    "This module contains YANG definitions of RAN inventory that contains the NSSI and slice profile details.
+
+    Copyright (C) 2020-2021 Wipro Limited.
+
+    Licensed under the Apache License, Version 2.0 (the 'License')
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an 'AS IS' BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.";
+
+  revision 2021-01-28 {
+    description
+      "RAN Network YANG Model for ONAP/O-RAN POC";
+    reference
+      "https://wiki.onap.org/display/DW/E2E+Network+Slicing+Use+Case+in+R7+Guilin";
+    }
+
+    typedef Mcc {
+    type string;
+    description
+      "The mobile country code consists of three decimal digits,
+       The first digit of the mobile country code identifies the geographic
+       region (the digits 1 and 8 are not used):";
+    reference
+      "3GPP TS 23.003 subclause 2.2 and 12.1";
+  }
+
+  typedef Mnc {
+    type string;
+    description
+      "The mobile network code consists of two or three
+       decimal digits (for example: MNC of 001 is not the same as MNC of 01)";
+    reference
+      "3GPP TS 23.003 subclause 2.2 and 12.1";
+  }
+
+    grouping SliceProfile{
+  		leaf sliceProfileId{
+  			type string;
+  			mandatory true;
+  			description "slice profile id";
+  		}
+  		leaf sNSSAI{
+  			type string;
+  			mandatory false;
+  			description "The S-NSSAI may include both the SST and SD fields (in which case the S-NSSAI length is 32 bits in total), or the S-NSSAI may just include the SST field (in which case the S-NSSAI length is 8 bits only)";
+  		}
+  		leaf maxNumberofUEs{
+  			type int64 { range "0..68719476735"; }
+        		mandatory false;
+          		description "maximum number of UEs";
+  		}
+  		leaf latency{
+  			type int64 { range "0..68719476735"; }
+        		mandatory false;
+          		description "latency of the slice requested by the operator";
+  		}
+  		leaf uLThptPerSlice{
+  			type int64 { range "0..68719476735"; }
+        		mandatory false;
+          		description "uplink throughput of the slice requested by the operator";
+  		}
+  		leaf dLThptPerSlice{
+  			type int64 { range "0..68719476735"; }
+        		mandatory false;
+          		description "downlink throughput  of the slice requested by the operator";
+  		}
+  		leaf maxNumberofConns{
+  			type int64 { range "0..68719476735"; }
+        		mandatory false;
+          		description "maximum number of connections to be served by the slice";
+  		}
+  		leaf uEMobilityLevel{
+  			type string;
+  			mandatory false;
+  			description "Mobility level of the UE";
+  		}
+    leaf resourceSharingLevel{
+      type string;
+      description "Resource sharing level";
+    }
+
+    leaf-list coverageAreaList{
+                type string;
+                config true;
+                description "Identifies the list of coverage areas to be served by the slice";
+        }
+
+          list pLMNIdList {
+      description "List of at most six entries of PLMN Identifiers, but at least
+        one (the primary PLMN Id).
+        The PLMN Identifier is composed of a Mobile Country Code (MCC) and a
+        Mobile Network Code (MNC).";
+      key "mcc mnc";
+      uses PLMNId;
+    }
+
+  	}
+
+    grouping PLMNId {
+    description
+      "It specifies the PLMN identifier to be used as part of the global RAN node identity";
+    reference
+      "TS 23.658";
+    leaf mcc {
+      type Mcc;
+      mandatory true;
+      description
+        "The mobile country code consists of three decimal digits,
+       The first digit of the mobile country code identifies the geographic
+       region (the digits 1 and 8 are not used)";
+    }
+    leaf mnc {
+      type Mnc;
+      mandatory true;
+      description
+        "The mobile network code consists of two or three
+       decimal digits (for example: MNC of 001 is not the same as MNC of 01)";
+    }
+  }
+
+    container ran-inventory{
+      leaf rannfnssiid{
+      description "NSSI of a RAN network function";
+      type string;
+    }
+
+    list sliceProfilesList{
+  		uses SliceProfile;
+  		key "sliceProfileId";
+  		description "List of slice profiles supported by the ran slice";
+  	}
+
+    leaf subnetStatus{
+      description "status of  RAN NF NSSI";
+      type string;
+    }
+
+    leaf nsstid{
+      description "template Id of a RAN NF NSST";
+      type string;
+    }
+
+    leaf slicetype{
+      description "Type of RAN Slice";
+      type string;
+    }
+
+    leaf isshareable{
+      description "Shareability of RAN Slice";
+      type string;
+    }
+    }
+    }
