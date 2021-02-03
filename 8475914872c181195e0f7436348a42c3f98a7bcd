@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "979a4d79_a61f4b51",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "is is easier to declare it as  primitive boolean so you won\u0027t have to worry about null?\nI expect when the parameter is NOT includes in the url it it interpreted as \u0027false\u0027",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f80acaf_ca6d15c9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "interesting question edge-case might need some discussion.\nif all children are included then you would get the whole tree....\nI think I\u0027ll create a user story later to handle this case, good to exclude for now!",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 78
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece7f5e1_1397196e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "see comment above",
+      "range": {
+        "startLine": 61,
+        "startChar": 56,
+        "endLine": 61,
+        "endChar": 92
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ea4349_d61ebd81",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "in groovy you can use just def setup() instead",
+      "range": {
+        "startLine": 81,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2a3fbd7_7649e609",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "use gtrings (\") only when needed",
+      "range": {
+        "startLine": 93,
+        "startChar": 35,
+        "endLine": 93,
+        "endChar": 36
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec14e0c9_4b9901ca",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "i presume this string is in the response in both scenarios. Is there a better way of checking no children are returned ie. the json string for empty array?!\n\nAlternatively use the bolelan value of the includeChidlren string in the same fashion as in the production code to do something like \n\nresponse.contentAsString.contains(checkString) \u003d\u003d expectedChildrenToBeIncluded",
+      "range": {
+        "startLine": 102,
+        "startChar": 106,
+        "endLine": 102,
+        "endChar": 111
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0837729d_6f93542b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "apply descriptions according to conventions",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 63
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e2768b0_dff08373",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "small d",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff471e6a_791cc5d5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "see previous comment about assert",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d5da528_2643f276",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T09:17:38Z",
+      "side": 1,
+      "message": "I dont think casting is need in any of these...",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 32
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
