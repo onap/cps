@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "25a9b7d0_bbf54d72",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "It\u0027s lazy fetch -\u003e see FragmentEntity",
+      "parentUuid": "378b587c_aaa19e9b",
+      "range": {
+        "startLine": 136,
+        "startChar": 34,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31d631cf_d1a4d3fb",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2021-02-03T08:54:53Z",
       "side": 1,
       "message": "no need for assert in then: blocks.\nIt don\u0027t mind either way but thus far we haven\u0027t used so I would like to be consistent.\nIF you feel strong on including it, lets have a quick team vote on it and we can update our conventions accordingly...",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3be6e3b3_41a245c8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "i feel strong including the assert keyword\nit clarifies the action which unclear",
+      "parentUuid": "31d631cf_d1a4d3fb",
       "range": {
         "startLine": 144,
         "startChar": 12,
@@ -117,6 +165,54 @@
     },
     {
       "key": {
+        "uuid": "8f3a94fc_cb093e39",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86245e1a_2274d8a1",
+      "range": {
+        "startLine": 196,
+        "startChar": 71,
+        "endLine": 196,
+        "endChar": 87
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "914a7ed8_3385c7b8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cae5a1a_73a3b896",
+      "range": {
+        "startLine": 196,
+        "startChar": 56,
+        "endLine": 196,
+        "endChar": 68
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d3291c0_770133d4",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "6bd69ccd_9812023b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d3291c0_770133d4",
+      "range": {
+        "startLine": 197,
+        "startChar": 71,
+        "endLine": 197,
+        "endChar": 87
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16b77e97_a0a3b1e8",
         "filename": "cps-ri/src/test/resources/data/fragment.sql",
         "patchSetId": 2
@@ -151,6 +271,30 @@
       "writtenOn": "2021-02-03T08:54:53Z",
       "side": 1,
       "message": "why introduce a new anchor. new fragments using different xpath pattern then before?\nCan we not add attribute to the pre-existing fragment under ANCHOR-001 ?!\nand if we cannot we should still be consistent with the xpaths (either change the old ones are align the new one with the old pattern)",
+      "range": {
+        "startLine": 19,
+        "startChar": 62,
+        "endLine": 19,
+        "endChar": 79
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7553bfc_6f8612e0",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "because having independent data sets for different test cases\nmakes it easier to maintain",
+      "parentUuid": "16b77e97_a0a3b1e8",
       "range": {
         "startLine": 19,
         "startChar": 62,
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "d527b394_10a19e47",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5db387eb_5de64a3f",
+      "range": {
+        "startLine": 22,
+        "startChar": 17,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6faebb3_615f4713",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
         "patchSetId": 2
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "82c5e0c5_6ec543b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6faebb3_615f4713",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32466a74_f39962cc",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
         "patchSetId": 2
@@ -229,6 +421,30 @@
       "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59e6527_d6463398",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-03T10:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32466a74_f39962cc",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
