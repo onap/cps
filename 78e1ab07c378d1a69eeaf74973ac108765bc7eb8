@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8abe784b_e2b5c289",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:01:03Z",
+      "side": 1,
+      "message": "rename to dataNodeStored or actualDataNode  or somethign similar\n\n(there are too many result things :-)",
+      "range": {
+        "startLine": 108,
+        "startChar": 30,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d05bd861_97a97710",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:01:03Z",
+      "side": 1,
+      "message": "I think Ruslan new MapUtil class might help here. But depend what gets merged first...",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46378929_c49cc854",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory-data.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:01:03Z",
+      "side": 1,
+      "message": "I now they named the file .txt but I think it would be clearer for us to store it as .json ?!",
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
