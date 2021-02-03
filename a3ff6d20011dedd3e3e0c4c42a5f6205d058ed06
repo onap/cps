@@ -22,6 +22,29 @@
       "revId": "a3ff6d20011dedd3e3e0c4c42a5f6205d058ed06",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb47470_a3e6d618",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:27:30Z",
+      "side": 1,
+      "message": "does this tets fail if you change this to INCLUDE_ALL_DESCENDANTS ?!",
+      "range": {
+        "startLine": 118,
+        "startChar": 96,
+        "endLine": 118,
+        "endChar": 120
+      },
+      "revId": "a3ff6d20011dedd3e3e0c4c42a5f6205d058ed06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

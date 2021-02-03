@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "93a08038_bb9eebcf",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:27:30Z",
+      "side": 1,
+      "message": "the use setupSpec and make required fields @shared (or static)",
+      "parentUuid": "776f1edd_6b4f3da6",
+      "range": {
+        "startLine": 81,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a3fbd7_7649e609",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 7
@@ -307,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "2fb498b6_42e3c26f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0837729d_6f93542b",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 63
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e2768b0_dff08373",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
         "patchSetId": 7
@@ -412,6 +460,30 @@
       "side": 1,
       "message": "yes, these are unnecessary for execution, however if not casted\nexplicitly the collection specific methods are highlighted as \nsyntax (compilation) errors in idea",
       "parentUuid": "5d5da528_2643f276",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 32
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e6781ac_ba35cd4f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-03T17:27:30Z",
+      "side": 1,
+      "message": "OK, I\u0027ll check in my IDE when merge and see if I have same issue",
+      "parentUuid": "9201b0d1_25267f04",
       "range": {
         "startLine": 65,
         "startChar": 20,
