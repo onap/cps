@@ -17,7 +17,7 @@
 
     <properties>
         <app>org.onap.cps.Application</app>
-        <base.image>openjdk:11-jre-slim</base.image>
+        <base.image>nexus3.onap.org:10001/library/openjdk:11-jre-slim</base.image>
         <java.version>11</java.version>
         <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
         <minimum-coverage>0.9</minimum-coverage>
