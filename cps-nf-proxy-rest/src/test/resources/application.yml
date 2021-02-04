@@ -1,0 +1,5 @@
+
+rest:
+    api:
+        xnf-base-path: /xnf-proxy/api
+spring:
