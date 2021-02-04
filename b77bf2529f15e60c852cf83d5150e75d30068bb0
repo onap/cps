@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7898a45d_2a608178",
+        "filename": "cps-nf-proxy-rest/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T10:58:01Z",
+      "side": 1,
+      "message": "I thought there is some tets code already, can this be set higher?",
+      "range": {
+        "startLine": 15,
+        "startChar": 26,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "b77bf2529f15e60c852cf83d5150e75d30068bb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3090c7e6_c8e57d87",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/config/NfProxyConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T10:58:01Z",
+      "side": 1,
+      "message": "what is a \"docket\" exactly?",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "b77bf2529f15e60c852cf83d5150e75d30068bb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8422f0c2_78d08c6e",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T10:58:01Z",
+      "side": 1,
+      "message": "where is there such a drop here?",
+      "range": {
+        "startLine": 15,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "b77bf2529f15e60c852cf83d5150e75d30068bb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
