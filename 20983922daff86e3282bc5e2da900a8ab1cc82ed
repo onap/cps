@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74aa8194_8008813a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-04T16:29:04Z",
+      "side": 1,
+      "message": "I think it would be more readable if you use leaf names like leaf1,leaf2 etc. rather than a,b,c.",
+      "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
