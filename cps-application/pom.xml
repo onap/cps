@@ -56,7 +56,7 @@
                             <phase>deploy</phase>
                             <id>buildAndPush</id>
                             <goals>
-                                <goal>build</goal>
+                                <goal>dockerBuild</goal>
                             </goals>
                         </execution>
                     </executions>
