@@ -94,6 +94,30 @@
       "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8e0fb0_f5f551e2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/config/CpsPersistenceAutoConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-04T14:28:14Z",
+      "side": 1,
+      "message": "that separation is understood and fine by me, it can be done without this \"exact\" change. DO let me know if there is a specific scenario i am missing.",
+      "parentUuid": "c7e39b48_777f8c6a",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "d4525ce3dfb857ed9ba10d90ea1e7cb3f09e6fc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
