@@ -19,13 +19,11 @@
         <app>org.onap.cps.Application</app>
         <base.image>openjdk:11-jre-slim</base.image>
         <java.version>11</java.version>
-        <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
         <minimum-coverage>0.9</minimum-coverage>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <oparent.version>3.1.0</oparent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <repository.name>nexus3.onap.org:10001/onap/cps-service</repository.name>
         <spotbugs-maven-plugin.version>4.1.3</spotbugs-maven-plugin.version>
         <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
         <spotbugs.slf4j.version>1.8.0-beta4</spotbugs.slf4j.version>
@@ -33,7 +31,6 @@
         <spotbugs.version>4.2.0</spotbugs.version>
         <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
-        <image.version>${project.version}</image.version>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
         <sonar.coverage.jacoco.xmlReportPaths>
@@ -122,23 +119,6 @@
                     <groupId>io.swagger.codegen.v3</groupId>
                     <artifactId>swagger-codegen-maven-plugin</artifactId>
                     <version>${swagger-codegen-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.cloud.tools</groupId>
-                    <artifactId>jib-maven-plugin</artifactId>
-                    <version>${jib-maven-plugin.version}</version>
-                    <configuration>
-                        <container>
-                            <mainClass>${app}</mainClass>
-                            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                        </container>
-                        <from>
-                            <image>${base.image}</image>
-                        </from>
-                        <to>
-                            <image>${repository.name}:${image.version}</image>
-                        </to>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
