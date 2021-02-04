@@ -33,7 +33,12 @@
     <artifactId>cps-application</artifactId>
 
     <properties>
+        <app>org.onap.cps.Application</app>
+        <image.name>cps-service</image.name>
+        <image.version>${project.version}</image.version>
+        <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
         <minimum-coverage>0.0</minimum-coverage>
+        <nexus.repository>nexus3.onap.org:10003/onap/</nexus.repository>
     </properties>
 
     <dependencies>
@@ -63,6 +68,19 @@
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
+                    <version>${jib-maven-plugin.version}</version>
+                    <configuration>
+                        <container>
+                            <mainClass>${app}</mainClass>
+                            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                        </container>
+                        <from>
+                            <image>${base.image}</image>
+                        </from>
+                        <to>
+                            <image>${nexus.repository}${image.name}:${image.version}</image>
+                        </to>
+                    </configuration>
                     <executions>
                         <execution>
                             <phase>package</phase>
@@ -113,8 +131,7 @@
             </activation>
 
             <properties>
-                <app>org.onap.cps.Application</app>
-                <repository.name>${docker.pushRegistry}onap/cps-nf-proxy</repository.name>
+                <image.name>cps-nf-proxy</image.name>
             </properties>
 
             <dependencies>
@@ -131,8 +148,7 @@
             </activation>
 
             <properties>
-                <app>org.onap.cps.Application</app>
-                <repository.name>${docker.pushRegistry}onap/cps-and-nf-proxy</repository.name><!-- better naming? -->
+                <image.name>cps-and-nf-proxy</image.name>
             </properties>
 
             <dependencies>
