@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,4 +51,17 @@ public interface CpsDataPersistenceService {
      */
     void addChildDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentXpath,
         @NonNull DataNode dataNode);
+
+    /**
+     * Retrieves datanode by XPath for given dataspace and anchor.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param xpath                  xpath
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
+     * @return data node object
+     */
+    DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
+        @NonNull FetchDescendantsOption fetchDescendantsOption);
 }

@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,6 +21,7 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.DatabaseTestContainer
+import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.repository.YangResourceRepository
@@ -43,6 +45,9 @@ class CpsPersistenceSpecBase extends Specification {
     YangResourceRepository yangResourceRepository
 
     @Autowired
+    AnchorRepository anchorRepository
+
+    @Autowired
     FragmentRepository fragmentRepository
 
     static final String CLEAR_DATA = '/data/clear-all.sql'
@@ -52,5 +57,6 @@ class CpsPersistenceSpecBase extends Specification {
     static final String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
     static final String ANCHOR_NAME1 = 'ANCHOR-001'
     static final String ANCHOR_NAME2 = 'ANCHOR-002'
+    static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
 
 }
