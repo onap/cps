@@ -86,6 +86,29 @@
       "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b472ad0f_c0e915a2",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-04T13:12:20Z",
+      "side": 1,
+      "message": "remove tabs",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
