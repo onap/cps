@@ -379,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "2b024424_c62870b9",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-04T06:12:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c6b5e26_c467bcbe",
+      "range": {
+        "startLine": 19,
+        "startChar": 62,
+        "endLine": 19,
+        "endChar": 79
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5db387eb_5de64a3f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchChildrenOption.java",
         "patchSetId": 2
