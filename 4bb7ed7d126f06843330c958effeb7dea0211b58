@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e859117_f17138b7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T12:27:03Z",
+      "side": 1,
+      "message": "I had a look at this test in my own IDEA, the xpath column is not needed (and is misleading) also I still think you should explicitly check if child is present in response or not:\n\n\n    def \u0027Get data node with #scenario.\u0027() {\n        given: \u0027the service returns data node #scenario\u0027\n            def xpath \u003d \u0027some xPath\u0027\n            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) \u003e\u003e dataNode\n        when: \u0027get request is performed through REST API\u0027\n            def response \u003d mvc.perform(\n                    get(dataNodeEndpoint)\n                            .param(\u0027cps-path\u0027, xpath)\n                            .param(\u0027include-descendants\u0027, urlOption)\n            ).andReturn().response\n        then: \u0027assert the success response returned\u0027\n            response.status \u003d\u003d HttpStatus.OK.value()\n        and: \u0027response only contains \"child\" when url parameter include-descendants is \"true\"\u0027\n            def a \u003d response.contentAsString\n            response.contentAsString.contains(\u0027\"child\"\u0027) \u003d\u003d expectChildInResponse\n        where:\n            scenario                    | dataNode            | urlOption || expectedCpsDataServiceOption | expectChildInResponse\n            \u0027no descendants by default\u0027 | dataNodeNoChildren  | \u0027\u0027        || OMIT_DESCENDANTS             | false\n            \u0027no descendant explicitly\u0027  | dataNodeNoChildren  | \u0027false\u0027   || OMIT_DESCENDANTS             | false\n            \u0027with descendants\u0027          | dataNodeWithChild   | \u0027true\u0027    || INCLUDE_ALL_DESCENDANTS      | true\n    }",
+      "range": {
+        "startLine": 104,
+        "startChar": 1,
+        "endLine": 123,
+        "endChar": 0
+      },
+      "revId": "4bb7ed7d126f06843330c958effeb7dea0211b58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

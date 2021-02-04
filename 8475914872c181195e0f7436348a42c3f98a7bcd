@@ -493,6 +493,30 @@
       "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d33fd9_a80a4caa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T12:27:03Z",
+      "side": 1,
+      "message": "Ok You need to us the power of groovy maps, I\u0027ll re-work this tets as an example after it has been merged",
+      "parentUuid": "8e6781ac_ba35cd4f",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 32
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
