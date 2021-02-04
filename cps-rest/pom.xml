@@ -12,7 +12,7 @@
     <artifactId>cps-rest</artifactId>
 
     <properties>
-        <minimum-coverage>0.53</minimum-coverage>
+        <minimum-coverage>0.51</minimum-coverage>
     </properties>
 
     <dependencies>
