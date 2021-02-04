@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "18bc3bd4_5fbfbedd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T11:30:54Z",
+      "side": 1,
+      "message": "I wont let it block this commit, we can always update later...",
+      "parentUuid": "8fadd40a_1943ea6b",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "6c319bac17f7439b7125ed28390bbeffd0b4ba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cae5a1a_73a3b896",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2

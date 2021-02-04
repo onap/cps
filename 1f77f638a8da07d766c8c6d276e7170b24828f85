@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abb20703_0aee4af4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-04T11:30:54Z",
+      "side": 1,
+      "message": "I stil seem to loose comments I make somehow, my bad, don\u0027t know hat happened. but I had wanted to split is up like so for additional clarification\n\n        then: \u0027the (mapped) results contain 4 nodes: 1 parent + 2 children + 1 grandchild \u003d 4\u0027\n            assert mappedResult.size() \u003d\u003d 4\n        and:  \u0027the parent has 2 children (direct descendants)\n            assert result.getChildDataNodes().size() \u003d\u003d 2\n        and: \u00271 grandchild\u0027\n            assert mappedResult.get(\u0027/parent-100/child-001\u0027).getChildDataNodes().size() \u003d\u003d 0\n            assert mappedResult.get(\u0027/parent-100/child-002\u0027).getChildDataNodes().size() \u003d\u003d 1",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 92
+      },
+      "revId": "1f77f638a8da07d766c8c6d276e7170b24828f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
