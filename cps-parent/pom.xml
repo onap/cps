@@ -33,7 +33,7 @@
         <spotbugs.version>4.2.0</spotbugs.version>
         <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
-        <tag.version>${project.version}</tag.version>
+        <image.version>${project.version}</image.version>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
         <sonar.coverage.jacoco.xmlReportPaths>
@@ -45,6 +45,8 @@
             ../cps-rest/target/site/jacoco-aggregate/jacoco.xml,
             ../cps-nf-proxy-rest/target/site/jacoco-ut/jacoco.xml,
             ../cps-nf-proxy-rest/target/site/jacoco-aggregate/jacoco.xml,
+            ../cps-application/target/site/jacoco-ut/jacoco.xml,
+            ../cps-application/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
@@ -120,27 +122,6 @@
                     <groupId>io.swagger.codegen.v3</groupId>
                     <artifactId>swagger-codegen-maven-plugin</artifactId>
                     <version>${swagger-codegen-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
-                                <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
-                                <modelPackage>org.onap.cps.rest.model</modelPackage>
-                                <apiPackage>org.onap.cps.rest.api</apiPackage>
-                                <language>spring</language>
-                                <generateSupportingFiles>false</generateSupportingFiles>
-                                <configOptions>
-                                    <sourceFolder>src/gen/java</sourceFolder>
-                                    <dateLibrary>java11</dateLibrary>
-                                    <interfaceOnly>true</interfaceOnly>
-                                    <useTags>true</useTags>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
@@ -155,10 +136,7 @@
                             <image>${base.image}</image>
                         </from>
                         <to>
-                            <image>${repository.name}</image>
-                            <tags>
-                                <tag>${tag.version}</tag>
-                            </tags>
+                            <image>${repository.name}:${image.version}</image>
                         </to>
                     </configuration>
                 </plugin>
