@@ -14,6 +14,7 @@
     <artifactId>cps-application</artifactId>
 
     <properties>
+        <app>org.onap.cps.Application</app>
         <minimum-coverage>0.0</minimum-coverage>
     </properties>
 
@@ -76,6 +77,9 @@
     </build>
     <profiles>
         <profile>
+            <properties>
+                <image.name>cps-service</image.name>
+            </properties>
             <id>cps-docker</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -94,8 +98,7 @@
             </activation>
 
             <properties>
-                <app>org.onap.cps.Application</app>
-                <repository.name>nexus3.onap.org:10001/onap/cps-nf-proxy</repository.name>
+                <image.name>cps-nf-proxy</image.name>
             </properties>
 
             <dependencies>
@@ -112,8 +115,7 @@
             </activation>
 
             <properties>
-                <app>org.onap.cps.Application</app>
-                <repository.name>nexus3.onap.org:10001/onap/cps-and-nf-proxy</repository.name><!-- better naming? -->
+                <image.name>cps-and-nf-proxy</image.name>
             </properties>
 
             <dependencies>
