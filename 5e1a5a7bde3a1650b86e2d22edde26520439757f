@@ -22,6 +22,30 @@
       "revId": "5e1a5a7bde3a1650b86e2d22edde26520439757f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1c3bd1f_54dd6d7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-05T10:43:54Z",
+      "side": 1,
+      "message": "if it does need an update please use https://jira.onap.org/browse/CPS-228\n\n(but OI hope to merge as is)",
+      "parentUuid": "088f7488_a8aa59d2",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "5e1a5a7bde3a1650b86e2d22edde26520439757f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
