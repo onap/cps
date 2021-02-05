@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "8cce833c_87a41f65",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-05T09:01:43Z",
+      "side": 1,
+      "message": "post construct annotation instructs spring framework to\ninvoke the method _after_ all autowired dependencies are initialized \nand injected. is it guaranteed by setupSpec?",
+      "parentUuid": "93a08038_bb9eebcf",
+      "range": {
+        "startLine": 81,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "8475914872c181195e0f7436348a42c3f98a7bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2a3fbd7_7649e609",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 7

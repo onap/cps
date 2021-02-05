@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d7d28033_785fe933",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-05T09:01:43Z",
+      "side": 1,
+      "message": "this method is not implemented yet\njust updated the name of generated method for consistency",
+      "parentUuid": "c2ab4dde_47263670",
+      "range": {
+        "startLine": 53,
+        "startChar": 89,
+        "endLine": 53,
+        "endChar": 97
+      },
+      "revId": "4bb7ed7d126f06843330c958effeb7dea0211b58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e859117_f17138b7",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 9

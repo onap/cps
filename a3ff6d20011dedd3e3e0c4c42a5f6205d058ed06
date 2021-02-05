@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ac53c88c_fe89bef8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-05T09:01:43Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "04246bfe_24d63fff",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 36
+      },
+      "revId": "a3ff6d20011dedd3e3e0c4c42a5f6205d058ed06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfb47470_a3e6d618",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "a3ff6d20011dedd3e3e0c4c42a5f6205d058ed06",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1c4e57e_2d664462",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-05T09:01:43Z",
+      "side": 1,
+      "message": "yes, because this parameter is used as expected parameter for mocked service method invocation\nsee line #105\nmock response depends on input parameters",
+      "parentUuid": "cfb47470_a3e6d618",
+      "range": {
+        "startLine": 118,
+        "startChar": 96,
+        "endLine": 118,
+        "endChar": 120
+      },
+      "revId": "a3ff6d20011dedd3e3e0c4c42a5f6205d058ed06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
