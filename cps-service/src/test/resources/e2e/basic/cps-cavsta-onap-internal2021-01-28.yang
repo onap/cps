@@ -140,14 +140,14 @@ module cps-cavsta-onap-internal {
         Mobile Network Code (MNC).";
       key "mcc mnc";
       uses PLMNId;
-    }
 
-      
       list coverage-area{
         uses coverageAreaGroup;
         key "coverageArea";
         description "This list contains the list of coverage area of a PLMNID";
       }
-    
+    }
+
+
     }
     }
