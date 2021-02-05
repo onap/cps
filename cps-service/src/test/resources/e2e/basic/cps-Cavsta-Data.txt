@@ -1,0 +1,25 @@
+{
+"cps-cavsta-onap-internal:ran-coverage-area":{
+  "pLMNIdList": [
+    {
+      "mcc": "310",
+      "mnc": "410",
+      "coverage-area": [
+    {
+      "coverageArea": "Washington",
+      "coverageAreaTAList": [
+        {
+          "nRTAC": 234,
+          "taCellsList": [
+            {
+              "cellLocalId": 15709
+            }
+          ]
+        }
+      ]
+    }
+  ]
+    }
+  ]
+}
+}
