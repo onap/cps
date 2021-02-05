@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c4fc5c14_9abe245a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-05T12:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8abe784b_e2b5c289",
+      "range": {
+        "startLine": 108,
+        "startChar": 30,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d05bd861_97a97710",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 2
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "df0c76a5_a7576b54",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-05T12:03:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0140c76a_60766be4",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46378929_c49cc854",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory-data.txt",
         "patchSetId": 2
@@ -89,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "d98c349d_7079c483",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory-data.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-05T12:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46378929_c49cc854",
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b472ad0f_c0e915a2",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory.yang",
         "patchSetId": 2
@@ -100,6 +166,30 @@
       "writtenOn": "2021-02-04T13:12:20Z",
       "side": 1,
       "message": "remove tabs",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dad8c366_553635f2",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-05T12:03:57Z",
+      "side": 1,
+      "message": "We don\u0027t own the models therefore we should not change them.",
+      "parentUuid": "b472ad0f_c0e915a2",
       "range": {
         "startLine": 60,
         "startChar": 2,
