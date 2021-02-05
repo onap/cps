@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "1ac4c6fc_ae327e42",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:30:11Z",
+      "side": 1,
+      "message": "constant",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 15
+      },
+      "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075054a5_276ab6a4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:30:11Z",
+      "side": 1,
+      "message": "this could be moved to YangTextSchemaSourceSetCache",
+      "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23bdf0c0_d6b76139",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:30:11Z",
+      "side": 1,
+      "message": "constants, same for the others",
+      "range": {
+        "startLine": 86,
+        "startChar": 48,
+        "endLine": 86,
+        "endChar": 51
+      },
+      "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74aa8194_8008813a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
         "patchSetId": 10
@@ -13,6 +76,24 @@
       "writtenOn": "2021-02-04T16:29:04Z",
       "side": 1,
       "message": "I think it would be more readable if you use leaf names like leaf1,leaf2 etc. rather than a,b,c.",
+      "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e52d62c7_29881044",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:30:11Z",
+      "side": 1,
+      "message": "I agree with Niamh",
+      "parentUuid": "74aa8194_8008813a",
       "revId": "20983922daff86e3282bc5e2da900a8ab1cc82ed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
