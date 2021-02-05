@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2035ed28_03990ef0",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:10:53Z",
+      "side": 0,
+      "message": "Builds to a Docker daemon. e.g. Local machine, Jenkins Job VM",
+      "range": {
+        "startLine": 52,
+        "startChar": 38,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "50f56b64870ac6c988cf75e84da3836ca015c1e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67feaa0d_591a0df8",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-05T08:10:53Z",
+      "side": 0,
+      "message": "We push to a container image registry. e.g. nexus3",
+      "range": {
+        "startLine": 59,
+        "startChar": 38,
+        "endLine": 59,
+        "endChar": 43
+      },
+      "revId": "50f56b64870ac6c988cf75e84da3836ca015c1e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
