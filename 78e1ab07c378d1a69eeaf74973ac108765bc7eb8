@@ -247,6 +247,30 @@
       "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9317d0dd_7f09220f",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-inventory.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-05T12:42:34Z",
+      "side": 1,
+      "message": "if we were instead pointing to a url that would be acceptable.this caould have been result of saving in an editor.I feel we should change this, but i won\u0027t hold back the merge on this.",
+      "parentUuid": "96dd92d3_a4fc8435",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "78e1ab07c378d1a69eeaf74973ac108765bc7eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
