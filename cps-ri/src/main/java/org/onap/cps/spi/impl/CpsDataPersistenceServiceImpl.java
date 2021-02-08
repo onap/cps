@@ -29,6 +29,7 @@ import com.google.gson.GsonBuilder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -60,12 +61,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
         final DataNode dataNode) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity parentFragment =
-            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, parentXpath);
-        final FragmentEntity childFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNode);
-        parentFragment.getChildFragments().add(childFragment);
+        final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentXpath);
+        final FragmentEntity fragmentEntity =
+            toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode);
+        parentFragment.getChildFragments().add(fragmentEntity);
         fragmentRepository.save(parentFragment);
     }
 
@@ -114,11 +113,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
+    private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
+        final String xpath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity fragmentEntity =
-            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
@@ -139,5 +142,33 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 .collect(Collectors.toUnmodifiableList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
+        final Map<String, Object> leaves) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        fragmentEntity.setAttributes(GSON.toJson(leaves));
+        fragmentRepository.save(fragmentEntity);
+    }
+
+    @Override
+    public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+        removeExistingDescendants(fragmentEntity);
+
+        fragmentEntity.setAttributes(GSON.toJson(dataNode.getLeaves()));
+        final Set<FragmentEntity> childFragmentEntities = dataNode.getChildDataNodes().stream().map(
+            childDataNode -> convertToFragmentWithAllDescendants(
+                fragmentEntity.getDataspace(), fragmentEntity.getAnchor(), childDataNode)
+        ).collect(Collectors.toUnmodifiableSet());
+        fragmentEntity.setChildFragments(childFragmentEntities);
+
+        fragmentRepository.save(fragmentEntity);
+    }
+
+    private void removeExistingDescendants(final FragmentEntity fragmentEntity) {
+        fragmentEntity.setChildFragments(Collections.emptySet());
+        fragmentRepository.save(fragmentEntity);
     }
 }
