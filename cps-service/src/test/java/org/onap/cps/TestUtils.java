@@ -23,7 +23,9 @@ import com.google.common.collect.ImmutableMap;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.Map;
+import org.onap.cps.spi.model.DataNode;
 
 /**
  * Common convenience methods for testing.
@@ -68,5 +70,25 @@ public class TestUtils {
             yangResourceNameToContentBuilder.put(file.getName(), content);
         }
         return yangResourceNameToContentBuilder.build();
+    }
+
+    /**
+     * Represents given data node object as flatten map by xpath.
+     * For easy finding child node within hierarchy.
+     *
+     * @param dataNode data node representing a root of tree structure
+     * @return the map containing all the data nodes from given structure where key is xpath, value is datanode object
+     */
+    public static Map<String, DataNode> getFlattenMapByXpath(final DataNode dataNode) {
+        final ImmutableMap.Builder<String, DataNode> dataNodeMapBuilder = ImmutableMap.builder();
+        buildFlattenMapByXpath(dataNode, dataNodeMapBuilder);
+        return dataNodeMapBuilder.build();
+    }
+
+    private static void buildFlattenMapByXpath(final DataNode dataNode,
+        final ImmutableMap.Builder<String, DataNode> dataNodeMapBuilder) {
+        dataNodeMapBuilder.put(dataNode.getXpath(), dataNode);
+        dataNode.getChildDataNodes()
+            .forEach(childDataNode -> buildFlattenMapByXpath(childDataNode, dataNodeMapBuilder));
     }
 }
