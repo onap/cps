@@ -17,16 +17,16 @@ class DataNodeBuilderSpec extends Specification {
             '/test-tree/branch[@name=\'Right\']/nest': [name: 'Big', birds: ['Owl', 'Raven', 'Crow']]
     ]
 
-    def 'Converting Normalized Node (tree) to a DataNode (tree).'() {
-        given: 'a Yang module'
+    def 'Converting NormalizedNode (tree) to a DataNode (tree).'() {
+        given: 'the schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
-        and: 'a normalized node for that model'
+        and: 'the json data parsed into normalized node object'
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
-        when: 'the normalized node is converted to a DataNode (tree)'
+        when: 'the normalized node is converted to a data node'
             def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
-            def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
+            def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: '5 DataNode objects with unique xpath were created in total'
             mappedResult.size() == 5
         and: 'all expected xpaths were built'
@@ -35,6 +35,26 @@ class DataNodeBuilderSpec extends Specification {
             mappedResult.each {
                 xpath, dataNode -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
             }
+    }
+
+    def 'Converting NormalizedNode (tree) to a DataNode (tree) for known parent node.'() {
+        given: 'a schema context for expected model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        and: 'the json data parsed into normalized node object'
+            def jsonData = '{ "branch": [{ "name": "Branch", "nest": { "name": "Nest", "birds": ["bird"] } }] }'
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, "/test-tree")
+        when: 'the normalized node is converted to a data node with parent node xpath defined'
+            def result = new DataNodeBuilder()
+                    .withNormalizedNodeTree(normalizedNode)
+                    .withParentNodeXpath("/test-tree")
+                    .build()
+            def mappedResult = TestUtils.getFlattenMapByXpath(result)
+        then: '2 DataNode objects with unique xpath were created in total'
+            mappedResult.size() == 2
+        and: 'all expected xpaths were built'
+            mappedResult.keySet()
+                    .containsAll(['/test-tree/branch[@name=\'Branch\']', '/test-tree/branch[@name=\'Branch\']/nest'])
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
@@ -51,10 +71,4 @@ class DataNodeBuilderSpec extends Specification {
         }
     }
 
-    def treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
-        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
-        dataNodeTree.getChildDataNodes()
-                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
-        return flatMap
-    }
 }
