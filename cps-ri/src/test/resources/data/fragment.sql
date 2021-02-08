@@ -21,3 +21,8 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4102, 1001, 3003, 4101, '/parent-100/child-001', '{"a": "b", "c": ["d", "e", "f"]}'),
     (4103, 1001, 3003, 4101, '/parent-100/child-002', '{"g": "h", "i": ["j", "k"]}'),
     (4104, 1001, 3003, 4103, '/parent-100/child-002/grand-child', '{"l": "m", "n": ["o", "p"]}');
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (4201, 1001, 3003, null, '/parent-200', '{"leaf-value": "original"}'),
+    (4202, 1001, 3003, 4201, '/parent-200/child-201', '{"leaf-value": "original"}'),
+    (4203, 1001, 3003, 4202, '/parent-200/child-201/grand-child', '{"leaf-value": "original"}');
