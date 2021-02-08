@@ -19,8 +19,16 @@
  */
 package org.onap.cps.spi.impl
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_AND_DESCENDANT_NODES
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_ONLY
+
 import com.google.common.collect.ImmutableSet
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
@@ -31,13 +39,12 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Unroll
 
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-
 class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
+
+    static final Gson GSON = new GsonBuilder().create()
 
     static final String SET_DATA = '/data/fragment.sql'
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
@@ -200,5 +207,89 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant' || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant' || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NO XPATH'     || DataNodeNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update data node leaves only'() {
+        given: 'data node object with leaves updated, no children defined'
+            def dataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [])
+        when: 'update is performed for leaves only'
+            objectUnderTest.updateDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    dataNode, UPDATE_LEAVES_ONLY)
+        then: 'leaves only is updated for selected data node'
+            def updatedFragment = fragmentRepository.getOne(4202L)
+            def updatedLeaves = getLeavesMap(updatedFragment)
+            assert updatedLeaves.size() == 1
+            assert updatedLeaves['leaf-value'] == 'new'
+        and: 'child entry remains as is'
+            def childFragment = updatedFragment.getChildFragments().iterator().next()
+            def childLeaves = getLeavesMap(childFragment)
+            assert childFragment.getId() == 4203L
+            assert childLeaves['leaf-value'] == 'original'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update data node with children removal'() {
+        given: 'data node object with leaves updated, no children defined'
+            def dataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [])
+        when: 'update is performed with children update requested'
+            objectUnderTest.updateDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    dataNode, UPDATE_LEAVES_AND_DESCENDANT_NODES)
+        then: 'leaves only is updated for selected data node'
+            def updatedFragment = fragmentRepository.getOne(4202L)
+            def updatedLeaves = getLeavesMap(updatedFragment)
+            assert updatedLeaves.size() == 1
+            assert updatedLeaves['leaf-value'] == 'new'
+        and: 'updated entry has no children'
+            updatedFragment.getChildFragments().isEmpty()
+        and: 'previously attached child entry is removed from database'
+            fragmentRepository.findById(4203L).isEmpty()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update data node with descendants replacement'() {
+        given: 'data node object with leaves updated, having child with old content'
+            def dataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
+                    buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'original'], [])
+            ])
+        when: 'update is performed for leaves only'
+            objectUnderTest.updateDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    dataNode, UPDATE_LEAVES_AND_DESCENDANT_NODES)
+        then: 'leaves content updated for selected data node'
+            def updatedFragment = fragmentRepository.getOne(4202L)
+            def updatedLeaves = getLeavesMap(updatedFragment)
+            assert updatedLeaves.size() == 1
+            assert updatedLeaves['leaf-value'] == 'new'
+        and: 'previously attached child entry is removed from database'
+            fragmentRepository.findById(4203L).isEmpty()
+        and: 'new child entry with same content is created'
+            def childFragment = updatedFragment.getChildFragments().iterator().next()
+            def childLeaves = getLeavesMap(childFragment)
+            assert childFragment.getId() != 4203L
+            assert childLeaves['leaf-value'] == 'original'
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update data node error scenario: #scenario.'() {
+        given: 'data node object'
+            def dataNode = buildDataNode(xpath, ['not': 'relevant'], [])
+        when: 'attempt to update data node for #scenario'
+            objectUnderTest.updateDataNode(dataspaceName, anchorName, dataNode, UPDATE_LEAVES_ONLY)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName  | anchorName                        | xpath          || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant' || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant' || AnchorNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NO XPATH'     || DataNodeNotFoundException
+    }
+
+    static DataNode buildDataNode(xpath, leaves, childDataNodes) {
+        return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(childDataNodes).build()
+    }
+
+    static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
+        return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
     }
 }
