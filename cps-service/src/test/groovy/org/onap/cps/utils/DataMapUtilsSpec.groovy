@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2020 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,56 +20,45 @@
 
 package org.onap.cps.utils
 
-import com.google.common.collect.ImmutableMap
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
 
-import static java.util.Arrays.asList
-
 class DataMapUtilsSpec extends Specification {
 
-    DataNode dataNode = buildDataNode(
-            "/parent",
-            ImmutableMap.<String, Object> of("a", "b", "c", asList("d", "e")),
-            asList(
-                    buildDataNode(
-                            "/parent/child-list[@name='x']",
-                            ImmutableMap.<String, Object> of("name", "x"),
-                            Collections.emptyList()),
-                    buildDataNode(
-                            "/parent/child-list[@name='y']",
-                            ImmutableMap.<String, Object> of("name", "y"),
-                            Collections.emptyList()),
-                    buildDataNode(
-                            "/parent/child-object",
-                            ImmutableMap.<String, Object> of("m", "n"),
-                            asList(
-                                    buildDataNode(
-                                            "/parent/child-object/grand-child",
-                                            ImmutableMap.<String, Object> of("o", "p"),
-                                            Collections.emptyList()
-                                    )
-                            )
-                    ),
-            ))
+    def noChildren = []
 
-    static DataNode buildDataNode(String xpath, Map<String, Object> leaves, List<DataNode> children) {
+    def dataNode = buildDataNode(
+        "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
+                buildDataNode('/parent/child-list[@id=1]',[listElementLeaf:'listElement1leafValue'],noChildren),
+                buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
+                buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
+                        [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
+                ),
+            ])
+
+    static def buildDataNode(xpath,  leaves,  children) {
         return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(children).build()
     }
 
     def 'Data node structure conversion to map.'() {
-        when: 'data node structure converted to map'
-            def result = DataMapUtils.toDataMap(dataNode)
+        when: 'data node structure is converted to a map'
+            Map result = DataMapUtils.toDataMap(dataNode)
+
         then: 'root node leaves are top level elements'
-            assert result["a"] == "b"
-            assert ((Collection) result["c"]).containsAll("d", "e")
+            result.parentLeaf == 'parentLeafValue'
+            result.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
+
         and: 'leaves of child list element are listed as structures under common identifier'
-            assert ((Collection) result["child-list"]).size() == 2
-            assert ((Collection) result["child-list"]).containsAll(["name": "x"], ["name": "y"])
-        and: 'leaves for child and grand-child elements are populated under their node identifiers'
-            assert result["child-object"]["m"] == "n"
-            assert result["child-object"]["grand-child"]["o"] == "p"
+            result.'child-list'.collect().containsAll(['listElementLeaf': 'listElement1leafValue'],
+                                                      ['listElementLeaf': 'listElement2leafValue'])
+
+        and: 'leaves for child element is populated under its node identifier'
+            Map childObjectData = result.'child-object'
+            childObjectData.childLeaf == 'childLeafValue'
+
+        and: 'leaves for grandchild element is populated under its node identifier'
+            Map grandChildObjectData = childObjectData.'grand-child-object'
+            grandChildObjectData.grandChildLeaf == 'grandChildLeafValue'
     }
 
 }
