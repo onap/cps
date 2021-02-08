@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,14 +21,14 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
-import org.opendaylight.yangtools.yang.common.Revision
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class YangUtilsSpec extends Specification{
+class YangUtilsSpec extends Specification {
     def 'Parsing a valid Json String.'() {
         given: 'a yang model (file)'
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
@@ -48,10 +49,45 @@ class YangUtilsSpec extends Specification{
         when: 'invalid data is parsed'
             YangUtils.parseJsonData(invalidJson, schemaContext)
         then: 'an exception is thrown'
-            thrown(IllegalStateException)
+            thrown(DataValidationException)
         where: 'the following invalid json is provided'
             invalidJson                                       | description
             '{incomplete json'                                | 'incomplete json'
             '{"test:bookstore": {"address": "Parnell st." }}' | 'json with un-modelled data'
+    }
+
+    @Unroll
+    def 'Parsing json data fragment by xpath for #scenario.'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'json string is parsed'
+            def result = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
+        then: 'result represents a node of expected type'
+            result.nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
+        where:
+            scenario                    | jsonData                                                                      | parentNodeXpath                       || nodeName
+            'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
+            'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
+            'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+    }
+
+    @Unroll
+    def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'json string is parsed'
+            YangUtils.parseJsonData('{"nest": {"name" : "Nest", "birds": ["bird"]}}', schemaContext,
+                    parentNodeXpath)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+        where:
+            scenario                             | parentNodeXpath
+            'xpath has no identifiers'           | '/'
+            'xpath has no valid identifiers'     | '/[@name=\'Name\']'
+            'invalid parent path'                | '/test-bush'
+            'another invalid parent path'        | '/test-tree/branch[@name=\'Branch\']/nest/name/last-name'
+            'fragment does not belong to parent' | '/test-tree/'
     }
 }
