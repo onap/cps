@@ -21,6 +21,7 @@
 package org.onap.cps.spi.impl;
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_AND_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -32,6 +33,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.UpdateDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -60,12 +62,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
         final DataNode dataNode) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity parentFragment =
-            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, parentXpath);
-        final FragmentEntity childFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNode);
-        parentFragment.getChildFragments().add(childFragment);
+        final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentXpath);
+        parentFragment.getChildFragments().add(
+            toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode));
         fragmentRepository.save(parentFragment);
     }
 
@@ -114,11 +113,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
+    private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
+        final String xpath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity fragmentEntity =
-            fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
@@ -139,5 +142,25 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 .collect(Collectors.toUnmodifiableList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public void updateDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode,
+        final UpdateDescendantsOption updateDescendantsOption) {
+        final FragmentEntity currentFragment = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+        currentFragment.setAttributes(GSON.toJson(dataNode.getLeaves()));
+
+        if (updateDescendantsOption == UPDATE_LEAVES_AND_DESCENDANTS) {
+            currentFragment.setChildFragments(Collections.emptySet());
+            fragmentRepository.save(currentFragment);
+            currentFragment.setChildFragments(
+                dataNode.getChildDataNodes().stream()
+                    .map(
+                        childDataNode -> convertToFragmentWithAllDescendants(
+                            currentFragment.getDataspace(), currentFragment.getAnchor(), childDataNode)
+                    ).collect(Collectors.toUnmodifiableSet())
+            );
+        }
+        fragmentRepository.save(currentFragment);
     }
 }
