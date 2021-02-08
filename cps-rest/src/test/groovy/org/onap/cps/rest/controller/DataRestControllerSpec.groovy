@@ -25,7 +25,6 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
-import com.google.common.collect.ImmutableMap
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
@@ -45,8 +44,6 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import javax.annotation.PostConstruct
 
 @WebMvcTest
 class DataRestControllerSpec extends Specification {
@@ -69,67 +66,84 @@ class DataRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    String dataNodeEndpoint
+    def dataNodeEndpoint
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
 
     @Shared
-    static DataNode dataNodeNoChildren = new DataNodeBuilder().withXpath("/xpath")
-            .withLeaves(ImmutableMap.of("leaf", "value")).build()
+    static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
+            .withLeaves([leaf:'value', leafList:[1,2]]).build()
 
     @Shared
-    static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath("/parent")
-            .withChildDataNodes(Arrays.asList(
-                    new DataNodeBuilder().withXpath("/parent/child").build()
-            )).build()
+    static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
+            .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
 
-    @PostConstruct
-    def initEndpoints() {
+    def setup() {
         dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes"
     }
 
     def 'Create a node.'() {
-        given: 'an endpoint'
+        given: 'some json to create a data node'
             def json = 'some json (this is not validated)'
-        when: 'post is invoked'
+        when: 'post is invoked with datanode endpoint and json'
             def response = mvc.perform(
                     post(dataNodeEndpoint).contentType(MediaType.APPLICATION_JSON).content(json)
             ).andReturn().response
-        then: 'the java API is called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, json)
+        then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, json)
     }
 
     @Unroll
-    def 'Get data node with #scenario.'() {
-        given: 'the service returns data node #scenario'
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+    def 'Get data node with leaves'() {
+        given: 'the service returns data node leaves'
+            def xpath = 'some xPath'
+            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
         when: 'get request is performed through REST API'
             def response = mvc.perform(
                     get(dataNodeEndpoint)
                             .param('cps-path', xpath)
-                            .param('include-descendants', includeDescendants)
             ).andReturn().response
-        then: 'assert the success response returned'
+        then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
-        and: 'response contains expected value'
-            response.contentAsString.contains(checkString)
+        and: 'response contains expected leaf and value'
+            response.contentAsString.contains('"leaf":"value"')
+        and: 'response contains expected leaf-list and values'
+            response.contentAsString.contains('"leafList":[1,2]')
+    }
+
+    @Unroll
+    def 'Get data node with #scenario.'() {
+        given: 'the service returns data node with #scenario'
+            def xpath = 'some xPath'
+            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
+        when: 'get request is performed through REST API'
+            def response = mvc.perform(
+                    get(dataNodeEndpoint)
+                            .param('cps-path', xpath)
+                            .param('include-descendants', urlOption)
+            ).andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains child is #expectChildInResponse'
+            response.contentAsString.contains('"child"') == expectChildInResponse
         where:
-            scenario                    | dataNode           | xpath     | includeDescendants | fetchDescendantsOption  || checkString
-            'no descendants by default' | dataNodeNoChildren | '/xpath'  | ''                 | OMIT_DESCENDANTS        || '"leaf"'
-            'no descendant explicitly'  | dataNodeNoChildren | '/xpath'  | 'false'            | OMIT_DESCENDANTS        || '"leaf"'
-            'with descendants'          | dataNodeWithChild  | '/parent' | 'true'             | INCLUDE_ALL_DESCENDANTS || '"child"'
+            scenario                    | dataNode                     | urlOption || expectedCpsDataServiceOption | expectChildInResponse
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''        || OMIT_DESCENDANTS             | false
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'   || OMIT_DESCENDANTS             | false
+            'with descendants'          | dataNodeWithChild            | 'true'    || INCLUDE_ALL_DESCENDANTS      | true
     }
 
     @Unroll
     def 'Get data node error scenario: #scenario.'() {
-        given: 'the service returns throws an exception'
+        given: 'the service throws an exception'
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
         when: 'get request is performed through REST API'
             def response = mvc.perform(
                     get(dataNodeEndpoint).param("cps-path", xpath)
             ).andReturn().response
-        then: 'assert the success response returned'
+        then: 'a success response is returned'
             response.status == httpStatus.value()
         where:
             scenario       | xpath     | exception                                 || httpStatus
