@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a9e67c2_2e9ea69e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-08T10:17:39Z",
+      "side": 1,
+      "message": "can we keep it in single line? doenst look longer than 120",
+      "revId": "776e6c24b6ac0885a4f20c1a014a1dd3bf8b9c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04a07276_831fd7e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-08T10:17:39Z",
+      "side": 1,
+      "message": "can we keep it in single line? doenst look longer than 120",
+      "revId": "776e6c24b6ac0885a4f20c1a014a1dd3bf8b9c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
