@@ -19,7 +19,7 @@
 
 package org.onap.cps.spi;
 
-public enum FetchChildrenOption {
-    OMIT_CHILDREN,
-    INCLUDE_ALL_CHILDREN
+public enum UpdateDescendantsOption {
+    UPDATE_LEAVES_ONLY,
+    UPDATE_LEAVES_AND_DESCENDANT_FRAGMENTS
 }
