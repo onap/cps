@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e326b1f0_7ad0c120",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-08T10:22:00Z",
+      "side": 1,
+      "message": "remove extra empty line",
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "531a6563_5808686d",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -19,6 +36,23 @@
         "endLine": 95,
         "endChar": 65
       },
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0218d001_cffe60a6",
+        "filename": "cps-service/src/test/java/org/onap/cps/TestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-08T10:22:00Z",
+      "side": 1,
+      "message": "ImmutableMap.Builder",
       "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
