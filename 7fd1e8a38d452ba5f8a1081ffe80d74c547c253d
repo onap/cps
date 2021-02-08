@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "30ce5498_ad89970f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-08T11:50:05Z",
+      "side": 1,
+      "message": "if it is IOException, we say exception occured during parsing string whereas reason could be different.",
+      "parentUuid": "cafd2a4a_9007c2a2",
+      "range": {
+        "startLine": 95,
+        "startChar": 25,
+        "endLine": 95,
+        "endChar": 65
+      },
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0218d001_cffe60a6",
         "filename": "cps-service/src/test/java/org/onap/cps/TestUtils.java",
         "patchSetId": 1
