@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e709976_a42c3b71",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-08T13:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "457562f0_ef98a291",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 65
+      },
+      "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1728993a_c34072fa",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea6d47a_76965218",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-08T13:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1728993a_c34072fa",
+      "range": {
+        "startLine": 93,
+        "startChar": 67,
+        "endLine": 93,
+        "endChar": 74
+      },
+      "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e491711b_643dc5de",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-08T13:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a59efc_21e941bb",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 85
+      },
+      "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "602ad837_e8674454",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e921df55_7d1d56c2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-08T13:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "602ad837_e8674454",
+      "range": {
+        "startLine": 97,
+        "startChar": 58,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "ea1daafe8b2571ac65969855ec8f79dd1326a389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
