@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b9f587a0_411599b5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-08T11:17:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e326b1f0_7ad0c120",
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "531a6563_5808686d",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2021-02-08T10:16:14Z",
       "side": 1,
       "message": "Thought : It seems now msg is now not generic enough say for IOExc or IllegalState",
+      "range": {
+        "startLine": 95,
+        "startChar": 25,
+        "endLine": 95,
+        "endChar": 65
+      },
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafd2a4a_9007c2a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-08T11:17:15Z",
+      "side": 1,
+      "message": "please clarify your concern. \nIllegalStateException represents json parsing failure. \nit\u0027s the case we should handle and rethrow as own exception\nsee the corresponding test updates",
+      "parentUuid": "531a6563_5808686d",
       "range": {
         "startLine": 95,
         "startChar": 25,
@@ -56,6 +98,24 @@
       "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc847eb4_6ba7217c",
+        "filename": "cps-service/src/test/java/org/onap/cps/TestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-08T11:17:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0218d001_cffe60a6",
+      "revId": "7fd1e8a38d452ba5f8a1081ffe80d74c547c253d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
