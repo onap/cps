@@ -19,6 +19,9 @@
 
 package org.onap.cps.api.impl
 
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_AND_DESCENDANT_NODES
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_ONLY
+
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
@@ -52,9 +55,7 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Saving json data.'() {
         given: 'that the admin service will return an anchor'
-            def anchor = new Anchor()
-            anchor.name = anchorName
-            anchor.schemaSetName = schemaSetName
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
         and: 'the schema source set cache returns a schema source set'
             def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
@@ -72,7 +73,7 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     @Unroll
-    def 'Get data node with option #fetchChildrenOption'() {
+    def 'Get data node with option #fetchDescendantsOption.'() {
         def xpath = '/xpath'
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         given: 'persistence service returns data for get data request'
@@ -81,5 +82,29 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
+    }
+
+    @Unroll
+    def 'Update data node by xpath: #scenario.'() {
+        given: 'that the admin service will return an anchor'
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        and: 'the schema source set cache returns a schema source set'
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        and: 'the schema source sets returns the test-tree schema context'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.updateDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData, updateDescendantsOption)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataNode(dataspaceName, anchorName,
+                    { dataNode -> dataNode.xpath == nodeXpath }, updateDescendantsOption)
+        where: 'following parameters were used'
+            scenario                          | parentNodeXpath | jsonData                         | nodeXpath                        | updateDescendantsOption
+            'top level node with descendants' | '/'             | '{ "test-tree": {"branch": []}}' | '/test-tree'                     | UPDATE_LEAVES_AND_DESCENDANT_NODES
+            'level 2 node with descendants'   | '/test-tree'    | '{"branch": [{"name":"X"}]}'      | '/test-tree/branch[@name=\'X\']' | UPDATE_LEAVES_AND_DESCENDANT_NODES
+            'level 2 node leaves only'        | '/test-tree'    | '{"branch": [{"name":"Y"}]}'      | '/test-tree/branch[@name=\'Y\']' | UPDATE_LEAVES_ONLY
     }
 }
