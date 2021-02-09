@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "b476f7be_d7041cd4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:24:00Z",
+      "side": 1,
+      "message": "not quite sure what you mean but I tried to improve formatting\n(it is too long for one line)",
+      "parentUuid": "fb9f44e5_494c572d",
+      "revId": "bd5636b3bb83678bc443eaa60d8e9892ccb9cb50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "681d13b4_cc7946d1",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
         "patchSetId": 1
@@ -53,6 +71,24 @@
       "writtenOn": "2021-02-09T11:35:10Z",
       "side": 1,
       "message": "move to the top",
+      "revId": "bd5636b3bb83678bc443eaa60d8e9892ccb9cb50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b559464a_9fc16da3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:24:00Z",
+      "side": 1,
+      "message": "My preference is to have helper methods at the end (after all the tests)\nBut maybe as its is setup method it can to the top....\n\nOnly 1 test in this class but I hate it when there are 20+ test and there are (common) helper methods scattered between them... Anyway wil move top top for now",
+      "parentUuid": "681d13b4_cc7946d1",
       "revId": "bd5636b3bb83678bc443eaa60d8e9892ccb9cb50",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
