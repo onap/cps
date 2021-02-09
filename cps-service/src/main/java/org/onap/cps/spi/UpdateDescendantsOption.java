@@ -21,5 +21,15 @@ package org.onap.cps.spi;
 
 public enum UpdateDescendantsOption {
     UPDATE_LEAVES_ONLY,
-    UPDATE_LEAVES_AND_DESCENDANT_NODES
+    UPDATE_LEAVES_AND_DESCENDANT_NODES;
+
+    /**
+     * Returns the enum representation of a nullable boolean option.
+     *
+     * @param includeDescendants nullable boolean option
+     * @return an enum value
+     */
+    public static UpdateDescendantsOption of(final Boolean includeDescendants) {
+        return Boolean.TRUE.equals(includeDescendants) ? UPDATE_LEAVES_AND_DESCENDANT_NODES : UPDATE_LEAVES_ONLY;
+    }
 }

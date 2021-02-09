@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.UpdateDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,15 +55,21 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
-        final String cpsPath, final Boolean includeDescendants) {
-        if ("/".equals(cpsPath)) {
+        final String xpath, final Boolean includeDescendants) {
+        if ("/".equals(xpath)) {
             // TODO: extracting data by anchor only (root data node and below)
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode =
-            cpsDataService.getDataNode(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+            cpsDataService.getDataNode(dataspaceName, anchorName, xpath, FetchDescendantsOption.of(includeDescendants));
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> updateNode(final String jsonData, final String dataspaceName, final String anchorName,
+        final String parentNodeXpath, final Boolean includeDescendants) {
+        cpsDataService.updateDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            UpdateDescendantsOption.of(includeDescendants));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
