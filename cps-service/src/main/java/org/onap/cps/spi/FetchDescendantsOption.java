@@ -21,5 +21,15 @@ package org.onap.cps.spi;
 
 public enum FetchDescendantsOption {
     OMIT_DESCENDANTS,
-    INCLUDE_ALL_DESCENDANTS
+    INCLUDE_ALL_DESCENDANTS;
+
+    /**
+     * Returns the enum representation of a nullable boolean option.
+     *
+     * @param includeDescendants nullable boolean option
+     * @return an enum value
+     */
+    public static FetchDescendantsOption of(final Boolean includeDescendants) {
+        return Boolean.TRUE.equals(includeDescendants) ? INCLUDE_ALL_DESCENDANTS : OMIT_DESCENDANTS;
+    }
 }

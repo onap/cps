@@ -22,7 +22,10 @@ package org.onap.cps.rest.controller
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_AND_DESCENDANT_NODES
+import static org.onap.cps.spi.UpdateDescendantsOption.UPDATE_LEAVES_ONLY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 import org.modelmapper.ModelMapper
@@ -31,6 +34,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -72,7 +76,7 @@ class DataRestControllerSpec extends Specification {
 
     @Shared
     static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
-            .withLeaves([leaf:'value', leafList:['leaveListElement1','leaveListElement2']]).build()
+            .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
 
     @Shared
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
@@ -103,7 +107,7 @@ class DataRestControllerSpec extends Specification {
         when: 'get request is performed through REST API'
             def response = mvc.perform(
                     get(dataNodeEndpoint)
-                            .param('cps-path', xpath)
+                            .param('xpath', xpath)
             ).andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
@@ -120,18 +124,18 @@ class DataRestControllerSpec extends Specification {
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
         when: 'get request is performed through REST API'
             def response = mvc.perform(get(dataNodeEndpoint)
-                            .param('cps-path', xpath)
-                            .param('include-descendants', urlOption))
-                            .andReturn().response
+                    .param('xpath', xpath)
+                    .param('include-descendants', includeDescendantsOption))
+                    .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         and: 'the response contains child is #expectChildInResponse'
             response.contentAsString.contains('"child"') == expectChildInResponse
         where:
-            scenario                    | dataNode                     | urlOption || expectedCpsDataServiceOption | expectChildInResponse
-            'no descendants by default' | dataNodeWithLeavesNoChildren | ''        || OMIT_DESCENDANTS             | false
-            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'   || OMIT_DESCENDANTS             | false
-            'with descendants'          | dataNodeWithChild            | 'true'    || INCLUDE_ALL_DESCENDANTS      | true
+            scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
+            'with descendants'          | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
     }
 
     @Unroll
@@ -140,9 +144,9 @@ class DataRestControllerSpec extends Specification {
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
         when: 'get request is performed through REST API'
             def response = mvc.perform(
-                    get(dataNodeEndpoint).param("cps-path", xpath)
+                    get(dataNodeEndpoint).param("xpath", xpath)
             ).andReturn().response
-        then: 'a success response is returned'
+        then: 'expected error status is returned'
             response.status == httpStatus.value()
         where:
             scenario       | xpath     | exception                                 || httpStatus
@@ -151,4 +155,48 @@ class DataRestControllerSpec extends Specification {
             'no data'      | '/x-path' | new DataNodeNotFoundException('', '', '') || HttpStatus.NOT_FOUND
             'empty path'   | ''        | new IllegalStateException()               || HttpStatus.NOT_IMPLEMENTED
     }
+
+    @Unroll
+    def 'Update data node: #scenario.'() {
+        given: 'json data'
+            def jsonData = 'json data'
+        when: 'patch request is performed'
+            def response = mvc.perform(
+                    patch(dataNodeEndpoint)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(jsonData)
+                            .param('xpath', xpath)
+                            .param('include-descendants', includeDescendantsOption)
+            ).andReturn().response
+        then: 'the service method is invoked with expected parameters'
+            1 * mockCpsDataService.updateDataNode(dataspaceName, anchorName, xpathServiceParameter, jsonData,
+                    includeDescendantsServiceOption)
+        and: 'response status indicates success'
+            response.status == HttpStatus.OK.value()
+        where:
+            scenario                     | includeDescendantsOption | xpath     | xpathServiceParameter | includeDescendantsServiceOption
+            'leaves only by default'     | ''                       | '/x-path' | '/x-path'             | UPDATE_LEAVES_ONLY
+            'leaves only explicitly'     | 'false'                  | '/x-path' | '/x-path'             | UPDATE_LEAVES_ONLY
+            'leaves and descendant data' | 'true'                   | '/x-path' | '/x-path'             | UPDATE_LEAVES_AND_DESCENDANT_NODES
+            'full data tree update'      | 'true'                   | ''        | '/'                   | UPDATE_LEAVES_AND_DESCENDANT_NODES
+    }
+
+    @Unroll
+    def 'Update data node error scenario: #scenario'() {
+        given: 'the service throws an exception'
+            mockCpsDataService.updateDataNode(dataspaceName, anchorName, _, _, _) >> { throw exception }
+        when: 'patch request is performed'
+            def response = mvc.perform(
+                    patch(dataNodeEndpoint).contentType(MediaType.APPLICATION_JSON).content("json data")
+            ).andReturn().response
+        then: 'expected error status is returned'
+            response.status == httpStatus.value()
+        where:
+            scenario                | exception                                 || httpStatus
+            'no dataspace'          | new DataspaceNotFoundException('')        || HttpStatus.BAD_REQUEST
+            'no anchor'             | new AnchorNotFoundException('', '')       || HttpStatus.BAD_REQUEST
+            'invalid data or xpath' | new DataValidationException('', '')       || HttpStatus.BAD_REQUEST
+            'no data to update'     | new DataNodeNotFoundException('', '', '') || HttpStatus.NOT_FOUND
+    }
+
 }
