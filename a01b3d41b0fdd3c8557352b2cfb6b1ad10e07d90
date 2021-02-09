@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a980f2c0_68377b65",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:32:54Z",
+      "side": 1,
+      "message": "I think it is the oposite Aditya, SQ enforces the use o these...\nSee also Rishi, recent SQ Fixes : https://gerrit.onap.org/r/c/cps/+/117586/",
+      "parentUuid": "8b4524e3_33bf3b85",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da3896fd_2361ed9a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 6
@@ -41,6 +65,52 @@
         "startChar": 63,
         "endLine": 76,
         "endChar": 65
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b399c84b_fade8237",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:32:54Z",
+      "side": 1,
+      "message": "Please resolve my comment in patch 4",
+      "range": {
+        "startLine": 145,
+        "startChar": 55,
+        "endLine": 145,
+        "endChar": 60
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3d72eeb_f185faef",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:32:54Z",
+      "side": 1,
+      "message": "please resolve my comment in patch 4. We realty need to strive to maintainable code that is readable by all. The developer that just wrote this code and has it in their head might find it unnecessary but it is an important aspect of quality code",
+      "range": {
+        "startLine": 164,
+        "startChar": 1,
+        "endLine": 167,
+        "endChar": 77
       },
       "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

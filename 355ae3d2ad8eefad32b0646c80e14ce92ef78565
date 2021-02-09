@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "5b1fab8f_b51927a9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T14:32:54Z",
+      "side": 1,
+      "message": "constants are not just used when repeated (actually that is the least important reason they should be used.\nXPATH_DELIMITER is a usefull constant for this class and does improve readability of this fuction",
+      "parentUuid": "17a51065_5c534e5b",
+      "range": {
+        "startLine": 142,
+        "startChar": 73,
+        "endLine": 142,
+        "endChar": 77
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc725292_5ba8caad",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
