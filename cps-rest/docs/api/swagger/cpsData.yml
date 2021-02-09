@@ -48,6 +48,59 @@ nodesByDataspaceAndAnchor:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
+  patch:
+    description: Update a data node leaves for a given dataspace and anchor and a parent node xpath
+    tags:
+      - cps-data
+    summary: Update node leaves
+    operationId: updateNodeLeaves
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+  put:
+    description: Replace a node with descendants for a given dataspace, anchor and a parent node xpath
+    tags:
+      - cps-data
+    summary: Replace a node with descendants
+    operationId: replaceNode
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+
 nodesByDataspace:
   get:
     description: Get all nodes for a given dataspace using an xpath or schema node identifier - DRAFT

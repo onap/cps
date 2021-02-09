@@ -68,9 +68,9 @@ components:
       schema:
         type: string
     xpathInQuery:
-      name: cps-path
+      name: xpath
       in: query
-      description: cps-path
+      description: xpath
       required: false
       schema:
         type: string
