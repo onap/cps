@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54f8cf06_74818651",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "I commented on this term before, given teh new context I woudl just call it parent...",
+      "range": {
+        "startLine": 130,
+        "startChar": 23,
+        "endLine": 130,
+        "endChar": 33
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9202f46_926c1962",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 58,
+        "startChar": 34,
+        "endLine": 58,
+        "endChar": 46
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d2f7a28_5e1aef58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "for his I would create a constant XPATH_DELIMITER",
+      "range": {
+        "startLine": 142,
+        "startChar": 73,
+        "endLine": 142,
+        "endChar": 77
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc725292_5ba8caad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "please extract a contant name to convey maning. I am not sure what you are trying to find here (list key?)",
+      "range": {
+        "startLine": 144,
+        "startChar": 56,
+        "endLine": 144,
+        "endChar": 62
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b52cf6a7_47e76bb2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "extract into method with good name to convey meaning",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 77
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68381c4_bb4aded1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "add full stops (next test too)",
+      "range": {
+        "startLine": 60,
+        "startChar": 49,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a51ec5e_547f6866",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "of",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "538cf9bc_d15bb040",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 25
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9bbbf3b_b3c67795",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T08:59:27Z",
+      "side": 1,
+      "message": "a data validation exception is thrown",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
