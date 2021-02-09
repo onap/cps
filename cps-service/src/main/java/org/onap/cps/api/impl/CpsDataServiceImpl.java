@@ -38,6 +38,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CpsDataServiceImpl implements CpsDataService {
 
+    private static final String ROOT_NODE_XPATH = "/";
+
     @Autowired
     private CpsDataPersistenceService cpsDataPersistenceService;
 
@@ -52,20 +54,50 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
-        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
-        final DataNode dataNode = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
-        cpsDataPersistenceService.storeDataNode(dataspaceName, anchor.getName(), dataNode);
-    }
-
-    private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
-        return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
+        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
+        cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
     }
 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+    }
+
+    @Override
+    public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final String jsonData) {
+        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService
+            .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
+    }
+
+    @Override
+    public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final String jsonData) {
+        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
+    }
+
+    private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
+        final String parentNodeXpath, final String jsonData) {
+
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
+            return new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
+        }
+
+        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        return new DataNodeBuilder()
+            .withParentNodeXpath(parentNodeXpath)
+            .withNormalizedNodeTree(normalizedNode)
+            .build();
+    }
+
+    private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
+        return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
     }
 }
