@@ -54,15 +54,29 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
-        final String cpsPath, final Boolean includeDescendants) {
-        if ("/".equals(cpsPath)) {
+        final String xpath, final Boolean includeDescendants) {
+        if ("/".equals(xpath)) {
             // TODO: extracting data by anchor only (root data node and below)
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode =
-            cpsDataService.getDataNode(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+            cpsDataService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> updateNodeLeaves(final String jsonData, final String dataspaceName,
+        final String anchorName, final String parentNodeXpath) {
+        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> replaceNode(final String jsonData, final String dataspaceName,
+        final String anchorName, final String parentNodeXpath) {
+        cpsDataService.replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

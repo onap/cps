@@ -2,7 +2,7 @@ nodesByDataspaceAndAnchor:
   get:
     tags:
       - cps-data
-    summary: Get a node given an anchor for the given dataspace
+    summary: Get a data node for a given dataspace and anchor
     operationId: getNodeByDataspaceAndAnchor
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
@@ -25,7 +25,7 @@ nodesByDataspaceAndAnchor:
   post:
     tags:
       - cps-data
-    summary: Create a node for a given anchor for the given dataspace
+    summary: Create a data node for a given dataspace and anchor
     operationId: createNode
     parameters:
       - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
@@ -39,6 +39,56 @@ nodesByDataspaceAndAnchor:
     responses:
       201:
         $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+  patch:
+    tags:
+      - cps-data
+    summary: Update a data node leaves for given xpath within given dataspace and anchor
+    operationId: updateNodeLeaves
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
+  put:
+    tags:
+      - cps-data
+    summary: Replace a content of data node including descendants for given xpath within given dataspace and anchor
+    operationId: replaceNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:

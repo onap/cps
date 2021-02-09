@@ -53,4 +53,25 @@ public interface CpsDataService {
     DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
         @NonNull FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Updates data node for given dataspace and anchor using xpath to parent node.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath xpath to parent node
+     * @param jsonData        json data
+     */
+    void updateNodeLeaves(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull String jsonData);
+
+    /**
+     * Replaces existing data node content including descendants.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath xpath to parent node
+     * @param jsonData        json data
+     */
+    void replaceNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull String jsonData);
 }
