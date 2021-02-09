@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3bc5815_b8174275",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54f8cf06_74818651",
+      "range": {
+        "startLine": 130,
+        "startChar": 23,
+        "endLine": 130,
+        "endChar": 33
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9202f46_926c1962",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c2471a4b_f213f362",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9202f46_926c1962",
+      "range": {
+        "startLine": 58,
+        "startChar": 34,
+        "endLine": 58,
+        "endChar": 46
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d2f7a28_5e1aef58",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-09T08:59:27Z",
       "side": 1,
       "message": "for his I would create a constant XPATH_DELIMITER",
+      "range": {
+        "startLine": 142,
+        "startChar": 73,
+        "endLine": 142,
+        "endChar": 77
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17a51065_5c534e5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "no need to make a constant of what\u0027s used once. same for next.\nthe code is self explanatory enough",
+      "parentUuid": "8d2f7a28_5e1aef58",
       "range": {
         "startLine": 142,
         "startChar": 73,
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "558f8cce_9dad2670",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f68381c4_bb4aded1",
+      "range": {
+        "startLine": 60,
+        "startChar": 49,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a51ec5e_547f6866",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 4
@@ -160,6 +256,30 @@
       "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e2d500_5201294d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a51ec5e_547f6866",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "2897a84b_9c1939ed",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "538cf9bc_d15bb040",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 25
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9bbbf3b_b3c67795",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 4
@@ -206,6 +350,30 @@
       "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a1a0c19_ad1588ba",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T10:22:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9bbbf3b_b3c67795",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "355ae3d2ad8eefad32b0646c80e14ce92ef78565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
