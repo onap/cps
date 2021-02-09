@@ -46,6 +46,32 @@ nodesByDataspaceAndAnchor:
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
 
+  patch:
+    tags:
+      - cps-data
+    summary: Create a node for a given anchor for the given dataspace
+    operationId: updateNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yaml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+
 nodesByDataspace:
   get:
     tags:
