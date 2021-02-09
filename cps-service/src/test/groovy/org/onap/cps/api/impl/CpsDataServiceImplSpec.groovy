@@ -52,9 +52,7 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Saving json data.'() {
         given: 'that the admin service will return an anchor'
-            def anchor = new Anchor()
-            anchor.name = anchorName
-            anchor.schemaSetName = schemaSetName
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
         and: 'the schema source set cache returns a schema source set'
             def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
@@ -72,7 +70,7 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     @Unroll
-    def 'Get data node with option #fetchChildrenOption'() {
+    def 'Get data node with option #fetchDescendantsOption.'() {
         def xpath = '/xpath'
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         given: 'persistence service returns data for get data request'
@@ -81,5 +79,50 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
+    }
+
+    @Unroll
+    def 'Update data node leaves: #scenario.'() {
+        given: 'that the admin service will return an anchor'
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        and: 'the schema source set cache returns a schema source set'
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        and: 'the schema source sets returns the test-tree schema context'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, nodeXpath, leaves)
+        where: 'following parameters were used'
+            scenario         | parentNodeXpath | jsonData                         | nodeXpath                           | leaves
+            'top level node' | '/'             | '{ "test-tree": {"branch": []}}' | '/test-tree'                        | Collections.emptyMap()
+            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'  | '/test-tree/branch[@name=\'Name\']' | ['name': 'Name']
+    }
+
+    @Unroll
+    def 'Replace data node: #scenario.'() {
+        given: 'that the admin service will return an anchor'
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        and: 'the schema source set cache returns a schema source set'
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        and: 'the schema source sets returns the test-tree schema context'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName,
+                    { dataNode -> dataNode.xpath == nodeXpath })
+        where: 'following parameters were used'
+            scenario         | parentNodeXpath | jsonData                         | nodeXpath
+            'top level node' | '/'             | '{ "test-tree": {"branch": []}}' | '/test-tree'
+            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'  | '/test-tree/branch[@name=\'Name\']'
     }
 }
