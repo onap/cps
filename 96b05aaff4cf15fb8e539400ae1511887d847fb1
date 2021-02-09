@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2f056708_59b8d1c7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T17:25:08Z",
+      "side": 1,
+      "message": "- performance optimization is not in scope for current update.\n- no inconsistency is expected: descendants are replaced fully no matter the depth",
+      "parentUuid": "9b1ca073_7f13d8f3",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 77
+      },
+      "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9a9c29e_6c66b41a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41e93e2e_d6475499",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T17:25:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9a9c29e_6c66b41a",
+      "range": {
+        "startLine": 161,
+        "startChar": 41,
+        "endLine": 161,
+        "endChar": 46
+      },
+      "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
