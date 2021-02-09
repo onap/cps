@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9b1ca073_7f13d8f3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T12:20:30Z",
+      "side": 1,
+      "message": "I wonder if the customer gets a node P with 2 children P1 and P2.\nHe then on the client side adds a new child P3 to that data node so P has 3 children C1,C2 and C3. (Nothing les has changed in the data for C1 and C2)\nThe client then wants to save is updates ie. he calls the update method with P :\nAll old children get removed from the database and then will be re-created, correct?\nThat means the DB-IDs of these entities wil have changes effectively, correct? Apart form this approach being very inefficient it will cause DB consistency issues if there are any other relations in the BD except form the parent child relations....",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 77
+      },
+      "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9a9c29e_6c66b41a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -18,6 +41,29 @@
         "startChar": 41,
         "endLine": 161,
         "endChar": 46
+      },
+      "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030c4a68_7bf7ab49",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-09T12:20:30Z",
+      "side": 1,
+      "message": "this is a problem!",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 49
       },
       "revId": "96b05aaff4cf15fb8e539400ae1511887d847fb1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
