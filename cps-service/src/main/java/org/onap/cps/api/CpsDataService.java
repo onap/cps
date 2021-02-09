@@ -22,6 +22,7 @@ package org.onap.cps.api;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.UpdateDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 
@@ -53,4 +54,15 @@ public interface CpsDataService {
     DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
         @NonNull FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Updates data node for given dataspace and anchor using xpath to parent node.
+     *
+     * @param dataspaceName           dataspace name
+     * @param anchorName              anchor name
+     * @param parentNodeXpath         xpath to parent node
+     * @param jsonData                json data
+     * @param updateDescendantsOption defines the scope of data to update: leaves only or leaves and descendant nodes
+     */
+    void updateDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull String jsonData, @NonNull UpdateDescendantsOption updateDescendantsOption);
 }

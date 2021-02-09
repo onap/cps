@@ -26,6 +26,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.UpdateDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
@@ -37,6 +38,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CpsDataServiceImpl implements CpsDataService {
+
+    private static final String ROOT_NODE_XPATH = "/";
 
     @Autowired
     private CpsDataPersistenceService cpsDataPersistenceService;
@@ -67,5 +70,25 @@ public class CpsDataServiceImpl implements CpsDataService {
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+    }
+
+    @Override
+    public void updateDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final String jsonData, final UpdateDescendantsOption updateDescendantsOption) {
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+
+        final DataNode dataNode;
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
+            dataNode = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
+
+        } else {
+            final NormalizedNode<?, ?> normalizedNode =
+                YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+            dataNode = new DataNodeBuilder().withParentNodeXpath(parentNodeXpath)
+                .withNormalizedNodeTree(normalizedNode).build();
+        }
+        cpsDataPersistenceService.updateDataNode(dataspaceName, anchorName, dataNode, updateDescendantsOption);
     }
 }
