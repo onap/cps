@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceb02982_382c6fc3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-09T13:31:39Z",
+      "side": 1,
+      "message": "Suggestion, could it be:\n\ngiven: \u0027cps service is storing data node with leaves and no children\u0027",
+      "revId": "1f64d85f1cd85653a34b8656c67f4cc2565808e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63680ed0_8877e357",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-09T13:31:39Z",
+      "side": 1,
+      "message": "Same kind of suggestion:\n\ngiven: \u0027cps service is storing data node with #scenario\u0027",
+      "revId": "1f64d85f1cd85653a34b8656c67f4cc2565808e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
