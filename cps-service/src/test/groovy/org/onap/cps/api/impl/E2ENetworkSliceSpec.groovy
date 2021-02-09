@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation. All rights reserved.
+ *  Modifications Copyright (C) 2021 Bell Canada.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,8 +74,9 @@ class E2ENetworkSliceSpec extends Specification {
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
                     'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+            def dataNodeStored
         and : 'a valid json is provided for the model'
-            def jsonData = TestUtils.getResourceFileContent('e2e/basic/Data.txt')
+            def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-Cavsta-Data.txt')
         and : 'all the further dependencies are mocked '
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).build()
@@ -84,8 +86,20 @@ class E2ENetworkSliceSpec extends Specification {
         when: 'saveData method is invoked'
             cpsDataServiceImple.saveData(dataspaceName, anchorName, jsonData)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockDataStoreService.storeDataNode(dataspaceName, anchorName,
-                    {dataNode -> dataNode.xpath == '/ran-coverage-area' && dataNode.childDataNodes.size() == 4})
+            1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
+                    { args -> dataNodeStored = args[2]}
+            def child = dataNodeStored.childDataNodes[0]
+            assert child.childDataNodes.size() == 1
+        and: 'list of Tracking Area for a Coverage Area are stored with correct xpath and child nodes '
+            def listOfTAForCoverageArea = child.childDataNodes[0]
+            listOfTAForCoverageArea.xpath == '/ran-coverage-area/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']/' +
+                    'coverage-area[@coverageArea=\'Washington\']'
+            listOfTAForCoverageArea.childDataNodes[0].leaves.get('nRTAC') == 234
+        and: 'list of cells in a tracking area are stored with correct xpath and child nodes '
+            def listOfCellsInTrackingArea = listOfTAForCoverageArea.childDataNodes[0]
+            listOfCellsInTrackingArea.xpath == '/ran-coverage-area/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']/' +
+                    'coverage-area[@coverageArea=\'Washington\']/coverageAreaTAList[@nRTAC=\'234\']'
+            listOfCellsInTrackingArea.childDataNodes[0].leaves.get('cellLocalId') == 15709
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed for RAN inventory.'() {
