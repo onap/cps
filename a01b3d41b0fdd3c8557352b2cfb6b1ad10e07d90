@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cd2dddea_0a305fc7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T16:52:21Z",
+      "side": 1,
+      "message": "that\u0027s another issue, for return types.\nout of scope. to be resolved as separate update",
+      "parentUuid": "a980f2c0_68377b65",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3896fd_2361ed9a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 6
@@ -69,6 +93,30 @@
       "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16cb9d34_5268c021",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T16:52:21Z",
+      "side": 1,
+      "message": "the DataSchemaNode object is validated by node identifier match\notherwise DataValidationException is thrown.\nso at this point the nullable is never expected.",
+      "parentUuid": "da3896fd_2361ed9a",
+      "range": {
+        "startLine": 76,
+        "startChar": 63,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "a4cabd84_b58b1409",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T16:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b399c84b_fade8237",
+      "range": {
+        "startLine": 145,
+        "startChar": 55,
+        "endLine": 145,
+        "endChar": 60
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3d72eeb_f185faef",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 6
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "994d0c33_22d1a356",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T16:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3d72eeb_f185faef",
+      "range": {
+        "startLine": 164,
+        "startChar": 1,
+        "endLine": 167,
+        "endChar": 77
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "411679ce_4bd87e09",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 6
@@ -129,6 +225,30 @@
       "writtenOn": "2021-02-09T14:27:43Z",
       "side": 1,
       "message": "as per the scenario this should be a list element ?",
+      "range": {
+        "startLine": 70,
+        "startChar": 42,
+        "endLine": 70,
+        "endChar": 117
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e91aadd_bec21bb1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-09T16:52:21Z",
+      "side": 1,
+      "message": "the yang defines \u0027branch\u0027 as list type of,\nhowever it\u0027s ok to pass it same way as a container element (not wrapped to square brackets).\nthis may be used as unification for the top level element representation,\nno extra handling is required",
+      "parentUuid": "411679ce_4bd87e09",
       "range": {
         "startLine": 70,
         "startChar": 42,
