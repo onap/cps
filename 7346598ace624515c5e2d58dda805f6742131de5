@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81840b13_2804e850",
+        "filename": "cps-rest/docs/api/swagger/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T15:00:58Z",
+      "side": 1,
+      "message": "xpath is good for now. later when we start implementing queries we need cpsPath too\nxpath is the exact string as stored in the DB it wil be passed on as is to the DB layer and used to get by key (not really what I call \u0027find\u0027) fragments\n\ncpsPath wil be used soon for our fist query, it wil be analyse and broken down into an x(partial) xpath and other elements as needed per use-case",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 68,
+        "endChar": 24
+      },
+      "revId": "7346598ace624515c5e2d58dda805f6742131de5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c01a7720_fc9a4465",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T15:00:58Z",
+      "side": 1,
+      "message": "this might have been clearer (described) by a separate test. But is OK OK",
+      "range": {
+        "startLine": 181,
+        "startChar": 69,
+        "endLine": 181,
+        "endChar": 86
+      },
+      "revId": "7346598ace624515c5e2d58dda805f6742131de5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
