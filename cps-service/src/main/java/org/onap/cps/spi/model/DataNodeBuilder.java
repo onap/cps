@@ -43,8 +43,20 @@ public class DataNodeBuilder {
 
     private NormalizedNode<?, ?> normalizedNodeTree;
     private String xpath;
+    private String parentNodeXpath = "";
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
+
+    /**
+     * To use parent node xpath for creating {@link DataNode}.
+     *
+     * @param parentNodeXpath xpath of a parent node
+     * @return this {@link DataNodeBuilder} object
+     */
+    public DataNodeBuilder withParentNodeXpath(final String parentNodeXpath) {
+        this.parentNodeXpath = parentNodeXpath;
+        return this;
+    }
 
 
     /**
@@ -115,9 +127,9 @@ public class DataNodeBuilder {
     }
 
     private DataNode buildFromNormalizedNodeTree() {
-        final DataNode formalRootDataNode = new DataNodeBuilder().withXpath("").build();
-        addDataNodeFromNormalizedNode(formalRootDataNode, normalizedNodeTree);
-        return formalRootDataNode.getChildDataNodes().iterator().next();
+        final DataNode parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
+        addDataNodeFromNormalizedNode(parentDataNode, normalizedNodeTree);
+        return parentDataNode.getChildDataNodes().iterator().next();
     }
 
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
