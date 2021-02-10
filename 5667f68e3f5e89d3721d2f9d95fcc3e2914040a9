@@ -1,0 +1,556 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd6b6b63_53f8fc7f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "for consistency with the enum above change to _DESCENDANTS",
+      "range": {
+        "startLine": 24,
+        "startChar": 73,
+        "endLine": 24,
+        "endChar": 89
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a0245fd_d4e88b17",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "I still think this is an extremely dangerous and inefficient method which wil cause many problems in the future. For now I will accept it under the assumption we replace this soon by more dedicated and efficent ,methods for specif update scenarios (see https://wiki.onap.org/display/DW/CPS-235%3A+Overview+of+%28early%29+CPS+Query+and+Update+Scenarios WiP)",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "826e3d11_424b1a2a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "I know it is legacy but there were quiet team members that commented on this in the last patch and I think they should be correct now (You can do in separate commit)",
+      "range": {
+        "startLine": 58,
+        "startChar": 44,
+        "endLine": 58,
+        "endChar": 68
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b736d37d_d5ad4269",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "no needed in Groovy and \u0027def\u0027 perfered as per conventions",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a42d085b_0afaf106",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "please update DB setup to use more meaningfull daat samples",
+      "range": {
+        "startLine": 59,
+        "startChar": 49,
+        "endLine": 59,
+        "endChar": 60
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5939535_647b6431",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "I stil wonder why you add leaf-list add at all?. I think there is no production code yet that does anything special with leafLists. \nIn any case one sample would suffice, any more just distracts and increases maintenance cost",
+      "range": {
+        "startLine": 60,
+        "startChar": 60,
+        "endLine": 60,
+        "endChar": 80
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35657b43_e3d6d602",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "as before, no need!",
+      "range": {
+        "startLine": 61,
+        "startChar": 60,
+        "endLine": 61,
+        "endChar": 75
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71890bcc_c3dd47b7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "No need",
+      "range": {
+        "startLine": 62,
+        "startChar": 60,
+        "endLine": 62,
+        "endChar": 75
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7859473d_ff99db60",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "I think I will ignore full stop comments on Scenario\u0027s it doesn\u0027t seem worth my time :-)",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f7c9724_601f00b3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "suggestions: newDataNode or submittedDataNode",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 25
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bac6665_602f6fa8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "leaves have been updated for selected datanode\n\n(this block does not proof the \u0027only\u0027 bit, next block do)",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 60
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5d8eb0d_648e0fe7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "magic number use meaningful constant",
+      "range": {
+        "startLine": 220,
+        "startChar": 60,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a872dfa_0d3bf649",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "in groovy this can be shortened to : updatedLeaves.\u0027leaf-value\u0027",
+      "range": {
+        "startLine": 223,
+        "startChar": 19,
+        "endLine": 223,
+        "endChar": 47
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aab88fd_ee1662eb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "another magic number",
+      "range": {
+        "startLine": 227,
+        "startChar": 44,
+        "endLine": 227,
+        "endChar": 49
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80dbb24b_7c8a78f7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "in groovy this can be shortened to : updatedLeaves.\u0027leaf-value\u0027",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 44
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc1195a1_343a70c8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "Update data node leaves and remove children.",
+      "range": {
+        "startLine": 232,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9deabf50_1c85e8fd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "this is definitely not true now",
+      "range": {
+        "startLine": 238,
+        "startChar": 22,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c691a26_af8dfbe4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "I am not sure if I would tets this again (there is a maintenance cost)\nActually this tets and the previous test could easily be combined using where and a table",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 55
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16df6497_aeced81c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "magic number",
+      "range": {
+        "startLine": 246,
+        "startChar": 40,
+        "endLine": 246,
+        "endChar": 45
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85d16c03_9e04b5cf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "see previous comment and I think all 3 tests can be combined relatively easily",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 5
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "175b95ec_36a51bdd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "INVALID",
+      "range": {
+        "startLine": 285,
+        "startChar": 93,
+        "endLine": 285,
+        "endChar": 95
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00f09197_11ab4f75",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "Are these method being duplicated, could you introduce a tetsBase class defining these instead?",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 5
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9a069b8_2f27175d",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "Please note my previous comment, clean this up and remove unnecessary data (like list leaves)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 97
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "598418f3_8b741a36",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/UpdateDescendantsOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:27:39Z",
+      "side": 1,
+      "message": "_DESCENDANTS",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
