@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "00a566e8_0ee0f771",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:53:05Z",
+      "side": 1,
+      "message": "I showed to Aditya, the use of \u003c?,?\u003e is accepted by SonarCloud (not sure why it complains when Q checks run locally)",
+      "parentUuid": "cd2dddea_0a305fc7",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "a01b3d41b0fdd3c8557352b2cfb6b1ad10e07d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3896fd_2361ed9a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 6

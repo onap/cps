@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99177e71_4905eefb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:53:05Z",
+      "side": 1,
+      "message": "can use single \u0027 instead",
+      "range": {
+        "startLine": 64,
+        "startChar": 82,
+        "endLine": 64,
+        "endChar": 94
+      },
+      "revId": "9c6175cbf9ef0f2bfcd84e24974858c32d6ba587",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28b7fc31_f4628029",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-10T09:53:05Z",
+      "side": 1,
+      "message": "can use single \u0027 instead",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 53
+      },
+      "revId": "9c6175cbf9ef0f2bfcd84e24974858c32d6ba587",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
