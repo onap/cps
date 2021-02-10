@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "339f5ab0_d7549285",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-10T09:17:59Z",
+      "side": 1,
+      "message": "Suggestion : a anchor vs the dataspace. try using the in both places.",
+      "range": {
+        "startLine": 52,
+        "startChar": 50,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "f5b59beadc912a9b3d1d90d7d4a72e23134902f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
