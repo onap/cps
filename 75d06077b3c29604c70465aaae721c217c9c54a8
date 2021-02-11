@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "df0dad29_15689c26",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:48:58Z",
+      "side": 1,
+      "message": "miaybe, Im not sure if folder/file was wanted or just file. Im ok with any",
+      "parentUuid": "09043125_d081873c",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90750b90_db054c51",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "e533afac_5bb072eb",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:48:58Z",
+      "side": 1,
+      "message": "ok, then I will remove it",
+      "parentUuid": "471d1cbf_51c11470",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4056039_c789b376",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -203,6 +251,30 @@
       "side": 1,
       "message": "that is fine, but being part of this file it may seem like an alternative for deploying application to someone, which it is not.",
       "parentUuid": "798390b4_95b0af62",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5b3bfdc_819c120a",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:48:58Z",
+      "side": 1,
+      "message": "ok, then I will remove it. Anyone can reach the wiki if need it",
+      "parentUuid": "11b9a591_6c558ded",
       "range": {
         "startLine": 40,
         "startChar": 0,
