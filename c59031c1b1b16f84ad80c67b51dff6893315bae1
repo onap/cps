@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47c05eeb_86e413ab",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T09:25:39Z",
+      "side": 1,
+      "message": "commented on the other commit, but this goes first I guess. I would rather have two methods that one with UpdateDescendantsOption flag.",
+      "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
