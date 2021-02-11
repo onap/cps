@@ -342,6 +342,24 @@
       "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c6dd40_c5da2e2a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-11T18:56:16Z",
+      "side": 1,
+      "message": "The documentation in docker compose readme could mention \u0027nexus.repository` parameter to generate the image locally with a different name that is not conflicting with onap nexus one:\n\nmvn clean install -Pcps-docker -Dnexus.repository\u003donap/\n\nor\n\nmvn clean install -Pcps-docker -Dnexus.repository\u003d\u0027\u0027\n\nAnd we can set the image name in docker-compose.yml accordingly.",
+      "parentUuid": "9c43dc82_a40bc2d9",
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
