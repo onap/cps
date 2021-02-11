@@ -133,4 +133,13 @@ class CpsExceptionsSpec extends Specification {
             (new DataNodeNotFoundException(dataspaceName, anchorName, xpath)).details
                     == "DataNode with xpath ${xpath} was not found for anchor ${anchorName} and dataspace ${dataspaceName}."
     }
+
+    def 'Creating a cps path exception.'() {
+        given: 'a cps path exception is created'
+            def exception = new CpsPathException(providedMessage, providedDetails)
+        expect: 'the exception has the provided message'
+            exception.message == providedMessage
+        and: 'the exception has the provided details'
+            exception.details == providedDetails
+    }
 }
