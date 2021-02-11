@@ -1,4 +1,4 @@
-# Docker Compose deployment example for local enviroments, CPS deployment is done via OOM
+# Docker Compose deployment example for local enviroments after build, CPS deployment is done via OOM
 
 To run the application locally using `docker-compose`, execute following command from this `docker-compose` folder:
 
@@ -21,6 +21,10 @@ mvn clean install -Pcps-docker
 ```
 
 Run the containers
+
+Edit docker-compose.yml and uncomment desired service to be deployed, by default ``cps-and-nf-proxy`` is enabled.
+You can comment it and uncomment ``cps-standalone`` or ``nf-proxy-standalone``. 
+
 
 ```bash
 VERSION=0.0.1-SNAPSHOT DB_HOST=dbpostgresql DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
