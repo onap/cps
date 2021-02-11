@@ -324,6 +324,24 @@
       "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c43dc82_a40bc2d9",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T14:05:21Z",
+      "side": 1,
+      "message": "in case you are building, and testing you local changes, you need to use what you have in your local repo.\nand in your local repo will be shown with this port :S",
+      "parentUuid": "f439db79_f2688d10",
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
