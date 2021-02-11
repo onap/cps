@@ -30,13 +30,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
-import org.opendaylight.yangtools.yang.common.YangNames;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
@@ -49,6 +50,9 @@ import org.opendaylight.yangtools.yang.parser.stmt.reactor.CrossSourceStatementR
 
 @NoArgsConstructor
 public final class YangTextSchemaSourceSetBuilder {
+
+    private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN =
+        Pattern.compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
 
@@ -143,11 +147,9 @@ public final class YangTextSchemaSourceSetBuilder {
             .collect(Collectors.toList());
     }
 
-    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName,
-            final String source) {
-        final Map.Entry<String, String> sourceNameParsed = checkNotNull(YangNames.parseFilename(sourceName));
-        final RevisionSourceIdentifier revisionSourceIdentifier = RevisionSourceIdentifier
-            .create(sourceNameParsed.getKey(), Revision.ofNullable(sourceNameParsed.getValue()));
+    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
+        final RevisionSourceIdentifier revisionSourceIdentifier =
+            createIdentifierFromSourceName(checkNotNull(sourceName));
 
         return new YangTextSchemaSource(revisionSourceIdentifier) {
             @Override
@@ -161,5 +163,13 @@ public final class YangTextSchemaSourceSetBuilder {
                 return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
             }
         };
+    }
+
+    private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
+        final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
+        if (matcher.matches()) {
+            return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
+        }
+        return RevisionSourceIdentifier.create(sourceName);
     }
 }
