@@ -21,6 +21,7 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.model.DataNode;
 
@@ -64,4 +65,16 @@ public interface CpsDataPersistenceService {
      */
     DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
         @NonNull FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Get a datanode by cps path.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines the scope of data to fetch
+     * @return a list of datanodes
+     */
+    Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
+        @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
 }

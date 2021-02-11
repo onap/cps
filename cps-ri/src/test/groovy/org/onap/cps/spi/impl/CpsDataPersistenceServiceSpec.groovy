@@ -22,6 +22,7 @@ package org.onap.cps.spi.impl
 import com.google.common.collect.ImmutableSet
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -200,5 +201,46 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant' || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant' || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NO XPATH'     || DataNodeNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query for single leaf value: #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result= objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    cpsPath, fetchDescendants)
+        then: 'the correct data is returned'
+            result.forEach(dataNode -> dataNode.getLeaves().containsKey(filteredLeafName) &&
+                            dataNode.getLeaves().containsValue(filteredLeafValue))
+        and: 'the data node has the correct child'
+            result.forEach(dataNode -> dataNode.childDataNodes.size() == amountOfChildren)
+        where: 'the following data is used'
+            scenario | cpsPath                                          | fetchDescendants        || filteredLeafName | filteredLeafValue | amountOfChildren
+            'String' | '/ran-inventory/sliceProfilesList[@sNSSAI=\'a\']'| INCLUDE_ALL_DESCENDANTS || 'sNSSAI'         | 'a'               | 1
+            'Integer'| '/ran-inventory/sliceProfilesList[@latency=5]'   | OMIT_DESCENDANTS        || 'latency'        |  5                | 0
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path with CpsPathException.'()
+    {   given: 'a invalid cps path'
+            def invalidCpsPath = 'invalid-cps-path'
+        when: 'a query is executed to get a fragment by the given cps path'
+            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    invalidCpsPath, OMIT_DESCENDANTS)
+        then: 'a CpsPathException is thrown'
+            thrown(CpsPathException)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path with cps paths that return empty values #scenario.'()
+    {   when: 'a query is executed to get datanodes for the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    cpsPath, OMIT_DESCENDANTS)
+        then: 'an empty value is returned'
+            result.isEmpty()
+        where: 'following cps queries are performed'
+            scenario                            | cpsPath
+            'partial cps path'                  | '/sliceProfilesList[@latency=5]'
+            'missing / at beginning of path'    | 'ran-inventory/sliceProfilesList[@latency=5]'
+            'leaf value does not exist'         | '/ran-inventory/sliceProfilesList[@sNSSAI=\'does not exists\']'
     }
 }

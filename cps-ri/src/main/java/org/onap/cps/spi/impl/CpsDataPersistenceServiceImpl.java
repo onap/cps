@@ -29,12 +29,15 @@ import com.google.gson.GsonBuilder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -45,6 +48,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
+
+    public static final Pattern QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN =
+        Pattern.compile("(.*)\\[\\s*@(.*?)\\s*=\\s*(.*?)\\s*]");
 
     @Autowired
     private DataspaceRepository dataspaceRepository;
@@ -119,6 +125,27 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final FragmentEntity fragmentEntity =
             fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
         return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
+    @Override
+    public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+        if (matcher.matches()) {
+            final String xpathPrefix = matcher.group(1);
+            final String leafName = matcher.group(2);
+            final String leafValue = matcher.group(3);
+            final List<FragmentEntity> fragmentEntities = fragmentRepository
+                .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), xpathPrefix, leafName, leafValue);
+            return fragmentEntities.stream()
+                .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
+                .collect(Collectors.toUnmodifiableList());
+        } else {
+            throw new CpsPathException("Invalid cps path.",
+                String.format("Cannot interpret cps path %s.", cpsPath));
+        }
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
