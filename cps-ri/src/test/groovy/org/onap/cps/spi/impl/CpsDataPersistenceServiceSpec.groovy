@@ -30,10 +30,11 @@ import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.exceptions.CpsPathException
+import org.springframework.dao.DataIntegrityViolationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Unroll
 
@@ -301,5 +302,42 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query for single leaf value: #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result= objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath)
+        then: 'the correct data is returned'
+            result.size() == 1
+            def dataNode= result.stream().findFirst().get()
+            dataNode.getLeaves().toString() == leaves
+        where: 'the following data is used'
+            scenario | cpsPath                                          || leaves
+            'String' | '/parent-200/child-201[@leaf-value=\'original\']'|| '[int-value:5.0, leaf-value:original]'
+            'Integer'| '/parent-200/child-201[@int-value=5]'            || '[int-value:5.0, leaf-value:original]'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path with CpsPathException.'()
+    {   given: 'an invalid cps path'
+            def invalidCpsPath = 'invalid-cps-path'
+        when: 'a query is executed to get a fragment by the given cps path'
+            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, invalidCpsPath)
+        then: 'a CpsPathException is thrown'
+            thrown(CpsPathException)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path with cps paths that return no data #scenario.'()
+    {   when: 'a query is executed to get datanodes for the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath)
+        then: 'no data is returned'
+            result.isEmpty()
+        where: 'following cps queries are performed'
+            scenario                            | cpsPath
+            'partial cps path'                  | '/parent-200[@int-value=5]'
+            'missing / at beginning of path'    | 'parent-200[@int-value=5]'
+            'leaf value does not exist'         | '/parent-200[@original=\'does not exist\']'
     }
 }
