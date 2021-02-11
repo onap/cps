@@ -23,7 +23,6 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
-import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -31,7 +30,7 @@ class YangTextSchemaSourceSetSpec extends Specification {
 
     def 'Generating a valid YangTextSchemaSource Set '() {
         given: 'a yang model (file)'
-            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def yangResourceNameToContent = ['bookstore-test@2020-09-15.YANG': TestUtils.getResourceFileContent('bookstore.yang')]
         when: 'the content is parsed'
             def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext();
         then: 'the result contains 1 module of the correct name and revision'
