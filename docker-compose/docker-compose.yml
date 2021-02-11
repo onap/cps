@@ -1,41 +1,41 @@
 version: "3.7"
 
 services:
-  cps:
-    container_name: cps-service
-    image: nexus3.onap.org:10001/onap/cps-service:${VERSION}
-    volumes:
-      - "./application.yml:/app/application.yml"
-    ports:
-      - "8881:8080"
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-    restart: unless-stopped
-    depends_on:
-      - dbpostgresql
+  #cps-standalone:
+  #  container_name: cps-service
+  #  image: nexus3.onap.org:10003/onap/cps-service:${VERSION}
+  #  volumes:
+  #    - "./application.yml:/app/resources/application.yml"
+  #  ports:
+  #    - "8881:8080"
+  #  environment:
+  #    DB_HOST: ${DB_HOST}
+  #    DB_USERNAME: ${DB_USERNAME}
+  #    DB_PASSWORD: ${DB_PASSWORD}
+  #  restart: unless-stopped
+  #  depends_on:
+  #    - dbpostgresql
 
-  cps-nf-proxy:
-    container_name: cps-nf-proxy
-    image: nexus3.onap.org:10001/onap/cps-nf-proxy:${VERSION}
-    volumes:
-      - "./application.yml:/app/application.yml"
-    ports:
-      - "8882:8080"
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-    restart: unless-stopped
-    depends_on:
-      - dbpostgresql
+  #nf-proxy-standalone:
+  #  container_name: cps-nf-proxy
+  #  image: nexus3.onap.org:10003/onap/cps-nf-proxy:${VERSION}
+  #  volumes:
+  #    - "./application.yml:/app/resources/application.yml"
+  #  ports:
+  #    - "8882:8080"
+  #  environment:
+  #    DB_HOST: ${DB_HOST}
+  #    DB_USERNAME: ${DB_USERNAME}
+  #    DB_PASSWORD: ${DB_PASSWORD}
+  #  restart: unless-stopped
+  #  depends_on:
+  #    - dbpostgresql
 
   cps-and-nf-proxy:
     container_name: cps-and-nf-proxy
-    image: nexus3.onap.org:10001/onap/cps-and-nf-proxy:${VERSION}
+    image: nexus3.onap.org:10003/onap/cps-and-nf-proxy:${VERSION}
     volumes:
-      - "./application.yml:/app/application.yml"
+      - "./application.yml:/app/resources/application.yml"
     ports:
       - "8883:8080"
     environment:
