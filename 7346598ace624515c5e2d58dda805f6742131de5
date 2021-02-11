@@ -68,6 +68,30 @@
       "revId": "7346598ace624515c5e2d58dda805f6742131de5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a654bc24_48e2bb67",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-11T09:49:11Z",
+      "side": 1,
+      "message": "me too actually it is the whole descendants bit that has me worried and we can remove that later when we have dedicated more efficient methods for that we could deprecate that option",
+      "parentUuid": "771f75a0_f6e59746",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "7346598ace624515c5e2d58dda805f6742131de5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
