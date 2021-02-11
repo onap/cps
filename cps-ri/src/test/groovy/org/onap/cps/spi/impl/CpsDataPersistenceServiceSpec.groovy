@@ -19,9 +19,6 @@
  */
 package org.onap.cps.spi.impl
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-
 import com.google.common.collect.ImmutableSet
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -36,6 +33,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Unroll
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
@@ -87,6 +87,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             grandchildFragment.xpath == grandChildXpath
     }
 
+    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Store datanode error scenario: #scenario.'() {
         when: 'attempt to store a data node with #scenario'
@@ -116,6 +117,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             parentFragment.getChildFragments().find({ it.xpath == newChild.xpath })
     }
 
+    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add child error scenario: #scenario.'() {
         when: 'attempt to add a child data node with #scenario'
@@ -283,7 +285,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Replace data node tree error scenario: #scenario.'() {
         given: 'data node object'
-            def submittedDataNode = buildDataNode(xpath, ['leaf-name':'leaf-value'], [])
+            def submittedDataNode = buildDataNode(xpath, ['leaf-name': 'leaf-value'], [])
         when: 'attempt to update data node for #scenario'
             objectUnderTest.replaceDataNodeTree(dataspaceName, anchorName, submittedDataNode)
         then: 'a #expectedException is thrown'
@@ -301,5 +303,35 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query for single leaf value: #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath)
+        then: 'the correct data is returned'
+            result.size() == 1
+            def dataNode = result.stream().findFirst().get()
+            dataNode.getLeaves().toString() == leaves
+        where: 'the following data is used'
+            scenario  | cpsPath                                                          || leaves
+            'String'  | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' || '[common-leaf-name:common-leaf-value, common-leaf-name-int:5.0]'
+            'Integer' | '/parent-200/child-202[@common-leaf-name-int=5]'                 || '[common-leaf-name:common-leaf-value, common-leaf-name-int:5.0]'
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path with cps paths that return no data #scenario.'() {
+        when: 'a query is executed to get datanodes for the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath)
+        then: 'no data is returned'
+            result.isEmpty()
+        where: 'following cps queries are performed'
+            scenario                         | cpsPath
+            'partial cps path'               | '/parent-200[@common-leaf-name-int=5]'
+            'missing / at beginning of path' | 'parent-200/child-202[@common-leaf-name-int=5]'
+            'leaf value does not exist'      | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
+            'incomplete end of xpath prefix' | '/parent-200/child-20[@common-leaf-name-int=5]'
     }
 }
