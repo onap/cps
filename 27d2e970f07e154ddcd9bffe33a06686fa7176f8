@@ -46,6 +46,29 @@
       "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5460d4f_b354c39e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-11T13:08:10Z",
+      "side": 1,
+      "message": "as is good practice for a bug it would be nice to have a separate bug showcasing the changed behavior.\n(dont lump it in with existing test)\n\ndef \u0027Generating a YangTextSchemaSource from a file following the recommended naming\u0027\nor \ndef \u0027Generating a YangTextSchemaSource from a file with \u003c@Revision\u003e in the name\u0027",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 130
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
