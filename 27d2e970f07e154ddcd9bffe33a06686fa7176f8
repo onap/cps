@@ -69,6 +69,30 @@
       "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5e9b512_6b9bef76",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:15:02Z",
+      "side": 1,
+      "message": "I agree that one test with table format like the next test will be more clear that those are 2 scenarios been tested",
+      "parentUuid": "d5460d4f_b354c39e",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 130
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
