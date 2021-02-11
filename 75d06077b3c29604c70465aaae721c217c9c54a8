@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3c64e830_622490be",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:05:30Z",
+      "side": 1,
+      "message": "you can agree with Toine regarding this. I would agree with you that some parts looks like obvious, but I got some questions and I ended adding this extra documentation because it was not clear for part of the team.",
+      "parentUuid": "e582485e_7af1bfc0",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90750b90_db054c51",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e984d517_54af21fc",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:05:30Z",
+      "side": 1,
+      "message": "and this is a clear example of something that should need to be even be mentioned 😂 because is obvious 😊",
+      "parentUuid": "90750b90_db054c51",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4056039_c789b376",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-11T12:14:18Z",
       "side": 1,
       "message": "looks like this is a way to deploy application. better to reword to \"Application Packaging\".",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "798390b4_95b0af62",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:05:30Z",
+      "side": 1,
+      "message": "this is documentation comming from JIB plugin, thus is good as it is.",
+      "parentUuid": "d4056039_c789b376",
       "range": {
         "startLine": 40,
         "startChar": 0,
