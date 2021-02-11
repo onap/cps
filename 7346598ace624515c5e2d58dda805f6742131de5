@@ -45,6 +45,29 @@
       "revId": "7346598ace624515c5e2d58dda805f6742131de5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771f75a0_f6e59746",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T09:18:16Z",
+      "side": 1,
+      "message": "I will feel more comfortable if we have two methods instead of one with UpdateDescendantsOption flag",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "7346598ace624515c5e2d58dda805f6742131de5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
