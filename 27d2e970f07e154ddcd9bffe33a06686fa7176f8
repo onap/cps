@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "a2cf3696_95e5632a",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-11T13:58:14Z",
+      "side": 1,
+      "message": "null check can be avoided as that can be done in single line and is pretty basic functionality/validation, but this is whole method which uses regex and somehow method name gives no clue on it.",
+      "parentUuid": "d1d4de15_11bb27ae",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
