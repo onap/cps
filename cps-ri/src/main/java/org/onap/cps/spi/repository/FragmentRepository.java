@@ -22,6 +22,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -51,4 +52,10 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
     void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
 
+    @Query(value =
+        "SELECT * FROM FRAGMENT WHERE (anchor_id = :anchor) AND (xpath = (:xpath) OR xpath LIKE "
+            + "CONCAT(:xpath,'\\[@%]')) AND attributes @> jsonb_build_object(:leafName , :leafValue)",
+                nativeQuery = true)
+    List<FragmentEntity> getByAnchorAndXpathAndLeafAttributes(@Param("anchor") int anchorId, @Param("xpath")
+        String xpathPrefix, @Param("leafName") String leafName, @Param("leafValue") Object leafValue);
 }
