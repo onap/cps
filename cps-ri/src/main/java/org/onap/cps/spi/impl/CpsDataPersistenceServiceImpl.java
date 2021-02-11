@@ -21,6 +21,7 @@
 package org.onap.cps.spi.impl;
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -38,6 +39,7 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.spi.query.CpsPathQueryDetails;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -122,6 +124,20 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
+    }
+
+    @Override
+    public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final CpsPathQueryDetails cpsPathAttributes =
+            CpsPathQueryDetails.getXpathPrefixAndLeafNameAndLeafValue(cpsPath);
+        final List<FragmentEntity> fragmentEntities = fragmentRepository
+            .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathAttributes
+                .getXpathPrefix(), cpsPathAttributes.getLeafName(), cpsPathAttributes.getLeafValue());
+        return fragmentEntities.stream()
+            .map(fragmentEntity -> toDataNode(fragmentEntity, OMIT_DESCENDANTS))
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
