@@ -92,6 +92,30 @@
       "revId": "7346598ace624515c5e2d58dda805f6742131de5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2014683b_f3b57474",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T10:26:46Z",
+      "side": 1,
+      "message": "right,  I expect it will evolve. Thus the decoupling.\nAlso this is too \"powerful\" service providing changes full of possible corner case issues.\nI think we should provide 3 types of services ATM, save - udpdate - updateWithChilds. Just sharing what I see we can have at really short time, meanwhile we define what we really offer.\nWe can talk about this during todays meeting.\n\nto clarify, for this commit I would like just to see that decoupling",
+      "parentUuid": "a654bc24_48e2bb67",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "7346598ace624515c5e2d58dda805f6742131de5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
