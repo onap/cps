@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "09043125_d081873c",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-11T13:36:48Z",
+      "side": 1,
+      "message": "I am sure Toine meant either docker compose OR docker-compose.yml, not both together adjacent to each other. @toine correct me if I am wrong.",
+      "parentUuid": "3c64e830_622490be",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90750b90_db054c51",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "471d1cbf_51c11470",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-11T13:36:48Z",
+      "side": 1,
+      "message": "so either remove it or use suggestion or reword.",
+      "parentUuid": "e984d517_54af21fc",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4056039_c789b376",
         "filename": "docker-compose/README.md",
         "patchSetId": 4
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "this is documentation comming from JIB plugin, thus is good as it is.",
       "parentUuid": "d4056039_c789b376",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "75d06077b3c29604c70465aaae721c217c9c54a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b9a591_6c558ded",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-11T13:36:48Z",
+      "side": 1,
+      "message": "that is fine, but being part of this file it may seem like an alternative for deploying application to someone, which it is not.",
+      "parentUuid": "798390b4_95b0af62",
       "range": {
         "startLine": 40,
         "startChar": 0,
