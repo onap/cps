@@ -1,34 +1,79 @@
-# Docker Compose deployment example for local enviroments, CPS deployment is done via OOM
+# Building and running CPS locally
 
-To run the application locally using `docker-compose`, execute following command from this `docker-compose` folder:
+## Building Java Archive only
 
-Compile without generating the docker images
-
-```bash
-mvn clean install -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Djib.skip
-```
-
-Generate the docker images
+Following command builds all Java components to `cps-application/target/cps-application-x.y.z-SNAPSHOT.jar` JAR file
+without generating any docker images:  
 
 ```bash
-mvn clean install -Pcps-docker -Pxnf-docker -Pcps-xnf-docker
+mvn clean package -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Djib.skip
 ```
 
-for generate a specific type of docker images
+## Building Java Archive and Docker images
+
+* Following command builds the JAR file and also generates the Docker image for all CPS components:
 
 ```bash
-mvn clean install -Pcps-docker
+mvn clean package -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Dnexus.repository=""
 ```
 
-Run the containers
+* Following command builds the JAR file and generates the Docker image for specified CPS component:
+  (with `<docker-profile>` being one of `cps-docker`, `xnf-docker` or `cps-xnf-docker`):
 
 ```bash
-VERSION=0.0.1-SNAPSHOT DB_HOST=dbpostgresql DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+mvn clean package -P<docker-profile> -Dnexus.repository=""
 ```
 
-Run application from Intellj IDE
+## Running Docker containers
 
-you need first to enable the maven profile desired under tab Maven
-then go to Run -> Edit configurations
- 1- Working directory -> select docker-compose folder e.g.  ~/workspace/onap/cps/docker-compose/
- 2- Enviroment variables -> add variables configuration e.g. DB_HOST=127.0.0.1;DB_USERNAME=cps;DB_PASSWORD=cps
+`docker-compose/docker-compose.yml` file is provided to be run with `docker-compose` tool and images previously built.
+It starts both Postgres database and CPS services.
+
+1. Edit `docker-compose/docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-nf-proxy`
+   is enabled. You can comment it and uncomment `cps-standalone` or `nf-proxy-standalone`.
+2. Execute following command from this `docker-compose` folder:
+
+```bash
+VERSION=x.y.z-SNAPSHOT DB_HOST=dbpostgresql DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+```
+
+## Running or debugging Java built code
+
+Before running CPS, a Postgres database instance needs to be started. This can be done with following
+command:
+
+```bash
+docker run --name postgres -p 5432:5432 -d \
+  -e POSTGRES_DB=cpsdb -e POSTGRES_USER=cps -e POSTGRES_PASSWORD=cps \
+  postgres:12.4-alpine
+```
+
+Then CPS can be started either using a Java Archive previously built or directly from Intellij IDE.
+
+### Running from Jar Archive
+
+Following command starts the application using JAR file:
+
+```bash
+DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps \
+  java -classpath cps-application/target/cps-application-x.y.z-SNAPSHOT.jar:docker-compose \
+  org.springframework.boot.loader.JarLauncher
+```
+
+### Running from IntelliJ IDE
+
+Here are the steps to run or debug the application from Intellij:
+
+1. Enable the desired maven profile form Maven Tool Window
+2. Run a configuration from `Run -> Edit configurations` with following settings:
+   * `Working directory`: docker-compose folder, e.g. `$ProjectFileDir$/docker-compose`
+   * `Environment variables`: `DB_HOST=localhost;DB_USERNAME=cps;DB_PASSWORD=cps`
+
+## Accessing services
+
+Swagger UI and Open API specifications are available to discover service endpoints and send requests.
+
+* http://localhost:8080/swagger-ui/index.html
+* http://localhost:8080/v3/api-docs
+
+Enjoy CPS !
