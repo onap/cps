@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dcdd75bf_90ee71fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-11T13:56:12Z",
+      "side": 1,
+      "message": "YANG_RECOMMENDED_FILE_NAME",
+      "range": {
+        "startLine": 54,
+        "startChar": 33,
+        "endLine": 54,
+        "endChar": 62
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf468d66_9446e50f",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 2
@@ -84,6 +107,30 @@
       "writtenOn": "2021-02-11T13:46:17Z",
       "side": 1,
       "message": "I dont agree, if you will be doing some null check, will you want to add that as well on the name? \njavadoc could be added but I dont see extra value on that",
+      "parentUuid": "02f16ad2_a454dec7",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72faec1c_d2487351",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-11T13:56:12Z",
+      "side": 1,
+      "message": "maybe rename to createValidIdentifierFromResourceName",
       "parentUuid": "02f16ad2_a454dec7",
       "range": {
         "startLine": 167,
