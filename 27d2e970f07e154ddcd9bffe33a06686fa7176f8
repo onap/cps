@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d1d4de15_11bb27ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-11T13:46:17Z",
+      "side": 1,
+      "message": "I dont agree, if you will be doing some null check, will you want to add that as well on the name? \njavadoc could be added but I dont see extra value on that",
+      "parentUuid": "02f16ad2_a454dec7",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
