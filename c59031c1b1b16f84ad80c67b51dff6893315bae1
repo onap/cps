@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "c352ed70_5096886e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-12T11:26:47Z",
+      "side": 1,
+      "message": "Is this check really required here? Would the parent child relationship be well captured in case UPDATE_LEAVES_AND_DESCENDANT_NODES is set to false?\nMy understanding is that the parent datanode id would be changed when fragmentRepository.save() is executed, but the child would now be refering to an invalid parent id.",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dfcaaed1_33433b2a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 6
