@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "3c721011_ba38dcff",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-12T11:58:44Z",
+      "side": 1,
+      "message": "Some thoughts : This pattern currently handles the invalid @ in the name(and .yang). What about other naming patterns in the future. Even an extra @ again in the name. Also, if we just need to handle the @ why not just use String.split() and get rid of regex altogether.",
+      "range": {
+        "startLine": 55,
+        "startChar": 25,
+        "endLine": 55,
+        "endChar": 68
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf468d66_9446e50f",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 2
@@ -156,6 +179,30 @@
       "side": 1,
       "message": "null check can be avoided as that can be done in single line and is pretty basic functionality/validation, but this is whole method which uses regex and somehow method name gives no clue on it.",
       "parentUuid": "d1d4de15_11bb27ae",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f5237f_27354c7e",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-12T11:58:44Z",
+      "side": 1,
+      "message": "The name from @Niamh above sounds reasonable or even createValidIdentifierFromSourceName is fine. Atleast it mentions WHAT is being done.",
+      "parentUuid": "a2cf3696_95e5632a",
       "range": {
         "startLine": 167,
         "startChar": 44,
