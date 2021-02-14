@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7463a8db_68e085b4",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-14T20:53:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "234a9a9c_f17a34ae",
+      "revId": "2115bb183bff5e7d4c7d554b541a422538484cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37cd58f2_208cc240",
         "filename": "docker-compose/README.md",
         "patchSetId": 9
@@ -39,6 +57,30 @@
       "revId": "2115bb183bff5e7d4c7d554b541a422538484cc7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5875ce05_104dd413",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-14T20:53:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37cd58f2_208cc240",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 115
+      },
+      "revId": "2115bb183bff5e7d4c7d554b541a422538484cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "7577d66d_4f20ac60",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-14T20:53:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a483b7e_9d0f34a6",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "2115bb183bff5e7d4c7d554b541a422538484cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ddf4982_363e1be2",
         "filename": "docker-compose/README.md",
         "patchSetId": 9
@@ -76,6 +142,30 @@
       "writtenOn": "2021-02-12T10:48:34Z",
       "side": 1,
       "message": "I don\u0027t think this belongs in the readme. Please move to the developers landing page.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 110
+      },
+      "revId": "2115bb183bff5e7d4c7d554b541a422538484cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a6a724d_ff48efeb",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-14T20:53:57Z",
+      "side": 1,
+      "message": "It could make sense to me to keep it here, I often find useful to have the information in the readme in the repo itself, along with the code and in sync with it. It is often easier to manage the changes, especially when there are different branches or versions that could require different setups. It could be more trouble to keep the different versions in sync with the code from the wiki.",
+      "parentUuid": "5ddf4982_363e1be2",
       "range": {
         "startLine": 33,
         "startChar": 0,
