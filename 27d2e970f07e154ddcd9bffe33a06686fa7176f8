@@ -287,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "ae9c52f8_954044bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-15T13:00:23Z",
+      "side": 1,
+      "message": "You need to read the book and understand it as whole, not as a bunch of independent statements.\nAnd as I mentioned earlier we should follow both good practice not just one.\nThe current thinking is \"the name needs to be as short as reasonable and as expressive as needed it\"\n \nAnd this name \"createValidIdentifierFromSourceName\" is not that. We do not expect to create invalid identifiers or do we?\n\nFrom your response I understand that almost all methods on this class should be renamed then [\u0027forResources\u0027, \u0027toYangTextSchemaSource\u0027].. and I haven\u0027t checked other classes. \n\n\nif you have better naming propose it, until now I havent seen a better naming proposal.",
+      "parentUuid": "84c331e7_b0ca8710",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
