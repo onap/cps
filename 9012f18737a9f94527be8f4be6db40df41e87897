@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e997ab1b_6e478130",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T07:57:02Z",
+      "side": 1,
+      "message": "parsing xpath string in order to retrieve the request parameters \nshould not be a responsibility of persistence service.\nupdate interface to accept the ready to use parameters:\n\nqueryDataNodes(final String dataspaceName, final String anchorName, \nfinal String xpathPrefix, \nfinal Map\u003cString, Object\u003e queryLeaves,\nfinal FetchDescendantsOption fetchDescendantsOption);\n\nCpsPathException should be removed as out of scope for this task",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdcce73f_270dde59",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T07:57:02Z",
+      "side": 1,
+      "message": "replace with to_jsonb(:leavesAsJsonString)\nno reason to initially limit the query with single leaf condition\nupdate the method signature accordingly",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
