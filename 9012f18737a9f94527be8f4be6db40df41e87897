@@ -69,6 +69,145 @@
       "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "779cefa4_d635e24b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "it is not in scope and it raises doubt/options about using and/or condition.\nStick to scope don\u0027t implement what is not needed now.",
+      "parentUuid": "cdcce73f_270dde59",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e73568_aec9d5ea",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "expectedNUmberOfChildren",
+      "range": {
+        "startLine": 217,
+        "startChar": 140,
+        "endLine": 217,
+        "endChar": 156
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "492dce6d_f84645a2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 18
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "507848cb_575c1e80",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "new lien not needed?",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 53
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "115d8ba4_fe64dee1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 238,
+        "startChar": 18,
+        "endLine": 238,
+        "endChar": 29
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "404bfc40_801c7803",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T17:05:00Z",
+      "side": 1,
+      "message": "I think a more basic example might be more readable. ie bookstore or trees, birds \u0026 nests :-)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 73
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
