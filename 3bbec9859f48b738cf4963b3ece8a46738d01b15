@@ -22,6 +22,30 @@
       "revId": "3bbec9859f48b738cf4963b3ece8a46738d01b15",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "750dfb90_9e370c27",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T08:47:21Z",
+      "side": 1,
+      "message": "do you want to change this to install or not, I don\u0027t mind either way. Just holding of merge on that.\nPlease not Ericsson employees cannot edit/add to over onap.gerrit patches :-(",
+      "parentUuid": "2b9b335c_3b101ca6",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "3bbec9859f48b738cf4963b3ece8a46738d01b15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
