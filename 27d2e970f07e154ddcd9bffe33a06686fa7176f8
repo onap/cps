@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "bdb4fe1c_57250af5",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-15T07:56:27Z",
+      "side": 1,
+      "message": "There is 2 good practice of clean code to be followed here.\n- meaningful names\n- keep it short\n\ncreateValidIdentifierFromSourceName is too long and not adding extra value.\n\ncreateValid** Is implicit that we want to create something valid,  neither I expect we will have a method createInvalid.\ncreateValidIdentifier** WHAT we are creating is implicit by the return value. \ncreat**FromSourceName Also FROM WHAT we are creating it, is implicit by the passed parameters.\n\nSo here we could have two possible paths for naming\n   createIdentifier\n   fromSourceName\n\nYou can see examples of what I\u0027m trying to explain under Collectors java class, or ImmutableList class or many other methods within our project itself indeed.\n\nI like that we are trying use meaningful naming, but we need to avoid taking the path of using long methods name just because a misunderstanding of the good practice.\nIf one method name is too long, the reason would be that not better naming has been found OR because is doing too much, and needs to be reworked. At any rate is a code smell similar to have a really short with no meaning.\n\nI hope I explained what I\u0027m trying to point 😊",
+      "parentUuid": "66f5237f_27354c7e",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
