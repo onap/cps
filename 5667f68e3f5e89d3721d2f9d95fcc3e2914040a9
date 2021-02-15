@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bc247d9c_e47bf9a2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T13:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd6b6b63_53f8fc7f",
+      "range": {
+        "startLine": 24,
+        "startChar": 73,
+        "endLine": 24,
+        "endChar": 89
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a0245fd_d4e88b17",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "I still think this is an extremely dangerous and inefficient method which wil cause many problems in the future. For now I will accept it under the assumption we replace this soon by more dedicated and efficent ,methods for specif update scenarios (see https://wiki.onap.org/display/DW/CPS-235%3A+Overview+of+%28early%29+CPS+Query+and+Update+Scenarios WiP)",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "894ef818_55843ee9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T13:17:58Z",
+      "side": 1,
+      "message": "the problem case is unclear. please provide more details.",
+      "parentUuid": "2a0245fd_d4e88b17",
       "range": {
         "startLine": 153,
         "startChar": 0,
@@ -551,6 +599,30 @@
       "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b796fbb5_223a6b24",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/UpdateDescendantsOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T13:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598418f3_8b741a36",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
