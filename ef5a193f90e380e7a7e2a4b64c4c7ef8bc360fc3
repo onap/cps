@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00dd7d31_d0df05a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:53:51Z",
+      "side": 1,
+      "message": "both Claudio and I preffered 2 different methods for each case , my suggestion:\n\nupdateDataLeaves()\n\nreplaceDataNodeTree()",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "ef5a193f90e380e7a7e2a4b64c4c7ef8bc360fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9d27ef4_7d4c26b2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:53:51Z",
+      "side": 1,
+      "message": "As Agreed Niamh will take any testware improvements Ruslan prefer to leave...",
+      "revId": "ef5a193f90e380e7a7e2a4b64c4c7ef8bc360fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
