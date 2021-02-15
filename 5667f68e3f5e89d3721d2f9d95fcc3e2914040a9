@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "6cc50ba5_17a4ddc4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "let agree to disagree in this case, types sometime do help make the test more readable",
+      "parentUuid": "3f87f081_0dca21e0",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a42d085b_0afaf106",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -248,6 +272,30 @@
       "side": 1,
       "message": "this is supported type of data, \nexcluding it from tests makes the test incomplete",
       "parentUuid": "a5939535_647b6431",
+      "range": {
+        "startLine": 60,
+        "startChar": 60,
+        "endLine": 60,
+        "endChar": 80
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e693f510_093fccd5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "it is not relevant for these test, please remove.",
+      "parentUuid": "580cd5a8_a84f8515",
       "range": {
         "startLine": 60,
         "startChar": 60,
@@ -353,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "7bd3b6fd_f8d7adb8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "not an issue anymore, I accept there will be different standard in compliance with conventions and wont comment on this anymore.",
+      "parentUuid": "2b723a8f_e7514a35",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f7c9724_601f00b3",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -388,6 +460,30 @@
       "side": 1,
       "message": "what\u0027s wrong with current name?",
       "parentUuid": "7f7c9724_601f00b3",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 25
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e4fa80_ae02a810",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "Addiotnal clarification",
+      "parentUuid": "de14785e_b2e173fc",
       "range": {
         "startLine": 215,
         "startChar": 16,
@@ -658,6 +754,30 @@
     },
     {
       "key": {
+        "uuid": "d68bd326_1c70bb07",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "it was only a suggestion, but leave it...",
+      "parentUuid": "d8166b4d_00267981",
+      "range": {
+        "startLine": 232,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9deabf50_1c85e8fd",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -740,6 +860,30 @@
       "side": 1,
       "message": "i wasn\u0027t able \u0027easily\u0027 combine these tests.\nplease provide your solution.",
       "parentUuid": "0c691a26_af8dfbe4",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 55
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652ef881_2716e4cb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "no time now...",
+      "parentUuid": "f050037c_97941fbe",
       "range": {
         "startLine": 239,
         "startChar": 0,
@@ -869,6 +1013,30 @@
     },
     {
       "key": {
+        "uuid": "230f1cfe_2464b479",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "invalid and non-existing are very different things, How can you say NO XPATH it as a bit like defining an empty string  as \"EMPTY\"  ?!",
+      "parentUuid": "0179968d_ac06abbe",
+      "range": {
+        "startLine": 285,
+        "startChar": 93,
+        "endLine": 285,
+        "endChar": 95
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00f09197_11ab4f75",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -916,6 +1084,30 @@
     },
     {
       "key": {
+        "uuid": "8278689e_50e8edb1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "I\u0027ll need to check out to check again, might have time later",
+      "parentUuid": "7d391600_fa5d49c5",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 5
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9a069b8_2f27175d",
         "filename": "cps-ri/src/test/resources/data/fragment.sql",
         "patchSetId": 4
@@ -951,6 +1143,30 @@
       "side": 1,
       "message": "this data is required to validate all the supported data types are properly fetched\nfrom database, for all the descendants no meter the depth. \nHow handling less cases make the test better?",
       "parentUuid": "f9a069b8_2f27175d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 97
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e1fb671_a0dee08f",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T16:01:01Z",
+      "side": 1,
+      "message": "Adding data that does not affect the code under test is a maintenance cost, bad code practice mislead etc.",
+      "parentUuid": "2987227d_30390b04",
       "range": {
         "startLine": 20,
         "startChar": 0,
