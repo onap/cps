@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3f87f081_0dca21e0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "i disagree, \u0027def\u0027 hides an important information of object types\nand makes the flow unclear.",
+      "parentUuid": "b736d37d_d5ad4269",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a42d085b_0afaf106",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -176,6 +200,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "I stil wonder why you add leaf-list add at all?. I think there is no production code yet that does anything special with leafLists. \nIn any case one sample would suffice, any more just distracts and increases maintenance cost",
+      "range": {
+        "startLine": 60,
+        "startChar": 60,
+        "endLine": 60,
+        "endChar": 80
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "580cd5a8_a84f8515",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "this is supported type of data, \nexcluding it from tests makes the test incomplete",
+      "parentUuid": "a5939535_647b6431",
       "range": {
         "startLine": 60,
         "startChar": 60,
@@ -257,6 +305,30 @@
     },
     {
       "key": {
+        "uuid": "2b723a8f_e7514a35",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "why it was an issue?",
+      "parentUuid": "7859473d_ff99db60",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f7c9724_601f00b3",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -268,6 +340,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "suggestions: newDataNode or submittedDataNode",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 25
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de14785e_b2e173fc",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "what\u0027s wrong with current name?",
+      "parentUuid": "7f7c9724_601f00b3",
       "range": {
         "startLine": 215,
         "startChar": 16,
@@ -326,6 +422,30 @@
     },
     {
       "key": {
+        "uuid": "a6431c70_81afe743",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "i see no problem using numbers in test bodies. why it\u0027s an issue?",
+      "parentUuid": "f5d8eb0d_648e0fe7",
+      "range": {
+        "startLine": 220,
+        "startChar": 60,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a872dfa_0d3bf649",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -337,6 +457,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "in groovy this can be shortened to : updatedLeaves.\u0027leaf-value\u0027",
+      "range": {
+        "startLine": 223,
+        "startChar": 19,
+        "endLine": 223,
+        "endChar": 47
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08c7f05e_e0848505",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "groovy syntax is misleading and confusing for java developer.\nit looks like public property of an object which is not.",
+      "parentUuid": "3a872dfa_0d3bf649",
       "range": {
         "startLine": 223,
         "startChar": 19,
@@ -372,6 +516,30 @@
     },
     {
       "key": {
+        "uuid": "e3d0a033_76a0a7d7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "yes, as above",
+      "parentUuid": "4aab88fd_ee1662eb",
+      "range": {
+        "startLine": 227,
+        "startChar": 44,
+        "endLine": 227,
+        "endChar": 49
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80dbb24b_7c8a78f7",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -383,6 +551,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "in groovy this can be shortened to : updatedLeaves.\u0027leaf-value\u0027",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 44
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dd1eedf_caaa6c9d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "80dbb24b_7c8a78f7",
       "range": {
         "startLine": 228,
         "startChar": 19,
@@ -418,6 +610,30 @@
     },
     {
       "key": {
+        "uuid": "d8166b4d_00267981",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "it assumes two actions not one",
+      "parentUuid": "fc1195a1_343a70c8",
+      "range": {
+        "startLine": 232,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9deabf50_1c85e8fd",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -429,6 +645,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "this is definitely not true now",
+      "range": {
+        "startLine": 238,
+        "startChar": 22,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b8eb2ab_825b97a5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "9deabf50_1c85e8fd",
       "range": {
         "startLine": 238,
         "startChar": 22,
@@ -464,6 +704,30 @@
     },
     {
       "key": {
+        "uuid": "f050037c_97941fbe",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "i wasn\u0027t able \u0027easily\u0027 combine these tests.\nplease provide your solution.",
+      "parentUuid": "0c691a26_af8dfbe4",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 55
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "16df6497_aeced81c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -475,6 +739,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "magic number",
+      "range": {
+        "startLine": 246,
+        "startChar": 40,
+        "endLine": 246,
+        "endChar": 45
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd406aa8_16d73550",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "yes.",
+      "parentUuid": "16df6497_aeced81c",
       "range": {
         "startLine": 246,
         "startChar": 40,
@@ -533,6 +821,30 @@
     },
     {
       "key": {
+        "uuid": "0179968d_ac06abbe",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "invalid and non-existent aren\u0027t the same",
+      "parentUuid": "175b95ec_36a51bdd",
+      "range": {
+        "startLine": 285,
+        "startChar": 93,
+        "endLine": 285,
+        "endChar": 95
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00f09197_11ab4f75",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -556,6 +868,30 @@
     },
     {
       "key": {
+        "uuid": "7d391600_fa5d49c5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "these methods are not duplicated.",
+      "parentUuid": "00f09197_11ab4f75",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 5
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9a069b8_2f27175d",
         "filename": "cps-ri/src/test/resources/data/fragment.sql",
         "patchSetId": 4
@@ -567,6 +903,30 @@
       "writtenOn": "2021-02-10T09:27:39Z",
       "side": 1,
       "message": "Please note my previous comment, clean this up and remove unnecessary data (like list leaves)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 97
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2987227d_30390b04",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "this data is required to validate all the supported data types are properly fetched\nfrom database, for all the descendants no meter the depth. \nHow handling less cases make the test better?",
+      "parentUuid": "f9a069b8_2f27175d",
       "range": {
         "startLine": 20,
         "startChar": 0,

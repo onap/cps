@@ -382,6 +382,24 @@
       "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95b03f08_eeca20ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T15:44:21Z",
+      "side": 1,
+      "message": "i see no benefits in using 2 methods (to be also applied on API and on REST levels) vs single option. also for a consistency same approach should be applied to data extraction, as result we\u0027ll have a *pair* of methods (endpoints) for any *single* data related action. \nseems very extra to me. imo an option should be treated as option, not as separate flow.",
+      "parentUuid": "5703840c_6a2d1a22",
+      "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
