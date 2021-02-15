@@ -1,0 +1,11 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Ruslan Kashapov <ruslan.kashapov@pantheon.tech>
+Code-Review+1: Niamh Core <niamh.core@est.tech>
+Code-Review+1: Claudio David Gasparini <claudio.gasparini@pantheon.tech>
+Code-Review+1: aditya puthuparambil <aditya.puthuparambil@bell.ca>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Mon, 15 Feb 2021 14:29:22 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/117826
+Project: cps
+Branch: refs/heads/master
