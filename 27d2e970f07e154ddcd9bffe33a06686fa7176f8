@@ -263,6 +263,30 @@
     },
     {
       "key": {
+        "uuid": "84c331e7_b0ca8710",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T12:10:31Z",
+      "side": 1,
+      "message": "I have to comment on the \u0027keep it short\u0027 recommendation. This is very much not the current thinking. I f you read \u0027clean code\u0027 by Robert. C Martin  he states \"Don\u0027t be afraid to make a name long. A long descriptive name is better than a short enigmatic name. A long descriptive name is better than a long descriptive comment.\"\n\nfromSourceName does NOT at all imply what this method does createValidIdentifierFromSourceName does make it clearer, so it does add value and is my preferred option between the 2 and I am sure there could be even better names I cant think off right now",
+      "parentUuid": "bdb4fe1c_57250af5",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
