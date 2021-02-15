@@ -46,6 +46,30 @@
       "revId": "3bbec9859f48b738cf4963b3ece8a46738d01b15",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73b81f9_c33e38af",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-15T08:55:04Z",
+      "side": 1,
+      "message": "I want to have install, but I can provide another commit, once Bruno reacts. At the moment I can neither push the change.\nSo feel free to merge it",
+      "parentUuid": "750dfb90_9e370c27",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "3bbec9859f48b738cf4963b3ece8a46738d01b15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
