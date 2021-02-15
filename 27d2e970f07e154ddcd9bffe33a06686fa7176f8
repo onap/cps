@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5e64a9b_8f6d351f",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-15T17:38:47Z",
+      "side": 1,
+      "message": "ignore",
+      "parentUuid": "dcdd75bf_90ee71fe",
+      "range": {
+        "startLine": 54,
+        "startChar": 33,
+        "endLine": 54,
+        "endChar": 62
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c721011_ba38dcff",
         "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
         "patchSetId": 2
@@ -299,6 +323,30 @@
       "side": 1,
       "message": "You need to read the book and understand it as whole, not as a bunch of independent statements.\nAnd as I mentioned earlier we should follow both good practice not just one.\nThe current thinking is \"the name needs to be as short as reasonable and as expressive as needed it\"\n \nAnd this name \"createValidIdentifierFromSourceName\" is not that. We do not expect to create invalid identifiers or do we?\n\nFrom your response I understand that almost all methods on this class should be renamed then [\u0027forResources\u0027, \u0027toYangTextSchemaSource\u0027].. and I haven\u0027t checked other classes. \n\n\nif you have better naming propose it, until now I havent seen a better naming proposal.",
       "parentUuid": "84c331e7_b0ca8710",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af759dd6_b2c919cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-15T17:38:47Z",
+      "side": 1,
+      "message": "I can see both of your points. The name \u0027createIdentifierFromSourceName\u0027 seems appropriate to me as it conveys what the method does. I can make this change in a separate commit.",
+      "parentUuid": "ae9c52f8_954044bc",
       "range": {
         "startLine": 167,
         "startChar": 44,
