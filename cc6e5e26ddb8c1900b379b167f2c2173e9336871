@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7eeb78cf_a69f9eb4",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-15T12:22:26Z",
+      "side": 1,
+      "message": "just a placeholder",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "cc6e5e26ddb8c1900b379b167f2c2173e9336871",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
