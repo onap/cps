@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "60e6fbe5_bd15da72",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T15:45:29Z",
+      "side": 1,
+      "message": "this sis  anew method you are introducing. we have been discussing this methods needs and will be complemented or even replaced by more finer grained methods. Since this method really replaces almost everything except the toplevel datanode the name should reflect that behavior",
+      "parentUuid": "8d1c4fdd_f0735ace",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c352ed70_5096886e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 6
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "sorry, these two lines are already readable enough",
       "parentUuid": "dfcaaed1_33433b2a",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 53
+      },
+      "revId": "c59031c1b1b16f84ad80c67b51dff6893315bae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d7a4eba_45e09a87",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T15:45:29Z",
+      "side": 1,
+      "message": "apparently it is not. Also as this behavior is at the core of the teams concern about this approach it is important that this step is obvious by extracting a method with that name",
+      "parentUuid": "0dc2b574_8e33900a",
       "range": {
         "startLine": 154,
         "startChar": 0,

@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "3f4a955c_8b7ad43b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-15T15:45:29Z",
+      "side": 1,
+      "message": "we will discuss in follow up meeting to clarify. For now we have agreed to accept this \u0027sledgehammer\u0027 approach as a first rough cut...",
+      "parentUuid": "894ef818_55843ee9",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "826e3d11_424b1a2a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
