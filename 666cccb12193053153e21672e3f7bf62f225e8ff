@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62cba0f6_091f4032",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-15T08:32:20Z",
+      "side": 1,
+      "message": "these belong to openapi 2.0, ignored in openapi 3.0 which uses servers: url (below)\nsee also https://swagger.io/docs/specification/api-host-and-base-path/\n\nremove as extra",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 8
+      },
+      "revId": "666cccb12193053153e21672e3f7bf62f225e8ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
