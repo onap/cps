@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4da5041_fcf27e90",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-16T10:56:33Z",
+      "side": 1,
+      "message": "use same word (non existing or invalid) in the scenario and xpath",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 136
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a049e4ca_4ea95b19",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-16T10:56:33Z",
+      "side": 1,
+      "message": "use constant",
+      "range": {
+        "startLine": 269,
+        "startChar": 60,
+        "endLine": 269,
+        "endChar": 65
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54cf6c73_0b7986c6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-16T10:56:33Z",
+      "side": 1,
+      "message": "use constant",
+      "range": {
+        "startLine": 278,
+        "startChar": 44,
+        "endLine": 278,
+        "endChar": 49
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c205af5_f0bb5ea5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-16T10:56:33Z",
+      "side": 1,
+      "message": "data not needed for test. just use [ ]",
+      "range": {
+        "startLine": 286,
+        "startChar": 47,
+        "endLine": 286,
+        "endChar": 67
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c165b0_93f408bb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-16T10:56:33Z",
+      "side": 1,
+      "message": "use same word (non existing or invalid) in the scenario and xpath",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 136
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
