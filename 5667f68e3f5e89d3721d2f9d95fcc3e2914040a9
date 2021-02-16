@@ -120,6 +120,23 @@
     },
     {
       "key": {
+        "uuid": "5e794ef0_92d01d76",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:55:28Z",
+      "side": 1,
+      "message": "please do the tests changes recommendations",
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "826e3d11_424b1a2a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -1167,6 +1184,30 @@
       "side": 1,
       "message": "Adding data that does not affect the code under test is a maintenance cost, bad code practice mislead etc.",
       "parentUuid": "2987227d_30390b04",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 97
+      },
+      "revId": "5667f68e3f5e89d3721d2f9d95fcc3e2914040a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7651dfc8_7c322465",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:55:28Z",
+      "side": 1,
+      "message": "I commented something similar on Niamh\u0027s commit, lets try to come with a common example for all tests if possible",
+      "parentUuid": "9e1fb671_a0dee08f",
       "range": {
         "startLine": 20,
         "startChar": 0,
