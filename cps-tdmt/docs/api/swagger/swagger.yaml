@@ -1,0 +1,178 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Template based Data Model Transformer APIs"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v1"
+tags:
+- name: "templates"
+  description: "CRUD APIs for xpath templates"
+schemes:
+- "https"
+- "http"
+paths:
+  /templates:
+    post:
+      tags:
+      - "templates"
+      summary: "Add a new template"
+      description: ""
+      operationId: "addTemplate"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Template object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Template"
+      responses:
+        "201":
+          description: "Created successfully"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal server error"
+    get:
+      tags:
+      - "templates"
+      summary: "Get all templates"
+      description: ""
+      operationId: "getAllTemplates"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Templates returned successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Template"
+        "404":
+          description: "No templates found"
+        "500":
+          description: "Internal server error"
+  /templates/{schemaSet}/{id}:
+    get:
+      tags:
+      - "templates"
+      summary: "Find template by ID"
+      description: "Returns a single template"
+      operationId: "getTemplateById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of template to return"
+        required: true
+        type: "string"
+      - name: "schemaSet"
+        in: "path"
+        description: "schema set"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Template returned successfully"
+          schema:
+            $ref: "#/definitions/Template"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not found"
+    delete:
+      tags:
+      - "templates"
+      summary: "Deletes a template"
+      description: ""
+      operationId: "deleteTemplate"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "schemaSet"
+        in: "path"
+        description: "schema set"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Deleted successfully"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Template not found"
+  /execute/{schemaSet}/{id}:
+    post:
+      tags:
+      - "template executions"
+      summary: "Execute a template"
+      description: "Returns the result of execution"
+      operationId: "executeTemplateById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of template to execute"
+        required: true
+        type: "string"
+      - name: "schemaSet"
+        in: "path"
+        description: "schema set"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Template object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/ApiRequest"
+      responses:
+        "200":
+          description: "Result returned successfully"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not found"
+        "500":
+          description: "Internal server error"
+definitions:
+  Template:
+    type: "object"
+    required:
+    - "id"
+    - "schemaSet"
+    - "xpathTemplate"
+    properties:
+      id:
+        type: "string"
+      schemaSet:
+        type: "string"
+      xpathTemplate:
+        type: "string"
+  ApiRequest:
+    type: "object"
+    properties:
+      input:
+        type: "object"
+  ApiResponse:
+    type: "object"
+externalDocs:
+  description: "Find out more about APIs"
+  url: "https://wiki.onap.org/display/DW/API+Mapper+Service"
