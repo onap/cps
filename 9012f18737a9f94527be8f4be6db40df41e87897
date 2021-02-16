@@ -307,6 +307,29 @@
     },
     {
       "key": {
+        "uuid": "8934c541_e89c312d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T11:55:37Z",
+      "side": 1,
+      "message": "(re-supplying los t comment :-))\nreword, sugestions:\nreturn no result\nreturn empty collection\nfind no data",
+      "range": {
+        "startLine": 234,
+        "startChar": 61,
+        "endLine": 234,
+        "endChar": 80
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "115d8ba4_fe64dee1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 1
