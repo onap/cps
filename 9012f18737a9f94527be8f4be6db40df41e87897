@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a4636bd9_106444ed",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T11:44:22Z",
+      "side": 1,
+      "message": "i asked Niamh the same before, and asked her to add tests to proof this is not the case. \nMaybe we need to double check those test again if they are passing for a different reason (false positives)\nor do we need more scenarios.",
+      "parentUuid": "7e2371c8_6b458257",
+      "range": {
+        "startLine": 55,
+        "startChar": 86,
+        "endLine": 55,
+        "endChar": 96
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdcce73f_270dde59",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "I do not see reason why not use to_jsonb(:leavesAsJsonString), so I agree that is a good change to be done.\nIf there is code impact I will go with Toine,  my understanding is that there is no such code impact / change required by using it.",
       "parentUuid": "779cefa4_d635e24b",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee67cd6a_f923ffbd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T11:44:22Z",
+      "side": 1,
+      "message": "i probably need to see it implemented to decide but I am always hesitant to go beyond the original scope, if it does work easily then we do need to clarify whether the filter will apply \u0027and\u0027 or \u0027or\u0027 but in either case this will NOT be used until we expand teh cpsPath functionality to handle multiple attributes with and/or as specified by xpath spec",
+      "parentUuid": "7e07e457_6700e888",
       "range": {
         "startLine": 56,
         "startChar": 12,
@@ -317,6 +365,30 @@
       "side": 1,
       "message": "Can we reuse what is on line 19 or start bringing something in common for present tests and futures ones. So we don\u0027t need to add per use case data?",
       "parentUuid": "404bfc40_801c7803",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 73
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a77d3978_373bc85c",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T11:44:22Z",
+      "side": 1,
+      "message": "I argued that before; we can have a good single data set that suits most use cases\n(I stil wonder could we load the bookstore model and data from our tets resources somehow, maybe as part of a future improvement)",
+      "parentUuid": "a7826d0c_c392e966",
       "range": {
         "startLine": 26,
         "startChar": 0,
