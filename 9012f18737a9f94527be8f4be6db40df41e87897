@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "7e2371c8_6b458257",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-16T06:43:49Z",
+      "side": 1,
+      "message": "this will cause _any_ descendant with matching attribute being treated as a valid result.\nif requested \u0027cpsPath\u0027 is /path[@attr\u003dvalue]\nand there is an entry with path /path/child/grand-child and {attr:value}\nthe entry of wrong type from wrong level of depth will be returned.\nit\u0027s a bug",
+      "range": {
+        "startLine": 55,
+        "startChar": 86,
+        "endLine": 55,
+        "endChar": 96
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdcce73f_270dde59",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
