@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8588800d_dba676a3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T11:17:56Z",
+      "side": 1,
+      "message": "I am aware that this is WiP but just to let you know that we handle all exception mapping (tests) in CpsRestExceptionHandler(Spec)",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
