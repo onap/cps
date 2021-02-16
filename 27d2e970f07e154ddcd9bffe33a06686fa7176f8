@@ -359,6 +359,30 @@
     },
     {
       "key": {
+        "uuid": "7f0e69ab_057bf488",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:19:37Z",
+      "side": 1,
+      "message": "No needs Niamh, lets keep al changes on single commit. Ruslan please use createIdentifierFromSourceName",
+      "parentUuid": "af759dd6_b2c919cb",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "27d2e970f07e154ddcd9bffe33a06686fa7176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5460d4f_b354c39e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
         "patchSetId": 2
