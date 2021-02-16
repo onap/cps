@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d10486b8_82496146",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:44:57Z",
+      "side": 1,
+      "message": "Both are right :), Can we encapsulate this on their own class e.g. CpsPath. Which will have this responsibility [line 136 - 140 + Excption if incorrect ], and will be passed as parameter for this method and others that will need it",
+      "parentUuid": "e56481d2_35c3fcd3",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e2371c8_6b458257",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "it is not in scope and it raises doubt/options about using and/or condition.\nStick to scope don\u0027t implement what is not needed now.",
       "parentUuid": "cdcce73f_270dde59",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e07e457_6700e888",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:44:57Z",
+      "side": 1,
+      "message": "I do not see reason why not use to_jsonb(:leavesAsJsonString), so I agree that is a good change to be done.\nIf there is code impact I will go with Toine,  my understanding is that there is no such code impact / change required by using it.",
+      "parentUuid": "779cefa4_d635e24b",
       "range": {
         "startLine": 56,
         "startChar": 12,
@@ -222,6 +270,30 @@
       "writtenOn": "2021-02-15T17:05:00Z",
       "side": 1,
       "message": "I think a more basic example might be more readable. ie bookstore or trees, birds \u0026 nests :-)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 73
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7826d0c_c392e966",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-16T07:44:57Z",
+      "side": 1,
+      "message": "Can we reuse what is on line 19 or start bringing something in common for present tests and futures ones. So we don\u0027t need to add per use case data?",
+      "parentUuid": "404bfc40_801c7803",
       "range": {
         "startLine": 26,
         "startChar": 0,
