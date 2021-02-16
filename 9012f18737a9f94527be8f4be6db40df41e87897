@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "9a6d5648_76235a15",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-16T15:05:58Z",
+      "side": 1,
+      "message": "had a closer look and I think we only addressed part of te problem I saw originally with a test. You  are right; the sql statement needs to be improved to prevent the scenario of further descendants having the same leaf also being returned.\nI discussed with Niamh and provide some pointer how it could be solved. also that we need test (and test data) to clearly show and test the expected behavior",
+      "parentUuid": "a4636bd9_106444ed",
+      "range": {
+        "startLine": 55,
+        "startChar": 86,
+        "endLine": 55,
+        "endChar": 96
+      },
+      "revId": "9012f18737a9f94527be8f4be6db40df41e87897",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdcce73f_270dde59",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
