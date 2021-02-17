@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "2bcfd030_c313f3f9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-17T12:50:38Z",
+      "side": 1,
+      "message": "is there any scenario where endpoint wont use RestExceptionHandler  for handle Exception and provide the correct Error Response?\nif yes, this is correct\nif not, this needs to be handled by RestExceptionHandler tests",
+      "parentUuid": "5bf993e1_62c4a184",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3939d794_cf74411f",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 6
