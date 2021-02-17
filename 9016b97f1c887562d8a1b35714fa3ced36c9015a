@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f19dd30e_cabd30e4",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T10:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cd7ae20_0764902b",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 29
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8da4a0a9_c89e3389",
         "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ff3f33a_e8dcdd87",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T10:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8da4a0a9_c89e3389",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "99d7c38b_efd4cf2f",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T10:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e772691_c3f8eede",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 17
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d715e30_cff8523f",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "70df44bf_1c884936",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T10:53:40Z",
+      "side": 1,
+      "message": "yes, but in a separate story as discussed in standup",
+      "parentUuid": "5d715e30_cff8523f",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307a0aa2_c17b8917",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3037bdf2_46760b66",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T10:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "307a0aa2_c17b8917",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
