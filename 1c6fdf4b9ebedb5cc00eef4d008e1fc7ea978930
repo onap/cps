@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efbbc8f0_931aa58b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPath.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "maybe CpsPathQueryDetails would be a beter name?",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "724e881d_152a0af2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPath.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "this name is specific for the current case, in future it would have many more options so I dont think we can have a methodname that \u0027reflect\u0027 the current attributes",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e07ff21d_4be8148a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPath.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "depending on the method name you choose maybe use \u0027parse\u0027 here too?",
+      "range": {
+        "startLine": 68,
+        "startChar": 38,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c42e45d3_bd08feb8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "create a Spec for the CPSPath (named will change) class itself, this test belongs there",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 5
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa92d39b_189eca76",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "I think original refers to a specific (older) test not sure of child any grandchild need same value\nof child any grandchild need a leaf with same value just for you test name it accordingly\ne.g commonLeafName commonLeafValue\nif you DO need original for otehr test, I suggest you add an extra leaf where need for your test",
+      "range": {
+        "startLine": 26,
+        "startChar": 61,
+        "endLine": 26,
+        "endChar": 69
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16c9841_d1582aab",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T14:59:28Z",
+      "side": 1,
+      "message": "often it is betert to NOT use possible java types in javdoc, just say \u0027the datanodes founds\nI also would quantify it ie.\"0 or more Datanodes\"",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
