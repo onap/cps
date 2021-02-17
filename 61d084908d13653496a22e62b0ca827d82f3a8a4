@@ -45,6 +45,29 @@
       "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1ae570a_f524e169",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/data/yang_resource.csv",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:44:20Z",
+      "side": 1,
+      "message": "is this the very last version they provided? I though we got an update last Friday (10 Feb)\nJust double-checking :-)",
+      "range": {
+        "startLine": 459,
+        "startChar": 2,
+        "endLine": 459,
+        "endChar": 37
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
