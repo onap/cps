@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "961b2b60_90f4495e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPath.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "lost a comment update again :-(\nI was suggesting\nparse \nor createFromString",
+      "parentUuid": "724e881d_152a0af2",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e07ff21d_4be8148a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPath.java",
         "patchSetId": 2
@@ -210,6 +234,30 @@
       "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fceed598_893a411f",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa92d39b_189eca76",
+      "range": {
+        "startLine": 26,
+        "startChar": 61,
+        "endLine": 26,
+        "endChar": 69
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

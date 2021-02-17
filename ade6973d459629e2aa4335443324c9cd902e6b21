@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dbfed47_500b454b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "follow classname",
+      "range": {
+        "startLine": 133,
+        "startChar": 34,
+        "endLine": 133,
+        "endChar": 52
+      },
+      "revId": "ade6973d459629e2aa4335443324c9cd902e6b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3c173b1_89308a59",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "i think you misunderstood (and I seem to have lost a previous comment again) I think this needs a more generic name like \u0027parse\u0027 as the same method in the future wil cater for many different queries types with different parameters",
+      "range": {
+        "startLine": 53,
+        "startChar": 38,
+        "endLine": 53,
+        "endChar": 75
+      },
+      "revId": "ade6973d459629e2aa4335443324c9cd902e6b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb015762_cb54cfc3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "can you add another scenario just to proof the functionality more:\n\nincomplete xpath end:  \u0027/parent-200/child-20[@common-leaf-name-int\u003d5]\u0027",
+      "range": {
+        "startLine": 328,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 85
+      },
+      "revId": "ade6973d459629e2aa4335443324c9cd902e6b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ce6acff_774b5e1f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQueryDetailsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:23:02Z",
+      "side": 1,
+      "message": "object has the expected attributes",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "ade6973d459629e2aa4335443324c9cd902e6b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
