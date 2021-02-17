@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cd7ae20_0764902b",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:07:24Z",
+      "side": 1,
+      "message": "for consistency (with other summaries in next yml) insert \u0027a\u0027 where appropriate (I think in almost all in this fiel)\n\nAlternatively remove it from all (but also in other yml files)",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 29
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8da4a0a9_c89e3389",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:07:24Z",
+      "side": 1,
+      "message": "probably not an issue but seems to have one extra space",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e772691_c3f8eede",
+        "filename": "cps-rest/docs/api/swagger/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:07:24Z",
+      "side": 1,
+      "message": "double space (in quiet a few descriptions)",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 17
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d715e30_cff8523f",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:07:24Z",
+      "side": 1,
+      "message": "so was it agreed to make this singular? (independent of output formatting)",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "307a0aa2_c17b8917",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:07:24Z",
+      "side": 1,
+      "message": "For consistency: Get a node",
+      "range": {
+        "startLine": 6,
+        "startChar": 13,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
