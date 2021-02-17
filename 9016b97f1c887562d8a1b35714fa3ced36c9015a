@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "e6dd75a1_de2327f0",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T12:38:25Z",
+      "side": 1,
+      "message": "sorry but if all are agreed about the fact it should be singular independent of the changes in output format why can this update not be doen in this patch, am I missing something?!",
+      "parentUuid": "70df44bf_1c884936",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307a0aa2_c17b8917",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 2
