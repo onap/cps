@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7b313f84_16411ba1",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:21:30Z",
+      "side": 1,
+      "message": "i think this can go on 1 line",
+      "range": {
+        "startLine": 108,
+        "startChar": 39,
+        "endLine": 110,
+        "endChar": 50
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8588800d_dba676a3",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 6
@@ -42,6 +65,53 @@
         "startChar": 0,
         "endLine": 200,
         "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8465350a_7933f840",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:21:30Z",
+      "side": 1,
+      "message": "but this approach is inconsistent with the way we tested/described error handling.\n\nTo me it is simply tested/described in the wrong place. The error RestExceptionHandler as the name suggest is still the right place to handle these scenarios, if not you wil end up with a lot of unnecessary (more or less duplicated) test in the rest controllers!",
+      "parentUuid": "c8d6b0cd_27c1004e",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3939d794_cf74411f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T09:21:30Z",
+      "side": 1,
+      "message": "insert the (main) parameter(s) e.g and xpath is #parentNodePath and option #updateDescendantsOption",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 99,
+        "endChar": 81
       },
       "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
