@@ -4,9 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.onap.cps</groupId>
-    <artifactId>cps-parent</artifactId>
+    <artifactId>cps-aggregator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../cps-parent/pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>cps-service</artifactId>
