@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - runningAs:
+      username: liquibase
+  - include:
+      file: changelog/db/changes/1-dataspace.yaml
+  - include:
+      file: changelog/db/changes/2-schema-set.yaml
+  - include:
+      file: changelog/db/changes/3-anchor.yaml
+  - include:
+      file: changelog/db/changes/4-fragment.yaml

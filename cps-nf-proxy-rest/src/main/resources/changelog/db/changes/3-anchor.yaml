@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - runningAs:
+      username: liquibase
+  - changeSet:
+      preconditions:
+        on-fail: warn
+        tableExists:
+          tableName: anchor
+      author: cps
+      id: 3
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/anchor.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'anchor'
