@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "d368a333_c64cd20a",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-17T13:52:21Z",
+      "side": 1,
+      "message": "it was decided yesterday that all relavant java code and related tests would be done together in a separate commit. This story just discovered that it was wrong, and ideally that change should be dealt as a bug.",
+      "parentUuid": "e6dd75a1_de2327f0",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "9016b97f1c887562d8a1b35714fa3ced36c9015a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307a0aa2_c17b8917",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 2
