@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - runningAs:
+      username: cps_liquibase
+  - changeSet:
+      preconditions:
+        on-fail: warn
+        tableExists:
+          tableName: schema_set
+      author: cps
+      id: 2.1
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'schema_set'
+
+  - changeSet:
+      preconditions:
+        on-fail: warn
+        tableExists:
+          tableName: yang_resource
+      author: cps
+      id: 2.2
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/yang_resource.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'yang_resource'
+        columns:
+          - column:
+              header:  id
+              name:  id
+              type:  NUMERIC
+          - column:
+              header:  name
+              name:  name
+              type:  STRING
+          - column:
+              header:  content
+              name: content
+              type: STRING
+          - column:
+              header:  checkstyle
+              name: checkstyle
+              type: STRING
+
+  - changeSet:
+      preconditions:
+        on-fail: warn
+        tableExists:
+          tableName: schema_set_yang_resources
+      author: cps
+      id: 2.3
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set_yang_resources.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'schema_set_id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'schema_set_yang_resources'
+
