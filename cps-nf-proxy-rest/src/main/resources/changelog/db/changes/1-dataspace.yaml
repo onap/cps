@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - runningAs:
+      username: cps_liquibase
+  - changeSet:
+      preconditions:
+        on-fail: warn
+        tableExists:
+          tableName: dataspace
+      author: cps
+      id: 1
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dataspace.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'dataspace'

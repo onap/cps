@@ -29,6 +29,10 @@ spring:
         cache-names: yangSchema
         caffeine:
             spec: maximumSize=10000,expireAfterAccess=10m
+
+    liquibase:
+        change-log: classpath:/changelog/changelog-master.yaml
+
 # Actuator
 management:
     endpoints:
