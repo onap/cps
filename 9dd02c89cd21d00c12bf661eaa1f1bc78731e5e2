@@ -22,6 +22,30 @@
       "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8d6b0cd_27c1004e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-17T08:16:19Z",
+      "side": 1,
+      "message": "this is a test for error responses for a particular endpoint invocation.\nagain: it\u0027s not a code coverage, it\u0027s a case coverage.",
+      "parentUuid": "8588800d_dba676a3",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
