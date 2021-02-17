@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1451e6b2_5978229c",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:42:03Z",
+      "side": 1,
+      "message": "could this be a security issue, can we configure our own user?",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67c4c151_cbb88a8e",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/1-dataspace.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T16:42:03Z",
+      "side": 1,
+      "message": "what other option are there, I think we should fail?\nor wil it warn if data already loaded (and should NOT fail?)",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
