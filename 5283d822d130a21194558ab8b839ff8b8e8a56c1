@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "109c52ca_336334d0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T08:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee208e8b_a0d80380",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 0
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4da5041_fcf27e90",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 11
@@ -304,6 +328,30 @@
       "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12917b4c_74deee1c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-17T08:56:04Z",
+      "side": 1,
+      "message": "it was the same as Niamh\u0027s, with a Typo :-)",
+      "parentUuid": "80799d22_96cf7ca1",
+      "range": {
+        "startLine": 286,
+        "startChar": 48,
+        "endLine": 286,
+        "endChar": 67
+      },
+      "revId": "5283d822d130a21194558ab8b839ff8b8e8a56c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
