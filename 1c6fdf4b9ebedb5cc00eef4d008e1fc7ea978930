@@ -71,6 +71,78 @@
     },
     {
       "key": {
+        "uuid": "77e47c58_5a9357e3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-17T16:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efbbc8f0_931aa58b",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95822be0_f1d2fa19",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-17T16:22:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "724e881d_152a0af2",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09bce583_1fd49f6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-17T16:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07ff21d_4be8148a",
+      "range": {
+        "startLine": 68,
+        "startChar": 38,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c42e45d3_bd08feb8",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b263253e_04befe41",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-17T16:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c42e45d3_bd08feb8",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 5
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +233,30 @@
       "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef2df48_eca0d399",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-17T16:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b16c9841_d1582aab",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "1c6fdf4b9ebedb5cc00eef4d008e1fc7ea978930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
