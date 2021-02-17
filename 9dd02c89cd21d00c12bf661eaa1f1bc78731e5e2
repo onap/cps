@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "889d6c14_7f7e8b78",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-17T10:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b313f84_16411ba1",
+      "range": {
+        "startLine": 108,
+        "startChar": 39,
+        "endLine": 110,
+        "endChar": 50
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8588800d_dba676a3",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 6
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5bf993e1_62c4a184",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-17T10:38:47Z",
+      "side": 1,
+      "message": "i disagree. testing a code, not the cases will eventually cause a bug\nand we already faced a couple just because there were \u0027only necessary\u0027 tests.\n\nthese tests are covering the error cases for specific endpoint,\nthey prevent the quiet (unnoticed) behavior change for exposed API\ncaused by implementation updates.",
+      "parentUuid": "8465350a_7933f840",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3939d794_cf74411f",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 6
@@ -116,6 +164,30 @@
       "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b68b4883_8fd00784",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-17T10:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3939d794_cf74411f",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 99,
+        "endChar": 81
+      },
+      "revId": "9dd02c89cd21d00c12bf661eaa1f1bc78731e5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
