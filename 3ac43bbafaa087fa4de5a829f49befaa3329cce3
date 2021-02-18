@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e371ece4_130ba60e",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T14:22:22Z",
+      "side": 1,
+      "message": "why not latest version?",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "3ac43bbafaa087fa4de5a829f49befaa3329cce3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
