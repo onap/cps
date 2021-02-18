@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbb1b0f9_a9594b87",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T09:14:54Z",
+      "side": 1,
+      "message": "no need for else block  (there is a return statement above)",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9141885a_72fb7e41",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T09:14:54Z",
+      "side": 1,
+      "message": "doe this require some additional comments are we free to name the method what we want since it is hardcode natvie query anyway?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bdad981_cec446f2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQueryDetailsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T09:14:54Z",
+      "side": 1,
+      "message": "I alwyas prefer test ordered by basic positive scenarios first, then edge cases,, and then error scenarios...",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 49
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
