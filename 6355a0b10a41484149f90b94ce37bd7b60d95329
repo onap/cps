@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7fa78f84_d2b49aed",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T14:03:25Z",
+      "side": 1,
+      "message": "@Setter(AccessLevel.PRIVATE) ? I will say we are doing it already somewhere",
+      "parentUuid": "e876f6de_3ac5c145",
+      "revId": "6355a0b10a41484149f90b94ce37bd7b60d95329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "867a89c5_5a33b12c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 6
