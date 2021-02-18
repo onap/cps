@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99f69b92_552352f4",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T16:05:01Z",
+      "side": 1,
+      "message": "See comment below, should all endpoints for put/post/patch ie. adding or modifying be plural or not?!",
+      "range": {
+        "startLine": 28,
+        "startChar": 33,
+        "endLine": 28,
+        "endChar": 34
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2056629_3213ce54",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T16:05:01Z",
+      "side": 1,
+      "message": "should above no replace this one?!",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 50
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ab0ca0c_a129868c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T16:05:01Z",
+      "side": 1,
+      "message": "use GroovyString consistently:\n\ndef endpoint \u003d \"$dataNodeBaseEndpoint/anchors/$anchorName/nodes\"\n\n(6 times I think)",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c2e77f_d9f83b2b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T16:05:01Z",
+      "side": 1,
+      "message": "does it make sense that get is singular\nand patch/put is plural ?!\n\nAlso with put we upload one data Node and children are embedded in it\nBut maybe it is REST standard that put/post is always referring to a collection of object and hence it is plural? If so we need to make sure it is doen consistently everywhere e.g. also for dataspaces!",
+      "range": {
+        "startLine": 164,
+        "startChar": 76,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
