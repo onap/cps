@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ca6c3efa_b1c006fd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T13:55:07Z",
+      "side": 1,
+      "message": "Can we remove those @ constructors and force the use of createFrom",
+      "revId": "6355a0b10a41484149f90b94ce37bd7b60d95329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "867a89c5_5a33b12c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 6
