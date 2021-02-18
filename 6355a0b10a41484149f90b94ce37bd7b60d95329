@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e876f6de_3ac5c145",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T14:00:12Z",
+      "side": 1,
+      "message": "I think we can only do taht if we private setters...",
+      "parentUuid": "ca6c3efa_b1c006fd",
+      "revId": "6355a0b10a41484149f90b94ce37bd7b60d95329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "867a89c5_5a33b12c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 6
