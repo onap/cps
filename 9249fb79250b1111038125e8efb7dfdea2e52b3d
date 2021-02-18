@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "2fa19e37_4eb693c0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T09:20:17Z",
+      "side": 1,
+      "message": "inline",
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b68b1a14_d229483c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T09:20:17Z",
+      "side": 1,
+      "message": "Details? I will just call it  CpsPathQuery.\nAlso please use Builder pattern, CpsPathQuery should be immutable after \"build\" which now is called parse",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842a60b3_9160b750",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T09:20:17Z",
+      "side": 1,
+      "message": "Constant",
+      "range": {
+        "startLine": 63,
+        "startChar": 41,
+        "endLine": 63,
+        "endChar": 52
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6a871c0_d90abbdc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T09:20:17Z",
+      "side": 1,
+      "message": "can we move this to some descriptive method",
+      "range": {
+        "startLine": 63,
+        "startChar": 19,
+        "endLine": 63,
+        "endChar": 81
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbb1b0f9_a9594b87",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
         "patchSetId": 5
