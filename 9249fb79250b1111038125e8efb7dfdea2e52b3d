@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "f48625df_33471031",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T11:19:35Z",
+      "side": 1,
+      "message": "agree it needs to be immutable but dont think the builder patern is needed, client will only ever provide one cpsPath string, the source for the query. \n\nwe ran into many issues and discussions using builder pattern in separate class before. I would prefer something like fromString() or createFrom() I though \u0027parsing\u0027 was the appropriate verb anyway but am open to other sugegtsions.\n\nIdeally the query parameters wouldn\u0027t need be exposed at all instead cpsPathQuery could create a native SQL query (string) as now is doen using annotation in teh FragmentReposity. I am not sure if there are alternatives for that. But let\u0027s not overengineer our first ever query in the final days before release! Typically I think these type of improvements should be done when we implement our 2nd query or even thirds....",
+      "parentUuid": "b68b1a14_d229483c",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "842a60b3_9160b750",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
         "patchSetId": 5
@@ -81,6 +105,29 @@
         "startChar": 19,
         "endLine": 63,
         "endChar": 81
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29777bb2_77a9e1cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T11:19:35Z",
+      "side": 1,
+      "message": "as discussed need pattern to recognize integer form other possibilities like floats and Boolean (which are out of scope for this US)",
+      "range": {
+        "startLine": 65,
+        "startChar": 63,
+        "endLine": 65,
+        "endChar": 89
       },
       "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -150,6 +197,29 @@
         "startChar": 0,
         "endLine": 30,
         "endChar": 49
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25e70f5c_e8839f3c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQueryDetailsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T11:19:35Z",
+      "side": 1,
+      "message": "at failign test for float values (should throw exception about not being supported yet)",
+      "range": {
+        "startLine": 49,
+        "startChar": 69,
+        "endLine": 49,
+        "endChar": 70
       },
       "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
