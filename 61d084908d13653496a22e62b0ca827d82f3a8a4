@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a1be54b_1ae40a30",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-18T13:39:01Z",
+      "side": 1,
+      "message": "not really sure of a security issue, but changed that to cps_liquibase",
+      "parentUuid": "1451e6b2_5978229c",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67c4c151_cbb88a8e",
         "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/1-dataspace.yaml",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9933bf15_a55d5926",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/1-dataspace.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-18T13:39:01Z",
+      "side": 1,
+      "message": "this would fail and also warn the user with an error message :\n[ERROR] Failed to execute goal org.liquibase:liquibase-maven-plugin:3.8.7:update (default-cli) on project cps-nf-proxy-rest:\n[ERROR] Error setting up or running Liquibase:\n[ERROR] Migration failed for change set changelog/db/changes/1-dataspace.yaml::1::cps:\n[ERROR]      Reason: liquibase.exception.DatabaseException: ERROR: relation \"dataspace\" does not exist",
+      "parentUuid": "67c4c151_cbb88a8e",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1ae570a_f524e169",
         "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/data/yang_resource.csv",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-17T16:44:20Z",
       "side": 1,
       "message": "is this the very last version they provided? I though we got an update last Friday (10 Feb)\nJust double-checking :-)",
+      "range": {
+        "startLine": 459,
+        "startChar": 2,
+        "endLine": 459,
+        "endChar": 37
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5975222_21062992",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/data/yang_resource.csv",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-02-18T13:39:01Z",
+      "side": 1,
+      "message": "yes the latest schema and data is taken from jira cps-196",
+      "parentUuid": "f1ae570a_f524e169",
       "range": {
         "startLine": 459,
         "startChar": 2,
