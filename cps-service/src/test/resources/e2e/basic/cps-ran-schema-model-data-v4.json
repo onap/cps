@@ -1,0 +1,541 @@
+{
+  "cps-ran-schema-model:cps-ran-schema": {
+    "NearRTRIC": [
+      {
+        "idNearRTRIC": "11",
+        "attributes":{
+        "ranNFNSSIIdList":[
+        "ac8ca1a9-e1ec-4480-8720-c74e92566885"
+        ]
+        },
+        "GNBCUUPFunction": [
+          {
+            "idGNBCUUPFunction": "1111",
+            "attributes": {
+              "gNBId": 98763
+            }
+          }
+        ],
+        "GNBCUCPFunction": [
+          {
+            "idGNBCUCPFunction": "cucpserver1",
+            "attributes": {
+              "gNBCUName": "cucpserver1",
+              "gNBIdLength": 32,
+              "gNBId": 98763
+            },
+            "NRCellCU": [
+              {
+                "idNRCellCU": "15826",
+                "attributes": {
+                  "cellLocalId": 15826
+                }
+              },
+              {
+                "idNRCellCU": "15825",
+                "attributes": {
+                  "cellLocalId": 15825
+                }
+              },
+              {
+                "idNRCellCU": "13999",
+                "attributes": {
+                  "cellLocalId": 13999
+                }
+              },
+              {
+                "idNRCellCU": "15426",
+                "attributes": {
+                  "cellLocalId": 15426
+                }
+              },
+              {
+                "idNRCellCU": "15425",
+                "attributes": {
+                  "cellLocalId": 15425
+                }
+              },
+              {
+                "idNRCellCU": "15689",
+                "attributes": {
+                  "cellLocalId": 15689
+                }
+              },
+              {
+                "idNRCellCU": "15687",
+                "attributes": {
+                  "cellLocalId": 15687
+                }
+              },
+              {
+                "idNRCellCU": "15289",
+                "attributes": {
+                  "cellLocalId": 15289
+                }
+              },
+              {
+                "idNRCellCU": "15176",
+                "attributes": {
+                  "cellLocalId": 15176
+                }
+              },
+              {
+                "idNRCellCU": "14000",
+                "attributes": {
+                  "cellLocalId": 14000
+                }
+              },
+              {
+                "idNRCellCU": "15155",
+                "attributes": {
+                  "cellLocalId": 15155
+                }
+              },
+              {
+                "idNRCellCU": "15174",
+                "attributes": {
+                  "cellLocalId": 15174
+                }
+              },
+              {
+                "idNRCellCU": "15175",
+                "attributes": {
+                  "cellLocalId": 15175
+                }
+              },
+              {
+                "idNRCellCU": "15296",
+                "attributes": {
+                  "cellLocalId": 15296
+                }
+              },
+              {
+                "idNRCellCU": "15290",
+                "attributes": {
+                  "cellLocalId": 15290
+                }
+              }
+            ]
+          }
+        ],
+        "GNBDUFunction": [
+          {
+            "idGNBDUFunction": "1",
+            "attributes": {
+              "gNBDUId": 1,
+              "gNBDUName": "gnduserver1",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "15296",
+                "attributes": {
+                  "cellLocalId": 15296,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15689",
+                "attributes": {
+                  "cellLocalId": 15689,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15687",
+                "attributes": {
+                  "cellLocalId": 15687,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15289",
+                "attributes": {
+                  "cellLocalId": 15289,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15290",
+                "attributes": {
+                  "cellLocalId": 15290,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          },
+          {
+            "idGNBDUFunction": "3",
+            "attributes": {
+              "gNBDUId": 3,
+              "gNBDUName": "gnduserver3",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "15425",
+                "attributes": {
+                  "cellLocalId": 15425,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15826",
+                "attributes": {
+                  "cellLocalId": 15826,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "13999",
+                "attributes": {
+                  "cellLocalId": 13999,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15426",
+                "attributes": {
+                  "cellLocalId": 15426,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "14000",
+                "attributes": {
+                  "cellLocalId": 14000,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          },
+          {
+            "idGNBDUFunction": "2",
+            "attributes": {
+              "gNBDUId": 2,
+              "gNBDUName": "gnduserver2",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "15174",
+                "attributes": {
+                  "cellLocalId": 15174,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15175",
+                "attributes": {
+                  "cellLocalId": 15175,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15825",
+                "attributes": {
+                  "cellLocalId": 15825,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15176",
+                "attributes": {
+                  "cellLocalId": 15176,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15155",
+                "attributes": {
+                  "cellLocalId": 15155,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "idNearRTRIC": "22",
+        "GNBCUUPFunction": [
+          {
+            "idGNBCUUPFunction": "2222",
+            "attributes": {
+              "gNBId": 98763
+            }
+          }
+        ],
+        "GNBCUCPFunction": [
+          {
+            "idGNBCUCPFunction": "cucpserver2",
+            "attributes": {
+              "gNBCUName": "cucpserver2",
+              "gNBIdLength": 32,
+              "gNBId": 98763
+            },
+            "NRCellCU": [
+              {
+                "idNRCellCU": "13905",
+                "attributes": {
+                  "cellLocalId": 13905
+                }
+              },
+              {
+                "idNRCellCU": "11569",
+                "attributes": {
+                  "cellLocalId": 11569
+                }
+              },
+              {
+                "idNRCellCU": "14427",
+                "attributes": {
+                  "cellLocalId": 14427
+                }
+              },
+              {
+                "idNRCellCU": "15549",
+                "attributes": {
+                  "cellLocalId": 15549
+                }
+              },
+              {
+                "idNRCellCU": "10896",
+                "attributes": {
+                  "cellLocalId": 10896
+                }
+              },
+              {
+                "idNRCellCU": "14656",
+                "attributes": {
+                  "cellLocalId": 14656
+                }
+              },
+              {
+                "idNRCellCU": "10897",
+                "attributes": {
+                  "cellLocalId": 10897
+                }
+              },
+              {
+                "idNRCellCU": "11568",
+                "attributes": {
+                  "cellLocalId": 11568
+                }
+              },
+              {
+                "idNRCellCU": "13910",
+                "attributes": {
+                  "cellLocalId": 13910
+                }
+              },
+              {
+                "idNRCellCU": "15548",
+                "attributes": {
+                  "cellLocalId": 15548
+                }
+              },
+              {
+                "idNRCellCU": "11561",
+                "attributes": {
+                  "cellLocalId": 11561
+                }
+              },
+              {
+                "idNRCellCU": "11562",
+                "attributes": {
+                  "cellLocalId": 11562
+                }
+              },
+              {
+                "idNRCellCU": "14655",
+                "attributes": {
+                  "cellLocalId": 14655
+                }
+              },
+              {
+                "idNRCellCU": "15361",
+                "attributes": {
+                  "cellLocalId": 15361
+                }
+              },
+              {
+                "idNRCellCU": "15360",
+                "attributes": {
+                  "cellLocalId": 15360
+                }
+              }
+            ]
+          }
+        ],
+        "GNBDUFunction": [
+          {
+            "idGNBDUFunction": "6",
+            "attributes": {
+              "gNBDUId": 6,
+              "gNBDUName": "gnduserver6",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "15361",
+                "attributes": {
+                  "cellLocalId": 15361,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15360",
+                "attributes": {
+                  "cellLocalId": 15360,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "14427",
+                "attributes": {
+                  "cellLocalId": 14427,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15549",
+                "attributes": {
+                  "cellLocalId": 15549,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "15548",
+                "attributes": {
+                  "cellLocalId": 15548,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          },
+          {
+            "idGNBDUFunction": "5",
+            "attributes": {
+              "gNBDUId": 5,
+              "gNBDUName": "gnduserver5",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "14655",
+                "attributes": {
+                  "cellLocalId": 14655,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "13905",
+                "attributes": {
+                  "cellLocalId": 13905,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "14656",
+                "attributes": {
+                  "cellLocalId": 14656,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "10897",
+                "attributes": {
+                  "cellLocalId": 10897,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "13910",
+                "attributes": {
+                  "cellLocalId": 13910,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          },
+          {
+            "idGNBDUFunction": "4",
+            "attributes": {
+              "gNBDUId": 4,
+              "gNBDUName": "gnduserver4",
+              "gNBIdLength": 32
+            },
+            "NRCellDU": [
+              {
+                "idNRCellDU": "11561",
+                "attributes": {
+                  "cellLocalId": 11561,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "11569",
+                "attributes": {
+                  "cellLocalId": 11569,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "11562",
+                "attributes": {
+                  "cellLocalId": 11562,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "10896",
+                "attributes": {
+                  "cellLocalId": 10896,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              },
+              {
+                "idNRCellDU": "11568",
+                "attributes": {
+                  "cellLocalId": 11568,
+                  "nRPCI": 12,
+                  "nRTAC": 310
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
