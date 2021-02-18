@@ -204,6 +204,30 @@
     },
     {
       "key": {
+        "uuid": "80d3e666_b889a352",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-18T11:40:22Z",
+      "side": 1,
+      "message": "I stand with what I said in my previous comment, at this stage it should be more than clear how to do the pattern and there are other classes as example if not. So lets don\u0027t block correct changes because of being afraid of new discussions. Request change is for a correct implementation not for an improvement.",
+      "parentUuid": "f48625df_33471031",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "842a60b3_9160b750",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
         "patchSetId": 5
