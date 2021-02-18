@@ -228,6 +228,30 @@
     },
     {
       "key": {
+        "uuid": "39039726_d386468c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T12:15:26Z",
+      "side": 1,
+      "message": "so you want 2/3 classes?\n\nCpsPath\nCPsPathBuilder\n \nand (n an existing) a 3rd class that parses the incoming string string and uses the builder to create a CPSPathQuery?!\n\nor a builder that only has one with-Method (and never more)\n\nCpsPathQuery \u003d CpsPathBuilder.wihCpsPath(...).build()\n\nit seems an inappropriate pattern to me but we can do if you insist",
+      "parentUuid": "80d3e666_b889a352",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "9249fb79250b1111038125e8efb7dfdea2e52b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "842a60b3_9160b750",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryDetails.java",
         "patchSetId": 5
