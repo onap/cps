@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "52d54ebe_4d09990e",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T14:45:09Z",
+      "side": 1,
+      "message": "It was just a question\nat least it is less easy to guess now, thanks!",
+      "parentUuid": "8a1be54b_1ae40a30",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67c4c151_cbb88a8e",
         "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/1-dataspace.yaml",
         "patchSetId": 2
@@ -93,6 +117,30 @@
       "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42d5dd0d_19a0d92e",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/db/changes/1-dataspace.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-18T14:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9933bf15_a55d5926",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "61d084908d13653496a22e62b0ca827d82f3a8a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
