@@ -26,7 +26,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
@@ -121,7 +121,7 @@ class E2ENetworkSliceSpec extends Specification {
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
         and: 'the size of the tree is correct'
-            def cpsRanInventory = treeToFlatMapByXpath(new HashMap<>(), dataNodeStored)
+            def cpsRanInventory = TestUtils.getFlattenMapByXpath(dataNodeStored)
             assert  cpsRanInventory.size() == 3
         and: 'ran-inventory contains the correct child node'
             def ranInventory = cpsRanInventory.get('/ran-inventory')
@@ -136,10 +136,18 @@ class E2ENetworkSliceSpec extends Specification {
             pLMNIdList.getChildDataNodes().size() == 0
     }
 
-    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
-        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
-        dataNodeTree.getChildDataNodes()
-                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
-        return flatMap
+    def 'E2E RAN Schema Model.'(){
+        given: 'yang resources'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+                    'e2e/basic/ietf-inet-types.yang',
+                    'e2e/basic/ietf-yang-types.yang',
+                    'e2e/basic/cps-ran-schema-model@2021-01-28.yang'
+            )
+        and : 'json data'
+            def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-schema-model-data-v4.json')
+        expect: 'schema context is built with no exception indicating the schema set being valid '
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+        and: 'data is parsed with no exception indicating the model match'
+            YangUtils.parseJsonData(jsonData, schemaContext) != null
     }
 }
