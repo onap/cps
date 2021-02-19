@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "390544ac_e6292354",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T08:38:57Z",
+      "side": 1,
+      "message": "ignore",
+      "parentUuid": "e2056629_3213ce54",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 50
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ab0ca0c_a129868c",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -130,6 +154,30 @@
       "side": 1,
       "message": "Exact, REST convention for POST refer to adding to a resource collection, making it plural. Then the item to add to the collection is provided in the body payload. (see my overall comment)",
       "parentUuid": "10c2e77f_d9f83b2b",
+      "range": {
+        "startLine": 164,
+        "startChar": 76,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c11ddb4d_c91dde04",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T08:38:57Z",
+      "side": 1,
+      "message": "ok \u0027adding to collection\u0027 which is plural makes sense to me so it just means dataspaces endpoint has to become plural too",
+      "parentUuid": "d88a8f7f_9de35527",
       "range": {
         "startLine": 164,
         "startChar": 76,
