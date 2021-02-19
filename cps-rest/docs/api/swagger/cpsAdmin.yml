@@ -1,4 +1,4 @@
-dataspace:
+dataspaces:
   post:
     description: Create a new dataspace
     tags:
