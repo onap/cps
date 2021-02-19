@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a20def6_5bad34e5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T17:20:38Z",
+      "side": 1,
+      "message": "lost my comment on this somehow (I think I forget to press save). \u0027NoChildren\u0027 is not relevant for this test and thus misleading",
+      "range": {
+        "startLine": 74,
+        "startChar": 37,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "d050bffdfbc1b224dea913fe31426d59275096fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b56a075d_cdd4422a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T17:20:38Z",
+      "side": 1,
+      "message": "suggestions: the datanode in json format",
+      "range": {
+        "startLine": 80,
+        "startChar": 37,
+        "endLine": 80,
+        "endChar": 53
+      },
+      "revId": "d050bffdfbc1b224dea913fe31426d59275096fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "744bd08c_14e1399c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T17:20:38Z",
+      "side": 1,
+      "message": "suggestion: once with the correct parameters",
+      "range": {
+        "startLine": 41,
+        "startChar": 47,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "d050bffdfbc1b224dea913fe31426d59275096fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
