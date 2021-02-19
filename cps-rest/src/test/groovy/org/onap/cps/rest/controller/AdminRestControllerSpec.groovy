@@ -20,6 +20,8 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.api.CpsQueryService
+
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -58,6 +60,9 @@ class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
+
+    @SpringBean
+    CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()

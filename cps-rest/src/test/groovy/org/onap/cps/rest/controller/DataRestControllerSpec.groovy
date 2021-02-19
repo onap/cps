@@ -20,6 +20,8 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.api.CpsQueryService
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -58,6 +60,9 @@ class DataRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
