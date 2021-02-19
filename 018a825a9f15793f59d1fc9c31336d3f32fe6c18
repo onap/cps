@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "993433b4_c99c4dad",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-19T09:33:21Z",
+      "side": 1,
+      "message": "URL in this case is already plural. updated the ref as well.",
+      "parentUuid": "52b3f39d_4ea222c4",
+      "range": {
+        "startLine": 28,
+        "startChar": 33,
+        "endLine": 28,
+        "endChar": 34
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2056629_3213ce54",
         "filename": "cps-rest/docs/api/swagger/openapi.yml",
         "patchSetId": 1
@@ -116,6 +140,30 @@
       "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc59e29_d0651872",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-19T09:33:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ab0ca0c_a129868c",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +235,30 @@
       "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c30a4b1_e19e52dd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-19T09:33:21Z",
+      "side": 1,
+      "message": "I assume you mean no change here.",
+      "parentUuid": "d88a8f7f_9de35527",
+      "range": {
+        "startLine": 164,
+        "startChar": 76,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
