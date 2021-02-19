@@ -1,0 +1,23 @@
+nodesByDataspaceAndAnchorAndCpsPath:
+  get:
+    description: Query data nodes for the given dataspace and anchor using CPS path.
+    tags:
+      - cps-query
+    summary: Query data nodes.
+    operationId: getNodesByDataspaceAndAnchorAndCpsPath
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/cpsPathInQuery'
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
+    x-codegen-request-body-name: xpath
