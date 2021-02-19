@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "447eeaa8_f0893fdb",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-19T14:26:36Z",
+      "side": 1,
+      "message": "It seems to have 3.2.1. Isn\u0027t it the one to use ?",
+      "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
