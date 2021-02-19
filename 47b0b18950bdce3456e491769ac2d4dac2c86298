@@ -16,6 +16,24 @@
       "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc0b7ce7_b6cce0c2",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-19T14:27:13Z",
+      "side": 1,
+      "message": "Forget about it. It is not released yet",
+      "parentUuid": "447eeaa8_f0893fdb",
+      "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
