@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07930e26_f56b67ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-19T09:51:50Z",
+      "side": 1,
+      "message": "Reflect current fixes, something like:\n\nCorrect URL inconsistenties for collections",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "dacc663d90a1c5a39f6885ac69cef131be60a6e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
