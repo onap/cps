@@ -50,3 +50,6 @@ paths:
 
   /v1/dataspaces/{dataspace-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspace'
+
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
