@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "52b3f39d_4ea222c4",
+        "filename": "cps-rest/docs/api/swagger/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-19T03:02:59Z",
+      "side": 1,
+      "message": "Yes, it makes sense to me also to make it plural for creating (see my overall comment).",
+      "parentUuid": "99f69b92_552352f4",
+      "range": {
+        "startLine": 28,
+        "startChar": 33,
+        "endLine": 28,
+        "endChar": 34
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e2056629_3213ce54",
         "filename": "cps-rest/docs/api/swagger/openapi.yml",
         "patchSetId": 1
@@ -82,6 +106,30 @@
       "writtenOn": "2021-02-18T16:05:01Z",
       "side": 1,
       "message": "does it make sense that get is singular\nand patch/put is plural ?!\n\nAlso with put we upload one data Node and children are embedded in it\nBut maybe it is REST standard that put/post is always referring to a collection of object and hence it is plural? If so we need to make sure it is doen consistently everywhere e.g. also for dataspaces!",
+      "range": {
+        "startLine": 164,
+        "startChar": 76,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "revId": "018a825a9f15793f59d1fc9c31336d3f32fe6c18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d88a8f7f_9de35527",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-19T03:02:59Z",
+      "side": 1,
+      "message": "Exact, REST convention for POST refer to adding to a resource collection, making it plural. Then the item to add to the collection is provided in the body payload. (see my overall comment)",
+      "parentUuid": "10c2e77f_d9f83b2b",
       "range": {
         "startLine": 164,
         "startChar": 76,
