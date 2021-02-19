@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataInUseException
@@ -58,6 +60,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
+
+    @SpringBean
+    CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()
