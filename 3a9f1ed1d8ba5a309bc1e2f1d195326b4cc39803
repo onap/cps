@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "daf035c4_0fce7024",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-19T11:48:01Z",
+      "side": 1,
+      "message": "change to .version for consistency",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "3a9f1ed1d8ba5a309bc1e2f1d195326b4cc39803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13f182f2_11e3d18b",
         "filename": "cps-nf-proxy-rest/src/main/resources/changelog/changelog-master.yaml",
         "patchSetId": 5
@@ -30,6 +53,24 @@
       "writtenOn": "2021-02-19T04:24:54Z",
       "side": 1,
       "message": "I\u0027m suggesting prefixing change files with 2 or 3 digits (01-..., 02-...) to keep the files sorted in the folder. Later on, this will prevent mixing old and new files together and make them much more convenient to work with.",
+      "revId": "3a9f1ed1d8ba5a309bc1e2f1d195326b4cc39803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31cd127e_2fd7b6f3",
+        "filename": "cps-nf-proxy-rest/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-19T11:48:01Z",
+      "side": 1,
+      "message": "2 should be good enough",
+      "parentUuid": "c707d30d_8e65168e",
       "revId": "3a9f1ed1d8ba5a309bc1e2f1d195326b4cc39803",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
