@@ -34,8 +34,8 @@
 
     <properties>
         <app>org.onap.cps.Application</app>
-        <image.name>cps-service</image.name>
         <image.version>${project.version}</image.version>
+        <jib.skip>true</jib.skip>
         <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
         <minimum-coverage>0.0</minimum-coverage>
         <nexus.repository>nexus3.onap.org:10003/onap/</nexus.repository>
@@ -117,6 +117,10 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+            <properties>
+                <jib.skip>false</jib.skip>
+                <image.name>cps-service</image.name>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
@@ -129,11 +133,10 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-
             <properties>
-                <image.name>cps-nf-proxy</image.name>
+                <jib.skip>false</jib.skip>
+                <image.name>cps-nf-service</image.name>
             </properties>
-
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
@@ -146,11 +149,10 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-
             <properties>
-                <image.name>cps-and-nf-proxy</image.name>
+                <jib.skip>false</jib.skip>
+                <image.name>cps-and-nf-service</image.name>
             </properties>
-
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
