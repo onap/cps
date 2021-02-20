@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "646423a2_7d40725e",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-20T17:59:34Z",
+      "side": 1,
+      "message": "this goes agains CSIT rules.  Docker generation must always be part of the project build.",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d77a9bbf_761dc1ce",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-20T17:59:34Z",
+      "side": 1,
+      "message": "correct approach will be to move this to each profile. I think I mentioned this to Aditya last week.\n\n        \u003cplugins\u003e\n            \u003cplugin\u003e\n                \u003cgroupId\u003ecom.google.cloud.tools\u003c/groupId\u003e\n                \u003cartifactId\u003ejib-maven-plugin\u003c/artifactId\u003e\n            \u003c/plugin\u003e\n        \u003c/plugins\u003e\n\nI will propose a fix[0], I hope you don\u0027t mind. We can save some time based on the different time zones we work. So you can test the fix, if it gets merged before you start.\n\n[0] https://gerrit.onap.org/r/c/cps/+/118138",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1f95708_5586813f",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-20T17:59:34Z",
+      "side": 1,
+      "message": "you are creating 3 images with the same name cps-nf-service. Thus you are blocking to generate 2 different types of image if desired.\nif you generate a different one, you can distinguish what it contains plus one overriding each other.\nPlus names has been decided by the team already.\nSame applies for changes on next lines.",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
