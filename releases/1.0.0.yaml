@@ -1,0 +1,5 @@
+distribution_type: maven
+log_dir: cps-maven-stage-master/104/
+project: cps
+version: 1.0.0
+tag_release: false
