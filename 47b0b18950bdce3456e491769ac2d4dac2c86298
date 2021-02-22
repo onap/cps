@@ -52,6 +52,24 @@
       "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa237d07_d54f4ada",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T11:13:08Z",
+      "side": 1,
+      "message": "also please upgrade the root pom",
+      "parentUuid": "2b5cc4c4_00696e14",
+      "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
