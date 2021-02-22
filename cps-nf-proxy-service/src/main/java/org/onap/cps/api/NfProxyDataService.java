@@ -32,15 +32,13 @@ public interface NfProxyDataService {
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
      *
-     * @param dataspaceName          dataspace name
      * @param cmHandleId             cm handle id
      * @param xpath                  xpath
      * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
      *                               (recursively) as well
      * @return data node object
      */
-    DataNode getDataNode(@NonNull final String dataspaceName, @NonNull final String cmHandleId,
-                         @NonNull final String xpath,
+    DataNode getDataNode(@NonNull final String cmHandleId, @NonNull final String xpath,
                          @NonNull final FetchDescendantsOption fetchDescendantsOption);
 
 }
