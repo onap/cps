@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "212e10fa_06c62bbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-22T09:22:55Z",
+      "side": 1,
+      "message": "a more detailed description what/why this patch is needed would be good\nI am only guessing now it is needed for our first release build with correct releases but don\u0027t understand the why and how :-(",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
