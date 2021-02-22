@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e62861e2_bc2e3749",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T20:56:25Z",
+      "side": 1,
+      "message": "https://us02web.zoom.us/rec/play/mmpguE-AcAbc-whxQa-xcXlZjdigmHJPzy-p3auuJfLlRf-YTjN9inXA7upf_00YS3gL_m7A0jh8DxEN.dw4xCFiKCej8foG9?continueMode\u003dtrue\u0026_x_zm_rtaid\u003dLUUWlE73Q3-9l1hmE0BWww.1612355095037.079ea8eac93752c18fe75bbec44a6c78\u0026_x_zm_rhtaid\u003d352\n\nimportant part start around minute 27, and around minute 37, is when the docker build is mentioned.\n\nI\u0027m just letting know the desired way to go, not what I want, just to be clear. If Lasse assist to our CSIT internal meeting, then the team can ask about this and decide.",
+      "parentUuid": "1ede42cc_7a7ab38e",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d77a9bbf_761dc1ce",
         "filename": "cps-application/pom.xml",
         "patchSetId": 2
