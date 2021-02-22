@@ -70,6 +70,24 @@
       "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9915436_d5214c26",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-22T12:40:39Z",
+      "side": 1,
+      "message": "https://gerrit.onap.org/r/c/cps/+/118155",
+      "parentUuid": "fa237d07_d54f4ada",
+      "revId": "47b0b18950bdce3456e491769ac2d4dac2c86298",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
