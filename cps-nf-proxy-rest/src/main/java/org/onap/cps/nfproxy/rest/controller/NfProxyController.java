@@ -19,12 +19,12 @@
 
 package org.onap.cps.nfproxy.rest.controller;
 
+import com.google.gson.Gson;
 import javax.validation.Valid;
 import org.onap.cps.api.NfProxyDataService;
 import org.onap.cps.nfproxy.rest.api.NfProxyApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,17 +39,17 @@ public class NfProxyController implements NfProxyApi {
     @Autowired
     private NfProxyDataService nfProxyDataService;
 
+    static final String ROOT = "/";
+
     @Override
     public ResponseEntity<Object> getNodeByCmHandleIdAndXpath(final String cmHandleId, @Valid final String cpsPath,
-                                                            @Valid final Boolean includeDescendants) {
-        if ("/".equals(cpsPath)) {
+                                                              @Valid final Boolean includeDescendants) {
+        if (ROOT.equals(cpsPath)) {
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final String dataspaceName = "ranNfProxy";
-        final DataNode dataNode =
-            nfProxyDataService.getDataNode(dataspaceName, cmHandleId, cpsPath, fetchDescendantsOption);
-        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+        final DataNode dataNode = nfProxyDataService.getDataNode(cmHandleId, cpsPath, fetchDescendantsOption);
+        return new ResponseEntity<>(new Gson().toJson(dataNode), HttpStatus.OK);
     }
 }

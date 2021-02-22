@@ -6,6 +6,6 @@ info:
 servers:
   - url: //localhost:8088/
 paths:
-  /v1/anchors/{anchor-name}/nodes:
+  /v1/cm-handles/{cm-handle-id}/node:
     $ref: 'xnfProxy.yml#/nodeByCmHandleIdAndXpath'
 
