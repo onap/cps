@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 import org.modelmapper.ModelMapper
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -58,6 +59,9 @@ class DataRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Mock()

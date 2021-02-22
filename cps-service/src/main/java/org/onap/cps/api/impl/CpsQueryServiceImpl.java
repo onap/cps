@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,26 +17,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api;
+package org.onap.cps.api.impl;
 
 import java.util.Collection;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-/*
- * Query interface for handling cps queries.
- */
-public interface CpsQueryService {
+@Service
+public class CpsQueryServiceImpl implements CpsQueryService {
 
-    /**
-     * Get data nodes for the given dataspace and anchor by cps path.
-     *
-     * @param dataspaceName          dataspace name
-     * @param anchorName             anchor name
-     * @param cpsPath                cps path
-     * @return a collection of data nodes
-     */
-    Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull String cpsPath);
+    @Autowired
+    private CpsDataPersistenceService cpsDataPersistenceService;
 
+    @Override
+    public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
+        final String cpsPath) {
+        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath);
+    }
 }
