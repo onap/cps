@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "2b5fba25_59fc60b7",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T14:43:18Z",
+      "side": 1,
+      "message": "thanks for all the responses Bruno. Here what I\u0027m trying to understand is what is holding us from have 0.0.1 release, which suppose to be only for OOM. Which image is indeed already on docker repo and start Honolulu with an 1.0.0 version.\n\nI though that having the image already on repo, it will be enough to proceed with OOM. \n\nSo can you explain me why we need to do the whole release process now, and not just on when Honolulu release.\nAnd by questioning this, I\u0027m not saying that what are you doing is wrong. I\u0027m just trying to get the whole picture, and how this is linked and required for.",
+      "parentUuid": "0480ef78_701952fb",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29f9fd73_a2f4b3bc",
         "filename": "releases/1.0.0.yaml",
         "patchSetId": 1
