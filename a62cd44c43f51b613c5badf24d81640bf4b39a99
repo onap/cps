@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a170fdf1_4860ed2d",
+        "filename": "cps-rest/docs/api/swagger/cpsQuery.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-22T11:44:01Z",
+      "side": 1,
+      "message": "add description too",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "a62cd44c43f51b613c5badf24d81640bf4b39a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
