@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1ede42cc_7a7ab38e",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T20:48:00Z",
+      "side": 1,
+      "message": "Is not the way ONAP + CSIT wants to go -\u003e \nhttps://wiki.onap.org/display/DW/Project-specific+CSIT+structure\nplus there is link for a video on main chat, and I\u0027m pretty sure sent it to you some time ago that you can watch.\nAnyway you can find more info on https://jira.onap.org/browse/CPS-188",
+      "parentUuid": "85cd1342_41330a21",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d77a9bbf_761dc1ce",
         "filename": "cps-application/pom.xml",
         "patchSetId": 2
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "Each docker profile generates a different docker image:\n* `cps-docker` profile generates `cps-service` image (line 122)\n* `xnf-docker` profile generates `cps-nf-service` image (line 138)\n* `cps-xnf-docker` profile generates `cps-and-nf-service` image (line 154)\n\nPlease, let me know if you spot any bug.",
       "parentUuid": "d1f95708_5586813f",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0faa7ea1_f30c1f2b",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T20:48:00Z",
+      "side": 1,
+      "message": "my bad, sorry. I overlooked and saw the same name. At any rate those names were decided by the team already, \nif it was decided to change it again. I was not aware of such decision.",
+      "parentUuid": "387463e9_2babf76c",
       "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
