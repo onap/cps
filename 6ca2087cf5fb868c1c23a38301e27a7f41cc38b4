@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "0480ef78_701952fb",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-22T14:20:39Z",
+      "side": 1,
+      "message": "why not then use 0.0.1. as an intermediary release. would be nice if H is 1.0.0",
+      "parentUuid": "e5b3da49_ac0ba882",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29f9fd73_a2f4b3bc",
         "filename": "releases/1.0.0.yaml",
         "patchSetId": 1
