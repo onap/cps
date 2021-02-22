@@ -259,6 +259,30 @@
       "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b311185f_01323c9e",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-22T14:58:57Z",
+      "side": 1,
+      "message": "Let me make the release for 0.0.1 to make it clear and have every body on the same page.",
+      "parentUuid": "a8448205_55df5316",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
