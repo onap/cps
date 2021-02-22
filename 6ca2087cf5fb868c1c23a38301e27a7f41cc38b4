@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "1fecba5b_f3627b37",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-22T14:39:53Z",
+      "side": 1,
+      "message": "Yes, we can use 0.0.1 for this exercise, but we\u0027ll have to restart the process from scratch and it will require additional reviews and merges. To avoid slowing us down, I continued with 1.0.0 we had. Is it still ok for you also ?",
+      "parentUuid": "0480ef78_701952fb",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29f9fd73_a2f4b3bc",
         "filename": "releases/1.0.0.yaml",
         "patchSetId": 1
