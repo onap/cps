@@ -22,6 +22,75 @@
       "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c73d1f0_0742c5c4",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T13:09:01Z",
+      "side": 1,
+      "message": "is this the job?",
+      "range": {
+        "startLine": 2,
+        "startChar": 31,
+        "endLine": 2,
+        "endChar": 36
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c49029a_c895a49b",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T13:09:01Z",
+      "side": 1,
+      "message": "after picking this, can we still using same version for Honolulu release? \nWould this have any impact?",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29f9fd73_a2f4b3bc",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T13:09:01Z",
+      "side": 1,
+      "message": "what happens when true?",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
