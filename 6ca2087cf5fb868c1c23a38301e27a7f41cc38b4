@@ -283,6 +283,30 @@
       "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333228a7_5ee3428f",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-22T15:33:34Z",
+      "side": 1,
+      "message": "Here is the change for 0.0.1 https://gerrit.onap.org/r/c/cps/+/118168",
+      "parentUuid": "b311185f_01323c9e",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
