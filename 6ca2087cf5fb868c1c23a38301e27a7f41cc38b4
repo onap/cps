@@ -307,6 +307,30 @@
       "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f611b559_a713a925",
+        "filename": "releases/1.0.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-22T16:32:59Z",
+      "side": 1,
+      "message": "Thanks for that change.\nBut still, can you clarify what is the expected out from this change compared with what we already have.\nWiki mentions that once stage released, we need to check if image is present on nexus 3. Which we checked, and is already there, at least the version 1.0.0. \nSo, what will have different the image generated from this change from the one already present on nexus3? is the image somehow flag as release, thus would be it correctly consumed by OOM? Or is it pushed to some different repo?",
+      "parentUuid": "333228a7_5ee3428f",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "6ca2087cf5fb868c1c23a38301e27a7f41cc38b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
