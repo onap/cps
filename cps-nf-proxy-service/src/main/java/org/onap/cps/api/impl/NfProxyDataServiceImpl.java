@@ -34,11 +34,12 @@ public class NfProxyDataServiceImpl implements NfProxyDataService {
 
     @Autowired
     private CpsDataPersistenceService cpsDataPersistenceService;
+    static final String NF_PROXY_DATASPACE_NAME = "NFP-Operational";
 
     @Override
-    public DataNode getDataNode(@NonNull final String dataspaceName, @NonNull final String cmHandleId,
-                                @NonNull final String xpath,
+    public DataNode getDataNode(@NonNull final String cmHandleId, @NonNull final String xpath,
                                 @NonNull final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataPersistenceService.getDataNode(dataspaceName, cmHandleId, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNode(NF_PROXY_DATASPACE_NAME, cmHandleId, xpath,
+            fetchDescendantsOption);
     }
 }
