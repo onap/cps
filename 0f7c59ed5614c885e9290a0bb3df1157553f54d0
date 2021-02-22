@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "85cd1342_41330a21",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-22T20:21:26Z",
+      "side": 1,
+      "message": "I would see the development process in a different way.\n\nIn early dev cycle steps, in my local env, I don\u0027t want mvn clean package to build any docker image (it requires docker to run, takes more time to build, fills my local file system, ...). This stage requiring repetitive tasks should be straightforward, simple, fast, and light.\n\nLater on in the dev cycle, at integration steps, docker images are required. Also, automatic pipelines to run integration tests are responsible to run appropriate command to build docker images, they will run tests against.\n\nI can not say for CSIT specifically as I\u0027m not familiar with it.",
+      "parentUuid": "646423a2_7d40725e",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d77a9bbf_761dc1ce",
         "filename": "cps-application/pom.xml",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2021-02-20T17:59:34Z",
       "side": 1,
       "message": "you are creating 3 images with the same name cps-nf-service. Thus you are blocking to generate 2 different types of image if desired.\nif you generate a different one, you can distinguish what it contains plus one overriding each other.\nPlus names has been decided by the team already.\nSame applies for changes on next lines.",
+      "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387463e9_2babf76c",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-22T20:21:26Z",
+      "side": 1,
+      "message": "Each docker profile generates a different docker image:\n* `cps-docker` profile generates `cps-service` image (line 122)\n* `xnf-docker` profile generates `cps-nf-service` image (line 138)\n* `cps-xnf-docker` profile generates `cps-and-nf-service` image (line 154)\n\nPlease, let me know if you spot any bug.",
+      "parentUuid": "d1f95708_5586813f",
       "revId": "0f7c59ed5614c885e9290a0bb3df1157553f54d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
