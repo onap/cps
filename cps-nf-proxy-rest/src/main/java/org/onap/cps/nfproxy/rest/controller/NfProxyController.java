@@ -19,24 +19,37 @@
 
 package org.onap.cps.nfproxy.rest.controller;
 
+import javax.validation.Valid;
+import org.onap.cps.api.NfProxyDataService;
 import org.onap.cps.nfproxy.rest.api.NfProxyApi;
-import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.DataMapUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("${rest.api.xnf-base-path}")
 public class NfProxyController implements NfProxyApi {
 
-    @Override
-    public ResponseEntity<Object> helloWorld() {
-        return new ResponseEntity<>("Hello World!", HttpStatus.OK);
-    }
+    @Autowired
+    private NfProxyDataService nfProxyDataService;
 
     @Override
-    public ResponseEntity<Object> helloError() {
-        throw new CpsException("Example error Message", "Example error description");
+    public ResponseEntity<Object> getNodeByCmHandleIdAndXpath(final String cmHandleId, @Valid final String cpsPath,
+                                                            @Valid final Boolean includeDescendants) {
+        if ("/".equals(cpsPath)) {
+            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        }
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final String dataspaceName = "ranNfProxy";
+        final DataNode dataNode =
+            nfProxyDataService.getDataNode(dataspaceName, cmHandleId, cpsPath, fetchDescendantsOption);
+        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 }

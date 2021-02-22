@@ -6,8 +6,6 @@ info:
 servers:
   - url: //localhost:8088/
 paths:
-  /v1/hello-world:
-    $ref: 'xnfProxy.yml#/helloWorld'
-  /v1/hello-error:
-    $ref: 'xnfProxy.yml#/helloError'
+  /v1/anchors/{anchor-name}/nodes:
+    $ref: 'xnfProxy.yml#/nodeByCmHandleIdAndXpath'
 

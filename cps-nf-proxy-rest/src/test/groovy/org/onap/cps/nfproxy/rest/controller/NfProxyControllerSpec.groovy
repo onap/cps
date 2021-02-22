@@ -22,9 +22,7 @@ package org.onap.cps.nfproxy.rest.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import spock.lang.Specification
 
 @WebMvcTest
@@ -36,19 +34,4 @@ class NfProxyControllerSpec extends Specification {
     @Value('${rest.api.xnf-base-path}')
     def basePath
 
-    def 'Hello world method invocation.'(){
-        when: 'hello-world request performed'
-            def response = mvc.perform(MockMvcRequestBuilders.get("$basePath/v1/hello-world")).andReturn().response
-        then: 'success response returned'
-            response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains("Hello World!")
-    }
-
-    def 'Example error handling.'(){
-        when: 'hello-error request performed'
-            def response = mvc.perform(MockMvcRequestBuilders.get("$basePath/v1/hello-error")).andReturn().response
-        then: 'error response returned'
-            response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
-            response.getContentAsString().contains("Example error")
-    }
 }
