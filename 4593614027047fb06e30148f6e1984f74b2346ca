@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bca2d889_4db5e9a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T08:38:46Z",
+      "side": 1,
+      "message": "This should be just before \u0027Signed-off\u0027 i move to line 13",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "4593614027047fb06e30148f6e1984f74b2346ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c333a99_9d025d9d",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T08:38:46Z",
+      "side": 1,
+      "message": "If you need help with these test, give me a shout, I can give you a quick tutorial",
+      "revId": "4593614027047fb06e30148f6e1984f74b2346ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
