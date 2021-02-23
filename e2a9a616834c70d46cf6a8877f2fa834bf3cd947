@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dd3b719_551998b6",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "Add 501 (thsi is teh erro returned when / is provide as path",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 62
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38b95a6e_bcd126e8",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "Add 501 in yaml",
+      "range": {
+        "startLine": 48,
+        "startChar": 51,
+        "endLine": 48,
+        "endChar": 66
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77d65c15_86478437",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "no need to declare as class variable (yet) Just declare in test itself",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b5d8319_5c7a477e",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 11
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f76cbac_4a4660b3",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "just declare using def in tets itself (no need for class variable yet)",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 84
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "937e7ef3_83f5be82",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "datanode in json format",
+      "range": {
+        "startLine": 71,
+        "startChar": 41,
+        "endLine": 71,
+        "endChar": 55
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f078fdcd_0a59189b",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "move above line 35 and add additional lien after it ie clearly separate constants from injected classes",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 68
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e4b65a1_499aef47",
+        "filename": "cps-nf-proxy-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T12:51:22Z",
+      "side": 1,
+      "message": "not sure if this is needed?",
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
