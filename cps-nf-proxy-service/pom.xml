@@ -18,12 +18,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>cps-service</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>cps-ri</artifactId>
+            <artifactId>cps-service</artifactId>
         </dependency>
     </dependencies>
 </project>
