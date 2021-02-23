@@ -17,6 +17,7 @@
         <commons-lang3.version>3.11</commons-lang3.version>
         <groovy.version>3.0.6</groovy.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
+        <liquibase.version>4.3.1</liquibase.version>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
@@ -134,6 +135,11 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs</artifactId>
                 <version>${spotbugs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

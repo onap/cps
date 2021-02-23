@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 3.1
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'schema_set'
+
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 3.2
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/yang_resource.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'yang_resource'
+        columns:
+          - column:
+              header:  name
+              name:  name
+              type:  STRING
+          - column:
+              header:  content
+              name: content
+              type: STRING
+          - column:
+              header:  checkstyle
+              name: checkstyle
+              type: STRING
+
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 3.3
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set_yang_resources.csv'
+        quotchar: '"'
+        primaryKey: 'schema_set_id,yang_resource_id'
+        separator: '|'
+        tableName: 'schema_set_yang_resources'
+        usePreparedStatements:  true
+
