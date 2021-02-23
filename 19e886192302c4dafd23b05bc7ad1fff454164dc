@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b4edf2df_95bffa88",
+        "filename": "docs/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-23T18:22:13Z",
+      "side": 1,
+      "message": "These doc related files will never be part of other code related modules. if you insist i can move but to me it makes sense here.",
+      "parentUuid": "11d836a8_47fd3626",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "589b6deb_68e3165f",
         "filename": "docs/_static/css/ribbon.css",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5026ecd6_62c69dc3",
+        "filename": "docs/_static/css/ribbon.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-23T18:22:13Z",
+      "side": 1,
+      "message": "The only sure shot way to find out is to commit without it. All others projects do have it, i reckon it is required. Feel free to suggest.",
+      "parentUuid": "589b6deb_68e3165f",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "75ae5fd9_3752ac5e",
         "filename": "docs/conf.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2021-02-23T17:18:15Z",
       "side": 1,
       "message": "this morning you should us a wiki saying this fuel should be excluded from git...",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d14b52e_74426c1a",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-23T18:22:13Z",
+      "side": 1,
+      "message": "Unable to infer what you mean.",
+      "parentUuid": "75ae5fd9_3752ac5e",
       "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
