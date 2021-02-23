@@ -1,31 +1,34 @@
 {
-"ran-inventory":{
-   "rannfnssiid": "14559ead-f4fe-4c1c-a94c-8015fad3ea35",
-   "subnetStatus": "active",
-   "nsstid": "2372a5dc-ee24-4a45-85f5-65103dfdc5b4",
-   "slicetype": "embb",
-   "isshareable": "Shareable",
-   "sliceProfilesList": [
-     {
-       "sliceProfileId": "f33a9dd8-ae51-4acf-8073-c9390c25f6f1",
-       "sNSSAI": "001-11000",
-       "maxNumberofUEs": 300,
-       "latency": 5,
-       "uLThptPerSlice": 40,
-       "dLThptPerSlice": 50,
-       "maxNumberofConns": 500,
-       "uEMobilityLevel": "FULLY MOBILITY",
-       "coverageAreaList": [
-         "Washington"
-       ],
-       "resourceSharingLevel": "Shareable",
-       "pLMNIdList": [
-         {
-           "mcc": "310",
-           "mnc": "410"
-         }
-       ]
-     }
-   ]
+  "cps-ran-inventory:ran-inventory":{
+    "ran-slices":[{
+      "rannfnssiid": "14559ead-f4fe-4c1c-a94c-8015fad3ea35",
+      "subnetStatus": "active",
+      "nsstid": "2372a5dc-ee24-4a45-85f5-65103dfdc5b4",
+      "slicetype": "embb",
+      "isshareable": "Shareable",
+      "sliceProfilesList": [
+        {
+          "sliceProfileId": "f33a9dd8-ae51-4acf-8073-c9390c25f6f1",
+          "sNSSAI": "001-11000",
+          "maxNumberofUEs": 300,
+          "latency": 5,
+          "uLThptPerSlice": 40,
+          "dLThptPerSlice": 50,
+          "maxNumberofConns": 500,
+          "uEMobilityLevel": "FULLY MOBILITY",
+          "coverageAreaList": [
+            "Washington"
+          ],
+          "resourceSharingLevel": "Shareable",
+          "pLMNIdList": [
+            {
+              "mcc": "310",
+              "mnc": "410"
+            }
+          ]
+        }
+      ]
+    }
+    ]
   }
 }

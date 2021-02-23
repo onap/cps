@@ -57,46 +57,46 @@ module cps-ran-inventory {
   }
 
     grouping SliceProfile{
-  		leaf sliceProfileId{
-  			type string;
-  			mandatory true;
-  			description "slice profile id";
-  		}
-  		leaf sNSSAI{
-  			type string;
-  			mandatory false;
-  			description "The S-NSSAI may include both the SST and SD fields (in which case the S-NSSAI length is 32 bits in total), or the S-NSSAI may just include the SST field (in which case the S-NSSAI length is 8 bits only)";
-  		}
-  		leaf maxNumberofUEs{
-  			type int64 { range "0..68719476735"; }
-        		mandatory false;
-          		description "maximum number of UEs";
-  		}
-  		leaf latency{
-  			type int64 { range "0..68719476735"; }
-        		mandatory false;
-          		description "latency of the slice requested by the operator";
-  		}
-  		leaf uLThptPerSlice{
-  			type int64 { range "0..68719476735"; }
-        		mandatory false;
-          		description "uplink throughput of the slice requested by the operator";
-  		}
-  		leaf dLThptPerSlice{
-  			type int64 { range "0..68719476735"; }
-        		mandatory false;
-          		description "downlink throughput  of the slice requested by the operator";
-  		}
-  		leaf maxNumberofConns{
-  			type int64 { range "0..68719476735"; }
-        		mandatory false;
-          		description "maximum number of connections to be served by the slice";
-  		}
-  		leaf uEMobilityLevel{
-  			type string;
-  			mandatory false;
-  			description "Mobility level of the UE";
-  		}
+                leaf sliceProfileId{
+                        type string;
+                        mandatory true;
+                        description "slice profile id";
+                }
+                leaf sNSSAI{
+                        type string;
+                        mandatory false;
+                        description "The S-NSSAI may include both the SST and SD fields (in which case the S-NSSAI length is 32 bits in total), or the S-NSSAI may just include the SST field (in which case the S-NSSAI length is 8 bits only)";
+                }
+                leaf maxNumberofUEs{
+                        type int64 { range "0..68719476735"; }
+                        mandatory false;
+                        description "maximum number of UEs";
+                }
+                leaf latency{
+                        type int64 { range "0..68719476735"; }
+                        mandatory false;
+                        description "latency of the slice requested by the operator";
+                }
+                leaf uLThptPerSlice{
+                        type int64 { range "0..68719476735"; }
+                        mandatory false;
+                        description "uplink throughput of the slice requested by the operator";
+                }
+                leaf dLThptPerSlice{
+                        type int64 { range "0..68719476735"; }
+                        mandatory false;
+                        description "downlink throughput  of the slice requested by the operator";
+                }
+                leaf maxNumberofConns{
+                        type int64 { range "0..68719476735"; }
+                        mandatory false;
+                        description "maximum number of connections to be served by the slice";
+                }
+                leaf uEMobilityLevel{
+                        type string;
+                        mandatory false;
+                        description "Mobility level of the UE";
+                }
     leaf resourceSharingLevel{
       type string;
       description "Resource sharing level";
@@ -117,7 +117,7 @@ module cps-ran-inventory {
       uses PLMNId;
     }
 
-  	}
+        }
 
     grouping PLMNId {
     description
@@ -141,17 +141,17 @@ module cps-ran-inventory {
     }
   }
 
-    container ran-inventory{
+    grouping ran-slices{
       leaf rannfnssiid{
       description "NSSI of a RAN network function";
       type string;
     }
 
     list sliceProfilesList{
-  		uses SliceProfile;
-  		key "sliceProfileId";
-  		description "List of slice profiles supported by the ran slice";
-  	}
+                uses SliceProfile;
+                key "sliceProfileId";
+                description "List of slice profiles supported by the ran slice";
+        }
 
     leaf subnetStatus{
       description "status of  RAN NF NSSI";
@@ -172,5 +172,12 @@ module cps-ran-inventory {
       description "Shareability of RAN Slice";
       type string;
     }
+    }
+    container ran-inventory{
+    list ran-slices{
+        uses ran-slices;
+        key "rannfnssiid";
+        description "List of RAN Slices";
+        }
     }
     }
