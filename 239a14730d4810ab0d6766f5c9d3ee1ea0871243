@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "04abbfb2_cbc7cdb5",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-23T13:53:06Z",
+      "side": 1,
+      "message": "we should use same terminology everywhere\nexposing anchor to rest api, but using cmHandleId is not justified\nthis require to be discussed with team",
+      "parentUuid": "ed296690_f35f7eb2",
+      "range": {
+        "startLine": 9,
+        "startChar": 15,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "239a14730d4810ab0d6766f5c9d3ee1ea0871243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c8bd5a1_24295999",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 1
