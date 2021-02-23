@@ -20,7 +20,29 @@ components:
           format: binary
 
   parameters:
-
+    cmHandleIdInPath:
+      name: cm-handle-id
+      in: path
+      description: cm-handle-id
+      required: true
+      schema:
+        type: string
+    xpathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+    includeDescendantsOptionInQuery:
+      name: include-descendants
+      in: query
+      description: include-descendants
+      required: false
+      schema:
+        type: boolean
+        default: false
 
   responses:
     NotFound:
@@ -49,6 +71,12 @@ components:
             $ref: '#/components/schemas/ErrorMessage'
     Conflict:
       description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    NotImplemented:
+      description: The given URI path has not been implemented
       content:
         application/json:
           schema:
