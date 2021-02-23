@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "2c0eeff8_9cc6a69e",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-23T14:35:32Z",
+      "side": 1,
+      "message": "Maybe I should have made that clearer in the description. The CMHandle term is in \u0027context of the NF-PRoxy application so it definitely should be used internally too, only when it reaches cps-core it become an\u0027 anchor\u0027 again",
+      "parentUuid": "df628389_15058bb1",
+      "range": {
+        "startLine": 9,
+        "startChar": 15,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "239a14730d4810ab0d6766f5c9d3ee1ea0871243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c8bd5a1_24295999",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 1
