@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "df628389_15058bb1",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-23T14:01:07Z",
+      "side": 1,
+      "message": "according to task description the cm-handle should be used in exposed api, not internally",
+      "parentUuid": "04abbfb2_cbc7cdb5",
+      "range": {
+        "startLine": 9,
+        "startChar": 15,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "239a14730d4810ab0d6766f5c9d3ee1ea0871243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c8bd5a1_24295999",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 1
