@@ -5,9 +5,14 @@ spring:
       hibernate:
         enable_lazy_load_no_trans: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver
     initialization-mode: always
+
+  liquibase:
+    change-log: classpath:changelog/changelog-master.yaml
+    labels: ${LIQUIBASE_LABELS}
