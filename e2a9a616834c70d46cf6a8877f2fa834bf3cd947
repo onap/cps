@@ -140,6 +140,29 @@
     },
     {
       "key": {
+        "uuid": "0f805653_dea6cc0f",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/NfProxyDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-23T13:19:31Z",
+      "side": 1,
+      "message": "remove final from interface",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 87
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f078fdcd_0a59189b",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/impl/NfProxyDataServiceImpl.java",
         "patchSetId": 3
