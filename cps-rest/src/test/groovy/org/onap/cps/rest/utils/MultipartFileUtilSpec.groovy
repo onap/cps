@@ -21,6 +21,8 @@ package org.onap.cps.rest.utils
 
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.DataMapUtils
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Specification
@@ -28,6 +30,14 @@ import spock.lang.Unroll
 
 class MultipartFileUtilSpec extends Specification {
 
+    def 'Data node without leaves and without children.'() {
+        given: 'a datanode with no leaves and no children'
+            def dataNodeWithoutData = new DataNodeBuilder().withXpath('some xpath').build()
+        when: 'it is converted to a map'
+            def result = DataMapUtils.toDataMap(dataNodeWithoutData)
+        then: 'an empty object map is returned'
+            result.isEmpty()
+    }
     def 'Extract yang resource from yang file.'() {
         given: 'uploaded yang file'
             def multipartFile = new MockMultipartFile("file", "filename.yang", "text/plain", "content".getBytes())

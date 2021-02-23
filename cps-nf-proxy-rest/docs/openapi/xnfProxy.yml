@@ -1,9 +1,13 @@
-helloWorld:
+nodeByCmHandleIdAndXpath:
   get:
     tags:
       - nf-proxy
-    summary: rest interface validation
-    operationId: helloWorld
+    summary: Get a node given a cmHandle Id and xpath
+    operationId: getNodeByCmHandleIdAndXpath
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleIdInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -13,19 +17,7 @@ helloWorld:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-
-helloError:
-  get:
-    tags:
-      - nf-proxy
-    summary: error handler validation
-    operationId: helloError
-    responses:
-      200:
-        $ref: 'components.yaml#/components/responses/Ok'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      501:
+        $ref: 'components.yaml#/components/responses/NotImplemented'
