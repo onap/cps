@@ -19,13 +19,22 @@
 
 package org.onap.cps.nfproxy.rest.controller
 
+import com.google.gson.Gson
+import org.onap.cps.api.NfProxyDataService
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
+
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
 class NfProxyControllerSpec extends Specification {
@@ -33,22 +42,33 @@ class NfProxyControllerSpec extends Specification {
     @Autowired
     MockMvc mvc
 
+    @SpringBean
+    NfProxyDataService mockNfProxyDataService = Mock()
+
     @Value('${rest.api.xnf-base-path}')
     def basePath
 
-    def 'Hello world method invocation.'(){
-        when: 'hello-world request performed'
-            def response = mvc.perform(MockMvcRequestBuilders.get("$basePath/v1/hello-world")).andReturn().response
-        then: 'success response returned'
-            response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains("Hello World!")
+    def dataNodeBaseEndpoint
+    def cmHandleId = 'some handle'
+
+    @Shared
+    static DataNode dataNode = new DataNodeBuilder().withXpath('some xpath').build()
+
+    def setup() {
+        dataNodeBaseEndpoint = "$basePath/v1/"
     }
 
-    def 'Example error handling.'(){
-        when: 'hello-error request performed'
-            def response = mvc.perform(MockMvcRequestBuilders.get("$basePath/v1/hello-error")).andReturn().response
-        then: 'error response returned'
-            response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
-            response.getContentAsString().contains("Example error")
+    @Unroll
+    def 'Get data node.'() {
+        given: 'the service returns a data node'
+            def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpoint/cm-handle-id/$cmHandleId/node"
+            mockNfProxyDataService.getDataNode(cmHandleId, xpath, OMIT_DESCENDANTS) >> dataNode
+        when: 'get request is performed through REST API'
+            def response = mvc.perform(get(endpoint).param('xpath', xpath)).andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'response contains expected leaf and value'
+            response.getContentAsString().contains(new Gson().toJson(dataNode))
     }
 }
