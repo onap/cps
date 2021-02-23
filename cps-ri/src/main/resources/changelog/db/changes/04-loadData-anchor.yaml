@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 4
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/anchor.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'anchor'

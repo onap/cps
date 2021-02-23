@@ -1,0 +1,2236 @@
+name|content|checksum
+ietf-inet-types.yang|"module ietf-inet-types {
+
+  namespace \"urn:ietf:params:xml:ns:yang:ietf-inet-types\";
+  prefix \"inet\";
+
+  organization
+   \"IETF NETMOD (NETCONF Data Modeling Language) Working Group\";
+
+  contact
+   \"WG Web:   <http://tools.ietf.org/wg/netmod/>
+    WG List:  <mailto:netmod@ietf.org>
+
+    WG Chair: David Kessens
+              <mailto:david.kessens@nsn.com>
+
+    WG Chair: Juergen Schoenwaelder
+              <mailto:j.schoenwaelder@jacobs-university.de>
+
+    Editor:   Juergen Schoenwaelder
+              <mailto:j.schoenwaelder@jacobs-university.de>\";
+
+  description
+   \"This module contains a collection of generally useful derived
+    YANG data types for Internet addresses and related things.
+
+    Copyright (c) 2013 IETF Trust and the persons identified as
+    authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Simplified BSD License
+    set forth in Section 4.c of the IETF Trust''s Legal Provisions
+    Relating to IETF Documents
+    (http://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC 6991; see
+    the RFC itself for full legal notices.\";
+
+  revision 2013-07-15 {
+    description
+     \"This revision adds the following new data types:
+      - ip-address-no-zone
+      - ipv4-address-no-zone
+      - ipv6-address-no-zone\";
+    reference
+     \"RFC 6991: Common YANG Data Types\";
+  }
+
+  revision 2010-09-24 {
+    description
+     \"Initial revision.\";
+    reference
+     \"RFC 6021: Common YANG Data Types\";
+  }
+
+  /*** collection of types related to protocol fields ***/
+
+  typedef ip-version {
+    type enumeration {
+      enum unknown {
+        value \"0\";
+        description
+         \"An unknown or unspecified version of the Internet
+          protocol.\";
+      }
+      enum ipv4 {
+        value \"1\";
+        description
+         \"The IPv4 protocol as defined in RFC 791.\";
+      }
+      enum ipv6 {
+        value \"2\";
+        description
+         \"The IPv6 protocol as defined in RFC 2460.\";
+      }
+    }
+    description
+     \"This value represents the version of the IP protocol.
+
+      In the value set and its semantics, this type is equivalent
+      to the InetVersion textual convention of the SMIv2.\";
+    reference
+     \"RFC  791: Internet Protocol
+      RFC 2460: Internet Protocol, Version 6 (IPv6) Specification
+      RFC 4001: Textual Conventions for Internet Network Addresses\";
+  }
+
+  typedef dscp {
+    type uint8 {
+      range \"0..63\";
+    }
+    description
+     \"The dscp type represents a Differentiated Services Code Point
+      that may be used for marking packets in a traffic stream.
+      In the value set and its semantics, this type is equivalent
+      to the Dscp textual convention of the SMIv2.\";
+    reference
+     \"RFC 3289: Management Information Base for the Differentiated
+                Services Architecture
+      RFC 2474: Definition of the Differentiated Services Field
+                (DS Field) in the IPv4 and IPv6 Headers
+      RFC 2780: IANA Allocation Guidelines For Values In
+                the Internet Protocol and Related Headers\";
+  }
+
+  typedef ipv6-flow-label {
+    type uint32 {
+      range \"0..1048575\";
+    }
+    description
+     \"The ipv6-flow-label type represents the flow identifier or Flow
+      Label in an IPv6 packet header that may be used to
+      discriminate traffic flows.
+
+      In the value set and its semantics, this type is equivalent
+      to the IPv6FlowLabel textual convention of the SMIv2.\";
+    reference
+     \"RFC 3595: Textual Conventions for IPv6 Flow Label
+      RFC 2460: Internet Protocol, Version 6 (IPv6) Specification\";
+  }
+
+  typedef port-number {
+    type uint16 {
+      range \"0..65535\";
+    }
+    description
+     \"The port-number type represents a 16-bit port number of an
+      Internet transport-layer protocol such as UDP, TCP, DCCP, or
+      SCTP.  Port numbers are assigned by IANA.  A current list of
+      all assignments is available from <http://www.iana.org/>.
+
+      Note that the port number value zero is reserved by IANA.  In
+      situations where the value zero does not make sense, it can
+      be excluded by subtyping the port-number type.
+      In the value set and its semantics, this type is equivalent
+      to the InetPortNumber textual convention of the SMIv2.\";
+    reference
+     \"RFC  768: User Datagram Protocol
+      RFC  793: Transmission Control Protocol
+      RFC 4960: Stream Control Transmission Protocol
+      RFC 4340: Datagram Congestion Control Protocol (DCCP)
+      RFC 4001: Textual Conventions for Internet Network Addresses\";
+  }
+
+  /*** collection of types related to autonomous systems ***/
+
+  typedef as-number {
+    type uint32;
+    description
+     \"The as-number type represents autonomous system numbers
+      which identify an Autonomous System (AS).  An AS is a set
+      of routers under a single technical administration, using
+      an interior gateway protocol and common metrics to route
+      packets within the AS, and using an exterior gateway
+      protocol to route packets to other ASes.  IANA maintains
+      the AS number space and has delegated large parts to the
+      regional registries.
+
+      Autonomous system numbers were originally limited to 16
+      bits.  BGP extensions have enlarged the autonomous system
+      number space to 32 bits.  This type therefore uses an uint32
+      base type without a range restriction in order to support
+      a larger autonomous system number space.
+
+      In the value set and its semantics, this type is equivalent
+      to the InetAutonomousSystemNumber textual convention of
+      the SMIv2.\";
+    reference
+     \"RFC 1930: Guidelines for creation, selection, and registration
+                of an Autonomous System (AS)
+      RFC 4271: A Border Gateway Protocol 4 (BGP-4)
+      RFC 4001: Textual Conventions for Internet Network Addresses
+      RFC 6793: BGP Support for Four-Octet Autonomous System (AS)
+                Number Space\";
+  }
+
+  /*** collection of types related to IP addresses and hostnames ***/
+
+  typedef ip-address {
+    type union {
+      type inet:ipv4-address;
+      type inet:ipv6-address;
+    }
+    description
+     \"The ip-address type represents an IP address and is IP
+      version neutral.  The format of the textual representation
+      implies the IP version.  This type supports scoped addresses
+      by allowing zone identifiers in the address format.\";
+    reference
+     \"RFC 4007: IPv6 Scoped Address Architecture\";
+  }
+
+  typedef ipv4-address {
+    type string {
+      pattern
+        ''(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).){3}''
+      +  ''([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])''
+      + ''(%[p{N}p{L}]+)?'';
+    }
+    description
+      \"The ipv4-address type represents an IPv4 address in
+       dotted-quad notation.  The IPv4 address may include a zone
+       index, separated by a % sign.
+
+       The zone index is used to disambiguate identical address
+       values.  For link-local addresses, the zone index will
+       typically be the interface index number or the name of an
+       interface.  If the zone index is not present, the default
+       zone of the device will be used.
+
+       The canonical format for the zone index is the numerical
+       format\";
+  }
+
+  typedef ipv6-address {
+    type string {
+      pattern ''((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}''
+            + ''((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|''
+            + ''(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9]).){3}''
+            + ''(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))''
+            + ''(%[p{N}p{L}]+)?'';
+      pattern ''(([^:]+:){6}(([^:]+:[^:]+)|(.*..*)))|''
+            + ''((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)''
+            + ''(%.+)?'';
+    }
+    description
+     \"The ipv6-address type represents an IPv6 address in full,
+      mixed, shortened, and shortened-mixed notation.  The IPv6
+      address may include a zone index, separated by a % sign.
+
+      The zone index is used to disambiguate identical address
+      values.  For link-local addresses, the zone index will
+      typically be the interface index number or the name of an
+      interface.  If the zone index is not present, the default
+      zone of the device will be used.
+
+      The canonical format of IPv6 addresses uses the textual
+      representation defined in Section 4 of RFC 5952.  The
+      canonical format for the zone index is the numerical
+      format as described in Section 11.2 of RFC 4007.\";
+    reference
+     \"RFC 4291: IP Version 6 Addressing Architecture
+      RFC 4007: IPv6 Scoped Address Architecture
+      RFC 5952: A Recommendation for IPv6 Address Text
+                Representation\";
+  }
+
+  typedef ip-address-no-zone {
+    type union {
+      type inet:ipv4-address-no-zone;
+      type inet:ipv6-address-no-zone;
+    }
+    description
+     \"The ip-address-no-zone type represents an IP address and is
+      IP version neutral.  The format of the textual representation
+      implies the IP version.  This type does not support scoped
+      addresses since it does not allow zone identifiers in the
+      address format.\";
+    reference
+     \"RFC 4007: IPv6 Scoped Address Architecture\";
+  }
+
+  typedef ipv4-address-no-zone {
+    type inet:ipv4-address {
+      pattern ''[0-9.]*'';
+    }
+    description
+      \"An IPv4 address without a zone index.  This type, derived from
+       ipv4-address, may be used in situations where the zone is
+       known from the context and hence no zone index is needed.\";
+  }
+
+  typedef ipv6-address-no-zone {
+    type inet:ipv6-address {
+      pattern ''[0-9a-fA-F:.]*'';
+    }
+    description
+      \"An IPv6 address without a zone index.  This type, derived from
+       ipv6-address, may be used in situations where the zone is
+       known from the context and hence no zone index is needed.\";
+    reference
+     \"RFC 4291: IP Version 6 Addressing Architecture
+      RFC 4007: IPv6 Scoped Address Architecture
+      RFC 5952: A Recommendation for IPv6 Address Text
+                Representation\";
+  }
+
+  typedef ip-prefix {
+    type union {
+      type inet:ipv4-prefix;
+      type inet:ipv6-prefix;
+    }
+    description
+     \"The ip-prefix type represents an IP prefix and is IP
+      version neutral.  The format of the textual representations
+      implies the IP version.\";
+  }
+
+  typedef ipv4-prefix {
+    type string {
+      pattern
+         ''(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).){3}''
+       +  ''([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])''
+       + ''/(([0-9])|([1-2][0-9])|(3[0-2]))'';
+    }
+    description
+     \"The ipv4-prefix type represents an IPv4 address prefix.
+      The prefix length is given by the number following the
+      slash character and must be less than or equal to 32.
+
+      A prefix length value of n corresponds to an IP address
+      mask that has n contiguous 1-bits from the most
+      significant bit (MSB) and all other bits set to 0.
+
+      The canonical format of an IPv4 prefix has all bits of
+      the IPv4 address set to zero that are not part of the
+      IPv4 prefix.\";
+  }
+
+  typedef ipv6-prefix {
+    type string {
+      pattern ''((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}''
+            + ''((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|''
+            + ''(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9]).){3}''
+            + ''(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))''
+            + ''(/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))'';
+      pattern ''(([^:]+:){6}(([^:]+:[^:]+)|(.*..*)))|''
+            + ''((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)''
+            + ''(/.+)'';
+    }
+    description
+     \"The ipv6-prefix type represents an IPv6 address prefix.
+      The prefix length is given by the number following the
+      slash character and must be less than or equal to 128.
+
+      A prefix length value of n corresponds to an IP address
+      mask that has n contiguous 1-bits from the most
+      significant bit (MSB) and all other bits set to 0.
+
+      The IPv6 address should have all bits that do not belong
+      to the prefix set to zero.
+
+      The canonical format of an IPv6 prefix has all bits of
+      the IPv6 address set to zero that are not part of the
+      IPv6 prefix.  Furthermore, the IPv6 address is represented
+      as defined in Section 4 of RFC 5952.\";
+    reference
+     \"RFC 5952: A Recommendation for IPv6 Address Text
+                Representation\";
+  }
+
+  /*** collection of domain name and URI types ***/
+
+  typedef domain-name {
+    type string {
+      length \"1..253\";
+      pattern
+        ''((([a-zA-Z0-9_]([a-zA-Z0-9-_]){0,61})?[a-zA-Z0-9].)*''
+      + ''([a-zA-Z0-9_]([a-zA-Z0-9-_]){0,61})?[a-zA-Z0-9].?)''
+      + ''|.'';
+    }
+    description
+     \"The domain-name type represents a DNS domain name.  The
+      name SHOULD be fully qualified whenever possible.
+
+      Internet domain names are only loosely specified.  Section
+      3.5 of RFC 1034 recommends a syntax (modified in Section
+      2.1 of RFC 1123).  The pattern above is intended to allow
+      for current practice in domain name use, and some possible
+      future expansion.  It is designed to hold various types of
+      domain names, including names used for A or AAAA records
+      (host names) and other records, such as SRV records.  Note
+      that Internet host names have a stricter syntax (described
+      in RFC 952) than the DNS recommendations in RFCs 1034 and
+      1123, and that systems that want to store host names in
+      schema nodes using the domain-name type are recommended to
+      adhere to this stricter standard to ensure interoperability.
+
+      The encoding of DNS names in the DNS protocol is limited
+      to 255 characters.  Since the encoding consists of labels
+      prefixed by a length bytes and there is a trailing NULL
+      byte, only 253 characters can appear in the textual dotted
+      notation.
+
+      The description clause of schema nodes using the domain-name
+      type MUST describe when and how these names are resolved to
+      IP addresses.  Note that the resolution of a domain-name value
+      may require to query multiple DNS records (e.g., A for IPv4
+      and AAAA for IPv6).  The order of the resolution process and
+      which DNS record takes precedence can either be defined
+      explicitly or may depend on the configuration of the
+      resolver.
+
+      Domain-name values use the US-ASCII encoding.  Their canonical
+      format uses lowercase US-ASCII characters.  Internationalized
+      domain names MUST be A-labels as per RFC 5890.\";
+    reference
+     \"RFC  952: DoD Internet Host Table Specification
+      RFC 1034: Domain Names - Concepts and Facilities
+      RFC 1123: Requirements for Internet Hosts -- Application
+                and Support
+      RFC 2782: A DNS RR for specifying the location of services
+                (DNS SRV)
+      RFC 5890: Internationalized Domain Names in Applications
+                (IDNA): Definitions and Document Framework\";
+  }
+
+  typedef host {
+    type union {
+      type inet:ip-address;
+      type inet:domain-name;
+    }
+    description
+     \"The host type represents either an IP address or a DNS
+      domain name.\";
+  }
+
+  typedef uri {
+    type string;
+    description
+     \"The uri type represents a Uniform Resource Identifier
+      (URI) as defined by STD 66.
+
+      Objects using the uri type MUST be in US-ASCII encoding,
+      and MUST be normalized as described by RFC 3986 Sections
+      6.2.1, 6.2.2.1, and 6.2.2.2.  All unnecessary
+      percent-encoding is removed, and all case-insensitive
+      characters are set to lowercase except for hexadecimal
+      digits, which are normalized to uppercase as described in
+      Section 6.2.2.1.
+
+      The purpose of this normalization is to help provide
+      unique URIs.  Note that this normalization is not
+      sufficient to provide uniqueness.  Two URIs that are
+      textually distinct after this normalization may still be
+      equivalent.
+
+      Objects using the uri type may restrict the schemes that
+      they permit.  For example, ''data:'' and ''urn:'' schemes
+      might not be appropriate.
+
+      A zero-length URI is not a valid URI.  This can be used to
+      express ''URI absent'' where required.
+
+      In the value set and its semantics, this type is equivalent
+      to the Uri SMIv2 textual convention defined in RFC 5017.\";
+    reference
+     \"RFC 3986: Uniform Resource Identifier (URI): Generic Syntax
+      RFC 3305: Report from the Joint W3C/IETF URI Planning Interest
+                Group: Uniform Resource Identifiers (URIs), URLs,
+                and Uniform Resource Names (URNs): Clarifications
+                and Recommendations
+      RFC 5017: MIB Textual Conventions for Uniform Resource
+                Identifiers (URIs)\";
+  }
+
+}"|fd06e465f26f1e7d0253bbf77e7e55e1
+cps-ran-schema-model2021-01-28.yang|"module cps-ran-schema-model {
+  yang-version 1.1;
+  namespace \"org:onap:ccsdk:features:sdnr:northbound:cps-ran-schema-model\";
+  prefix rn;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import ietf-yang-types {
+    prefix yang;
+  }
+
+  organization
+    \"Open Network Automation Platform - ONAP
+     <https://www.onap.org>\";
+  contact
+    \"Editors:
+       Sandeep Shah
+       <mailto:sandeep.shah@ibm.com>
+
+       Swaminathan Seetharaman
+       <mailto:swaminathan.seetharaman@wipro.com>\";
+  description
+    \"This module contains a collection of YANG definitions for capturing
+     relationships among managed elements of the radio access Network
+     to be stored in ONAP CPS platform.
+
+     Copyright 2020-2021 IBM.
+
+     Licensed under the Apache License, Version 2.0 (the ''License'');
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an ''AS IS'' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.\";
+
+  revision 2021-01-28 {
+    description
+      \"CPS RAN Network YANG Model for ONAP/O-RAN POC\";
+    reference
+      \"https://wiki.onap.org/display/DW/E2E+Network+Slicing+Use+Case+in+R7+Guilin\";
+  }
+
+  typedef usageState {
+    type enumeration {
+      enum IDLE {
+        description
+          \"TODO\";
+      }
+      enum ACTIVE {
+        description
+          \"TODO\";
+      }
+      enum BUSY {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"It describes whether or not the resource is actively in
+       use at a specific instant, and if so, whether or not it has spare
+       capacity for additional users at that instant. The value is READ-ONLY.\";
+    reference
+      \"ITU T Recommendation X.731\";
+  }
+
+  typedef Mcc {
+    type string;
+    description
+      \"The mobile country code consists of three decimal digits,
+       The first digit of the mobile country code identifies the geographic
+       region (the digits 1 and 8 are not used):\";
+    reference
+      \"3GPP TS 23.003 subclause 2.2 and 12.1\";
+  }
+
+  typedef Mnc {
+    type string;
+    description
+      \"The mobile network code consists of two or three
+       decimal digits (for example: MNC of 001 is not the same as MNC of 01)\";
+    reference
+      \"3GPP TS 23.003 subclause 2.2 and 12.1\";
+  }
+
+  typedef Nci {
+    type string;
+    description
+      \"NR Cell Identity. The NCI shall be of fixed length of 36 bits
+       and shall be coded using full hexadecimal representation.
+       The exact coding of the NCI is the responsibility of each PLMN operator\";
+    reference
+      \"TS 23.003\";
+  }
+
+  typedef OperationalState {
+    type enumeration {
+      enum DISABLED {
+        value 0;
+        description
+          \"The resource is totally inoperable.\";
+      }
+      enum ENABLED {
+        value 1;
+        description
+          \"The resource is partially or fully operable.\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"3GPP TS 28.625 and ITU-T X.731\";
+  }
+
+  typedef AvailabilityStatus {
+    type enumeration {
+      enum IN_TEST {
+        description
+          \"TODO\";
+      }
+      enum FAILED {
+        description
+          \"TODO\";
+      }
+      enum POWER_OFF {
+        description
+          \"TODO\";
+      }
+      enum OFF_LINE {
+        description
+          \"TODO\";
+      }
+      enum OFF_DUTY {
+        description
+          \"TODO\";
+      }
+      enum DEPENDENCY {
+        description
+          \"TODO\";
+      }
+      enum DEGRADED {
+        description
+          \"TODO\";
+      }
+      enum NOT_INSTALLED {
+        description
+          \"TODO\";
+      }
+      enum LOG_FULL {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef CellState {
+    type enumeration {
+      enum IDLE {
+        description
+          \"TODO\";
+      }
+      enum INACTIVE {
+        description
+          \"TODO\";
+      }
+      enum ACTIVE {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef SNssai {
+    type string;
+    description
+      \"Single Network Slice Selection Assistance Information.\";
+    reference
+      \"TS 23.501 clause 5.15.2\";
+  }
+
+  typedef Sst {
+    type uint8;
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef Nrpci {
+    type uint32;
+    description
+      \"Physical Cell Identity (PCI) of the NR cell.\";
+    reference
+      \"TS 36.211 subclause 6.11\";
+  }
+
+  typedef Tac {
+    type int32 {
+      range \"0..16777215\";
+    }
+    description
+      \"Tracking Area Code\";
+    reference
+      \"TS 23.003 clause 19.4.2.3\";
+  }
+
+  typedef AmfRegionId {
+    type string;
+    description
+      \"\";
+    reference
+      \"clause 2.10.1 of 3GPP TS 23.003\";
+  }
+
+  typedef AmfSetId {
+    type string;
+    description
+      \"\";
+    reference
+      \"clause 2.10.1 of 3GPP TS 23.003\";
+  }
+
+  typedef AmfPointer {
+    type string;
+    description
+      \"\";
+    reference
+      \"clause 2.10.1 of 3GPP TS 23.003\";
+  }
+
+  // type definitions especially for core NFs
+
+  typedef NfType {
+    type enumeration {
+      enum NRF {
+        description
+          \"TODO\";
+      }
+      enum UDM {
+        description
+          \"TODO\";
+      }
+      enum AMF {
+        description
+          \"TODO\";
+      }
+      enum SMF {
+        description
+          \"TODO\";
+      }
+      enum AUSF {
+        description
+          \"TODO\";
+      }
+      enum NEF {
+        description
+          \"TODO\";
+      }
+      enum PCF {
+        description
+          \"TODO\";
+      }
+      enum SMSF {
+        description
+          \"TODO\";
+      }
+      enum NSSF {
+        description
+          \"TODO\";
+      }
+      enum UDR {
+        description
+          \"TODO\";
+      }
+      enum LMF {
+        description
+          \"TODO\";
+      }
+      enum GMLC {
+        description
+          \"TODO\";
+      }
+      enum 5G_EIR {
+        description
+          \"TODO\";
+      }
+      enum SEPP {
+        description
+          \"TODO\";
+      }
+      enum UPF {
+        description
+          \"TODO\";
+      }
+      enum N3IWF {
+        description
+          \"TODO\";
+      }
+      enum AF {
+        description
+          \"TODO\";
+      }
+      enum UDSF {
+        description
+          \"TODO\";
+      }
+      enum BSF {
+        description
+          \"TODO\";
+      }
+      enum CHF {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+  }
+
+  typedef NotificationType {
+    type enumeration {
+      enum N1_MESSAGES {
+        description
+          \"TODO\";
+      }
+      enum N2_INFORMATION {
+        description
+          \"TODO\";
+      }
+      enum LOCATION_NOTIFICATION {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+  }
+
+  typedef Load {
+    type uint8 {
+      range \"0..100\";
+    }
+    description
+      \"Latest known load information of the NF, percentage \";
+  }
+
+  typedef N1MessageClass {
+    type enumeration {
+      enum 5GMM {
+        description
+          \"TODO\";
+      }
+      enum SM {
+        description
+          \"TODO\";
+      }
+      enum LPP {
+        description
+          \"TODO\";
+      }
+      enum SMS {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+  }
+
+  typedef N2InformationClass {
+    type enumeration {
+      enum SM {
+        description
+          \"TODO\";
+      }
+      enum NRPPA {
+        description
+          \"TODO\";
+      }
+      enum PWS {
+        description
+          \"TODO\";
+      }
+      enum PWS_BCAL {
+        description
+          \"TODO\";
+      }
+      enum PWS_RF {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef NsiId {
+    type string;
+    description
+      \"TODO\";
+  }
+
+  typedef UeMobilityLevel {
+    type enumeration {
+      enum STATIONARY {
+        description
+          \"TODO\";
+      }
+      enum NOMADIC {
+        description
+          \"TODO\";
+      }
+      enum RESTRICTED_MOBILITY {
+        description
+          \"TODO\";
+      }
+      enum FULLY_MOBILITY {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef ResourceSharingLevel {
+    type enumeration {
+      enum SHARED {
+        description
+          \"TODO\";
+      }
+      enum NOT_SHARED {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef TxDirection {
+    type enumeration {
+      enum DL {
+        description
+          \"TODO\";
+      }
+      enum UL {
+        description
+          \"TODO\";
+      }
+      enum DL_AND_UL {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef DistinguishedName { // TODO is this equivalent to TS 32.300 ?
+    type string;
+    description
+      \"Represents the international standard for the representation
+       of Distinguished Name (RFC 4512).
+       The format of the DistinguishedName REGEX is:
+       {AttributeType = AttributeValue}
+
+       AttributeType consists of alphanumeric and hyphen (OIDs not allowed).
+       All other characters are restricted.
+       The Attribute value cannot contain control characters or the
+       following characters : \ > < ; \" + , (Comma) and White space
+       The Attribute value can contain the following characters if they
+       are excaped : \ > < ; \" + , (Comma) and White space
+       The Attribute value can contain control characters if its an escaped
+       double digit hex number.
+       Examples could be
+       UID=nobody@example.com,DC=example,DC=com
+       CN=John Smith,OU=Sales,O=ACME Limited,L=Moab,ST=Utah,C=US\";
+    reference
+      \"RFC 4512 Lightweight Directory Access Protocol (LDAP):
+             Directory Information Models\";
+  } // recheck regexp it doesn''t handle posix [:cntrl:]
+
+  typedef QOffsetRange {
+    type int8;
+    units \"dB\";
+    description
+      \"TODO\";
+    reference
+      \"TODO\";
+  }
+
+  typedef QuotaType {
+    type enumeration {
+      enum STRICT {
+        description
+          \"TODO\";
+      }
+      enum FLOAT {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+  }
+
+  typedef CyclicPrefix {
+    type enumeration {
+      enum NORMAL {
+        description
+          \"TODO\";
+      }
+      enum EXTENDED {
+        description
+          \"TODO\";
+      }
+    }
+    description
+      \"TODO\";
+  }
+
+  grouping PLMNInfo {
+    description
+      \"The PLMNInfo data type define a S-NSSAI member in a specific PLMNId, and it have
+       two attributes PLMNId and S-NSSAI (PLMNId, S-NSSAI). The PLMNId represents a data type that
+       is comprised of mcc (mobile country code) and mnc (mobile network code), (See TS 23.003
+       subclause 2.2 and 12.1) and S-NSSAI represents an data type, that is comprised of an SST
+       (Slice/Service type) and an optional SD (Slice Differentiator) field, (See TS 23.003 [13]).\";
+    uses PLMNId;
+    list sNSSAIList {
+      key \"sNssai\";
+      uses sNSSAIConfig;
+      description \"List of sNSSAIs\";
+    }
+  }
+
+  grouping ManagedNFProfile {
+    description
+      \"Defines profile for managed NF\";
+    reference
+      \"3GPP TS 23.501\";
+    leaf idx {
+      type uint32;
+      description
+        \"TODO\";
+      reference
+        \"3GPP TS 23.501\";
+    }
+    leaf nfInstanceID {
+      type yang:uuid;
+      config false;
+      mandatory false;
+      description
+        \"This parameter defines profile for managed NF.
+         The format of the NF Instance ID shall be a
+         Universally Unique Identifier (UUID) version 4,
+         as described in IETF RFC 4122 \";
+    }
+    leaf-list nfType {
+      type NfType;
+      config false;
+      min-elements 1;
+      description
+        \"Type of the Network Function\";
+    }
+    leaf hostAddr {
+      type inet:host;
+      mandatory false;
+      description
+        \"Host address of a NF\";
+    }
+    leaf authzInfo {
+      type string;
+      description
+        \"This parameter defines NF Specific Service authorization
+         information. It shall include the NF type (s) and NF realms/origins
+         allowed to consume NF Service(s) of NF Service Producer.\";
+      reference
+        \"See TS 23.501\";
+    }
+    leaf location {
+      type string;
+      description
+        \"Information about the location of the NF instance
+         (e.g. geographic location, data center) defined by operator\";
+      reference
+        \"TS 29.510\";
+    }
+    leaf capacity {
+      type uint16;
+      mandatory false;
+      description
+        \"This parameter defines static capacity information
+         in the range of 0-65535, expressed as a weight relative to other
+         NF instances of the same type; if capacity is also present in the
+         nfServiceList parameters, those will have precedence over this value.\";
+      reference
+        \"TS 29.510\";
+    }
+    leaf nFSrvGroupId {
+      type string;
+      description
+        \"This parameter defines identity of the group that is
+         served by the NF instance.
+         May be config false or true depending on the ManagedFunction.
+         Config=true for Udrinfo. Config=false for UdmInfo and AusfInfo.
+         Shall be present if ../nfType = UDM or AUSF or UDR. \";
+      reference
+        \"TS 29.510\";
+    }
+    leaf-list supportedDataSetIds {
+      type enumeration {
+        enum SUBSCRIPTION {
+          description
+            \"TODO\";
+        }
+        enum POLICY {
+          description
+            \"TODO\";
+        }
+        enum EXPOSURE {
+          description
+            \"TODO\";
+        }
+        enum APPLICATION {
+          description
+            \"TODO\";
+        }
+      }
+      description
+        \"List of supported data sets in the UDR instance.
+         May be present if ../nfType = UDR\";
+      reference
+        \"TS 29.510\";
+    }
+    leaf-list smfServingAreas {
+      type string;
+      description
+        \"Defines the SMF service area(s) the UPF can serve.
+         Shall be present if ../nfType = UPF\";
+      reference
+        \"TS 29.510\";
+    }
+    leaf priority {
+      type uint16;
+      description
+        \"This parameter defines Priority (relative to other NFs
+         of the same type) in the range of 0-65535, to be used for NF selection;
+         lower values indicate a higher priority. If priority is also present
+         in the nfServiceList parameters, those will have precedence over
+         this value. Shall be present if ../nfType = AMF \";
+      reference
+        \"TS 29.510\";
+    }
+  }
+
+
+  grouping PLMNId {
+    description
+      \"TODO\";
+    reference
+      \"TS 23.658\";
+    leaf mcc {
+      type Mcc;
+      mandatory true;
+      description
+        \"TODO\";
+    }
+    leaf mnc {
+      type Mnc;
+      mandatory true;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping AmfIdentifier {
+    description
+      \"The AMFI is constructed from an AMF Region ID,
+       an AMF Set ID and an AMF Pointer.
+       The AMF Region ID identifies the region,
+       the AMF Set ID uniquely identifies the AMF Set within the AMF Region, and
+       the AMF Pointer uniquely identifies the AMF within the AMF Set. \";
+    leaf amfRegionId {
+      type AmfRegionId;
+      description
+        \"TODO\";
+    }
+    leaf amfSetId {
+      type AmfSetId;
+      description
+        \"TODO\";
+    }
+    leaf amfPointer {
+      type AmfPointer;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping DefaultNotificationSubscription {
+    description
+      \"TODO\";
+    leaf notificationType {
+      type NotificationType;
+      description
+        \"TODO\";
+    }
+    leaf callbackUri {
+      type inet:uri;
+      description
+        \"TODO\";
+    }
+    leaf n1MessageClass {
+      type N1MessageClass;
+      description
+        \"TODO\";
+    }
+    leaf n2InformationClass {
+      type N2InformationClass;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping Ipv4AddressRange {
+    description
+      \"TODO\";
+    leaf start {
+      type inet:ipv4-address;
+      description
+        \"TODO\";
+    }
+    leaf end {
+      type inet:ipv4-address;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping Ipv6PrefixRange {
+    description
+      \"TODO\";
+    leaf start {
+      type inet:ipv6-prefix;
+      description
+        \"TODO\";
+    }
+    leaf end {
+      type inet:ipv6-prefix;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping AddressWithVlan {
+    description
+      \"TODO\";
+    leaf ipAddress {
+      type inet:ip-address;
+      description
+        \"TODO\";
+    }
+    leaf vlanId {
+      type uint16;
+      description
+        \"TODO\";
+    }
+  }
+
+  grouping ManagedElementGroup {
+    description
+      \"Abstract class representing telecommunications resources.\";
+    leaf dnPrefix {
+      type DistinguishedName;
+      description
+        \"Provides naming context and splits the DN into a DN Prefix and Local DN\";
+    }
+    leaf userLabel {
+      type string;
+      description
+        \"A user-friendly name of this object.\";
+    }
+    leaf locationName {
+      type string;
+      config false;
+      description
+        \"The physical location (e.g. an address) of an entity\";
+    }
+    leaf-list managedBy {
+      type DistinguishedName;
+      config false;
+      description
+        \"Relates to the role played by ManagementSystem\";
+    }
+    leaf-list managedElementTypeList {
+      type string;
+      config false;
+      min-elements 1;
+      description
+        \"The type of functionality provided by the ManagedElement.
+         It may represent one ME functionality or a combination of
+         Two examples of allowed values are:
+         -  NodeB;
+         -  HLR, VLR.\";
+    }
+  } // Managed Element grouping
+
+  grouping NearRTRICGroup {
+    description
+      \"Abstract class representing Near RT RIC.\";
+    leaf dnPrefix {
+      type DistinguishedName;
+      description
+        \"Provides naming context and splits the DN into a DN Prefix and Local DN\";
+    }
+    leaf userLabel {
+      type string;
+      description
+        \"A user-friendly name of this object.\";
+    }
+    leaf locationName {
+      type string;
+      config false;
+      description
+        \"The physical location (e.g. an address) of an entity\";
+    }
+    leaf gNBId {
+          type int64 { range \"0..4294967295\"; }
+          config false;
+          description \"Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
+            is part of the NR Cell Identifier (NCI) of the gNB cells.\";
+          reference \"gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+        }
+
+  	list pLMNInfoList {
+          uses PLMNInfo;
+          key \"mcc mnc\";
+          description \"The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that can be served by the nearRTRIC.\";
+        }
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+
+  } // Near RT RIC grouping
+
+
+
+  	grouping Configuration{
+  		leaf configParameter{
+  			type string;
+  			description \"Type of the configuration parameter\";
+        }
+  		leaf configValue{
+  			type int64;
+  			description \"Identifies the configuration to be done for the network elements under the NearRTRIC\";
+
+  		}
+  	}
+
+
+  grouping GNBDUFunctionGroup {
+    description
+      \"Represents the GNBDUFunction IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+
+    leaf gNBId {
+      type int64 {
+        range \"0..4294967295\";
+      }
+      config false;
+      mandatory false;
+      description
+        \"Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
+         is part of the NR Cell Identifier (NCI) of the gNB cells.\";
+      reference
+        \"gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+    }
+    leaf gNBIdLength {
+      type int32 {
+        range \"22..32\";
+      }
+      mandatory false;
+      description
+        \"Indicates the number of bits for encoding the gNB ID.\";
+      reference
+        \"gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+    }
+    leaf gNBDUId {
+      type int64 {
+        range \"0..68719476735\";
+      }
+      mandatory false;
+      description
+        \"Uniquely identifies the DU at least within a gNB.\";
+      reference
+        \"3GPP TS 38.473\";
+    }
+    leaf gNBDUName {
+      type string {
+        length \"1..150\";
+      }
+      description
+        \"Identifies the Distributed Unit of an NR node\";
+      reference
+        \"3GPP TS 38.473\";
+    }
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+  }
+
+  grouping NRCellDUGroup {
+    description
+      \"Represents the NRCellDU IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+    leaf cellLocalId {
+      type int32 {
+        range \"0..16383\";
+      }
+      mandatory false;
+      description
+        \"Identifies an NR cell of a gNB. Together with the
+         corresponding gNB identifier in forms the NR Cell Identity (NCI).\";
+      reference
+        \"NCI in 3GPP TS 38.300\";
+    }
+    list pLMNInfoList {
+      key \"mcc mnc\";
+      min-elements 1;
+      description
+        \"The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that
+         can be served by the NR cell, and which S-NSSAIs that can be supported by the NR cell for
+         corresponding PLMN in case of network slicing feature is supported. The plMNId of the first
+         entry of the list is the PLMNId used to construct the nCGI for the NR cell.\";
+      uses PLMNInfo;
+    }
+    leaf nRPCI {
+      type int32 {
+        range \"0..1007\";
+      }
+      mandatory false;
+      description
+        \"The Physical Cell Identity (PCI) of the NR cell.\";
+      reference
+        \"3GPP TS 36.211\";
+    }
+    leaf nRTAC {
+      type Tac;
+      description
+        \"The common 5GS Tracking Area Code for the PLMNs.\";
+      reference
+        \"3GPP TS 23.003, 3GPP TS 38.473\";
+    }
+  } // grouping
+
+  grouping rRMPolicyMemberGroup {
+    description
+      \"TODO\";
+    uses PLMNId;
+    leaf sNSSAI {
+      type SNssai;
+      description
+        \"This data type represents an RRM Policy member that will be part of a
+         rRMPolicyMemberList. A RRMPolicyMember is defined by its pLMNId and sNSSAI (S-NSSAI).
+         The members in a rRMPolicyMemberList are assigned a specific amount of RRM resources
+         based on settings in RRMPolicy.\";
+    }
+  }
+
+  grouping RRMPolicyRatioGroup {
+
+    uses RRMPolicy_Group;    // Inherits RRMPolicy_
+
+    leaf quotaType {
+      type QuotaType;
+      mandatory false;
+      description \"The type of the quota which allows to allocate resources as
+        strictly usable for defined slice(s) (strict quota) or allows that
+        resources to be used by other slice(s) when defined slice(s) do not
+        need them (float quota).\";
+    }
+
+    leaf rRMPolicyMaxRatio {
+      type uint8;
+      mandatory false;
+      units percent;
+      description \"The RRM policy setting the maximum percentage of radio
+        resources to be allocated to the corresponding S-NSSAI list. This
+        quota can be strict or float quota. Strict quota means resources are
+        not allowed for other sNSSAIs even when they are not used by the
+        defined sNSSAIList. Float quota resources can be used by other sNSSAIs
+        when the defined sNSSAIList do not need them. Value 0 indicates that
+        there is no maximum limit.\";
+    }
+
+    leaf rRMPolicyMinRatio {
+      type uint8;
+      mandatory false;
+      units percent;
+      description \"The RRM policy setting the minimum percentage of radio
+        resources to be allocated to the corresponding S-NSSAI list. This
+        quota can be strict or float quota. Strict quota means resources are
+        not allowed for other sNSSAIs even when they are not used by the
+        defined sNSSAIList. Float quota resources can be used by other sNSSAIs
+        when the defined sNSSAIList do not need them. Value 0 indicates that
+        there is no minimum limit.\";
+    }
+    leaf rRMPolicyDedicatedRatio {
+      type uint8;
+      units percent;
+      description \"Dedicated Ration.\";
+      }
+    description \"Represents the RRMPolicyRatio concrete IOC.\";
+    }
+
+
+  grouping sNSSAIConfig{
+	leaf sNssai {
+        type string;
+        description \"s-NSSAI of a network slice.\";
+	   reference \"3GPP TS 23.003\";
+      }
+ 	 leaf status {
+        type string;
+        description \"status of s-NSSAI\";
+      }
+	list configData{
+		uses Configuration;
+		key \"configParameter\";
+		description \"List of configurations to be done at the network elements\";
+	}
+	}
+
+  grouping RRMPolicy_Group {
+    description
+      \"This IOC represents the properties of an abstract RRMPolicy. The RRMPolicy_ IOC
+       needs to be subclassed to be instantiated. It defines two attributes apart from those
+       inherited from Top IOC, the resourceType attribute defines type of resource (PRB, RRC
+       connected users, DRB usage etc.) and the rRMPolicyMemberList attribute defines the
+       RRMPolicyMember(s)that are subject to this policy. An RRM resource (defined in resourceType
+       attribute) is located in NRCellDU, NRCellCU, GNBDUFunction, GNBCUCPFunction or in
+       GNBCUUPFunction. The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+       inheritance in TS 28.541 Figure 4.2.1.2-1. This RRM framework allows adding new policies,
+       both standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+       abstract RRMPolicy_ IOC.\";
+    leaf resourceType {
+      type string;
+      mandatory false;
+      description
+        \"The resourceType attribute defines type of resource (PRB, RRC connected users,
+         DRB usage etc.) that is subject to policy. Valid values are ''PRB'', ''RRC'' or ''DRB''\";
+    }
+    list rRMPolicyMemberList {
+      key \"idx\";
+      leaf idx {
+        type uint32;
+        description
+          \"TODO\";
+      }
+      description
+        \"It represents the list of RRMPolicyMember (s) that the managed object
+         is supporting. A RRMPolicyMember <<dataType>> include the PLMNId <<dataType>>
+         and S-NSSAI <<dataType>>.\";
+      uses rRMPolicyMemberGroup;
+    }
+  } // grouping
+
+  grouping GNBCUUPFunctionGroup {
+    description
+      \"Represents the GNBCUUPFunction IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+    leaf gNBCUUPId {
+      type uint64 {
+        range \"0..68719476735\";
+      }
+      config false;
+      mandatory false;
+      description
+        \"Identifies the gNB-CU-UP at least within a gNB-CU-CP\";
+      reference
+        \"''gNB-CU-UP ID'' in subclause 9.3.1.15 of 3GPP TS 38.463\";
+    }
+    leaf gNBId {
+      type int64 {
+      range \"0..4294967295\";
+    }
+      mandatory false;
+      description
+        \"Indicates the number of bits for encoding the gNB Id.\";
+      reference
+        \"gNB Id in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+    }
+    list pLMNInfoList {
+      key \"mcc mnc\";
+      description
+        \"The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that
+         can be served by the GNBCUUPFunction and which S-NSSAIs can be supported by the
+         GNBCUUPFunction for corresponding PLMN in case of network slicing feature is supported\";
+      uses PLMNInfo;
+    }
+  } // grouping
+
+  grouping GNBCUCPFunctionGroup {
+    description
+      \"Represents the GNBCUCPFunction IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+    leaf gNBId {
+      type int64 {
+        range \"0..4294967295\";
+      }
+      mandatory false;
+      description
+        \"Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
+         is part of the NR Cell Identifier (NCI) of the gNB cells.\";
+      reference
+        \"gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+    }
+    leaf gNBIdLength {
+      type int32 {
+        range \"22..32\";
+      }
+      mandatory false;
+      description
+        \"Indicates the number of bits for encoding the gNB ID.\";
+      reference
+        \"gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413\";
+    }
+    leaf gNBCUName {
+      type string {
+        length \"1..150\";
+      }
+      mandatory false;
+      description
+        \"Identifies the Central Unit of an gNB.\";
+      reference
+        \"3GPP TS 38.473\";
+    }
+    list pLMNId {
+      key \"mcc mnc\";
+      min-elements 1;
+      max-elements 1;
+      description
+        \"The PLMN identifier to be used as part of the global RAN
+         node identity.\";
+      uses PLMNId;
+    }
+  } // grouping
+
+  grouping NRCellCUGroup {
+    description
+      \"Represents the NRCellCU IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+    leaf cellLocalId {
+      type int32 {
+        range \"0..16383\";
+      }
+      mandatory false;
+      description
+        \"Identifies an NR cell of a gNB. Together with corresponding
+         gNB ID it forms the NR Cell Identifier (NCI).\";
+    }
+    list pLMNInfoList {
+      key \"mcc mnc\";
+      min-elements 1;
+      description
+        \"The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs
+         that can be served by the NR cell, and which S-NSSAIs that can be supported by the
+         NR cell for corresponding PLMN in case of network slicing feature is supported.\";
+      uses PLMNInfo;
+      // Note: Whether the attribute pLMNId in the pLMNInfo can be writable depends on the implementation.
+    }
+    list RRMPolicyRatio {
+      key id;
+      leaf id {
+        type string;
+        description
+          \"Key leaf\";
+      }
+      container attributes {
+        uses RRMPolicyRatioGroup;
+      }
+      description \" The RRMPolicyRatio IOC is one realization of a RRMPolicy_ IOC, see the
+        inheritance in Figure 4.2.1.2-1. This RRM framework allows adding new policies, both
+        standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
+        abstract RRMPolicy_ IOC. For details see subclause 4.3.36.\";
+    }
+  } // grouping NRCellCUGroup
+
+  grouping NRCellRelationGroup {
+    description
+      \"Represents the NRCellRelation IOC.\";
+    reference
+      \"3GPP TS 28.541\";
+    leaf nRTCI {
+      type uint64;
+      description
+        \"Target NR Cell Identifier. It consists of NR Cell
+         Identifier (NCI) and Physical Cell Identifier of the target NR cell
+         (nRPCI).\";
+    "|0337045143fa2e592243243f82699b93
+ietf-yang-types.yang|"module ietf-yang-types {
+
+  namespace \"urn:ietf:params:xml:ns:yang:ietf-yang-types\";
+  prefix \"yang\";
+
+  organization
+   \"IETF NETMOD (NETCONF Data Modeling Language) Working Group\";
+
+  contact
+   \"WG Web:   <http://tools.ietf.org/wg/netmod/>
+    WG List:  <mailto:netmod@ietf.org>
+
+    WG Chair: David Kessens
+              <mailto:david.kessens@nsn.com>
+
+    WG Chair: Juergen Schoenwaelder
+              <mailto:j.schoenwaelder@jacobs-university.de>
+
+    Editor:   Juergen Schoenwaelder
+              <mailto:j.schoenwaelder@jacobs-university.de>\";
+
+  description
+   \"This module contains a collection of generally useful derived
+    YANG data types.
+
+    Copyright (c) 2013 IETF Trust and the persons identified as
+    authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Simplified BSD License
+    set forth in Section 4.c of the IETF Trust''s Legal Provisions
+    Relating to IETF Documents
+    (http://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC 6991; see
+    the RFC itself for full legal notices.\";
+
+  revision 2013-07-15 {
+    description
+     \"This revision adds the following new data types:
+      - yang-identifier
+      - hex-string
+      - uuid
+      - dotted-quad\";
+    reference
+     \"RFC 6991: Common YANG Data Types\";
+  }
+
+  revision 2010-09-24 {
+    description
+     \"Initial revision.\";
+    reference
+     \"RFC 6021: Common YANG Data Types\";
+  }
+
+  /*** collection of counter and gauge types ***/
+
+  typedef counter32 {
+    type uint32;
+    description
+     \"The counter32 type represents a non-negative integer
+      that monotonically increases until it reaches a
+      maximum value of 2^32-1 (4294967295 decimal), when it
+      wraps around and starts increasing again from zero.
+
+      Counters have no defined ''initial'' value, and thus, a
+      single value of a counter has (in general) no information
+      content.  Discontinuities in the monotonically increasing
+      value normally occur at re-initialization of the
+      management system, and at other times as specified in the
+      description of a schema node using this type.  If such
+      other times can occur, for example, the creation of
+      a schema node of type counter32 at times other than
+      re-initialization, then a corresponding schema node
+      should be defined, with an appropriate type, to indicate
+      the last discontinuity.
+
+      The counter32 type should not be used for configuration
+      schema nodes.  A default statement SHOULD NOT be used in
+      combination with the type counter32.
+
+      In the value set and its semantics, this type is equivalent
+      to the Counter32 type of the SMIv2.\";
+    reference
+     \"RFC 2578: Structure of Management Information Version 2
+                (SMIv2)\";
+  }
+
+  typedef zero-based-counter32 {
+    type yang:counter32;
+    default \"0\";
+    description
+     \"The zero-based-counter32 type represents a counter32
+      that has the defined ''initial'' value zero.
+
+      A schema node of this type will be set to zero (0) on creation
+      and will thereafter increase monotonically until it reaches
+      a maximum value of 2^32-1 (4294967295 decimal), when it
+      wraps around and starts increasing again from zero.
+
+      Provided that an application discovers a new schema node
+      of this type within the minimum time to wrap, it can use the
+      ''initial'' value as a delta.  It is important for a management
+      station to be aware of this minimum time and the actual time
+      between polls, and to discard data if the actual time is too
+      long or there is no defined minimum time.
+
+      In the value set and its semantics, this type is equivalent
+      to the ZeroBasedCounter32 textual convention of the SMIv2.\";
+    reference
+      \"RFC 4502: Remote Network Monitoring Management Information
+                 Base Version 2\";
+  }
+
+  typedef counter64 {
+    type uint64;
+    description
+     \"The counter64 type represents a non-negative integer
+      that monotonically increases until it reaches a
+      maximum value of 2^64-1 (18446744073709551615 decimal),
+      when it wraps around and starts increasing again from zero.
+
+      Counters have no defined ''initial'' value, and thus, a
+      single value of a counter has (in general) no information
+      content.  Discontinuities in the monotonically increasing
+      value normally occur at re-initialization of the
+      management system, and at other times as specified in the
+      description of a schema node using this type.  If such
+      other times can occur, for example, the creation of
+      a schema node of type counter64 at times other than
+      re-initialization, then a corresponding schema node
+      should be defined, with an appropriate type, to indicate
+      the last discontinuity.
+
+      The counter64 type should not be used for configuration
+      schema nodes.  A default statement SHOULD NOT be used in
+      combination with the type counter64.
+
+      In the value set and its semantics, this type is equivalent
+      to the Counter64 type of the SMIv2.\";
+    reference
+     \"RFC 2578: Structure of Management Information Version 2
+                (SMIv2)\";
+  }
+
+  typedef zero-based-counter64 {
+    type yang:counter64;
+    default \"0\";
+    description
+     \"The zero-based-counter64 type represents a counter64 that
+      has the defined ''initial'' value zero.
+
+
+
+
+      A schema node of this type will be set to zero (0) on creation
+      and will thereafter increase monotonically until it reaches
+      a maximum value of 2^64-1 (18446744073709551615 decimal),
+      when it wraps around and starts increasing again from zero.
+
+      Provided that an application discovers a new schema node
+      of this type within the minimum time to wrap, it can use the
+      ''initial'' value as a delta.  It is important for a management
+      station to be aware of this minimum time and the actual time
+      between polls, and to discard data if the actual time is too
+      long or there is no defined minimum time.
+
+      In the value set and its semantics, this type is equivalent
+      to the ZeroBasedCounter64 textual convention of the SMIv2.\";
+    reference
+     \"RFC 2856: Textual Conventions for Additional High Capacity
+                Data Types\";
+  }
+
+  typedef gauge32 {
+    type uint32;
+    description
+     \"The gauge32 type represents a non-negative integer, which
+      may increase or decrease, but shall never exceed a maximum
+      value, nor fall below a minimum value.  The maximum value
+      cannot be greater than 2^32-1 (4294967295 decimal), and
+      the minimum value cannot be smaller than 0.  The value of
+      a gauge32 has its maximum value whenever the information
+      being modeled is greater than or equal to its maximum
+      value, and has its minimum value whenever the information
+      being modeled is smaller than or equal to its minimum value.
+      If the information being modeled subsequently decreases
+      below (increases above) the maximum (minimum) value, the
+      gauge32 also decreases (increases).
+
+      In the value set and its semantics, this type is equivalent
+      to the Gauge32 type of the SMIv2.\";
+    reference
+     \"RFC 2578: Structure of Management Information Version 2
+                (SMIv2)\";
+  }
+
+  typedef gauge64 {
+    type uint64;
+    description
+     \"The gauge64 type represents a non-negative integer, which
+      may increase or decrease, but shall never exceed a maximum
+      value, nor fall below a minimum value.  The maximum value
+      cannot be greater than 2^64-1 (18446744073709551615), and
+      the minimum value cannot be smaller than 0.  The value of
+      a gauge64 has its maximum value whenever the information
+      being modeled is greater than or equal to its maximum
+      value, and has its minimum value whenever the information
+      being modeled is smaller than or equal to its minimum value.
+      If the information being modeled subsequently decreases
+      below (increases above) the maximum (minimum) value, the
+      gauge64 also decreases (increases).
+
+      In the value set and its semantics, this type is equivalent
+      to the CounterBasedGauge64 SMIv2 textual convention defined
+      in RFC 2856\";
+    reference
+     \"RFC 2856: Textual Conventions for Additional High Capacity
+                Data Types\";
+  }
+
+  /*** collection of identifier-related types ***/
+
+  typedef object-identifier {
+    type string {
+      pattern ''(([0-1](.[1-3]?[0-9]))|(2.(0|([1-9]d*))))''
+            + ''(.(0|([1-9]d*)))*'';
+    }
+    description
+     \"The object-identifier type represents administratively
+      assigned names in a registration-hierarchical-name tree.
+
+      Values of this type are denoted as a sequence of numerical
+      non-negative sub-identifier values.  Each sub-identifier
+      value MUST NOT exceed 2^32-1 (4294967295).  Sub-identifiers
+      are separated by single dots and without any intermediate
+      whitespace.
+
+      The ASN.1 standard restricts the value space of the first
+      sub-identifier to 0, 1, or 2.  Furthermore, the value space
+      of the second sub-identifier is restricted to the range
+      0 to 39 if the first sub-identifier is 0 or 1.  Finally,
+      the ASN.1 standard requires that an object identifier
+      has always at least two sub-identifiers.  The pattern
+      captures these restrictions.
+
+      Although the number of sub-identifiers is not limited,
+      module designers should realize that there may be
+      implementations that stick with the SMIv2 limit of 128
+      sub-identifiers.
+
+      This type is a superset of the SMIv2 OBJECT IDENTIFIER type
+      since it is not restricted to 128 sub-identifiers.  Hence,
+      this type SHOULD NOT be used to represent the SMIv2 OBJECT
+      IDENTIFIER type; the object-identifier-128 type SHOULD be
+      used instead.\";
+    reference
+     \"ISO9834-1: Information technology -- Open Systems
+      Interconnection -- Procedures for the operation of OSI
+      Registration Authorities: General procedures and top
+      arcs of the ASN.1 Object Identifier tree\";
+  }
+
+  typedef object-identifier-128 {
+    type object-identifier {
+      pattern ''d*(.d*){1,127}'';
+    }
+    description
+     \"This type represents object-identifiers restricted to 128
+      sub-identifiers.
+
+      In the value set and its semantics, this type is equivalent
+      to the OBJECT IDENTIFIER type of the SMIv2.\";
+    reference
+     \"RFC 2578: Structure of Management Information Version 2
+                (SMIv2)\";
+  }
+
+  typedef yang-identifier {
+    type string {
+      length \"1..max\";
+      pattern ''[a-zA-Z_][a-zA-Z0-9-_.]*'';
+      pattern ''.|..|[^xX].*|.[^mM].*|..[^lL].*'';
+    }
+    description
+      \"A YANG identifier string as defined by the ''identifier''
+       rule in Section 12 of RFC 6020.  An identifier must
+       start with an alphabetic character or an underscore
+       followed by an arbitrary sequence of alphabetic or
+       numeric characters, underscores, hyphens, or dots.
+
+       A YANG identifier MUST NOT start with any possible
+       combination of the lowercase or uppercase character
+       sequence ''xml''.\";
+    reference
+      \"RFC 6020: YANG - A Data Modeling Language for the Network
+                 Configuration Protocol (NETCONF)\";
+  }
+
+  /*** collection of types related to date and time***/
+
+  typedef date-and-time {
+    type string {
+      pattern ''d{4}-d{2}-d{2}Td{2}:d{2}:d{2}(.d+)?''
+            + ''(Z|[+-]d{2}:d{2})'';
+    }
+    description
+     \"The date-and-time type is a profile of the ISO 8601
+      standard for representation of dates and times using the
+      Gregorian calendar.  The profile is defined by the
+      date-time production in Section 5.6 of RFC 3339.
+
+      The date-and-time type is compatible with the dateTime XML
+      schema type with the following notable exceptions:
+
+      (a) The date-and-time type does not allow negative years.
+
+      (b) The date-and-time time-offset -00:00 indicates an unknown
+          time zone (see RFC 3339) while -00:00 and +00:00 and Z
+          all represent the same time zone in dateTime.
+
+      (c) The canonical format (see below) of data-and-time values
+          differs from the canonical format used by the dateTime XML
+          schema type, which requires all times to be in UTC using
+          the time-offset ''Z''.
+
+      This type is not equivalent to the DateAndTime textual
+      convention of the SMIv2 since RFC 3339 uses a different
+      separator between full-date and full-time and provides
+      higher resolution of time-secfrac.
+
+      The canonical format for date-and-time values with a known time
+      zone uses a numeric time zone offset that is calculated using
+      the device''s configured known offset to UTC time.  A change of
+      the device''s offset to UTC time will cause date-and-time values
+      to change accordingly.  Such changes might happen periodically
+      in case a server follows automatically daylight saving time
+      (DST) time zone offset changes.  The canonical format for
+      date-and-time values with an unknown time zone (usually
+      referring to the notion of local time) uses the time-offset
+      -00:00.\";
+    reference
+     \"RFC 3339: Date and Time on the Internet: Timestamps
+      RFC 2579: Textual Conventions for SMIv2
+      XSD-TYPES: XML Schema Part 2: Datatypes Second Edition\";
+  }
+
+  typedef timeticks {
+    type uint32;
+    description
+     \"The timeticks type represents a non-negative integer that
+      represents the time, modulo 2^32 (4294967296 decimal), in
+      hundredths of a second between two epochs.  When a schema
+      node is defined that uses this type, the description of
+      the schema node identifies both of the reference epochs.
+
+      In the value set and its semantics, this type is equivalent
+      to the TimeTicks type of the SMIv2.\";
+    reference
+     \"RFC 2578: Structure of Management Information Version 2
+                (SMIv2)\";
+  }
+
+  typedef timestamp {
+    type yang:timeticks;
+    description
+     \"The timestamp type represents the value of an associated
+      timeticks schema node at which a specific occurrence
+      happened.  The specific occurrence must be defined in the
+      description of any schema node defined using this type.  When
+      the specific occurrence occurred prior to the last time the
+      associated timeticks attribute was zero, then the timestamp
+      value is zero.  Note that this requires all timestamp values
+      to be reset to zero when the value of the associated timeticks
+      attribute reaches 497+ days and wraps around to zero.
+
+      The associated timeticks schema node must be specified
+      in the description of any schema node using this type.
+
+      In the value set and its semantics, this type is equivalent
+      to the TimeStamp textual convention of the SMIv2.\";
+    reference
+     \"RFC 2579: Textual Conventions for SMIv2\";
+  }
+
+  /*** collection of generic address types ***/
+
+  typedef phys-address {
+    type string {
+      pattern ''([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?'';
+    }
+
+
+
+
+    description
+     \"Represents media- or physical-level addresses represented
+      as a sequence octets, each octet represented by two hexadecimal
+      numbers.  Octets are separated by colons.  The canonical
+      representation uses lowercase characters.
+
+      In the value set and its semantics, this type is equivalent
+      to the PhysAddress textual convention of the SMIv2.\";
+    reference
+     \"RFC 2579: Textual Conventions for SMIv2\";
+  }
+
+  typedef mac-address {
+    type string {
+      pattern ''[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}'';
+    }
+    description
+     \"The mac-address type represents an IEEE 802 MAC address.
+      The canonical representation uses lowercase characters.
+
+      In the value set and its semantics, this type is equivalent
+      to the MacAddress textual convention of the SMIv2.\";
+    reference
+     \"IEEE 802: IEEE Standard for Local and Metropolitan Area
+                Networks: Overview and Architecture
+      RFC 2579: Textual Conventions for SMIv2\";
+  }
+
+  /*** collection of XML-specific types ***/
+
+  typedef xpath1.0 {
+    type string;
+    description
+     \"This type represents an XPATH 1.0 expression.
+
+      When a schema node is defined that uses this type, the
+      description of the schema node MUST specify the XPath
+      context in which the XPath expression is evaluated.\";
+    reference
+     \"XPATH: XML Path Language (XPath) Version 1.0\";
+  }
+
+  /*** collection of string types ***/
+
+  typedef hex-string {
+    type string {
+      pattern ''([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?'';
+    }
+    description
+     \"A hexadecimal string with octets represented as hex digits
+      separated by colons.  The canonical representation uses
+      lowercase characters.\";
+  }
+
+  typedef uuid {
+    type string {
+      pattern ''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-''
+            + ''[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'';
+    }
+    description
+     \"A Universally Unique IDentifier in the string representation
+      defined in RFC 4122.  The canonical representation uses
+      lowercase characters.
+
+      The following is an example of a UUID in string representation:
+      f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+      \";
+    reference
+     \"RFC 4122: A Universally Unique IDentifier (UUID) URN
+                Namespace\";
+  }
+
+  typedef dotted-quad {
+    type string {
+      pattern
+        ''(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).){3}''
+      + ''([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])'';
+    }
+    description
+      \"An unsigned 32-bit number expressed in the dotted-quad
+       notation, i.e., four octets written as decimal numbers
+       and separated with the ''.'' (full stop) character.\";
+  }
+}"|57d603ee9ab0c49355ad0695c0709c93

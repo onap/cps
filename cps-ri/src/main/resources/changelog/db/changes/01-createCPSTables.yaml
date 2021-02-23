@@ -1,0 +1,560 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-1
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: anchor_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: TEXT
+              - column:
+                  name: schema_set_id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: dataspace_id
+                  type: INTEGER
+            tableName: anchor
+  - changeSet:
+      id: 1-2
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: from_fragment_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: to_fragment_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: relation_type_id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: from_rel_xpath
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: to_rel_xpath
+                  type: TEXT
+            tableName: relation
+  - changeSet:
+      id: 1-3
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: relation_type
+                  type: TEXT
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: relation_type_pkey
+                  name: id
+                  type: INTEGER
+            tableName: relation_type
+  - changeSet:
+      id: 1-4
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: fragment_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: xpath
+                  type: TEXT
+              - column:
+                  name: attributes
+                  type: JSONB
+              - column:
+                  name: anchor_id
+                  type: BIGINT
+              - column:
+                  name: parent_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: dataspace_id
+                  type: INTEGER
+              - column:
+                  name: schema_node_id
+                  type: INTEGER
+            tableName: fragment
+  - changeSet:
+      id: 1-5
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: schema_set_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: dataspace_id
+                  type: BIGINT
+            tableName: schema_set
+  - changeSet:
+      id: 1-6
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: yang_resource_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: content
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: checksum
+                  type: TEXT
+            tableName: yang_resource
+  - changeSet:
+      id: 1-7
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: dataspace_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: TEXT
+            tableName: dataspace
+  - changeSet:
+      id: 1-8
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: schema_node_identifier
+                  type: TEXT
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: schema_node_pkey
+                  name: id
+                  type: INTEGER
+            tableName: schema_node
+  - changeSet:
+      id: 1-9
+      author: cps
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: schema_set_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: yang_resource_id
+                  type: BIGINT
+            tableName: schema_set_yang_resources
+  - changeSet:
+      id: 1-10
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: schema_set_id
+            indexName: FKI_ANCHOR_SCHEMA_SET_ID_FK
+            tableName: anchor
+  - changeSet:
+      id: 1-11
+      author: cps
+      changes:
+        - addUniqueConstraint:
+            columnNames: dataspace_id, name
+            constraintName: anchor_dataspace_id_name_key
+            tableName: anchor
+  - changeSet:
+      id: 1-12
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: anchor_id
+            baseTableName: fragment
+            constraintName: fragment_anchor_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: anchor
+            validate: true
+  - changeSet:
+      id: 1-13
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: from_fragment_id
+            indexName: FKI_RELATIONS_FROM_ID_FK
+            tableName: relation
+  - changeSet:
+      id: 1-14
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: to_fragment_id
+            indexName: FKI_RELATIONS_TO_ID_FK
+            tableName: relation
+  - changeSet:
+      id: 1-15
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: relation_type_id
+            indexName: FKI_RELATION_TYPE_ID_FK
+            tableName: relation
+  - changeSet:
+      id: 1-16
+      author: cps
+      changes:
+        - addPrimaryKey:
+            columnNames: to_fragment_id, from_fragment_id, relation_type_id
+            constraintName: relation_pkey
+            tableName: relation
+  - changeSet:
+      id: 1-17
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: anchor_id
+            indexName: FKI_FRAGMENT_ANCHOR_ID_FK
+            tableName: fragment
+  - changeSet:
+      id: 1-18
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: dataspace_id
+            indexName: FKI_FRAGMENT_DATASPACE_ID_FK
+            tableName: fragment
+  - changeSet:
+      id: 1-19
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: FKI_FRAGMENT_PARENT_ID_FK
+            tableName: fragment
+  - changeSet:
+      id: 1-20
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: schema_node_id
+            indexName: FKI_SCHEMA_NODE_ID_TO_ID
+            tableName: fragment
+  - changeSet:
+      id: 1-21
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: xpath
+              - column:
+                  name: dataspace_id
+            indexName: UQ_FRAGMENT_XPATH
+            tableName: fragment
+            unique: true
+  - changeSet:
+      id: 1-22
+      author: cps
+      changes:
+        - addUniqueConstraint:
+            columnNames: dataspace_id, anchor_id, xpath
+            constraintName: fragment_dataspace_id_anchor_id_xpath_key
+            tableName: fragment
+  - changeSet:
+      id: 1-23
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: from_fragment_id
+            baseTableName: relation
+            constraintName: relation_from_fragment_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: fragment
+            validate: true
+  - changeSet:
+      id: 1-24
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: to_fragment_id
+            baseTableName: relation
+            constraintName: relation_to_fragment_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: fragment
+            validate: true
+  - changeSet:
+      id: 1-25
+      author: cps
+      changes:
+        - addUniqueConstraint:
+            columnNames: name, dataspace_id
+            constraintName: schema_set_name_dataspace_id_key
+            tableName: schema_set
+  - changeSet:
+      id: 1-26
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: schema_set_id
+            baseTableName: schema_set_yang_resources
+            constraintName: schema_set_resource
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: schema_set
+            validate: true
+  - changeSet:
+      id: 1-27
+      author: cps
+      changes:
+        - addUniqueConstraint:
+            columnNames: checksum
+            constraintName: yang_resource_checksum_key
+            tableName: yang_resource
+  - changeSet:
+      id: 1-28
+      author: cps
+      changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: UQ_NAME
+            tableName: dataspace
+  - changeSet:
+      id: 1-29
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: dataspace_id
+            baseTableName: fragment
+            constraintName: fragment_dataspace_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: dataspace
+            validate: true
+  - changeSet:
+      id: 1-30
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: dataspace_id
+            baseTableName: schema_set
+            constraintName: schema_set_dataspace
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: dataspace
+            validate: true
+  - changeSet:
+      id: 1-31
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: schema_node_identifier
+            indexName: PERF_SCHEMA_NODE_SCHEMA_NODE_ID
+            tableName: schema_node
+  - changeSet:
+      id: 1-32
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: yang_resource_id
+            baseTableName: schema_set_yang_resources
+            constraintName: schema_set_yang_resources_yang_resource_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: yang_resource
+            validate: true
+  - changeSet:
+      id: 1-33
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: dataspace_id
+            baseTableName: anchor
+            constraintName: anchor_dataspace_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: dataspace
+            validate: true
+  - changeSet:
+      id: 1-34
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: schema_set_id
+            baseTableName: anchor
+            constraintName: anchor_schema_set_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: schema_set
+            validate: true
+  - changeSet:
+      id: 1-35
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: relation_type_id
+            baseTableName: relation
+            constraintName: relation_relation_type_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: relation_type
+            validate: true
+  - changeSet:
+      id: 1-36
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: fragment
+            constraintName: fragment_parent_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: fragment
+            validate: true
+  - changeSet:
+      id: 1-37
+      author: cps
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: schema_node_id
+            baseTableName: fragment
+            constraintName: fragment_schema_node_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: schema_node
+            validate: true
+

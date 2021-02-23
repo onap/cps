@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 2
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dataspace.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'dataspace'

@@ -1,0 +1,4 @@
+schema_set_id|yang_resource_id
+(select id from schema_set where name='cps-ran-schema-model')|"(select id from yang_resource where name='ietf-inet-types.yang')"
+(select id from schema_set where name='cps-ran-schema-model')|(select id from yang_resource where name='cps-ran-schema-model2021-01-28.yang')
+(select id from schema_set where name='cps-ran-schema-model')|(select id from yang_resource where name='ietf-yang-types.yang')
