@@ -106,7 +106,7 @@ class E2ENetworkSliceSpec extends Specification {
         def dataNodeStored
         given: 'valid yang resource as name-to-content map'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
-                    'e2e/basic/cps-ran-inventory.yang')
+                    'e2e/basic/cps-ran-inventory@2021-01-28.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.json')
@@ -122,18 +122,23 @@ class E2ENetworkSliceSpec extends Specification {
                     { args -> dataNodeStored = args[2]}
         and: 'the size of the tree is correct'
             def cpsRanInventory = TestUtils.getFlattenMapByXpath(dataNodeStored)
-            assert  cpsRanInventory.size() == 3
+            assert  cpsRanInventory.size() == 4
         and: 'ran-inventory contains the correct child node'
             def ranInventory = cpsRanInventory.get('/ran-inventory')
-            def sliceProfilesList = cpsRanInventory.get('/ran-inventory/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']')
-            def pLMNIdList = cpsRanInventory.get('/ran-inventory/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']')
+            def ranSlices = cpsRanInventory.get('/ran-inventory/ran-slices[@rannfnssiid=\'14559ead-f4fe-4c1c-a94c-8015fad3ea35\']')
+            def sliceProfilesList = cpsRanInventory.get('/ran-inventory/ran-slices[@rannfnssiid=\'14559ead-f4fe-4c1c-a94c-8015fad3ea35\']/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']')
+            def pLMNIdList = cpsRanInventory.get('/ran-inventory/ran-slices[@rannfnssiid=\'14559ead-f4fe-4c1c-a94c-8015fad3ea35\']/sliceProfilesList[@sliceProfileId=\'f33a9dd8-ae51-4acf-8073-c9390c25f6f1\']/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']')
             ranInventory.getChildDataNodes().size() == 1
-            ranInventory.getChildDataNodes().find( {it.xpath == sliceProfilesList.xpath})
+            ranInventory.getChildDataNodes().find( {it.xpath == ranSlices.xpath})
+        and: 'ranSlices contains the correct child node'
+            ranSlices.getChildDataNodes().size() == 1
+            ranSlices.getChildDataNodes().find( {it.xpath == sliceProfilesList.xpath})
         and: 'sliceProfilesList contains the correct child node'
             sliceProfilesList.getChildDataNodes().size() == 1
             sliceProfilesList.getChildDataNodes().find( {it.xpath == pLMNIdList.xpath})
-        and: 'pLMNIdList contains the no child nodes'
+        and: 'pLMNIdList contains no children'
             pLMNIdList.getChildDataNodes().size() == 0
+
     }
 
     def 'E2E RAN Schema Model.'(){
