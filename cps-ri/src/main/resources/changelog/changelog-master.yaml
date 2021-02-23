@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: changelog/db/changes/01-createCPSTables.yaml
+  - include:
+      file: changelog/db/changes/02-loadData-dataspace.yaml
+  - include:
+      file: changelog/db/changes/03-loadData-schema-set.yaml
+  - include:
+      file: changelog/db/changes/04-loadData-anchor.yaml
+  - include:
+      file: changelog/db/changes/05-loadData-fragment.yaml
