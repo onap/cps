@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0bfaff0_b04dffbc",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T09:27:55Z",
+      "side": 1,
+      "message": "we actually use the exception (too) when the given xpath is root. Not sure we this is right now but you \u0027inherited\u0027 that problem from cps-core. Not much we can do about it for now...",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 37
+      },
+      "revId": "3173274e15da9f647b53fc00b175cde095bd4e7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
