@@ -16,6 +16,29 @@
       "revId": "6138844a3ce8988b098a7e7c455288c204b8a79b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "010d1c89_297ebaf0",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T13:23:19Z",
+      "side": 1,
+      "message": "Modifications or Update",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 13
+      },
+      "revId": "6138844a3ce8988b098a7e7c455288c204b8a79b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
