@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3361a3fe_b8443316",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T16:50:08Z",
+      "side": 1,
+      "message": "let me clarify this a bit motre. This is a UNIT test. the Controller (currently) uses GSON to convert thee DataNode object.\n\nAdding more data the dataNode and check string in the output is really testing GSON which is not relevant in this case. even if we used our own utility to convert DataNode then any test related to additional data (conversion) should be done as unit test in the relevant conversion utility not here!\n\nOften I hear the argument; there is no harm doing something additional like that. Well there is: it is misleading, later developers might be confused by it. It will lead to additional maintenance costs etc. Keep test clean and tidy. that\u0027s is our motto.",
+      "parentUuid": "d6b2ccd6_d0cee702",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 80
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b388009a_2786c577",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 7
