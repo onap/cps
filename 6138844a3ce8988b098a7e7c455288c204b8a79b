@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "19a3ff9d_f9d377a9",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-24T13:52:54Z",
+      "side": 1,
+      "message": "this is extra, request body isn\u0027t used\nalso this property does not work in swagger codegen for openapi v3",
+      "range": {
+        "startLine": 24,
+        "startChar": 3,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "6138844a3ce8988b098a7e7c455288c204b8a79b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b9e229_323a7ed9",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-02-24T13:52:54Z",
+      "side": 1,
+      "message": "this is wrong way of data conversion because it does not recover the initial json structure\nthe usage of DataMapUtils.toDataMap(dataNode) is expected here, gson is extra\nsee the org.onap.cps.rest.controller.DataRestController#getNodeByDataspaceAndAnchor for reference",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 63
+      },
+      "revId": "6138844a3ce8988b098a7e7c455288c204b8a79b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ca5a44b_f9483b6b",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 6
