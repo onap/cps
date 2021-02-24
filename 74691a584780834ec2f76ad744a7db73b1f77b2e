@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d6b2ccd6_d0cee702",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T14:30:16Z",
+      "side": 1,
+      "message": "disagree! this dat is not relevant for this test I asked Hannif to remove this in an earlier commit as it against good test practices!",
+      "parentUuid": "29187844_568a7502",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 80
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b388009a_2786c577",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1f9cdd67_4c77c80e",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T14:30:16Z",
+      "side": 1,
+      "message": "I dont see any comment in the controller class, did you forget to save them?",
+      "parentUuid": "b388009a_2786c577",
+      "range": {
+        "startLine": 75,
+        "startChar": 50,
+        "endLine": 75,
+        "endChar": 79
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dec1f01a_6184d957",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/NfProxyDataService.java",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-24T13:52:54Z",
       "side": 1,
       "message": "this does not belong to cps api\nupdate package to org.onap.cps.nfproxy.api",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3b94d00_77bba621",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/NfProxyDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T14:30:16Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "dec1f01a_6184d957",
       "range": {
         "startLine": 21,
         "startChar": 0,
