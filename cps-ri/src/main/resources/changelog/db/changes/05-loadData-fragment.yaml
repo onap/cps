@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 5
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/fragment.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'fragment'
+        columns:
+          - column:
+              header:  id
+              name:  id
+              type:  NUMERIC
+          - column:
+              header:  xpath
+              name:  xpath
+              type:  STRING
+          - column:
+              header:  attributes
+              name: attributes
+              type: CLOB
+          - column:
+              header:  anchor_id
+              name: anchor_id
+              type: NUMERIC
+          - column:
+              header:  parent_id
+              name: parent_id
+              type: NUMERIC
+          - column:
+              header:  dataspace_id
+              name: dataspace_id
+              type: NUMERIC
+          - column:
+              header:  schema_node_id
+              name: schema_node_id
+              type: NUMERIC

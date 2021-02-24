@@ -1,0 +1,2 @@
+name|schema_set_id|dataspace_id
+ran-network-simulation|(select id from schema_set where name='cps-ran-schema-model')|(select id from dataspace where name='NFP-Operational')
