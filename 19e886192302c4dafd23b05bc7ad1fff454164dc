@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "acf00b22_c12bb576",
+        "filename": "docs/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-24T09:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6774aef3_329fba7d",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "589b6deb_68e3165f",
         "filename": "docs/_static/css/ribbon.css",
         "patchSetId": 1
@@ -108,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "7f5e1f48_23f59aa8",
+        "filename": "docs/_static/css/ribbon.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-24T09:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7228d42e_e8414674",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75ae5fd9_3752ac5e",
         "filename": "docs/conf.py",
         "patchSetId": 1
@@ -158,6 +194,24 @@
       "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "469f2d2f_fcb68511",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-24T09:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9a2f248_98caccb8",
+      "revId": "19e886192302c4dafd23b05bc7ad1fff454164dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
