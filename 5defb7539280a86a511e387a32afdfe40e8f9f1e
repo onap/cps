@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8da781cd_f36b2f7d",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T16:22:04Z",
+      "side": 1,
+      "message": "just CPS\ncheck for any old references using the \u0026",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 4
+      },
+      "revId": "5defb7539280a86a511e387a32afdfe40e8f9f1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff8f9734_2fdc808d",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T16:22:04Z",
+      "side": 1,
+      "message": "none of these are implemented yet! Exclude them for now",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 112
+      },
+      "revId": "5defb7539280a86a511e387a32afdfe40e8f9f1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7d5fe9d_1305a446",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T16:22:04Z",
+      "side": 1,
+      "message": "Again maybe flows we don\u0027t have yest, onyl #3 and #4 really...",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 59
+      },
+      "revId": "5defb7539280a86a511e387a32afdfe40e8f9f1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
