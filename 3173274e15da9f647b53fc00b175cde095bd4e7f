@@ -22,6 +22,30 @@
       "revId": "3173274e15da9f647b53fc00b175cde095bd4e7f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88eea5ba_6c4dd984",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a0bfaff0_b04dffbc",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 37
+      },
+      "revId": "3173274e15da9f647b53fc00b175cde095bd4e7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e71e664d_d97c7c76",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd3b719_551998b6",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 62
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38b95a6e_bcd126e8",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 3
@@ -81,6 +105,30 @@
         "id": 6639
       },
       "writtenOn": "2021-02-24T09:27:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38b95a6e_bcd126e8",
+      "range": {
+        "startLine": 48,
+        "startChar": 51,
+        "endLine": 48,
+        "endChar": 66
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bca8658_ed5ebe41",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "38b95a6e_bcd126e8",
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "d3721c01_2925553d",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77d65c15_86478437",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b5d8319_5c7a477e",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -175,6 +247,30 @@
         "id": 6639
       },
       "writtenOn": "2021-02-24T09:27:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b5d8319_5c7a477e",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 11
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58c90bba_a8022784",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "9b5d8319_5c7a477e",
@@ -237,6 +333,30 @@
     },
     {
       "key": {
+        "uuid": "12ed92dd_debd5a85",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f76cbac_4a4660b3",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 84
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "937e7ef3_83f5be82",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -269,6 +389,30 @@
         "id": 6639
       },
       "writtenOn": "2021-02-24T09:27:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "937e7ef3_83f5be82",
+      "range": {
+        "startLine": 71,
+        "startChar": 41,
+        "endLine": 71,
+        "endChar": 55
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "832bfafb_6613500b",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "937e7ef3_83f5be82",
@@ -331,6 +475,30 @@
     },
     {
       "key": {
+        "uuid": "30db2eb1_01af9984",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/NfProxyDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f805653_dea6cc0f",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 87
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fa3a113_2650ffe9",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/impl/NfProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -351,6 +519,30 @@
       "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f85e6cc_f8bf8779",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fa3a113_2650ffe9",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 50
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -401,6 +593,30 @@
     },
     {
       "key": {
+        "uuid": "33c8ae8c_05744979",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f078fdcd_0a59189b",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 68
+      },
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e4b65a1_499aef47",
         "filename": "cps-nf-proxy-service/src/main/resources/logback-spring.xml",
         "patchSetId": 3
@@ -415,6 +631,24 @@
       "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b86fd357_19aa642f",
+        "filename": "cps-nf-proxy-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-24T10:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e4b65a1_499aef47",
+      "revId": "e2a9a616834c70d46cf6a8877f2fa834bf3cd947",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
