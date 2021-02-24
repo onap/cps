@@ -21,3 +21,7 @@ tmp/
 .project
 *.tmp
 .checkstyle
+
+/.tox
+/_build/*
+/__pycache__/*
