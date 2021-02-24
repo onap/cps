@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ca5a44b_f9483b6b",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-24T13:21:41Z",
+      "side": 1,
+      "message": "add  *  Copyright (C) 2021 Pantheon.tech",
+      "revId": "6138844a3ce8988b098a7e7c455288c204b8a79b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
