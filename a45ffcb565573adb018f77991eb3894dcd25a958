@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83106ff1_89fe7290",
+        "filename": "docs/offeredapis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-24T16:41:57Z",
+      "side": 1,
+      "message": "this is a link to the git repo of the (combined yml file)\nIS it not possible to create a (local/relative) link from this rst file to api/swagger/openapi.yml instead?\n\nie. from sdc doc: \":download:`link \u003cswagger/swagger.json\u003e`\"",
+      "range": {
+        "startLine": 13,
+        "startChar": 24,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "a45ffcb565573adb018f77991eb3894dcd25a958",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
