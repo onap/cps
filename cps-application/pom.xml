@@ -77,6 +77,9 @@
                             <image>${base.image}</image>
                         </from>
                         <to>
+                            <tags>
+                                <tag>latest</tag>
+                            </tags>
                             <image>${nexus.repository}${image.name}:${image.version}</image>
                         </to>
                     </configuration>
