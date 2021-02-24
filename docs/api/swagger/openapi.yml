@@ -1,0 +1,813 @@
+openapi: 3.0.1
+info:
+  title: ONAP Open API v3 Configuration Persistence Service
+  description: Configuration Persistence Service is a Model Driven Generic Database
+  version: 1.0.0
+  contact:
+    name: ONAP
+    url: 'https://onap.readthedocs.io'
+    email: onap-discuss@lists.onap.org
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+  x-planned-retirement-date: '202212'
+  x-component: Modeling
+  x-logo:
+    url: cps_logo.png
+servers:
+  - url: '//localhost:8088'
+tags:
+  - name: cps-admin
+    description: cps Admin
+  - name: cps-data
+    description: cps Data
+paths:
+  /v1/dataspaces:
+    post:
+      description: Create a new dataspace
+      tags:
+        - cps-admin
+      summary: Create a dataspace
+      operationId: createDataspace
+      parameters:
+        - name: dataspace-name
+          in: query
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}':
+    delete:
+      description: Delete the given dataspace - DRAFT
+      tags:
+        - cps-admin
+      summary: Delete a dataspace
+      operationId: deleteDataspace
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/anchors':
+    get:
+      description: 'Read all anchors, given a dataspace'
+      tags:
+        - cps-admin
+      summary: Get anchors
+      operationId: getAnchors
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    post:
+      description: Create a new anchor in the given dataspace
+      tags:
+        - cps-admin
+      summary: Create an anchor
+      operationId: createAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: query
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: query
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/anchors/{anchor-name}':
+    get:
+      description: Read an anchor given an anchor name and a dataspace
+      tags:
+        - cps-admin
+      summary: Get an anchor
+      operationId: getAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    delete:
+      description: Delete an anchor given an anchor name and a dataspace - DRAFT
+      tags:
+        - cps-admin
+      summary: Delete an anchor
+      operationId: deleteAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/schema-sets':
+    post:
+      description: Create a new schema set in the given dataspace
+      tags:
+        - cps-admin
+      summary: Create a schema set
+      operationId: createSchemaSet
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: query
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                multipartFile:
+                  type: string
+                  description: multipartFile
+                  format: binary
+                  example: 'http://example.com/examples/example.yang'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}':
+    get:
+      description: Read a schema set given a schema set name and a dataspace
+      tags:
+        - cps-admin
+      summary: Get a schema set
+      operationId: getSchemaSet
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: path
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    delete:
+      description: Delete a schema set given a schema set name and a dataspace
+      tags:
+        - cps-admin
+      summary: Delete a schema set
+      operationId: deleteSchemaSet
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: path
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node':
+    get:
+      description: >-
+        Get a node with an option to retrieve all the children for a given
+        anchor and dataspace
+      tags:
+        - cps-data
+      summary: Get a node
+      operationId: getNodeByDataspaceAndAnchor
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      x-codegen-request-body-name: xpath
+  '/v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes':
+    post:
+      description: Create a node for a given anchor and dataspace
+      tags:
+        - cps-data
+      summary: Create a node
+      operationId: createNode
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    patch:
+      description: >-
+        Update a data node leaves for a given dataspace and anchor and a parent
+        node xpath
+      tags:
+        - cps-data
+      summary: Update node leaves
+      operationId: updateNodeLeaves
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    put:
+      description: >-
+        Replace a node with descendants for a given dataspace, anchor and a
+        parent node xpath
+      tags:
+        - cps-data
+      summary: Replace a node with descendants
+      operationId: replaceNode
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+  '/v1/dataspaces/{dataspace-name}/nodes':
+    get:
+      description: >-
+        Get all nodes for a given dataspace using an xpath or schema node
+        identifier - DRAFT
+      tags:
+        - cps-data
+      summary: Get nodes
+      operationId: getNodesByDataspace
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      x-codegen-request-body-name: requestBody
+  '/v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query':
+    get:
+      description: Query data nodes for the given dataspace and anchor using CPS path
+      tags:
+        - cps-query
+      summary: Query data nodes
+      operationId: getNodesByDataspaceAndAnchorAndCpsPath
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: cps-path
+          in: query
+          description: cps-path
+          required: false
+          schema:
+            type: string
+            default: /
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '404':
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      x-codegen-request-body-name: xpath
+components:
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+          example: 400
+        message:
+          type: string
+          example: Dataspace not found
+        details:
+          type: string
+          example: Dataspace with name D1 does not exist.

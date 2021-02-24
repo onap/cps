@@ -8,17 +8,18 @@
 CPS Offered APIs
 ================
 
-CPS supports the public APIs listed in the links below:
+CPS supports the public APIs listed in the link below:
+
+:download:`OpenApi Specification <api/swagger/openapi.yml>`
 
 .. toctree::
    :maxdepth: 1
 
-
 Exposed API
 -----------
 
-The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS). The OAS 3, which is based on
-the original "Swagger Specification," is being widely used in API developments.
+The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS).
+The OAS 3, which is based on the original "Swagger Specification," is being widely used in API developments.
 
 Specification can be accesed locally at :
 
