@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8abe3598_2fb8db81",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T16:27:31Z",
+      "side": 1,
+      "message": "the user of NF Proxy service should not need to know this",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 51
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ff5d632_3f475698",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T16:27:31Z",
+      "side": 1,
+      "message": "needs to be removed",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
