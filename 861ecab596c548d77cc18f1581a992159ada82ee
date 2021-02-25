@@ -22,6 +22,30 @@
       "revId": "861ecab596c548d77cc18f1581a992159ada82ee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "807bf52b_7d3c24d2",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-25T13:43:19Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2f8c426c_1f2604fc",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "861ecab596c548d77cc18f1581a992159ada82ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
