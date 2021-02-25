@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "195a4ac2_cbcd1846",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-25T11:44:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be1e9a68_0f59b3ba",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 79
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dec1f01a_6184d957",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/api/NfProxyDataService.java",
         "patchSetId": 7
