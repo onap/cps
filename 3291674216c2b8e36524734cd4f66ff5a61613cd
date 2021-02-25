@@ -25,6 +25,76 @@
     },
     {
       "key": {
+        "uuid": "2d2925f7_7ffd3112",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-25T16:34:25Z",
+      "side": 1,
+      "message": "ignore",
+      "parentUuid": "60e1dd03_e4b57df1",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 16
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d1c0c4_c4ea4484",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-25T16:34:25Z",
+      "side": 1,
+      "message": "xpath",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dcfbcf9_0cf16711",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-25T16:34:25Z",
+      "side": 1,
+      "message": "xpath",
+      "range": {
+        "startLine": 33,
+        "startChar": 19,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8abe3598_2fb8db81",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
         "patchSetId": 10
