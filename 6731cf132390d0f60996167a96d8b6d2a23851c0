@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "6520722e_80eaf084",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-25T15:31:11Z",
+      "side": 1,
+      "message": "missing description",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4482aaae_11b1f151",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-02-25T15:31:11Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0f9a772_96536497",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 8
