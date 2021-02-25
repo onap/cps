@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "bddb0b3a_825a6586",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T10:06:04Z",
+      "side": 1,
+      "message": "since there seem s a limitation with converting a DataNode with node data (for which we need to add a unit test in MapUtilsSpec) the minimum data we need for any test with be one \"leaf\" and \"value\"",
+      "parentUuid": "3361a3fe_b8443316",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 80
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b388009a_2786c577",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 7
@@ -111,6 +135,29 @@
       "range": {
         "startLine": 75,
         "startChar": 50,
+        "endLine": 75,
+        "endChar": 79
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be1e9a68_0f59b3ba",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T10:06:04Z",
+      "side": 1,
+      "message": "teh assert is correct but yes MapUtils should be used in teh controler",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
         "endLine": 75,
         "endChar": 79
       },
