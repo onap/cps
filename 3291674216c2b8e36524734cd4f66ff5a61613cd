@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "60e1dd03_e4b57df1",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-25T16:30:00Z",
+      "side": 1,
+      "message": "should this be cpsPathInQuery?",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 16
+      },
+      "revId": "3291674216c2b8e36524734cd4f66ff5a61613cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8abe3598_2fb8db81",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
         "patchSetId": 10
