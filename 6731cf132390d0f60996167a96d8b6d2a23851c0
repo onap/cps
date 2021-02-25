@@ -96,6 +96,46 @@
     },
     {
       "key": {
+        "uuid": "96279c6d_2feffdbe",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T16:03:49Z",
+      "side": 1,
+      "message": "Test are missing for this class, Niamh has prepare dome tets, check with here whether to handle it in this commit or in hers...",
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b37dc87b_ecc46f75",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-25T16:03:49Z",
+      "side": 1,
+      "message": "this should be org.onap.cps.api.CpsDataService instead\nNiamh and I just spotted this. Check with her hwo best to handle it either in your merge or the one she is working on now...",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0f9a772_96536497",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 8
