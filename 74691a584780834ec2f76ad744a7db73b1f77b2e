@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "01b7412b_ece46c16",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-25T13:36:05Z",
+      "side": 1,
+      "message": "apologies, I was incorrect. It should be cm-handles",
+      "parentUuid": "8ac34fc9_875b3299",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "74691a584780834ec2f76ad744a7db73b1f77b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29187844_568a7502",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 7
