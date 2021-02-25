@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c1628d3d_564bd7ec",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-25T15:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6520722e_80eaf084",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4482aaae_11b1f151",
         "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cd6bbe95_08e581af",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-25T15:59:47Z",
+      "side": 1,
+      "message": "This is when the xpath is root. Which is not implemented.",
+      "parentUuid": "4482aaae_11b1f151",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0f9a772_96536497",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b9db3dc_e1af0c53",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-25T15:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0f9a772_96536497",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 4
+      },
+      "revId": "6731cf132390d0f60996167a96d8b6d2a23851c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
