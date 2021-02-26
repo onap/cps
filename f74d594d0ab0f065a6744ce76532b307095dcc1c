@@ -140,6 +140,29 @@
       "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57edb0f6_13427a53",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-26T16:07:58Z",
+      "side": 1,
+      "message": "lower case",
+      "range": {
+        "startLine": 121,
+        "startChar": 75,
+        "endLine": 121,
+        "endChar": 76
+      },
+      "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
