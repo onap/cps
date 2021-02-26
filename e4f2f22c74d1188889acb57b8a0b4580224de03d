@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59a66db7_34d763ea",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-26T11:15:54Z",
+      "side": 1,
+      "message": "cm handle",
+      "range": {
+        "startLine": 32,
+        "startChar": 46,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "e4f2f22c74d1188889acb57b8a0b4580224de03d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
