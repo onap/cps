@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cee69f7c_3972ebfb",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T18:14:29Z",
+      "side": 1,
+      "message": "good point Bruno",
+      "parentUuid": "81b6a2eb_79d051ad",
+      "revId": "b87f3238bd57a866f7682055c5357bc232c391f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb81f642_c2dfc5ae",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
