@@ -31,18 +31,22 @@ export DB_PASSWORD=cps
 # Use latest image version
 export VERSION=latest
 
+# download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
+curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+chmod +x docker-compose
+
 # start CPS and PostgreSQL containers with docker compose
-docker-compose up -d
+./docker-compose up -d
 
 # Validate CPS service initialization completed via periodic log checking for line like below:
 # org.onap.cps.Application ... Started Application in X.XXX seconds
 
 TIME_OUT=300
-INTERVAL=10
+INTERVAL=5
 TIME=0
 
 while [ "$TIME" -le "$TIME_OUT" ]; do
-  LOG_FOUND=$( docker-compose logs --tail="all" | grep "org.onap.cps.Application" | egrep -c "Started Application in" )
+  LOG_FOUND=$( ./docker-compose logs --tail="all" | grep "org.onap.cps.Application" | egrep -c "Started Application in" )
 
   if [ "$LOG_FOUND" -gt 0 ]; then
     echo "CPS Service started"
@@ -63,5 +67,5 @@ fi
 CPS_HOST="http://localhost:8883"
 
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v SCRIPTS:$SCRIPTS -v CPS_HOST:$CPS_HOST"
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v DATADIR:$WORKSPACE/data"
 

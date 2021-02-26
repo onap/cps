@@ -1,18 +1,19 @@
 *** Settings ***
-Library           OperatingSystem
-Library           Process
+Documentation         CPS - Actuator endpoints
+
+Library               Collections
+Library               RequestsLibrary
+
+Suite Setup           Create Session    CPS_HOST    ${CPS_HOST}
 
 *** Variables ***
 
-${check}    ${SCRIPTS}/actuator/check_endpoint.sh
 
 *** Test Cases ***
-Liveness Probe for CPS
-    [Documentation]   Liveness Probe
-    ${result}=    Run Process   bash ${check} ${CPS_HOST}/manage/health/liveness >> actuator-test.log    shell=yes
-    Should Be Equal As Integers    ${result.rc}    0
+Test Liveness Probe Endpoint
+    ${response}=      GET On Session    CPS_HOST     /manage/health/liveness     expected_status=200
+    Should Be Equal As Strings          ${response.json()['status']}      UP
 
-Readiness Probe for CPS
-    [Documentation]   Readiness Probe
-    ${result}=    Run Process   bash ${check} ${CPS_HOST}/manage/health/readiness >> actuator-test.log    shell=yes
-    Should Be Equal As Integers    ${result.rc}    0
+Test Readiness Probe Endpoint
+    ${response}=      GET On Session    CPS_HOST     /manage/health/readiness    expected_status=200
+    Should Be Equal As Strings          ${response.json()['status']}      UP
