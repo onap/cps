@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81b6a2eb_79d051ad",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-26T17:24:32Z",
+      "side": 1,
+      "message": "Finally we are not going with version 1.0.0 for Honolulu ?\nWhy do we have 0.0.3 ?\nCurrent snapshot is 0.0.2-SNAPSHOT.",
+      "revId": "b87f3238bd57a866f7682055c5357bc232c391f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
