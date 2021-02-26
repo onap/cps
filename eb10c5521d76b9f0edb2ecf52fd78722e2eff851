@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e0d628_6ee5d338",
+        "filename": "csit/data/test-tree.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T10:35:09Z",
+      "side": 1,
+      "message": "I was expecting some more Consumer-Driven Contract test approach, using real use case for the CSIT has more value from my point of view.",
+      "revId": "eb10c5521d76b9f0edb2ecf52fd78722e2eff851",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
