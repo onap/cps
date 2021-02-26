@@ -16,6 +16,24 @@
       "revId": "eb10c5521d76b9f0edb2ecf52fd78722e2eff851",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecdb9248_7d6a2b09",
+        "filename": "csit/data/test-tree.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T11:46:05Z",
+      "side": 1,
+      "message": "I like the sample model for readability But I can see the advantage (especially convincing aspect) of a real world model too!\n\nMaybe we can discuss next week in stand up or follow up meeting what approach we take. (we did agree in earlier meeting to sick with robot format etc for now)\n\nI suggest Ruslan can continue as is and get the CRU(D) testing working. Time and priorities allowing (10 day till RC0) we can revisit this before RC0 or in Istanbul timeframe",
+      "parentUuid": "d4e0d628_6ee5d338",
+      "revId": "eb10c5521d76b9f0edb2ecf52fd78722e2eff851",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
