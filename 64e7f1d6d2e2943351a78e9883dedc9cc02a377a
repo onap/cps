@@ -350,6 +350,30 @@
     },
     {
       "key": {
+        "uuid": "e7630ecf_cd374b37",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-02-26T15:10:34Z",
+      "side": 1,
+      "message": "cps path and xpath are different things.\ncps path is a path that\u0027s based off of a xpath expression. we use cps path to query the node",
+      "parentUuid": "cb37eac3_9a3f3858",
+      "range": {
+        "startLine": 54,
+        "startChar": 82,
+        "endLine": 54,
+        "endChar": 89
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "531ceee6_4dfe7240",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
         "patchSetId": 1
