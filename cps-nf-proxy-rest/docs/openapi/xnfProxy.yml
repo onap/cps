@@ -22,3 +22,80 @@ nodeByCmHandleAndXpath:
         $ref: 'components.yaml#/components/responses/NotFound'
       501:
         $ref: 'components.yaml#/components/responses/NotImplemented'
+
+nodesByCmHandleAndCpsPath:
+  get:
+    description: Query nodes for the given cps path and cm Handle
+    tags:
+      - nf-proxy
+    summary: Query data nodes
+    operationId: nodesByCmHandleAndCpsPath
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cpsPathInQuery'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
+nodesByCmHandleAndXpath:
+  patch:
+    description: Update node leaves for the given cps path and cm Handle
+    tags:
+      - nf-proxy
+    summary: Update node leaves
+    operationId: updateNodeLeaves
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
+  put:
+    description: Replace a node with descendants for the given cps path and cm Handle
+    tags:
+      - nf-proxy
+    summary: Replace a node with descendants
+    operationId: replaceNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'

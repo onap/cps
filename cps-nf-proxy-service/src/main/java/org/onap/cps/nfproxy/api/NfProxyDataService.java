@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,7 @@
 
 package org.onap.cps.nfproxy.api;
 
+import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -31,14 +33,44 @@ public interface NfProxyDataService {
     /**
      * Retrieves datanode by XPath for a given cm handle.
      *
-     * @param cmHandle               The identifier for a network function, network element, subnetwork or any other
-     *                               cm object by managed NF-Proxy
+     * @param cmHandle               The identifier for a network function, network element, subnetwork or any other cm
+     *                               object by managed NF-Proxy
      * @param xpath                  xpath
      * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
      *                               (recursively) as well
      * @return data node object
      */
     DataNode getDataNode(@NonNull String cmHandle, @NonNull String xpath,
-                         @NonNull FetchDescendantsOption fetchDescendantsOption);
+        @NonNull FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Get datanodes for the given cm handle by cps path.
+     *
+     * @param cmHandle The identifier for a network function, network element, subnetwork or any other cm object by
+     *                 managed NF-Proxy
+     * @param cpsPath  cps path
+     * @return a collection of datanodes
+     */
+    Collection<DataNode> queryDataNodes(@NonNull String cmHandle, @NonNull String cpsPath);
+
+    /**
+     * Updates data node for given cm handle using xpath to parent node.
+     *
+     * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm object
+     *                        by managed NF-Proxy
+     * @param parentNodeXpath xpath to parent node
+     * @param jsonData        json data
+     */
+    void updateNodeLeaves(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
+
+    /**
+     * Replaces existing data node content including descendants.
+     *
+     * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm object
+     *                        by managed NF-Proxy
+     * @param parentNodeXpath xpath to parent node
+     * @param jsonData        json data
+     */
+    void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
 
 }
