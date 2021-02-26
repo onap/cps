@@ -52,6 +52,24 @@
       "revId": "eb10c5521d76b9f0edb2ecf52fd78722e2eff851",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac79dc53_395072c8",
+        "filename": "csit/data/test-tree.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56d23a3d_1b24a590",
+      "revId": "eb10c5521d76b9f0edb2ecf52fd78722e2eff851",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
