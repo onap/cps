@@ -16,6 +16,23 @@
       "revId": "b87f3238bd57a866f7682055c5357bc232c391f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb81f642_c2dfc5ae",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-02-26T17:26:10Z",
+      "side": 1,
+      "message": "Extra space",
+      "revId": "b87f3238bd57a866f7682055c5357bc232c391f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
