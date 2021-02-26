@@ -2,6 +2,8 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
+ *  Modification Copyright (C) 2021 highstreet technologies GmbH
+ *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -19,24 +21,37 @@
 
 package org.onap.cps.nfproxy.rest.controller;
 
+import javax.validation.Valid;
+import org.onap.cps.nfproxy.api.NfProxyDataService;
 import org.onap.cps.nfproxy.rest.api.NfProxyApi;
-import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.DataMapUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("${rest.api.xnf-base-path}")
 public class NfProxyController implements NfProxyApi {
 
-    @Override
-    public ResponseEntity<Object> helloWorld() {
-        return new ResponseEntity<>("Hello World!", HttpStatus.OK);
-    }
+    private static final String XPATH_ROOT = "/";
+
+    @Autowired
+    private NfProxyDataService nfProxyDataService;
 
     @Override
-    public ResponseEntity<Object> helloError() {
-        throw new CpsException("Example error Message", "Example error description");
+    public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
+                                                            @Valid final Boolean includeDescendants) {
+        if (XPATH_ROOT.equals(xpath)) {
+            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        }
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final DataNode dataNode = nfProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
+        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 }
