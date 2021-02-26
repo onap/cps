@@ -18,8 +18,7 @@
 # $1 project/functionality
 # $2 robot options
 
-# Branched from integration/csit to this repository 18.2.2021
-#
+# Branched from ccsdk/distribution to this repository Feb 23, 2021
 
 #
 # functions

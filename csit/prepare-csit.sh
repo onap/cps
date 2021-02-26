@@ -1,6 +1,7 @@
 #!/bin/bash -x
 #
 # Copyright 2019-2021 © Samsung Electronics Co., Ltd.
+# Modifications Copyright (C) 2021 Pantheon.tech
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +17,7 @@
 #
 # This script installs common libraries required by CSIT tests
 #
-
-# Branched from integration/csit to this repository 18.2.2021
+# Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 
 if [ -z "$WORKSPACE" ]; then
@@ -42,11 +42,6 @@ else
     git clone "https://gerrit.onap.org/r/ci-management"
     source /tmp/ci-management/jjb/integration/include-raw-integration-install-robotframework.sh
 fi
-
-# install eteutils
-mkdir -p ${ROBOT_VENV}/src/onap
-rm -rf ${ROBOT_VENV}/src/onap/testsuite
-#pip install --upgrade --extra-index-url="https://nexus3.onap.org/repository/PyPi.staging/simple" 'robotframework-onap==0.5.1.*' --pre
 
 pip freeze
 

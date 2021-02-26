@@ -40,3 +40,13 @@ databaseChangeLog:
               header:  schema_node_id
               name: schema_node_id
               type: NUMERIC
+
+  - changeSet:
+      author: cps
+      label: xnf-data-preload
+      id: 5.1
+      changes:
+        - sql:
+            comment: Fixes the id sequence after data insert with predefined ids
+            dbms: postgresql
+            sql: ALTER SEQUENCE IF EXISTS fragment_id_seq RESTART WITH 200
