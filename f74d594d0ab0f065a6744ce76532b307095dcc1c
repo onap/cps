@@ -163,6 +163,30 @@
       "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1584832c_bd4370f8",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T16:26:59Z",
+      "side": 1,
+      "message": "actually all that was C\u0026P stuff :-)",
+      "parentUuid": "57edb0f6_13427a53",
+      "range": {
+        "startLine": 121,
+        "startChar": 75,
+        "endLine": 121,
+        "endChar": 76
+      },
+      "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
