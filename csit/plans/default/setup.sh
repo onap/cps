@@ -38,7 +38,7 @@ docker-compose up -d
 # org.onap.cps.Application ... Started Application in X.XXX seconds
 
 TIME_OUT=300
-INTERVAL=10
+INTERVAL=5
 TIME=0
 
 while [ "$TIME" -le "$TIME_OUT" ]; do
@@ -63,5 +63,5 @@ fi
 CPS_HOST="http://localhost:8883"
 
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v SCRIPTS:$SCRIPTS -v CPS_HOST:$CPS_HOST"
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v DATADIR:$WORKSPACE/data"
 
