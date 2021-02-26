@@ -136,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "70903b67_d20bc437",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T08:56:35Z",
+      "side": 1,
+      "message": "everyone has that right :) I meant **All rights reserved.**",
+      "parentUuid": "325d0123_9deea0f2",
+      "revId": "6a45263a27ce4c0ab42dc157b771b4f749b59c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6aa68669_e5ce340b",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 12
@@ -223,6 +241,30 @@
       "side": 1,
       "message": "we have used just Mock() in all otherer test classes, any reason you want to change this now?",
       "parentUuid": "b3554bf9_34e274de",
+      "range": {
+        "startLine": 49,
+        "startChar": 48,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "6a45263a27ce4c0ab42dc157b771b4f749b59c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71a451de_52669d0a",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T08:56:35Z",
+      "side": 1,
+      "message": "if I recall we where using MockBean for beans, so consistency",
+      "parentUuid": "a2d1178d_965e83a1",
       "range": {
         "startLine": 49,
         "startChar": 48,
