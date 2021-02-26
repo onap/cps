@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ae66a32_a12802c5",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T16:37:33Z",
+      "side": 1,
+      "message": "this could be move to static variable, no need to instantiate each time one",
+      "range": {
+        "startLine": 63,
+        "startChar": 36,
+        "endLine": 63,
+        "endChar": 46
+      },
+      "revId": "b9f4994b8811a0f0aa935573c67f3279f2e3c6cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcb7b750_e0cdb2fa",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T16:37:33Z",
+      "side": 1,
+      "message": "remove annotations and replace by final, same for all other methods",
+      "range": {
+        "startLine": 51,
+        "startChar": 48,
+        "endLine": 51,
+        "endChar": 56
+      },
+      "revId": "b9f4994b8811a0f0aa935573c67f3279f2e3c6cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
