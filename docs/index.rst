@@ -11,4 +11,7 @@ CPS Documentation Repository
 .. toctree::
    :maxdepth: 1
 
+   architecure.rst
    offeredapis.rst
+   release-notes.rst
+
