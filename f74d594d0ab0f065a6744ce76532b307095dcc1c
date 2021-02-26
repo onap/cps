@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8792d323_59b91f7e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cea2ca82_c7e4b544",
+      "range": {
+        "startLine": 31,
+        "startChar": 45,
+        "endLine": 31,
+        "endChar": 55
+      },
+      "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4656af7_385cf73c",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "89280d23_722b49f3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4656af7_385cf73c",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 7
+      },
+      "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ed8594e_70ea7896",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8960f98d_d8cdbd03",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:48:11Z",
+      "side": 1,
+      "message": "I left the original tabs...\n(basically this document is a copy from DCAE which I cleaned up and populated where I could but we need to do more, remember it is just a placeholder for now)",
+      "parentUuid": "5ed8594e_70ea7896",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "f74d594d0ab0f065a6744ce76532b307095dcc1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
