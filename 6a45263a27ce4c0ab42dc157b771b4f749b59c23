@@ -244,6 +244,24 @@
     },
     {
       "key": {
+        "uuid": "323e3bfd_2c184b4c",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T11:42:57Z",
+      "side": 1,
+      "message": "when is proprietary code yes, but here is not the case so \"**All rights reserved.**\" should not belong.\nI see two[0] examples where it was not used, but also I see and example in the same place, where AT\u0026T uses the same\" **All rights reserved.**\u0027. \nIn conclusion , I will say it is an issue of copy\u0026paste license without fix it. I leave it to you 😊\n[0]\ne.g. \n\nhttps://gerrit.onap.org/r/c/sdnc/oam/+/118589/1/installation/sdnc/src/main/scripts/startODL.sh\nhttps://gerrit.onap.org/r/c/cps/+/118232/15/cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+      "parentUuid": "92d59e8f_4474f2f4",
+      "revId": "6a45263a27ce4c0ab42dc157b771b4f749b59c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6aa68669_e5ce340b",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 12
