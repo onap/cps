@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "430b5958_3f029b2e",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "393a2932_f4711640",
+      "range": {
+        "startLine": 24,
+        "startChar": 21,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c461452e_7c0e633c",
         "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29f8c1ff_ede6b525",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c461452e_7c0e633c",
+      "range": {
+        "startLine": 26,
+        "startChar": 28,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6fd440ec_1fa51953",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cde2352_54858818",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7871790d_d24494dd",
         "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
         "patchSetId": 13
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3ee90a94_5a18284d",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7871790d_d24494dd",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e456ec10_4007ab9a",
         "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
         "patchSetId": 13
@@ -114,6 +210,30 @@
       "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c9b939f_787f6298",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e456ec10_4007ab9a",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 9,
+        "endChar": 64
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +283,54 @@
     },
     {
       "key": {
+        "uuid": "b401f76b_c8b5d728",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99823d5b_6fd4bbc8",
+      "range": {
+        "startLine": 50,
+        "startChar": 83,
+        "endLine": 50,
+        "endChar": 85
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36eadd82_926ed680",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c75018f7_72fcddb3",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f02f9030_1b65d2b1",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
         "patchSetId": 13
@@ -183,6 +351,30 @@
       "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc133f93_dbf3416e",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f02f9030_1b65d2b1",
+      "range": {
+        "startLine": 64,
+        "startChar": 24,
+        "endLine": 64,
+        "endChar": 26
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "18923aae_882c3624",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09c5d237_5c009ea7",
+      "range": {
+        "startLine": 43,
+        "startChar": 49,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8b2f5db_b9e69b7a",
         "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
         "patchSetId": 13
@@ -229,6 +445,30 @@
       "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a01abcc_33dfc3c7",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-02-26T11:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b2f5db_b9e69b7a",
+      "range": {
+        "startLine": 42,
+        "startChar": 62,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
