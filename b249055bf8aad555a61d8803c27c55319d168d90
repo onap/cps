@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "393a2932_f4711640",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "drop (-)id everywhere!\nAplogies for late change...",
+      "range": {
+        "startLine": 24,
+        "startChar": 21,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c461452e_7c0e633c",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "The identifier for a network function, network element, subnetwork or any other cm object by managed NF-Proxy",
+      "range": {
+        "startLine": 26,
+        "startChar": 28,
+        "endLine": 26,
+        "endChar": 31
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cde2352_54858818",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7871790d_d24494dd",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e456ec10_4007ab9a",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 9,
+        "endChar": 64
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75018f7_72fcddb3",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99823d5b_6fd4bbc8",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 50,
+        "startChar": 83,
+        "endLine": 50,
+        "endChar": 85
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f02f9030_1b65d2b1",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 64,
+        "startChar": 24,
+        "endLine": 64,
+        "endChar": 26
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09c5d237_5c009ea7",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/NfProxyDataService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 43,
+        "startChar": 49,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8b2f5db_b9e69b7a",
+        "filename": "cps-nf-proxy-service/src/main/java/org/onap/cps/nfproxy/api/impl/NfProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T08:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 42,
+        "startChar": 62,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "b249055bf8aad555a61d8803c27c55319d168d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
