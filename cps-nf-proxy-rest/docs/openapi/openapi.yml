@@ -9,3 +9,8 @@ paths:
   /v1/cm-handles/{cm-handle}/node:
     $ref: 'xnfProxy.yml#/nodeByCmHandleAndXpath'
 
+  /v1/cm-handles/{cm-handle}/nodes/query:
+    $ref: 'xnfProxy.yml#/nodesByCmHandleAndCpsPath'
+
+  /v1/cm-handles/{cm-handle}/nodes:
+    $ref: 'xnfProxy.yml#/nodesByCmHandleAndXpath'

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  ================================================================================
+ *  Modifications (C) 2021 Nordix Foundation
  *  Modification Copyright (C) 2021 highstreet technologies GmbH
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,9 @@
 
 package org.onap.cps.nfproxy.rest.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.util.Collection;
 import javax.validation.Valid;
 import org.onap.cps.nfproxy.api.NfProxyDataService;
 import org.onap.cps.nfproxy.rest.api.NfProxyApi;
@@ -38,6 +41,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("${rest.api.xnf-base-path}")
 public class NfProxyController implements NfProxyApi {
 
+    private static final Gson GSON = new GsonBuilder().create();
     private static final String XPATH_ROOT = "/";
 
     @Autowired
@@ -45,7 +49,7 @@ public class NfProxyController implements NfProxyApi {
 
     @Override
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
-                                                            @Valid final Boolean includeDescendants) {
+        @Valid final Boolean includeDescendants) {
         if (XPATH_ROOT.equals(xpath)) {
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
@@ -53,5 +57,25 @@ public class NfProxyController implements NfProxyApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = nfProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath) {
+        final Collection<DataNode> dataNodes = nfProxyDataService.queryDataNodes(cmHandle, cpsPath);
+        return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> replaceNode(@Valid final String jsonData, final String cmHandle,
+        @Valid final String parentNodeXpath) {
+        nfProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> updateNodeLeaves(@Valid final String jsonData, final String cmHandle,
+        @Valid final String parentNodeXpath) {
+        nfProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

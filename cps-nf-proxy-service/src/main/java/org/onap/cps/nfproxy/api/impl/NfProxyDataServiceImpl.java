@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,8 +20,9 @@
 
 package org.onap.cps.nfproxy.api.impl;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import java.util.Collection;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.nfproxy.api.NfProxyDataService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -35,9 +37,27 @@ public class NfProxyDataServiceImpl implements NfProxyDataService {
     @Autowired
     private CpsDataService cpsDataService;
 
+    @Autowired
+    private CpsQueryService cpsQueryService;
+
     @Override
-    public DataNode getDataNode(@NonNull final String cmHandle, @NonNull final String xpath,
-                                @NonNull final FetchDescendantsOption fetchDescendantsOption) {
+    public DataNode getDataNode(final String cmHandle, final String xpath,
+        final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataService.getDataNode(NF_PROXY_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
+    }
+
+    @Override
+    public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath) {
+        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath);
+    }
+
+    @Override
+    public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
+        cpsDataService.updateNodeLeaves(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData);
+    }
+
+    @Override
+    public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
+        cpsDataService.replaceNodeTree(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData);
     }
 }
