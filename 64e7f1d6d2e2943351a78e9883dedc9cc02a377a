@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90da858e_001a13d3",
+        "filename": "cps-nf-proxy-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "we need both :-)\nxpath for \u0027get\u0027\ncpsPath for \u0027query\u0027 they are slightly different things!",
+      "parentUuid": "509ae55a_3b5a2e3e",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34cfe59e_3791e8ba",
         "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04793049_76805d44",
+        "filename": "cps-nf-proxy-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "nope, cpsPath is correct",
+      "parentUuid": "34cfe59e_3791e8ba",
+      "range": {
+        "startLine": 13,
+        "startChar": 43,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "a94cd1ba_bfd48f2c",
+        "filename": "cps-nf-proxy-rest/docs/openapi/xnfProxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "good suggestion but we discussed that before but agreed not to as every endpoint wil have its own (evolving) list of respons codes even if there is much overlap, re-use of blocks will just make a mess of it...",
+      "parentUuid": "035f3950_ad240eb6",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 13
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61dced58_7d63340d",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 1
@@ -110,6 +182,144 @@
         "startChar": 103,
         "endLine": 61,
         "endChar": 110
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee1e5a3_cd7b28b1",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "I now we do the same in CPS Core but what was the reason we don\u0027t need MapUtils here? And why do we need it at in in teh get use-case?!",
+      "range": {
+        "startLine": 63,
+        "startChar": 36,
+        "endLine": 63,
+        "endChar": 64
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b923da3b_4cfd4693",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "you could follow the same pattern as in the next 3 tests below...",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 91
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d6959b_575a3047",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "Make it more readable like so:\n\nde expectedJsonContent \u003d new Gson().toJson(dataNodes)\nresponse.getContentAsString().contains(expectedJsonContent)",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 79
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29817662_5709744d",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "once",
+      "range": {
+        "startLine": 91,
+        "startChar": 44,
+        "endLine": 91,
+        "endChar": 45
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f119083e_691770a6",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "once",
+      "range": {
+        "startLine": 108,
+        "startChar": 44,
+        "endLine": 108,
+        "endChar": 45
+      },
+      "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3625b0cc_2c8d2b14",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-02-26T15:08:55Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 11
       },
       "revId": "64e7f1d6d2e2943351a78e9883dedc9cc02a377a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
