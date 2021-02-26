@@ -172,6 +172,24 @@
     },
     {
       "key": {
+        "uuid": "76d1227d_ffbe3e2f",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T10:32:12Z",
+      "side": 1,
+      "message": "comment is in line 8, and says \"remove whole line\", imho is pretty obvious cnad clear what to remove. But I will try to highlight the whole line for you if it helps next time.",
+      "parentUuid": "a0cca644_721bf829",
+      "revId": "6a45263a27ce4c0ab42dc157b771b4f749b59c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6aa68669_e5ce340b",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/controller/NfProxyController.java",
         "patchSetId": 12
@@ -307,6 +325,30 @@
       "side": 1,
       "message": "I check in Cps Code MV tests they all use just Mock\nIf MockBean is more lightweight I have no problem introducing it....",
       "parentUuid": "71a451de_52669d0a",
+      "range": {
+        "startLine": 49,
+        "startChar": 48,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "6a45263a27ce4c0ab42dc157b771b4f749b59c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03791dfe_556e6768",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-02-26T10:32:12Z",
+      "side": 1,
+      "message": "for WebMvcTest  or SpringRunner the correct approach is to use MockBean, but I won\u0027t consider this a blocker.\n\nhttps://www.baeldung.com/java-spring-mockito-mock-mockbean\nhttps://spring.io/guides/gs/testing-web/",
+      "parentUuid": "fe9ef3f3_f3e76a03",
       "range": {
         "startLine": 49,
         "startChar": 48,
