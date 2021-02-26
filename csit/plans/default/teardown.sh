@@ -18,6 +18,8 @@
 # Modifications copyright (c) 2020 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 #
+# Branched from ccsdk/distribution to this repository Feb 23, 2021
+#
 
 cd $WORKSPACE/archives/docker-compose
-docker-compose down -v
+./docker-compose down -v
