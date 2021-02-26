@@ -43,6 +43,15 @@ components:
       schema:
         type: boolean
         default: false
+    cpsPathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+
 
   responses:
     NotFound:
