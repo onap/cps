@@ -764,6 +764,13 @@ paths:
           schema:
             type: string
             default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         '200':
           description: OK
