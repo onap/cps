@@ -60,8 +60,12 @@ public class NfProxyController implements NfProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath) {
-        final Collection<DataNode> dataNodes = nfProxyDataService.queryDataNodes(cmHandle, cpsPath);
+    public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
+        @Valid final Boolean includeDescendants) {
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final Collection<DataNode> dataNodes =
+            nfProxyDataService.queryDataNodes(cmHandle, cpsPath, fetchDescendantsOption);
         return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
     }
 
