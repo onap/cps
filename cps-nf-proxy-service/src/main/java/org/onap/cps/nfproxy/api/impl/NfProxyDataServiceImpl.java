@@ -47,8 +47,9 @@ public class NfProxyDataServiceImpl implements NfProxyDataService {
     }
 
     @Override
-    public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath) {
-        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath);
+    public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
     }
 
     @Override

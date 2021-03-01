@@ -94,8 +94,10 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName          dataspace name
      * @param anchorName             anchor name
      * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
      * @return the data nodes found i.e. 0 or more data nodes
      */
     Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull String cpsPath);
+        @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
 }

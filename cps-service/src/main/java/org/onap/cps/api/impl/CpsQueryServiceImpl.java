@@ -22,6 +22,7 @@ package org.onap.cps.api.impl;
 import java.util.Collection;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     @Override
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
-        final String cpsPath) {
-        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath);
+        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
     }
 }
