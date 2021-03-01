@@ -24,6 +24,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,9 +41,11 @@ public class QueryRestController implements CpsQueryApi {
 
     @Override
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
-        final String anchorName, @Valid final String cpsPath) {
+        final String anchorName, @Valid final String cpsPath, @Valid final Boolean includeDescendants) {
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
-            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath);
+            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         return new ResponseEntity<>(new Gson().toJson(dataNodes), HttpStatus.OK);
     }
 }

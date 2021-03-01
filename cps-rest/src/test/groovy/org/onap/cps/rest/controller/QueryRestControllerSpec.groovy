@@ -26,6 +26,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -36,7 +37,11 @@ import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
@@ -63,22 +68,38 @@ class QueryRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    def 'Query data node by cps path for the given dataspace and anchor.'() {
+    @Shared
+    static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
+            .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+
+    @Shared
+    static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
+            .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
+
+    @Unroll
+    def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
             def dataspaceName = 'my_dataspace'
             def anchorName = 'my_anchor'
             def cpsPath = '/xpath/leaves[@leaf=\'value\']'
-            def dataNode = new DataNodeBuilder().withXpath("/xpath")
-                    .withLeaves(ImmutableMap.of("leaf", "value")).build()
-            ArrayList<DataNode> dataNodeList = new ArrayList();
+            def dataNodeList = new ArrayList();
             dataNodeList.add(dataNode)
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath) >> dataNodeList
+            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> dataNodeList
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
         when: 'query data nodes API is invoked'
-            def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', cpsPath)).andReturn().response
+            def response = mvc.perform(get(dataNodeEndpoint)
+                    .param('cps-path', cpsPath)
+                    .param('include-descendants', includeDescendantsOption))
+                    .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
+            response.contentAsString.contains('"/parent/child"') == expectChildInResponse
             response.getContentAsString().contains(new Gson().toJson(dataNode))
+        where:
+            scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
+            'descendants'               | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
     }
 }

@@ -20,7 +20,9 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.FetchDescendantsOption
 import spock.lang.Specification
+
 
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -31,14 +33,16 @@ class CpsQueryServiceImplSpec extends Specification {
         objectUnderTest.cpsDataPersistenceService = mockCpsDataPersistenceService
     }
 
-    def 'Query data nodes by cps path.'() {
+    def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
             def dataspaceName = 'some dataspace'
             def anchorName = 'some anchor'
             def cpsPath = '/cps-path'
         when: 'queryDataNodes is invoked'
-            objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath)
+            objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath)
+            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
+        where: 'all fetch options are supported'
+            fetchDescendantsOption << FetchDescendantsOption.values()
     }
 }

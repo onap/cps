@@ -46,12 +46,15 @@ public interface NfProxyDataService {
     /**
      * Get datanodes for the given cm handle by cps path.
      *
-     * @param cmHandle The identifier for a network function, network element, subnetwork or any other cm object by
-     *                 managed NF-Proxy
-     * @param cpsPath  cps path
+     * @param cmHandle               The identifier for a network function, network element, subnetwork or any other cm
+     *                               object by managed NF-Proxy
+     * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
      * @return a collection of datanodes
      */
-    Collection<DataNode> queryDataNodes(@NonNull String cmHandle, @NonNull String cpsPath);
+    Collection<DataNode> queryDataNodes(@NonNull String cmHandle, @NonNull String cpsPath,
+        @NonNull FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Updates data node for given cm handle using xpath to parent node.
