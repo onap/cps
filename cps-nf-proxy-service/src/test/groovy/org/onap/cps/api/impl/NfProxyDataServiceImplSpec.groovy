@@ -22,6 +22,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.nfproxy.api.impl.NfProxyDataServiceImpl
+import org.onap.cps.spi.FetchDescendantsOption
 import spock.lang.Specification
 
 class NfProxyDataServiceImplSpec extends Specification {
@@ -37,13 +38,15 @@ class NfProxyDataServiceImplSpec extends Specification {
     def cmHandle = 'some handle'
     def expectedDataspaceName = 'NFP-Operational'
 
-    def 'Query data nodes by cps path.'() {
+    def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a cm Handle and a cps path'
             def cpsPath = '/cps-path'
         when: 'queryDataNodes is invoked'
-            objectUnderTest.queryDataNodes(cmHandle, cpsPath)
+            objectUnderTest.queryDataNodes(cmHandle, cpsPath, fetchDescendantsOption)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockcpsQueryService.queryDataNodes(expectedDataspaceName, cmHandle, cpsPath)
+            1 * mockcpsQueryService.queryDataNodes(expectedDataspaceName, cmHandle, cpsPath, fetchDescendantsOption)
+        where: 'all fetch descendants options are supported'
+            fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
     def 'Update data node leaves.'() {

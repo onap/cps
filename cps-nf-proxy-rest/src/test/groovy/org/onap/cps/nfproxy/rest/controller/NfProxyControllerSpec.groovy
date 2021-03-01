@@ -21,10 +21,9 @@
 
 package org.onap.cps.nfproxy.rest.controller
 
-import com.google.common.collect.ImmutableMap
+
 import com.google.gson.Gson
 import org.onap.cps.nfproxy.api.NfProxyDataService
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,7 +33,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
+import spock.lang.Unroll
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 
@@ -59,22 +60,28 @@ class NfProxyControllerSpec extends Specification {
     def cmHandle = 'some handle'
     def xpath = 'some xpath'
 
-    def 'Query data node by cps path for the given cm handle.'() {
+    @Unroll
+    def 'Query data node by cps path for the given cm handle with #scenario.'() {
         given: 'service method returns a list containing a data node'
+            def dataNode = new DataNodeBuilder().withXpath('/xpath').build()
             def cpsPath = '/xpath/leaves[@leaf=\'value\']'
-            def dataNode = new DataNodeBuilder().withXpath("/xpath")
-                    .withLeaves(ImmutableMap.of("leaf", "value")).build()
-            ArrayList<DataNode> dataNodeList = new ArrayList();
-            dataNodeList.add(dataNode)
-            mockNfProxyDataService.queryDataNodes(cmHandle, cpsPath) >> dataNodeList
+            mockNfProxyDataService.queryDataNodes(cmHandle, cpsPath, expectedCpsDataServiceOption) >> [dataNode]
         and: 'the query endpoint'
             def dataNodeEndpoint = "$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes/query"
         when: 'query data nodes API is invoked'
-            def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', cpsPath)).andReturn().response
+            def response = mvc.perform(get(dataNodeEndpoint)
+                    .param('cps-path', cpsPath)
+                    .param('include-descendants', includeDescendantsOption))
+                    .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
             def expectedJsonContent = new Gson().toJson(dataNode)
             response.getContentAsString().contains(expectedJsonContent)
+        where: 'the following options for include descendants are provide in the request'
+            scenario                   | includeDescendantsOption || expectedCpsDataServiceOption
+            'no descendants by default'| ''                       || OMIT_DESCENDANTS
+            'no descendant explicitly' | 'false'                  || OMIT_DESCENDANTS
+            'descendants'              | 'true'                   || INCLUDE_ALL_DESCENDANTS
     }
 
     def 'Update data node leaves.'() {

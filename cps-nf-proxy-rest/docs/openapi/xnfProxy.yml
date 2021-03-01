@@ -33,6 +33,7 @@ nodesByCmHandleAndCpsPath:
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/cpsPathInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
