@@ -107,7 +107,11 @@ Security Notes
 --------------
 
 *Fixed Security Issues*
-    Listed above
+
+* `CPS-167 <https://jira.onap.org/browse/CPS-167>`_ -Update CPS dependencies as Required for Honolulu release
+    - Update org.onap.oparent to 3.2.0
+    - Upgrade spring.boot to 2.3.8.RELEASE
+    - Upgrade yangtool to 5.0.7
 
 *Known Security Issues*
 
