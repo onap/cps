@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5220e9a_eb33b3a8",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "not needed see comments below",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 99
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52e67a57_8b1aefec",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "@Unroll\ndouble check all (new/modified) test using where: label",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 8
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a385165_757ad698",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "no need in groovy",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8996c40f_3bc084f1",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "just [dataNode] here will do",
+      "range": {
+        "startLine": 77,
+        "startChar": 102,
+        "endLine": 77,
+        "endChar": 114
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb89362b_f9847e78",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "testing you mocked behvior, not needed",
+      "range": {
+        "startLine": 87,
+        "startChar": 11,
+        "endLine": 87,
+        "endChar": 89
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dde02dd_f5f6ade3",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "you are mocking the output, no need for these variations. \nBasically you are asserting with have mocked yourself not production code :-)\nThis test just need to check the parameters are passed correctly and that whatever the service returns is wrapped as json in response",
+      "range": {
+        "startLine": 91,
+        "startChar": 42,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b32c29c2_22ecd6a9",
+        "filename": "cps-rest/docs/api/swagger/cpsQuery.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "update combined yaml in docs too \n( we need a better process for this in Istanbul!)",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 85
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c62f48f_526b98ce",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "3ft 4ft :-)\n\nmaybe expectedNumberOfChidlNodes",
+      "range": {
+        "startLine": 318,
+        "startChar": 51,
+        "endLine": 318,
+        "endChar": 66
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a1023c0_90bd77b2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-01T14:26:10Z",
+      "side": 1,
+      "message": "add @Unroll",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "8e41fc880840371c07f946462bc3a5df386174ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
