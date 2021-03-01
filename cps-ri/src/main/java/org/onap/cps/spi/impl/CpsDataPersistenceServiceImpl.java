@@ -21,7 +21,6 @@
 package org.onap.cps.spi.impl;
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -127,7 +126,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath) {
+    public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
+        final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
@@ -135,7 +135,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathQuery
                 .getXpathPrefix(), cpsPathQuery.getLeafName(), cpsPathQuery.getLeafValue());
         return fragmentEntities.stream()
-            .map(fragmentEntity -> toDataNode(fragmentEntity, OMIT_DESCENDANTS))
+            .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());
     }
 

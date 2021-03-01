@@ -9,6 +9,7 @@ nodesByDataspaceAndAnchorAndCpsPath:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/cpsPathInQuery'
+      - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
