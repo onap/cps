@@ -11,7 +11,12 @@ CPS Documentation Repository
 .. toctree::
    :maxdepth: 1
 
-   architecure.rst
+   overview.rst
+   architecture.rst
+   design.rst
+   modeling.rst
+   deployment.rst
+   user-guide.rst
    offeredapis.rst
    release-notes.rst
 
