@@ -2,18 +2,21 @@
 .. http://creativecommons.org/licenses/by/4.0
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
-.. _offeredapis:
+.. _design:
 
 
-CPS Offered APIs
-================
+CPS Design
+##########
+
+.. toctree::
+   :maxdepth: 1
+
+Offered APIs
+============
 
 CPS supports the public APIs listed in the link below:
 
 :download:`OpenApi Specification <api/swagger/openapi.yml>`
-
-.. toctree::
-   :maxdepth: 1
 
 Exposed API
 -----------
@@ -21,13 +24,8 @@ Exposed API
 The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS).
 The OAS 3, which is based on the original "Swagger Specification", is being widely used in API developments.
 
-Specification can be accesed locally at :
+Specification can be accessed using following URI:
 
 .. code-block:: bash
 
   “http://<hostname>:<port>/v3/api-docs?group=cps-docket”
-
-Contact Information
--------------------
-
-onap-discuss@lists.onap.org
