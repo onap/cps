@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35759d0f_64fc0aea",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-02T09:28:01Z",
+      "side": 1,
+      "message": "sorry missed this before but \u0027some xpath\u0027 is better here as we are just testing the data being passed on\nA complex expression like you used implies that it is relevant and examined/parsed by the class under test which is not teh case",
+      "range": {
+        "startLine": 67,
+        "startChar": 27,
+        "endLine": 67,
+        "endChar": 57
+      },
+      "revId": "b1e5fc6f33a6db10b9559d4550c8723419a0770e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e00a70_3e250e44",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-02T09:28:01Z",
+      "side": 1,
+      "message": "add d",
+      "range": {
+        "startLine": 80,
+        "startChar": 72,
+        "endLine": 80,
+        "endChar": 73
+      },
+      "revId": "b1e5fc6f33a6db10b9559d4550c8723419a0770e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c686c7_0b57bbb2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-02T09:28:01Z",
+      "side": 1,
+      "message": "some xpath",
+      "range": {
+        "startLine": 75,
+        "startChar": 27,
+        "endLine": 75,
+        "endChar": 57
+      },
+      "revId": "b1e5fc6f33a6db10b9559d4550c8723419a0770e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
