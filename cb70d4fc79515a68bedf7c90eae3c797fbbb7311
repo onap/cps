@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "626b22ef_81a0c78e",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-02T17:01:48Z",
+      "side": 1,
+      "message": "more readable then previous version",
+      "range": {
+        "startLine": 15,
+        "startChar": 39,
+        "endLine": 15,
+        "endChar": 76
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d872325_dd67ea80",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-02T17:01:48Z",
+      "side": 1,
+      "message": "I know it wasn\u0027t in the original scope but if it is easy\u0026quick can we add another robot file that tests the query interface query call as well?",
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
