@@ -18,7 +18,8 @@ ${anchorName}           CSIT-Anchor
 Create Dataspace
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces
     ${params}=          Create Dictionary   dataspace-name=${dataspaceName}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}
+    ${headers}=         Create Dictionary   Authorization=Basic Y3BzdXNlcjpjcHNyMGNrcyE=
+    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Create Schema Set from YANG file
@@ -49,5 +50,7 @@ Get Schema Set info
 Create Anchor
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors
     ${params}=          Create Dictionary   schema-set-name=${schemaSetName}   anchor-name=${anchorName}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}
+    ${auth}=            Create List         cpsuser   cpsr0cks!
+    ${session}=         Create Session      CPS_HOST_AUTH  ${CPS_HOST}   auth=${auth}
+    ${response}=        POST On Session     CPS_HOST_AUTH  ${uri}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   201
