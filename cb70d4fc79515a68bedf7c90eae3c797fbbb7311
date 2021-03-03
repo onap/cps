@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0bc04f19_2eed1289",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-03T15:36:40Z",
+      "side": 1,
+      "message": "yes, TODO removed",
+      "parentUuid": "9dccc886_064f237a",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 74
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe62bffe_4fc15fb6",
         "filename": "csit/prepare-csit.sh",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7baa5ce5_7823c9f4",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-03T15:36:40Z",
+      "side": 1,
+      "message": "origin and branching date were updated for all the scripts",
+      "parentUuid": "fe62bffe_4fc15fb6",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 61
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "661f8e97_864ca5ab",
         "filename": "csit/prepare-csit.sh",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eae8d23a_b59453bc",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-03T15:36:40Z",
+      "side": 1,
+      "message": "removed as extra",
+      "parentUuid": "661f8e97_864ca5ab",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +177,30 @@
       "writtenOn": "2021-03-03T14:24:18Z",
       "side": 1,
       "message": "I don\u0027t see this used anywhere except in context of ${basePath}/v1/dataspaces, so why not have a complete common variable for /cps/api/v1/dataspaces instead?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5beabced_204c324e",
+        "filename": "csit/tests/cps-admin/cps-admin.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-03T15:36:40Z",
+      "side": 1,
+      "message": "it\u0027s a configurable part of uri,\nextracted to a variable for mainly maintainability reason:\nin case the configuration changes it\u0027s easier to update \nsingle line, not all the occurrences",
+      "parentUuid": "b6c2b957_7caa0435",
       "range": {
         "startLine": 12,
         "startChar": 0,
