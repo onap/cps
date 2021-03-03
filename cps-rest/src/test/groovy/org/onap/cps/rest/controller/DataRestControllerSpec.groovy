@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,10 +29,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 import org.modelmapper.ModelMapper
-import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
@@ -45,11 +46,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
-import spock.lang.Specification
 import spock.lang.Unroll
 
 @WebMvcTest
-class DataRestControllerSpec extends Specification {
+class DataRestControllerSpec extends RestControllerSpecification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
@@ -93,9 +93,12 @@ class DataRestControllerSpec extends Specification {
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
             def json = 'some json (this is not validated)'
         when: 'post is invoked with datanode endpoint and json'
-            def response = mvc.perform(
-                    post(endpoint).contentType(MediaType.APPLICATION_JSON).content(json)
-            ).andReturn().response
+            def response =
+                    mvc.perform(
+                            post(endpoint)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .contentType(MediaType.APPLICATION_JSON).content(json))
+                            .andReturn().response
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
@@ -109,9 +112,9 @@ class DataRestControllerSpec extends Specification {
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
         when: 'get request is performed through REST API'
-            def response = mvc.perform(
-                    get(endpoint).param('xpath', xpath)
-            ).andReturn().response
+            def response =
+                    mvc.perform(get(endpoint).header("Authorization", getAuthorizationHeader()).param('xpath', xpath))
+                            .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         and: 'response contains expected leaf and value'
@@ -127,10 +130,13 @@ class DataRestControllerSpec extends Specification {
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
         when: 'get request is performed through REST API'
-            def response = mvc.perform(get(endpoint)
-                    .param('xpath', xpath)
-                    .param('include-descendants', includeDescendantsOption))
-                    .andReturn().response
+            def response =
+                    mvc.perform(
+                            get(endpoint)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('xpath', xpath)
+                                    .param('include-descendants', includeDescendantsOption))
+                            .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         and: 'the response contains child is #expectChildInResponse'
@@ -148,9 +154,9 @@ class DataRestControllerSpec extends Specification {
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
         when: 'get request is performed through REST API'
-            def response = mvc.perform(
-                    get(endpoint).param("xpath", xpath)
-            ).andReturn().response
+            def response =
+                    mvc.perform(get(endpoint).header("Authorization", getAuthorizationHeader()).param("xpath", xpath))
+                            .andReturn().response
         then: 'a success response is returned'
             response.status == httpStatus.value()
         where:
@@ -167,12 +173,14 @@ class DataRestControllerSpec extends Specification {
             def jsonData = 'json data'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'patch request is performed'
-            def response = mvc.perform(
-                    patch(endpoint)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
-                            .param('xpath', xpath)
-            ).andReturn().response
+            def response =
+                    mvc.perform(
+                            patch(endpoint)
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .content(jsonData)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('xpath', xpath)
+                    ).andReturn().response
         then: 'the service method is invoked with expected parameters'
             1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonData)
         and: 'response status indicates success'
@@ -189,12 +197,14 @@ class DataRestControllerSpec extends Specification {
             def jsonData = 'json data'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'put request is performed'
-            def response = mvc.perform(
-                    put(endpoint)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
-                            .param('xpath', xpath)
-            ).andReturn().response
+            def response =
+                    mvc.perform(
+                            put(endpoint)
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .content(jsonData)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('xpath', xpath))
+                            .andReturn().response
         then: 'the service method is invoked with expected parameters'
             1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonData)
         and: 'response status indicates success'
