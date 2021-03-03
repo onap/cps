@@ -49,6 +49,122 @@
     },
     {
       "key": {
+        "uuid": "77b1db48_b2599c84",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-03T17:13:32Z",
+      "side": 1,
+      "message": "for now let\u0027s not mention NCMP it us just a MVP not even used by E2E slicing use case\n(we wil rename it in Istanbul too)",
+      "parentUuid": "9d63db29_3bd6a7c8",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "858ff7bf_f5a74a4e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-03T17:13:32Z",
+      "side": 1,
+      "message": "I think this is a good minimal approach for this first release\n(Maybe Tony should be asked to review this too?)",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1971a325_c60ff2d6",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-03T17:13:32Z",
+      "side": 1,
+      "message": "Include Jira Ref (if you can as link but just ref number will do too)",
+      "range": {
+        "startLine": 100,
+        "startChar": 5,
+        "endLine": 100,
+        "endChar": 54
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63040151_f579a695",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-03T17:13:32Z",
+      "side": 1,
+      "message": "Include Jira Ref (if you can as link but just ref number will do too)",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 60
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eeb7295_106ea3f2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-03T17:13:32Z",
+      "side": 1,
+      "message": "Where does this com from?)",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a31419f_47e90aa1",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
