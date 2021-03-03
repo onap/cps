@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "7a90a2c9_5b00be01",
+        "filename": "csit/tests/cps-admin/cps-admin.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-03-03T17:07:38Z",
+      "side": 1,
+      "message": "Still, you\u0027re now duplicating ${basePath}/v1/dataspaces in multiple places, so why not define common\n\n${dataSpacesURL}      ${basePath}/v1/dataspaces\n\nor something like that?",
+      "parentUuid": "5beabced_204c324e",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "cb70d4fc79515a68bedf7c90eae3c797fbbb7311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d872325_dd67ea80",
         "filename": "csit/tests/cps-data/cps-data.robot",
         "patchSetId": 2
