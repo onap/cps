@@ -5,7 +5,8 @@ Library               Collections
 Library               OperatingSystem
 Library               RequestsLibrary
 
-Suite Setup           Create Session      CPS_HOST    ${CPS_HOST}
+${auth}=    Create List    cpsuser    cpsr0cks!
+Suite Setup           Create Session      CPS_HOST    ${CPS_HOST}   auth=${auth}
 
 *** Variables ***
 
