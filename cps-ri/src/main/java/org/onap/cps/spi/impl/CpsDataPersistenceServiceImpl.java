@@ -39,6 +39,7 @@ import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.query.CpsPathQuery;
+import org.onap.cps.spi.query.CpsPathQueryType;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -131,9 +132,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
-        final List<FragmentEntity> fragmentEntities = fragmentRepository
-            .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathQuery
-                .getXpathPrefix(), cpsPathQuery.getLeafName(), cpsPathQuery.getLeafValue());
+        final List<FragmentEntity> fragmentEntities;
+        if (CpsPathQueryType.XPATH_LEAF_VALUE.equals(cpsPathQuery.getCpsPathQueryType())) {
+            fragmentEntities = fragmentRepository
+                .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathQuery.getXpathPrefix(), cpsPathQuery
+                    .getLeafName(), cpsPathQuery.getLeafValue());
+        } else {
+            fragmentEntities = fragmentRepository
+                    .getByAnchorAndEndsWithXpath(anchorEntity.getId(), cpsPathQuery.getEndsWith());
+        }
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());

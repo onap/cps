@@ -55,9 +55,13 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     @Query(value =
         "SELECT * FROM FRAGMENT WHERE (anchor_id = :anchor) AND (xpath = (:xpath) OR xpath LIKE "
             + "CONCAT(:xpath,'\\[@%]')) AND attributes @> jsonb_build_object(:leafName , :leafValue)",
-                nativeQuery = true)
-    // Above query will match an xpath with or without the index for a list [@key=value]
-    // and match anchor id, leaf name and leaf value
+        nativeQuery = true)
+    // Above query will match an xpath with or without the index for a list [@key=value] and match anchor id,
+    // leaf name and leaf value
     List<FragmentEntity> getByAnchorAndXpathAndLeafAttributes(@Param("anchor") int anchorId, @Param("xpath")
         String xpathPrefix, @Param("leafName") String leafName, @Param("leafValue") Object leafValue);
+
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE %:xpath", nativeQuery = true)
+    // Above query will match the end of an xpath and anchor id
+    List<FragmentEntity> getByAnchorAndEndsWithXpath(@Param("anchor") int anchorId, @Param("xpath") String xpath);
 }
