@@ -20,7 +20,7 @@ version: "3.7"
 services:
   #cps-standalone:
   #  container_name: cps-service
-  #  image: ps-service:${VERSION}
+  #  image: cps-service:${VERSION}
   #  volumes:
   #    - "./application.yml:/app/resources/application.yml"
   #  ports:

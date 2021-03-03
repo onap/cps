@@ -49,5 +49,6 @@ Get Schema Set info
 Create Anchor
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors
     ${params}=          Create Dictionary   schema-set-name=${schemaSetName}   anchor-name=${anchorName}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}
+    ${headers}=         Create Dictionary   Authorization=Basic Y3BzdXNlcjpjcHNyMGNrcyE=
+    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
