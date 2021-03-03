@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2020, 2021 Bell Canada. All rights reserved.
  *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,10 +28,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 import org.modelmapper.ModelMapper
-import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
@@ -46,11 +46,10 @@ import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
-import spock.lang.Specification
 import spock.lang.Unroll
 
 @WebMvcTest
-class AdminRestControllerSpec extends Specification {
+class AdminRestControllerSpec extends RestControllerSpecification {
 
     @SpringBean
     CpsModuleService mockCpsModuleService = Mock()
@@ -83,8 +82,12 @@ class AdminRestControllerSpec extends Specification {
         given: 'an endpoint'
             def createDataspaceEndpoint = "$basePath/v1/dataspaces";
         when: 'post is invoked'
-            def response = mvc.perform(
-                    post(createDataspaceEndpoint).param('dataspace-name', dataspaceName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            post(createDataspaceEndpoint)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('dataspace-name', dataspaceName))
+                            .andReturn().response
         then: 'service method is invoked with expected parameters'
             1 * mockCpsAdminService.createDataspace(dataspaceName)
         and: 'dataspace is create successfully'
@@ -98,7 +101,12 @@ class AdminRestControllerSpec extends Specification {
             def thrownException = new DataspaceAlreadyDefinedException("", new RuntimeException())
             mockCpsAdminService.createDataspace(dataspaceName) >> { throw thrownException }
         when: 'post is invoked'
-            def response = mvc.perform(post(createDataspaceEndpoint).param('dataspace-name', dataspaceName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            post(createDataspaceEndpoint)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('dataspace-name', dataspaceName))
+                            .andReturn().response
         then: 'dataspace creation fails'
             response.status == HttpStatus.BAD_REQUEST.value()
     }
@@ -110,8 +118,13 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
-            def response = mvc.perform(multipart(schemaSetEndpoint)
-                    .file(multipartFile).param('schema-set-name', schemaSetName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _) >>
                     { args -> yangResourceMapCapture = args[2] }
@@ -127,8 +140,13 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
-            def response = mvc.perform(multipart(schemaSetEndpoint)
-                    .file(multipartFile).param('schema-set-name', schemaSetName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _) >>
                     { args -> yangResourceMapCapture = args[2] }
@@ -143,8 +161,13 @@ class AdminRestControllerSpec extends Specification {
         given: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'zip archive having #caseDescriptor is uploaded with create schema set request'
-            def response = mvc.perform(multipart(schemaSetEndpoint)
-                    .file(multipartFile).param('schema-set-name', schemaSetName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
         then: 'create schema set rejected'
             response.status == HttpStatus.BAD_REQUEST.value()
         where: 'following cases are tested'
@@ -159,8 +182,13 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
-            def response = mvc.perform(multipart(schemaSetEndpoint)
-                    .file(multipartFile).param('schema-set-name', schemaSetName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
         then: 'create schema set rejected'
             response.status == HttpStatus.BAD_REQUEST.value()
     }
@@ -171,8 +199,13 @@ class AdminRestControllerSpec extends Specification {
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def multipartFile = createMultipartFileForIOException(fileType)
-            def response = mvc.perform(multipart(schemaSetEndpoint)
-                    .file(multipartFile).param('schema-set-name', schemaSetName)).andReturn().response
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
         then: 'the error response returned indicating internal server error occurrence'
             response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
         where: 'following file types are used'
@@ -183,7 +216,9 @@ class AdminRestControllerSpec extends Specification {
         given: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
-            def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
+            def response =
+                    mvc.perform(delete(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
+                            .andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED)
         and: 'response code indicates success'
@@ -198,7 +233,9 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
-            def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
+            def response =
+                    mvc.perform(delete(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
+                            .andReturn().response
         then: 'schema set deletion fails with conflict response code'
             response.status == HttpStatus.CONFLICT.value()
     }
@@ -210,7 +247,9 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'get schema set API is invoked'
-            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
+            def response =
+                    mvc.perform(get(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
+                            .andReturn().response
         then: 'the correct schema set is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(schemaSetName)
@@ -224,8 +263,12 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'post is invoked'
-            def response = mvc.perform(post(anchorEndpoint).contentType(MediaType.APPLICATION_JSON)
-                    .params(requestParams as MultiValueMap)).andReturn().response
+            def response =
+                    mvc.perform(
+                            post(anchorEndpoint).contentType(MediaType.APPLICATION_JSON)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .params(requestParams as MultiValueMap))
+                            .andReturn().response
         then: 'anchor is created successfully'
             1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
             response.status == HttpStatus.CREATED.value()
@@ -238,7 +281,9 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
-            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+            def response =
+                    mvc.perform(get(anchorEndpoint).header("Authorization", getAuthorizationHeader()))
+                            .andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(anchorName)
@@ -250,8 +295,9 @@ class AdminRestControllerSpec extends Specification {
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
         when: 'get anchor API is invoked'
-            def response = mvc.perform(get(anchorEndpoint))
-                    .andReturn().response
+            def response =
+                    mvc.perform(get(anchorEndpoint).header("Authorization", getAuthorizationHeader()))
+                            .andReturn().response
             def responseContent = response.getContentAsString()
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
