@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,14 +20,12 @@
 
 package org.onap.cps.rest.controller
 
-
 import com.google.gson.Gson
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,8 +33,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
-import spock.lang.Shared
-import spock.lang.Specification
 import spock.lang.Unroll
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -43,7 +40,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
-class QueryRestControllerSpec extends Specification {
+class QueryRestControllerSpec extends RestControllerSpecification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
@@ -77,10 +74,13 @@ class QueryRestControllerSpec extends Specification {
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
         when: 'query data nodes API is invoked'
-            def response = mvc.perform(get(dataNodeEndpoint)
-                    .param('cps-path', cpsPath)
-                    .param('include-descendants', includeDescendantsOption))
-                    .andReturn().response
+            def response =
+                    mvc.perform(
+                            get(dataNodeEndpoint)
+                                    .header("Authorization", getAuthorizationHeader())
+                                    .param('cps-path', cpsPath)
+                                    .param('include-descendants', includeDescendantsOption))
+                            .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(new Gson().toJson(dataNode))

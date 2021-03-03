@@ -5,10 +5,11 @@ Library               Collections
 Library               OperatingSystem
 Library               RequestsLibrary
 
-Suite Setup           Create Session      CPS_HOST    ${CPS_HOST}
+Suite Setup           Create Session      CPS_HOST    ${CPS_HOST}   auth=${auth}
 
 *** Variables ***
 
+${auth}                 cpsuser     cpsr0cks!
 ${basePath}             /cps/api
 ${dataspaceName}        CSIT-Dataspace
 ${schemaSetName}        CSIT-SchemaSet
