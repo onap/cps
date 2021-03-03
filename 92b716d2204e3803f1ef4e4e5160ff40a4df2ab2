@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b1a0676_759e2820",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-03T17:08:18Z",
+      "side": 1,
+      "message": "new name for nF proxy",
+      "parentUuid": "9d63db29_3bd6a7c8",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a31419f_47e90aa1",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2021-03-03T16:59:51Z",
       "side": 1,
       "message": "extra space",
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "857fb04b_f1f1515d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-03T17:08:18Z",
+      "side": 1,
+      "message": "will fix if there are other comments as well.",
+      "parentUuid": "6a31419f_47e90aa1",
       "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
