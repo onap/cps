@@ -312,14 +312,14 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
         then: 'the correct data is returned'
-            def leaves ='[common-leaf-name:common-leaf-value, common-leaf-name-int:5.0]'
+            def leaves = '[common-leaf-name:common-leaf-value, common-leaf-name-int:5.0]'
             DataNode dataNode = result.stream().findFirst().get()
             dataNode.getLeaves().toString() == leaves
             dataNode.getChildDataNodes().size() == expectedNumberOfChidlNodes
         where: 'the following data is used'
-            type                         | cpsPath                                                          | includeDescendantsOption | expectedNumberOfChidlNodes
-            'String and no descendants'  | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' | OMIT_DESCENDANTS         | 0
-            'Integer and descendants'    | '/parent-200/child-202[@common-leaf-name-int=5]'                 | INCLUDE_ALL_DESCENDANTS  | 1
+            type                        | cpsPath                                                          | includeDescendantsOption | expectedNumberOfChidlNodes
+            'String and no descendants' | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' | OMIT_DESCENDANTS         | 0
+            'Integer and descendants'   | '/parent-200/child-202[@common-leaf-name-int=5]'                 | INCLUDE_ALL_DESCENDANTS  | 1
     }
 
     @Unroll
@@ -330,10 +330,39 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'no data is returned'
             result.isEmpty()
         where: 'following cps queries are performed'
-            scenario                         | cpsPath
-            'cps path is incomplete'         | '/parent-200[@common-leaf-name-int=5]'
-            'missing / at beginning of path' | 'parent-200/child-202[@common-leaf-name-int=5]'
-            'leaf value does not exist'      | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
-            'incomplete end of xpath prefix' | '/parent-200/child-20[@common-leaf-name-int=5]'
+            scenario                           | cpsPath
+            'cps path is incomplete'           | '/parent-200[@common-leaf-name-int=5]'
+            'leaf value does not exist'        | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
+            'incomplete end of xpath prefix'   | '/parent-200/child-20[@common-leaf-name-int=5]'
+            'empty cps path of type ends with' | '///'
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query with and without descendants using #type.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def cpsPath = '///child-202'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
+        then: 'the data node has the correct number of children'
+            DataNode dataNode = result.stream().findFirst().get()
+            dataNode.getChildDataNodes().size() == expectedNumberOfChildNodes
+        where: 'the following data is used'
+            type                                    | includeDescendantsOption | expectedNumberOfChildNodes
+            'ends with and omit descendants'        | OMIT_DESCENDANTS         | 0
+            'ends with and include all descendants' | INCLUDE_ALL_DESCENDANTS  | 1
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query using ends with variations of #type.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
+        then: 'the correct number of data nodes is returned'
+            result.size() == expectedNumberOfDataNodes
+        where: 'the following data is used'
+            type                            | cpsPath             | expectedNumberOfDataNodes
+            'single match with / prefix'    | '///child-202'      | 1
+            'single match without / prefix' | '//grand-child-202' | 1
+            'multiple matches'              | '//202'             | 2
     }
 }
