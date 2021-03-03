@@ -21,7 +21,7 @@ CPS Release Notes
 ..      =========================
 
 
-Version: 0.0.3
+Version: 1.0.0
 ==============
 
 
@@ -36,14 +36,21 @@ Summary
 Following CPS components are available with default ONAP/CPS installation.
 
 
-    - Service components
+    * Platform components
 
-        -
+        - CPS (Helm charts)
 
-    - Additional resources that CPS utilizes deployed using ONAP common charts:
+    * Service components
+
+        - CPS Core
+
+    * Additional resources that CPS utilizes deployed using ONAP common charts
 
         - Postgres Database
 
+
+Below service components (mS) are available to be deployed on-demand.
+    - CPS-TBDMT
 
 
 Under OOM (Kubernetes) all CPS component containers are deployed as Kubernetes Pods/Deployments/Services into Kubernetes cluster.
@@ -59,17 +66,20 @@ Release Data
 | **Docker images**                    | Refer :any:`Deliverable <honolulu_deliverable>`        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 0.0.3 Honolulu                                         |
+| **Release designation**              | 1.0.0 Honolulu                                         |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | 2021-03-01                                             |
+| **Release date**                     | 2021-03-11                                             |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 
 Features
 --------
-
+Configuration Persistence Service is a model driven persistence solution for data described by YANG models.
+CPS has been driven by the needs of the E2E Networking Slicing use case.
+It currently supports basic (rw) persistence and simple queries.
+It also provides MVP support for network data access using simulated data.
 
 .. _honolulu_deliverable:
 
@@ -82,13 +92,15 @@ Software Deliverables
    :header: "Repository", "SubModules", "Version & Docker Image (if applicable)"
    :widths: auto
 
-   "tbc", "tbc", "tbc"
+   "cps", "", "onap/cps-and-nf-proxy:1.0.0"
 
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
 
-    * TBC
+   - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
+   - `CPS-264 <https://jira.onap.org/browse/CPS-264>`_ Unique timestamp is missing when tagging docker images.
+   - Methods exposed on API which are yet not implemented : deleteAnchor, getNodesByDataspace & deleteDataspace.
 
 
 *System Limitations*
@@ -109,24 +121,24 @@ Security Notes
 *Fixed Security Issues*
 
 * `CPS-167 <https://jira.onap.org/browse/CPS-167>`_ -Update CPS dependencies as Required for Honolulu release
-    - Update org.onap.oparent to 3.2.0
+    - Upgrade org.onap.oparent to 3.2.0
     - Upgrade spring.boot to 2.3.8.RELEASE
-    - Upgrade yangtool to 5.0.7
+    - Upgrade yangtools to 5.0.7
 
 *Known Security Issues*
 
-	None
-
+    * Weak Crytography using md5
+    * Risk seen in Zip file expansion
 
 *Known Vulnerabilities in Used Modules*
 
-	None
+    None
 
-CPS code has been formally scanned during build time using NexusIQ and all Critical vulnerabilities have been addressed, items that remain open have been assessed for risk and determined to be false positive. 
+CPS code has been formally scanned during build time using NexusIQ and all Critical vulnerabilities have been addressed, items that remain open have been assessed for risk and determined to be false positive.
 
 Test Results
 ------------
-
+    * `Integration tests <https://wiki.onap.org/display/DW/CPS+Integration+Test+Cases>`_
 
 References
 ----------

@@ -19,7 +19,7 @@ Exposed API
 -----------
 
 The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS).
-The OAS 3, which is based on the original "Swagger Specification," is being widely used in API developments.
+The OAS 3, which is based on the original "Swagger Specification", is being widely used in API developments.
 
 Specification can be accesed locally at :
 
@@ -27,4 +27,7 @@ Specification can be accesed locally at :
 
   “http://<hostname>:<port>/v3/api-docs?group=cps-docket”
 
+Contact Information
+-------------------
 
+onap-discuss@lists.onap.org
