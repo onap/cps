@@ -31,30 +31,42 @@ import org.onap.cps.spi.exceptions.CpsPathException;
 @Setter(AccessLevel.PRIVATE)
 public class CpsPathQuery {
 
+    private CpsPathQueryType cpsPathQueryType;
     private String xpathPrefix;
     private String leafName;
     private Object leafValue;
+    private String endsWith;
 
     public static final Pattern QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN =
-        Pattern.compile("(.*)\\[\\s*@(.*?)\\s*=\\s*(.*?)\\s*]");
+        Pattern.compile("((?:\\/[^\\/]+)+?)\\[\\s*@(\\S+?)\\s*=\\s*(.*?)\\s*\\]");
 
-    public static final Pattern LEAF_STRING_VALUE_PATTERN = Pattern.compile("['\"](.*)['\"]");
+    public static final Pattern QUERY_CPS_PATH_ENDS_WITH_PATTERN = Pattern.compile("\\/\\/(.+)");
 
     public static final Pattern LEAF_INTEGER_VALUE_PATTERN = Pattern.compile("[-+]?\\d+");
 
+    public static final Pattern LEAF_STRING_VALUE_PATTERN = Pattern.compile("['\"](.*)['\"]");
+
     /**
-     * Returns a xpath prefix, leaf name and leaf value for the given cps path.
+     * Returns a cps path query.
      *
      * @param cpsPath cps path
-     * @return a CpsPath object containing the xpath prefix, leaf name and leaf value.
+     * @return a CpsPath object.
      */
     public static CpsPathQuery createFrom(final String cpsPath) {
-        final Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+        Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
             final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.LEAF_VALUE);
             cpsPathQuery.setXpathPrefix(matcher.group(1));
             cpsPathQuery.setLeafName(matcher.group(2));
             cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3)));
+            return cpsPathQuery;
+        }
+        matcher = QUERY_CPS_PATH_ENDS_WITH_PATTERN.matcher(cpsPath);
+        if (matcher.matches()) {
+            final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.ENDS_WITH);
+            cpsPathQuery.setEndsWith(matcher.group(1));
             return cpsPathQuery;
         }
         throw new CpsPathException("Invalid cps path.",

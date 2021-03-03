@@ -28,28 +28,44 @@ class CpsPathQuerySpec extends Specification {
     def objectUnderTest = new CpsPathQuery()
 
     @Unroll
-    def 'Parse cps path with valid cps path and a filter for a leaf of type : #type.'()
-    {   when: 'the given cps path is parsed'
-        def result = objectUnderTest.createFrom(cpsPath)
-        then: 'object has the expected attribute'
+    def 'Parse cps path with valid cps path and a filter for a leaf of type : #type.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.createFrom(cpsPath)
+        then: 'the query has the right type'
+            result.cpsPathQueryType == CpsPathQueryType.LEAF_VALUE
+        and: 'the right query parameters are set'
             result.xpathPrefix == '/parent-200/child-202'
             result.leafName == expectedLeafName
             result.leafValue == expectedLeafValue
         where: 'the following data is used'
-            type      | cpsPath                                                          || expectedLeafName       | expectedLeafValue
-            'String'  | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' || 'common-leaf-name'     | 'common-leaf-value'
-            'Integer' | '/parent-200/child-202[@common-leaf-name-int=5]'                 || 'common-leaf-name-int' | 5
+            type                        | cpsPath                                                          || expectedLeafName       | expectedLeafValue
+            'String'                    | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' || 'common-leaf-name'     | 'common-leaf-value'
+            'Integer'                   | '/parent-200/child-202[@common-leaf-name-int=5]'                 || 'common-leaf-name-int' | 5
+            'Integer value with spaces' | '/parent-200/child-202[@common-leaf-name-int = 5]'               || 'common-leaf-name-int' | 5
     }
 
     @Unroll
-    def 'Parse cps path with : #scenario.'()
-    {   when: 'the given cps path is parsed'
+    def 'Parse cps path of type ends with a #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.createFrom(cpsPath)
+        then: 'the following data is used'
+            result.cpsPathQueryType == CpsPathQueryType.ENDS_WITH
+            result.endsWith == expectedEndsWithValue
+        where: 'the following data is used'
+            scenario         | cpsPath                   || expectedEndsWithValue
+            'yang container' | '///cps-path'             || '/cps-path'
+            'yang list'      | '///cps-path[@key=value]' || '/cps-path[@key=value]'
+    }
+
+    @Unroll
+    def 'Parse cps path with : #scenario.'() {
+        when: 'the given cps path is parsed'
             objectUnderTest.createFrom(cpsPath)
         then: 'a CpsPathException is thrown'
             thrown(CpsPathException)
         where: 'the following data is used'
             scenario                    | cpsPath
-            'invalid cps path'          | 'invalid-cps-path'
+            'missing / at the start'    | 'invalid-cps-path/child'
             'cps path with float value' | '/parent-200/child-202[@common-leaf-name-float=5.0]'
     }
 }
