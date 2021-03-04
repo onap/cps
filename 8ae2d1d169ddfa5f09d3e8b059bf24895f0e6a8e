@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0c4b95_5ccc1eaf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-04T16:21:18Z",
+      "side": 1,
+      "message": "This is CPS-265",
+      "revId": "8ae2d1d169ddfa5f09d3e8b059bf24895f0e6a8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
