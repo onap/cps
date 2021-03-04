@@ -179,6 +179,30 @@
     },
     {
       "key": {
+        "uuid": "a9ee25bd_29ad4ce3",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-04T11:59:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13be92cf_ee3308e6",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e23a1a1a_ea9ef98a",
         "filename": "csit/README.md",
         "patchSetId": 1
@@ -199,6 +223,30 @@
       "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48e8fa8d_a29503e8",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-04T11:59:54Z",
+      "side": 1,
+      "message": "Yes, for those who build from IDE.\nIf anyone prefers terminal, this approach could be used.",
+      "parentUuid": "e23a1a1a_ea9ef98a",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
