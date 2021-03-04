@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d6878d77_9575564e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T16:09:54Z",
+      "side": 1,
+      "message": "it was a suggestion. Not important for now. I was wondering myself too if it would really be benifical. I have soem idea I might try later if I have time.\nThe main thing was to consider it which you did, Thanks :-)",
+      "parentUuid": "1243c54b_65e5e9c3",
+      "range": {
+        "startLine": 178,
+        "startChar": 28,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "c140f883b85b58efdd9f55ccb4cbe06ad66f1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61d443f9_35a47c40",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 10
