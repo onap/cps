@@ -81,6 +81,76 @@
       "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f3bec25_8b566e38",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-04T11:16:36Z",
+      "side": 1,
+      "message": "in order to successfully run the script on a local environment\nthis package is expected to be installed.\nas it was discovered experimentally",
+      "parentUuid": "26bc1dac_49c8fce4",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "391723a3_407ad705",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-04T11:16:36Z",
+      "side": 1,
+      "message": "suggested single line like below\n\nsudo apt install python3-pip virtualenv",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e23a1a1a_ea9ef98a",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-04T11:16:36Z",
+      "side": 1,
+      "message": "think this update is extra, devs usually do maven builds from IDE.\nalso directory where the project is actually allocated may (will) differ",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
