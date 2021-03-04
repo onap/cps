@@ -124,6 +124,10 @@
                     <groupId>${project.groupId}</groupId>
                     <artifactId>cps-rest</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>cps-ri</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -148,6 +152,10 @@
                 <dependency>
                     <groupId>${project.groupId}</groupId>
                     <artifactId>cps-nf-proxy-rest</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>cps-ri</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -177,6 +185,10 @@
                 <dependency>
                     <groupId>${project.groupId}</groupId>
                     <artifactId>cps-nf-proxy-rest</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>cps-ri</artifactId>
                 </dependency>
             </dependencies>
             <build>
