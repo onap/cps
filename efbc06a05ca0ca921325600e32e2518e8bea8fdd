@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec5d0637_cb4b9993",
+        "filename": "csit/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-03-04T12:02:29Z",
+      "side": 1,
+      "message": "You are using \"clean install\" in Jenkins (see https://gerrit.onap.org/r/c/ci-management/+/118229/3/jjb/cps/cps-csit.yaml#1) \n\nI think these should be aligned.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "efbc06a05ca0ca921325600e32e2518e8bea8fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
