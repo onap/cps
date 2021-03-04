@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "6e08b2f9_f4f93c3b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:13:40Z",
+      "side": 1,
+      "message": "i mentioned this as this is a component being delivered and part of docker image. will remove",
+      "parentUuid": "77b1db48_b2599c84",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "858ff7bf_f5a74a4e",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "e7b94efb_301c25c4",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1971a325_c60ff2d6",
+      "range": {
+        "startLine": 100,
+        "startChar": 5,
+        "endLine": 100,
+        "endChar": 54
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63040151_f579a695",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -142,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "fdcb8d10_533508f7",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63040151_f579a695",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 60
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8eeb7295_106ea3f2",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -162,6 +234,30 @@
       "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e129ce1e_82d77e5f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:13:40Z",
+      "side": 1,
+      "message": "https://sonarcloud.io/project/security_hotspots?id\u003donap_cps",
+      "parentUuid": "8eeb7295_106ea3f2",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -197,6 +293,24 @@
       "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab771f83_ee4a597f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "857fb04b_f1f1515d",
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
