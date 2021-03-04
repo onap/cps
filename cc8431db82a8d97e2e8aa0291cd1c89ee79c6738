@@ -22,6 +22,30 @@
       "revId": "cc8431db82a8d97e2e8aa0291cd1c89ee79c6738",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4e90e37_189b6f1e",
+        "filename": "csit/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-04T14:58:46Z",
+      "side": 1,
+      "message": "pip wont be recognised as a command as there wont be such command.\nAlias translates the pip3 to pip, so that the script does not fail.",
+      "parentUuid": "9b22ad66_9e793522",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "cc8431db82a8d97e2e8aa0291cd1c89ee79c6738",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
