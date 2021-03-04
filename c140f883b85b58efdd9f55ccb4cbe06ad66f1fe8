@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b4cbd548_a376ccd3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-04T14:15:19Z",
+      "side": 1,
+      "message": "I think that Spring does not support @Value for static fields.",
+      "parentUuid": "13752ce2_24ddfe1c",
+      "range": {
+        "startLine": 36,
+        "startChar": 59,
+        "endLine": 36,
+        "endChar": 66
+      },
+      "revId": "c140f883b85b58efdd9f55ccb4cbe06ad66f1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d70175ba_295aedc3",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 10
