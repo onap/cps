@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa657c13_a1107a8a",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-04T10:57:06Z",
+      "side": 1,
+      "message": "extra space",
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26bc1dac_49c8fce4",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-04T10:57:06Z",
+      "side": 1,
+      "message": "question: why is that a pre requisite?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
