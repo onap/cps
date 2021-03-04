@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "cebc8998_35ace0b4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T13:55:53Z",
+      "side": 1,
+      "message": "incase we have more than 2 values in the enum in the future, it would make sense to make this or some other the default (else) in this if statement.",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 50
+      },
+      "revId": "f0fb4492ba406be18f3c71db6b83ab8b8d8b4fd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aed461a_d3e0f9d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T13:55:53Z",
+      "side": 1,
+      "message": "name is not intuitive. see other comment.",
+      "range": {
+        "startLine": 143,
+        "startChar": 35,
+        "endLine": 143,
+        "endChar": 62
+      },
+      "revId": "f0fb4492ba406be18f3c71db6b83ab8b8d8b4fd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "768358e8_eac871ca",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 2
@@ -18,6 +64,29 @@
         "startChar": 12,
         "endLine": 58,
         "endChar": 64
+      },
+      "revId": "f0fb4492ba406be18f3c71db6b83ab8b8d8b4fd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d4832eb_83d48eae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryType.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T13:55:53Z",
+      "side": 1,
+      "message": "suggestion : i would rather call them xpath \u0026 xpathWithLeafValue or something similar",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 14
       },
       "revId": "f0fb4492ba406be18f3c71db6b83ab8b8d8b4fd9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
