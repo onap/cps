@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1243c54b_65e5e9c3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-04T16:03:36Z",
+      "side": 1,
+      "message": "I was looking at it and it seems to me that refactoring with extract method will provide less readable and more error prone code as the extracted method would need different parameters such as:\n\n```\nMockHttpServletResponse perform(\n    HttpMethod httpMethod,\n    GString endpoint,\n    Map\u003cString, String\u003e params,\n    String content, MediaType mediaType)\n```\n\nIt could also become a long list pararmeter method depending on future changes needed for the requests.\n\nI have a preference for the current implementation.\n\nDid you have something different in mind for this refactoring ?",
+      "parentUuid": "d70175ba_295aedc3",
+      "range": {
+        "startLine": 178,
+        "startChar": 28,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "c140f883b85b58efdd9f55ccb4cbe06ad66f1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61d443f9_35a47c40",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 10
@@ -83,6 +107,30 @@
       "writtenOn": "2021-03-04T10:03:36Z",
       "side": 1,
       "message": "not obvious why this is invalid, I presume this code is incorrect?!\ncan you use a string her lie \u0027Basic Invalid Token\u0027?",
+      "range": {
+        "startLine": 182,
+        "startChar": 68,
+        "endLine": 182,
+        "endChar": 84
+      },
+      "revId": "c140f883b85b58efdd9f55ccb4cbe06ad66f1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1b9a51_edbf2fa2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-04T16:03:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d443f9_35a47c40",
       "range": {
         "startLine": 182,
         "startChar": 68,
