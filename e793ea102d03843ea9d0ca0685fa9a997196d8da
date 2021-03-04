@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece5e220_f82008b4",
+        "filename": "csit/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T11:08:12Z",
+      "side": 1,
+      "message": "is this optional/alternative depending on the available environment?!",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "e793ea102d03843ea9d0ca0685fa9a997196d8da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b16c68_410130a1",
+        "filename": "csit/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T11:08:12Z",
+      "side": 1,
+      "message": "again maybe explain this an optional/alternative approach?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "e793ea102d03843ea9d0ca0685fa9a997196d8da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82795964_2332fbe1",
+        "filename": "csit/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T11:08:12Z",
+      "side": 1,
+      "message": "I assume this depends on the user?\nuse something like ~/\u003cyour_git_repo\u003e/cps",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "e793ea102d03843ea9d0ca0685fa9a997196d8da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
