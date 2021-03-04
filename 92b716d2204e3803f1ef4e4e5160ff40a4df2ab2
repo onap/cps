@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "3b1a63f5_2d0a8074",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T08:30:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "11b79e20_0b6be097",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1971a325_c60ff2d6",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "https://sonarcloud.io/project/security_hotspots?id\u003donap_cps",
       "parentUuid": "8eeb7295_106ea3f2",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27b7ff4d_990b6472",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T08:30:06Z",
+      "side": 1,
+      "message": "maybe add that link so...",
+      "parentUuid": "e129ce1e_82d77e5f",
       "range": {
         "startLine": 130,
         "startChar": 6,
