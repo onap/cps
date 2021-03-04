@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13752ce2_24ddfe1c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-04T08:49:19Z",
+      "side": 1,
+      "message": "the actuator base path is a configuration property\ni\u0027d suggest using a \n@Value(\"${management.endpoints.web.base-path}\")\nannotated property for it",
+      "range": {
+        "startLine": 36,
+        "startChar": 59,
+        "endLine": 36,
+        "endChar": 66
+      },
+      "revId": "c140f883b85b58efdd9f55ccb4cbe06ad66f1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
