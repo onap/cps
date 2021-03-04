@@ -11,24 +11,41 @@ Test suits are executed using Robots framework.
 
 ### Running on local environment
 
-Prerequisites: 
+Prerequisites:
 - docker
 - python + pip
+- virtualenv
 
 ```bash
-sudo apt install python3-pip 
+sudo apt install python3 python3-pip virtualenv
+```
+
+Add an alias in the ```.bashrc``` file for pip3 to be pip at the end of the file. </br>
+This file will be present on the home directory of the Ubuntu system.
+```bash
+alias pip=pip3
+```
+
+Now load the ```.bashrc``` file.
+```bash
+. .bashrc
 ```
 
 The Robot framework and required python packages will be installed on first execution.
 
-Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ):
-
+Navigate to cps project directory
 ```bash
-mvn clean package -Dmaven.test.skip=true -Dnexus.repository= -Pcps-xnf-docker
+cd ~/<your_git_repo>/cps
 ```
 
-Execute test from current folder:
+Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ) from your cps directory:
+
 ```bash
-./run-project-csit.sh
+mvn clean install -Dmaven.test.skip=true -Dnexus.repository= -Pcps-xnf-docker
 ```
- 
+
+Execute test from current cps folder:
+```bash
+./csit/run-project-csit.sh
+```
+
