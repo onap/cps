@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "857909f7_81a98976",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T11:33:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f3bec25_8b566e38",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "391723a3_407ad705",
         "filename": "csit/README.md",
         "patchSetId": 1
@@ -119,6 +143,30 @@
       "writtenOn": "2021-03-04T11:16:36Z",
       "side": 1,
       "message": "suggested single line like below\n\nsudo apt install python3-pip virtualenv",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "71c716882fad2b7e69f61c3d5057afa3dfc89cdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13be92cf_ee3308e6",
+        "filename": "csit/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T11:33:05Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "391723a3_407ad705",
       "range": {
         "startLine": 20,
         "startChar": 0,
