@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "768358e8_eac871ca",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-04T13:51:50Z",
+      "side": 1,
+      "message": "You could instantiate the object before condition. This code is repeated in other block as well.",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 64
+      },
+      "revId": "f0fb4492ba406be18f3c71db6b83ab8b8d8b4fd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
