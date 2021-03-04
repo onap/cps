@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "11b79e20_0b6be097",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T07:15:00Z",
+      "side": 1,
+      "message": "added to CC",
+      "parentUuid": "858ff7bf_f5a74a4e",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1971a325_c60ff2d6",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
