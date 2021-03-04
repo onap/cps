@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2dc5569_6e47a822",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-04T15:31:30Z",
+      "side": 0,
+      "message": "I suppose this should have never been directly included here...",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "4359d28773708cf63410539fae5f5eae4105d4f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
