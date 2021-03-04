@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b22ad66_9e793522",
+        "filename": "csit/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T14:00:26Z",
+      "side": 1,
+      "message": "is this mandatory for the framework or just preference ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "cc8431db82a8d97e2e8aa0291cd1c89ee79c6738",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
