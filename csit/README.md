@@ -14,21 +14,31 @@ Test suits are executed using Robots framework.
 Prerequisites: 
 - docker
 - python + pip
+- virtualenv
 
 ```bash
-sudo apt install python3-pip 
+sudo apt install python3-pip
+```
+
+```bash
+sudo apt install virtualenv
 ```
 
 The Robot framework and required python packages will be installed on first execution.
 
-Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ):
+Navigate to cps project directory
+```bash
+cd ~/IdeaProjects/cps
+```
+
+Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ) from your cps directory:
 
 ```bash
 mvn clean package -Dmaven.test.skip=true -Dnexus.repository= -Pcps-xnf-docker
 ```
 
-Execute test from current folder:
+Execute test from current cps folder:
 ```bash
-./run-project-csit.sh
+./csit/run-project-csit.sh
 ```
- 
+
