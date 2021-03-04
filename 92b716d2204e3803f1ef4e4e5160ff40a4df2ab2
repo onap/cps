@@ -333,6 +333,30 @@
     },
     {
       "key": {
+        "uuid": "4430ebda_cc27d219",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-04T10:09:39Z",
+      "side": 1,
+      "message": "does not have link to individual issue on sonar. Also, we discussed we will not add sonar links as these are ever changing.",
+      "parentUuid": "27b7ff4d_990b6472",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "92b716d2204e3803f1ef4e4e5160ff40a4df2ab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a31419f_47e90aa1",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
