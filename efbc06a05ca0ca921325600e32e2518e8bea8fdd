@@ -46,6 +46,30 @@
       "revId": "efbc06a05ca0ca921325600e32e2518e8bea8fdd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e287fb4_930cda40",
+        "filename": "csit/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-03-04T12:34:49Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand the question since cps-csit.yaml referred above *is* you CI Job configuration?",
+      "parentUuid": "174f13d3_09efb045",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "efbc06a05ca0ca921325600e32e2518e8bea8fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
