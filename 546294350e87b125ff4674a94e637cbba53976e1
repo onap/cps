@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3ff470c_e70ab706",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-05T13:33:18Z",
+      "side": 1,
+      "message": "Should be 1.1.0-SNAPSHOT for master branch.\n\nWill be 1.0.1-SNAPSHOT for release branch.",
+      "revId": "546294350e87b125ff4674a94e637cbba53976e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
