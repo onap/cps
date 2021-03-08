@@ -22,6 +22,30 @@
       "revId": "6fb536c848cd48b0e0d821b27706469e8f30cc9c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b827a5dc_080bba0f",
+        "filename": ".gitreview",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-08T08:52:54Z",
+      "side": 1,
+      "message": "Ignore above comment, I see now that this path is ON the Honolulu branch...",
+      "parentUuid": "4d8acf71_2da75061",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 30
+      },
+      "revId": "6fb536c848cd48b0e0d821b27706469e8f30cc9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
