@@ -28,20 +28,21 @@ class CpsPathQuerySpec extends Specification {
     def objectUnderTest = new CpsPathQuery()
 
     @Unroll
-    def 'Parse cps path with valid cps path and a filter for a leaf of type : #type.'() {
+    def 'Parse cps path with valid cps path and a filter with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.createFrom(cpsPath)
         then: 'the query has the right type'
             result.cpsPathQueryType == CpsPathQueryType.XPATH_LEAF_VALUE
         and: 'the right query parameters are set'
-            result.xpathPrefix == '/parent-200/child-202'
+            result.xpathPrefix == expectedXpathPrefix
             result.leafName == expectedLeafName
             result.leafValue == expectedLeafValue
         where: 'the following data is used'
-            type                        | cpsPath                                                          || expectedLeafName       | expectedLeafValue
-            'String'                    | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' || 'common-leaf-name'     | 'common-leaf-value'
-            'Integer'                   | '/parent-200/child-202[@common-leaf-name-int=5]'                 || 'common-leaf-name-int' | 5
-            'Integer value with spaces' | '/parent-200/child-202[@common-leaf-name-int = 5]'               || 'common-leaf-name-int' | 5
+            scenario               | cpsPath                                                  || expectedXpathPrefix | expectedLeafName       | expectedLeafValue
+            'leaf of type String'  | '/parent/child[@common-leaf-name=\'common-leaf-value\']' || '/parent/child'     |'common-leaf-name'      | 'common-leaf-value'
+            'leaf of type Integer' | '/parent/child[@common-leaf-name-int=5]'                 || '/parent/child'     |'common-leaf-name-int'  | 5
+            'spaces around ='      | '/parent/child[@common-leaf-name-int = 5]'               || '/parent/child'     |'common-leaf-name-int'  | 5
+            'key in top container' | '/parent[@common-leaf-name-int = 5]'                     || '/parent'           |'common-leaf-name-int'  | 5
     }
 
     @Unroll
