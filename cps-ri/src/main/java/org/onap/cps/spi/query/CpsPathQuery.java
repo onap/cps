@@ -59,7 +59,7 @@ public class CpsPathQuery {
             cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_LEAF_VALUE);
             cpsPathQuery.setXpathPrefix(matcher.group(1));
             cpsPathQuery.setLeafName(matcher.group(2));
-            cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3)));
+            cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3), cpsPath));
             return cpsPathQuery;
         }
         matcher = QUERY_CPS_PATH_ENDS_WITH_PATTERN.matcher(cpsPath);
@@ -69,10 +69,10 @@ public class CpsPathQuery {
             return cpsPathQuery;
         }
         throw new CpsPathException("Invalid cps path.",
-            String.format("Cannot interpret or parse cps path %s.", cpsPath));
+            String.format("Cannot interpret or parse cps path '%s'.", cpsPath));
     }
 
-    private static Object convertLeafValueToCorrectType(final String leafValueString) {
+    private static Object convertLeafValueToCorrectType(final String leafValueString, final String cpsPath) {
         final Matcher stringValueWithQuotesMatcher = LEAF_STRING_VALUE_PATTERN.matcher(leafValueString);
         if (stringValueWithQuotesMatcher.matches()) {
             return stringValueWithQuotesMatcher.group(1);
@@ -82,6 +82,6 @@ public class CpsPathQuery {
             return Integer.valueOf(leafValueString);
         }
         throw new CpsPathException("Unsupported leaf value.",
-            String.format("Unsupported leaf value %s in cps path.", leafValueString));
+            String.format("Unsupported leaf value '%s' in cps path '%s'.", leafValueString, cpsPath));
     }
 }
