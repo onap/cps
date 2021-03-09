@@ -23,9 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
+import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -37,7 +39,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class})
+@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class,
+    QueryRestController.class})
 public class CpsRestExceptionHandler {
 
     private CpsRestExceptionHandler() {
@@ -54,7 +57,8 @@ public class CpsRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class})
+    @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class,
+        CpsPathException.class})
     public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
     }

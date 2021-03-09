@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.rest.controller.RestControllerSpecification
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
@@ -148,7 +149,8 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
         where: 'the following exceptions are thrown'
             exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
-                                new DataValidationException(errorMessage, errorDetails, null)]
+                                new DataValidationException(errorMessage, errorDetails, null),
+                                new CpsPathException(errorMessage,errorDetails)]
     }
 
     @Unroll
