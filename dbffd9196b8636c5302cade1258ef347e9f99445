@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf570676_6694f2ab",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-09T17:49:25Z",
+      "side": 0,
+      "message": "Do we want to add a test to validate that more than 99 nested yang containers is actually failing ?",
+      "revId": "dbffd9196b8636c5302cade1258ef347e9f99445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
