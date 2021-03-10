@@ -57,7 +57,7 @@ class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final Long NEW_RESOURCE_ABSTRACT_ID = 0L
     static final String NEW_RESOURCE_NAME = 'some new resource'
     static final String NEW_RESOURCE_CONTENT = 'some resource content'
-    static final String NEW_RESOURCE_CHECKSUM = '8185b09f11e262f18043f0ea08803f46'
+    static final String NEW_RESOURCE_CHECKSUM = '09002da02ee2683898d2c81c67f9e22cdbf8577d8c2de16c84d724e4ae44a0a6'
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]
     def dataspaceEntity
@@ -110,7 +110,7 @@ class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'the schema persisted (re)uses the existing id, name and has the same checksum'
             def existingResourceId = 3001L
             def existingResourceName = 'module1@2020-02-02.yang'
-            def existingResourceChecksum = '877e65a9f36d54e7702c3f073f6bc42b'
+            def existingResourceChecksum = 'e8bdda931099310de66532e08c3fafec391db29f55c81927b168f6aa8f81b73b'
             assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
                     existingResourceId, existingResourceName, existingResourceContent, existingResourceChecksum)
     }
