@@ -7,10 +7,10 @@ INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2101, 'SCHEMA-SET-101', 1001); -- for removal, having anchor and data associated
 
 INSERT INTO YANG_RESOURCE (ID, NAME, CONTENT, CHECKSUM) VALUES
-    (3001, 'module1@2020-02-02.yang', 'CONTENT-001', '877e65a9f36d54e7702c3f073f6bc42b'),
-    (3002, 'module2@2020-02-02.yang', 'CONTENT-002', '88892586b1f23fe8c1595759784a18f8'),
-    (3003, 'module3@2020-02-02.yang', 'CONTENT-003', 'fc5740499a09a48e0c95d6fc45d4bde8'),
-    (3004, 'module4@2020-02-02.yang', 'CONTENT-004', '3801280fe532f5cbf535695cf6122026'),
+    (3001, 'module1@2020-02-02.yang', 'CONTENT-001', 'e8bdda931099310de66532e08c3fafec391db29f55c81927b168f6aa8f81b73b'),
+    (3002, 'module2@2020-02-02.yang', 'CONTENT-002', '7e7d48afbe066ed0a890a09081859046d3dde52300dfcdb13be5b20780353a11'),
+    (3003, 'module3@2020-02-02.yang', 'CONTENT-003', 'ca20c45fec8547633f05ff8905c48ffa7b02b94ec3ad4ed79922e6ba40779df3'),
+    (3004, 'module4@2020-02-02.yang', 'CONTENT-004', 'f6ed09d343562e4d4ae5140f3c6a55df9c53f6da8e30dda8cbd9eaf9cd449be0'),
     (3100, 'orphan@2020-02-02.yang', 'ORPHAN', 'checksum'); -- for auto-removal as orphan
 
 INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES
