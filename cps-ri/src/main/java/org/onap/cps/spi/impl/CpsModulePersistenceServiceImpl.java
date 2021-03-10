@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
@@ -46,7 +47,7 @@ import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
-import org.springframework.util.DigestUtils;
+
 
 @Component
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
@@ -90,7 +91,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
         final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
-                final String checksum = DigestUtils.md5DigestAsHex(entry.getValue().getBytes(StandardCharsets.UTF_8));
+                final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
                 final YangResourceEntity yangResourceEntity = new YangResourceEntity();
                 yangResourceEntity.setName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
