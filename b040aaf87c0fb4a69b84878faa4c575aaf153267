@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5ec3bf8_bbd5c302",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-10T12:52:52Z",
+      "side": 1,
+      "message": "I dont fully understand why this does NOT need the authentication extension an teh exceptionhandler test does...\nBut I checkd and it works without so this is better",
+      "range": {
+        "startLine": 43,
+        "startChar": 36,
+        "endLine": 43,
+        "endChar": 50
+      },
+      "revId": "b040aaf87c0fb4a69b84878faa4c575aaf153267",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "830840e5_a3ad9f00",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyRestControllerSpecification.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-10T12:52:52Z",
+      "side": 1,
+      "message": "Since it used in only one tets class now I would not extract out.\nI just insert these 3 lines in that test (and changed it back to extending spock Specification)\n\n    def getAuthorizationHeader() {\n        return \u0027Basic Y3BzdXNlcjpjcHNyMGNrcyE\u003d\u0027\n    }\n\n(maybe apply the same in CPS core)\n\nAlternatively move this class to\nmove to org.onap.cps.nfproxy.rest.exceptions as it is only used in that package",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 44
+      },
+      "revId": "b040aaf87c0fb4a69b84878faa4c575aaf153267",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
