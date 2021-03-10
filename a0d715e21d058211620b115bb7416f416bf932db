@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "906959ba_470e6d2c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-10T15:10:53Z",
+      "side": 1,
+      "message": "does this affect our preloaded SQL data that liquibase loads as par of NF Proxy MVP\nah, it does and you have fixed that, very good :-D",
+      "range": {
+        "startLine": 94,
+        "startChar": 52,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "a0d715e21d058211620b115bb7416f416bf932db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
