@@ -45,6 +45,30 @@
       "revId": "b040aaf87c0fb4a69b84878faa4c575aaf153267",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2313403_b230b508",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/controller/NfProxyRestControllerSpecification.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-10T13:50:45Z",
+      "side": 1,
+      "message": "Done.\nShould I do this in cps-rest as well?",
+      "parentUuid": "830840e5_a3ad9f00",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 44
+      },
+      "revId": "b040aaf87c0fb4a69b84878faa4c575aaf153267",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
