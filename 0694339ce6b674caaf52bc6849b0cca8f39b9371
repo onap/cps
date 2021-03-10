@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52a6901b_f2169c5b",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-10T15:02:37Z",
+      "side": 1,
+      "message": "only used in setupTestException so can be declared locally in that closure",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "0694339ce6b674caaf52bc6849b0cca8f39b9371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
