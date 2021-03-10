@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b038900_e9f5b85f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-10T15:15:02Z",
+      "side": 1,
+      "message": "Just realizing we cannot update SQ DB, instead we need to add an @ignore rule here similar to waht we used for a 5-level class inheritacne in the exceptions... Can you lok up the exact annotation to ignore just this vioation please",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "95db50479594605973597cd97093147c45df0dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
