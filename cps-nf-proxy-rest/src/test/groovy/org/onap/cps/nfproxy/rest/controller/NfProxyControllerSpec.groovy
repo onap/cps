@@ -23,6 +23,11 @@ package org.onap.cps.nfproxy.rest.controller
 
 
 import com.google.gson.Gson
+import org.modelmapper.ModelMapper
+import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.nfproxy.api.NfProxyDataService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -40,13 +45,16 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 
 @WebMvcTest
-class NfProxyControllerSpec extends Specification {
+class NfProxyControllerSpec extends NfProxyRestControllerSpecification {
 
     @Autowired
     MockMvc mvc
 
     @SpringBean
     NfProxyDataService mockNfProxyDataService = Mock()
+
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
 
     @Value('${rest.api.xnf-base-path}')
     def basePath
