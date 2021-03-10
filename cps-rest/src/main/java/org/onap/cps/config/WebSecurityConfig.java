@@ -44,6 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String USER_ROLE = "USER";
 
     @Override
+    // The team decided to disable default CSRF Spring protection and not implement CSRF tokens validation.
+    // CPS is a stateless REST API that is not as vulnerable to CSRF attacks as web applications running in
+    // web browsers are. CPS  does not manage sessions, each request requires the authentication token in the header.
+    // See https://docs.spring.io/spring-security/site/docs/5.3.8.RELEASE/reference/html5/#csrf
+    @SuppressWarnings("squid:S4502")
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
