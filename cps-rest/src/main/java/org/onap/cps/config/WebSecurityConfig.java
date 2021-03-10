@@ -36,6 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String ACTUATOR_HEALTH_PATTERN = "/manage/health/**";
     private static final String ACTUATOR_INFO_PATTERN = "/manage/info";
     private static final String DEFAULT_USER_NAME = "cpsuser";
+    // Following default password is provided for convenient reasons for dev and testing.
+    // It is NOT used for deployments that have to provide a specific environment variable password
+    // or use an automatically generated one if not provided.
+    @SuppressWarnings("squid:S2068")
     private static final String DEFAULT_USER_PASSWORD = "cpsr0cks!";
     private static final String USER_NAME =
             StringUtils.defaultIfBlank(System.getenv("CPS_USERNAME"), DEFAULT_USER_NAME);
