@@ -46,6 +46,30 @@
       "revId": "341aa96709b237f909c966669ec043da2339cae5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f2b8a99_9ddf0309",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T14:46:29Z",
+      "side": 1,
+      "message": "I like this solution as the code is cleaner like this. Thanks Ruslan !\n\nFrom a security point of view, this is equivalent to the previous approach as a default password is still provided in the code source. \n\nWhat I mean is that sometimes it is not because Sonar is not able to detect a security issue that we should leave it and, at the opposite, it is not because Sonar raises an alert for something that we are ok in our context that we should change it.",
+      "parentUuid": "8d467b3f_5b2996c8",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "341aa96709b237f909c966669ec043da2339cae5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
