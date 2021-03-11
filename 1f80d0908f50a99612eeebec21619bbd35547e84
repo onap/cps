@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3557b49a_3d002964",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/rest/controller/ControllerSecuritySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:41:19Z",
+      "side": 1,
+      "message": "OK",
+      "range": {
+        "startLine": 43,
+        "startChar": 20,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "1f80d0908f50a99612eeebec21619bbd35547e84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10d9f08b_2ce0337b",
+        "filename": "cps-application/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:41:19Z",
+      "side": 1,
+      "message": "i this empty lien significant?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 0
+      },
+      "revId": "1f80d0908f50a99612eeebec21619bbd35547e84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
