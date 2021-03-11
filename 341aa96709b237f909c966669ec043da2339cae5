@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42279d30_c595604e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T09:13:36Z",
+      "side": 1,
+      "message": "why we are not involving the configuration here?\nit seems reasonable to define the configuration properties with default values instead of constants.\nit seems suitable for all the cases including testing and production,\nshould also resolve the sonar issue as well.\n\nlike in application.xml (same for tests)\n```\nsecurity:\n   auth:\n      username: ${CPS_USERNAME:cpsuser}\n      password: ${CPS_PASSWORD:cpsr0cks!}\n```\nthen in code\n```\n@Value(\"${security.auth.username}\")\nprivate String username;\n\n@Value(\"${security.auth.password}\")\nprivate String password;\n```",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "341aa96709b237f909c966669ec043da2339cae5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
