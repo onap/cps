@@ -120,6 +120,29 @@
     },
     {
       "key": {
+        "uuid": "786d8bbd_1bf02163",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:22:57Z",
+      "side": 0,
+      "message": "I think Ruslan suggested this was the only place where this is used, can it be removed from POM?",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "2968b0e0037fa238c13290df43b2306524f5271b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dfb4d920_5a645848",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
         "patchSetId": 1

@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60b4bd6e_75e99699",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:22:57Z",
+      "side": 1,
+      "message": "logging in the Rest layer is actually against the decision we made earlier. \nhttps://wiki.onap.org/display/DW/CPS-10+Add+ONAP+compliant+logging+config decision #7\n\nHoever that is out of the scope of this bug fix. I will bring this up in a future grooming meeting if we need a task to address this",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf484b42_623749d6",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:22:57Z",
+      "side": 1,
+      "message": "this method is almost identical to the method above now. \nAll duplication can be removed by using instanceOf check for this Addiotnal line in above method",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17b24e1a_7868e44d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T15:22:57Z",
+      "side": 1,
+      "message": "same duplication issue as in cps-core method",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 59
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
