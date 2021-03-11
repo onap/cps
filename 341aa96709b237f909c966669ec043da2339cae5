@@ -70,6 +70,30 @@
       "revId": "341aa96709b237f909c966669ec043da2339cae5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e75e96e7_dfa9d597",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T14:53:19Z",
+      "side": 1,
+      "message": "I agree sometimes SQ just raises a warning to check something is an issue or not and when can label it with @Ignore if we think it is not really an issue.\nBut like in this case if we can up with an even better simple solution that is great of course\n(I do think that as long as you have constants with this name SQ will complain so we stil might need @Ignore annotation, I have to see the new solution to be sure)",
+      "parentUuid": "1f2b8a99_9ddf0309",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "341aa96709b237f909c966669ec043da2339cae5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
