@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a918ff0c_d25af95e",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T11:20:01Z",
+      "side": 0,
+      "message": "wrong. details could be provided as a string through CpsException.getDetails() method",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 41
+      },
+      "revId": "2968b0e0037fa238c13290df43b2306524f5271b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1297c5c3_d3bdaf7b",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T11:20:01Z",
+      "side": 0,
+      "message": "if cause exists it should be logged.\nExceptionUtils.getStackTrace() expected to be removed\nthen dependency on apache commons-lang3 removed as described in the bug description",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "2968b0e0037fa238c13290df43b2306524f5271b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfb4d920_5a645848",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T11:20:01Z",
+      "side": 0,
+      "message": "same. see noted for nf-proxy exception handler",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "2968b0e0037fa238c13290df43b2306524f5271b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
