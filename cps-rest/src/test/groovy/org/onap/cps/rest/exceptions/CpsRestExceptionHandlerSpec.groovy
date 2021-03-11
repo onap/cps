@@ -21,13 +21,18 @@
 
 package org.onap.cps.rest.exceptions
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.rest.controller.RestControllerSpecification
 import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataInUseException
@@ -42,17 +47,11 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
+import spock.lang.Specification
 import spock.lang.Unroll
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.CONFLICT
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.UNAUTHORIZED
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-
 @WebMvcTest
-class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
+class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
@@ -148,7 +147,12 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
         where: 'the following exceptions are thrown'
             exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
+<<<<<<< HEAD   (6fb536 Setup honolulu branch)
                                 new DataValidationException(errorMessage, errorDetails, null)]
+=======
+                                new DataValidationException(errorMessage, errorDetails, null),
+                                new CpsPathException(errorMessage, errorDetails)]
+>>>>>>> CHANGE (0d6bba Move web security configuration to application module)
     }
 
     @Unroll
@@ -166,38 +170,18 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
                                 new SchemaSetInUseException(dataspaceName, existingObjectName)]
     }
 
-    def 'Get request without authentication is not authorized'() {
-        when: 'request is sent without authentication'
-            def response =
-                    mvc.perform(get("$basePath/v1/dataspaces/dataspace-name/anchors")).andReturn().response
-        then: 'HTTP Unauthorized status code is returned'
-            assert UNAUTHORIZED.value() == response.status
-    }
-
-    def 'Get request with invalid authentication is not authorized'() {
-        when: 'request is sent with invalid authentication'
-            def response =
-                    mvc.perform(
-                            get("$basePath/v1/dataspaces/dataspace-name/anchors")
-                                    .header("Authorization", 'Basic invalid auth'))
-                            .andReturn().response
-        then: 'HTTP Unauthorized status code is returned'
-            assert UNAUTHORIZED.value() == response.status
-    }
-
     /*
      * NB. The test uses 'get JSON by id' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
      */
 
     def setupTestException(exception) {
-        mockCpsAdminService.getAnchors(_) >> { throw exception}
+        mockCpsAdminService.getAnchors(_) >> { throw exception }
     }
 
     def performTestRequest() {
         return mvc.perform(
-                get("$basePath/v1/dataspaces/dataspace-name/anchors")
-                        .header("Authorization", getAuthorizationHeader()))
+                get("$basePath/v1/dataspaces/dataspace-name/anchors"))
                 .andReturn().response
     }
 

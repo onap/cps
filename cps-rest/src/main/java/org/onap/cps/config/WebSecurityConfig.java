@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (6fb536 Setup honolulu branch)
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
@@ -59,3 +60,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+=======
+>>>>>>> CHANGE (0d6bba Move web security configuration to application module)
