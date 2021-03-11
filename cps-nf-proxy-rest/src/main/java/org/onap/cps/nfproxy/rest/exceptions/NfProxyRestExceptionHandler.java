@@ -22,7 +22,6 @@ package org.onap.cps.nfproxy.rest.exceptions;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.nfproxy.rest.controller.NfProxyController;
 import org.onap.cps.nfproxy.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -53,26 +52,28 @@ public class NfProxyRestExceptionHandler {
 
     @ExceptionHandler({CpsException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
-        return buildErrorResponse(status, exception.getMessage(), ExceptionUtils.getStackTrace(exception));
-    }
-
-    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
-        final String details) {
-        log.error("An error has occurred : {} Status: {} Details: {}", message, status, details);
+        if (exception.getCause() != null) {
+            log.error("Exception occurred", exception);
+        }
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
-        errorMessage.setMessage(message);
-        errorMessage.setDetails(details);
+        errorMessage.setMessage(exception.getMessage());
+        errorMessage.setDetails(exception.toString());
         return new ResponseEntity<>(errorMessage, status);
     }
 
-    private static String extractDetails(final CpsException exception) {
-        return exception.getCause() == null
-            ? exception.getDetails()
-            : ExceptionUtils.getStackTrace(exception.getCause());
+    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final CpsException cpsException) {
+        if (cpsException.getCause() != null) {
+            log.error("Exception occurred", cpsException);
+        }
+        final ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatus(status.toString());
+        errorMessage.setMessage(cpsException.getMessage());
+        errorMessage.setDetails(cpsException.getDetails());
+        return new ResponseEntity<>(errorMessage, status);
     }
 }
