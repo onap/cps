@@ -20,6 +20,10 @@
 
 package org.onap.cps.rest.controller
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+
 import com.google.gson.Gson
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
@@ -33,14 +37,11 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
+import spock.lang.Specification
 import spock.lang.Unroll
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-
 @WebMvcTest
-class QueryRestControllerSpec extends RestControllerSpecification {
+class QueryRestControllerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
@@ -77,7 +78,6 @@ class QueryRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             get(dataNodeEndpoint)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('cps-path', cpsPath)
                                     .param('include-descendants', includeDescendantsOption))
                             .andReturn().response
