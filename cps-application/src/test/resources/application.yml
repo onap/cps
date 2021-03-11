@@ -1,0 +1,5 @@
+
+security:
+  auth:
+    username: cpsuser
+    password: cpsr0cks!
