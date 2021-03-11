@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5d0808dd_5c1f8614",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-11T15:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60b4bd6e_75e99699",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf484b42_623749d6",
         "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "02666cd3_2eb77847",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-11T15:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf484b42_623749d6",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17b24e1a_7868e44d",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbaf6e4b_72abceed",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-11T15:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17b24e1a_7868e44d",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 59
+      },
+      "revId": "97c8e1969c933fcc4540d46b47f384c9be4d378c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
