@@ -87,33 +87,27 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
 
     def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
-
         when: 'runtime exception is thrown by the service'
             setupTestException(new IllegalStateException(errorMessage))
             def response = performTestRequest()
-
         then: 'an HTTP Internal Server Error response is returned with correct message and details'
             assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, null)
     }
 
     def 'Get request with generic CPS exception returns HTTP Status Internal Server Error'() {
-
         when: 'generic CPS exception is thrown by the service'
             setupTestException(new CpsException(errorMessage, errorDetails))
             def response = performTestRequest()
-
         then: 'an HTTP Internal Server Error response is returned with correct message and details'
             assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, errorDetails)
     }
 
     def 'Get request with no data found CPS exception returns HTTP Status Not Found'() {
-
         when: 'no data found CPS exception is thrown by the service'
             def dataspaceName = 'MyDataSpace'
             def descriptionOfObject = 'Description'
             setupTestException(new NotFoundInDataspaceException(dataspaceName, descriptionOfObject))
             def response = performTestRequest()
-
         then: 'an HTTP Not Found response is returned with correct message and details'
             assertTestResponse(response, NOT_FOUND, 'Object not found',
                     'Description does not exist in dataspace MyDataSpace.')
@@ -121,11 +115,9 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
     @Unroll
     def 'request with an expectedObjectTypeInMessage object already defined exception returns HTTP Status Bad Request'() {
-
         when: 'no data found CPS exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
         then: 'an HTTP Bad Request response is returned with correct message an details'
             assertTestResponse(response, BAD_REQUEST,
                     "Duplicate ${expectedObjectTypeInMessage}",
@@ -139,14 +131,11 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
     @Unroll
     def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
-
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
         then: 'an HTTP Bad Request response is returned with correct message and details'
             assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
-
         where: 'the following exceptions are thrown'
             exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
                                 new DataValidationException(errorMessage, errorDetails, null),
@@ -155,14 +144,11 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
     @Unroll
     def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {
-
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
         then: 'an HTTP Conflict response is returned with correct message and details'
             assertTestResponse(response, CONFLICT, exceptionThrown.getMessage(), exceptionThrown.getDetails())
-
         where: 'the following exceptions are thrown'
             exceptionThrown << [new DataInUseException(dataspaceName, existingObjectName),
                                 new SchemaSetInUseException(dataspaceName, existingObjectName)]
@@ -188,10 +174,9 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
     }
 
     /*
-     * NB. The test uses 'get JSON by id' endpoint and associated service method invocation
+     * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
      */
-
     def setupTestException(exception) {
         mockCpsAdminService.getAnchors(_) >> { throw exception}
     }
@@ -203,8 +188,7 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
                 .andReturn().response
     }
 
-    void assertTestResponse(response, expectedStatus,
-                            expectedErrorMessage, expectedErrorDetails) {
+    static void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'] == expectedStatus.toString()
