@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b58f4f17_409ed956",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T16:06:48Z",
+      "side": 1,
+      "message": "log stack trace for non CpsException as well\n```\nif(.. || !(exception instanceof CpsException))\n```",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d747460_e2702905",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-11T16:06:48Z",
+      "side": 1,
+      "message": "it\u0027s unclear what\u0027s returned by exception.toString()\nsuggested to make the details blank for non CpsException \nor static string smth like \u0027see log for details\u0027",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 32
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
