@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c00842b_da25bf78",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T16:13:03Z",
+      "side": 1,
+      "message": "why do we need a condition at all actually?! ie. what was the original reason for checking cause is not null?!",
+      "parentUuid": "b58f4f17_409ed956",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d747460_e2702905",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
         "patchSetId": 3
