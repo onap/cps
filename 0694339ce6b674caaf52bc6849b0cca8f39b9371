@@ -22,6 +22,46 @@
       "revId": "0694339ce6b674caaf52bc6849b0cca8f39b9371",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de303311_6d9a5606",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-11T09:41:48Z",
+      "side": 1,
+      "message": "remove spaces",
+      "revId": "0694339ce6b674caaf52bc6849b0cca8f39b9371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8b910e1_6ee287ec",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-11T09:41:48Z",
+      "side": 1,
+      "message": "fix formatting",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 73
+      },
+      "revId": "0694339ce6b674caaf52bc6849b0cca8f39b9371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
