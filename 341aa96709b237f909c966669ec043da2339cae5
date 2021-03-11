@@ -22,6 +22,30 @@
       "revId": "341aa96709b237f909c966669ec043da2339cae5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d467b3f_5b2996c8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T10:17:35Z",
+      "side": 1,
+      "message": "if that solves the problems that woudl be great!",
+      "parentUuid": "42279d30_c595604e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "341aa96709b237f909c966669ec043da2339cae5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
