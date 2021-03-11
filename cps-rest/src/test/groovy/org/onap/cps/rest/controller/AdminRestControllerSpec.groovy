@@ -46,10 +46,11 @@ import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
+import spock.lang.Specification
 import spock.lang.Unroll
 
 @WebMvcTest
-class AdminRestControllerSpec extends RestControllerSpecification {
+class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsModuleService mockCpsModuleService = Mock()
@@ -85,7 +86,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             post(createDataspaceEndpoint)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('dataspace-name', dataspaceName))
                             .andReturn().response
         then: 'service method is invoked with expected parameters'
@@ -104,7 +104,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             post(createDataspaceEndpoint)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('dataspace-name', dataspaceName))
                             .andReturn().response
         then: 'dataspace creation fails'
@@ -122,7 +121,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
                     mvc.perform(
                             multipart(schemaSetEndpoint)
                                     .file(multipartFile)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'associated service method is invoked with expected parameters'
@@ -144,7 +142,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
                     mvc.perform(
                             multipart(schemaSetEndpoint)
                                     .file(multipartFile)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'associated service method is invoked with expected parameters'
@@ -165,7 +162,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
                     mvc.perform(
                             multipart(schemaSetEndpoint)
                                     .file(multipartFile)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'create schema set rejected'
@@ -186,7 +182,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
                     mvc.perform(
                             multipart(schemaSetEndpoint)
                                     .file(multipartFile)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'create schema set rejected'
@@ -203,7 +198,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
                     mvc.perform(
                             multipart(schemaSetEndpoint)
                                     .file(multipartFile)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'the error response returned indicating internal server error occurrence'
@@ -216,9 +210,7 @@ class AdminRestControllerSpec extends RestControllerSpecification {
         given: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
-            def response =
-                    mvc.perform(delete(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
-                            .andReturn().response
+            def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED)
         and: 'response code indicates success'
@@ -233,9 +225,7 @@ class AdminRestControllerSpec extends RestControllerSpecification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
-            def response =
-                    mvc.perform(delete(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
-                            .andReturn().response
+            def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
         then: 'schema set deletion fails with conflict response code'
             response.status == HttpStatus.CONFLICT.value()
     }
@@ -247,9 +237,7 @@ class AdminRestControllerSpec extends RestControllerSpecification {
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'get schema set API is invoked'
-            def response =
-                    mvc.perform(get(schemaSetEndpoint).header("Authorization", getAuthorizationHeader()))
-                            .andReturn().response
+            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
         then: 'the correct schema set is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(schemaSetName)
@@ -266,7 +254,6 @@ class AdminRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             post(anchorEndpoint).contentType(MediaType.APPLICATION_JSON)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .params(requestParams as MultiValueMap))
                             .andReturn().response
         then: 'anchor is created successfully'
@@ -281,9 +268,7 @@ class AdminRestControllerSpec extends RestControllerSpecification {
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
-            def response =
-                    mvc.perform(get(anchorEndpoint).header("Authorization", getAuthorizationHeader()))
-                            .andReturn().response
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(anchorName)
@@ -291,13 +276,12 @@ class AdminRestControllerSpec extends RestControllerSpecification {
 
     def 'Get existing anchor by dataspace and anchor name.'() {
         given: 'service method returns an anchor'
-            mockCpsAdminService.getAnchor(dataspaceName,anchorName) >> new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName:schemaSetName)
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
+                    new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
         when: 'get anchor API is invoked'
-            def response =
-                    mvc.perform(get(anchorEndpoint).header("Authorization", getAuthorizationHeader()))
-                            .andReturn().response
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
             def responseContent = response.getContentAsString()
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
