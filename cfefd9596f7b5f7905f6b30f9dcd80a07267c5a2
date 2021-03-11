@@ -115,6 +115,30 @@
       "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd2c4224_cfdcfd2a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T16:30:57Z",
+      "side": 1,
+      "message": "should use \u0027def\u0027 instead the groovy guidline is not to use Java accessors if not strictly needed",
+      "parentUuid": "5219d16d_b2ab4955",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 9
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
