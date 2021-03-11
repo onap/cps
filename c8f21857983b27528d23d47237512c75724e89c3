@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "fc79ba44_1fccfb78",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4611
+      },
+      "writtenOn": "2021-03-11T09:02:02Z",
+      "side": 1,
+      "message": "This is a change from the Honolulu Arch diagram (same for the png). I\u0027m OK with it, but we need to be consistent going forward. Previously 04 was notification and 05 was xNF access",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbbc488a_987e5b78",
         "filename": "docs/design.rst",
         "patchSetId": 3
@@ -30,6 +53,52 @@
       "writtenOn": "2021-03-11T02:48:31Z",
       "side": 1,
       "message": "I would remove `locally` as hostname is not defined and could be remote.",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6399e81_7c90e078",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4611
+      },
+      "writtenOn": "2021-03-11T09:02:02Z",
+      "side": 1,
+      "message": "Is there a way to include a reference to the API documentation without first needing to run the software? It seems a bit backward that you cannot explore the API until you have a deployed system!\nHow are other areas doing this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79cd2150_a3a96798",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 4611
+      },
+      "writtenOn": "2021-03-11T09:02:02Z",
+      "side": 1,
+      "message": "Is this a typo?",
+      "range": {
+        "startLine": 31,
+        "startChar": 55,
+        "endLine": 31,
+        "endChar": 56
+      },
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -115,6 +184,24 @@
       "writtenOn": "2021-03-11T02:48:31Z",
       "side": 1,
       "message": "Does it make sense to add the notion of state here ?\n\nThen this section could start with something like:\n\n---\nThis operational information could either be an actual state or configuration of a network service or device. These are parameters that are derived, discovered, ...\n---",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c8cf921_8a737b5c",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4611
+      },
+      "writtenOn": "2021-03-11T09:02:02Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "56de071c_239b03a5",
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
