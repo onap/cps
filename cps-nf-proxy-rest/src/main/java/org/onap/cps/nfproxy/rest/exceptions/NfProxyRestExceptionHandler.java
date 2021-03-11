@@ -66,7 +66,6 @@ public class NfProxyRestExceptionHandler {
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(message);
-        errorMessage.setDetails(details);
         return new ResponseEntity<>(errorMessage, status);
     }
 

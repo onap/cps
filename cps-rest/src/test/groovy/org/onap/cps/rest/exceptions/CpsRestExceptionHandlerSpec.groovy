@@ -87,50 +87,38 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
 
     def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
-
         when: 'runtime exception is thrown by the service'
             setupTestException(new IllegalStateException(errorMessage))
             def response = performTestRequest()
-
-        then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, null)
+        then: 'an HTTP Internal Server Error response is returned with correct message'
+            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage)
     }
 
     def 'Get request with generic CPS exception returns HTTP Status Internal Server Error'() {
-
         when: 'generic CPS exception is thrown by the service'
             setupTestException(new CpsException(errorMessage, errorDetails))
             def response = performTestRequest()
-
-        then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, errorDetails)
+        then: 'an HTTP Internal Server Error response is returned with correct message'
+            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage)
     }
 
     def 'Get request with no data found CPS exception returns HTTP Status Not Found'() {
-
         when: 'no data found CPS exception is thrown by the service'
             def dataspaceName = 'MyDataSpace'
             def descriptionOfObject = 'Description'
             setupTestException(new NotFoundInDataspaceException(dataspaceName, descriptionOfObject))
             def response = performTestRequest()
-
-        then: 'an HTTP Not Found response is returned with correct message and details'
-            assertTestResponse(response, NOT_FOUND, 'Object not found',
-                    'Description does not exist in dataspace MyDataSpace.')
+        then: 'an HTTP Not Found response is returned with correct message'
+            assertTestResponse(response, NOT_FOUND, 'Object not found')
     }
 
     @Unroll
     def 'request with an expectedObjectTypeInMessage object already defined exception returns HTTP Status Bad Request'() {
-
         when: 'no data found CPS exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
-        then: 'an HTTP Bad Request response is returned with correct message an details'
-            assertTestResponse(response, BAD_REQUEST,
-                    "Duplicate ${expectedObjectTypeInMessage}",
-                    "${expectedObjectTypeInMessage} with name ${existingObjectName} " +
-                            'already exists for dataspace MyDataSpace.')
+        then: 'an HTTP Bad Request response is returned with correct message'
+            assertTestResponse(response, BAD_REQUEST, "Duplicate ${expectedObjectTypeInMessage}")
         where: 'the following exceptions are thrown'
             exceptionThrown                                                               || expectedObjectTypeInMessage
             new SchemaSetAlreadyDefinedException(dataspaceName, existingObjectName, null) || 'Schema Set'
@@ -139,14 +127,11 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
     @Unroll
     def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
-
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
-        then: 'an HTTP Bad Request response is returned with correct message and details'
-            assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
-
+        then: 'an HTTP Bad Request response is returned with correct message'
+            assertTestResponse(response, BAD_REQUEST, errorMessage)
         where: 'the following exceptions are thrown'
             exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
                                 new DataValidationException(errorMessage, errorDetails, null),
@@ -155,14 +140,11 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
 
     @Unroll
     def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {
-
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
-
-        then: 'an HTTP Conflict response is returned with correct message and details'
-            assertTestResponse(response, CONFLICT, exceptionThrown.getMessage(), exceptionThrown.getDetails())
-
+        then: 'an HTTP Conflict response is returned with correct message'
+            assertTestResponse(response, CONFLICT, exceptionThrown.getMessage())
         where: 'the following exceptions are thrown'
             exceptionThrown << [new DataInUseException(dataspaceName, existingObjectName),
                                 new SchemaSetInUseException(dataspaceName, existingObjectName)]
@@ -188,10 +170,9 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
     }
 
     /*
-     * NB. The test uses 'get JSON by id' endpoint and associated service method invocation
+     * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
      */
-
     def setupTestException(exception) {
         mockCpsAdminService.getAnchors(_) >> { throw exception}
     }
@@ -203,12 +184,10 @@ class CpsRestExceptionHandlerSpec extends RestControllerSpecification {
                 .andReturn().response
     }
 
-    void assertTestResponse(response, expectedStatus,
-                            expectedErrorMessage, expectedErrorDetails) {
+    void assertTestResponse(response, expectedStatus, expectedErrorMessage) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'] == expectedStatus.toString()
         assert content['message'] == expectedErrorMessage
-        assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
     }
 }
