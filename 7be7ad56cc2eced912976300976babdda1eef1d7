@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc1b3646_37e9a024",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T17:34:38Z",
+      "side": 1,
+      "message": "no need for named variable its used only once and name does not convey other meaning then content...\n(not blocking issue though)",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 81
+      },
+      "revId": "7be7ad56cc2eced912976300976babdda1eef1d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f13de56f_8acc57c8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T17:34:38Z",
+      "side": 1,
+      "message": "no need for named variable its used only once and name does not convey other meaning then content...\n(not blocking issue though)",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "7be7ad56cc2eced912976300976babdda1eef1d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
