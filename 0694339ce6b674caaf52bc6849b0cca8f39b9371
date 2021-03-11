@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "65c36c9c_6d237ece",
+        "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T12:47:25Z",
+      "side": 1,
+      "message": "you are right, I missed that",
+      "parentUuid": "6efcdce3_5b0c4bd8",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "0694339ce6b674caaf52bc6849b0cca8f39b9371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de303311_6d9a5606",
         "filename": "cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 3
