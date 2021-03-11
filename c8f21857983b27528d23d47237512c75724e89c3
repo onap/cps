@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe83a981_cf8b078a",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "Should we move this root wiki link to the documentation index page instead of having it in the architecture section ?",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbbc488a_987e5b78",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "I would remove `locally` as hostname is not defined and could be remote.",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c4767a0_d24886f4",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "While being in this file, maybe good to move contact mailing list out from design section.",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "259bb388_96e9c92f",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "Extra space",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f30a71cb_26c4fc01",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "needs to be * persisted *.",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f7b1780_5314d567",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "The type of ...\n\nor \n\nTypes of ...",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56de071c_239b03a5",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "Does it make sense to add the notion of state here ?\n\nThen this section could start with something like:\n\n---\nThis operational information could either be an actual state or configuration of a network service or device. These are parameters that are derived, discovered, ...\n---",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1997d6b7_cb501f70",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "been installed * or configured *",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db794bf1_4a6b56f2",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-11T02:48:31Z",
+      "side": 1,
+      "message": "Empty line missing\n(same for other files)",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
