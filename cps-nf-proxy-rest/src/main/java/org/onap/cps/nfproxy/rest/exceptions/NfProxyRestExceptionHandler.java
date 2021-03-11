@@ -22,7 +22,6 @@ package org.onap.cps.nfproxy.rest.exceptions;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.nfproxy.rest.controller.NfProxyController;
 import org.onap.cps.nfproxy.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -39,6 +38,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(assignableTypes = {NfProxyController.class})
 public class NfProxyRestExceptionHandler {
 
+    private static final String checkLogsForDetails  = "Check logs for details.";
+
     /**
      * Default exception handler.
      *
@@ -53,26 +54,18 @@ public class NfProxyRestExceptionHandler {
 
     @ExceptionHandler({CpsException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
-        return buildErrorResponse(status, exception.getMessage(), ExceptionUtils.getStackTrace(exception));
-    }
-
-    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
-        final String details) {
-        log.error("An error has occurred : {} Status: {} Details: {}", message, status, details);
+        if (exception.getCause() != null || !(exception instanceof CpsException)) {
+            log.error("Exception occurred", exception);
+        }
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
-        errorMessage.setMessage(message);
-        errorMessage.setDetails(details);
+        errorMessage.setMessage(exception.getMessage());
+        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
+            checkLogsForDetails);
         return new ResponseEntity<>(errorMessage, status);
-    }
-
-    private static String extractDetails(final CpsException exception) {
-        return exception.getCause() == null
-            ? exception.getDetails()
-            : ExceptionUtils.getStackTrace(exception.getCause());
     }
 }
