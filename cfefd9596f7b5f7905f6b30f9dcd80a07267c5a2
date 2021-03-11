@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "78276af5_4fa7d2ca",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-11T16:25:13Z",
+      "side": 1,
+      "message": "Are we logging the object or the stack trace of exception or cause of the exception?\nThe if condition checks for cause.",
+      "range": {
+        "startLine": 83,
+        "startChar": 44,
+        "endLine": 83,
+        "endChar": 53
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d747460_e2702905",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
         "patchSetId": 3
@@ -65,6 +88,29 @@
         "startChar": 12,
         "endLine": 89,
         "endChar": 32
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5219d16d_b2ab4955",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-11T16:25:13Z",
+      "side": 1,
+      "message": "I am not an expert in Groovy, but the IntelliJ suggests to use static method here.\nstatic void assertTestResponse. https://gerrit.onap.org/r/c/cps/+/119047/4/cps-nf-proxy-rest/src/test/groovy/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandlerSpec.groovy",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 9
       },
       "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
