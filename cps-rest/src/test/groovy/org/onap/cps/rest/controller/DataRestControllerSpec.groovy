@@ -46,10 +46,11 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
+import spock.lang.Specification
 import spock.lang.Unroll
 
 @WebMvcTest
-class DataRestControllerSpec extends RestControllerSpecification {
+class DataRestControllerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
@@ -96,7 +97,6 @@ class DataRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             post(endpoint)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .contentType(MediaType.APPLICATION_JSON).content(json))
                             .andReturn().response
         then: 'a created response is returned'
@@ -113,7 +113,7 @@ class DataRestControllerSpec extends RestControllerSpecification {
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
         when: 'get request is performed through REST API'
             def response =
-                    mvc.perform(get(endpoint).header("Authorization", getAuthorizationHeader()).param('xpath', xpath))
+                    mvc.perform(get(endpoint).param('xpath', xpath))
                             .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
@@ -133,7 +133,6 @@ class DataRestControllerSpec extends RestControllerSpecification {
             def response =
                     mvc.perform(
                             get(endpoint)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('xpath', xpath)
                                     .param('include-descendants', includeDescendantsOption))
                             .andReturn().response
@@ -155,7 +154,7 @@ class DataRestControllerSpec extends RestControllerSpecification {
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
         when: 'get request is performed through REST API'
             def response =
-                    mvc.perform(get(endpoint).header("Authorization", getAuthorizationHeader()).param("xpath", xpath))
+                    mvc.perform(get(endpoint).param("xpath", xpath))
                             .andReturn().response
         then: 'a success response is returned'
             response.status == httpStatus.value()
@@ -178,7 +177,6 @@ class DataRestControllerSpec extends RestControllerSpecification {
                             patch(endpoint)
                                     .contentType(MediaType.APPLICATION_JSON)
                                     .content(jsonData)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('xpath', xpath)
                     ).andReturn().response
         then: 'the service method is invoked with expected parameters'
@@ -202,7 +200,6 @@ class DataRestControllerSpec extends RestControllerSpecification {
                             put(endpoint)
                                     .contentType(MediaType.APPLICATION_JSON)
                                     .content(jsonData)
-                                    .header("Authorization", getAuthorizationHeader())
                                     .param('xpath', xpath))
                             .andReturn().response
         then: 'the service method is invoked with expected parameters'

@@ -34,6 +34,13 @@ spring:
         change-log: classpath:changelog/changelog-master.yaml
         labels: ${LIQUIBASE_LABELS}
 
+security:
+    # comma-separated uri patterns which do not require authorization
+    permit-ant-matchers: /manage/health/**,/manage/info,/swagger-ui/**
+    auth:
+        username: ${CPS_USERNAME:cpsuser}
+        password: ${CPS_PASSWORD:cpsr0cks!}
+
 # Actuator
 management:
     endpoints:
