@@ -139,6 +139,30 @@
       "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ba64a8e_ff5a80d4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-11T16:41:28Z",
+      "side": 1,
+      "message": "ignore above I am mixing thing up)\n\n\u0027static void\u0027 is fine!",
+      "parentUuid": "dd2c4224_cfdcfd2a",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 9
+      },
+      "revId": "cfefd9596f7b5f7905f6b30f9dcd80a07267c5a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
