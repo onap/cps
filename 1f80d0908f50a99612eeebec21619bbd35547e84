@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "40c7cd17_5fc08e85",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/rest/controller/ControllerSecuritySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T09:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3557b49a_3d002964",
+      "range": {
+        "startLine": 43,
+        "startChar": 20,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "1f80d0908f50a99612eeebec21619bbd35547e84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10d9f08b_2ce0337b",
         "filename": "cps-application/src/test/resources/application.yml",
         "patchSetId": 3
@@ -83,6 +107,30 @@
       "writtenOn": "2021-03-11T16:16:23Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "10d9f08b_2ce0337b",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 0
+      },
+      "revId": "1f80d0908f50a99612eeebec21619bbd35547e84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "363c3cf7_4c70aa2d",
+        "filename": "cps-application/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T09:11:35Z",
+      "side": 1,
+      "message": "not important, removed",
       "parentUuid": "10d9f08b_2ce0337b",
       "range": {
         "startLine": 1,
