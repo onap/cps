@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "26013317_1729e00e",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T13:12:35Z",
+      "side": 1,
+      "message": "Examples that show release name is not required to me mentioned in the docs.\n\nhttps://docs.onap.org/projects/onap-ccsdk-features/en/guilin/guides/onap-user/home.html\nhttps://docs.onap.org/projects/onap-so/en/guilin/index.html\n\nNo component I have seen specifies the release name.\nIts selected at the start and its that release.\n\nReleases have tags like: latest, stable, honolulu, guilin, frankfurt.",
+      "parentUuid": "9550cf20_de80a744",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f608388_a7196c2f",
         "filename": "docs/modeling.rst",
         "patchSetId": 4
