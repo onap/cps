@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "2d7fdae8_6aa09a7a",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T12:58:17Z",
+      "side": 1,
+      "message": "sounds same in meaning. Doesn\u0027t make much of a difference.",
+      "range": {
+        "startLine": 16,
+        "startChar": 65,
+        "endLine": 16,
+        "endChar": 83
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f41531a_46375018",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T12:58:17Z",
+      "side": 1,
+      "message": "In this release should be good.\nThe release is known by its selection at the start.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9550cf20_de80a744",
         "filename": "docs/index.rst",
         "patchSetId": 4
@@ -18,6 +64,75 @@
         "startChar": 18,
         "endLine": 10,
         "endChar": 45
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f608388_a7196c2f",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T12:58:17Z",
+      "side": 1,
+      "message": "within its own dataspace",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 59
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f51ab09_1d9d1eb2",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T12:58:17Z",
+      "side": 1,
+      "message": "a data",
+      "range": {
+        "startLine": 39,
+        "startChar": 74,
+        "endLine": 39,
+        "endChar": 77
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3853af1_dffaf04c",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T12:58:17Z",
+      "side": 1,
+      "message": "as a *container* and/or a *list*",
+      "range": {
+        "startLine": 42,
+        "startChar": 70,
+        "endLine": 42,
+        "endChar": 73
       },
       "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
