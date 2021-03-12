@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "220c6c9f_3242d4e8",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "it\u0027s a reference to \u0027ambitions\u0027,\nalso provided a ling in Overview page",
+      "parentUuid": "fe83a981_cf8b078a",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc79ba44_1fccfb78",
         "filename": "docs/architecture.rst",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2021-03-11T09:02:02Z",
       "side": 1,
       "message": "This is a change from the Honolulu Arch diagram (same for the png). I\u0027m OK with it, but we need to be consistent going forward. Previously 04 was notification and 05 was xNF access",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cb771f7_77195001",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "updated with a mention of CPS-E-04 (Notification) as not available in Honolulu-R8",
+      "parentUuid": "fc79ba44_1fccfb78",
       "range": {
         "startLine": 54,
         "startChar": 13,
@@ -106,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "aa9e0146_a7b8914a",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbbc488a_987e5b78",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79cd2150_a3a96798",
         "filename": "docs/design.rst",
         "patchSetId": 3
@@ -126,6 +186,30 @@
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c98765f_6c288182",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "No, it\u0027s a name of endpoints group, provided by cps-rest module",
+      "parentUuid": "79cd2150_a3a96798",
+      "range": {
+        "startLine": 31,
+        "startChar": 55,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +248,24 @@
     },
     {
       "key": {
+        "uuid": "30e98404_266c79e4",
+        "filename": "docs/design.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "moved to Overview",
+      "parentUuid": "3770228d_b9c4bcc4",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "259bb388_96e9c92f",
         "filename": "docs/overview.rst",
         "patchSetId": 3
@@ -178,6 +280,24 @@
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb8fbb70_7afacdbc",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "259bb388_96e9c92f",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -198,6 +318,24 @@
     },
     {
       "key": {
+        "uuid": "381fbd51_ad0b5daf",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f30a71cb_26c4fc01",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f7b1780_5314d567",
         "filename": "docs/overview.rst",
         "patchSetId": 3
@@ -212,6 +350,24 @@
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "912c092d_6383b452",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f7b1780_5314d567",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -250,6 +406,24 @@
     },
     {
       "key": {
+        "uuid": "eaa47299_4fdf3cdb",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c8cf921_8a737b5c",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1997d6b7_cb501f70",
         "filename": "docs/overview.rst",
         "patchSetId": 3
@@ -267,6 +441,24 @@
     },
     {
       "key": {
+        "uuid": "e1967db4_80b1febc",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1997d6b7_cb501f70",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db794bf1_4a6b56f2",
         "filename": "docs/overview.rst",
         "patchSetId": 3
@@ -281,6 +473,24 @@
       "revId": "c8f21857983b27528d23d47237512c75724e89c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23f61a22_476d805a",
+        "filename": "docs/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-12T10:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db794bf1_4a6b56f2",
+      "revId": "c8f21857983b27528d23d47237512c75724e89c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
