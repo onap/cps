@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9550cf20_de80a744",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T11:47:22Z",
+      "side": 1,
+      "message": "Do we have to writ this?\nThe readmedocs will already be specific to the release version.\nSelecting the release will show the updates for that release only.",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dbc1442_b8dba3b4",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T11:47:22Z",
+      "side": 1,
+      "message": "could be replaced with persistence.",
+      "range": {
+        "startLine": 10,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6efb1e75_10903543",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T11:47:22Z",
+      "side": 1,
+      "message": "Sounds repetitive to the header,\nSounds like: Configuration Parameters are configuration parameters that are used by xNFs.",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "197a0505_fd8420f0",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-03-12T11:47:22Z",
+      "side": 1,
+      "message": "When being specific about mechanical tilt, we could say it as gNodeB radio instead of PNF.\nOnly the radio needs alignment here.",
+      "range": {
+        "startLine": 18,
+        "startChar": 32,
+        "endLine": 18,
+        "endChar": 66
+      },
+      "revId": "1874c5fe91d258a32f43454aa03f2cf040108a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
