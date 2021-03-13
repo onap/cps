@@ -94,8 +94,7 @@ public class YangUtils {
             jsonParserStream.parse(jsonReader);
 
         } catch (final IOException | IllegalStateException e) {
-            throw new DataValidationException("Failed to parse json data.", String
-                .format("Exception occurred on parsing string %s.", jsonData), e);
+            throw new DataValidationException("Failed to parse json data:\n" + jsonData,  e.getMessage(), e);
         }
         return normalizedNodeResult.getResult();
     }
