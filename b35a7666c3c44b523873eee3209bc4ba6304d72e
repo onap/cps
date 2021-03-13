@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f770ebc_b2d6bad0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-13T00:34:27Z",
+      "side": 1,
+      "message": "Is it worth returning back to the client all the data payload he sent ?\nIsn\u0027t it superfluous ?",
+      "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
