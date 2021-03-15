@@ -21,19 +21,13 @@
 
 package org.onap.cps.rest.controller
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
-
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataNodeAlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -48,6 +42,10 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 
 @WebMvcTest
 class DataRestControllerSpec extends Specification {
@@ -159,11 +157,12 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == httpStatus.value()
         where:
-            scenario       | xpath     | exception                                 || httpStatus
-            'no dataspace' | '/x-path' | new DataspaceNotFoundException('')        || HttpStatus.BAD_REQUEST
-            'no anchor'    | '/x-path' | new AnchorNotFoundException('', '')       || HttpStatus.BAD_REQUEST
-            'no data'      | '/x-path' | new DataNodeNotFoundException('', '', '') || HttpStatus.NOT_FOUND
-            'empty path'   | ''        | new IllegalStateException()               || HttpStatus.NOT_IMPLEMENTED
+            scenario                   | xpath     | exception                                   || httpStatus
+            'no dataspace'             | '/x-path' | new DataspaceNotFoundException('')          || HttpStatus.BAD_REQUEST
+            'no anchor'                | '/x-path' | new AnchorNotFoundException('', '')         || HttpStatus.BAD_REQUEST
+            'no data'                  | '/x-path' | new DataNodeNotFoundException('', '', '')   || HttpStatus.NOT_FOUND
+            'empty path'               | ''        | new IllegalStateException()                 || HttpStatus.NOT_IMPLEMENTED
+            'data node already exists' | '/x-path'        | new DataNodeAlreadyDefinedException('', '') || HttpStatus.CONFLICT
     }
 
     @Unroll

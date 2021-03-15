@@ -26,6 +26,7 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataNodeAlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -34,6 +35,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Unroll
+
+import javax.validation.ConstraintViolationException
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -99,7 +102,8 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                    | dataspaceName  | anchorName     | dataNode         || expectedException
             'dataspace does not exist'  | 'unknown'      | 'not-relevant' | newDataNode      || DataspaceNotFoundException
             'schema set does not exist' | DATASPACE_NAME | 'unknown'      | newDataNode      || AnchorNotFoundException
-            'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNode || DataIntegrityViolationException
+            'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | newDataNode      || ConstraintViolationException
+            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNode || DataNodeAlreadyDefinedException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

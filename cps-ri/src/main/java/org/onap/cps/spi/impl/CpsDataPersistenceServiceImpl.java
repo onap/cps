@@ -36,6 +36,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.exceptions.DataNodeAlreadyDefinedException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.query.CpsPathQuery;
@@ -44,6 +45,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -76,7 +78,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
             dataNode);
-        fragmentRepository.save(fragmentEntity);
+        try {
+            fragmentRepository.save(fragmentEntity);
+        } catch (final DataIntegrityViolationException exception) {
+            throw new DataNodeAlreadyDefinedException(dataspaceName, anchorName);
+        }
     }
 
     /**
@@ -139,7 +145,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     .getLeafName(), cpsPathQuery.getLeafValue());
         } else {
             fragmentEntities = fragmentRepository
-                    .getByAnchorAndEndsWithXpath(anchorEntity.getId(), cpsPathQuery.getEndsWith());
+                .getByAnchorAndEndsWithXpath(anchorEntity.getId(), cpsPathQuery.getEndsWith());
         }
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
