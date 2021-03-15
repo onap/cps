@@ -21,6 +21,8 @@
 
 package org.onap.cps.rest.exceptions
 
+import org.springframework.dao.DataIntegrityViolationException
+
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -84,13 +86,17 @@ class CpsRestExceptionHandlerSpec extends Specification {
     @Shared
     def existingObjectName = 'MyAdminObject'
 
-
-    def 'Get request with runtime exception returns HTTP Status Internal Server Error'() {
+    @Unroll
+    def 'Get request with #exceptionThrown returns HTTP Status #expectedHttpStatus.'() {
         when: 'runtime exception is thrown by the service'
-            setupTestException(new IllegalStateException(errorMessage))
+            setupTestException(exceptionThrown)
             def response = performTestRequest()
-        then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, null)
+        then: 'a response is returned with correct message and details'
+            assertTestResponse(response, expectedHttpStatus, errorMessage, null)
+        where: 'the following exceptions are thrown'
+            exceptionThrown                                   || expectedHttpStatus
+            new IllegalStateException(errorMessage)           || INTERNAL_SERVER_ERROR
+            new DataIntegrityViolationException(errorMessage) || CONFLICT
     }
 
     def 'Get request with generic CPS exception returns HTTP Status Internal Server Error'() {
