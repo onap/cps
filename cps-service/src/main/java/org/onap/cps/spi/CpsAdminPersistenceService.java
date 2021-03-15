@@ -23,7 +23,7 @@ package org.onap.cps.spi;
 
 import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 
 /*
@@ -35,7 +35,7 @@ public interface CpsAdminPersistenceService {
      * Create dataspace.
      *
      * @param dataspaceName dataspace name
-     * @throws DataspaceAlreadyDefinedException if dataspace with same name already exists
+     * @throws AlreadyDefinedException if dataspace with same name already exists
      */
     void createDataspace(@NonNull String dataspaceName);
 

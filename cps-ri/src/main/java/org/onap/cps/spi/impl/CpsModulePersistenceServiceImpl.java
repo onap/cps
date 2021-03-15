@@ -36,7 +36,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
-import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -84,7 +84,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         try {
             schemaSetRepository.save(schemaSetEntity);
         } catch (final DataIntegrityViolationException e) {
-            throw new SchemaSetAlreadyDefinedException(dataspaceName, schemaSetName, e);
+            throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
         }
     }
 

@@ -54,6 +54,7 @@ class YangUtilsSpec extends Specification {
             invalidJson                                       | description
             '{incomplete json'                                | 'incomplete json'
             '{"test:bookstore": {"address": "Parnell st." }}' | 'json with un-modelled data'
+            '{" }'                                            | 'json with syntax exception'
     }
 
     @Unroll
