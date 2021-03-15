@@ -31,18 +31,18 @@ class CpsExceptionsSpec extends Specification {
 
     def 'Creating an exception that the Anchor already exist.'() {
         given: 'an exception dat the Anchor already exist is created'
-            def exception = new AnchorAlreadyDefinedException(dataspaceName, anchorName, rootCause)
+            def exception = new AlreadyDefinedException('Anchor', anchorName, dataspaceName, rootCause)
         expect: 'the exception details contains the correct message with Anchor name and Dataspace name'
-            exception.details == "Anchor with name ${anchorName} already exists for dataspace ${dataspaceName}."
+            exception.details == "Anchor with name ${anchorName} already exists for ${dataspaceName}."
         and: 'the correct root cause is maintained'
             exception.cause == rootCause
     }
 
     def 'Creating an exception that the dataspace already exists.'() {
         given: 'an exception that the dataspace already exists is created'
-            def exception = new DataspaceAlreadyDefinedException(dataspaceName, rootCause)
+            def exception = new AlreadyDefinedException(dataspaceName, rootCause)
         expect: 'the exception details contains the correct message with dataspace name'
-            exception.details == "Dataspace with name ${dataspaceName} already exists."
+            exception.details == "${dataspaceName} already exists."
         and: 'the correct root cause is maintained'
             exception.cause == rootCause
     }
@@ -100,15 +100,6 @@ class CpsExceptionsSpec extends Specification {
                     == "${descriptionOfObject} does not exist in dataspace ${dataspaceName}."
     }
 
-    def 'Creating an exception that the schema set already exists.'() {
-        given: 'an exception that the schema set already exists is created'
-            def exception = new SchemaSetAlreadyDefinedException(dataspaceName, schemaSetName, rootCause)
-        expect: 'the exception details contains the correct message with dataspace and schema set names'
-            exception.details == "Schema Set with name ${schemaSetName} already exists for dataspace ${dataspaceName}."
-        and: 'the correct root cause is maintained'
-            exception.cause == rootCause
-    }
-
     def 'Creating a exception that a schema set cannot be found.'() {
         expect: 'the exception details contains the correct message with dataspace and schema set names'
             (new SchemaSetNotFoundException(dataspaceName, schemaSetName)).details
@@ -132,6 +123,30 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception details contains the correct message with dataspace name and xpath.'
             (new DataNodeNotFoundException(dataspaceName, anchorName, xpath)).details
                     == "DataNode with xpath ${xpath} was not found for anchor ${anchorName} and dataspace ${dataspaceName}."
+    }
+
+    def 'Creating a exception that a dataspace already exists.'() {
+        expect: 'the exception details contains the correct message with dataspace name.'
+            (AlreadyDefinedException.forDataspace(dataspaceName, rootCause)).details
+                    == "${dataspaceName} already exists."
+    }
+
+    def 'Creating a exception that a anchor already exists.'() {
+        expect: 'the exception details contains the correct message with anchor name and dataspace name.'
+            (AlreadyDefinedException.forAnchor(anchorName, dataspaceName, rootCause)).details
+                    == "Anchor with name ${anchorName} already exists for ${dataspaceName}."
+    }
+
+    def 'Creating a exception that a data node already exists.'() {
+        expect: 'the exception details contains the correct message with xpath and dataspace name.'
+            (AlreadyDefinedException.forDataNode(xpath, dataspaceName, rootCause)).details
+                    == "Data node with name ${xpath} already exists for ${dataspaceName}."
+    }
+
+    def 'Creating a exception that a schema set already exists.'() {
+        expect: 'the exception details contains the correct message with schema set and dataspace name.'
+            (AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, rootCause)).details
+                    == "Schema Set with name ${schemaSetName} already exists for ${dataspaceName}."
     }
 
     def 'Creating a cps path exception.'() {

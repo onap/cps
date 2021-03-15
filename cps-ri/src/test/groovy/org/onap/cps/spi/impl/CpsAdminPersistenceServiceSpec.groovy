@@ -20,9 +20,8 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
-import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
-import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Anchor
@@ -54,7 +53,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'an attempt is made to create an already existing dataspace'
             objectUnderTest.createDataspace(DATASPACE_NAME)
         then: 'an exception that is is already defined is thrown with the correct details'
-            def thrown = thrown(DataspaceAlreadyDefinedException)
+            def thrown = thrown(AlreadyDefinedException)
             thrown.details.contains(DATASPACE_NAME)
     }
 
@@ -81,7 +80,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                    | dataspaceName  | schemaSetName     | anchorName     || expectedException
             'dataspace does not exist'  | 'unknown'      | 'not-relevant'    | 'not-relevant' || DataspaceNotFoundException
             'schema set does not exist' | DATASPACE_NAME | 'unknown'         | 'not-relevant' || SchemaSetNotFoundException
-            'anchor already exists'     | DATASPACE_NAME |  SCHEMA_SET_NAME1 | ANCHOR_NAME1   || AnchorAlreadyDefinedException
+            'anchor already exists'     | DATASPACE_NAME |  SCHEMA_SET_NAME1 | ANCHOR_NAME1   || AlreadyDefinedException
     }
 
     @Unroll

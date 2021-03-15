@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
 import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -52,8 +54,7 @@ public class CpsRestExceptionHandler {
      * @return response with response code 500.
      */
     @ExceptionHandler
-    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
-        final Exception exception) {
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
@@ -68,7 +69,7 @@ public class CpsRestExceptionHandler {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
-    @ExceptionHandler({DataInUseException.class})
+    @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class})
     public static ResponseEntity<Object> handleDataInUseException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
