@@ -27,8 +27,7 @@ import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
-import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException;
-import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -54,7 +53,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         try {
             dataspaceRepository.save(new DataspaceEntity(dataspaceName));
         } catch (final DataIntegrityViolationException e) {
-            throw new DataspaceAlreadyDefinedException(dataspaceName, e);
+            throw new AlreadyDefinedException(dataspaceName, e);
         }
     }
 
@@ -71,7 +70,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         try {
             anchorRepository.save(anchorEntity);
         } catch (final DataIntegrityViolationException e) {
-            throw new AnchorAlreadyDefinedException(dataspaceName, anchorName, e);
+            throw new AlreadyDefinedException("Anchor", anchorName, dataspaceName, e);
         }
     }
 

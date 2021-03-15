@@ -25,7 +25,7 @@ import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.repository.AnchorRepository
@@ -76,7 +76,7 @@ class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             scenario                    | dataspaceName  | schemaSetName            || expectedException
             'dataspace does not exist'  | 'unknown'      | 'not-relevant'           || DataspaceNotFoundException
-            'schema set already exists' | DATASPACE_NAME | EXISTING_SCHEMA_SET_NAME || SchemaSetAlreadyDefinedException
+            'schema set already exists' | DATASPACE_NAME | EXISTING_SCHEMA_SET_NAME || AlreadyDefinedException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
