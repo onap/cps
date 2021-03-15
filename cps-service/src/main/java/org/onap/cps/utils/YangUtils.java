@@ -21,6 +21,7 @@
 
 package org.onap.cps.utils;
 
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -93,9 +94,9 @@ public class YangUtils {
             final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
 
-        } catch (final IOException | IllegalStateException exception) {
+        } catch (final IOException | IllegalStateException | JsonSyntaxException exception) {
             throw new DataValidationException(
-                    "Failed to parse json data: " + jsonData,  exception.getMessage(), exception);
+                "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
         }
         return normalizedNodeResult.getResult();
     }
