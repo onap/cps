@@ -45,7 +45,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
 /**
  * Entity to store a fragment.
@@ -58,7 +57,7 @@ import org.hibernate.annotations.TypeDefs;
 @Builder
 @Entity
 @Table(name = "fragment")
-@TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class FragmentEntity implements Serializable {
 
     private static final long serialVersionUID = 7737669789097119667L;

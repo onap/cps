@@ -39,6 +39,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(assignableTypes = {NfProxyController.class})
 public class NfProxyRestExceptionHandler {
 
+<<<<<<< HEAD   (d8bcd1 Move web security configuration to application module)
+=======
+    private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
+
+>>>>>>> CHANGE (840eec Fix code smells)
     /**
      * Default exception handler.
      *
@@ -65,8 +70,14 @@ public class NfProxyRestExceptionHandler {
         log.error("An error has occurred : {} Status: {} Details: {}", message, status, details);
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
+<<<<<<< HEAD   (d8bcd1 Move web security configuration to application module)
         errorMessage.setMessage(message);
         errorMessage.setDetails(details);
+=======
+        errorMessage.setMessage(exception.getMessage());
+        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
+            CHECK_LOGS_FOR_DETAILS);
+>>>>>>> CHANGE (840eec Fix code smells)
         return new ResponseEntity<>(errorMessage, status);
     }
 
