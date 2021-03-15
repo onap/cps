@@ -35,7 +35,8 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <image.version>${project.version}</image.version>
-        <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+        <jib-maven-plugin.version>2.8.0</jib-maven-plugin.version>
+        <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
         <minimum-coverage>0.7</minimum-coverage>
         <nexus.repository>nexus3.onap.org:10003/onap/</nexus.repository>
     </properties>
@@ -125,7 +126,7 @@
                             <tags>
                                 <tag>latest</tag>
                             </tags>
-                            <image>${nexus.repository}${image.name}:${image.version}</image>
+                            <image>${nexus.repository}${image.name}:${image.version}-${maven.build.timestamp}</image>
                         </to>
                     </configuration>
                     <executions>
