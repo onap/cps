@@ -32,7 +32,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.exceptions.DataspaceAlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.SchemaSet
@@ -98,7 +98,7 @@ class AdminRestControllerSpec extends Specification {
         given: 'an endpoint'
             def createDataspaceEndpoint = "$basePath/v1/dataspaces";
         and: 'the service method throws an exception indicating the dataspace is already defined'
-            def thrownException = new DataspaceAlreadyDefinedException("", new RuntimeException())
+            def thrownException = new AlreadyDefinedException("Dataspace", dataspaceName, new RuntimeException())
             mockCpsAdminService.createDataspace(dataspaceName) >> { throw thrownException }
         when: 'post is invoked'
             def response =
@@ -107,7 +107,7 @@ class AdminRestControllerSpec extends Specification {
                                     .param('dataspace-name', dataspaceName))
                             .andReturn().response
         then: 'dataspace creation fails'
-            response.status == HttpStatus.BAD_REQUEST.value()
+            response.status == HttpStatus.CONFLICT.value()
     }
 
     def 'Create schema set from yang file.'() {

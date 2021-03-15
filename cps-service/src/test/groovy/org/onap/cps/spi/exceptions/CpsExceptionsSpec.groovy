@@ -31,16 +31,16 @@ class CpsExceptionsSpec extends Specification {
 
     def 'Creating an exception that the Anchor already exist.'() {
         given: 'an exception dat the Anchor already exist is created'
-            def exception = new AnchorAlreadyDefinedException(dataspaceName, anchorName, rootCause)
+            def exception = new AlreadyDefinedException('Anchor', anchorName, dataspaceName, rootCause)
         expect: 'the exception details contains the correct message with Anchor name and Dataspace name'
-            exception.details == "Anchor with name ${anchorName} already exists for dataspace ${dataspaceName}."
+            exception.details == "Anchor with name ${anchorName} already exists for ${dataspaceName}."
         and: 'the correct root cause is maintained'
             exception.cause == rootCause
     }
 
     def 'Creating an exception that the dataspace already exists.'() {
         given: 'an exception that the dataspace already exists is created'
-            def exception = new DataspaceAlreadyDefinedException(dataspaceName, rootCause)
+            def exception = new AlreadyDefinedException("Dataspace", dataspaceName, rootCause)
         expect: 'the exception details contains the correct message with dataspace name'
             exception.details == "Dataspace with name ${dataspaceName} already exists."
         and: 'the correct root cause is maintained'
@@ -98,15 +98,6 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception details contains the correct message with dataspace name and description of the object'
             (new NotFoundInDataspaceException(dataspaceName, descriptionOfObject)).details
                     == "${descriptionOfObject} does not exist in dataspace ${dataspaceName}."
-    }
-
-    def 'Creating an exception that the schema set already exists.'() {
-        given: 'an exception that the schema set already exists is created'
-            def exception = new SchemaSetAlreadyDefinedException(dataspaceName, schemaSetName, rootCause)
-        expect: 'the exception details contains the correct message with dataspace and schema set names'
-            exception.details == "Schema Set with name ${schemaSetName} already exists for dataspace ${dataspaceName}."
-        and: 'the correct root cause is maintained'
-            exception.cause == rootCause
     }
 
     def 'Creating a exception that a schema set cannot be found.'() {

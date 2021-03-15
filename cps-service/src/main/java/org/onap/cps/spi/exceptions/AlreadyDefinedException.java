@@ -20,25 +20,36 @@
 package org.onap.cps.spi.exceptions;
 
 /**
- * Schema set already defined exception. Indicates the a schema set with same name already exists in the same dataspace
+ * Already defined exception. Indicates the cps object with same name already exists.
  */
 
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
-public class SchemaSetAlreadyDefinedException extends CpsAdminException {
+public class AlreadyDefinedException extends CpsAdminException {
 
     private static final long serialVersionUID = 501929839139881112L;
 
     /**
      * Constructor.
      *
-     * @param dataspaceName the name dataspace
-     * @param schemaSetName the name of the schema set
-     * @param cause         the cause of the exception
+     * @param objectType  the object type
+     * @param objectName  the name of the object
+     * @param contextName the context name
+     * @param cause       the cause of the exception
      */
-    public SchemaSetAlreadyDefinedException(final String dataspaceName, final String schemaSetName,
+    public AlreadyDefinedException(final String objectType, final String objectName, final String contextName,
         final Throwable cause) {
-        super("Duplicate Schema Set",
-            String.format("Schema Set with name %s already exists for dataspace %s.", schemaSetName, dataspaceName),
-            cause);
+        super("Already defined exception",
+            String.format("%s with name %s already exists for %s.", objectType, objectName, contextName), cause);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param objectName the name of the object
+     * @param cause      the cause of the exception
+     */
+    public AlreadyDefinedException(final String objectType, final String objectName, final Throwable cause) {
+        super("Already defined exception", String
+            .format("%s with name %s already exists.", objectType, objectName), cause);
     }
 }

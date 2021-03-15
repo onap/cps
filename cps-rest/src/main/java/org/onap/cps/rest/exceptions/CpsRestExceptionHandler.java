@@ -24,6 +24,7 @@ import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
 import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -42,8 +43,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
     QueryRestController.class})
 public class CpsRestExceptionHandler {
 
-    private static final String checkLogsForDetails  = "Check logs for details.";
-
     private CpsRestExceptionHandler() {
     }
 
@@ -54,8 +53,7 @@ public class CpsRestExceptionHandler {
      * @return response with response code 500.
      */
     @ExceptionHandler
-    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
-        final Exception exception) {
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
@@ -70,7 +68,7 @@ public class CpsRestExceptionHandler {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
-    @ExceptionHandler({DataInUseException.class})
+    @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class})
     public static ResponseEntity<Object> handleDataInUseException(final CpsException exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
@@ -81,6 +79,7 @@ public class CpsRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
+        final String checkLogsForDetails = "Check logs for details.";
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
         }

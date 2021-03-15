@@ -21,27 +21,13 @@
 
 package org.onap.cps.rest.exceptions
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.CONFLICT
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.exceptions.AnchorAlreadyDefinedException
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.exceptions.CpsPathException
-import org.onap.cps.spi.exceptions.DataInUseException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
-import org.onap.cps.spi.exceptions.SchemaSetAlreadyDefinedException
-import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.exceptions.*
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -50,6 +36,9 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
+
+import static org.springframework.http.HttpStatus.*
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
 class CpsRestExceptionHandlerSpec extends Specification {
@@ -113,19 +102,17 @@ class CpsRestExceptionHandlerSpec extends Specification {
     }
 
     @Unroll
-    def 'request with an expectedObjectTypeInMessage object already defined exception returns HTTP Status Bad Request'() {
+    def 'request with an expectedObjectTypeInMessage object already defined exception returns HTTP Status Conflict'() {
         when: 'no data found CPS exception is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
         then: 'an HTTP Bad Request response is returned with correct message an details'
-            assertTestResponse(response, BAD_REQUEST,
-                    "Duplicate ${expectedObjectTypeInMessage}",
-                    "${expectedObjectTypeInMessage} with name ${existingObjectName} " +
-                            'already exists for dataspace MyDataSpace.')
+            assertTestResponse(response, CONFLICT,
+                    "Already defined exception",
+                    "${dataspaceName} with name ${existingObjectName} already exists.")
         where: 'the following exceptions are thrown'
-            exceptionThrown                                                               || expectedObjectTypeInMessage
-            new SchemaSetAlreadyDefinedException(dataspaceName, existingObjectName, null) || 'Schema Set'
-            new AnchorAlreadyDefinedException(dataspaceName, existingObjectName, null)    || 'Anchor'
+            exceptionThrown                                                      || expectedObjectTypeInMessage
+            new AlreadyDefinedException(dataspaceName, existingObjectName, null) || 'Anchor'
     }
 
     @Unroll
@@ -157,6 +144,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
      * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
      */
+
     def setupTestException(exception) {
         mockCpsAdminService.getAnchors(_) >> { throw exception }
     }
