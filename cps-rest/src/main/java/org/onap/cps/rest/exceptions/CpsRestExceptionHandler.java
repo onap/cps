@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
     QueryRestController.class})
 public class CpsRestExceptionHandler {
 
-    private static final String checkLogsForDetails  = "Check logs for details.";
+    private static final String CHECK_LOGS_FOR_DETAILS  = "Check logs for details.";
 
     private CpsRestExceptionHandler() {
     }
@@ -88,7 +88,7 @@ public class CpsRestExceptionHandler {
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(exception.getMessage());
         errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
-            checkLogsForDetails);
+            CHECK_LOGS_FOR_DETAILS);
         return new ResponseEntity<>(errorMessage, status);
     }
 }

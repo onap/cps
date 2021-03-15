@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(assignableTypes = {NfProxyController.class})
 public class NfProxyRestExceptionHandler {
 
-    private static final String checkLogsForDetails  = "Check logs for details.";
+    private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
 
     /**
      * Default exception handler.
@@ -65,7 +65,7 @@ public class NfProxyRestExceptionHandler {
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(exception.getMessage());
         errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
-            checkLogsForDetails);
+            CHECK_LOGS_FOR_DETAILS);
         return new ResponseEntity<>(errorMessage, status);
     }
 }
