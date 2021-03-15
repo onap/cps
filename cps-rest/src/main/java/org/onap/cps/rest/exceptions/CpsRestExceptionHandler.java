@@ -19,6 +19,7 @@
 
 package org.onap.cps.rest.exceptions;
 
+import com.google.gson.JsonSyntaxException;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
@@ -32,6 +33,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -41,8 +43,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class,
     QueryRestController.class})
 public class CpsRestExceptionHandler {
-
-    private static final String checkLogsForDetails  = "Check logs for details.";
 
     private CpsRestExceptionHandler() {
     }
@@ -54,9 +54,21 @@ public class CpsRestExceptionHandler {
      * @return response with response code 500.
      */
     @ExceptionHandler
-    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
-        final Exception exception) {
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
+
+    @ExceptionHandler
+    public static ResponseEntity<Object> handleJsonSyntaxExceptions(
+        final JsonSyntaxException jsonSyntaxException) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, jsonSyntaxException);
+    }
+
+    @ExceptionHandler
+    public static ResponseEntity<Object> handleDataIntegrityViolationExceptions(
+        final DataIntegrityViolationException dataIntegrityViolationException) {
+        return buildErrorResponse(HttpStatus.CONFLICT, dataIntegrityViolationException);
     }
 
     @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class,
@@ -81,6 +93,7 @@ public class CpsRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
+        final String checkLogsForDetails = "Check logs for details.";
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
         }
