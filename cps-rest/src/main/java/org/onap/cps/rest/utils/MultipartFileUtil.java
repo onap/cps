@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import lombok.AccessLevel;
@@ -43,6 +45,12 @@ public class MultipartFileUtil {
     private static final String ZIP_FILE_EXTENSION = ".zip";
     private static final String YANG_FILE_EXTENSION = RFC6020_YANG_FILE_EXTENSION;
     private static final int READ_BUFFER_SIZE = 1024;
+    private static final int THRESHOLD_ENTRIES = 10000;
+    private static final int THRESHOLD_SIZE = 1000000000; // 1 GB
+    private static final double THRESHOLD_RATIO = 10;
+
+    private static AtomicInteger totalSizeArchive = new AtomicInteger(0);
+    private static AtomicInteger totalEntryArchive = new AtomicInteger(0);
 
     /**
      * Extracts yang resources from multipart file instance.
@@ -84,6 +92,16 @@ public class MultipartFileUtil {
             throw new CpsException("Cannot extract resources from zip archive.", e.getMessage(), e);
         }
 
+        if (totalSizeArchive.get() > THRESHOLD_SIZE) {
+            throw new ModelValidationException("Invalid ZIP archive content.",
+                String.format("The uncompressed data size exceeds the CPS expected limit %s . ", THRESHOLD_SIZE));
+        }
+        if (totalEntryArchive.get() > THRESHOLD_ENTRIES) {
+            throw new ModelValidationException("Invalid ZIP archive content.",
+                String.format("The number of entries in the archive exceeds the CPS expected limit %s .",
+                    THRESHOLD_ENTRIES));
+        }
+
         try {
             final Map<String, String> yangResourceMap = yangResourceMapBuilder.build();
             if (yangResourceMap.isEmpty()) {
@@ -106,7 +124,7 @@ public class MultipartFileUtil {
         if (zipEntry.isDirectory() || !resourceNameEndsWithExtension(yangResourceName, YANG_FILE_EXTENSION)) {
             return;
         }
-        yangResourceMapBuilder.put(yangResourceName, extractYangResourceContent(zipInputStream));
+        yangResourceMapBuilder.put(yangResourceName, extractYangResourceContent(zipInputStream, zipEntry));
     }
 
     private static boolean resourceNameEndsWithExtension(final String resourceName, final String extension) {
@@ -125,12 +143,25 @@ public class MultipartFileUtil {
         }
     }
 
-    private static String extractYangResourceContent(final ZipInputStream zipInputStream) throws IOException {
+    private static String extractYangResourceContent(final ZipInputStream zipInputStream, final ZipEntry zipEntry)
+        throws IOException {
+
         try (final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+            totalEntryArchive.getAndIncrement();
+            int totalSizeEntry = 0;
+            int numberOfBytesRead = -1;
             final byte[] buffer = new byte[READ_BUFFER_SIZE];
-            int numberOfBytesRead;
+
             while ((numberOfBytesRead = zipInputStream.read(buffer, 0, READ_BUFFER_SIZE)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
+                totalSizeEntry += numberOfBytesRead;
+                totalSizeArchive.addAndGet(numberOfBytesRead);
+                final double compressionRatio = (double) totalSizeEntry / zipEntry.getCompressedSize();
+                if (compressionRatio > THRESHOLD_RATIO) {
+                    throw new ModelValidationException("Invalid ZIP archive content.",
+                        String.format("Ratio between compressed and uncompressed data exceeds the CPS expected limit"
+                            + " %s .", THRESHOLD_RATIO));
+                }
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
         }
