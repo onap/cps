@@ -46,6 +46,30 @@
       "revId": "8dbece92e9a81385b0b2e0c4313916569a54004d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdc505e8_e206b1ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataNodeAlreadyDefinedException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-16T13:53:53Z",
+      "side": 1,
+      "message": "yes, i feel the exceptions are overflowing. good to have AlreadyDefinedException which covers all this.",
+      "parentUuid": "5650807a_e8a080a0",
+      "range": {
+        "startLine": 29,
+        "startChar": 49,
+        "endLine": 29,
+        "endChar": 68
+      },
+      "revId": "8dbece92e9a81385b0b2e0c4313916569a54004d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
