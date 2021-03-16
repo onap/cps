@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b6ea54b3_6a1edeac",
+        "filename": "docs/.gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-16T15:36:02Z",
+      "side": 1,
+      "message": "if you setup the vscode as described in\nhttps://wiki.onap.org/display/DW/Local+environment+to+write+RST+files\nusing docs folder as the project root\nit will create subfolder /docs/ for compiled files\nmoved to upper level gitignore",
+      "parentUuid": "d195a9be_9061ca18",
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0ee729b_d79f8af7",
         "filename": "docs/.gitignore",
         "patchSetId": 6
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "fed9e172_d6b470ff",
+        "filename": "docs/.gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-16T15:36:02Z",
+      "side": 1,
+      "message": "moved all to root gitignore",
+      "parentUuid": "f0ee729b_d79f8af7",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4058e1b2_2614cc91",
         "filename": "docs/design.rst",
         "patchSetId": 6
@@ -62,6 +104,30 @@
       "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a393ad52_ab4ffbb1",
+        "filename": "docs/design.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-16T15:36:02Z",
+      "side": 1,
+      "message": "it\u0027s just to keep documentation structure similar for all the projects\nat least on a top level. as mentioned by Toine in earlier comment\nhttps://wiki.onap.org/display/DW/Component+Documentation+Template",
+      "parentUuid": "4058e1b2_2614cc91",
+      "range": {
+        "startLine": 5,
+        "startChar": 3,
+        "endLine": 5,
+        "endChar": 10
+      },
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
