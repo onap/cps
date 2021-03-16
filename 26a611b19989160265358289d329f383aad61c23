@@ -22,6 +22,30 @@
       "revId": "26a611b19989160265358289d329f383aad61c23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571296e3_6d215a3c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-16T14:57:28Z",
+      "side": 1,
+      "message": "I agree .. but implemented as suggested by sonar",
+      "parentUuid": "5d57a0fa_09b8069a",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
