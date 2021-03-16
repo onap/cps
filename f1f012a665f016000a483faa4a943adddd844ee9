@@ -16,6 +16,24 @@
       "revId": "f1f012a665f016000a483faa4a943adddd844ee9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a8730a4_ccceb599",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-16T06:08:58Z",
+      "side": 1,
+      "message": "This is for Istanbul  onwards. As you mentioned yourself in the JIRA, it was not a blocker for H release. When we release the \u003cversion\u003e.yaml file this timestamp containing image is retagged/released as per the yaml filename. Correct me if I got you question wrong.",
+      "parentUuid": "cf6cc5e5_367bad11",
+      "revId": "f1f012a665f016000a483faa4a943adddd844ee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
