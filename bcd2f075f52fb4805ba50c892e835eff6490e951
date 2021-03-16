@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "61da5b24_640b71ab",
+        "filename": "docs/.gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-16T16:57:11Z",
+      "side": 1,
+      "message": "Oh yes, I remember it now. I set it with /target instead to use the existing ignore pattern.",
+      "parentUuid": "fed9e172_d6b470ff",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4058e1b2_2614cc91",
         "filename": "docs/design.rst",
         "patchSetId": 6
