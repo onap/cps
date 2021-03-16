@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d57a0fa_09b8069a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-16T14:43:01Z",
+      "side": 1,
+      "message": "though sonar recommends this, i wish there was a cleaner solution.",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
