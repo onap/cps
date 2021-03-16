@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -69,21 +70,22 @@ public class MultipartFileUtil {
 
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
-
+        final ZipFileSizeValidator zipFileSizeValidator = new ZipFileSizeValidator();
         try (
             final InputStream inputStream = multipartFile.getInputStream();
             final ZipInputStream zipInputStream = new ZipInputStream(inputStream);
         ) {
             ZipEntry zipEntry;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                extractZipEntryToMapIfApplicable(yangResourceMapBuilder, zipEntry, zipInputStream);
+                extractZipEntryToMapIfApplicable(yangResourceMapBuilder, zipEntry, zipInputStream,
+                    zipFileSizeValidator);
             }
             zipInputStream.closeEntry();
 
         } catch (final IOException e) {
             throw new CpsException("Cannot extract resources from zip archive.", e.getMessage(), e);
         }
-
+        zipFileSizeValidator.validateSizeAndEntries();
         try {
             final Map<String, String> yangResourceMap = yangResourceMapBuilder.build();
             if (yangResourceMap.isEmpty()) {
@@ -100,13 +102,13 @@ public class MultipartFileUtil {
 
     private static void extractZipEntryToMapIfApplicable(
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder, final ZipEntry zipEntry,
-        final ZipInputStream zipInputStream) throws IOException {
-
+        final ZipInputStream zipInputStream, final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
+        zipFileSizeValidator.setCompressedSize(zipEntry.getCompressedSize());
         final String yangResourceName = extractResourceNameFromPath(zipEntry.getName());
         if (zipEntry.isDirectory() || !resourceNameEndsWithExtension(yangResourceName, YANG_FILE_EXTENSION)) {
             return;
         }
-        yangResourceMapBuilder.put(yangResourceName, extractYangResourceContent(zipInputStream));
+        yangResourceMapBuilder.put(yangResourceName, extractYangResourceContent(zipInputStream, zipFileSizeValidator));
     }
 
     private static boolean resourceNameEndsWithExtension(final String resourceName, final String extension) {
@@ -125,12 +127,18 @@ public class MultipartFileUtil {
         }
     }
 
-    private static String extractYangResourceContent(final ZipInputStream zipInputStream) throws IOException {
+    private static String extractYangResourceContent(final ZipInputStream zipInputStream,
+        final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
         try (final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-            final byte[] buffer = new byte[READ_BUFFER_SIZE];
+            int totalSizeEntry = 0;
             int numberOfBytesRead;
+            final byte[] buffer = new byte[READ_BUFFER_SIZE];
+            zipFileSizeValidator.incrementTotalEntryInArchive();
             while ((numberOfBytesRead = zipInputStream.read(buffer, 0, READ_BUFFER_SIZE)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
+                totalSizeEntry += numberOfBytesRead;
+                zipFileSizeValidator.updateTotalSizeArchive(totalSizeEntry);
+                zipFileSizeValidator.validateCompresssionRatio(totalSizeEntry);
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
         }
