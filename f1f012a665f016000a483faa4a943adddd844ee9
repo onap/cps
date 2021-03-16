@@ -34,6 +34,24 @@
       "revId": "f1f012a665f016000a483faa4a943adddd844ee9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79645a33_3c949d6d",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-16T13:52:41Z",
+      "side": 1,
+      "message": "Yes, my question was not for Honolulu, it was for the next release we are going to make, then Istanbul.\n\nI wanted to ensure that the release job is not going to tag the release image with the timestamp 1.1.0-yyyyMMdd\u0027T\u0027HHmmss\u0027Z\u0027 instead of only 1.1.0.\n\nI\u0027m not sure how the release job behave to handle the timestamp. Even if ${maven.build.timestamp} property is unset, it sounds to be that we are going to end up with a remaining \"-\" after the version number for the release.\n\nThis is what I was wondering, just by looking at the change.",
+      "parentUuid": "0a8730a4_ccceb599",
+      "revId": "f1f012a665f016000a483faa4a943adddd844ee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
