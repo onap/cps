@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf6cc5e5_367bad11",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-16T05:32:46Z",
+      "side": 1,
+      "message": "How the released image tag does not include the timestamp and is only X.Y.Z ? Is it what we are going to have for the release ?",
+      "revId": "f1f012a665f016000a483faa4a943adddd844ee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
