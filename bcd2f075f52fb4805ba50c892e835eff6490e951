@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0ee729b_d79f8af7",
+        "filename": "docs/.gitignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-16T07:11:49Z",
+      "side": 1,
+      "message": "move to root gitignore",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4058e1b2_2614cc91",
+        "filename": "docs/design.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-16T07:11:49Z",
+      "side": 1,
+      "message": "I am curious about why we renaming the file",
+      "range": {
+        "startLine": 5,
+        "startChar": 3,
+        "endLine": 5,
+        "endChar": 10
+      },
+      "revId": "bcd2f075f52fb4805ba50c892e835eff6490e951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
