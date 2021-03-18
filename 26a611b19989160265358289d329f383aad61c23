@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "73eac4a5_548a2856",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-18T13:41:36Z",
+      "side": 1,
+      "message": "did you analyse/discuss thresholds to use for CPS, maybe analyse some existing examples from (large) xNF ?!",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84bfb289_4b197936",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 1
@@ -88,6 +111,30 @@
       "side": 1,
       "message": "I agree .. but implemented as suggested by sonar",
       "parentUuid": "5d57a0fa_09b8069a",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "139d6f4a_b24e794a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-18T13:41:36Z",
+      "side": 1,
+      "message": "yes we have to assume the Sonar Suggestion is well established....",
+      "parentUuid": "571296e3_6d215a3c",
       "range": {
         "startLine": 148,
         "startChar": 16,
