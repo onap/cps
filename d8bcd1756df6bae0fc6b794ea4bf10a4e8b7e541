@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Claudio David Gasparini <claudio.gasparini@pantheon.tech>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Fri, 19 Mar 2021 03:19:34 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/119512
+Project: cps
+Branch: refs/heads/honolulu
