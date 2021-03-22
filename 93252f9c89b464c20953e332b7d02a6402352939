@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1995d47e_026d2cb5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-22T14:55:45Z",
+      "side": 1,
+      "message": "suggestion: insert  (hardcode) \u0027Dataspace\" in this case assuming the contsructor is only used for that case",
+      "range": {
+        "startLine": 51,
+        "startChar": 58,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

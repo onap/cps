@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "902f1fba_918baad6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-22T14:55:45Z",
+      "side": 1,
+      "message": "I mean just insert \"Check logs for details\" here",
+      "parentUuid": "0f008b04_73379dbe",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 31
+      },
+      "revId": "9ad8512fd05290e71fb37e214c444dbe6aa440aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57998fe7_d6074794",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 4
