@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2b44a879_68d95a1e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-23T12:49:57Z",
+      "side": 1,
+      "message": "I think that would be good in a future improvement but for now hardcode variables are good enough. \nSo we DO  NEED some CSAR example files to get an idea of dimensioning.\nI do wonder if 1GB (is that compressed or uncompressed?) is sufficient, since models are simple text files I think it should really be plenty but would like confirmation",
+      "parentUuid": "15913649_d7201b0b",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84bfb289_4b197936",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 1
@@ -60,6 +84,24 @@
       "writtenOn": "2021-03-16T21:14:30Z",
       "side": 1,
       "message": "These variables should not be class variables. They are not thread safe, each request should have its own.",
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e673836_70c3153a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-23T12:49:57Z",
+      "side": 1,
+      "message": "consider using ThreadLocal ? https://www.baeldung.com/java-threadlocal",
+      "parentUuid": "84bfb289_4b197936",
       "revId": "26a611b19989160265358289d329f383aad61c23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
