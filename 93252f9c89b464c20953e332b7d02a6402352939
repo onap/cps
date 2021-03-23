@@ -158,6 +158,30 @@
       "revId": "93252f9c89b464c20953e332b7d02a6402352939",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d94a3b8c_da9a80fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-23T16:28:19Z",
+      "side": 1,
+      "message": "actually come to think of it, several static methods and a private(?) constructor instead does sound good",
+      "parentUuid": "1ac7d5a5_f285083a",
+      "range": {
+        "startLine": 51,
+        "startChar": 58,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
