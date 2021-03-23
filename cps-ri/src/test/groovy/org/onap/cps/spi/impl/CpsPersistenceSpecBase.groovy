@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -57,6 +58,7 @@ class CpsPersistenceSpecBase extends Specification {
     static final String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
     static final String ANCHOR_NAME1 = 'ANCHOR-001'
     static final String ANCHOR_NAME2 = 'ANCHOR-002'
+    static final String ANCHOR_NAME3 = 'ANCHOR-003'
     static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
 
 }
