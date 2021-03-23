@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b0e71e3b_63deed0b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-23T11:27:11Z",
+      "side": 1,
+      "message": "remove extra line",
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9a56df2_8e43c628",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 6
@@ -66,6 +83,30 @@
       "writtenOn": "2021-03-22T14:55:45Z",
       "side": 1,
       "message": "suggestion: insert  (hardcode) \u0027Dataspace\" in this case assuming the contsructor is only used for that case",
+      "range": {
+        "startLine": 51,
+        "startChar": 58,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52d57ed4_5abdd227",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-23T11:27:11Z",
+      "side": 1,
+      "message": "is need it for dataspace, anchor, schema... but my vote to provide one static method for each case\n static public dataspace{\n return new AlreadyDefinedException (\"dataspace\",...)\n}\n\nand consumed as AlreadyDefinedException.dataspace(...)",
+      "parentUuid": "1995d47e_026d2cb5",
       "range": {
         "startLine": 51,
         "startChar": 58,
