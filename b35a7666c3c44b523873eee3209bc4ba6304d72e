@@ -16,6 +16,24 @@
       "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad09cc92_fb2a977b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-23T08:23:12Z",
+      "side": 1,
+      "message": "not worth it.",
+      "parentUuid": "4f770ebc_b2d6bad0",
+      "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
