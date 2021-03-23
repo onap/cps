@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -86,6 +87,22 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             childFragment.childFragments.size() == 1
             def grandchildFragment = childFragment.childFragments[0]
             grandchildFragment.xpath == grandChildXpath
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Store data node for multiple anchors using the same schema.'() {
+        def xpath = "/parent-new"
+        given: 'a fragment is stored for an anchor'
+            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTree(xpath))
+        when: 'another fragment is stored for an other anchor, using the same schema set'
+            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME3, createDataNodeTree(xpath))
+        then: 'both fragments can be retrieved by their xpath'
+            def fragment1 = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, xpath)
+            fragment1.anchor.name == ANCHOR_NAME1
+            fragment1.xpath == xpath
+            def fragment2 = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME3, xpath)
+            fragment2.anchor.name == ANCHOR_NAME3
+            fragment2.xpath == xpath
     }
 
     @Unroll
