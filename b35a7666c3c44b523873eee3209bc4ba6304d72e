@@ -34,6 +34,24 @@
       "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88342c33_cd4416ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-23T11:18:54Z",
+      "side": 1,
+      "message": "shouldn\u0027t be returned, but would be good that the LOG exception print that information.\nSo I guess it should be handled upstream to log the information on the stacktrace error and not return it to the client",
+      "parentUuid": "ad09cc92_fb2a977b",
+      "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
