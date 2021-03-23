@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "b5d69c32_22839f4c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-23T12:02:44Z",
+      "side": 1,
+      "message": "I\u0027m ok with this approach.",
+      "parentUuid": "418a9887_666c895c",
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1995d47e_026d2cb5",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
         "patchSetId": 6
