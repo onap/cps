@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da39eb07_d3db943f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-03-23T09:11:13Z",
+      "side": 1,
+      "message": "as it was discussed earlier, this exception is caused by constraint violation.\nthe only constraint defined for fragment table is unique set of fields.\nso it\u0027s safe enough to assume the DataIntegrityViolationException only occurs\non data with same unique fields set being already in database.\nthis case is covered by tests, it\u0027s an expected behavior.\n\nwhen the additional constraint is added to the same table then only new reason\nfor same exception occurrence would be considered to take into account.\nIn order to detect this possible extra earlier we include the root cause\nexception into cps exception and log it using exception handler on rest layer.",
+      "parentUuid": "f9a56df2_8e43c628",
+      "revId": "93252f9c89b464c20953e332b7d02a6402352939",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1995d47e_026d2cb5",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
         "patchSetId": 6
