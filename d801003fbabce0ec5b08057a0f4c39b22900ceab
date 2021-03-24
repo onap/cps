@@ -70,6 +70,30 @@
       "revId": "d801003fbabce0ec5b08057a0f4c39b22900ceab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc22db3a_504692ae",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/06-update-fragment-index.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-24T16:21:07Z",
+      "side": 1,
+      "message": "The fragment_dataspace_id_anchor_id_xpath_key is a constraint on the table and not an index, whereas the actual index UQ_FRAGMENT_XPATH is missing the anchor.",
+      "parentUuid": "5d6b50dc_f008571d",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 74
+      },
+      "revId": "d801003fbabce0ec5b08057a0f4c39b22900ceab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
