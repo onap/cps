@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "692ae3ab_2acd7052",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-24T06:35:47Z",
+      "side": 1,
+      "message": "remove \"\\n\", is not a good practice. Is nice for devs to read, but it might have impacts on frameworks, like frameworks expecting the whole log stack trace in a single line.",
+      "range": {
+        "startLine": 97,
+        "startChar": 73,
+        "endLine": 97,
+        "endChar": 75
+      },
+      "revId": "0995036fcd3077a78273779461c77195da067595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
