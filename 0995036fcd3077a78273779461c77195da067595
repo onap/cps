@@ -22,6 +22,30 @@
       "revId": "0995036fcd3077a78273779461c77195da067595",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc9f90e1_b8775bec",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-24T13:34:38Z",
+      "side": 1,
+      "message": "This is done.\n\nIn this string, new lines would still come for the json payload itself.\n\nAlso the string built here is the one that is returned in the http response. As improvement, it would be nice to separate the exception data that has to be collected at service level from the wording of the response that should be a responsibility of the controller.",
+      "parentUuid": "692ae3ab_2acd7052",
+      "range": {
+        "startLine": 97,
+        "startChar": 73,
+        "endLine": 97,
+        "endChar": 75
+      },
+      "revId": "0995036fcd3077a78273779461c77195da067595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
