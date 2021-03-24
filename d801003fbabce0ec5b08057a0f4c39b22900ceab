@@ -46,6 +46,30 @@
       "revId": "d801003fbabce0ec5b08057a0f4c39b22900ceab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6b50dc_f008571d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/06-update-fragment-index.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-03-24T14:06:58Z",
+      "side": 1,
+      "message": "If that is already defined than could you please check without having this non unique index it should give same performance AND Unique_index for xpath, dataspace_id and anchor should be used (can be checked using explain statement). It looks redundant overhead on db to create this index then.",
+      "parentUuid": "a4c76921_f1677eda",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 74
+      },
+      "revId": "d801003fbabce0ec5b08057a0f4c39b22900ceab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
