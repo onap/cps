@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d68769a_2e9d9a4d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/06-update-fragment-index.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-24T11:22:20Z",
+      "side": 1,
+      "message": "Would it not work, if in existing index we added anchor as well ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 74
+      },
+      "revId": "d801003fbabce0ec5b08057a0f4c39b22900ceab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
