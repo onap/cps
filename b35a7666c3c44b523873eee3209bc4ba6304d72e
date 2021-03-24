@@ -52,6 +52,24 @@
       "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7b06992_91bdc7dc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-24T04:24:35Z",
+      "side": 1,
+      "message": "Agree. The change to have the json payload in the logs is made.\n\nThen removing it from the http response requires an additional refactoring in the exception handling as for now the message logged is also returned in the http response for all exceptions (in buildErrorResponse method from CpsRestExceptionHandler).\n\nFor now this change is kept simple to fix Honolulu.",
+      "parentUuid": "88342c33_cd4416ad",
+      "revId": "b35a7666c3c44b523873eee3209bc4ba6304d72e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
