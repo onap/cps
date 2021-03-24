@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "8ae035a5_363c43f5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-24T12:38:49Z",
+      "side": 1,
+      "message": "setting values to static variable does not work with @value annotation. Created a new Jira to make these values configurable : https://jira.onap.org/browse/CPS-302",
+      "parentUuid": "2b44a879_68d95a1e",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84bfb289_4b197936",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 1
@@ -126,6 +150,24 @@
     },
     {
       "key": {
+        "uuid": "9345f71d_d3eb4726",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-24T12:38:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ab4a4f0_4cb2916d",
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e3aff11_860f1bdc",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 1
@@ -143,6 +185,24 @@
     },
     {
       "key": {
+        "uuid": "b6489aee_699abd15",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-24T12:38:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e3aff11_860f1bdc",
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b91fbfb8_3095fecf",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 1
@@ -157,6 +217,24 @@
       "revId": "26a611b19989160265358289d329f383aad61c23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e4b6bbf_b3064878",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-24T12:38:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b91fbfb8_3095fecf",
+      "revId": "26a611b19989160265358289d329f383aad61c23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
