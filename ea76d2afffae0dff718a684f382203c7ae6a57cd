@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "41515997_e1fbd983",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-03-25T11:37:11Z",
+      "side": 1,
+      "message": "I agree, the check for totalSizeArchive and totalEntryArchive is not currently being done on the entire archive but on each entry. I hope thats what even you are refering too.\nIt seems to be messed up while trying to make these variables thread safe. I will fix that",
+      "parentUuid": "b70c73cf_fac4070d",
+      "revId": "ea76d2afffae0dff718a684f382203c7ae6a57cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e5120ae_70220cb7",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
         "patchSetId": 2
