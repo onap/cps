@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b70c73cf_fac4070d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-25T04:33:15Z",
+      "side": 1,
+      "message": "This implementation does not seem to make the validations at the archive level as expected. It validates each entry that it passed in parameter individually. \n\nAm I missing something ?",
+      "revId": "ea76d2afffae0dff718a684f382203c7ae6a57cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e5120ae_70220cb7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-25T04:33:15Z",
+      "side": 1,
+      "message": "Remove +",
+      "revId": "ea76d2afffae0dff718a684f382203c7ae6a57cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1a9aea3_16c8052e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-25T04:33:15Z",
+      "side": 1,
+      "message": "Missing format argument",
+      "revId": "ea76d2afffae0dff718a684f382203c7ae6a57cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ccaa68e_be0ec28a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-25T04:33:15Z",
+      "side": 1,
+      "message": "Missing format argument",
+      "revId": "ea76d2afffae0dff718a684f382203c7ae6a57cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
