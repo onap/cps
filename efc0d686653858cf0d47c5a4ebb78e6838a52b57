@@ -34,6 +34,24 @@
       "revId": "efc0d686653858cf0d47c5a4ebb78e6838a52b57",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d89d49be_0bf616a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-29T16:17:24Z",
+      "side": 1,
+      "message": "Hi Bruno I think this was a missed impact for CPS-290.\nWhat is not understood is how mvn clean install could pas without this test using the correct constructor. \nI still need to investigate that. \nso this fix should definitely be under the same Jira: CPS-290",
+      "parentUuid": "c002a8ba_6160c175",
+      "revId": "efc0d686653858cf0d47c5a4ebb78e6838a52b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
