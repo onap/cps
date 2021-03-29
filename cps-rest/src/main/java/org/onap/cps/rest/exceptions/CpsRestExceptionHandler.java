@@ -20,7 +20,6 @@
 package org.onap.cps.rest.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
 import org.onap.cps.rest.controller.QueryRestController;
@@ -52,7 +51,8 @@ public class CpsRestExceptionHandler {
      * @param exception the exception to handle
      * @return response with response code 500.
      */
-    @ExceptionHandler public static ResponseEntity<Object> handleInternalServerErrorExceptions(
+    @ExceptionHandler
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
         final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
@@ -60,41 +60,33 @@ public class CpsRestExceptionHandler {
     @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class,
         CpsPathException.class})
     public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
     @ExceptionHandler({NotFoundInDataspaceException.class, DataNodeNotFoundException.class})
     public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
     @ExceptionHandler({DataInUseException.class})
     public static ResponseEntity<Object> handleDataInUseException(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.CONFLICT, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
     @ExceptionHandler({CpsException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), extractDetails(exception));
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
-        return buildErrorResponse(status, exception.getMessage(), ExceptionUtils.getStackTrace(exception));
-    }
-
-    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
-        final String details) {
-        log.error("An error has occurred : {} Status: {} Details: {}", message, status, details);
+        if (exception.getCause() != null || !(exception instanceof CpsException)) {
+            log.error("Exception occurred", exception);
+        }
         final ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
-        errorMessage.setMessage(message);
-        errorMessage.setDetails(details);
+        errorMessage.setMessage(exception.getMessage());
+        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
+            "Check logs for details.");
         return new ResponseEntity<>(errorMessage, status);
-    }
-
-    private static String extractDetails(final CpsException exception) {
-        return exception.getCause() == null
-            ? exception.getDetails()
-            : ExceptionUtils.getStackTrace(exception.getCause());
     }
 }
