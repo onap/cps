@@ -160,12 +160,12 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == httpStatus.value()
         where:
-            scenario          | xpath     | exception                                 || httpStatus
-            'no dataspace'    | '/x-path' | new DataspaceNotFoundException('')        || HttpStatus.BAD_REQUEST
-            'no anchor'       | '/x-path' | new AnchorNotFoundException('', '')       || HttpStatus.BAD_REQUEST
-            'no data'         | '/x-path' | new DataNodeNotFoundException('', '', '') || HttpStatus.NOT_FOUND
-            'empty path'      | ''        | new IllegalStateException()               || HttpStatus.NOT_IMPLEMENTED
-            'already defined' | '/x-path' | new AlreadyDefinedException('', '')       || HttpStatus.CONFLICT
+            scenario          | xpath     | exception                                        || httpStatus
+            'no dataspace'    | '/x-path' | new DataspaceNotFoundException('')               || HttpStatus.BAD_REQUEST
+            'no anchor'       | '/x-path' | new AnchorNotFoundException('', '')              || HttpStatus.BAD_REQUEST
+            'no data'         | '/x-path' | new DataNodeNotFoundException('', '', '')        || HttpStatus.NOT_FOUND
+            'empty path'      | ''        | new IllegalStateException()                      || HttpStatus.NOT_IMPLEMENTED
+            'already defined' | '/x-path' | new AlreadyDefinedException('', new Throwable()) || HttpStatus.CONFLICT
     }
 
     @Unroll
