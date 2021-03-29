@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a794022a_2c60328e",
+        "filename": "cps-nf-proxy-rest/src/main/java/org/onap/cps/nfproxy/rest/exceptions/NfProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-29T10:08:11Z",
+      "side": 1,
+      "message": "Suggestion : this was corrected in a later commit for master, worth adding that too. final is all caps.",
+      "range": {
+        "startLine": 41,
+        "startChar": 32,
+        "endLine": 41,
+        "endChar": 53
+      },
+      "revId": "edee877cbb91b72466f7ff731da3000474c19c27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
