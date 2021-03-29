@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc4d41c4_ff97be79",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-29T15:51:09Z",
+      "side": 1,
+      "message": "CPS-290 is a different bug that has already been fixed and merged.",
+      "revId": "efc0d686653858cf0d47c5a4ebb78e6838a52b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
