@@ -2,7 +2,7 @@ nodeByCmHandleAndXpath:
   get:
     description: Get a node with an option to retrieve all the children for a given cm Handle
     tags:
-      - nf-proxy
+      - network-cm-proxy
     summary: Get a node given a cm Handle and xpath
     operationId: getNodeByCmHandleAndXpath
     parameters:
@@ -27,7 +27,7 @@ nodesByCmHandleAndCpsPath:
   get:
     description: Query nodes for the given cps path and cm Handle
     tags:
-      - nf-proxy
+      - network-cm-proxy
     summary: Query data nodes
     operationId: queryNodesByCmHandleAndCpsPath
     parameters:
@@ -50,7 +50,7 @@ nodesByCmHandleAndXpath:
   patch:
     description: Update node leaves for the given cps path and cm Handle
     tags:
-      - nf-proxy
+      - network-cm-proxy
     summary: Update node leaves
     operationId: updateNodeLeaves
     parameters:
@@ -77,7 +77,7 @@ nodesByCmHandleAndXpath:
   put:
     description: Replace a node with descendants for the given cps path and cm Handle
     tags:
-      - nf-proxy
+      - network-cm-proxy
     summary: Replace a node with descendants
     operationId: replaceNode
     parameters:

@@ -26,7 +26,7 @@ import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import javax.validation.Valid;
 import org.onap.cps.nfproxy.api.NfProxyDataService;
-import org.onap.cps.nfproxy.rest.api.NfProxyApi;
+import org.onap.cps.nfproxy.rest.api.NetworkCmProxyApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.api.xnf-base-path}")
-public class NfProxyController implements NfProxyApi {
+public class NfProxyController implements NetworkCmProxyApi {
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String XPATH_ROOT = "/";

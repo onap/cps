@@ -191,13 +191,14 @@
             </activation>
 
             <properties>
-                <image.name>cps-nf-proxy</image.name>
+                <image.name>cps-network-cm-proxy</image.name>
             </properties>
 
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
@@ -220,7 +221,7 @@
             </activation>
 
             <properties>
-                <image.name>cps-and-nf-proxy</image.name>
+                <image.name>cps-and-network-cm-proxy</image.name>
             </properties>
 
             <dependencies>
@@ -230,7 +231,8 @@
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>

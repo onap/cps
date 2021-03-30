@@ -4,5 +4,5 @@ project: cps
 log_dir: cps-maven-docker-stage-master/109/
 ref: c6b259cc6706585bb6123de362f57a895304c894
 containers:
-  - name: 'cps-and-nf-proxy'
+  - name: 'cps-and-network-cm-proxy'
     version: '0.0.1'

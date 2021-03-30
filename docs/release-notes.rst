@@ -92,7 +92,7 @@ Software Deliverables
    :header: "Repository", "SubModules", "Version & Docker Image (if applicable)"
    :widths: auto
 
-   "cps", "", "onap/cps-and-nf-proxy:1.0.0"
+   "cps", "", "onap/cps-and-network-cm-proxy:1.0.0"
 
 
 Known Limitations, Issues and Workarounds
