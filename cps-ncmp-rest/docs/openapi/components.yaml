@@ -1,0 +1,107 @@
+components:
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    MultipartFile:
+      required:
+        - file
+      properties:
+        multipartFile:
+          type: string
+          description: multipartFile
+          format: binary
+
+  parameters:
+    cmHandleInPath:
+      name: cm-handle
+      in: path
+      description: The identifier for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      required: true
+      schema:
+        type: string
+    xpathInQuery:
+      name: xpath
+      in: query
+      description: xpath
+      required: false
+      schema:
+        type: string
+        default: /
+    includeDescendantsOptionInQuery:
+      name: include-descendants
+      in: query
+      description: include-descendants
+      required: false
+      schema:
+        type: boolean
+        default: false
+    cpsPathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    NotImplemented:
+      description: The given path has not been implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Ok:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Created:
+      description: Created
+      content:
+        text/plain:
+          schema:
+            type: string
+    NoContent:
+      description: No Content
+      content: {}

@@ -1,0 +1,5 @@
+
+rest:
+    api:
+        ncmp-base-path: /cps-ncmp/api
+spring:

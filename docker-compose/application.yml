@@ -4,7 +4,7 @@ server:
 rest:
     api:
         cps-base-path: /cps/api
-        xnf-base-path: /cps-nf-proxy/api
+        ncmp-base-path: /cps-ncmp/api
 
 spring:
     main:

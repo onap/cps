@@ -44,12 +44,12 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>cps-nf-proxy-service</artifactId>
+                <artifactId>cps-ncmp-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>cps-nf-proxy-rest</artifactId>
+                <artifactId>cps-ncmp-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
