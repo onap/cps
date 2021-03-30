@@ -1,0 +1,124 @@
+#  ============LICENSE_START=======================================================
+#  Modification (C) 2021 Nordix Foundation
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+components:
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    MultipartFile:
+      required:
+        - file
+      properties:
+        multipartFile:
+          type: string
+          description: multipartFile
+          format: binary
+
+  parameters:
+    cmHandleInPath:
+      name: cm-handle
+      in: path
+      description: The identifier for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      required: true
+      schema:
+        type: string
+    xpathInQuery:
+      name: xpath
+      in: query
+      description: xpath
+      required: false
+      schema:
+        type: string
+        default: /
+    includeDescendantsOptionInQuery:
+      name: include-descendants
+      in: query
+      description: include-descendants
+      required: false
+      schema:
+        type: boolean
+        default: false
+    cpsPathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    NotImplemented:
+      description: The given path has not been implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Ok:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Created:
+      description: Created
+      content:
+        text/plain:
+          schema:
+            type: string
+    NoContent:
+      description: No Content
+      content: {}

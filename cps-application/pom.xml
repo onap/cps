@@ -3,6 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Pantheon.tech.
   Modifications Copyright (C) 2021 Bell Canada.
+  Modification Copyright (C) 2021 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -185,19 +186,20 @@
             </build>
         </profile>
         <profile>
-            <id>xnf-docker</id>
+            <id>ncmp-docker</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
 
             <properties>
-                <image.name>cps-nf-proxy</image.name>
+                <image.name>cps-ncmp</image.name>
             </properties>
 
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
@@ -214,13 +216,13 @@
             </build>
         </profile>
         <profile>
-            <id>cps-xnf-docker</id>
+            <id>cps-ncmp-docker</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
 
             <properties>
-                <image.name>cps-and-nf-proxy</image.name>
+                <image.name>cps-and-ncmp</image.name>
             </properties>
 
             <dependencies>
@@ -230,7 +232,8 @@
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
