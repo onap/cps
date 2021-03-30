@@ -16,6 +16,24 @@
       "revId": "24912e0f98843d75b4b61292622552d6a7bf2e6b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a98bad5_51b8d21e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-03-30T13:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f455dba8_d5636c10",
+      "revId": "24912e0f98843d75b4b61292622552d6a7bf2e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
