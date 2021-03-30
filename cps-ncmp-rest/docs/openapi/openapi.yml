@@ -1,0 +1,16 @@
+openapi: 3.0.1
+info:
+  title: NCMP to CPS Proxy API
+  description: NCMP to CPS Proxy API
+  version: "1.0"
+servers:
+  - url: //localhost:8088/
+paths:
+  /v1/cm-handles/{cm-handle}/node:
+    $ref: 'ncmproxy.yml#/nodeByCmHandleAndXpath'
+
+  /v1/cm-handles/{cm-handle}/nodes/query:
+    $ref: 'ncmproxy.yml#/nodesByCmHandleAndCpsPath'
+
+  /v1/cm-handles/{cm-handle}/nodes:
+    $ref: 'ncmproxy.yml#/nodesByCmHandleAndXpath'

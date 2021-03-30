@@ -1,0 +1,5 @@
+
+rest:
+    api:
+        ncmp-base-path: /ncmp-proxy/api
+spring:

@@ -6,7 +6,7 @@ Following command builds all Java components to `cps-application/target/cps-appl
 without generating any docker images:  
 
 ```bash
-mvn clean install -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Djib.skip
+mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Djib.skip
 ```
 
 ## Building Java Archive and Docker images
@@ -14,7 +14,7 @@ mvn clean install -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Djib.skip
 * Following command builds the JAR file and also generates the Docker image for all CPS components:
 
 ```bash
-mvn clean install -Pcps-docker -Pxnf-docker -Pcps-xnf-docker -Dnexus.repository=
+mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Dnexus.repository=
 ```
 
 * Following command builds the JAR file and generates the Docker image for specified CPS component:
@@ -29,8 +29,8 @@ mvn clean install -P<docker-profile> -Dnexus.repository=
 `docker-compose/docker-compose.yml` file is provided to be run with `docker-compose` tool and images previously built.
 It starts both Postgres database and CPS services.
 
-1. Edit `docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-nf-proxy`
-   is enabled. You can comment it and uncomment `cps-standalone` or `nf-proxy-standalone`.
+1. Edit `docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-network-cm-proxy`
+   is enabled. You can comment it and uncomment `cps-standalone` or `network-cm-proxy-standalone`.
 2. Execute following command from `docker-compose` folder:
 
 ```bash
