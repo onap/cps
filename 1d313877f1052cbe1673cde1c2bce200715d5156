@@ -22,6 +22,30 @@
       "revId": "1d313877f1052cbe1673cde1c2bce200715d5156",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bbb46a9_3a6756af",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-30T12:50:52Z",
+      "side": 1,
+      "message": "I\u0027m renaming it.",
+      "parentUuid": "b890c481_faef181f",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "1d313877f1052cbe1673cde1c2bce200715d5156",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
