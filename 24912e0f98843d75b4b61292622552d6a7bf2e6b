@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f455dba8_d5636c10",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-03-30T01:41:41Z",
+      "side": 1,
+      "message": "Lines 98 and 99 should be:\n\n            throw new DataValidationException(\n                    \"Failed to parse json data: \" + jsonData,  exception.getMessage(), exception);\n\nThis is coming from https://gerrit.onap.org/r/c/cps/+/119783",
+      "revId": "24912e0f98843d75b4b61292622552d6a7bf2e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
