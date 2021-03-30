@@ -29,8 +29,8 @@ mvn clean install -P<docker-profile> -Dnexus.repository=
 `docker-compose/docker-compose.yml` file is provided to be run with `docker-compose` tool and images previously built.
 It starts both Postgres database and CPS services.
 
-1. Edit `docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-nf-proxy`
-   is enabled. You can comment it and uncomment `cps-standalone` or `nf-proxy-standalone`.
+1. Edit `docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-network-cm-proxy`
+   is enabled. You can comment it and uncomment `cps-standalone` or `network-cm-proxy-standalone`.
 2. Execute following command from `docker-compose` folder:
 
 ```bash

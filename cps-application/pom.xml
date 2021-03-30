@@ -185,19 +185,20 @@
             </build>
         </profile>
         <profile>
-            <id>xnf-docker</id>
+            <id>ncmp-docker</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
 
             <properties>
-                <image.name>cps-nf-proxy</image.name>
+                <image.name>cps-network-cm-proxy</image.name>
             </properties>
 
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
@@ -214,13 +215,13 @@
             </build>
         </profile>
         <profile>
-            <id>cps-xnf-docker</id>
+            <id>cps-ncmp-docker</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
 
             <properties>
-                <image.name>cps-and-nf-proxy</image.name>
+                <image.name>cps-and-network-cm-proxy</image.name>
             </properties>
 
             <dependencies>
@@ -230,7 +231,8 @@
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>cps-nf-proxy-rest</artifactId>
+                    <artifactId>cps-ncmp-rest</artifactId>
+                    <version>${project.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>${project.groupId}</groupId>

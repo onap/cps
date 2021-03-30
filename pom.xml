@@ -51,8 +51,8 @@
         <module>cps-parent</module>
         <module>cps-service</module>
         <module>cps-rest</module>
-        <module>cps-nf-proxy-service</module>
-        <module>cps-nf-proxy-rest</module>
+        <module>cps-ncmp-service</module>
+        <module>cps-ncmp-rest</module>
         <module>cps-ri</module>
         <module>checkstyle</module>
         <module>spotbugs</module>

@@ -33,9 +33,9 @@ services:
   #  depends_on:
   #    - dbpostgresql
 
-  #nf-proxy-standalone:
-  #  container_name: cps-nf-proxy
-  #  image: cps-nf-proxy:${VERSION}
+  #network-cm-proxy-standalone:
+  #  container_name: cps-network-cm-proxy
+  #  image: cps-network-cm-proxy:${VERSION}
   #  volumes:
   #    - "./application.yml:/app/resources/application.yml"
   #  ports:
@@ -48,9 +48,9 @@ services:
   #  depends_on:
   #    - dbpostgresql
 
-  cps-and-nf-proxy:
-    container_name: cps-and-nf-proxy
-    image: cps-and-nf-proxy:${VERSION}
+  cps-and-network-cm-proxy:
+    container_name: cps-and-network-cm-proxy
+    image: cps-and-network-cm-proxy:${VERSION}
     volumes:
       - "./application.yml:/app/resources/application.yml"
     ports:
