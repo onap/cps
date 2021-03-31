@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdb5af1a_5e9974c3",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-03-31T14:13:18Z",
+      "side": 1,
+      "message": "couldn\u0027t change this id as of now, as this is hardcoded in jenkins jobs maven properties and I dont have access rights to change there. I propose to pick maven properties from a property file or any other suggestion is appreciated.",
+      "range": {
+        "startLine": 218,
+        "startChar": 16,
+        "endLine": 218,
+        "endChar": 30
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
