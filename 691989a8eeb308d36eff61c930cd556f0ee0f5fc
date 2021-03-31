@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "ff6bdb79_d16f43ef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T12:33:19Z",
+      "side": 1,
+      "message": "order is not consistent wit our general rule for parameter order but if we did same in master we should keep it that way",
+      "range": {
+        "startLine": 86,
+        "startChar": 55,
+        "endLine": 86,
+        "endChar": 83
+      },
+      "revId": "691989a8eeb308d36eff61c930cd556f0ee0f5fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2daa2297_1fa93cd1",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
         "patchSetId": 3
@@ -187,6 +210,30 @@
       "revId": "691989a8eeb308d36eff61c930cd556f0ee0f5fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a78338b2_a93cb16a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T12:33:19Z",
+      "side": 1,
+      "message": "lets be careful here!, we are dropping back a fix from master if this typo (and other small formatting) issues exist in master they should not be commented here. \nthis we way we wend up in a never ending loop of fix on top of fix. \nObviously small things were missed on original code, we just have to accept that. If it was a major blocking issue then, yes we should fix master first and have another fix for such\nSo basically this should not have been commented and not be changed in H branch!\nSo please revert this and other similar changes!",
+      "parentUuid": "64c43a35_887cdcf5",
+      "range": {
+        "startLine": 140,
+        "startChar": 18,
+        "endLine": 140,
+        "endChar": 19
+      },
+      "revId": "691989a8eeb308d36eff61c930cd556f0ee0f5fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
