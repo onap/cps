@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e97a9874_91caf020",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T14:08:24Z",
+      "side": 1,
+      "message": "FYI I just test file in Brunos new bug: 17.2 MB gets compress to 1.42 MB using standard windows compression. Which mean factor is 12.11 !!! I think compression rate up to 20 is acceptable!",
+      "range": {
+        "startLine": 32,
+        "startChar": 50,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "020fb352_aede7ea4",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
         "patchSetId": 6
