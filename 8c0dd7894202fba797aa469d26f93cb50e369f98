@@ -46,6 +46,30 @@
       "revId": "8c0dd7894202fba797aa469d26f93cb50e369f98",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9fb5dfc_aaada884",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-31T14:44:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c74c14a8_b6f01207",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "8c0dd7894202fba797aa469d26f93cb50e369f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
