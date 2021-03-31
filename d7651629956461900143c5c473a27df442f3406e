@@ -22,6 +22,30 @@
       "revId": "d7651629956461900143c5c473a27df442f3406e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e22b57f_c3f51bf3",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-03-31T14:26:41Z",
+      "side": 1,
+      "message": "you need to change it in ci-management, is not hardcoded on jenkins\nLine 41\nhttps://gerrit.onap.org/r/gitweb?p\u003dci-management.git;a\u003dblob;f\u003djjb/cps/cps.yaml;h\u003d04306f39fdd51e79919135d52f1e15c2dcf832cd;hb\u003drefs/heads/master",
+      "parentUuid": "cdb5af1a_5e9974c3",
+      "range": {
+        "startLine": 218,
+        "startChar": 16,
+        "endLine": 218,
+        "endChar": 30
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
