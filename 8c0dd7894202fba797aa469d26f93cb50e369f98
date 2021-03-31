@@ -22,6 +22,30 @@
       "revId": "8c0dd7894202fba797aa469d26f93cb50e369f98",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c74c14a8_b6f01207",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-31T10:19:46Z",
+      "side": 1,
+      "message": "in future if we have separate images from within same repo, this would be better place for global value.",
+      "parentUuid": "7f60d4c0_8075aeb7",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "8c0dd7894202fba797aa469d26f93cb50e369f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
