@@ -22,6 +22,30 @@
       "revId": "475bab5e3448f3eb7f9c399b295fd2349339e43a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1522b6a_55869281",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-03-31T14:25:33Z",
+      "side": 1,
+      "message": "i already replied to this on the previous patch",
+      "parentUuid": "97fab651_57b4ec60",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "475bab5e3448f3eb7f9c399b295fd2349339e43a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
