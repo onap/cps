@@ -37,6 +37,54 @@
     },
     {
       "key": {
+        "uuid": "77deaff3_477018c1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd4454cf_4c8eb5f7",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "b1186cb75775726e1552df3a533bb6ae6fcba14d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2bc30f3_a4fee4ea",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e04380e9_ab03043f",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "b1186cb75775726e1552df3a533bb6ae6fcba14d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd4454cf_4c8eb5f7",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileValidator.java",
         "patchSetId": 4

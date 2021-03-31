@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "020fb352_aede7ea4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "this is not a unit test :-) so I dont thing we ned the word \u0027expected\u0027 here (not blocking)",
+      "range": {
+        "startLine": 72,
+        "startChar": 74,
+        "endLine": 72,
+        "endChar": 83
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff2c91c_3f3bad3c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "I wouldn\u0027t add space here",
+      "range": {
+        "startLine": 72,
+        "startChar": 97,
+        "endLine": 72,
+        "endChar": 98
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1804fd23_65f1dd43",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 76,
+        "startChar": 84,
+        "endLine": 76,
+        "endChar": 93
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6bf74d0_a7ee8bd1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 76,
+        "startChar": 101,
+        "endLine": 76,
+        "endChar": 102
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37ab95da_7fefaab5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "not sure if you need these, it makes code a little mor readable though and maybe it wil help once these become configurable.\nIts up to your preference...",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 68
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "196139bb_aa2b53cc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "compressedFileSize",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e48375_1f4356ed",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "would use a different value here",
+      "range": {
+        "startLine": 49,
+        "startChar": 28,
+        "endLine": 49,
+        "endChar": 36
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23122e13_c685327e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "entrySize",
+      "range": {
+        "startLine": 53,
+        "startChar": 95,
+        "endLine": 53,
+        "endChar": 103
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335d6865_3fbb437d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "remove space",
+      "range": {
+        "startLine": 65,
+        "startChar": 55,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b900c46c_251e6bb9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/ZipFileSizeValidatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-03-31T13:55:16Z",
+      "side": 1,
+      "message": "since this part is static you can remove it from here and put in scenario description directly",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 56
+      },
+      "revId": "1197ce91bf77e3e90f40b5fe72afe9587d728aa2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
