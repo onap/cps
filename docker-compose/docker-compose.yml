@@ -50,13 +50,11 @@ services:
 
   cps-and-nf-proxy:
     container_name: cps-and-nf-proxy
-    image: cps-and-nf-proxy:${VERSION}
-    volumes:
-      - "./application.yml:/app/resources/application.yml"
+    image: ${REPOSITORY:-nexus3.onap.org:10003}/onap/cps-and-nf-proxy:${VERSION:-latest}
     ports:
       - "8883:8080"
     environment:
-      DB_HOST: ${DB_HOST}
+      DB_HOST: dbpostgresql
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
     restart: unless-stopped
