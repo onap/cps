@@ -298,6 +298,30 @@
     },
     {
       "key": {
+        "uuid": "0b335a23_3c9048a6",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/nfproxy/config/NetworkCmProxyConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-01T12:14:33Z",
+      "side": 1,
+      "message": "see my other comment, I think for classnames \"NetworkCmProxy\" is better I know it is not consistent with cps but cps is the whole project and that name is well established.\nNCMP is a conpoment of CPS and the acronym is ok I think is ok for package names etc but otherwise I prefer the more descriptive \u0027NetworkCmProxy\u0027 for class names and variables etc.\n\nif needed we can have can do a quick team poll in stand-up meeting today",
+      "parentUuid": "8e9c28ea_25778a88",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4da78af_fdbb7c34",
         "filename": "cps-ncmp-rest/src/test/resources/application.yml",
         "patchSetId": 5
