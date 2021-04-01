@@ -97,6 +97,23 @@
     },
     {
       "key": {
+        "uuid": "f19d627e_22aa0e12",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-01T12:01:49Z",
+      "side": 1,
+      "message": "i would rather call the file openapi.yml to be in sync with cps-rest",
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cca74e46_4063cd18",
         "filename": "cps-ncmp-rest/pom.xml",
         "patchSetId": 5
@@ -108,6 +125,29 @@
       "writtenOn": "2021-04-01T11:58:28Z",
       "side": 1,
       "message": "should this have changed?",
+      "range": {
+        "startLine": 103,
+        "startChar": 51,
+        "endLine": 103,
+        "endChar": 58
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b937e2d_23a36d95",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-01T12:01:49Z",
+      "side": 1,
+      "message": "can be changed. applies to all lines around this",
       "range": {
         "startLine": 103,
         "startChar": 51,
@@ -212,6 +252,52 @@
     },
     {
       "key": {
+        "uuid": "e514e37b_b97d2dce",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-01T12:01:49Z",
+      "side": 1,
+      "message": "if you change the swagger codegen plugin package, this and other similar imports can be changed as well",
+      "range": {
+        "startLine": 26,
+        "startChar": 20,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e9c28ea_25778a88",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/nfproxy/config/NetworkCmProxyConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-01T12:01:49Z",
+      "side": 1,
+      "message": "Suggestion: NcmpConfigSpec\nThis would keep it in line with CPS related classes like CpsAdminPersistenceService etc.",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4da78af_fdbb7c34",
         "filename": "cps-ncmp-rest/src/test/resources/application.yml",
         "patchSetId": 5
@@ -297,6 +383,29 @@
         "startChar": 55,
         "endLine": 37,
         "endChar": 59
+      },
+      "revId": "d7651629956461900143c5c473a27df442f3406e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "096ec889_9a9b4917",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-01T12:01:49Z",
+      "side": 1,
+      "message": "needs to change",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 24
       },
       "revId": "d7651629956461900143c5c473a27df442f3406e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
