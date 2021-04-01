@@ -34,7 +34,7 @@ It starts both Postgres database and CPS services.
 2. Execute following command from `docker-compose` folder:
 
 ```bash
-VERSION=x.y.z-SNAPSHOT DB_HOST=dbpostgresql DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+VERSION=x.y.z-SNAPSHOT DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
 ```
 
 ## Running or debugging Java built code
@@ -56,8 +56,7 @@ Following command starts the application using JAR file:
 
 ```bash
 DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps \
-  java -classpath cps-application/target/cps-application-x.y.z-SNAPSHOT.jar:docker-compose \
-  org.springframework.boot.loader.JarLauncher
+  java -jar cps-application/target/cps-application-x.y.z-SNAPSHOT.jar
 ```
 
 ### Running from IntelliJ IDE
@@ -66,7 +65,6 @@ Here are the steps to run or debug the application from Intellij:
 
 1. Enable the desired maven profile form Maven Tool Window
 2. Run a configuration from `Run -> Edit configurations` with following settings:
-   * `Working directory`: docker-compose folder, e.g. `$ProjectFileDir$/docker-compose`
    * `Environment variables`: `DB_HOST=localhost;DB_USERNAME=cps;DB_PASSWORD=cps`
 
 ## Accessing services
