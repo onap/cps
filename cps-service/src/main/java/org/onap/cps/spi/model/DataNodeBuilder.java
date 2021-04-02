@@ -30,6 +30,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.utils.YangUtils;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
@@ -150,8 +151,10 @@ public class DataNodeBuilder {
     }
 
     private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode<?> dataContainerNode) {
-        final DataNode dataContainerDataNode = createAndAddChildDataNode(currentDataNode,
-            YangUtils.buildXpath(dataContainerNode.getIdentifier()));
+        final DataNode dataContainerDataNode =
+            (dataContainerNode.getIdentifier() instanceof YangInstanceIdentifier.AugmentationIdentifier)
+                ? currentDataNode
+                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.getIdentifier()));
         final Collection<DataContainerChild<?, ?>> normalizedChildNodes = dataContainerNode.getValue();
         for (final NormalizedNode<?, ?> normalizedNode : normalizedChildNodes) {
             addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);

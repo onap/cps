@@ -1,0 +1,120 @@
+{
+     "ietf-network:networks": {
+       "network": [
+         {
+           "network-types": {
+           },
+           "network-id": "otn-hc",
+           "node": [
+             {
+               "node-id": "D1",
+               "termination-point": [
+                 {
+                   "tp-id": "1-0-1"
+                 },
+                 {
+                   "tp-id": "1-2-1"
+                 },
+                 {
+                   "tp-id": "1-3-1"
+                 }
+               ]
+             },
+             {
+               "node-id": "D2",
+               "termination-point": [
+                 {
+                   "tp-id": "2-0-1"
+                 },
+                 {
+                   "tp-id": "2-1-1"
+                 },
+                 {
+                   "tp-id": "2-3-1"
+                 }
+               ]
+             },
+             {
+               "node-id": "D3",
+               "termination-point": [
+                 {
+                   "tp-id": "3-1-1"
+                 },
+                 {
+                   "tp-id": "3-2-1"
+                 }
+               ]
+             }
+           ],
+           "ietf-network-topology:link": [
+             {
+               "link-id": "D1,1-2-1,D2,2-1-1",
+               "source": {
+                 "source-node": "D1",
+                 "source-tp": "1-2-1"
+               },
+               "destination": {
+                 "dest-node": "D2",
+                 "dest-tp": "2-1-1"
+               }
+             },
+             {
+               "link-id": "D2,2-1-1,D1,1-2-1",
+               "source": {
+                 "source-node": "D2",
+                 "source-tp": "2-1-1"
+               },
+               "destination": {
+                 "dest-node": "D1",
+                 "dest-tp": "1-2-1"
+               }
+             },
+             {
+               "link-id": "D1,1-3-1,D3,3-1-1",
+               "source": {
+                 "source-node": "D1",
+                 "source-tp": "1-3-1"
+               },
+               "destination": {
+                 "dest-node": "D3",
+                 "dest-tp": "3-1-1"
+               }
+             },
+             {
+               "link-id": "D3,3-1-1,D1,1-3-1",
+               "source": {
+                 "source-node": "D3",
+                 "source-tp": "3-1-1"
+               },
+               "destination": {
+                 "dest-node": "D1",
+                 "dest-tp": "1-3-1"
+               }
+             },
+             {
+               "link-id": "D2,2-3-1,D3,3-2-1",
+               "source": {
+                 "source-node": "D2",
+                 "source-tp": "2-3-1"
+               },
+               "destination": {
+                 "dest-node": "D3",
+                 "dest-tp": "3-2-1"
+               }
+             },
+             {
+               "link-id": "D3,3-2-1,D2,2-3-1",
+               "source": {
+                 "source-node": "D3",
+                 "source-tp": "3-2-1"
+               },
+               "destination": {
+                 "dest-node": "D2",
+                 "dest-tp": "2-3-1"
+               }
+             }
+           ]
+         }
+       ]
+     }
+   }
