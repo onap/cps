@@ -35,6 +35,15 @@ class DataNodeBuilderSpec extends Specification {
             '/test-tree/branch[@name=\'Right\']/nest': [name: 'Big', birds: ['Owl', 'Raven', 'Crow']]
     ]
 
+    String[] yangResourcesRfc8345 = [
+            'ietf/ietf-yang-types@2013-07-15.yang',
+            'ietf/ietf-network-topology-state@2018-02-26.yang',
+            'ietf/ietf-network-topology@2018-02-26.yang',
+            'ietf/ietf-network-state@2018-02-26.yang',
+            'ietf/ietf-network@2018-02-26.yang',
+            'ietf/ietf-inet-types@2013-07-15.yang'
+    ]
+
     def 'Converting NormalizedNode (tree) to a DataNode (tree).'() {
         given: 'the schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
@@ -87,6 +96,56 @@ class DataNodeBuilderSpec extends Specification {
                 }
             }
         }
+    }
+
+    def 'Converting NormalizedNode (tree) to a DataNode (tree) -- augmentation case.'() {
+        given: 'a schema context for expected model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResourcesRfc8345)
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        and: 'the json data parsed into normalized node object'
+            def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
+        when: 'the normalized node is converted to a data node '
+            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def mappedResult = TestUtils.getFlattenMapByXpath(result)
+        then: 'all expected data nodes are populated'
+            mappedResult.size() == 32
+            println(mappedResult.keySet().sort())
+        and: 'xpath value for augmentation nodes (link and termination-point) were built correctly'
+            mappedResult.keySet().containsAll([
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']",
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-3-1,D3,3-1-1']",
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D2,2-1-1,D1,1-2-1']",
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D2,2-3-1,D3,3-2-1']",
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D3,3-1-1,D1,1-3-1']",
+                    "/networks/network[@network-id='otn-hc']/link[@link-id='D3,3-2-1,D2,2-3-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D1']/termination-point[@tp-id='1-0-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D1']/termination-point[@tp-id='1-2-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D1']/termination-point[@tp-id='1-3-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D2']/termination-point[@tp-id='2-0-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D2']/termination-point[@tp-id='2-1-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D2']/termination-point[@tp-id='2-3-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D3']/termination-point[@tp-id='3-1-1']",
+                    "/networks/network[@network-id='otn-hc']/node[@node-id='D3']/termination-point[@tp-id='3-2-1']"
+            ])
+    }
+
+    def 'Converting NormalizedNode (tree) to a DataNode (tree) for known parent node -- augmentation case.'() {
+        given: 'a schema context for expected model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResourcesRfc8345)
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        and: 'parent node xpath referencing augmentation provided node'
+            def parentNodeXpath = "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']"
+        and: 'the json data parsed into normalized node object for given parent node xpath'
+            def jsonData = '{"source": {"source-node": "D1", "source-tp": "1-2-1"}}'
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
+        when: 'the normalized node is converted to a data node with given parent node xpath'
+            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+                    .withParentNodeXpath(parentNodeXpath).build()
+        then: 'the resulting data node contains expected xpath and leaves'
+            assert result.xpath == "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']/source"
+            assert result.leaves['source-node'] == 'D1'
+            assert result.leaves['source-tp'] == '1-2-1'
     }
 
 }

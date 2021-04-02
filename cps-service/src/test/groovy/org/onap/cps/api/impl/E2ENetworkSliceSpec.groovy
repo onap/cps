@@ -52,7 +52,7 @@ class E2ENetworkSliceSpec extends Specification {
 
     def 'E2E model can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('e2e/basic/ietf-inet-types.yang','e2e/basic/ietf-yang-types.yang','e2e/basic/ran-network2020-08-06.yang')
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('ietf/ietf-inet-types@2013-07-15.yang','ietf/ietf-yang-types@2013-07-15.yang','e2e/basic/ran-network2020-08-06.yang')
         when: 'Create schema set method is invoked'
             cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
@@ -144,8 +144,8 @@ class E2ENetworkSliceSpec extends Specification {
     def 'E2E RAN Schema Model.'(){
         given: 'yang resources'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
-                    'e2e/basic/ietf-inet-types.yang',
-                    'e2e/basic/ietf-yang-types.yang',
+                    'ietf/ietf-inet-types@2013-07-15.yang',
+                    'ietf/ietf-yang-types@2013-07-15.yang',
                     'e2e/basic/cps-ran-schema-model@2021-01-28.yang'
             )
         and : 'json data'
