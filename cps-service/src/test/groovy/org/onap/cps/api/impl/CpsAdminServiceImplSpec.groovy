@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -60,5 +61,12 @@ class CpsAdminServiceImplSpec extends Specification {
             mockCpsAdminPersistenceService.getAnchor('someDataspace','someAnchor') >>  anchor
         expect: 'the anchor provided by persistence service is returned as result'
             objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
+    }
+
+    def 'Delete anchor.'() {
+        when: 'delete anchor is invoked'
+            objectUnderTest.deleteAnchor('someDataspace','someAnchor')
+        then: 'associated persistence service method is invoked with same parameters'
+             1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
     }
 }
