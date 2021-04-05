@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
  *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +22,10 @@
 
 package org.onap.cps.spi.impl;
 
+import com.google.common.collect.ImmutableSet;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -31,6 +34,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -47,6 +51,9 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Autowired
     private SchemaSetRepository schemaSetRepository;
+
+    @Autowired
+    private FragmentRepository fragmentRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -83,10 +90,20 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        return toAnchor(getAnchorEntity(dataspaceName, anchorName));
+    }
+
+    @Transactional
+    @Override
+    public void deleteAnchor(final String dataspaceName, final String anchorName) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        fragmentRepository.deleteByAnchorIn(ImmutableSet.of(anchorEntity));
+        anchorRepository.delete(anchorEntity);
+    }
+
+    private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity =
-            anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        return toAnchor(anchorEntity);
+        return anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
     }
 
     private static Anchor toAnchor(final AnchorEntity anchorEntity) {

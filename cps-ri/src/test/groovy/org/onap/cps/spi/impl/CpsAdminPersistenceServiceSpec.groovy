@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,6 +37,8 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     static final String SET_DATA = '/data/anchor.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
+    static final Integer DELETED_ANCHOR_ID = 3001
+    static final Long DELETED_FRAGMENT_ID = 4001
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
@@ -77,10 +80,10 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'an #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                    | dataspaceName  | schemaSetName     | anchorName     || expectedException
-            'dataspace does not exist'  | 'unknown'      | 'not-relevant'    | 'not-relevant' || DataspaceNotFoundException
-            'schema set does not exist' | DATASPACE_NAME | 'unknown'         | 'not-relevant' || SchemaSetNotFoundException
-            'anchor already exists'     | DATASPACE_NAME |  SCHEMA_SET_NAME1 | ANCHOR_NAME1   || AlreadyDefinedException
+            scenario                    | dataspaceName  | schemaSetName    | anchorName     || expectedException
+            'dataspace does not exist'  | 'unknown'      | 'not-relevant'   | 'not-relevant' || DataspaceNotFoundException
+            'schema set does not exist' | DATASPACE_NAME | 'unknown'        | 'not-relevant' || SchemaSetNotFoundException
+            'anchor already exists'     | DATASPACE_NAME | SCHEMA_SET_NAME1 | ANCHOR_NAME1   || AlreadyDefinedException
     }
 
     @Unroll
@@ -91,9 +94,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'an #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                    | dataspaceName  | anchorName     || expectedException
-            'dataspace does not exist'  | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
-            'anchor does not exists'    | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
+            scenario                   | dataspaceName  | anchorName     || expectedException
+            'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
+            'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
     }
 
     @Unroll
@@ -117,5 +120,27 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             objectUnderTest.getAnchors('unknown dataspace')
         then: 'an DataspaceNotFoundException is thrown'
             thrown(DataspaceNotFoundException)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete anchor'() {
+        when: 'delete anchor action is invoked'
+            objectUnderTest.deleteAnchor(DATASPACE_NAME, ANCHOR_NAME1)
+        then: 'anchor and associated data fragment are deleted'
+            assert anchorRepository.findById(DELETED_ANCHOR_ID).isEmpty()
+            assert fragmentRepository.findById(DELETED_FRAGMENT_ID).isEmpty()
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'delete anchor error scenario: #scenario'(){
+        when: 'delete anchor attempt is performed'
+            objectUnderTest.deleteAnchor(dataspaceName, anchorName)
+        then: 'an #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                   | dataspaceName  | anchorName     || expectedException
+            'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
+            'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
     }
 }
