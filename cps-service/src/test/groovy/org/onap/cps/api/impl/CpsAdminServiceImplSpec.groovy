@@ -61,4 +61,11 @@ class CpsAdminServiceImplSpec extends Specification {
         expect: 'the anchor provided by persistence service is returned as result'
             objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
     }
+
+    def 'Delete anchor.'() {
+        when: 'delete anchor is invoked'
+            objectUnderTest.deleteAnchor('someDataspace','someAnchor')
+        then: 'associated persistence service method is invoked with same parameters'
+             1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
+    }
 }

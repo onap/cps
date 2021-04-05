@@ -67,4 +67,12 @@ public interface CpsAdminPersistenceService {
      */
     @NonNull
     Anchor getAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
+
+    /**
+     * Delete anchor by name in given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     */
+    void deleteAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
 }

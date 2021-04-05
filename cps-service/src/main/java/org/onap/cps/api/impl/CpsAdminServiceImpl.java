@@ -52,4 +52,9 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public Anchor getAnchor(final String dataspaceName, final String anchorName) {
         return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
     }
+
+    @Override
+    public void deleteAnchor(final String dataspaceName, final String anchorName) {
+        cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
+    }
 }
