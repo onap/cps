@@ -173,7 +173,7 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/NotFound'
 
   delete:
-    description: Delete an anchor given an anchor name and a dataspace - DRAFT
+    description: Delete an anchor given an anchor name and a dataspace
     tags:
       - cps-admin
     summary: Delete an anchor
@@ -182,8 +182,6 @@ anchorByDataspaceAndAnchorName:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
     responses:
-      '200':
-        $ref: 'components.yml#/components/responses/Ok'
       '204':
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
