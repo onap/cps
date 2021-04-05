@@ -57,6 +57,11 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
+    public ResponseEntity<Object> deleteDataspace(final String dataspaceName) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
     public ResponseEntity<String> createSchemaSet(final MultipartFile multipartFile,
         final String schemaSetName, final String dataspaceName) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
@@ -92,12 +97,8 @@ public class AdminRestController implements CpsAdminApi {
 
     @Override
     public ResponseEntity<Object> deleteAnchor(final String dataspaceName, final String anchorName) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Object> deleteDataspace(final String dataspaceName) {
-        return null;
+        cpsAdminService.deleteAnchor(dataspaceName, anchorName);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override

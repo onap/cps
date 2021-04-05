@@ -290,6 +290,18 @@ class AdminRestControllerSpec extends Specification {
             responseContent.contains(schemaSetName)
     }
 
+    def 'Delete anchor.'() {
+        given: 'an endpoint'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
+        when: 'delete method is invoked on anchor endpoint'
+            def response = mvc.perform(delete(anchorEndpoint)).andReturn().response
+        then: 'associated service method is invoked with expected parameters'
+            1 * mockCpsAdminService.deleteAnchor(dataspaceName, anchorName)
+        and: 'response code indicates success'
+            response.status == HttpStatus.NO_CONTENT.value()
+    }
+
+
     def createMultipartFile(filename, content) {
         return new MockMultipartFile("file", filename, "text/plain", content.getBytes())
     }
