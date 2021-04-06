@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efe363ee_db6b7b09",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-06T07:53:26Z",
+      "side": 1,
+      "message": "suggestion: toplogyBaseModelRfc8345",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "02dbfc07bc83da7375ce52c5da94aa6407850b25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef16e3ba_18144509",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-06T07:53:26Z",
+      "side": 1,
+      "message": "move to end of file",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 5
+      },
+      "revId": "02dbfc07bc83da7375ce52c5da94aa6407850b25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "138155fc_6f3f9b50",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-06T07:53:26Z",
+      "side": 1,
+      "message": "just \u0027xpaths\u0027 will do",
+      "range": {
+        "startLine": 114,
+        "startChar": 14,
+        "endLine": 114,
+        "endChar": 29
+      },
+      "revId": "02dbfc07bc83da7375ce52c5da94aa6407850b25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5698849c_87e0c27f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-06T07:53:26Z",
+      "side": 1,
+      "message": "can you put in something more specific that highlights the difference with the previous testcase",
+      "range": {
+        "startLine": 145,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 73
+      },
+      "revId": "02dbfc07bc83da7375ce52c5da94aa6407850b25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a24968e7_ad033a25",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-06T07:53:26Z",
+      "side": 1,
+      "message": "is this the significant part?",
+      "range": {
+        "startLine": 146,
+        "startChar": 110,
+        "endLine": 146,
+        "endChar": 117
+      },
+      "revId": "02dbfc07bc83da7375ce52c5da94aa6407850b25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
