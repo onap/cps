@@ -22,6 +22,30 @@
       "revId": "5f5665c39130be0b9d132748adbfe4e178c292ae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cef5e949_f4f3fdab",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-06T10:00:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21a86142_9ee5bb8f",
+      "range": {
+        "startLine": 101,
+        "startChar": 9,
+        "endLine": 101,
+        "endChar": 59
+      },
+      "revId": "5f5665c39130be0b9d132748adbfe4e178c292ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
