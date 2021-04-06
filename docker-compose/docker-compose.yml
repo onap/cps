@@ -1,6 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
 # Modifications Copyright (C) 2021 Bell Canada.
+# Modification (C) 2021 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,9 +34,9 @@ services:
   #  depends_on:
   #    - dbpostgresql
 
-  #nf-proxy-standalone:
-  #  container_name: cps-nf-proxy
-  #  image: cps-nf-proxy:${VERSION}
+  #ncmp-standalone:
+  #  container_name: cps-ncmp
+  #  image: cps-ncmp:${VERSION}
   #  volumes:
   #    - "./application.yml:/app/resources/application.yml"
   #  ports:
@@ -48,9 +49,9 @@ services:
   #  depends_on:
   #    - dbpostgresql
 
-  cps-and-nf-proxy:
-    container_name: cps-and-nf-proxy
-    image: cps-and-nf-proxy:${VERSION}
+  cps-and-ncmp:
+    container_name: cps-and-ncmp
+    image: cps-and-ncmp:${VERSION}
     volumes:
       - "./application.yml:/app/resources/application.yml"
     ports:
