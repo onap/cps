@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c93af69_9daf02ba",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-06T12:17:49Z",
+      "side": 1,
+      "message": "Would be better if it was Network CM",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "34a94b92edd0c359291445735eb3d7e974deea1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
