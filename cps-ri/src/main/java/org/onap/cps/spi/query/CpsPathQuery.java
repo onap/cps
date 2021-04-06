@@ -39,7 +39,8 @@ public class CpsPathQuery {
 
     private static final String NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS = "((?:\\/[^\\/]+){1,99})";
 
-    private static final String YANG_LEAF_VALUE_EQUALS_CONDITION = "\\[\\s*@(\\S+?)\\s*=\\s*(.*?)\\s*\\]";
+    private static final String YANG_LEAF_VALUE_EQUALS_CONDITION =
+        "\\[\\s{0,9}@(\\S+?)\\s{0,9}=\\s{0,9}(.*?)\\s{0,9}\\]";
 
     private static final Pattern QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN =
         Pattern.compile(NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS + YANG_LEAF_VALUE_EQUALS_CONDITION);

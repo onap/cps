@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Autowired @Value("${security.auth.password}") final String password
     ) {
         super();
-        this.permitUris = permitUris.isEmpty() ? new String[] {"/v3/api-docs"} : permitUris.split("\\s*,\\s*");
+        this.permitUris = permitUris.isEmpty() ? new String[] {"/v3/api-docs"} : permitUris.split("\\s{0,9},\\s{0,9}");
         this.username = username;
         this.password = password;
     }
