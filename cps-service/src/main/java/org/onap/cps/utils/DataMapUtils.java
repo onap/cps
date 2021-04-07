@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
+ *  Modifications (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -32,10 +33,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.spi.model.DataNode;
 
-/*
- TODO: this utility class belongs to REST, however it expected to be used by both CPS Core and xNF Proxy;
-  placed in cps-service until shared module is done for REST services, then to be moved there
-  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DataMapUtils {
 

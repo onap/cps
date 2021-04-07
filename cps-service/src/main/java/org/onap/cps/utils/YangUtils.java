@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -61,6 +61,7 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         return parseJsonData(jsonData, schemaContext, Optional.empty());
     }
@@ -73,6 +74,7 @@ public class YangUtils {
      * @param parentNodeXpath the xpath referencing the parent node current data fragment belong to
      * @return the NormalizedNode object
      */
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
         final DataSchemaNode parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
