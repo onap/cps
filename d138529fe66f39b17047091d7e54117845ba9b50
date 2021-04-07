@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf5d8ea7_356ee67c",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-07T13:20:39Z",
+      "side": 1,
+      "message": "Commented code is the hardest to maintain. This volume and the one below, was meant to be removed as part of this. I am in favour of removing the commented out code (and related changes) completely, if the team agrees.",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 59
+      },
+      "revId": "d138529fe66f39b17047091d7e54117845ba9b50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
