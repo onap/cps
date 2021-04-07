@@ -34,8 +34,8 @@ databaseChangeLog:
               name: content
               type: STRING
           - column:
-              header:  checkstyle
-              name: checkstyle
+              header:  checksum
+              name: checksum
               type: STRING
 
   - changeSet:
