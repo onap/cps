@@ -63,6 +63,24 @@
       "revId": "ce66e90a2cd5f7155f2c8e51371e0e1e51a14641",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1c4e5cb_e72f0c2a",
+        "filename": "cps-rest/src/test/resources/nokia-conf-groups.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-07T13:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f878ac3_8be3974d",
+      "revId": "ce66e90a2cd5f7155f2c8e51371e0e1e51a14641",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
