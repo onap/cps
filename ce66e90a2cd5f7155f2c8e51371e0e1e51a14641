@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8b1941a_b75a87bc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-07T12:59:02Z",
+      "side": 1,
+      "message": "I would rename the file to model-over-1mb.yang to indicate its purpose",
+      "range": {
+        "startLine": 158,
+        "startChar": 66,
+        "endLine": 158,
+        "endChar": 83
+      },
+      "revId": "ce66e90a2cd5f7155f2c8e51371e0e1e51a14641",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f878ac3_8be3974d",
+        "filename": "cps-rest/src/test/resources/nokia-conf-groups.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-07T12:59:02Z",
+      "side": 1,
+      "message": "I would rename the file to model-over-1mb.yang to indicate its purpose",
+      "revId": "ce66e90a2cd5f7155f2c8e51371e0e1e51a14641",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
