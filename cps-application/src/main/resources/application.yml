@@ -51,6 +51,12 @@ spring:
         change-log: classpath:changelog/changelog-master.yaml
         labels: ${LIQUIBASE_LABELS}
 
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB
+
 security:
     # comma-separated uri patterns which do not require authorization
     permit-uri: /manage/health/**,/manage/info,/swagger-ui/**,/swagger-resources/**,/v3/api-docs
