@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d75f6f0_a4052de1",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/03-loadData-schema-set.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-07T22:45:19Z",
+      "side": 0,
+      "message": "It seems that thanks to the column header in the csv file matching the column name in the table these properties are ignored here. It explains why everything went fine initially despite this typo.",
+      "revId": "674935d2ba1bad2b00f24815a9168b08cbf04933",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
