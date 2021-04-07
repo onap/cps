@@ -27,3 +27,6 @@ databaseChangeLog:
       file: changelog/db/changes/05-loadData-fragment.yaml
   - include:
       file: changelog/db/changes/06-delete-not-required-fragment-index.yaml
+  - include:
+      file: changelog/db/changes/07-update-yang-resource-checksums.yaml
+

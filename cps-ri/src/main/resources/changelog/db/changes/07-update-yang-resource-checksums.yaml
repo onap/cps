@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id:  7
+      author:  cps
+      comment: Change checsum on yang resource due to new hash algoritm
+      changes:
+        -  update:
+             columns:
+               -  column:
+                    name:  checksum
+                    value:  417a7b14944f6236ad0e2b1ef956158c050cff9b74e3561ca80af32d11be240b
+             tableName:  yang_resource
+             where:  name='fd06e465f26f1e7d0253bbf77e7e55e1'
+        -  update:
+             columns:
+               -  column:
+                    name:  checksum
+                    value:  436fef591eba7f38d1a0c5e3cbd3c122f01ab41dfab37cc5a9cbca1ed53b29fb
+             tableName:  yang_resource
+             where:  checksum='0337045143fa2e592243243f82699b93'
+        -  update:
+             columns:
+               -  column:
+                    name:  checksum
+                    value:  25516798613f862ad20831e59ba02b75ecdc9c6f5547ed5d90bda76143bf0112
+             tableName:  yang_resource
+             where:  checksum='57d603ee9ab0c49355ad0695c0709c93'
