@@ -153,6 +153,24 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
     }
 
+    def 'Create a schema set from a yang file that is greater than 1MB.'() {
+        given: 'a yang file greater than 1MB'
+            def multipartFile = createMultipartFileFromResource("/nokia-conf-groups.yang")
+        and: 'an endpoint'
+            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
+        when: 'a file is uploaded to the create schema set endpoint'
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
+        then: 'the associated service method is invoked'
+            1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _)
+        and: 'the response code indicates success'
+            response.status == HttpStatus.CREATED.value()
+    }
+
     @Unroll
     def 'Create schema set from zip archive having #caseDescriptor.'() {
         given: 'an endpoint'
@@ -296,6 +314,11 @@ class AdminRestControllerSpec extends Specification {
 
     def createZipMultipartFileFromResource(resourcePath) {
         return new MockMultipartFile("file", "test.zip", "application/zip",
+                getClass().getResource(resourcePath).getBytes())
+    }
+
+    def createMultipartFileFromResource(resourcePath) {
+        return new MockMultipartFile("file", "test.yang", "application/text",
                 getClass().getResource(resourcePath).getBytes())
     }
 
