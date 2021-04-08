@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d021b16_978eda98",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-08T19:19:47Z",
+      "side": 1,
+      "message": "The change from patch 3 to patch 4 is made to be able to use this property for any repo, not only onap one.",
+      "revId": "2bdd5d103296122f3cb26472b48636cb28c1f8d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
