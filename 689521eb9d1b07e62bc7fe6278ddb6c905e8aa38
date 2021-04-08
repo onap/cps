@@ -22,6 +22,30 @@
       "revId": "689521eb9d1b07e62bc7fe6278ddb6c905e8aa38",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89fc8127_bfa4df67",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-08T09:29:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "60b28c56_b1e983ce",
+      "range": {
+        "startLine": 77,
+        "startChar": 85,
+        "endLine": 77,
+        "endChar": 92
+      },
+      "revId": "689521eb9d1b07e62bc7fe6278ddb6c905e8aa38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
