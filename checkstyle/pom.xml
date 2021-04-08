@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>checkstyle</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <properties>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
