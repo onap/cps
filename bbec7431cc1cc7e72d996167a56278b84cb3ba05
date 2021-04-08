@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c19a46b_74ca7692",
+        "filename": "releases/1.01.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-08T13:38:09Z",
+      "side": 1,
+      "message": "please correct filename",
+      "revId": "bbec7431cc1cc7e72d996167a56278b84cb3ba05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
