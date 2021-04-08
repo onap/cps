@@ -27,7 +27,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
  * otherwise would occur on each test.
  */
 public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
-    private static final String IMAGE_VERSION = "postgres:11.1";
+    private static final String IMAGE_VERSION = "nexus3.onap.org:10001/library/postgres:11.1";
     private static DatabaseTestContainer databaseTestContainer;
 
     private DatabaseTestContainer() {
