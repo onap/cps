@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60b28c56_b1e983ce",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-04-08T09:19:51Z",
+      "side": 1,
+      "message": "library?\ncan be ignored if not critical.",
+      "range": {
+        "startLine": 77,
+        "startChar": 85,
+        "endLine": 77,
+        "endChar": 92
+      },
+      "revId": "689521eb9d1b07e62bc7fe6278ddb6c905e8aa38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
