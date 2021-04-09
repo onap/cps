@@ -16,6 +16,24 @@
       "revId": "2f575bba42ad807d5f2e5bc6ddac97e2498ec04d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efef45fd_1e4fb7c0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/07-update-yang-resource-checksums.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-09T15:16:18Z",
+      "side": 1,
+      "message": "I\u0027ve seen that this one has not been adressedPlease do not forget this one,",
+      "parentUuid": "62643421_6c2f7d4b",
+      "revId": "2f575bba42ad807d5f2e5bc6ddac97e2498ec04d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
