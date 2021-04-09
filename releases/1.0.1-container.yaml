@@ -1,0 +1,8 @@
+distribution_type: container
+container_release_tag: 1.0.1
+project: cps
+log_dir: cps-maven-docker-stage-honolulu/37/
+ref: 27fba350de15c5a5145a66f75cc188a6f69633c6
+containers:
+  - name: 'cps-and-nf-proxy'
+    version: '1.0.1'
