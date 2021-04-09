@@ -20,6 +20,43 @@ CPS Release Notes
 ..      * * *   HONOULULU   * * *
 ..      =========================
 
+Version: 1.0.1
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-nf-proxy:1.0.1                            |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 1.0.1 Honolulu                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2021-04-09                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+
+   - `CPS-276 <https://jira.onap.org/browse/CPS-276>`_ Improve error reporting for invalid cpsPath on Queries
+   - `CPS-288 <https://jira.onap.org/browse/CPS-288>`_ Move security configuration to the application module
+   - `CPS-290 <https://jira.onap.org/browse/CPS-290>`_ Internal Server Error when creating the same data node twice
+   - `CPS-292 <https://jira.onap.org/browse/CPS-292>`_ Detailed information is missing to explain why data is not compliant with the specified YANG model
+   - `CPS-300 <https://jira.onap.org/browse/CPS-304>`_ Not able to create data instances for 2 different anchors using the same model
+   - `CPS-304 <https://jira.onap.org/browse/CPS-304>`_ Use ONAP recommended base Java Docker image
+   - `CPS-308 <https://jira.onap.org/browse/CPS-308>`_ Not able to upload yang models files greater than 1MB
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+   - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
 
 Version: 1.0.0
 ==============
