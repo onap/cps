@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Niamh Core <niamh.core@est.tech>
+Code-Review+1: Claudio David Gasparini <claudio.gasparini@intl.att.com>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Mon, 12 Apr 2021 15:09:41 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/120276
+Project: cps
+Branch: refs/heads/master
