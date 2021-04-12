@@ -455,7 +455,7 @@ ietf-inet-types.yang|"module ietf-inet-types {
                 Identifiers (URIs)\";
   }
 
-}"|417a7b14944f6236ad0e2b1ef956158c050cff9b74e3561ca80af32d11be240b
+}"|fd06e465f26f1e7d0253bbf77e7e55e1
 cps-ran-schema-model2021-01-28.yang|"module cps-ran-schema-model {
   yang-version 1.1;
   namespace \"org:onap:ccsdk:features:sdnr:northbound:cps-ran-schema-model\";
@@ -1753,7 +1753,7 @@ cps-ran-schema-model2021-01-28.yang|"module cps-ran-schema-model {
         \"Target NR Cell Identifier. It consists of NR Cell
          Identifier (NCI) and Physical Cell Identifier of the target NR cell
          (nRPCI).\";
-    "|436fef591eba7f38d1a0c5e3cbd3c122f01ab41dfab37cc5a9cbca1ed53b29fb
+    "|0337045143fa2e592243243f82699b93
 ietf-yang-types.yang|"module ietf-yang-types {
 
   namespace \"urn:ietf:params:xml:ns:yang:ietf-yang-types\";
@@ -2233,4 +2233,4 @@ ietf-yang-types.yang|"module ietf-yang-types {
        notation, i.e., four octets written as decimal numbers
        and separated with the ''.'' (full stop) character.\";
   }
-}"|25516798613f862ad20831e59ba02b75ecdc9c6f5547ed5d90bda76143bf0112
+}"|57d603ee9ab0c49355ad0695c0709c93
