@@ -48,6 +48,15 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }
 
+    Optional<FragmentEntity> findFirstByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
+        @NonNull AnchorEntity anchorEntity);
+
+    default FragmentEntity getFirstByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
+        @NonNull AnchorEntity anchorEntity) {
+        return findFirstByDataspaceAndAnchor(dataspaceEntity, anchorEntity)
+            .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName()));
+    }
+
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
     void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
