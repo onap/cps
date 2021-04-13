@@ -152,9 +152,8 @@ class DataRestControllerSpec extends Specification {
     }
 
     @Unroll
-    def 'Get data node with #scenario.'() {
+    def 'Get data node using xpath with #scenario.'() {
         given: 'the service returns data node with #scenario'
-            def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
         when: 'get request is performed through REST API'
@@ -169,10 +168,12 @@ class DataRestControllerSpec extends Specification {
         and: 'the response contains child is #expectChildInResponse'
             response.contentAsString.contains('"child"') == expectChildInResponse
         where:
-            scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse
-            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false
-            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
-            'with descendants'          | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
+            scenario                                | xpath            | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse
+            'no descendants by default'             | 'some xPath'     | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false
+            'no descendant explicitly'              | 'some xPath'     | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
+            'with descendants'                      | 'some xPath'     | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
+            'root xpath without descendants'        | '/'              | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
+            'root xpath with descendants'           | '/'              | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
     }
 
     @Unroll
@@ -191,7 +192,7 @@ class DataRestControllerSpec extends Specification {
             'no dataspace'    | '/x-path' | new DataspaceNotFoundException('')               || HttpStatus.BAD_REQUEST
             'no anchor'       | '/x-path' | new AnchorNotFoundException('', '')              || HttpStatus.BAD_REQUEST
             'no data'         | '/x-path' | new DataNodeNotFoundException('', '', '')        || HttpStatus.NOT_FOUND
-            'empty path'      | ''        | new IllegalStateException()                      || HttpStatus.NOT_IMPLEMENTED
+            'root path'       | '/'       | new DataNodeNotFoundException('', '')            || HttpStatus.NOT_FOUND
             'already defined' | '/x-path' | new AlreadyDefinedException('', new Throwable()) || HttpStatus.CONFLICT
     }
 

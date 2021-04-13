@@ -171,19 +171,23 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     def 'Get data node by xpath without descendants.'() {
         when: 'data node is requested'
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
-                    XPATH_DATA_NODE_WITH_LEAVES, OMIT_DESCENDANTS)
+                    xpath, OMIT_DESCENDANTS)
         then: 'data node is returned with no descendants'
             assert result.getXpath() == XPATH_DATA_NODE_WITH_LEAVES
         and: 'expected leaves'
             assert result.getChildDataNodes().size() == 0
             assertLeavesMaps(result.getLeaves(), expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
+        where: 'the following data is used'
+            scenario                      | xpath
+            'any xpath'                   |'/parent-100'
+            'root xpath'                  |'/'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants.'() {
         when: 'data node is requested with all descendants'
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
-                    XPATH_DATA_NODE_WITH_LEAVES, INCLUDE_ALL_DESCENDANTS)
+                    xpath, INCLUDE_ALL_DESCENDANTS)
             def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
         then: 'data node is returned with all the descendants populated'
             assert mappedResult.size() == 4
@@ -192,9 +196,11 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert mappedResult.get('/parent-100/child-002').getChildDataNodes().size() == 1
         and: 'extracted leaves maps are matching expected'
             mappedResult.forEach(
-                    (xpath, dataNode) ->
-                            assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
-            )
+                    (xpath, dataNode) -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath]))
+        where: 'the following data is used'
+            scenario                      | xpath
+            'any xpath'                   |'/parent-100'
+            'root xpath'                  |'/'
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {

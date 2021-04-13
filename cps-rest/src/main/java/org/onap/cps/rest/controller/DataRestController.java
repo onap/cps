@@ -60,13 +60,10 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
         final String xpath, final Boolean includeDescendants) {
-        if (isRootXpath(xpath)) {
-            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-        }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode =
-            cpsDataService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+                fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 
