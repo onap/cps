@@ -58,6 +58,10 @@ Security Notes
 
    - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
 
+*Known Security Issues*
+
+   - `Security Waiver <https://wiki.onap.org/display/DW/Honolulu+Exception+Request+for+CPS>`_ Security - Expose external endpoints with https
+
 Version: 1.0.0
 ==============
 
