@@ -45,7 +45,7 @@ public class CpsPathQuery {
     private static final Pattern QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN =
         Pattern.compile(NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS + YANG_LEAF_VALUE_EQUALS_CONDITION);
 
-    private static final Pattern QUERY_CPS_PATH_ENDS_WITH_PATTERN = Pattern.compile("\\/\\/(.+)");
+    private static final Pattern QUERY_CPS_PATH_ENDS_WITH_PATTERN = Pattern.compile("^\\/{2,}(.+)");
 
     private static final Pattern LEAF_INTEGER_VALUE_PATTERN = Pattern.compile("[-+]?\\d+");
 

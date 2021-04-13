@@ -55,8 +55,8 @@ class CpsPathQuerySpec extends Specification {
             result.endsWith == expectedEndsWithValue
         where: 'the following data is used'
             scenario         | cpsPath                   || expectedEndsWithValue
-            'yang container' | '///cps-path'             || '/cps-path'
-            'yang list'      | '///cps-path[@key=value]' || '/cps-path[@key=value]'
+            'yang container' | '///cps-path'             || 'cps-path'
+            'yang list'      | '///cps-path[@key=value]' || 'cps-path[@key=value]'
     }
 
     @Unroll
