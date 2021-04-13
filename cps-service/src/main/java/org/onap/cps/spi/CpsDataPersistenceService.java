@@ -67,6 +67,18 @@ public interface CpsDataPersistenceService {
     DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
         @NonNull FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Retrieves one datanode for given dataspace and anchor.
+     * Multiple data nodes are not yet supported.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
+     * @return data node object
+     */
+    DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
+        @NonNull FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Updates leaves for existing data node.

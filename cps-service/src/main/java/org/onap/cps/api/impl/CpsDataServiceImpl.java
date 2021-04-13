@@ -72,6 +72,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName, 
+        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, fetchDescendantsOption);
+    }
+
+    @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
         final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);

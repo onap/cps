@@ -181,6 +181,15 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node by root xpath without descendants.'() {
+        when: 'data node is requested'
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                     OMIT_DESCENDANTS)
+        then: 'data node is returned with no descendants'
+            assert result.getChildDataNodes().size() == 0
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants.'() {
         when: 'data node is requested with all descendants'
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
@@ -196,6 +205,16 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
                     (xpath, dataNode) ->
                             assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
             )
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node by root xpath with all descendants.'() {
+        when: 'data node is requested with all descendants'
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                    INCLUDE_ALL_DESCENDANTS)
+            def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
+        then: 'data node is returned with all the descendants populated'
+            assert mappedResult.size() == 4
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {

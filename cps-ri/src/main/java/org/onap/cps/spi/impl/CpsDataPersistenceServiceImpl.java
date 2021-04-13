@@ -125,6 +125,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return toDataNode(fragmentEntity, fetchDescendantsOption);
     }
 
+    @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName,
+        final FetchDescendantsOption fetchDescendantsOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final FragmentEntity fragmentEntity = fragmentRepository.getFirstByDataspaceAndAnchor(dataspaceEntity,
+            anchorEntity);
+        return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
         final String xpath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
