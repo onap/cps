@@ -125,6 +125,12 @@ class CpsExceptionsSpec extends Specification {
                     == "DataNode with xpath ${xpath} was not found for anchor ${anchorName} and dataspace ${dataspaceName}."
     }
 
+    def 'Creating a exception that a datanode does not exist.'() {
+        expect: 'the exception details contains the correct message with dataspace name and anchor.'
+            (new DataNodeNotFoundException(dataspaceName, anchorName)).details
+                    == "DataNode not found for anchor ${anchorName} and dataspace ${dataspaceName}."
+    }
+
     def 'Creating a exception that a dataspace already exists.'() {
         expect: 'the exception details contains the correct message with dataspace name.'
             (AlreadyDefinedException.forDataspace(dataspaceName, rootCause)).details
