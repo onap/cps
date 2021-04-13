@@ -130,7 +130,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final String xpath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
+        if (isRootXpath(xpath)) {
+            return fragmentRepository.getFirstByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
+        } else {
+            return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
+                xpath);
+        }
     }
 
     @Override
@@ -204,5 +209,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private void removeExistingDescendants(final FragmentEntity fragmentEntity) {
         fragmentEntity.setChildFragments(Collections.emptySet());
         fragmentRepository.save(fragmentEntity);
+    }
+
+    private boolean isRootXpath(final String xpath) {
+        return "/".equals(xpath) || "".equals(xpath);
     }
 }
