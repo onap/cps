@@ -22,6 +22,30 @@
       "revId": "c2d841c2674df48dbcc009cd300721978d981085",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b47c624_95346919",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-04-14T17:02:24Z",
+      "side": 1,
+      "message": "Yes. https://docs.docker.com/compose/compose-file/compose-file-v3/#variable-substitution \n\"${VARIABLE:-default} evaluates to default if VARIABLE is unset or empty in the environment.\"",
+      "parentUuid": "dc8fe97f_ae1cda6f",
+      "range": {
+        "startLine": 58,
+        "startChar": 35,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "c2d841c2674df48dbcc009cd300721978d981085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
