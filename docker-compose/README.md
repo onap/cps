@@ -55,7 +55,7 @@ Then CPS can be started either using a Java Archive previously built or directly
 Following command starts the application using JAR file:
 
 ```bash
-DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps \
+DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps CPS_USERNAME=cpsuser CPS_PASSWORD=cpsr0cks! \
   java -jar cps-application/target/cps-application-x.y.z-SNAPSHOT.jar
 ```
 
@@ -65,7 +65,8 @@ Here are the steps to run or debug the application from Intellij:
 
 1. Enable the desired maven profile form Maven Tool Window
 2. Run a configuration from `Run -> Edit configurations` with following settings:
-   * `Environment variables`: `DB_HOST=localhost;DB_USERNAME=cps;DB_PASSWORD=cps`
+   * `Environment variables`: `DB_HOST=localhost;DB_USERNAME=cps;DB_PASSWORD=cps
+                                CPS_USERNAME=cpsuser CPS_PASSWORD=cpsr0cks!`
 
 ## Accessing services
 

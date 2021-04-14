@@ -55,6 +55,8 @@ services:
     ports:
       - "8883:8080"
     environment:
+      CPS_USERNAME: ${CPS_USERNAME:-cpsuser}
+      CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}
       DB_HOST: dbpostgresql
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
