@@ -33,9 +33,12 @@ It starts both Postgres database and CPS services.
    is enabled. You can comment it and uncomment `cps-standalone` or `ncmp-standalone`.
 2. Execute following command from `docker-compose` folder:
 
+Use one of the below version type that has been generated in the docker image list after the build.
 ```bash
-VERSION=x.y.z-SNAPSHOT DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
-```
+VERSION=latest DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+or
+VERSION=<version> DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+``` 
 
 ## Running or debugging Java built code
 
