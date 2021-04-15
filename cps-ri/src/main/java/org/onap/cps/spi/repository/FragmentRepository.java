@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ *  Copyright (C) 2020-201 Nordix Foundation. All rights reserved.
  *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,7 +61,9 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     List<FragmentEntity> getByAnchorAndXpathAndLeafAttributes(@Param("anchor") int anchorId, @Param("xpath")
         String xpathPrefix, @Param("leafName") String leafName, @Param("leafValue") Object leafValue);
 
-    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE %:xpath", nativeQuery = true)
-    // Above query will match the end of an xpath and anchor id
-    List<FragmentEntity> getByAnchorAndEndsWithXpath(@Param("anchor") int anchorId, @Param("xpath") String xpath);
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE CONCAT('%/',:descendantName)",
+        nativeQuery = true)
+    // Above query will match the anchor id and last descendant name
+    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchor") int anchorId,
+                                                                 @Param("descendantName") String descendantName);
 }

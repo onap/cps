@@ -50,13 +50,14 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.createFrom(cpsPath)
         then: 'the query has the right type'
-            result.cpsPathQueryType == CpsPathQueryType.XPATH_ENDS_WITH
+            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
         and: 'the right ends with parameters are set'
-            result.endsWith == expectedEndsWithValue
+            result.descendantName == expectedEndsWithValue
         where: 'the following data is used'
-            scenario         | cpsPath                   || expectedEndsWithValue
-            'yang container' | '///cps-path'             || '/cps-path'
-            'yang list'      | '///cps-path[@key=value]' || '/cps-path[@key=value]'
+            scenario         | cpsPath                  || expectedEndsWithValue
+            'yang container' | '//cps-path'             || 'cps-path'
+            'yang list'      | '//cps-path[@key=value]' || 'cps-path[@key=value]'
+            'parent & child' | '//parent/child'         || 'parent/child'
     }
 
     @Unroll
@@ -66,9 +67,10 @@ class CpsPathQuerySpec extends Specification {
         then: 'a CpsPathException is thrown'
             thrown(CpsPathException)
         where: 'the following data is used'
-            scenario              | cpsPath
-            'no / at the start'   | 'invalid-cps-path/child'
-            'float value'         | '/parent-200/child-202[@common-leaf-name-float=5.0]'
-            'too many containers' | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
+            scenario                               | cpsPath
+            'no / at the start'                    | 'invalid-cps-path/child'
+            'additional / after descendant option' | '///cps-path'
+            'float value'                          | '/parent-200/child-202[@common-leaf-name-float=5.0]'
+            'too many containers'                  | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
     }
 }

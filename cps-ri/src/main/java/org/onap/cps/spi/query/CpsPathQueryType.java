@@ -24,9 +24,9 @@ package org.onap.cps.spi.query;
  */
 public enum CpsPathQueryType {
     /**
-     * Xpath ends with cps path query type e.g. //cps-path .
+     * Xpath descendant anywhere type e.g. //nodeName .
      */
-    XPATH_ENDS_WITH,
+    XPATH_HAS_DESCENDANT_ANYWHERE,
     /**
      * Xpath leaf value cps path query type e.g. /cps-path[@leafName=leafValue] .
      */

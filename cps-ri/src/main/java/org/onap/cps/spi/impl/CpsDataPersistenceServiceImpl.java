@@ -145,7 +145,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     .getLeafName(), cpsPathQuery.getLeafValue());
         } else {
             fragmentEntities = fragmentRepository
-                .getByAnchorAndEndsWithXpath(anchorEntity.getId(), cpsPathQuery.getEndsWith());
+                .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
         }
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))

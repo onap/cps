@@ -35,7 +35,7 @@ public class CpsPathQuery {
     private String xpathPrefix;
     private String leafName;
     private Object leafValue;
-    private String endsWith;
+    private String descendantName;
 
     private static final String NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS = "((?:\\/[^\\/]+){1,99})";
 
@@ -45,7 +45,7 @@ public class CpsPathQuery {
     private static final Pattern QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN =
         Pattern.compile(NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS + YANG_LEAF_VALUE_EQUALS_CONDITION);
 
-    private static final Pattern QUERY_CPS_PATH_ENDS_WITH_PATTERN = Pattern.compile("\\/\\/(.+)");
+    private static final Pattern DESCENDANT_ANYWHERE_PATTERN = Pattern.compile("\\/\\/([^\\/].+)");
 
     private static final Pattern LEAF_INTEGER_VALUE_PATTERN = Pattern.compile("[-+]?\\d+");
 
@@ -67,10 +67,10 @@ public class CpsPathQuery {
             cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3), cpsPath));
             return cpsPathQuery;
         }
-        matcher = QUERY_CPS_PATH_ENDS_WITH_PATTERN.matcher(cpsPath);
+        matcher = DESCENDANT_ANYWHERE_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
-            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_ENDS_WITH);
-            cpsPathQuery.setEndsWith(matcher.group(1));
+            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE);
+            cpsPathQuery.setDescendantName(matcher.group(1));
             return cpsPathQuery;
         }
         throw new CpsPathException("Invalid cps path.",
