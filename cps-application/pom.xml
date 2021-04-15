@@ -126,6 +126,7 @@
                         <to>
                             <tags>
                                 <tag>latest</tag>
+                                <tag>${image.version}</tag>
                             </tags>
                             <image>${nexus.repository}${image.name}:${image.version}-${maven.build.timestamp}</image>
                         </to>
