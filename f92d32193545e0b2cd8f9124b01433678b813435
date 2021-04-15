@@ -45,6 +45,30 @@
       "revId": "f92d32193545e0b2cd8f9124b01433678b813435",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c8d68f_5dc6a0cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-15T15:16:33Z",
+      "side": 1,
+      "message": "ignore",
+      "parentUuid": "6f01dd15_b27b4d04",
+      "range": {
+        "startLine": 67,
+        "startChar": 39,
+        "endLine": 67,
+        "endChar": 64
+      },
+      "revId": "f92d32193545e0b2cd8f9124b01433678b813435",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
