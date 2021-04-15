@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e70b4fd1_56988763",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-15T15:58:14Z",
+      "side": 1,
+      "message": "This is not needed. The image tag with the timestamp on line 131 below is what is standard and we should only create that, this will create extra tag which can be avoided. Also, it will create this image tag on nexus too.",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 59
+      },
+      "revId": "cf57b070b3666642456ed13b122ca5adad93f542",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
