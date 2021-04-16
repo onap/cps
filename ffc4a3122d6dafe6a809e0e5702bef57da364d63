@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b21f546a_fc0ce334",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "probably should rephrase this as it is very misleading:\nsuggestion: Extend cpsPath query to support non-key attribute or multiple attributes with and condition",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ac34f2d_bd10e56c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "use map\u003cstring, Object\u003e which is much more appropriate for key-value pairs\n(see comment on conversion in query later)",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ec11c4f_aa9d59a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "MULTIPLE",
+      "range": {
+        "startLine": 58,
+        "startChar": 66,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e42842d_7297f653",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "its time for separate methods now I think",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 9
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62cf2e0e_e0a359d6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "I think you need  amore specific expression to split this. Consider a condition like this\n[@attr1\u003d\"abc def\" and @attr2\u003d\"another string with spaces\"]\n\nIf think you need to split based on the and keyword something like  \\\\s{0,9}and\\\\s{0.,9}",
+      "range": {
+        "startLine": 84,
+        "startChar": 70,
+        "endLine": 84,
+        "endChar": 73
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "704fda9e_c291b335",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "2nd matcher in same method please use specific names for each to avoid confusion\ne.g. descendantAnywhereMatcher and attributeConditionMatcher",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 24
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57629ea7_eeb64d05",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "why not use a Map\u003cString,Object\u003e key-value pairs, is much safer! Order is not relevant",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 100
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecd442b9_50e78710",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQueryType.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "probably beter to use plural _VALUES",
+      "range": {
+        "startLine": 34,
+        "startChar": 35,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bfa4f9d_1060acdb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "tis will test all name-value pairs using \u0027and\u0027 condition?!",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 59
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9fadff2_7fcf6319",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "update this description, mention the and condition for multiple values as well",
+      "range": {
+        "startLine": 73,
+        "startChar": 7,
+        "endLine": 73,
+        "endChar": 68
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "312c66df_15802ea3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "leaveNameValuePairs",
+      "range": {
+        "startLine": 75,
+        "startChar": 94,
+        "endLine": 75,
+        "endChar": 103
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb4d6bf_4ffedf6a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "can this take a map as suggest before\n\nIf not, convert map to what is required for Postgres native query here",
+      "range": {
+        "startLine": 75,
+        "startChar": 76,
+        "endLine": 75,
+        "endChar": 93
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a091873_8131355c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "leafNameValuePairs",
+      "range": {
+        "startLine": 75,
+        "startChar": 64,
+        "endLine": 75,
+        "endChar": 73
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a1dd0c_b508bd45",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "I see you added another child with the same name? Why?",
+      "range": {
+        "startLine": 387,
+        "startChar": 123,
+        "endLine": 387,
+        "endChar": 124
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ab9718_1aa3550d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "as above why do we need new data and find 2 enries",
+      "range": {
+        "startLine": 396,
+        "startChar": 29,
+        "endLine": 396,
+        "endChar": 47
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e18714ec_2e462fa4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "if finding multiple entries is really needed you should check all the expected paths too\n(I hope it is simply not needed)",
+      "range": {
+        "startLine": 398,
+        "startChar": 55,
+        "endLine": 398,
+        "endChar": 68
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3cd79c0_65d522f4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "wrong terminology",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 41
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e91def09_9496a323",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T14:35:20Z",
+      "side": 1,
+      "message": "why are you adding a new netry?",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 121
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
