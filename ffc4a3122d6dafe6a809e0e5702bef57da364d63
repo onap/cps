@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "4000f438_77812e99",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-16T14:46:41Z",
+      "side": 1,
+      "message": "List\u003cObject\u003e\nthe name does not reflect the data structure\nsuggested renaming to leavesData",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ec11c4f_aa9d59a5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 1
@@ -87,6 +110,29 @@
         "startChar": 0,
         "endLine": 78,
         "endChar": 9
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5a2d113_d20fe0a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-16T14:46:41Z",
+      "side": 1,
+      "message": "List\u003cObject\u003e leavesData \u003d new ArrayList\u003c\u003e();",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 74
       },
       "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -186,6 +232,29 @@
     },
     {
       "key": {
+        "uuid": "1ddbe232_d2c54ac0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-16T14:46:41Z",
+      "side": 1,
+      "message": "this seems not to handle list elements, container elements only",
+      "range": {
+        "startLine": 71,
+        "startChar": 92,
+        "endLine": 71,
+        "endChar": 112
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bfa4f9d_1060acdb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -255,6 +324,29 @@
     },
     {
       "key": {
+        "uuid": "25ffc092_ddde9797",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-16T14:46:41Z",
+      "side": 1,
+      "message": "name seems being too long\nsuggested getByAnchorAndNodeNameAndLeafValues",
+      "range": {
+        "startLine": 74,
+        "startChar": 25,
+        "endLine": 74,
+        "endChar": 82
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "312c66df_15802ea3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -317,6 +409,29 @@
         "startChar": 64,
         "endLine": 75,
         "endChar": 73
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "996353b0_4762fa88",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-16T14:46:41Z",
+      "side": 1,
+      "message": "List, interfaces are preferable",
+      "range": {
+        "startLine": 75,
+        "startChar": 76,
+        "endLine": 75,
+        "endChar": 85
       },
       "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
