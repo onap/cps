@@ -24,7 +24,6 @@ import com.google.common.collect.ImmutableSet
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
@@ -61,10 +60,10 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static DataNode existingChildDataNode
 
     def expectedLeavesByXpathMap = [
-            '/parent-100'                      : ['parent-leaf': 'parent-leaf-value'],
-            '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf-value'],
-            '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf-value'],
-            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf-value']
+            '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
+            '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
+            '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
+            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
     ]
 
     static {
@@ -325,65 +324,5 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
-    }
-
-    @Unroll
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query for single leaf value with type: #type.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
-        then: 'the correct data is returned'
-            def leaves = '[common-leaf-name:common-leaf-value, common-leaf-name-int:5.0]'
-            DataNode dataNode = result.stream().findFirst().get()
-            dataNode.getLeaves().toString() == leaves
-            dataNode.getChildDataNodes().size() == expectedNumberOfChidlNodes
-        where: 'the following data is used'
-            type                        | cpsPath                                                          | includeDescendantsOption || expectedNumberOfChidlNodes
-            'String and no descendants' | '/parent-200/child-202[@common-leaf-name=\'common-leaf-value\']' | OMIT_DESCENDANTS         || 0
-            'Integer and descendants'   | '/parent-200/child-202[@common-leaf-name-int=5]'                 | INCLUDE_ALL_DESCENDANTS  || 1
-    }
-
-    @Unroll
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
-        when: 'a query is executed to get datanodes for the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS)
-        then: 'no data is returned'
-            result.isEmpty()
-        where: 'following cps queries are performed'
-            scenario                           | cpsPath
-            'cps path is incomplete'           | '/parent-200[@common-leaf-name-int=5]'
-            'leaf value does not exist'        | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
-            'incomplete end of xpath prefix'   | '/parent-200/child-20[@common-leaf-name-int=5]'
-    }
-
-    @Unroll
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def cpsPath = '//child-202'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
-        then: 'the data node has the correct number of children'
-            DataNode dataNode = result.stream().findFirst().get()
-            dataNode.getChildDataNodes().size() == expectedNumberOfChildNodes
-        where: 'the following data is used'
-            type      | includeDescendantsOption || expectedNumberOfChildNodes
-            'omit'    | OMIT_DESCENDANTS         || 0
-            'include' | INCLUDE_ALL_DESCENDANTS  || 1
-    }
-
-    @Unroll
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere with %scenario '() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
-        then: 'Only one data node is returned'
-            result.size() == 1
-        and:
-            result.stream().findFirst().get().xpath == expectedXPath
-        where: 'the following data is used'
-            scenario                                  | cpsPath             || expectedXPath
-            'fully unique descendant name'            | '//grand-child-202' || '/parent-200/child-202/grand-child-202'
-            'descendant name match end of other node' | '//child-202'       || '/parent-200/child-202'
     }
 }
