@@ -22,6 +22,30 @@
       "revId": "cf57b070b3666642456ed13b122ca5adad93f542",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0c80ab2_003ae7f0",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-04-16T09:15:54Z",
+      "side": 1,
+      "message": "All the images need this tag.\nPlease have a look in OOM helm repository.\nThe images should only have version number in helm charts and not the timestamp with it.\nTimestamps create specific images and it will change with every build, but having only the version is important in helm charts to avoid renaming version names in values.yaml file with specific timestamps every time you have to create rolling update in helm.",
+      "parentUuid": "e70b4fd1_56988763",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 59
+      },
+      "revId": "cf57b070b3666642456ed13b122ca5adad93f542",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
