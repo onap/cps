@@ -378,12 +378,28 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'Only one data node is returned'
-            result.size() == 1
+            result.size() == expectedResultSize
         and:
             result.stream().findFirst().get().xpath == expectedXPath
         where: 'the following data is used'
-            scenario                                  | cpsPath             || expectedXPath
-            'fully unique descendant name'            | '//grand-child-202' || '/parent-200/child-202/grand-child-202'
-            'descendant name match end of other node' | '//child-202'       || '/parent-200/child-202'
+            scenario                                  | cpsPath             || expectedXPath                            || expectedResultSize
+            'fully unique descendant name'            | '//grand-child-202' || '/parent-200/child-202/grand-child-202'  || 1
+            'descendant name match end of other node' | '//child-202'       || '/parent-200/child-202'                  || 2
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query using descendant anywhere ends with yang list containing %scenario '() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
+        then: 'Only one data node is returned'
+            result.size() == expectedResultSize
+        and:
+            result.stream().findFirst().get().xpath == expectedXPath
+        where: 'the following data is used'
+            scenario                   | cpsPath                                                                          || expectedXPath           || expectedResultSize
+            'one attribute'            | '//child-202[@common-leaf-name-int=5]'                                           || '/parent-200/child-202' ||  2
+            'more than one attribute'  | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf-value"]' || '/parent-200/child-202' ||  1
+
     }
 }
