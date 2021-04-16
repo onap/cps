@@ -46,6 +46,30 @@
       "revId": "cf57b070b3666642456ed13b122ca5adad93f542",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86ff081a_6da44099",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-16T09:24:44Z",
+      "side": 1,
+      "message": "If i am not mistaken, there is a separate release process that would retag this image( with the timestamp) during the release process to a tag without the timestamp. For more info on why this was done check out the original JIRA.",
+      "parentUuid": "e0c80ab2_003ae7f0",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 59
+      },
+      "revId": "cf57b070b3666642456ed13b122ca5adad93f542",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
