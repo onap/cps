@@ -378,12 +378,24 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'Only one data node is returned'
-            result.size() == 1
-        and:
-            result.stream().findFirst().get().xpath == expectedXPath
+            result.size() == expectedResultSize
         where: 'the following data is used'
-            scenario                                  | cpsPath             || expectedXPath
-            'fully unique descendant name'            | '//grand-child-202' || '/parent-200/child-202/grand-child-202'
-            'descendant name match end of other node' | '//child-202'       || '/parent-200/child-202'
+            scenario                                  | cpsPath             || expectedResultSize
+            'fully unique descendant name'            | '//grand-child-202' || 1
+            'descendant name match end of other node' | '//child-202'       || 2
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query using descendant anywhere ends with yang list containing %scenario '() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
+        then: 'Only one data node is returned'
+            result.size() == expectedResultSize
+        where: 'the following data is used'
+            scenario                   | cpsPath                                                                          || expectedResultSize
+            'one attribute'            | '//child-202[@common-leaf-name-int=5]'                                           ||  2
+            'more than one attribute'  | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf-value"]' ||  1
+
     }
 }
