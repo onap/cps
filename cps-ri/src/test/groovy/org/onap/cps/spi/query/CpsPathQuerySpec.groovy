@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -56,8 +57,22 @@ class CpsPathQuerySpec extends Specification {
         where: 'the following data is used'
             scenario         | cpsPath                  || expectedEndsWithValue
             'yang container' | '//cps-path'             || 'cps-path'
-            'yang list'      | '//cps-path[@key=value]' || 'cps-path[@key=value]'
             'parent & child' | '//parent/child'         || 'parent/child'
+    }
+
+    @Unroll
+    def 'Parse cps path that ends with a yang list containing #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.createFrom(cpsPath)
+        then: 'the query has the right type'
+            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES
+        and: 'the right ends with parameters are set'
+            result.descendantName == "child"
+            result.leavesData.size() == expectedCountOfLeaves
+        where: 'the following data is used'
+            scenario                   | cpsPath                                            || expectedCountOfLeaves
+            'one attribute'            | '//child[@common-leaf-name-int=5]'                 ||  1
+            'more than one attribute'  | '//child[@int-leaf=5 and @leaf-name="leaf value"]' ||  2
     }
 
     @Unroll
