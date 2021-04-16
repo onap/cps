@@ -232,6 +232,29 @@
     },
     {
       "key": {
+        "uuid": "15905e6d_17318efe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-16T14:42:47Z",
+      "side": 1,
+      "message": "mention leaf values",
+      "range": {
+        "startLine": 73,
+        "startChar": 7,
+        "endLine": 73,
+        "endChar": 68
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "312c66df_15802ea3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -347,6 +370,29 @@
     },
     {
       "key": {
+        "uuid": "d8941648_9c622018",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-16T14:42:47Z",
+      "side": 1,
+      "message": "add a heading e.g. \u0027the expected xpath is returned\u0027",
+      "range": {
+        "startLine": 397,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 12
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e18714ec_2e462fa4",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 1
@@ -386,6 +432,29 @@
         "startChar": 32,
         "endLine": 64,
         "endChar": 41
+      },
+      "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c9c3226_5c322944",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-16T14:42:47Z",
+      "side": 1,
+      "message": "remove this column",
+      "range": {
+        "startLine": 73,
+        "startChar": 95,
+        "endLine": 73,
+        "endChar": 117
       },
       "revId": "ffc4a3122d6dafe6a809e0e5702bef57da364d63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
