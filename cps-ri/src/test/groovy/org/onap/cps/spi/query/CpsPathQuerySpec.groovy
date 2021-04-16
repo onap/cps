@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -56,8 +57,22 @@ class CpsPathQuerySpec extends Specification {
         where: 'the following data is used'
             scenario         | cpsPath                  || expectedEndsWithValue
             'yang container' | '//cps-path'             || 'cps-path'
-            'yang list'      | '//cps-path[@key=value]' || 'cps-path[@key=value]'
             'parent & child' | '//parent/child'         || 'parent/child'
+    }
+
+    @Unroll
+    def 'Parse cps path that ends with a yang list containing #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.createFrom(cpsPath)
+        then: 'the query has the right type'
+            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES
+        and: 'the right ends with parameters are set'
+            result.descendantName == "child"
+            result.leavesData.size() == expectedNumberOfLeaves
+        where: 'the following data is used'
+            scenario                  | cpsPath                                            || expectedNumberOfLeaves
+            'one attribute'           | '//child[@common-leaf-name-int=5]'                 ||  1
+            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' ||  2
     }
 
     @Unroll
@@ -67,10 +82,12 @@ class CpsPathQuerySpec extends Specification {
         then: 'a CpsPathException is thrown'
             thrown(CpsPathException)
         where: 'the following data is used'
-            scenario                               | cpsPath
-            'no / at the start'                    | 'invalid-cps-path/child'
-            'additional / after descendant option' | '///cps-path'
-            'float value'                          | '/parent-200/child-202[@common-leaf-name-float=5.0]'
-            'too many containers'                  | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
+            scenario                                                            | cpsPath
+            'no / at the start'                                                 | 'invalid-cps-path/child'
+            'additional / after descendant option'                              | '///cps-path'
+            'float value'                                                       | '/parent-200/child-202[@common-leaf-name-float=5.0]'
+            'too many containers'                                               | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
+            'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
+            'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
     }
 }

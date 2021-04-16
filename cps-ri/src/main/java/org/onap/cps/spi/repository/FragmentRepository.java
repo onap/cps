@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-201 Nordix Foundation. All rights reserved.
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2020-2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,4 +66,11 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     // Above query will match the anchor id and last descendant name
     List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchor") int anchorId,
                                                                  @Param("descendantName") String descendantName);
+
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE CONCAT('%/',:descendantName) "
+        + "AND attributes @>  :leafDataAsJson\\:\\:jsonb", nativeQuery = true)
+    // Above query will match the anchor id, last descendant name and all parameters passed into leafDataASJson with the
+    // attribute values of the requested data node eg: {"leaf_name":"value", "another_leaf_name":"another value"}​​​​​​
+    List<FragmentEntity> getByAnchorAndDescendentNameAndLeafValues(@Param("anchor") int anchorId,
+        @Param("descendantName") String descendantName, @Param("leafDataAsJson") String leafDataAsJson);
 }
