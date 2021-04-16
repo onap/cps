@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Code-Review+1: Ruslan Kashapov <ruslan.kashapov@pantheon.tech>
+Code-Review+1: Claudio David Gasparini <claudio.gasparini@intl.att.com>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Fri, 16 Apr 2021 19:30:17 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/120542
+Project: cps
+Branch: refs/heads/master
