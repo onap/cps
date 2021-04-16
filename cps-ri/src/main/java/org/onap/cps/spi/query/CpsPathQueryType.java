@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +28,10 @@ public enum CpsPathQueryType {
      * Xpath descendant anywhere type e.g. //nodeName .
      */
     XPATH_HAS_DESCENDANT_ANYWHERE,
+    /**
+     * Xpath descendant anywhere type e.g. //nodeName[@leafName=leafValue] .
+     */
+    XPATH_HAS_DESCENDANT_WITH_LEAF_VALUE,
     /**
      * Xpath leaf value cps path query type e.g. /cps-path[@leafName=leafValue] .
      */

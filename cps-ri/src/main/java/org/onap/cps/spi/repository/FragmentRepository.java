@@ -1,7 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-201 Nordix Foundation. All rights reserved.
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2020-2021 Bell Canada. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -66,4 +67,10 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     // Above query will match the anchor id and last descendant name
     List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchor") int anchorId,
                                                                  @Param("descendantName") String descendantName);
+
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE CONCAT('%/',:descendantName) "
+        + "AND attributes @> jsonb_build_object(:leafValue)", nativeQuery = true)
+    // Above query will match the anchor id and last descendant name
+    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantNameWithLeafAttributes(@Param("anchor") int anchorId,
+        @Param("descendantName") String descendantName, @Param("leafValue") ArrayList<Object> leafValue);
 }

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.query;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.AccessLevel;
@@ -36,6 +37,7 @@ public class CpsPathQuery {
     private String leafName;
     private Object leafValue;
     private String descendantName;
+    private ArrayList<Object> alternatingLeafValueList;
 
     private static final String NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS = "((?:\\/[^\\/]+){1,99})";
 
@@ -51,6 +53,13 @@ public class CpsPathQuery {
 
     private static final Pattern LEAF_STRING_VALUE_PATTERN = Pattern.compile("['\"](.*)['\"]");
 
+    private static final String YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION =  "\\[(.*?)\\s{0,9}]";
+
+    private static final Pattern DESCENDANT_ANYWHERE_PATTERN_WITH_SINGLE_LEAF_PATTERN =
+        Pattern.compile(DESCENDANT_ANYWHERE_PATTERN + YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION);
+
+    private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*)");
+
     /**
      * Returns a cps path query.
      *
@@ -65,6 +74,21 @@ public class CpsPathQuery {
             cpsPathQuery.setXpathPrefix(matcher.group(1));
             cpsPathQuery.setLeafName(matcher.group(2));
             cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3), cpsPath));
+            return cpsPathQuery;
+        }
+        matcher = DESCENDANT_ANYWHERE_PATTERN_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+        if (matcher.matches()) {
+            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUE);
+            cpsPathQuery.setDescendantName(matcher.group(1));
+            final ArrayList<Object> leafValuePairList = new ArrayList<>();
+            for (final String leafValuePair : matcher.group(2).split("\\s")) {
+                matcher = LEAF_VALUE_PATTERN.matcher(leafValuePair);
+                if (matcher.matches()) {
+                    leafValuePairList.add(matcher.group(1));
+                    leafValuePairList.add(convertLeafValueToCorrectType(matcher.group(2), cpsPath));
+                }
+            }
+            cpsPathQuery.setAlternatingLeafValueList(leafValuePairList);
             return cpsPathQuery;
         }
         matcher = DESCENDANT_ANYWHERE_PATTERN.matcher(cpsPath);
