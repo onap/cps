@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c40e7a6_85c3dd5c",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-16T10:50:48Z",
+      "side": 1,
+      "message": "instead of having detailed examples heer of possible format that might or might not change in the future is it better to point to (possible) docker repository(s) and tell the user to set VERSION to the required label sa they see/want to use?",
+      "range": {
+        "startLine": 36,
+        "startChar": 48,
+        "endLine": 36,
+        "endChar": 98
+      },
+      "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
