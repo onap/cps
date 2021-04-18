@@ -22,6 +22,30 @@
       "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b3cbf0c_b66e40d9",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5786
+      },
+      "writtenOn": "2021-04-18T21:13:55Z",
+      "side": 1,
+      "message": "These are the build generated docker images for development. The images will be generated locally on the users system itself.\nWhat repository is being suggested here?",
+      "parentUuid": "4c40e7a6_85c3dd5c",
+      "range": {
+        "startLine": 36,
+        "startChar": 48,
+        "endLine": 36,
+        "endChar": 98
+      },
+      "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
