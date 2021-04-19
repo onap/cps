@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "405141b3_96a58f9e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "I think this conversion should happen inside the getByAnchorAndDescendentNameAndLeafValues() method",
+      "range": {
+        "startLine": 150,
+        "startChar": 54,
+        "endLine": 150,
+        "endChar": 94
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ae5c79_e2375da4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "you are silently ignoring anything else correct?\nso if the condition is \u0027a\u003d1 and b\u003d1 and\u0027 it will not throw any error/warning\nI actually think we should throw an exception as soon as we find something that is not matching",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 13
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f88b8aae_aa934618",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "just observing: not easy to read this, but nothing you can do, hence the need for a good explanation on the line below!",
+      "range": {
+        "startLine": 71,
+        "startChar": 26,
+        "endLine": 71,
+        "endChar": 51
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd1ef16e_0bc1ee6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "is it possible to convert the map to a a string in this class\n\npossibly by having 2 methods\n\na \u0027private\u0027 annotated method method\n@Query (....)\ngetByAnchorAndDescendentNameAndLeafValues(@Param(\"anchor\") int anchorId,\n        @Param(\"descendantName\") String descendantName, @Param(\"leafData\") String leafData)\n\nAND public (normal) method liek so:\n\nList\u003cFragmentEntity\u003e getByAnchorAndDescendentNameAndLeafValues(int anchorId, String descendantName, Map\u003cString,Object\u003e leafData) {\nString leafDataAsJosonString \u003d GSON......\nreturn getByAnchorAndDescendentNameAndLeafValues(anchorId, descendantName,  leafDataAsJosonString);\n\n}",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 92
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4438c8c6_cd0627fa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "this test class is quiet big, I would like to separate the query tests  in a new test spec.\nCpsDataPersistenceServiceQueryDataNodesSpec.groovy",
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e62da95e_a6da3139",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "You dropped the check for expectedPath which means teh tets is now less secure...\nYou can use groovy collections to check for multiple paths: \n|| expectedXPaths\n|| [\u0027path1\u0027]\n|| [\u0027path1\u0027,\u0027path2\u0027]",
+      "range": {
+        "startLine": 383,
+        "startChar": 79,
+        "endLine": 383,
+        "endChar": 97
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "950a947a_5b3adae0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "can you add another test to proof order of attributes is irrelevant please\ne.g. with \u0027//child-202[@common-leaf-name\u003d\"common-leaf-value\" and @common-leaf-name-int\u003d5]\u0027",
+      "range": {
+        "startLine": 398,
+        "startChar": 53,
+        "endLine": 398,
+        "endChar": 120
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91595db1_e0f4ded7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "need spaces in value!",
+      "range": {
+        "startLine": 398,
+        "startChar": 101,
+        "endLine": 398,
+        "endChar": 118
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43aa48c5_3fda7b3c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "Number",
+      "range": {
+        "startLine": 73,
+        "startChar": 103,
+        "endLine": 73,
+        "endChar": 108
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be880f6c_ce9c53fb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "add a scenario(s) for incomplete and conditions (as per previous comment, these should fail)\n\u0027/parent-200/child-202[@a\u003d1 and]\u0027\n\u0027/parent-200/child-202[@a\u003d1 and b]\u0027",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 105
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d38df80_0ea1c2fb",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "remove the dashes I highlighted, they seem to imply our data strings cannot have spaces...",
+      "range": {
+        "startLine": 21,
+        "startChar": 93,
+        "endLine": 21,
+        "endChar": 94
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85dc0dee_97ccfbfb",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 22,
+        "startChar": 95,
+        "endLine": 22,
+        "endChar": 96
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c911a6ea_9d2d79f2",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 23,
+        "startChar": 105,
+        "endLine": 23,
+        "endChar": 106
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a629c263_b2defa43",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T15:53:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 30,
+        "startChar": 104,
+        "endLine": 30,
+        "endChar": 105
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
