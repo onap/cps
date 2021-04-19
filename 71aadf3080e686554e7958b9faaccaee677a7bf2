@@ -70,6 +70,52 @@
       "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ae18f99_1522af0e",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-19T09:03:09Z",
+      "side": 1,
+      "message": "dont see this name ever generated",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 83
+      },
+      "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3b180fc_68b959f3",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-19T09:03:09Z",
+      "side": 1,
+      "message": "\u003cversion\u003e should be clear enough. This is only for other developers.",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
