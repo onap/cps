@@ -46,6 +46,30 @@
       "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32fa38b0_480a21f5",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-19T07:38:24Z",
+      "side": 1,
+      "message": "i thought they would be deployed into a repo to. But even if generated locally they can just use \u0027docker images\u0027 command to see the name....",
+      "parentUuid": "9b3cbf0c_b66e40d9",
+      "range": {
+        "startLine": 36,
+        "startChar": 48,
+        "endLine": 36,
+        "endChar": 98
+      },
+      "revId": "71aadf3080e686554e7958b9faaccaee677a7bf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
