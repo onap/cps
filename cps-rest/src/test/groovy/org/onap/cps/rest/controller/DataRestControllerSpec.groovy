@@ -90,7 +90,8 @@ class DataRestControllerSpec extends Specification {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
     }
 
-    def 'Create a node.'() {
+    @Unroll
+    def 'Create a node: #scenario.'() {
         given: 'some json to create a data node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
             def json = 'some json (this is not validated)'
@@ -98,12 +99,38 @@ class DataRestControllerSpec extends Specification {
             def response =
                     mvc.perform(
                             post(endpoint)
-                                    .contentType(MediaType.APPLICATION_JSON).content(json))
-                            .andReturn().response
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .param('xpath', parentNodeXpath)
+                                    .content(json)
+                    ).andReturn().response
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
             1 * mockCpsDataService.saveData(dataspaceName, anchorName, json)
+        where: 'following xpath parameters are are used'
+            scenario                     | parentNodeXpath
+            'no xpath parameter'         | ''
+            'xpath parameter point root' | '/'
+    }
+
+    def 'Create a child node'() {
+        given: 'some json to create a data node'
+            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def json = 'some json (this is not validated)'
+        and: 'parent node xpath'
+            def parentNodeXpath = 'some xpath'
+        when: 'post is invoked with datanode endpoint and json'
+            def response =
+                    mvc.perform(
+                            post(endpoint)
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .param('xpath', parentNodeXpath)
+                                    .content(json)
+                    ).andReturn().response
+        then: 'a created response is returned'
+            response.status == HttpStatus.CREATED.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, json)
     }
 
     @Unroll

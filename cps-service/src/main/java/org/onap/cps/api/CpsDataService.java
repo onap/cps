@@ -41,6 +41,18 @@ public interface CpsDataService {
     void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
 
     /**
+     * Persists child data fragment under existing data node for the given anchor and dataspace.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath parent node xpath
+     * @param jsonData        json data
+     * @throws DataValidationException when json data is invalid
+     */
+    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull String jsonData);
+
+    /**
      * Retrieves datanode by XPath for given dataspace and anchor.
      *
      * @param dataspaceName          dataspace name
