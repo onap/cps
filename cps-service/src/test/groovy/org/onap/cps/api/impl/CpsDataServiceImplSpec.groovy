@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -67,6 +68,25 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
                     { dataNode -> dataNode.xpath == '/test-tree' })
+    }
+
+    def 'Saving child data fragment under existing node.'() {
+        given: 'that the admin service will return an anchor'
+            def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
+            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        and: 'the schema source set cache returns a schema source set'
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        and: 'the schema source sets returns the test-tree schema context'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        when: 'save data method is invoked with test-tree json data'
+            def jsonData = '{"branch": [{"name": "New"}]}'
+            objectUnderTest.saveData(dataspaceName, anchorName, '/test-tree',jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName,'/test-tree',
+                    { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
     }
 
     @Unroll

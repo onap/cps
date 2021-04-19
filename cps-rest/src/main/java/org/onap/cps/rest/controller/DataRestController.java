@@ -21,8 +21,6 @@
 
 package org.onap.cps.rest.controller;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -38,13 +36,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("${rest.api.cps-base-path}")
 public class DataRestController implements CpsDataApi {
 
+    private static final String ROOT_XPATH = "/";
+
     @Autowired
     private CpsDataService cpsDataService;
 
     @Override
-    public ResponseEntity<String> createNode(@Valid final String jsonData, @NotNull final String dataspaceName,
-        @NotNull @Valid final String anchorName) {
-        cpsDataService.saveData(dataspaceName, anchorName, jsonData);
+    public ResponseEntity<String> createNode(final String jsonData, final String dataspaceName, final String anchorName,
+        final String parentNodeXpath) {
+        if (isRootXpath(parentNodeXpath)) {
+            cpsDataService.saveData(dataspaceName, anchorName, jsonData);
+        } else {
+            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -56,7 +60,7 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
         final String xpath, final Boolean includeDescendants) {
-        if ("/".equals(xpath)) {
+        if (isRootXpath(xpath)) {
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -78,5 +82,9 @@ public class DataRestController implements CpsDataApi {
         final String anchorName, final String parentNodeXpath) {
         cpsDataService.replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private static boolean isRootXpath(final String xpath) {
+        return ROOT_XPATH.equals(xpath);
     }
 }
