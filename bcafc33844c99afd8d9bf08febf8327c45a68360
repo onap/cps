@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "acd78fcd_63d08d7b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T11:08:57Z",
+      "side": 1,
+      "message": "Aditya and I worked together on improving this but without using an more advance parser like ANTLR this is almost impossible with RegEx and lead to hard to maintain and unreadable code. Need future improvement to introduce Antlr or similar.",
+      "parentUuid": "e0ae5c79_e2375da4",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 13
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f88b8aae_aa934618",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -214,6 +238,30 @@
       "writtenOn": "2021-04-19T15:53:12Z",
       "side": 1,
       "message": "add a scenario(s) for incomplete and conditions (as per previous comment, these should fail)\n\u0027/parent-200/child-202[@a\u003d1 and]\u0027\n\u0027/parent-200/child-202[@a\u003d1 and b]\u0027",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 105
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b78c3f0e_42587138",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T11:08:57Z",
+      "side": 1,
+      "message": "if \"and\" at end does NOT fail do include it in a positive test scenario",
+      "parentUuid": "be880f6c_ce9c53fb",
       "range": {
         "startLine": 88,
         "startChar": 12,
