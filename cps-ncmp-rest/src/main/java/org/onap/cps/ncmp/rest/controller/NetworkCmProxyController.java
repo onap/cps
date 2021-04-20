@@ -48,6 +48,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private NetworkCmProxyDataService networkCmProxyDataService;
 
     @Override
+    public ResponseEntity<String> createNode(final String jsonData, final String cmHandle,
+        final String parentNodeXpath) {
+        networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
         @Valid final Boolean includeDescendants) {
         if (XPATH_ROOT.equals(xpath)) {

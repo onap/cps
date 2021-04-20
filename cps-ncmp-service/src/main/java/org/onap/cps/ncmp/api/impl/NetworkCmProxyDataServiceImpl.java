@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,6 +29,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
@@ -40,25 +42,38 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Autowired
     private CpsQueryService cpsQueryService;
 
+    private String getDataspaceName() {
+        return NF_PROXY_DATASPACE_NAME;
+    }
+
     @Override
     public DataNode getDataNode(final String cmHandle, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNode(NF_PROXY_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
+        return cpsDataService.getDataNode(getDataspaceName(), cmHandle, xpath, fetchDescendantsOption);
     }
 
     @Override
     public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
+        return cpsQueryService.queryDataNodes(getDataspaceName(), cmHandle, cpsPath, fetchDescendantsOption);
+    }
+
+    @Override
+    public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
+        if (StringUtils.isEmpty(parentNodeXpath) || "/".equals(parentNodeXpath)) {
+            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData);
+        } else {
+            cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        }
     }
 
     @Override
     public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.updateNodeLeaves(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
     }
 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
     }
 }
