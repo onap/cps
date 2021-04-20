@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cda48f49_73d857c4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T10:15:58Z",
+      "side": 1,
+      "message": "perfect, thanks",
+      "parentUuid": "bba2e3b8_9057acc8",
+      "range": {
+        "startLine": 88,
+        "startChar": 14,
+        "endLine": 88,
+        "endChar": 40
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18fbf1e7_457bc088",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -93,6 +117,30 @@
       "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18512956_e73fad2a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T10:15:58Z",
+      "side": 1,
+      "message": "ok, that might not be necessary as you mentioned it is in generated code its probably nor worth another modified test\n(maybe we consider it in CSIT testing instead)",
+      "parentUuid": "a916a996_cb1af293",
+      "range": {
+        "startLine": 112,
+        "startChar": 43,
+        "endLine": 112,
+        "endChar": 45
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
