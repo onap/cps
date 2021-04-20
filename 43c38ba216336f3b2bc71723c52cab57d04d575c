@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6b884822_04c31537",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T10:20:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90afb052_cb67209b",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 49
+      },
+      "revId": "43c38ba216336f3b2bc71723c52cab57d04d575c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27a95930_6dab57dc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 2
@@ -142,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "d614af37_69b4d471",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T10:20:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5abae015_a3b84805",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 76
+      },
+      "revId": "43c38ba216336f3b2bc71723c52cab57d04d575c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60fdcb2f_d0181e95",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -177,6 +225,30 @@
       "side": 1,
       "message": "isolation of what requires modification",
       "parentUuid": "60fdcb2f_d0181e95",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 5
+      },
+      "revId": "43c38ba216336f3b2bc71723c52cab57d04d575c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843ffaa2_bc33cc57",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T10:20:25Z",
+      "side": 1,
+      "message": "its \"coding for the future\" but no big deal in this case. Not a blocking comment",
+      "parentUuid": "4c1cf975_1dcd5b4b",
       "range": {
         "startLine": 45,
         "startChar": 0,
