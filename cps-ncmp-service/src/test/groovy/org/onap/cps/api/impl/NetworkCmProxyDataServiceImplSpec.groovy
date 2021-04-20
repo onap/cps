@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -47,6 +48,26 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockcpsQueryService.queryDataNodes(expectedDataspaceName, cmHandle, cpsPath, fetchDescendantsOption)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
+    }
+
+    def 'Create full data node.'() {
+        given: 'a cm handle and root xpath'
+            def jsonData = 'some json'
+            def xpath = '/'
+        when: 'updateNodeLeaves is invoked'
+            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
+        then: 'the CPS service is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData(expectedDataspaceName, cmHandle, jsonData)
+    }
+
+    def 'Create child data node.'() {
+        given: 'a cm handle and parent node xpath'
+            def jsonData = 'some json'
+            def xpath = '/test-node'
+        when: 'updateNodeLeaves is invoked'
+            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
+        then: 'the CPS service is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
 
     def 'Update data node leaves.'() {
