@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bba2e3b8_9057acc8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-20T09:59:47Z",
+      "side": 1,
+      "message": "the \u0027/\u0027 is a default value for xpath parameter if it\u0027s empty string or not provided. \nthe case is handled by a generated code.",
+      "parentUuid": "15c4faf9_9ed973eb",
+      "range": {
+        "startLine": 88,
+        "startChar": 14,
+        "endLine": 88,
+        "endChar": 40
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18fbf1e7_457bc088",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-04-20T09:26:55Z",
       "side": 1,
       "message": "as per previous question is no-parameter SAME AS empty sting content?",
+      "range": {
+        "startLine": 112,
+        "startChar": 43,
+        "endLine": 112,
+        "endChar": 45
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a916a996_cb1af293",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-20T09:59:47Z",
+      "side": 1,
+      "message": "no value (empty string) is _almost_ a same case as no parameter.\nit will require an extra test to cover no xpath parameter case,\njust to make a post request without \n```\n .param(\u0027xpath\u0027, parentNodeXpath) \n```",
+      "parentUuid": "18fbf1e7_457bc088",
       "range": {
         "startLine": 112,
         "startChar": 43,
@@ -68,6 +116,30 @@
       "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4a296f7_e380101e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-20T09:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "159e0d21_32d3a74c",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
