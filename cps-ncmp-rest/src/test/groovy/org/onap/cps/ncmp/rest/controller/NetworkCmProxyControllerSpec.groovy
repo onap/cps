@@ -21,6 +21,12 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 import com.google.gson.Gson
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
@@ -34,10 +40,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 
 @WebMvcTest
 class NetworkCmProxyControllerSpec extends Specification {
@@ -78,10 +80,32 @@ class NetworkCmProxyControllerSpec extends Specification {
             def expectedJsonContent = new Gson().toJson(dataNode)
             response.getContentAsString().contains(expectedJsonContent)
         where: 'the following options for include descendants are provided in the request'
-            scenario                   | includeDescendantsOption || expectedCpsDataServiceOption
-            'no descendants by default'| ''                       || OMIT_DESCENDANTS
-            'no descendant explicitly' | 'false'                  || OMIT_DESCENDANTS
-            'descendants'              | 'true'                   || INCLUDE_ALL_DESCENDANTS
+            scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
+            'no descendants by default' | ''                       || OMIT_DESCENDANTS
+            'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
+            'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
+    }
+
+    @Unroll
+    def 'Create data node: #scenario.'() {
+        given: 'json data'
+            def jsonData = 'json data'
+        when: 'post request is performed'
+            def response = mvc.perform(
+                    post("$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(jsonData)
+                            .param('xpath', reqXpath)
+            ).andReturn().response
+        then: 'the service method is invoked once with expected parameters'
+            1 * mockNetworkCmProxyDataService.createDataNode(cmHandle, usedXpath, jsonData)
+        and: 'response status indicates success'
+            response.status == HttpStatus.CREATED.value()
+        where: 'following parameters were used'
+            scenario             | reqXpath || usedXpath
+            'no xpath parameter' | ''       || '/'
+            'root xpath'         | '/'      || '/'
+            'parent node xpath'  | '/xpath' || '/xpath'
     }
 
     def 'Update data node leaves.'() {

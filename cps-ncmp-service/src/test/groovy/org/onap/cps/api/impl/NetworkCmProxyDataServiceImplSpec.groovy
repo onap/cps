@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl
 import org.onap.cps.spi.FetchDescendantsOption
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
     def objectUnderTest = new NetworkCmProxyDataServiceImpl()
@@ -47,6 +49,30 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockcpsQueryService.queryDataNodes(expectedDataspaceName, cmHandle, cpsPath, fetchDescendantsOption)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
+    }
+
+    @Unroll
+    def 'Create full data node: #scenario.'() {
+        given: 'a cm handle and root xpath'
+            def jsonData = 'some json'
+        when: 'createDataNode is invoked'
+            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
+        then: 'the CPS service method is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData(expectedDataspaceName, cmHandle, jsonData)
+        where: 'following parameters were used'
+            scenario           | xpath
+            'no xpath'         | ''
+            'root level xpath' | '/'
+    }
+
+    def 'Create child data node.'() {
+        given: 'a cm handle and parent node xpath'
+            def jsonData = 'some json'
+            def xpath = '/test-node'
+        when: 'createDataNode is invoked'
+            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
+        then: 'the CPS service method is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
 
     def 'Update data node leaves.'() {
