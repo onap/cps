@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15c4faf9_9ed973eb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T09:26:55Z",
+      "side": 1,
+      "message": "how about empty string is that possible, ie can the user send an empty String over REST interface?\nI see you have a unit tets for empty string but I see no special handling, maybe its simply not needed?",
+      "range": {
+        "startLine": 88,
+        "startChar": 14,
+        "endLine": 88,
+        "endChar": 40
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18fbf1e7_457bc088",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T09:26:55Z",
+      "side": 1,
+      "message": "as per previous question is no-parameter SAME AS empty sting content?",
+      "range": {
+        "startLine": 112,
+        "startChar": 43,
+        "endLine": 112,
+        "endChar": 45
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "159e0d21_32d3a74c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-20T09:26:55Z",
+      "side": 1,
+      "message": "can you describe hat happens if the data already exists heer too please\n(does it replace or reject)",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "c2ecede604997ebbeb84f5b1276b3f7b58c99efe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
