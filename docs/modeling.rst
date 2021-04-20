@@ -45,3 +45,7 @@ Data
 
   The data node position within a tree is uniquely identified by the node's unique **xpath** which can be used
   for partial data query.
+
+Querying
+
+- **CPS Path** is used to query data nodes. The CPS Path is described in detail in :doc:`cps-path`.
