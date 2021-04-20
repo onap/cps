@@ -1,5 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Modification (C) 2021 Nordix Foundation
+#  Modification (C) 2021 Pantheon.tech
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -64,6 +65,33 @@ nodesByCmHandleAndCpsPath:
         $ref: 'components.yaml#/components/responses/NotFound'
 
 nodesByCmHandleAndXpath:
+  post:
+    description: Create a node with descendants for the given CM Handle; top level or under existing node (requires xpath)
+    tags:
+      - network-cm-proxy
+    summary: Create a node with descendants
+    operationId: createNode
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
   patch:
     description: Update node leaves for the given cps path and cm Handle
     tags:

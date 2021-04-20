@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,6 +56,16 @@ public interface NetworkCmProxyDataService {
      */
     Collection<DataNode> queryDataNodes(@NonNull String cmHandle, @NonNull String cpsPath,
         @NonNull FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Creates data node with descendants at root level or under existing node (if parent node xpath is provided).
+     *
+     * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm
+     *                        object managed by Network CM Proxy
+     * @param parentNodeXpath xpath to parent node or '/' for root level
+     * @param jsonData        data as JSON string
+     */
+    void createDataNode(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
 
     /**
      * Updates data node for given cm handle using xpath to parent node.
