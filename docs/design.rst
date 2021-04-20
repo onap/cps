@@ -29,3 +29,9 @@ Specification can be accessed using following URI:
 .. code-block:: bash
 
   “http://<hostname>:<port>/v3/api-docs?group=cps-docket”
+
+CPS Path
+========
+
+Several CPS APIs use the cps-path (or cpsPath in Java API) parameter.
+The CPS Path is described in detail in :doc:`cps-path`.

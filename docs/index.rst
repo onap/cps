@@ -17,7 +17,5 @@ CPS Documentation for the Honolulu-R8 Release
    architecture.rst
    design.rst
    modeling.rst
-   deployment.rst
-   user-guide.rst
+   cps-path.rst
    release-notes.rst
-

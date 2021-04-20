@@ -382,8 +382,9 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         and:
             result.stream().findFirst().get().xpath == expectedXPath
         where: 'the following data is used'
-            scenario                                  | cpsPath             || expectedXPath
-            'fully unique descendant name'            | '//grand-child-202' || '/parent-200/child-202/grand-child-202'
-            'descendant name match end of other node' | '//child-202'       || '/parent-200/child-202'
+            scenario                                  | cpsPath                       || expectedXPath
+            'fully unique descendant name'            | '//grand-child-202'           || '/parent-200/child-202/grand-child-202'
+            'descendant name and parent'              | '//child-202/grand-child-202' || '/parent-200/child-202/grand-child-202'
+            'descendant name match end of other node' | '//child-202'                 || '/parent-200/child-202'
     }
 }
