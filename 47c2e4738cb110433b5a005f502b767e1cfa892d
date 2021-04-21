@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1cb489bf_8d311353",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-21T11:02:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fce569cd_10b89154",
+      "range": {
+        "startLine": 72,
+        "startChar": 71,
+        "endLine": 72,
+        "endChar": 104
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35a6a96d_dca9902f",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2330217_342de7a7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-21T11:02:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35a6a96d_dca9902f",
+      "range": {
+        "startLine": 133,
+        "startChar": 14,
+        "endLine": 133,
+        "endChar": 65
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1ecce3f9_1cd4ed30",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-21T11:02:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b9f6302b_f481c138",
+      "range": {
+        "startLine": 138,
+        "startChar": 101,
+        "endLine": 138,
+        "endChar": 114
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55556271_26227b89",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "a23d40a7_99797195",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-21T11:02:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55556271_26227b89",
+      "range": {
+        "startLine": 155,
+        "startChar": 129,
+        "endLine": 155,
+        "endChar": 148
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07a4333a_42a822a0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 5
@@ -114,6 +210,30 @@
       "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc49dbd7_bea4a6f2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-21T11:02:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07a4333a_42a822a0",
+      "range": {
+        "startLine": 158,
+        "startChar": 46,
+        "endLine": 158,
+        "endChar": 124
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
