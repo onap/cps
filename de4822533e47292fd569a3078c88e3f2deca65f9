@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a828bee9_79a985d9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T11:07:56Z",
+      "side": 1,
+      "message": "i prefer to state what happens too:\n\u0027trailing \"and\" is ignored\"",
+      "range": {
+        "startLine": 157,
+        "startChar": 13,
+        "endLine": 157,
+        "endChar": 43
+      },
+      "revId": "de4822533e47292fd569a3078c88e3f2deca65f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
