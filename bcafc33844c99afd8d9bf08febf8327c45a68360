@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d7457696_281ca79e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "63120340_8b69b701",
+      "range": {
+        "startLine": 150,
+        "startChar": 54,
+        "endLine": 150,
+        "endChar": 94
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0ae5c79_e2375da4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 4
@@ -139,6 +163,30 @@
       "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1ea63df_5212c0ec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "as agreed, suggested approach by me was not consistent with existing usage so we left it as is.",
+      "parentUuid": "cd1ef16e_0bc1ee6d",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 92
+      },
+      "revId": "bcafc33844c99afd8d9bf08febf8327c45a68360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

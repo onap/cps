@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fce569cd_10b89154",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "add: leafData can contain 1 or more entries. They all need to be present ie. and and-condition applies",
+      "range": {
+        "startLine": 72,
+        "startChar": 71,
+        "endLine": 72,
+        "endChar": 104
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35a6a96d_dca9902f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "make plural",
+      "range": {
+        "startLine": 133,
+        "startChar": 14,
+        "endLine": 133,
+        "endChar": 65
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9f6302b_f481c138",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "ad \u0027s\u0027 (is plural now)",
+      "range": {
+        "startLine": 138,
+        "startChar": 101,
+        "endLine": 138,
+        "endChar": 114
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55556271_26227b89",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "no need for column use expectedXPath.size instead",
+      "range": {
+        "startLine": 155,
+        "startChar": 129,
+        "endLine": 155,
+        "endChar": 148
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a4333a_42a822a0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-21T10:18:35Z",
+      "side": 1,
+      "message": "add another test to shows last \u0027 and\u0027 is ignored, using\n\n\u0027trailing \"and\" is ignored\u0027 | \u0027//child-202[@common-leaf-name\u003d\"common-leaf value\" and]\u0027 | ...",
+      "range": {
+        "startLine": 158,
+        "startChar": 46,
+        "endLine": 158,
+        "endChar": 124
+      },
+      "revId": "47c2e4738cb110433b5a005f502b767e1cfa892d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
