@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed20fa03_242c113a",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-21T13:46:30Z",
+      "side": 1,
+      "message": "Suggestion : Maybe worth adding word \u0027local\u0027 docker in here.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 99
+      },
+      "revId": "926288d9b50529c5fc9d2dee772061ba5bdfb51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
