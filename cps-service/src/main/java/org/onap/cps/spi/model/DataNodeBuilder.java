@@ -119,6 +119,19 @@ public class DataNodeBuilder {
         }
     }
 
+    /**
+     * To build a {@link Collection} of {@link DataNode} objects.
+     *
+     * @return {@link DataNode} {@link Collection}
+     */
+    public Collection<DataNode> buildCollection() {
+        if (normalizedNodeTree != null) {
+            return buildCollectionFromNormalizedNodeTree();
+        } else {
+            return ImmutableSet.of(buildFromAttributes());
+        }
+    }
+
     private DataNode buildFromAttributes() {
         final DataNode dataNode = new DataNode();
         dataNode.setXpath(xpath);
@@ -128,9 +141,14 @@ public class DataNodeBuilder {
     }
 
     private DataNode buildFromNormalizedNodeTree() {
+        final Collection<DataNode> dataNodeCollection = buildCollectionFromNormalizedNodeTree();
+        return dataNodeCollection.iterator().next();
+    }
+
+    private Collection<DataNode> buildCollectionFromNormalizedNodeTree() {
         final DataNode parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
         addDataNodeFromNormalizedNode(parentDataNode, normalizedNodeTree);
-        return parentDataNode.getChildDataNodes().iterator().next();
+        return parentDataNode.getChildDataNodes();
     }
 
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
