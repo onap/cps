@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae10a34_430879ef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-22T14:53:21Z",
+      "side": 1,
+      "message": "use Map or even better, use  \u0027var\u0027 to avoid code smell",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "27bd6b5721185b0da7212bf5ce398433a1dad5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
