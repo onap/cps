@@ -83,6 +83,7 @@ class DataNodeBuilderSpec extends Specification {
             mappedResult.keySet()
                     .containsAll(['/test-tree/branch[@name=\'Branch\']', '/test-tree/branch[@name=\'Branch\']/nest'])
     }
+
     def 'Converting NormalizedNode (tree) to a DataNode (tree) -- augmentation case.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(networkTopologyModelRfc8345)
@@ -131,6 +132,27 @@ class DataNodeBuilderSpec extends Specification {
             assert result.xpath == "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']/source"
             assert result.leaves['source-node'] == 'D1'
             assert result.leaves['source-tp'] == '1-2-1'
+    }
+
+    def 'Converting NormalizedNode into DataNode collection: #scenario.'() {
+        given: 'a schema context for expected model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        and: 'parent node xpath referencing parent of list-node element'
+            def parentNodeXpath = "/test-tree"
+        and: 'the json data fragment (list-node element) parsed into normalized node object'
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
+        when: 'the normalized node is converted to a data node collection'
+            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+                    .withParentNodeXpath(parentNodeXpath).buildCollection()
+            def resultXpaths = result.collect { it.getXpath() }
+        then: 'the resulting collection contains data nodes for expected list elements'
+            assert resultXpaths.size() == expectedSize
+            assert resultXpaths.containsAll(expectedXpaths)
+        where: 'following parameters are used'
+            scenario           | jsonData                                         | expectedSize | expectedXpaths
+            'single entry'     | '{"branch": [{"name": "One"}]}'                  | 1            | ['/test-tree/branch[@name=\'One\']']
+            'multiple entries' | '{"branch": [{"name": "One"}, {"name": "Two"}]}' | 2            | ['/test-tree/branch[@name=\'One\']', '/test-tree/branch[@name=\'Two\']']
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
