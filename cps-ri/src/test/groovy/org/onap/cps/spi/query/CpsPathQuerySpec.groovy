@@ -85,9 +85,27 @@ class CpsPathQuerySpec extends Specification {
             scenario                                                            | cpsPath
             'no / at the start'                                                 | 'invalid-cps-path/child'
             'additional / after descendant option'                              | '///cps-path'
-            'float value'                                                       | '/parent-200/child-202[@common-leaf-name-float=5.0]'
+            'float value'                                                       | '/parent/child[@someFloat=5.0]'
+            'unmatched quotes, double quote first '                                                  | '/parent/child[@someString="value with unmatched quotes\']'
+            'unmatched quotes, single quote first'                                                  | '/parent/child[@someString=\'value with unmatched quotes"]'
             'too many containers'                                               | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
             'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
     }
+
+    @Unroll
+    def 'Convert cps leaf value to valid type with leaf of type #scenario.'() {
+        when: 'the given leaf value is converted'
+            def result = objectUnderTest.convertLeafValueToCorrectType(leafValueInputString, 'source xPath (for error message only)')
+        then: 'the leaf value returned is of the right type'
+            result == expectedLeafOutputValue
+        where: "the following data is used"
+            scenario                          | leafValueInputString         ||  expectedLeafOutputValue
+            'Integer'                         | "5"                          ||  5
+            'String with single quotes'       | '\'value in single quotes\'' || 'value in single quotes'
+            'String with double quotes'       | '"value in double quotes"'   || 'value in double quotes'
+            'String containing single quote' | '"value with \'"'            || 'value with \''
+            'String containing double quote' | '\'value with "\''           || 'value with "'
+    }
+    
 }
