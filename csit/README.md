@@ -41,7 +41,7 @@ cd ~/<your_git_repo>/cps
 Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ) from your cps directory:
 
 ```bash
-mvn clean install -Dmaven.test.skip=true -Dnexus.repository= -Pcps-xnf-docker
+mvn clean install -Dmaven.test.skip=true -Dnexus.repository= -Pcps-ncmp-docker
 ```
 
 Execute test from current cps folder:
