@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "313e801a_3a90da3d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-22T14:04:44Z",
+      "side": 1,
+      "message": "i don\u0027t mind changing, but check the similar method above",
+      "parentUuid": "2720e37c_a84c64d8",
+      "range": {
+        "startLine": 70,
+        "startChar": 77,
+        "endLine": 70,
+        "endChar": 82
+      },
+      "revId": "af196e3d8fe5d052bb2c385f228a9bcfa86f714f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc3ef49e_6b203311",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
