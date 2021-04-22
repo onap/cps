@@ -22,6 +22,30 @@
       "revId": "27bd6b5721185b0da7212bf5ce398433a1dad5b1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b660473f_5fe5bce1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-22T15:14:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bae10a34_430879ef",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "27bd6b5721185b0da7212bf5ce398433a1dad5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
