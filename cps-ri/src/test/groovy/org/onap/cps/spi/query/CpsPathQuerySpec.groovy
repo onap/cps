@@ -73,4 +73,30 @@ class CpsPathQuerySpec extends Specification {
             'float value'                          | '/parent-200/child-202[@common-leaf-name-float=5.0]'
             'too many containers'                  | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
     }
+
+    @Unroll
+    def 'Convert cps leaf value to valid type with #scenario'() {
+        when: 'the given leaf value is converted'
+            def result = objectUnderTest.convertLeafValueToCorrectType(leafValue, cpsPath)
+        then: 'the leaf value returned is of the right type'
+            result == expectedLeafValue
+        where: "the following data is used"
+            scenario                                                | leafValue                              | cpsPath                                                                                ||  expectedLeafValue
+            'leaf of type String with single quotes'                | '\'common-single-quotes-leaf-value\''  | '/parent/child[@common-leaf-name-single-quotes=\'common-single-quotes-leaf-value\']'   ||  'common-single-quotes-leaf-value'
+            'leaf of type String with double quotes'                | '"common-double-quotes-leaf-value"'    | '/parent/child[@common-leaf-name-double-quotes="common-double-quotes-leaf-value"]'     ||  'common-double-quotes-leaf-value'
+            'leaf of type Integer'                                  | "5"                                    | '/parent/child[@common-leaf-name-int=5]'                                               ||  5
+            'leaf of type String with double quotes (Special case)' | '"special-double-quote\'s-leaf-value"' | '/parent/child[@special-leaf-name-double-quotes="special-double-quote\'s-leaf-value"]' || 'special-double-quote\'s-leaf-value'
+    }
+
+    @Unroll
+    def 'Convert cps leaf value with #scenario'() {
+        when: 'the given leaf value is converted'
+            objectUnderTest.convertLeafValueToCorrectType(leafValue, cpsPath)
+        then: 'a CpsPathException is thrown'
+            thrown(CpsPathException)
+        where: 'the following data is used'
+        scenario                                                                          | leafValue                                  | cpsPath
+        'leaf of type String with single quote at the start and double quote at the end'  | '\'error-single-double-quotes-leaf-value"' | '/parent/child[@error-leaf-name-single-double-quotes=\'error-single-double-quotes-leaf-value"]'
+        'leaf of type String with double quotes at the start and single quote at the end' | '"error-double-single-quotes-leaf-value\'' | '/parent/child[@error-leaf-name-double-single-quotes=""error-double-single-quotes-leaf-value\'"]'
+    }
 }
