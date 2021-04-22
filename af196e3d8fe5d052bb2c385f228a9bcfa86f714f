@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba946725_672b3c6d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-22T15:50:48Z",
+      "side": 1,
+      "message": "for the saveData we had a Java API method WITHOUT xPath BEFORE we need to version with the xpath.\nFor backward compatibility we couldn\u0027t remove the old method from the Java API.\nbut it could probably be refactored to use only the new JAVA-api method in both cases from the REST impl\nFeel free to refactor that as part of this patch if you want.",
+      "parentUuid": "313e801a_3a90da3d",
+      "range": {
+        "startLine": 70,
+        "startChar": 77,
+        "endLine": 70,
+        "endChar": 82
+      },
+      "revId": "af196e3d8fe5d052bb2c385f228a9bcfa86f714f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc3ef49e_6b203311",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -134,6 +158,29 @@
         "startChar": 0,
         "endLine": 17,
         "endChar": 63
+      },
+      "revId": "af196e3d8fe5d052bb2c385f228a9bcfa86f714f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33ce415d_69c68ff1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-22T15:50:48Z",
+      "side": 1,
+      "message": "this could be refactored to use saveData line #56 if parentNodeXPath is empty or \u0027/\u0027.\nIt ight actually be a bug on the API when someone tries to use the JavaApi taht way!",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 105
       },
       "revId": "af196e3d8fe5d052bb2c385f228a9bcfa86f714f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
