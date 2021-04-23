@@ -28,9 +28,12 @@ import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -38,6 +41,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.query.CpsPathQuery;
@@ -82,7 +86,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final DataIntegrityViolationException exception) {
-            throw  AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
+            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
         }
     }
 
@@ -158,9 +162,37 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntities = fragmentRepository
                 .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
         }
+        if (cpsPathQuery.hasAncestorAxis()) {
+            final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+            replaceFragmentEntitiesWithUniqueAncestors(dataspaceName, anchorName, ancestorXpaths, fragmentEntities);
+        }
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void replaceFragmentEntitiesWithUniqueAncestors(final String dataspaceName, final String anchorName,
+        final Set<String> ancestorXpaths, final List<FragmentEntity> fragmentEntities) {
+        fragmentEntities.clear();
+        ancestorXpaths.stream()
+            .forEach(xpath -> fragmentEntities.add(getFragmentByXpath(dataspaceName, anchorName, xpath)));
+    }
+
+    private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
+        final CpsPathQuery cpsPathQuery) {
+        final Set<String> ancestorXpath = new HashSet<>();
+        final var pattern =
+            Pattern.compile("(\\S*\\/" + cpsPathQuery.getAncestorSchemaNodeIdentifier() + "(\\[@\\S+?]){0,1})\\/\\S*");
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            final Matcher matcher = pattern.matcher(fragmentEntity.getXpath());
+            if (matcher.matches()) {
+                ancestorXpath.add(matcher.group(1));
+            } else {
+                throw new CpsPathException("Invalid cps path.",
+                    String.format("Cannot interpret or parse attributes in cps path '%s'.", cpsPathQuery));
+            }
+        }
+        return ancestorXpath;
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,

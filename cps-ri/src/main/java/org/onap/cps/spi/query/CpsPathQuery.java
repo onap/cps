@@ -20,6 +20,8 @@
 
 package org.onap.cps.spi.query;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -39,6 +41,7 @@ public class CpsPathQuery {
     private Object leafValue;
     private String descendantName;
     private Map<String, Object> leavesData;
+    private String ancestorSchemaNodeIdentifier;
 
     private static final String NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS = "((?:\\/[^\\/]+){1,99})";
 
@@ -55,7 +58,7 @@ public class CpsPathQuery {
     private static final Pattern LEAF_STRING_VALUE_IN_SINGLE_QUOTES_PATTERN = Pattern.compile("'(.*)'");
     private static final Pattern LEAF_STRING_VALUE_IN_DOUBLE_QUOTES_PATTERN = Pattern.compile("\"(.*)\"");
 
-    private static final String YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION =  "\\[(.*?)\\s{0,9}]";
+    private static final String YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION = "\\[(.*?)\\s{0,9}]";
 
     private static final Pattern DESCENDANT_ANYWHERE_PATTERN_WITH_MULTIPLE_LEAF_PATTERN =
         Pattern.compile(DESCENDANT_ANYWHERE_PATTERN + YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION);
@@ -64,42 +67,59 @@ public class CpsPathQuery {
 
     private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*)");
 
+    private static final Pattern ANCESTOR_AXIS_PATTERN = Pattern.compile("(\\S+)\\/ancestor::(\\S+)");
+
     /**
      * Returns a cps path query.
      *
-     * @param cpsPath cps path
+     * @param cpsPathSource cps path
      * @return a CpsPath object.
      */
-    public static CpsPathQuery createFrom(final String cpsPath) {
-        Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+    public static CpsPathQuery createFrom(final String cpsPathSource) {
+        var cpsPath = cpsPathSource;
         final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+        Matcher matcher = ANCESTOR_AXIS_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
-            return buildCpsPathQueryWithSingleLeafPattern(cpsPath, matcher, cpsPathQuery);
+            cpsPath = matcher.group(1);
+            cpsPathQuery.setAncestorSchemaNodeIdentifier(matcher.group(2));
+        }
+        matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+        if (matcher.matches()) {
+            setParametersForSingleLeafValue(cpsPath, matcher, cpsPathQuery);
+            return cpsPathQuery;
         }
         matcher = DESCENDANT_ANYWHERE_PATTERN_WITH_MULTIPLE_LEAF_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
-            return buildCpsQueryForDescendentWithLeafPattern(cpsPath, matcher, cpsPathQuery);
+            setParametersForDescendantWithLeafValues(cpsPath, matcher, cpsPathQuery);
+            return cpsPathQuery;
         }
         matcher = DESCENDANT_ANYWHERE_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
-            cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE);
-            cpsPathQuery.setDescendantName(matcher.group(1));
+            setParametersForDescendantAnywhere(matcher, cpsPathQuery);
             return cpsPathQuery;
         }
         throw new CpsPathException("Invalid cps path.",
             String.format("Cannot interpret or parse cps path '%s'.", cpsPath));
     }
 
-    private static CpsPathQuery buildCpsPathQueryWithSingleLeafPattern(final String cpsPath, final Matcher matcher,
+    /**
+     * Has ancestor axis been populated.
+     *
+     * @return boolean value.
+     */
+    public boolean hasAncestorAxis() {
+        return !(isEmpty(ancestorSchemaNodeIdentifier));
+    }
+
+    private static void setParametersForSingleLeafValue(final String cpsPath, final Matcher matcher,
         final CpsPathQuery cpsPathQuery) {
         cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_LEAF_VALUE);
         cpsPathQuery.setXpathPrefix(matcher.group(1));
         cpsPathQuery.setLeafName(matcher.group(2));
         cpsPathQuery.setLeafValue(convertLeafValueToCorrectType(matcher.group(3), cpsPath));
-        return cpsPathQuery;
     }
 
-    private static CpsPathQuery buildCpsQueryForDescendentWithLeafPattern(final String cpsPath, final Matcher matcher,
+    private static void setParametersForDescendantWithLeafValues(final String cpsPath, final Matcher matcher,
         final CpsPathQuery cpsPathQuery) {
         cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES);
         cpsPathQuery.setDescendantName(matcher.group(1));
@@ -115,7 +135,11 @@ public class CpsPathQuery {
             }
         }
         cpsPathQuery.setLeavesData(leafData);
-        return cpsPathQuery;
+    }
+
+    private static void setParametersForDescendantAnywhere(final Matcher matcher, final CpsPathQuery cpsPathQuery) {
+        cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE);
+        cpsPathQuery.setDescendantName(matcher.group(1));
     }
 
     private static Object convertLeafValueToCorrectType(final String leafValueString, final String cpsPath) {
