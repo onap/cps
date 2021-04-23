@@ -102,10 +102,10 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'no data is returned'
             result.isEmpty()
         where: 'following cps queries are performed'
-            scenario                           | cpsPath
-            'cps path is incomplete'           | '/parent-200[@common-leaf-name-int=5]'
-            'leaf value does not exist'        | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
-            'incomplete end of xpath prefix'   | '/parent-200/child-20[@common-leaf-name-int=5]'
+            scenario                         | cpsPath
+            'cps path is incomplete'         | '/parent-200[@common-leaf-name-int=5]'
+            'leaf value does not exist'      | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
+            'incomplete end of xpath prefix' | '/parent-200/child-20[@common-leaf-name-int=5]'
     }
 
     @Unroll
@@ -131,13 +131,13 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
-                result[i].getXpath() == expectedXPaths[i]
+            for (int i = 0; i < result.size(); i++) {
+                assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
             scenario                                  | cpsPath             || expectedXPaths
             'fully unique descendant name'            | '//grand-child-202' || ['/parent-200/child-202/grand-child-202']
-            'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202','/parent-201/child-202']
+            'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202', '/parent-201/child-202']
     }
 
     @Unroll
@@ -148,13 +148,13 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
-                result[i].getXpath() == expectedXPaths[i]
+            for (int i = 0; i < result.size(); i++) {
+                assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
             scenario                       | cpsPath                                                                          || expectedXPaths
-            'one attribute'                | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202','/parent-201/child-202']
-            'trailing "and" is ignored'    | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202','/parent-201/child-202']
+            'one attribute'                | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202', '/parent-201/child-202']
+            'trailing "and" is ignored'    | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202', '/parent-201/child-202']
             'more than one attribute'      | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf value"]' || ['/parent-200/child-202']
             'attributes reversed in order' | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
     }
@@ -170,5 +170,30 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             scenario                                  | cpsPath
             'one of the attributes without value'     | '//child-202[@common-leaf-name-int=5 and @another-attribute"]'
             'more than one attribute separated by or' | '//child-202[@common-leaf-name-int=5 or @common-leaf-name="common-leaf value"]'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query error scenario for an ancestor value that does not exist.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_NAME1, '//books/ancestor::ancestorDoesNotExist', OMIT_DESCENDANTS)
+        then: 'exception is thrown'
+            thrown(CpsPathException)
+    }
+
+    @Unroll
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path of type ancestor with #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_NAME1, cpsPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the xpaths of the retrieved data nodes are as expected'
+            result.size() == expectedXPaths.size()
+            for (int i = 0; i < result.size(); i++) {
+                assert result[i].getXpath() == expectedXPaths[i]
+            }
+        where: 'the following data is used'
+            scenario                             | cpsPath                                                || expectedXPaths
+            'multiple list-ancestors'            | '//books/ancestor::categories'                         || ['/bookstore/categories[@name="SciFi"]', '/bookstore/categories[@name="kids"]']
+            'top ancestor'                       | '//books/ancestor::bookstore'                          || ['/bookstore']
+            'a parent value in the xpath prefix' | '//categories[@name="kids"]/books/ancestor::bookstore' || ['/bookstore']
     }
 }

@@ -28,9 +28,11 @@ import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -38,6 +40,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.query.CpsPathQuery;
@@ -62,6 +65,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private FragmentRepository fragmentRepository;
 
     private static final Gson GSON = new GsonBuilder().create();
+    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@\\S+?]){0,1})";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -82,7 +86,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final DataIntegrityViolationException exception) {
-            throw  AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
+            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
         }
     }
 
@@ -144,7 +148,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final var cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
-        final List<FragmentEntity> fragmentEntities;
+        List<FragmentEntity> fragmentEntities;
         if (CpsPathQueryType.XPATH_LEAF_VALUE.equals(cpsPathQuery.getCpsPathQueryType())) {
             fragmentEntities = fragmentRepository
                 .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathQuery.getXpathPrefix(),
@@ -158,9 +162,31 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntities = fragmentRepository
                 .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
         }
+        if (cpsPathQuery.hasAncestorAxis()) {
+            final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+            fragmentEntities = fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
+        }
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
+        final CpsPathQuery cpsPathQuery) {
+        final Set<String> ancestorXpath = new HashSet<>();
+        final var pattern =
+            Pattern.compile("(\\S*\\/" + cpsPathQuery.getAncestorSchemaNodeIdentifier() + REG_EX_FOR_OPTIONAL_LIST_INDEX
+                + "\\/\\S*");
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            final var matcher = pattern.matcher(fragmentEntity.getXpath());
+            if (matcher.matches()) {
+                ancestorXpath.add(matcher.group(1));
+            } else {
+                throw new CpsPathException("Invalid cps path.",
+                    String.format("Cannot interpret or parse attributes in cps path '%s'.", cpsPathQuery));
+            }
+        }
+        return ancestorXpath;
     }
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
