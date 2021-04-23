@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e5aff089_a2666f31",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T14:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "654c1a1a_4cc6e16e",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 0
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5525440b_f3ac33e7",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 3
@@ -62,6 +86,48 @@
       "revId": "ca06a867c888be76eb238d282b1831b774d67228",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea16f001_4874f0d2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T14:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5525440b_f3ac33e7",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 116
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a850aaa_d502b616",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T14:40:29Z",
+      "side": 1,
+      "message": "empty is converted to / as per swagger api default value.check CpsDataApi. test for empty value is covered in Persistence tests.",
+      "parentUuid": "9452c81e_e082db4f",
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
