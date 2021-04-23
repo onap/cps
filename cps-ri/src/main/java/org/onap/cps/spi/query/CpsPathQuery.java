@@ -39,6 +39,7 @@ public class CpsPathQuery {
     private Object leafValue;
     private String descendantName;
     private Map<String, Object> leavesData;
+    private String ancestorSchemaNodeIdentifier;
 
     private static final String NON_CAPTURING_GROUP_1_TO_99_YANG_CONTAINERS = "((?:\\/[^\\/]+){1,99})";
 
@@ -63,21 +64,30 @@ public class CpsPathQuery {
 
     private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*)");
 
+    private static final Pattern ANCESTOR_AXIS_PATTERN = Pattern.compile("(\\S+)\\/ancestor::(\\S+)");
+
     /**
      * Returns a cps path query.
      *
-     * @param cpsPath cps path
+     * @param cpsPathSource cps path
      * @return a CpsPath object.
      */
-    public static CpsPathQuery createFrom(final String cpsPath) {
-        Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+    public static CpsPathQuery createFrom(final String cpsPathSource) {
+        String cpsPath = cpsPathSource;
         final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+        Matcher matcher = ANCESTOR_AXIS_PATTERN.matcher(cpsPath);
+        if (matcher.matches()) {
+            cpsPath = matcher.group(1);
+            cpsPathQuery.setAncestorSchemaNodeIdentifier(matcher.group(2));
+        }
+        matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
             return buildCpsPathQueryWithSingleLeafPattern(cpsPath, matcher, cpsPathQuery);
         }
         matcher = DESCENDANT_ANYWHERE_PATTERN_WITH_MULTIPLE_LEAF_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
-            return buildCpsQueryForDescendentWithLeafPattern(cpsPath, matcher, cpsPathQuery);
+            buildCpsQueryForDescendentWithLeafPattern(cpsPath, matcher, cpsPathQuery);
+            return cpsPathQuery;
         }
         matcher = DESCENDANT_ANYWHERE_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
@@ -87,6 +97,15 @@ public class CpsPathQuery {
         }
         throw new CpsPathException("Invalid cps path.",
             String.format("Cannot interpret or parse cps path '%s'.", cpsPath));
+    }
+
+    /**
+     * Has ancestor axis been populated.
+     *
+     * @return boolean value.
+     */
+    public boolean hasAncestorAxis() {
+        return !(ancestorSchemaNodeIdentifier == null || ancestorSchemaNodeIdentifier.isEmpty());
     }
 
     private static CpsPathQuery buildCpsPathQueryWithSingleLeafPattern(final String cpsPath, final Matcher matcher,

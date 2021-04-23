@@ -40,10 +40,10 @@ class CpsPathQuerySpec extends Specification {
             result.leafValue == expectedLeafValue
         where: 'the following data is used'
             scenario               | cpsPath                                                  || expectedXpathPrefix | expectedLeafName       | expectedLeafValue
-            'leaf of type String'  | '/parent/child[@common-leaf-name=\'common-leaf-value\']' || '/parent/child'     |'common-leaf-name'      | 'common-leaf-value'
-            'leaf of type Integer' | '/parent/child[@common-leaf-name-int=5]'                 || '/parent/child'     |'common-leaf-name-int'  | 5
-            'spaces around ='      | '/parent/child[@common-leaf-name-int = 5]'               || '/parent/child'     |'common-leaf-name-int'  | 5
-            'key in top container' | '/parent[@common-leaf-name-int=5]'                       || '/parent'           |'common-leaf-name-int'  | 5
+            'leaf of type String'  | '/parent/child[@common-leaf-name=\'common-leaf-value\']' || '/parent/child'     | 'common-leaf-name'     | 'common-leaf-value'
+            'leaf of type Integer' | '/parent/child[@common-leaf-name-int=5]'                 || '/parent/child'     | 'common-leaf-name-int' | 5
+            'spaces around ='      | '/parent/child[@common-leaf-name-int = 5]'               || '/parent/child'     | 'common-leaf-name-int' | 5
+            'key in top container' | '/parent[@common-leaf-name-int=5]'                       || '/parent'           | 'common-leaf-name-int' | 5
     }
 
     @Unroll
@@ -55,9 +55,9 @@ class CpsPathQuerySpec extends Specification {
         and: 'the right ends with parameters are set'
             result.descendantName == expectedEndsWithValue
         where: 'the following data is used'
-            scenario         | cpsPath                  || expectedEndsWithValue
-            'yang container' | '//cps-path'             || 'cps-path'
-            'parent & child' | '//parent/child'         || 'parent/child'
+            scenario         | cpsPath          || expectedEndsWithValue
+            'yang container' | '//cps-path'     || 'cps-path'
+            'parent & child' | '//parent/child' || 'parent/child'
     }
 
     @Unroll
@@ -71,8 +71,8 @@ class CpsPathQuerySpec extends Specification {
             result.leavesData.size() == expectedNumberOfLeaves
         where: 'the following data is used'
             scenario                  | cpsPath                                            || expectedNumberOfLeaves
-            'one attribute'           | '//child[@common-leaf-name-int=5]'                 ||  1
-            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' ||  2
+            'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
+            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
     }
 
     @Unroll
@@ -89,5 +89,16 @@ class CpsPathQuerySpec extends Specification {
             'too many containers'                                               | '/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100[@a=1]'
             'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
+    }
+
+    def 'Parse cps path using ancestor by schema node identifier.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.createFrom('//someXpathValue/ancestor::someAncestorValue')
+        then: 'the query has the right type'
+            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
+        and: 'the correct ancestor schema node identifier is set'
+            result.ancestorSchemaNodeIdentifier == 'someAncestorValue'
+        and: 'the result has ancestor axis'
+            result.hasAncestorAxis()
     }
 }
