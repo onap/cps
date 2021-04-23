@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ca21f05c_9a55e640",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T09:52:22Z",
+      "side": 1,
+      "message": "buildCollectionFromNormalizedNodeTreeUnderGivenParent",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 70
+      },
+      "revId": "15b13f280f1e1863f5403966890dc216902bee67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cfdf1f45_99210d20",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 1
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "as a reminder\n\nthe [fake] parent data node was introduced in order to\nsupport data fragments parsing of any level, not just root.\nit uses parentNodeXpath to make all the lower level data node\nobjects (produced by the builder) to have a proper xpath value.\n\nso the data node object (built) was always returned within a \u0027children\u0027\ncollection of this [fake] parent node. it\u0027s the only reason of\n\u0027going to collection\u0027. no extras were added with current update.\n\nthe methods highlighted are returning either collection or single node.\nprior method was just split to two peaces,  so we involve prior logic\neither partially or fully, depending on context.",
       "parentUuid": "cfdf1f45_99210d20",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 5
+      },
+      "revId": "15b13f280f1e1863f5403966890dc216902bee67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a2da616_62598e3b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T09:52:22Z",
+      "side": 1,
+      "message": "it stays confusing code to read. I tried different approaches but cannot find a better alternative. I do suggest some additons to the names, see other comment to help clarify",
+      "parentUuid": "28a48866_e8543ef1",
       "range": {
         "startLine": 143,
         "startChar": 0,
