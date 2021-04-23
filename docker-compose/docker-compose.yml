@@ -66,7 +66,7 @@ services:
 
   dbpostgresql:
     container_name: dbpostgresql
-    image: postgres:12.4-alpine
+    image: postgres:13.2-alpine
     ports:
       - '5432:5432'
     environment:
