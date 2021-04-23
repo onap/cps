@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "43a4d962_1b1182e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-23T08:57:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45daa97b_ca93cac7",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0773836_2bb474e0",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 2
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "fbbce785_a9bda37e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-23T08:57:46Z",
+      "side": 1,
+      "message": "8 is a flag, that specifies that it is multiline. This is done because without the $ and 8, something like \u0027don\u0027t\u0027 would return don",
+      "parentUuid": "e0773836_2bb474e0",
+      "range": {
+        "startLine": 52,
+        "startChar": 104,
+        "endLine": 52,
+        "endChar": 107
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb1e3483_983141fe",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 2
@@ -82,6 +130,30 @@
       "writtenOn": "2021-04-23T07:43:59Z",
       "side": 1,
       "message": "don\u0027t initiate this until you need it, ie move to before line #90",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 84
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7edb69_65ba214e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-23T08:57:46Z",
+      "side": 1,
+      "message": "Not sure what you mean by this, I use this variable in line 86, within the if statement",
+      "parentUuid": "eb1e3483_983141fe",
       "range": {
         "startLine": 84,
         "startChar": 0,
