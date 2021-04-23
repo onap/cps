@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "219e559f_ad8f57ed",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T13:58:17Z",
+      "side": 1,
+      "message": "I was thinking about but didn\u0027t want to add a long explanation, also escaping might make it harder to read.\nHowever we could consider:\n\nunmatched quotes, single quote first\nunmatched quotes, double quote first",
+      "parentUuid": "7ef485e8_54ea885c",
+      "range": {
+        "startLine": 90,
+        "startChar": 13,
+        "endLine": 90,
+        "endChar": 29
+      },
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78bb8307_2b03d570",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 3
