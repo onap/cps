@@ -74,7 +74,7 @@ Get List Elements by Any Attribute Value
   - Only string and integer values are supported (boolean and float values are not supported).
 
 **Notes**
-  - For performance reasons it does not make sense to query the list key leaf. If the key value is known it is better to execute a get request with the complete xpath.
+  - For performance reasons it does not make sense to query using key leaf as attribute. If the key value is known it is better to execute a get request with the complete xpath.
 
 Get Any Descendant
 ------------------
@@ -93,13 +93,13 @@ Get Any Descendant
   - List elements can only be addressed using the list key leaf.
 
 Get Any Descendant by Any Attribute Value
-------------------------------------------
+-----------------------------------------
 
 **Syntax**: ``//<direct-ancestors><target-node>[@<leaf-name>=<leaf-value>]``
   - ``direct-ancestors``: Optional path to direct ancestors of the target node. This can contain zero to many ancestor nodes separated by a /.
   - ``target-node``: The name of the (list) node which elements will queried.
-  - ``leaf-name``: The name of the leaf which value needs to be compared.
-  - ``leaf-value``: The required value of the leaf.
+  - ``leaf1-name .. leafN-name:``: One or more leaves whose value needs to be compared.
+  - ``leaf1-value .. leafN-value:``: One or more required leaf values (multiple condition can be combined using the 'and' keyword).
 
 **Examples**
   - ``//categories[@name='Kids']``
@@ -108,4 +108,3 @@ Get Any Descendant by Any Attribute Value
 **Limitations**
   - Only string and integer values are supported (boolean and float values are not supported).
   - Multiple attributes should be separated by 'and'.
-  - Trailing 'and' is ignored in the yang list.
