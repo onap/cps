@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4f93e1c_135b352e",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-23T11:24:12Z",
+      "side": 1,
+      "message": "to query using key leaf as attribute",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 77
+      },
+      "revId": "ff71462728d8eb63d36ad4c3ede24f10ea030c14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
