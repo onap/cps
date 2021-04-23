@@ -22,6 +22,75 @@
       "revId": "ff71462728d8eb63d36ad4c3ede24f10ea030c14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86f2f705_987d9b4b",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T11:42:58Z",
+      "side": 1,
+      "message": "I think these are suppose to be the exact length of above string",
+      "range": {
+        "startLine": 96,
+        "startChar": 41,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "ff71462728d8eb63d36ad4c3ede24f10ea030c14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29eae570_bedee76f",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T11:42:58Z",
+      "side": 1,
+      "message": "leaf1-name .. leafN-name: One or more leaf names\nleaf1-value .. leafN-value: One or more required leaf values  (multiple condition can be combined using the \u0027and\u0027 keyword)",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 15
+      },
+      "revId": "ff71462728d8eb63d36ad4c3ede24f10ea030c14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cf05563_8595fe3e",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T11:42:58Z",
+      "side": 1,
+      "message": "this is not a limitation :-) its a feature:-) no need to mention it!",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "ff71462728d8eb63d36ad4c3ede24f10ea030c14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
