@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "9452c81e_e082db4f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-04-23T11:12:30Z",
+      "side": 1,
+      "message": "as per the story, \"an empty xpath parameter and a single / should we treated the same\". \nAdd test case for the empty path scenario",
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "651ed9b0_5fb91c4e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
