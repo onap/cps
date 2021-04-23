@@ -151,6 +151,30 @@
       "revId": "ca06a867c888be76eb238d282b1831b774d67228",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30dc014b_bd2c104e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T14:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "651ed9b0_5fb91c4e",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
