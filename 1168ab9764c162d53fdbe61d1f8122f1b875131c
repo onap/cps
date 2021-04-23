@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a8cb06b8_28081d72",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T16:42:52Z",
+      "side": 1,
+      "message": "Not sure what you mean, this is error scenario irrespective of descendant option",
+      "parentUuid": "fcbb1919_d61d17a7",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ebd6f88_aed2f6d4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3dd7be25_99d7807c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T16:42:52Z",
+      "side": 1,
+      "message": "method for one line of code ? I this this is pretty readable.\nLet me know if I understood you correctly.",
+      "parentUuid": "7ebd6f88_aed2f6d4",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51933e5f_e277e304",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-04-23T16:33:50Z",
       "side": 1,
       "message": "Maybe introduce a more specialized exception:\nNoDataUnderAnchor()",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 60
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efe88244_b0c4b00d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T16:42:52Z",
+      "side": 1,
+      "message": "We did an exercise previously where we rather reduced the number of (similarly named) exceptions as they are ever growing. This name is pretty clear. What do others think ?",
+      "parentUuid": "51933e5f_e277e304",
       "range": {
         "startLine": 57,
         "startChar": 35,
@@ -197,6 +269,30 @@
       "writtenOn": "2021-04-23T16:33:50Z",
       "side": 1,
       "message": "see previous comment about a new exception that more clearly indicated the scenario",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 36
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49056d3a_105353c2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataNodeNotFoundException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-23T16:42:52Z",
+      "side": 1,
+      "message": "replied in previous comment",
+      "parentUuid": "caf9d56e_bf7050d6",
       "range": {
         "startLine": 49,
         "startChar": 11,
