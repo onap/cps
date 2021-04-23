@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92f602a5_02a5db84",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T11:56:58Z",
+      "side": 1,
+      "message": "-Conditions can only combined using \u0027and\u0027. \u0027or\u0027 and bracketing is not supported.",
+      "range": {
+        "startLine": 110,
+        "startChar": 3,
+        "endLine": 110,
+        "endChar": 53
+      },
+      "revId": "9c29749bc89b8b5ac68761cedc1612e8fa1233a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
