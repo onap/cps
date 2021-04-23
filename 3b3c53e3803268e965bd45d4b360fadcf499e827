@@ -117,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "b8487c18_b15389cf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-23T08:12:18Z",
+      "side": 1,
+      "message": "add to the heading to make table more readable",
+      "range": {
+        "startLine": 85,
+        "startChar": 13,
+        "endLine": 85,
+        "endChar": 25
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c3ffbde_865fc509",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 2
@@ -128,6 +151,29 @@
       "writtenOn": "2021-04-23T07:43:59Z",
       "side": 1,
       "message": "common text, hardcode in lien 78 instead",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17cfd4d4_3d24e5be",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-23T08:12:18Z",
+      "side": 1,
+      "message": "add to the heading",
       "range": {
         "startLine": 99,
         "startChar": 9,
