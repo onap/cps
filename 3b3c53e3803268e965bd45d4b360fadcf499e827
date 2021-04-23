@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8add7b33_88ac72ea",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-23T10:50:07Z",
+      "side": 1,
+      "message": "a I missed and didn\u0027t expect that. You dotn need the outer check. The whol blcok can be simpliefied to \n\n        final Matcher stringValueWithSingleQuotesMatcher \u003d\n                LEAF_STRING_VALUE_IN_SINGLE_QUOTES_PATTERN.matcher(leafValueString);\n        if (stringValueWithSingleQuotesMatcher.matches()) {\n            return stringValueWithSingleQuotesMatcher.group(1);\n        }\n        final Matcher stringValueWithDoubleQuotesMatcher \u003d\n                LEAF_STRING_VALUE_IN_DOUBLE_QUOTES_PATTERN.matcher(leafValueString);\n        if (stringValueWithDoubleQuotesMatcher.matches()) {\n            return stringValueWithDoubleQuotesMatcher.group(1);\n        }",
+      "parentUuid": "ad7edb69_65ba214e",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 84
+      },
+      "revId": "3b3c53e3803268e965bd45d4b360fadcf499e827",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc4623b6_33a704b6",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 2
