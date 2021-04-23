@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "654c1a1a_4cc6e16e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-23T10:49:42Z",
+      "side": 1,
+      "message": "there is no special treatment for root xpath in the controller\nso there is no reason to extra test loop for this parameter. \nit makes sense to remove the xpath from parameter and use a constant \nwithin a \u0027when\u0027 or variable defined in \u0027given\u0027",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 0
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5525440b_f3ac33e7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-23T10:49:42Z",
+      "side": 1,
+      "message": "this case is extra, see above comment\ni\u0027d suggest to use xpath as constant in \u0027when\u0027, no need to to parameterize it",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 116
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "651ed9b0_5fb91c4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-23T10:49:42Z",
+      "side": 1,
+      "message": "\"/\".equals(xpath)\nconstant goes first",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "ca06a867c888be76eb238d282b1831b774d67228",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
