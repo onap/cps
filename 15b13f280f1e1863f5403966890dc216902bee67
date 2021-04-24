@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0967e556_584cb080",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-24T03:19:33Z",
+      "side": 1,
+      "message": "It is not clear to me where in the application buildCollection() is used instead of build().",
+      "revId": "15b13f280f1e1863f5403966890dc216902bee67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca21f05c_9a55e640",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 1
