@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "a4a0a4ea_b60b3168",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-24T03:00:49Z",
+      "side": 1,
+      "message": "I have a preference for keeping DataNodeNotFoundException here. It seems consistent to me.",
+      "parentUuid": "efe88244_b0c4b00d",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 60
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5419d493_e0e5ca82",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 4
@@ -298,6 +322,29 @@
         "startChar": 11,
         "endLine": 49,
         "endChar": 36
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "962c34e5_c5ce50ba",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-04-24T03:00:49Z",
+      "side": 1,
+      "message": "Duplicated method lines 128 and 122.\n\nThis makes the compilation failing from my IDE. Maven compilation is successful.\n\nThe former method could be renamed \u0027Creating a exception that a datanode with xpath does not exist.\u0027 for example.",
+      "range": {
+        "startLine": 128,
+        "startChar": 9,
+        "endLine": 128,
+        "endChar": 61
       },
       "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
