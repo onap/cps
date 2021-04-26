@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "5d6c98e7_e60e95da",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-26T08:54:07Z",
+      "side": 1,
+      "message": "inviting opinions from other too. I this cannot be resolve today (I wil be on leave0 merge as is and we can discuss again later\n\nin my opinion get \u0027/\u0027 with descendants should return (first) datatree instance\nget \u0027/\u0027 without descendant is a special case. I though we agreed we would throw a specific exception in that case, well that has my preference anyway. Maybe look for team agreement at stand-up meeting!",
+      "parentUuid": "7240af35_f0ea464d",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ebd6f88_aed2f6d4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
