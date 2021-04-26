@@ -38,8 +38,6 @@ nodeByCmHandleAndXpath:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
-      501:
-        $ref: 'components.yaml#/components/responses/NotImplemented'
 
 nodesByCmHandleAndCpsPath:
   get:
