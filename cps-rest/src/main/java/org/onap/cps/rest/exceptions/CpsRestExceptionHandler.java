@@ -83,7 +83,7 @@ public class CpsRestExceptionHandler {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
         }
-        final ErrorMessage errorMessage = new ErrorMessage();
+        final var errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(exception.getMessage());
         errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :

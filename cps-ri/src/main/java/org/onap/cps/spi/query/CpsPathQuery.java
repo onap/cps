@@ -71,8 +71,8 @@ public class CpsPathQuery {
      * @return a CpsPath object.
      */
     public static CpsPathQuery createFrom(final String cpsPath) {
-        Matcher matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
-        final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+        var matcher = QUERY_CPS_PATH_WITH_SINGLE_LEAF_PATTERN.matcher(cpsPath);
+        final var cpsPathQuery = new CpsPathQuery();
         if (matcher.matches()) {
             return buildCpsPathQueryWithSingleLeafPattern(cpsPath, matcher, cpsPathQuery);
         }
@@ -105,7 +105,7 @@ public class CpsPathQuery {
         cpsPathQuery.setDescendantName(matcher.group(1));
         final Map<String, Object> leafData = new HashMap<>();
         for (final String leafValuePair : matcher.group(2).split(INDIVIDUAL_LEAF_DETAIL_PATTERN)) {
-            final Matcher descendentMatcher = LEAF_VALUE_PATTERN.matcher(leafValuePair);
+            final var descendentMatcher = LEAF_VALUE_PATTERN.matcher(leafValuePair);
             if (descendentMatcher.matches()) {
                 leafData.put(descendentMatcher.group(1),
                     convertLeafValueToCorrectType(descendentMatcher.group(2), cpsPath));
@@ -119,17 +119,17 @@ public class CpsPathQuery {
     }
 
     private static Object convertLeafValueToCorrectType(final String leafValueString, final String cpsPath) {
-        final Matcher stringValueWithSingleQuotesMatcher =
+        final var stringValueWithSingleQuotesMatcher =
                 LEAF_STRING_VALUE_IN_SINGLE_QUOTES_PATTERN.matcher(leafValueString);
         if (stringValueWithSingleQuotesMatcher.matches()) {
             return stringValueWithSingleQuotesMatcher.group(1);
         }
-        final Matcher stringValueWithDoubleQuotesMatcher =
+        final var stringValueWithDoubleQuotesMatcher =
                 LEAF_STRING_VALUE_IN_DOUBLE_QUOTES_PATTERN.matcher(leafValueString);
         if (stringValueWithDoubleQuotesMatcher.matches()) {
             return stringValueWithDoubleQuotesMatcher.group(1);
         }
-        final Matcher integerValueMatcher = LEAF_INTEGER_VALUE_PATTERN.matcher(leafValueString);
+        final var integerValueMatcher = LEAF_INTEGER_VALUE_PATTERN.matcher(leafValueString);
         if (integerValueMatcher.matches()) {
             return Integer.valueOf(leafValueString);
         }

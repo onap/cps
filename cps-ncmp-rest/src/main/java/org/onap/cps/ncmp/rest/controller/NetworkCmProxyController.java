@@ -62,7 +62,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode = networkCmProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
+        final var dataNode = networkCmProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 

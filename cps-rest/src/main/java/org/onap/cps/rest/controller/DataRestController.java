@@ -24,7 +24,6 @@ package org.onap.cps.rest.controller;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,7 +61,7 @@ public class DataRestController implements CpsDataApi {
         final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+        final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
                 fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }

@@ -22,14 +22,13 @@
 
 package org.onap.cps.spi.impl;
 
-import com.google.common.collect.ImmutableSet;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
-import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -66,10 +65,10 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSetEntity schemaSetEntity =
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final AnchorEntity anchorEntity = AnchorEntity.builder()
+        final var anchorEntity = AnchorEntity.builder()
             .name(anchorName)
             .dataspace(dataspaceEntity)
             .schemaSet(schemaSetEntity)
@@ -83,7 +82,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
     }
@@ -96,13 +95,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Transactional
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        fragmentRepository.deleteByAnchorIn(ImmutableSet.of(anchorEntity));
+        final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        fragmentRepository.deleteByAnchorIn(Set.of(anchorEntity));
         anchorRepository.delete(anchorEntity);
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
     }
 

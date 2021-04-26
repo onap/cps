@@ -24,7 +24,6 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.model.SchemaSet;
-import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +40,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-        final YangTextSchemaSourceSet yangTextSchemaSourceSet
+        final var yangTextSchemaSourceSet
             = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
@@ -49,7 +48,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
-        final YangTextSchemaSourceSet yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
+        final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
