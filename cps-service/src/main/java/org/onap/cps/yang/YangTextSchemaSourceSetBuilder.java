@@ -30,7 +30,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
@@ -62,7 +61,7 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     public YangTextSchemaSourceSet build() {
-        final SchemaContext schemaContext = generateSchemaContext(yangModelMap.build());
+        final var schemaContext = generateSchemaContext(yangModelMap.build());
         return new YangTextSchemaSourceSetImpl(schemaContext);
     }
 
@@ -148,7 +147,7 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
-        final RevisionSourceIdentifier revisionSourceIdentifier =
+        final var revisionSourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
         return new YangTextSchemaSource(revisionSourceIdentifier) {
@@ -166,7 +165,7 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
-        final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
+        final var matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
         if (matcher.matches()) {
             return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
         }

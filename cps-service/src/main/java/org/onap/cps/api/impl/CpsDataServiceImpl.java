@@ -26,7 +26,6 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.YangUtils;
@@ -54,14 +53,14 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
-        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
+        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
     }
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
-        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
     }
 
@@ -74,7 +73,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
-        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
     }
@@ -82,15 +81,15 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
-        final DataNode dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
     }
 
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData) {
 
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final var schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
             final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
