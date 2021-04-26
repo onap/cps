@@ -52,7 +52,8 @@ public class CpsPathQuery {
 
     private static final Pattern LEAF_INTEGER_VALUE_PATTERN = Pattern.compile("[-+]?\\d+");
 
-    private static final Pattern LEAF_STRING_VALUE_PATTERN = Pattern.compile("['\"](.*)['\"]");
+    private static final Pattern LEAF_STRING_VALUE_IN_SINGLE_QUOTES_PATTERN = Pattern.compile("'(.*)'");
+    private static final Pattern LEAF_STRING_VALUE_IN_DOUBLE_QUOTES_PATTERN = Pattern.compile("\"(.*)\"");
 
     private static final String YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION =  "\\[(.*?)\\s{0,9}]";
 
@@ -118,9 +119,15 @@ public class CpsPathQuery {
     }
 
     private static Object convertLeafValueToCorrectType(final String leafValueString, final String cpsPath) {
-        final Matcher stringValueWithQuotesMatcher = LEAF_STRING_VALUE_PATTERN.matcher(leafValueString);
-        if (stringValueWithQuotesMatcher.matches()) {
-            return stringValueWithQuotesMatcher.group(1);
+        final Matcher stringValueWithSingleQuotesMatcher =
+                LEAF_STRING_VALUE_IN_SINGLE_QUOTES_PATTERN.matcher(leafValueString);
+        if (stringValueWithSingleQuotesMatcher.matches()) {
+            return stringValueWithSingleQuotesMatcher.group(1);
+        }
+        final Matcher stringValueWithDoubleQuotesMatcher =
+                LEAF_STRING_VALUE_IN_DOUBLE_QUOTES_PATTERN.matcher(leafValueString);
+        if (stringValueWithDoubleQuotesMatcher.matches()) {
+            return stringValueWithDoubleQuotesMatcher.group(1);
         }
         final Matcher integerValueMatcher = LEAF_INTEGER_VALUE_PATTERN.matcher(leafValueString);
         if (integerValueMatcher.matches()) {
