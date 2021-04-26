@@ -33,12 +33,10 @@ import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -75,9 +73,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
 
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
-        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
+        final var schemaSetEntity = new SchemaSetEntity();
         schemaSetEntity.setName(schemaSetName);
         schemaSetEntity.setDataspace(dataspaceEntity);
         schemaSetEntity.setYangResources(yangResourceEntities);
@@ -92,7 +90,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
-                final YangResourceEntity yangResourceEntity = new YangResourceEntity();
+                final var yangResourceEntity = new YangResourceEntity();
                 yangResourceEntity.setName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
                 yangResourceEntity.setChecksum(checksum);
@@ -120,8 +118,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSetEntity schemaSetEntity =
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
             Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
@@ -129,7 +127,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Map<String, String> getYangSchemaSetResources(final String dataspaceName, final String anchorName) {
-        final Anchor anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+        final var anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
         return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
     }
 
@@ -137,8 +135,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
         final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSetEntity schemaSetEntity =
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
 
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);

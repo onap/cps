@@ -25,7 +25,6 @@ import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_
 import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Locale;
@@ -58,7 +57,7 @@ public class MultipartFileUtil {
     public static Map<String, String> extractYangResourcesMap(final MultipartFile multipartFile) {
         final String originalFileName = multipartFile.getOriginalFilename();
         if (resourceNameEndsWithExtension(originalFileName, YANG_FILE_EXTENSION)) {
-            return ImmutableMap.of(originalFileName, extractYangResourceContent(multipartFile));
+            return java.util.Map.of(originalFileName, extractYangResourceContent(multipartFile));
         }
         if (resourceNameEndsWithExtension(originalFileName, ZIP_FILE_EXTENSION)) {
             return extractYangResourcesMapFromZipArchive(multipartFile);
@@ -70,10 +69,10 @@ public class MultipartFileUtil {
 
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
-        final ZipFileSizeValidator zipFileSizeValidator = new ZipFileSizeValidator();
+        final var zipFileSizeValidator = new ZipFileSizeValidator();
         try (
-            final InputStream inputStream = multipartFile.getInputStream();
-            final ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+            final var inputStream = multipartFile.getInputStream();
+            final var zipInputStream = new ZipInputStream(inputStream);
         ) {
             ZipEntry zipEntry;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
@@ -129,10 +128,10 @@ public class MultipartFileUtil {
 
     private static String extractYangResourceContent(final ZipInputStream zipInputStream,
         final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
-        try (final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-            int totalSizeEntry = 0;
+        try (final var byteArrayOutputStream = new ByteArrayOutputStream()) {
+            var totalSizeEntry = 0;
             int numberOfBytesRead;
-            final byte[] buffer = new byte[READ_BUFFER_SIZE];
+            final var buffer = new byte[READ_BUFFER_SIZE];
             zipFileSizeValidator.incrementTotalEntryInArchive();
             while ((numberOfBytesRead = zipInputStream.read(buffer, 0, READ_BUFFER_SIZE)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);

@@ -30,7 +30,6 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.SchemaSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -71,7 +70,7 @@ public class AdminRestController implements CpsAdminApi {
 
     @Override
     public ResponseEntity<Object> getSchemaSet(final String dataspaceName, final String schemaSetName) {
-        final SchemaSet schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
+        final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         return new ResponseEntity<>(schemaSet, HttpStatus.OK);
     }
 
@@ -104,7 +103,7 @@ public class AdminRestController implements CpsAdminApi {
 
     @Override
     public ResponseEntity<Object> getAnchor(final String dataspaceName, final String anchorName) {
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         return new ResponseEntity<>(anchor, HttpStatus.OK);
     }
 

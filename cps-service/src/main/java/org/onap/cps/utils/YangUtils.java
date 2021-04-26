@@ -37,8 +37,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
-import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
-import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactory;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
@@ -77,23 +75,23 @@ public class YangUtils {
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
-        final DataSchemaNode parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
+        final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
         return parseJsonData(jsonData, schemaContext, Optional.of(parentSchemaNode));
     }
 
     private static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final Optional<DataSchemaNode> optionalParentSchemaNode) {
-        final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
+        final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared(schemaContext);
-        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
-        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+        final var normalizedNodeResult = new NormalizedNodeResult();
+        final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
             .from(normalizedNodeResult);
 
         try (final JsonParserStream jsonParserStream = optionalParentSchemaNode.isPresent()
             ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, optionalParentSchemaNode.get())
             : JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory)
         ) {
-            final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
+            final var jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
 
         } catch (final IOException | IllegalStateException | JsonSyntaxException exception) {
@@ -110,7 +108,7 @@ public class YangUtils {
      * @return an xpath
      */
     public static String buildXpath(final YangInstanceIdentifier.PathArgument nodeIdentifier) {
-        final StringBuilder xpathBuilder = new StringBuilder();
+        final var xpathBuilder = new StringBuilder();
         xpathBuilder.append("/").append(nodeIdentifier.getNodeType().getLocalName());
 
         if (nodeIdentifier instanceof YangInstanceIdentifier.NodeIdentifierWithPredicates) {
@@ -173,7 +171,7 @@ public class YangUtils {
     }
 
     private static String[] getNextLevelXpathNodeIdSequence(final String[] xpathNodeIdSequence) {
-        final String[] nextXpathNodeIdSequence = new String[xpathNodeIdSequence.length - 1];
+        final var nextXpathNodeIdSequence = new String[xpathNodeIdSequence.length - 1];
         System.arraycopy(xpathNodeIdSequence, 1, nextXpathNodeIdSequence, 0, nextXpathNodeIdSequence.length);
         return nextXpathNodeIdSequence;
     }

@@ -120,7 +120,7 @@ public class DataNodeBuilder {
     }
 
     private DataNode buildFromAttributes() {
-        final DataNode dataNode = new DataNode();
+        final var dataNode = new DataNode();
         dataNode.setXpath(xpath);
         dataNode.setLeaves(leaves);
         dataNode.setChildDataNodes(childDataNodes);
@@ -128,7 +128,7 @@ public class DataNodeBuilder {
     }
 
     private DataNode buildFromNormalizedNodeTree() {
-        final DataNode parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
+        final var parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
         addDataNodeFromNormalizedNode(parentDataNode, normalizedNodeTree);
         return parentDataNode.getChildDataNodes().iterator().next();
     }
@@ -187,7 +187,7 @@ public class DataNodeBuilder {
 
     private static DataNode createAndAddChildDataNode(final DataNode parentDataNode, final String childXpath) {
 
-        final DataNode newChildDataNode = new DataNodeBuilder()
+        final var newChildDataNode = new DataNodeBuilder()
             .withXpath(parentDataNode.getXpath() + childXpath)
             .build();
         final Set<DataNode> allChildDataNodes = new ImmutableSet.Builder<DataNode>()

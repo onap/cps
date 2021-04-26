@@ -24,7 +24,6 @@ package org.onap.cps.rest.controller;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +42,7 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<String> createNode(final String jsonData, final String dataspaceName, final String anchorName,
-        final String parentNodeXpath) {
+                                             final String parentNodeXpath) {
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, jsonData);
         } else {
@@ -59,24 +58,24 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
-        final String xpath, final Boolean includeDescendants) {
+                                                              final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+                ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
                 fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String jsonData, final String dataspaceName,
-        final String anchorName, final String parentNodeXpath) {
+                                                   final String anchorName, final String parentNodeXpath) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Object> replaceNode(final String jsonData, final String dataspaceName,
-        final String anchorName, final String parentNodeXpath) {
+                                              final String anchorName, final String parentNodeXpath) {
         cpsDataService.replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
