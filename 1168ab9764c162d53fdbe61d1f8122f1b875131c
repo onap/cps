@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7240af35_f0ea464d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-26T08:49:28Z",
+      "side": 1,
+      "message": "I think this requires some discussion again",
+      "parentUuid": "a8cb06b8_28081d72",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ebd6f88_aed2f6d4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "method for one line of code ? I this this is pretty readable.\nLet me know if I understood you correctly.",
       "parentUuid": "7ebd6f88_aed2f6d4",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ac3710f_e87e1525",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-26T08:49:28Z",
+      "side": 1,
+      "message": "isRoot is easer to read :-)",
+      "parentUuid": "3dd7be25_99d7807c",
       "range": {
         "startLine": 133,
         "startChar": 12,
@@ -164,6 +212,30 @@
       "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84e3f82d_de4ad1b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-26T08:49:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "a4a0a4ea_b60b3168",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 60
+      },
+      "revId": "1168ab9764c162d53fdbe61d1f8122f1b875131c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
