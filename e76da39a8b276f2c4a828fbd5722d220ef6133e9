@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4b31a1a_d0a8d650",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-26T19:02:21Z",
+      "side": 1,
+      "message": "check you IDE foramtting. Make sure you have ONAP formatter",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "e76da39a8b276f2c4a828fbd5722d220ef6133e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7948fd62_84719e60",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-26T19:02:21Z",
+      "side": 1,
+      "message": "just Map",
+      "range": {
+        "startLine": 60,
+        "startChar": 19,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "e76da39a8b276f2c4a828fbd5722d220ef6133e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
