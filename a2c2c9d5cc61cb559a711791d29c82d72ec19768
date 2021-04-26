@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b3254da8_5a8b437d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-26T09:03:44Z",
+      "side": 1,
+      "message": "Correct me if I am wrong, but we have three different expressions and therefore we cannot use switch statements in this part of the code.",
+      "parentUuid": "a83fa4c5_5bbc3eb2",
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ef485e8_54ea885c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 3
@@ -66,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "6a4375bd_8ff488fe",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-26T09:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "219e559f_ad8f57ed",
+      "range": {
+        "startLine": 90,
+        "startChar": 13,
+        "endLine": 90,
+        "endChar": 29
+      },
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78bb8307_2b03d570",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 3
@@ -86,6 +128,30 @@
       "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36a610ea_8b9e824d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-26T09:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78bb8307_2b03d570",
+      "range": {
+        "startLine": 97,
+        "startChar": 72,
+        "endLine": 97,
+        "endChar": 76
+      },
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -112,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "429b5267_9a8c0bb6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-26T09:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab9ba3a8_bf15f654",
+      "range": {
+        "startLine": 107,
+        "startChar": 43,
+        "endLine": 107,
+        "endChar": 44
+      },
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8ceb150_d2210d8a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
         "patchSetId": 3
@@ -132,6 +222,30 @@
       "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07dcbc37_cea972ad",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-04-26T09:03:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8ceb150_d2210d8a",
+      "range": {
+        "startLine": 108,
+        "startChar": 43,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "a2c2c9d5cc61cb559a711791d29c82d72ec19768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
