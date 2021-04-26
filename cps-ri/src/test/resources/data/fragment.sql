@@ -8,13 +8,13 @@ INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
     (3003, 'ANCHOR-003', 1001, 2001);
 
-INSERT INTO FRAGMENT (ID, XPATH, ANCHOR_ID, PARENT_ID, DATASPACE_ID) VALUES
-    (4001, '/parent-1', 3001, null, 1001),
-    (4002, '/parent-2', 3001, null, 1001),
-    (4003, '/parent-3', 3001, null, 1001),
-    (4004, '/parent-1/child-1', 3001, 4001, 1001),
-    (4005, '/parent-2/child-2', 3001, 4002, 1001),
-    (4006, '/parent-1/child-1/grandchild-1', 3001, 4004, 1001);
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
+    (4001, 1001, 3001, null, '/parent-1'),
+    (4002, 1001, 3001, null, '/parent-2'),
+    (4003, 1001, 3001, null, '/parent-3'),
+    (4004, 1001, 3001, 4001, '/parent-1/child-1'),
+    (4005, 1001, 3001, 4002, '/parent-2/child-2'),
+    (4006, 1001, 3001, 4004, '/parent-1/child-1/grandchild-1');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (4101, 1001, 3003, null, '/parent-100', '{"parent-leaf": "parent-leaf value"}'),

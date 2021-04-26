@@ -191,7 +191,7 @@ class DataRestControllerSpec extends Specification {
             'no dataspace'    | '/x-path' | new DataspaceNotFoundException('')               || HttpStatus.BAD_REQUEST
             'no anchor'       | '/x-path' | new AnchorNotFoundException('', '')              || HttpStatus.BAD_REQUEST
             'no data'         | '/x-path' | new DataNodeNotFoundException('', '', '')        || HttpStatus.NOT_FOUND
-            'empty path'      | ''        | new IllegalStateException()                      || HttpStatus.NOT_IMPLEMENTED
+            'root path'       | '/'       | new DataNodeNotFoundException('', '')            || HttpStatus.NOT_FOUND
             'already defined' | '/x-path' | new AlreadyDefinedException('', new Throwable()) || HttpStatus.CONFLICT
     }
 
