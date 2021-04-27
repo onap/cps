@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39ad38a1_7fc91d41",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "not sure about the new \u0027var\u0027 rule, should it be applied here?",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 21
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2651d52_eaa24c03",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "shouldn\u0027t need 2 different regex. I know we discussed it as an \u0027edge case\u0027 but that doesn\u0027t mean it need separate logic\nAS far as I can see the expression above works for both scenarios, maybe you are referring to a different kind of scenario?",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 100
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df2a7afb_61c626ac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "inconsistent use of builder method, see comments below",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 32
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa3b2c95_cf0f9c20",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "for consistency extract out\nsetParametersForDescendantAnywhere())",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56e106ec_a018d085",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "it is put an input parameter and output, this can be confusing, it is also used inconsistently now.\nI think it is time to clear this up. Since these method do NOT build a new objects I think it should be renamed and make them void, probably also make them instance based!\n\nprivate setParametersForSingleLeafValue(...)",
+      "range": {
+        "startLine": 111,
+        "startChar": 19,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caeaf99a_9b1a4d90",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "private setParametersForDescendantWithLeafValues",
+      "range": {
+        "startLine": 120,
+        "startChar": 19,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d88b1dc1_8d783a3b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "\u0027multiple list-ancestors\u0027\n\nalso add a scenario for normal-containers",
+      "range": {
+        "startLine": 188,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 31
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b85807f_16d7617b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "prefer the word top-level",
+      "range": {
+        "startLine": 189,
+        "startChar": 13,
+        "endLine": 189,
+        "endChar": 18
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "700de16c_4250227c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "remove \u0027Value\u0027",
+      "range": {
+        "startLine": 96,
+        "startChar": 92,
+        "endLine": 96,
+        "endChar": 97
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28e876a4_a0858639",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/query/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "I dont think I would use the word \u0027value\u0027 in any of tehse string (only when comparing lea-values I would use that)",
+      "range": {
+        "startLine": 96,
+        "startChar": 64,
+        "endLine": 96,
+        "endChar": 69
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d020201_168277b1",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-27T09:47:19Z",
+      "side": 1,
+      "message": "can we add the bookstore using model and json files instead?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 68
+      },
+      "revId": "bc065a9edf0be668f17fd2a4a8788f4275e22679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
