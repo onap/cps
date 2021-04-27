@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d92994d_95b14b53",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-27T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba366007_d261232c",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 14
+      },
+      "revId": "4bcdfe1eb2c8f1309f5aa0cbb1dd8d04aa660e71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37e34b9f_57b500f6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "4bcdfe1eb2c8f1309f5aa0cbb1dd8d04aa660e71",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3e6584d_3835613d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-04-27T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e34b9f_57b500f6",
+      "range": {
+        "startLine": 108,
+        "startChar": 17,
+        "endLine": 108,
+        "endChar": 95
+      },
+      "revId": "4bcdfe1eb2c8f1309f5aa0cbb1dd8d04aa660e71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
