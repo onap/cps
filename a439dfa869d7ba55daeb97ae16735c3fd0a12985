@@ -70,6 +70,30 @@
       "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77fe8bc7_86850183",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T14:15:24Z",
+      "side": 0,
+      "message": "the value of this test is to ensure that the exceptions are mapped to the correct http status. I had hope that as clear\nIt is really testing the logic in org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java. If that class has sufficient tets itself you are right this rest is redundant here...",
+      "parentUuid": "014ba9b7_819140bb",
+      "range": {
+        "startLine": 194,
+        "startChar": 13,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
