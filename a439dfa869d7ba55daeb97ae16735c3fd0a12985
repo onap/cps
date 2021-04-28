@@ -22,6 +22,30 @@
       "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771bb9c1_655e14fe",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T12:46:50Z",
+      "side": 0,
+      "message": "there 4 different exceptions get mapped to different hhtp status codes. That is what is being tested not variations of the exceptions themselves. \n(I checked there is test for both constructors for DataNodeNotFoundException in the service code)",
+      "parentUuid": "3814bff5_0dec47d1",
+      "range": {
+        "startLine": 194,
+        "startChar": 13,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
