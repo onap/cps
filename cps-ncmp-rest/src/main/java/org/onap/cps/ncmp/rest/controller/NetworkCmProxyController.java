@@ -57,9 +57,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
         @Valid final Boolean includeDescendants) {
-        if (XPATH_ROOT.equals(xpath)) {
-            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-        }
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = networkCmProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
