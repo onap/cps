@@ -125,14 +125,14 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
 
     @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere with %scenario '() {
+    def 'Cps Path query using descendant anywhere with #scenario '() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
             for(int i = 0; i<result.size(); i++) {
-                result[i].getXpath() == expectedXPaths[i]
+                assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
             scenario                                  | cpsPath             || expectedXPaths
@@ -142,33 +142,50 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
 
     @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere ends with yang list containing %scenario '() {
+    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a container element.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
             for(int i = 0; i<result.size(); i++) {
-                result[i].getXpath() == expectedXPaths[i]
+                assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                       | cpsPath                                                                          || expectedXPaths
-            'one attribute'                | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202','/parent-201/child-202']
-            'trailing "and" is ignored'    | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202','/parent-201/child-202']
-            'more than one attribute'      | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf value"]' || ['/parent-200/child-202']
-            'attributes reversed in order' | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
+            scenario                    | cpsPath                                                                          || expectedXPaths
+            'one leaf'                  | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202','/parent-201/child-202']
+            'trailing "and" is ignored' | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202','/parent-201/child-202']
+            'more than one leaf'        | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf value"]' || ['/parent-200/child-202']
+            'leaves reversed in order'  | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
+        then: 'the correct number of data nodes are retrieved'
+            result.size() == expectedXPaths.size()
+        and: 'xpaths of the retrieved data nodes are as expected'
+            for(int i = 0; i<result.size(); i++) {
+                assert result[i].getXpath() == expectedXPaths[i]
+            }
+        where: 'the following data is used'
+            scenario                               | cpsPath                                                || expectedXPaths
+            'one partial key leaf'                 | '//child-203[@key1="A"]'                               || ['/parent-201/child-203[@key1="A" and @key2=1]','/parent-201/child-203[@key1="A" and @key2=2]']
+            'one non key leaf'                     | '//child-203[@other-leaf="other value"]'               || ['/parent-201/child-203[@key1="A" and @key2=2]']
+            'mix of partial key and non key leaf'  | '//child-203[@key1="A" and @other-leaf="leaf value"]'  || ['/parent-201/child-203[@key1="A" and @key2=1]']
     }
 
     @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query error scenario using descendant anywhere ends with yang list containing %scenario '() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
+            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'exception is thrown'
             thrown(CpsPathException)
         where: 'the following data is used'
-            scenario                                  | cpsPath
-            'one of the attributes without value'     | '//child-202[@common-leaf-name-int=5 and @another-attribute"]'
-            'more than one attribute separated by or' | '//child-202[@common-leaf-name-int=5 or @common-leaf-name="common-leaf value"]'
+            scenario                             | cpsPath
+            'one of the leaf without value'      | '//child-202[@common-leaf-name-int=5 and @another-attribute"]'
+            'more than one leaf separated by or' | '//child-202[@common-leaf-name-int=5 or @common-leaf-name="common-leaf value"]'
     }
 }
