@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd9baf88_fa66f60d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T09:42:21Z",
+      "side": 1,
+      "message": "extract out (exactly the highlighted part)  REG_EX_FOR_OPTIONAL_LIST_INDEX to increase readability",
+      "range": {
+        "startLine": 185,
+        "startChar": 91,
+        "endLine": 185,
+        "endChar": 109
+      },
+      "revId": "1c778144eedf8712e75f0e8fc5600c0e923e1226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "331f96ae_05503832",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T09:42:21Z",
+      "side": 1,
+      "message": "var?",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 25
+      },
+      "revId": "1c778144eedf8712e75f0e8fc5600c0e923e1226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d29906d0_9d41ca8e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T09:42:21Z",
+      "side": 1,
+      "message": "no need to pass this in if you make the method instance based as I suggested before",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 39
+      },
+      "revId": "1c778144eedf8712e75f0e8fc5600c0e923e1226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbcc6832_fe6cf1ee",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T09:42:21Z",
+      "side": 1,
+      "message": "no need to pass this in if you make the method instance based as I suggested before",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 39
+      },
+      "revId": "1c778144eedf8712e75f0e8fc5600c0e923e1226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91555944_181d0e4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/query/CpsPathQuery.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T09:42:21Z",
+      "side": 1,
+      "message": "no need to pass this in if you make the method instance based as I suggested before",
+      "range": {
+        "startLine": 140,
+        "startChar": 82,
+        "endLine": 140,
+        "endChar": 113
+      },
+      "revId": "1c778144eedf8712e75f0e8fc5600c0e923e1226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
