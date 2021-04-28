@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "8cce9381_93519506",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-28T11:06:43Z",
+      "side": 1,
+      "message": "\"given parent\" is used always, no reason to notice it \nin a name of a private method.\nthere is no difference in logic for these methods \nexcept the returned value (single node or collection)\nand it\u0027s already reflected in the method name",
+      "parentUuid": "ca21f05c_9a55e640",
+      "range": {
+        "startLine": 148,
+        "startChar": 33,
+        "endLine": 148,
+        "endChar": 70
+      },
+      "revId": "15b13f280f1e1863f5403966890dc216902bee67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cfdf1f45_99210d20",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 1
