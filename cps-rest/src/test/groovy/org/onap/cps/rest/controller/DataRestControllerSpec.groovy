@@ -179,20 +179,19 @@ class DataRestControllerSpec extends Specification {
     def 'Get data node error scenario: #scenario.'() {
         given: 'the service throws an exception'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> { throw exception }
+            mockCpsDataService.getDataNode(dataspaceName, anchorName, 'some xpath', _) >> { throw exception }
         when: 'get request is performed through REST API'
             def response =
-                    mvc.perform(get(endpoint).param("xpath", xpath))
+                    mvc.perform(get(endpoint).param("xpath", 'some xpath'))
                             .andReturn().response
-        then: 'a success response is returned'
+        then: 'the a response with the correct http status  is returned'
             response.status == httpStatus.value()
         where:
-            scenario          | xpath     | exception                                        || httpStatus
-            'no dataspace'    | '/x-path' | new DataspaceNotFoundException('')               || HttpStatus.BAD_REQUEST
-            'no anchor'       | '/x-path' | new AnchorNotFoundException('', '')              || HttpStatus.BAD_REQUEST
-            'no data'         | '/x-path' | new DataNodeNotFoundException('', '', '')        || HttpStatus.NOT_FOUND
-            'root path'       | '/'       | new DataNodeNotFoundException('', '')            || HttpStatus.NOT_FOUND
-            'already defined' | '/x-path' | new AlreadyDefinedException('', new Throwable()) || HttpStatus.CONFLICT
+            scenario          | exception                                        || httpStatus
+            'no dataspace'    | new DataspaceNotFoundException('')               || HttpStatus.BAD_REQUEST
+            'no anchor'       | new AnchorNotFoundException('', '')              || HttpStatus.BAD_REQUEST
+            'no data'         | new DataNodeNotFoundException('', '', '')        || HttpStatus.NOT_FOUND
+            'already defined' | new AlreadyDefinedException('', new Throwable()) || HttpStatus.CONFLICT
     }
 
     @Unroll
@@ -206,16 +205,17 @@ class DataRestControllerSpec extends Specification {
                             patch(endpoint)
                                     .contentType(MediaType.APPLICATION_JSON)
                                     .content(jsonData)
-                                    .param('xpath', xpath)
+                                    .param('xpath', inputXpath)
                     ).andReturn().response
         then: 'the service method is invoked with expected parameters'
             1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonData)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
-            scenario               | xpath    | xpathServiceParameter
-            'root node by default' | ''       | '/'
-            'node by parent xpath' | '/xpath' | '/xpath'
+            scenario               | inputXpath    || xpathServiceParameter
+            'root node by default' | ''            || '/'
+            'root node by choice'  | '/'           || '/'
+            'some xpath by parent' | '/some/xpath' || '/some/xpath'
     }
 
     @Unroll
@@ -229,15 +229,16 @@ class DataRestControllerSpec extends Specification {
                             put(endpoint)
                                     .contentType(MediaType.APPLICATION_JSON)
                                     .content(jsonData)
-                                    .param('xpath', xpath))
+                                    .param('xpath', inputXpath))
                             .andReturn().response
         then: 'the service method is invoked with expected parameters'
             1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonData)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
-            scenario               | xpath    | xpathServiceParameter
-            'root node by default' | ''       | '/'
-            'node by parent xpath' | '/xpath' | '/xpath'
+            scenario               | inputXpath    || xpathServiceParameter
+            'root node by default' | ''            || '/'
+            'root node by choice'  | '/'           || '/'
+            'some xpath by parent' | '/some/xpath' || '/some/xpath'
     }
 }
