@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e808bb05_c6e681cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T16:02:43Z",
+      "side": 1,
+      "message": "very minor: double space here",
+      "range": {
+        "startLine": 80,
+        "startChar": 79,
+        "endLine": 80,
+        "endChar": 81
+      },
+      "revId": "87a0c87c4d263d69f1e42b8ce924c840210855e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51ac53a_93ebb3ee",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T16:02:43Z",
+      "side": 1,
+      "message": "change the order of this sentence somewhat:\n\nCps Path query using descendant anywhere with %scenario condition(s) for a container element.",
+      "range": {
+        "startLine": 145,
+        "startChar": 9,
+        "endLine": 145,
+        "endChar": 100
+      },
+      "revId": "87a0c87c4d263d69f1e42b8ce924c840210855e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c95bcb36_86dce0b9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T16:02:43Z",
+      "side": 1,
+      "message": "change the order of this sentence somewhat:\n\nCps Path query using descendant anywhere with %scenario condition(s) for a list element.",
+      "range": {
+        "startLine": 164,
+        "startChar": 9,
+        "endLine": 164,
+        "endChar": 95
+      },
+      "revId": "87a0c87c4d263d69f1e42b8ce924c840210855e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ff3d087_0cf5a95f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T16:02:43Z",
+      "side": 1,
+      "message": "you need \"assert\" here (because you are not in the and: block anymore but in a for loop), might get false positive otherwise. Leaf discovered this yesterday.\n\nIt might me change my mind on \u0027assert\u0027; it might be save to always put in in in case code to prevent someone accidently changing the context of the and not being aware that it now needs assert....",
+      "range": {
+        "startLine": 172,
+        "startChar": 16,
+        "endLine": 172,
+        "endChar": 57
+      },
+      "revId": "87a0c87c4d263d69f1e42b8ce924c840210855e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fade0b69_8be17f70",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-28T16:02:43Z",
+      "side": 1,
+      "message": "as discussed, we wil introduce bookstore model based testing for all cpsPath queries soon.\nNo need to spend much more time on these samples now (they are good as they are)",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 136
+      },
+      "revId": "87a0c87c4d263d69f1e42b8ce924c840210855e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
