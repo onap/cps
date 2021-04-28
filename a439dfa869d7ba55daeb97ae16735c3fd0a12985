@@ -46,6 +46,30 @@
       "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "014ba9b7_819140bb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-28T13:02:23Z",
+      "side": 0,
+      "message": "Yes, extra constructor test has been added. Don\u0027t see much point in this whole test. You can keep it, if you think this adds value.",
+      "parentUuid": "771bb9c1_655e14fe",
+      "range": {
+        "startLine": 194,
+        "startChar": 13,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
