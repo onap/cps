@@ -76,8 +76,9 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchor") int anchorId,
                                                                  @Param("descendantName") String descendantName);
 
-    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE CONCAT('%/',:descendantName) "
-        + "AND attributes @>  :leafDataAsJson\\:\\:jsonb", nativeQuery = true)
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND (xpath LIKE CONCAT('%/',:descendantName) OR "
+        + "xpath LIKE CONCAT('%/', :descendantName,'\\[@%]')) AND attributes @> :leafDataAsJson\\:\\:jsonb",
+        nativeQuery = true)
     // Above query will match the anchor id, last descendant name and all parameters passed into leafDataASJson with the
     // attribute values of the requested data node eg: {"leaf_name":"value", "another_leaf_name":"another value"}​​​​​​
     List<FragmentEntity> getByAnchorAndDescendentNameAndLeafValues(@Param("anchor") int anchorId,
