@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac03ccbd_f83cdb03",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-04-29T12:53:18Z",
+      "side": 1,
+      "message": "replace multiple requests to database with single one\n\nhere should be\n```\nfragmentEntities \u003d fragmentRepository.\n     findAllByAnchorAndXpathIn(anchorEntity, anchestorXpaths)\n```\n(new method to be added to repository)\nreplaceFragmentEntitiesWithUniqueAncestors() method to remove",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 116
+      },
+      "revId": "51ecaead8d6461c1d7e3c18d7d5a4b413ef9337b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
