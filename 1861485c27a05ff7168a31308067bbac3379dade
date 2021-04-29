@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c157328e_ef253f87",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-29T16:08:11Z",
+      "side": 1,
+      "message": "add a test for ancestor with parent\ndata: a/b/c/d\nquery: //d[@something]::ancestor::a/b",
+      "range": {
+        "startLine": 183,
+        "startChar": 52,
+        "endLine": 183,
+        "endChar": 92
+      },
+      "revId": "1861485c27a05ff7168a31308067bbac3379dade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e780699_e6f3ac74",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-29T16:08:11Z",
+      "side": 1,
+      "message": "instead of code-1 and code-2 use 2 different \"things\" e.g \"books\" \u0026 \"magazines\"",
+      "range": {
+        "startLine": 36,
+        "startChar": 35,
+        "endLine": 36,
+        "endChar": 41
+      },
+      "revId": "1861485c27a05ff7168a31308067bbac3379dade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
