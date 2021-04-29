@@ -94,6 +94,30 @@
       "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea011f2_8ec5f3d1",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-29T09:37:22Z",
+      "side": 0,
+      "message": "Based on your feedback and teh fact that test test are in the wrong place I double checked and you are right these test are completely redundant all is tested/covered in the CpsRestExceptionHandlerSpec.\n\nWill remove this now",
+      "parentUuid": "77fe8bc7_86850183",
+      "range": {
+        "startLine": 194,
+        "startChar": 13,
+        "endLine": 194,
+        "endChar": 116
+      },
+      "revId": "a439dfa869d7ba55daeb97ae16735c3fd0a12985",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
