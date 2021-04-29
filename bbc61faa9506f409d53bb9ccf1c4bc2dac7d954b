@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "655fa2b8_27a6640b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-29T12:39:22Z",
+      "side": 1,
+      "message": "it would affect each individual query (as ancestor can be applied to each (future) query.\nAlso I have seen a preliminary version of the SQL as well and it looked very complex... (bug prone, hard to maintain)",
+      "parentUuid": "10de6946_b8a3dc6d",
+      "range": {
+        "startLine": 166,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 116
+      },
+      "revId": "bbc61faa9506f409d53bb9ccf1c4bc2dac7d954b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2ce393d0_a909df63",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 4
@@ -93,6 +117,30 @@
       "revId": "bbc61faa9506f409d53bb9ccf1c4bc2dac7d954b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "125cb600_e044d3a6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-29T12:39:22Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "2ce393d0_a909df63",
+      "range": {
+        "startLine": 109,
+        "startChar": 48,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "bbc61faa9506f409d53bb9ccf1c4bc2dac7d954b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
