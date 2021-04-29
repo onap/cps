@@ -47,7 +47,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @WebMvcTest
 class AdminRestControllerSpec extends Specification {
@@ -171,7 +170,6 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
     }
 
-    @Unroll
     def 'Create schema set from zip archive having #caseDescriptor.'() {
         given: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
@@ -206,7 +204,6 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.BAD_REQUEST.value()
     }
 
-    @Unroll
     def 'Create schema set from #fileType file with IOException occurrence on processing.'() {
         given: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"

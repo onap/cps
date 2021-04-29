@@ -16,7 +16,7 @@
         <cglib-nodep.version>3.1</cglib-nodep.version>
         <commons-codec.version>1.15</commons-codec.version>
         <commons-lang3.version>3.11</commons-lang3.version>
-        <groovy.version>3.0.6</groovy.version>
+        <groovy.version>3.0.8</groovy.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <liquibase.version>4.3.1</liquibase.version>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
@@ -24,8 +24,8 @@
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <modelmapper.version>2.3.8</modelmapper.version>
         <sonar.skip>true</sonar.skip>
-        <spock-core.version>2.0-M2-groovy-3.0</spock-core.version>
-        <spock-spring.version>1.3-groovy-2.5</spock-spring.version>
+        <spock-core.version>2.0-M5-groovy-3.0</spock-core.version>
+        <spock-spring.version>2.0-M5-groovy-3.0</spock-spring.version>
         <spotbugs.version>4.2.0</spotbugs.version>
         <springboot.version>2.3.8.RELEASE</springboot.version>
         <springboot.cloud.version>Hoxton.SR9</springboot.cloud.version>
@@ -95,6 +95,11 @@
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-json</artifactId>
                 <version>${groovy.version}</version>
             </dependency>
             <dependency>

@@ -30,7 +30,6 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -89,7 +88,6 @@ class CpsDataServiceImplSpec extends Specification {
                     { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
     }
 
-    @Unroll
     def 'Get data node with option #fetchDescendantsOption.'() {
         def xpath = '/xpath'
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
@@ -101,7 +99,6 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
-    @Unroll
     def 'Update data node leaves: #scenario.'() {
         given: 'that the admin service will return an anchor'
             def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
@@ -123,7 +120,6 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'  | '/test-tree/branch[@name=\'Name\']' | ['name': 'Name']
     }
 
-    @Unroll
     def 'Replace data node: #scenario.'() {
         given: 'that the admin service will return an anchor'
             def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()

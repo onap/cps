@@ -48,7 +48,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @WebMvcTest
 class DataRestControllerSpec extends Specification {
@@ -90,7 +89,6 @@ class DataRestControllerSpec extends Specification {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
     }
 
-    @Unroll
     def 'Create a node: #scenario.'() {
         given: 'some json to create a data node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
@@ -133,7 +131,6 @@ class DataRestControllerSpec extends Specification {
             1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, json)
     }
 
-    @Unroll
     def 'Get data node with leaves'() {
         given: 'the service returns data node leaves'
             def xpath = 'some xPath'
@@ -151,7 +148,6 @@ class DataRestControllerSpec extends Specification {
             response.contentAsString.contains('"leafList":["leaveListElement1","leaveListElement2"]')
     }
 
-    @Unroll
     def 'Get data node with #scenario.'() {
         given: 'the service returns data node with #scenario'
             def xpath = 'some xPath'
@@ -174,8 +170,7 @@ class DataRestControllerSpec extends Specification {
             'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false
             'with descendants'          | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true
     }
-    
-    @Unroll
+
     def 'Update data node leaves: #scenario.'() {
         given: 'json data'
             def jsonData = 'json data'
@@ -199,7 +194,6 @@ class DataRestControllerSpec extends Specification {
             'some xpath by parent' | '/some/xpath' || '/some/xpath'
     }
 
-    @Unroll
     def 'Replace data node tree: #scenario.'() {
         given: 'json data'
             def jsonData = 'json data'

@@ -26,7 +26,6 @@ import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class YangUtilsSpec extends Specification {
     def 'Parsing a valid Json String.'() {
@@ -41,7 +40,6 @@ class YangUtilsSpec extends Specification {
             result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
     }
 
-    @Unroll
     def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
@@ -57,7 +55,6 @@ class YangUtilsSpec extends Specification {
             '{" }'                                            | 'json with syntax exception'
     }
 
-    @Unroll
     def 'Parsing json data fragment by xpath for #scenario.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
@@ -73,7 +70,6 @@ class YangUtilsSpec extends Specification {
             'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
-    @Unroll
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')

@@ -22,8 +22,6 @@ package org.onap.cps.api.impl
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import spock.lang.Specification
-import spock.lang.Unroll
-
 
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -34,7 +32,6 @@ class CpsQueryServiceImplSpec extends Specification {
         objectUnderTest.cpsDataPersistenceService = mockCpsDataPersistenceService
     }
 
-    @Unroll
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
             def dataspaceName = 'some dataspace'

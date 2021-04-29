@@ -38,7 +38,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @WebMvcTest
 class QueryRestControllerSpec extends Specification {
@@ -64,7 +63,6 @@ class QueryRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    @Unroll
     def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
             def dataNode = new DataNodeBuilder().withXpath('/xpath').build()

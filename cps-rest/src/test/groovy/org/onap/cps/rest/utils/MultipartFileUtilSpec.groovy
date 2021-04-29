@@ -26,7 +26,6 @@ import org.onap.cps.utils.DataMapUtils
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class MultipartFileUtilSpec extends Specification {
 
@@ -61,7 +60,6 @@ class MultipartFileUtilSpec extends Specification {
             assert result["component.yang"] == "fake component content 1\n"
     }
 
-    @Unroll
     def 'Extract resources from zip archive having #caseDescriptor.'() {
         when: 'attempt to extract resources from zip file is performed'
             MultipartFileUtil.extractYangResourcesMap(multipartFile)
@@ -82,7 +80,6 @@ class MultipartFileUtilSpec extends Specification {
             thrown(ModelValidationException)
     }
 
-    @Unroll
     def 'IOException thrown during yang resources extraction from #fileType file.'() {
         when: 'attempt to extract resources from the file is performed'
             MultipartFileUtil.extractYangResourcesMap(multipartFileForIOException(fileType))

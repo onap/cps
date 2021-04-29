@@ -28,7 +28,6 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Unroll
 
 class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
@@ -72,7 +71,6 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             anchor.schemaSetName == SCHEMA_SET_NAME1
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Create anchor error scenario: #scenario.'() {
         when: 'attempt to create new anchor named #anchorName in dataspace #dataspaceName with #schemaSetName'
@@ -86,7 +84,6 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'anchor already exists'     | DATASPACE_NAME | SCHEMA_SET_NAME1 | ANCHOR_NAME1   || AlreadyDefinedException
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get anchor error scenario: #scenario.'() {
         when: 'attempt to get anchor named #anchorName in dataspace #dataspaceName'
@@ -99,7 +96,6 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get all anchors in dataspace #dataspaceName.'() {
         when: 'all anchors are retrieved from #DATASPACE_NAME'
@@ -131,7 +127,6 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert fragmentRepository.findById(DELETED_FRAGMENT_ID).isEmpty()
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'delete anchor error scenario: #scenario'(){
         when: 'delete anchor attempt is performed'

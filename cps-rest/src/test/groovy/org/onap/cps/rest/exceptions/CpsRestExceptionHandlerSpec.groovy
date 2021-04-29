@@ -48,7 +48,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @WebMvcTest
 class CpsRestExceptionHandlerSpec extends Specification {
@@ -121,7 +120,6 @@ class CpsRestExceptionHandlerSpec extends Specification {
                     "Anchor with name ${existingObjectName} already exists for ${dataspaceName}.")
     }
 
-    @Unroll
     def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)
@@ -134,7 +132,6 @@ class CpsRestExceptionHandlerSpec extends Specification {
                                 new CpsPathException(errorMessage, errorDetails)]
     }
 
-    @Unroll
     def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {
         when: 'CPS validation exception is thrown by the service'
             setupTestException(exceptionThrown)

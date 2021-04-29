@@ -32,7 +32,6 @@ import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Unroll
 
 class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
 
@@ -66,7 +65,6 @@ class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
         dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Store schema set error scenario: #scenario.'() {
         when: 'attempt to store schema set #schemaSetName in dataspace #dataspaceName'
@@ -149,7 +147,6 @@ class CpsModulePersistenceServiceSpec extends CpsPersistenceSpecBase {
             sharedResourceIds.each {yangResourceRepository.findById(it).isPresent() }
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete schema set error scenario: #scenario.'() {
         when: 'attempt to delete a schema set where #scenario'
