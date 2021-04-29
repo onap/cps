@@ -34,7 +34,6 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Unroll
 
 import javax.validation.ConstraintViolationException
 
@@ -107,7 +106,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             fragment2.xpath == xpath
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Store datanode error scenario: #scenario.'() {
         when: 'attempt to store a data node with #scenario'
@@ -138,7 +136,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             parentFragment.getChildFragments().find({ it.xpath == newChild.xpath })
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add child error scenario: #scenario.'() {
         when: 'attempt to add a child data node with #scenario'
@@ -167,7 +164,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         return fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspace, anchor, xpath).orElseThrow()
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath without descendants.'() {
         when: 'data node is requested'
@@ -185,7 +181,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'empty xpath'                 |''
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants.'() {
         when: 'data node is requested with all descendants'
@@ -199,7 +194,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert mappedResult.get('/parent-100/child-002').getChildDataNodes().size() == 1
         and: 'extracted leaves maps are matching expected'
             mappedResult.forEach(
-                    (inputXPath, dataNode) -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[inputXPath]))
+                    (xPath, dataNode) -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xPath]))
         where: 'the following data is used'
             scenario                      | inputXPath
             'some xpath'                  |'/parent-100'
@@ -228,7 +223,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         return flatMap
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node error scenario: #scenario.'() {
         when: 'attempt to get data node with #scenario'
@@ -259,7 +253,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert childLeaves.'leaf-value' == 'original'
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data leaves error scenario: #scenario.'() {
         when: 'attempt to update data node for #scenario'
@@ -312,7 +305,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert childLeaves.'leaf-value' == 'original'
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Replace data node tree error scenario: #scenario.'() {
         given: 'data node object'

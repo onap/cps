@@ -22,13 +22,11 @@ package org.onap.cps.spi.query
 
 import org.onap.cps.spi.exceptions.CpsPathException
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class CpsPathQuerySpec extends Specification {
 
     def objectUnderTest = new CpsPathQuery()
 
-    @Unroll
     def 'Parse cps path with valid cps path and a filter with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.createFrom(cpsPath)
@@ -46,7 +44,6 @@ class CpsPathQuerySpec extends Specification {
             'key in top container' | '/parent[@common-leaf-name-int=5]'                       || '/parent'           |'common-leaf-name-int'  | 5
     }
 
-    @Unroll
     def 'Parse cps path of type ends with a #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.createFrom(cpsPath)
@@ -60,7 +57,6 @@ class CpsPathQuerySpec extends Specification {
             'parent & child' | '//parent/child'         || 'parent/child'
     }
 
-    @Unroll
     def 'Parse cps path that ends with a yang list containing #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.createFrom(cpsPath)
@@ -75,7 +71,6 @@ class CpsPathQuerySpec extends Specification {
             'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' ||  2
     }
 
-    @Unroll
     def 'Parse cps path with #scenario.'() {
         when: 'the given cps path is parsed'
             objectUnderTest.createFrom(cpsPath)
@@ -93,7 +88,6 @@ class CpsPathQuerySpec extends Specification {
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
     }
 
-    @Unroll
     def 'Convert cps leaf value to valid type with leaf of type #scenario.'() {
         when: 'the given leaf value is converted'
             def result = objectUnderTest.convertLeafValueToCorrectType(leafValueInputString, 'source xPath (for error message only)')

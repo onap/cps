@@ -34,7 +34,6 @@ import org.springframework.cache.caffeine.CaffeineCacheManager
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-import spock.lang.Unroll
 
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
@@ -95,7 +94,6 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
     }
 
-    @Unroll
     def 'Delete set by name and dataspace with #cascadeDeleteOption.'() {
         when: 'schema set deletion is requested'
             objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)

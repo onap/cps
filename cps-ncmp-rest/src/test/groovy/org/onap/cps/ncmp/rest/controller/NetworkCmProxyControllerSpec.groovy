@@ -39,7 +39,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @WebMvcTest
 class NetworkCmProxyControllerSpec extends Specification {
@@ -62,7 +61,6 @@ class NetworkCmProxyControllerSpec extends Specification {
     def cmHandle = 'some handle'
     def xpath = 'some xpath'
 
-    @Unroll
     def 'Query data node by cps path for the given cm handle with #scenario.'() {
         given: 'service method returns a list containing a data node'
             def dataNode = new DataNodeBuilder().withXpath('/xpath').build()
@@ -86,7 +84,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
     }
 
-    @Unroll
     def 'Create data node: #scenario.'() {
         given: 'json data'
             def jsonData = 'json data'

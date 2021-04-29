@@ -24,11 +24,9 @@ import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class YangTextSchemaSourceSetSpec extends Specification {
 
-    @Unroll
     def 'Building a valid YangTextSchemaSourceSet using #filenameCase filename.'() {
         given: 'a yang model (file)'
             def yangResourceNameToContent = [filename: TestUtils.getResourceFileContent('bookstore.yang')]
@@ -44,7 +42,6 @@ class YangTextSchemaSourceSetSpec extends Specification {
             'RFC-6020 recommended' | 'bookstore-test@2020-09-15.YANG'
     }
 
-    @Unroll
     def 'Building YangTextSchemaSourceSet error case: #description.'() {
         given: 'a file with #description'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(filename)

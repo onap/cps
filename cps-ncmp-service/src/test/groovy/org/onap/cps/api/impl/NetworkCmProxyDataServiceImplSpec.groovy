@@ -25,7 +25,6 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl
 import org.onap.cps.spi.FetchDescendantsOption
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
     def objectUnderTest = new NetworkCmProxyDataServiceImpl()
@@ -51,7 +50,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
-    @Unroll
     def 'Create full data node: #scenario.'() {
         given: 'a cm handle and root xpath'
             def jsonData = 'some json'

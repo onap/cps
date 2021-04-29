@@ -30,7 +30,6 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Unroll
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -78,7 +77,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     }
 
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query for single leaf value with type: #type.'() {
         when: 'a query is executed to get a data node by the given cps path'
@@ -94,7 +92,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'Integer and descendants'   | '/parent-200/child-202[@common-leaf-name-int=5]'                 | INCLUDE_ALL_DESCENDANTS  || 1
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
         when: 'a query is executed to get datanodes for the given cps path'
@@ -108,7 +105,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'incomplete end of xpath prefix'   | '/parent-200/child-20[@common-leaf-name-int=5]'
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
@@ -123,7 +119,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'include' | INCLUDE_ALL_DESCENDANTS  || 1
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere with %scenario '() {
         when: 'a query is executed to get a data node by the given cps path'
@@ -140,7 +135,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202','/parent-201/child-202']
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere ends with yang list containing %scenario '() {
         when: 'a query is executed to get a data node by the given cps path'
@@ -159,7 +153,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'attributes reversed in order' | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
     }
 
-    @Unroll
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query error scenario using descendant anywhere ends with yang list containing %scenario '() {
         when: 'a query is executed to get a data node by the given cps path'
