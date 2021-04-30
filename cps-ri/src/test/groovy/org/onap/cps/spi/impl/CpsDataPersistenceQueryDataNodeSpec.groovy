@@ -35,21 +35,21 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static final String SET_DATA = '/data/fragment.sql'
+    static final String SET_DATA = '/data/CpsPathQuery.sql'
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query for single leaf value with type: #type.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_NAME3, cpsPath, includeDescendantsOption)
         then: 'the correct data is returned'
-            def leaves = '[common-leaf-name:common-leaf value, common-leaf-name-int:5.0]'
+            def leaves = '[id:1.0, volume:6]'
             DataNode dataNode = result.stream().findFirst().get()
             dataNode.getLeaves().toString() == leaves
             dataNode.getChildDataNodes().size() == expectedNumberOfChidlNodes
         where: 'the following data is used'
-            type                        | cpsPath                                                          | includeDescendantsOption || expectedNumberOfChidlNodes
-            'String and no descendants' | '/parent-200/child-202[@common-leaf-name=\'common-leaf value\']' | OMIT_DESCENDANTS         || 0
-            'Integer and descendants'   | '/parent-200/child-202[@common-leaf-name-int=5]'                 | INCLUDE_ALL_DESCENDANTS  || 1
+            type                        | cpsPath                            | includeDescendantsOption || expectedNumberOfChidlNodes
+            'String and no descendants' | '/bookstore/bookID[@volume=\'6\']' | OMIT_DESCENDANTS         || 0
+            'Integer and descendants'   | '/bookstore/bookID[@id=1]'         | INCLUDE_ALL_DESCENDANTS  || 2
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -60,15 +60,15 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             result.isEmpty()
         where: 'following cps queries are performed'
             scenario                         | cpsPath
-            'cps path is incomplete'         | '/parent-200[@common-leaf-name-int=5]'
-            'leaf value does not exist'      | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
-            'incomplete end of xpath prefix' | '/parent-200/child-20[@common-leaf-name-int=5]'
+            'cps path is incomplete'         | '/bookstore[@volume=\'6\']'
+            'leaf value does not exist'      | '/bookstore/bookID[@volume=\'does not exist\']'
+            'incomplete end of xpath prefix' | '/bookstore/book[@id=1]'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def cpsPath = '//child-202'
+            def cpsPath = '//bookID'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, includeDescendantsOption)
         then: 'the data node has the correct number of children'
             DataNode dataNode = result.stream().findFirst().get()
@@ -76,7 +76,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             type      | includeDescendantsOption || expectedNumberOfChildNodes
             'omit'    | OMIT_DESCENDANTS         || 0
-            'include' | INCLUDE_ALL_DESCENDANTS  || 1
+            'include' | INCLUDE_ALL_DESCENDANTS  || 2
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -90,9 +90,9 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                                  | cpsPath             || expectedXPaths
-            'fully unique descendant name'            | '//grand-child-202' || ['/parent-200/child-202/grand-child-202']
-            'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202', '/parent-201/child-202']
+            scenario                                  | cpsPath    || expectedXPaths
+            'fully unique descendant name'            | '//bookID' || ['/bookstore/bookID']
+            'descendant name match end of other node' | '//book'   || ['/bookstore/bookID/categories[@genre="Kids"]/book', '/bookstore/bookID/categories[@genre="SciFi"]/book']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -100,17 +100,15 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'the correct number of data nodes are retrieved'
-            result.size() == expectedXPaths.size()
+            result.size() == 1
         and: 'xpaths of the retrieved data nodes are as expected'
-            for (int i = 0; i < result.size(); i++) {
-                assert result[i].getXpath() == expectedXPaths[i]
-            }
+            assert result[0].getXpath() == '/bookstore/bookID/categories[@genre="Kids"]/book'
         where: 'the following data is used'
-            scenario                    | cpsPath                                                                          || expectedXPaths
-            'one leaf'                  | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202','/parent-201/child-202']
-            'trailing "and" is ignored' | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202','/parent-201/child-202']
-            'more than one leaf'        | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf value"]' || ['/parent-200/child-202']
-            'leaves reversed in order'  | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
+            scenario                    | cpsPath
+            'one leaf'                  | '//book[@genre="Kids"]'
+            'trailing "and" is ignored' | '//book[@genre="Kids" and]'
+            'more than one leaf'        | '//book[@genre="Kids" and @id=1]'
+            'leaves reversed in order'  | '//book[@id=1 and @genre="Kids"]'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -118,16 +116,15 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, OMIT_DESCENDANTS)
         then: 'the correct number of data nodes are retrieved'
-            result.size() == expectedXPaths.size()
+            def expectedXpaths = '/bookstore/bookID/categories[@genre="Kids"]/book/info[@title="The Golden Compass" and @price=15]'
+            result.size() == 1
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
-                assert result[i].getXpath() == expectedXPaths[i]
-            }
+            assert result[0].getXpath() == expectedXpaths
         where: 'the following data is used'
-            scenario                               | cpsPath                                                || expectedXPaths
-            'one partial key leaf'                 | '//child-203[@key1="A"]'                               || ['/parent-201/child-203[@key1="A" and @key2=1]','/parent-201/child-203[@key1="A" and @key2=2]']
-            'one non key leaf'                     | '//child-203[@other-leaf="other value"]'               || ['/parent-201/child-203[@key1="A" and @key2=2]']
-            'mix of partial key and non key leaf'  | '//child-203[@key1="A" and @other-leaf="leaf value"]'  || ['/parent-201/child-203[@key1="A" and @key2=1]']
+            scenario                              | cpsPath
+            'one partial key leaf'                | '//info[@title="The Golden Compass"]'
+            'one non key leaf'                    | '//info[@price=15]'
+            'mix of partial key and non key leaf' | '//info[@title="The Golden Compass" and @price=15]'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -138,27 +135,27 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             thrown(CpsPathException)
         where: 'the following data is used'
             scenario                             | cpsPath
-            'one of the leaf without value'      | '//child-202[@common-leaf-name-int=5 and @another-attribute"]'
-            'more than one leaf separated by or' | '//child-202[@common-leaf-name-int=5 or @common-leaf-name="common-leaf value"]'
+            'one of the leaf without value'      | '//info[@title="The Golden Compass" and @price=]'
+            'more than one leaf separated by or' | '//info[@title="The Golden Compass" or @price=15]'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
         when: 'the given cps path is parsed'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_NAME1, cpsPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, cpsPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the xpaths of the retrieved data nodes are as expected'
             result.size() == expectedXPaths.size()
             for (int i = 0; i < result.size(); i++) {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                                  | cpsPath                                                || expectedXPaths
-            'multiple list-ancestors'                   | '//books/ancestor::categories'                         || ['/bookstore/books/categories[@name="SciFi"]', '/bookstore/magazines/categories[@name="kids"]']
-            'one ancestor value'                        | '//books/ancestor::books'                              || ['/bookstore/books']
-            'top ancestor'                              | '//books/ancestor::bookstore'                          || ['/bookstore']
-            'list with index value in the xpath prefix' | '//categories[@name="kids"]/books/ancestor::bookstore' || ['/bookstore']
-            'ancestor with parent'                      | '//books/ancestor::/bookstore/magazines'               || ['/bookstore/magazines']
-            'ancestor with parent that does not exist'  | '//books/ancestor::/parentDoesNoExist/magazines'       || []
-            'ancestor does not exist'                   | '//books/ancestor::ancestorDoesNotExist'               || []
+            scenario                                    | cpsPath                                                 || expectedXPaths
+            'multiple list-ancestors'                   | '//book/ancestor::categories'                           || ['/bookstore/bookID/categories[@genre="Kids"]', '/bookstore/bookID/categories[@genre="SciFi"]']
+            'one ancestor value'                        | '//book/ancestor::bookID'                               || ['/bookstore/bookID']
+            'top ancestor'                              | '//book/ancestor::bookstore'                            || ['/bookstore']
+            'list with index value in the xpath prefix' | '//categories[@genre="SciFi"]/book/ancestor::bookstore' || ['/bookstore']
+            'ancestor with parent'                      | '//book/ancestor::bookID/categories'                    || ['/bookstore/bookID/categories[@genre="Kids"]', '/bookstore/bookID/categories[@genre="SciFi"]']
+            'ancestor with parent that does not exist'  | '//book/ancestor::/parentDoesNoExist/bookID'            || []
+            'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'                 || []
     }
 }
