@@ -128,7 +128,7 @@ public class DataNodeBuilder {
         if (normalizedNodeTree != null) {
             return buildCollectionFromNormalizedNodeTree();
         } else {
-            return ImmutableSet.of(buildFromAttributes());
+            return Set.of(buildFromAttributes());
         }
     }
 
