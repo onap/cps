@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4001016d_8005fd16",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-30T08:26:04Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 56,
+        "endChar": 0
+      },
+      "revId": "f932c1c8646b25fce7cf48998e434ad002cfb2b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67d0052c_36ff5e4f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-04-30T08:26:04Z",
+      "side": 1,
+      "message": "duplicate, extract out common base class",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "f932c1c8646b25fce7cf48998e434ad002cfb2b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
