@@ -202,27 +202,6 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'empty xpath'                 |''
     }
 
-    def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
-        expectedLeavesMap.forEach((key, value) -> {
-            def actualValue = actualLeavesMap[key]
-            if (value instanceof Collection<?> && actualValue instanceof Collection<?>) {
-                assert value.size() == actualValue.size()
-                assert value.containsAll(actualValue)
-            } else {
-                assert value == actualValue
-            }
-        }
-        )
-        return true
-    }
-
-    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
-        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
-        dataNodeTree.getChildDataNodes()
-                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
-        return flatMap
-    }
-
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node error scenario: #scenario.'() {
         when: 'attempt to get data node with #scenario'
@@ -327,4 +306,25 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
     }
+
+    def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
+        expectedLeavesMap.forEach((key, value) -> {
+            def actualValue = actualLeavesMap[key]
+            if (value instanceof Collection<?> && actualValue instanceof Collection<?>) {
+                assert value.size() == actualValue.size()
+                assert value.containsAll(actualValue)
+            } else {
+                assert value == actualValue
+            }
+        })
+        return true
+    }
+
+    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
+        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
+        dataNodeTree.getChildDataNodes()
+            .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
+        return flatMap
+    }
+
 }
