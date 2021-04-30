@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69207198_ada0e4e5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-04-30T08:01:49Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 11
+      },
+      "revId": "7bfab0786a464485cc82f941f978d2156bce189b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
