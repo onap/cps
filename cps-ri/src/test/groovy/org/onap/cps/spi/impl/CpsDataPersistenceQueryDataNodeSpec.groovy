@@ -20,14 +20,10 @@
  */
 package org.onap.cps.spi.impl
 
-import com.google.common.collect.ImmutableSet
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -39,42 +35,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static final Gson GSON = new GsonBuilder().create()
-
     static final String SET_DATA = '/data/fragment.sql'
-    static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
-
-    static DataNode existingDataNode
-    static DataNode existingChildDataNode
-
-    def expectedLeavesByXpathMap = [
-            '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
-            '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
-            '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
-            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
-    ]
-
-    static {
-        existingDataNode = createDataNodeTree(XPATH_DATA_NODE_WITH_DESCENDANTS)
-        existingChildDataNode = createDataNodeTree('/parent-1/child-1')
-    }
-
-    static def createDataNodeTree(String... xpaths) {
-        def dataNodeBuilder = new DataNodeBuilder().withXpath(xpaths[0])
-        if (xpaths.length > 1) {
-            def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
-            def childDataNode = createDataNodeTree(xPathsDescendant)
-            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode))
-        }
-        dataNodeBuilder.build()
-    }
-
-    def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
-        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
-        dataNodeTree.getChildDataNodes()
-                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
-        return flatMap
-    }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query for single leaf value with type: #type.'() {
@@ -98,10 +59,10 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'no data is returned'
             result.isEmpty()
         where: 'following cps queries are performed'
-            scenario                           | cpsPath
-            'cps path is incomplete'           | '/parent-200[@common-leaf-name-int=5]'
-            'leaf value does not exist'        | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
-            'incomplete end of xpath prefix'   | '/parent-200/child-20[@common-leaf-name-int=5]'
+            scenario                         | cpsPath
+            'cps path is incomplete'         | '/parent-200[@common-leaf-name-int=5]'
+            'leaf value does not exist'      | '/parent-200/child-202[@common-leaf-name=\'does not exist\']'
+            'incomplete end of xpath prefix' | '/parent-200/child-20[@common-leaf-name-int=5]'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -125,13 +86,13 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
+            for (int i = 0; i < result.size(); i++) {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
             scenario                                  | cpsPath             || expectedXPaths
             'fully unique descendant name'            | '//grand-child-202' || ['/parent-200/child-202/grand-child-202']
-            'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202','/parent-201/child-202']
+            'descendant name match end of other node' | '//child-202'       || ['/parent-200/child-202', '/parent-201/child-202']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -141,7 +102,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
+            for (int i = 0; i < result.size(); i++) {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
@@ -179,5 +140,25 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             scenario                             | cpsPath
             'one of the leaf without value'      | '//child-202[@common-leaf-name-int=5 and @another-attribute"]'
             'more than one leaf separated by or' | '//child-202[@common-leaf-name-int=5 or @common-leaf-name="common-leaf value"]'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Query for attribute by cps path of type ancestor with #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_NAME1, cpsPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the xpaths of the retrieved data nodes are as expected'
+            result.size() == expectedXPaths.size()
+            for (int i = 0; i < result.size(); i++) {
+                assert result[i].getXpath() == expectedXPaths[i]
+            }
+        where: 'the following data is used'
+            scenario                                  | cpsPath                                                || expectedXPaths
+            'multiple list-ancestors'                   | '//books/ancestor::categories'                         || ['/bookstore/books/categories[@name="SciFi"]', '/bookstore/magazines/categories[@name="kids"]']
+            'one ancestor value'                        | '//books/ancestor::books'                              || ['/bookstore/books']
+            'top ancestor'                              | '//books/ancestor::bookstore'                          || ['/bookstore']
+            'list with index value in the xpath prefix' | '//categories[@name="kids"]/books/ancestor::bookstore' || ['/bookstore']
+            'ancestor with parent'                      | '//books/ancestor::/bookstore/magazines'               || ['/bookstore/magazines']
+            'ancestor with parent that does not exist'  | '//books/ancestor::/parentDoesNoExist/magazines'       || []
+            'ancestor does not exist'                   | '//books/ancestor::ancestorDoesNotExist'               || []
     }
 }
