@@ -60,5 +60,5 @@ class CpsPersistenceSpecBase extends Specification {
     static final String ANCHOR_NAME2 = 'ANCHOR-002'
     static final String ANCHOR_NAME3 = 'ANCHOR-003'
     static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
-
+    static final String ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
 }
