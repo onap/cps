@@ -42,7 +42,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final Gson GSON = new GsonBuilder().create();
-    private static final String XPATH_ROOT = "/";
 
     @Autowired
     private NetworkCmProxyDataService networkCmProxyDataService;
