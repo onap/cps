@@ -63,7 +63,7 @@ public class CpsPathQuery {
     private static final Pattern DESCENDANT_ANYWHERE_PATTERN_WITH_MULTIPLE_LEAF_PATTERN =
         Pattern.compile(DESCENDANT_ANYWHERE_PATTERN + YANG_MULTIPLE_LEAF_VALUE_EQUALS_CONDITION);
 
-    private static final String INDIVIDUAL_LEAF_DETAIL_PATTERN = ("\\s{0,9}and\\s{0,9}");
+    private static final String INDIVIDUAL_LEAF_DETAIL_PATTERN = ("\\s{1,9}and\\s{1,9}");
 
     private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*)");
 

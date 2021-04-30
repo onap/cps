@@ -32,12 +32,3 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4207, 1001, 3003, 4206, '/parent-201/child-202', '{"common-leaf-name": "common-leaf other value", "common-leaf-name-int" : 5}'),
     (4208, 1001, 3003, 4206, '/parent-201/child-203[@key1="A" and @key2=1]', '{"key1": "A", "key2" : 1, "other-leaf" : "leaf value"}'),
     (4209, 1001, 3003, 4206, '/parent-201/child-203[@key1="A" and @key2=2]', '{"key1": "A", "key2" : 2, "other-leaf" : "other value"}');
-
-INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
-    (1, 1001, 3001, null, '/bookstore'),
-    (2, 1001, 3001, 1, '/bookstore/books'),
-    (3, 1001, 3001, 1, '/bookstore/magazines'),
-    (4, 1001, 3001, 2, '/bookstore/books/categories[@name="SciFi"]'),
-    (5, 1001, 3001, 3, '/bookstore/magazines/categories[@name="kids"]'),
-    (6, 1001, 3001, 4, '/bookstore/books/categories[@name="SciFi"]/books'),
-    (7, 1001, 3001, 6, '/bookstore/magazines/categories[@name="kids"]/books');
