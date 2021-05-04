@@ -107,8 +107,8 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             }
         where: 'the following data is used'
             scenario                    | cpsPath                                                                          || expectedXPaths
-            'one leaf'                  | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202','/parent-201/child-202']
-            'trailing "and" is ignored' | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202','/parent-201/child-202']
+            'one leaf'                  | '//child-202[@common-leaf-name-int=5]'                                           || ['/parent-200/child-202', '/parent-201/child-202']
+            'trailing "and" is ignored' | '//child-202[@common-leaf-name-int=5 and]'                                       || ['/parent-200/child-202', '/parent-201/child-202']
             'more than one leaf'        | '//child-202[@common-leaf-name-int=5 and @common-leaf-name="common-leaf value"]' || ['/parent-200/child-202']
             'leaves reversed in order'  | '//child-202[@common-leaf-name="common-leaf value" and @common-leaf-name-int=5]' || ['/parent-200/child-202']
     }
@@ -120,14 +120,14 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         then: 'the correct number of data nodes are retrieved'
             result.size() == expectedXPaths.size()
         and: 'xpaths of the retrieved data nodes are as expected'
-            for(int i = 0; i<result.size(); i++) {
+            for (int i = 0; i < result.size(); i++) {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                               | cpsPath                                                || expectedXPaths
-            'one partial key leaf'                 | '//child-203[@key1="A"]'                               || ['/parent-201/child-203[@key1="A" and @key2=1]','/parent-201/child-203[@key1="A" and @key2=2]']
-            'one non key leaf'                     | '//child-203[@other-leaf="other value"]'               || ['/parent-201/child-203[@key1="A" and @key2=2]']
-            'mix of partial key and non key leaf'  | '//child-203[@key1="A" and @other-leaf="leaf value"]'  || ['/parent-201/child-203[@key1="A" and @key2=1]']
+            scenario                              | cpsPath                                               || expectedXPaths
+            'one partial key leaf'                | '//child-203[@key1="A"]'                              || ['/parent-201/child-203[@key1="A" and @key2=1]', '/parent-201/child-203[@key1="A" and @key2=2]']
+            'one non key leaf'                    | '//child-203[@other-leaf="other value"]'              || ['/parent-201/child-203[@key1="A" and @key2=2]']
+            'mix of partial key and non key leaf' | '//child-203[@key1="A" and @other-leaf="leaf value"]' || ['/parent-201/child-203[@key1="A" and @key2=1]']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -152,8 +152,9 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                                  | cpsPath                                                || expectedXPaths
+            scenario                                    | cpsPath                                                || expectedXPaths
             'multiple list-ancestors'                   | '//books/ancestor::categories'                         || ['/bookstore/books/categories[@name="SciFi"]', '/bookstore/magazines/categories[@name="kids"]']
+            'ancestor with list value'                  | '//books/ancestor::categories[@name="SciFi"]'          || ['/bookstore/books/categories[@name="SciFi"]']
             'one ancestor value'                        | '//books/ancestor::books'                              || ['/bookstore/books']
             'top ancestor'                              | '//books/ancestor::bookstore'                          || ['/bookstore']
             'list with index value in the xpath prefix' | '//categories[@name="kids"]/books/ancestor::bookstore' || ['/bookstore']

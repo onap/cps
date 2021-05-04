@@ -175,8 +175,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();
         final var pattern =
-            Pattern.compile("(\\S*\\/" + cpsPathQuery.getAncestorSchemaNodeIdentifier() + REG_EX_FOR_OPTIONAL_LIST_INDEX
-                + "\\/\\S*");
+            Pattern.compile("(\\S*\\/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
+                + REG_EX_FOR_OPTIONAL_LIST_INDEX + "\\/\\S*");
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
             final var matcher = pattern.matcher(fragmentEntity.getXpath());
             if (matcher.matches()) {
