@@ -14,6 +14,8 @@ ${basePath}             /cps/api
 ${dataspaceName}        CSIT-Dataspace
 ${schemaSetName}        CSIT-SchemaSet
 ${anchorName}           CSIT-Anchor
+${ranDataspaceName}     NFP-Operational
+${ranSchemaSetName}     cps-ran-schema-model
 
 *** Test Cases ***
 Create Dataspace
@@ -57,3 +59,11 @@ Create Anchor
     ${headers}=         Create Dictionary   Authorization=${auth}
     ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
+
+Get CPS RAN Schema Set info
+    ${uri}=              Set Variable       ${basePath}/v1/dataspaces/${ranDataspaceName}/schema-sets/${ranSchemaSetName}
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_HOST   ${uri}   headers=${headers}   expected_status=200
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${responseJson['name']}   ${ranSchemaSetName}
+    Should Be Equal As Strings              ${responseJson['dataspaceName']}   ${ranDataspaceName}
