@@ -75,6 +75,13 @@ components:
       schema:
         type: string
         default: /
+    requiredXpathInQuery:
+      name: xpath
+      in: query
+      description: xpath
+      required: true
+      schema:
+        type: string
     cpsPathInQuery:
       name: cps-path
       in: query

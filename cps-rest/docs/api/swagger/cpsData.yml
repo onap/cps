@@ -23,6 +23,33 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
+listNodeByDataspaceAndAnchor:
+  post:
+    description: Add list-node child elements to existing node for a given anchor and dataspace
+    tags:
+      - cps-data
+    summary: Add list-node child element(s) under existing parent node
+    operationId: addListNodeElements
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
 nodesByDataspaceAndAnchor:
   post:
     description: Create a node for a given anchor and dataspace
