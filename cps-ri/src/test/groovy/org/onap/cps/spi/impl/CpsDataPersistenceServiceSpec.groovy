@@ -20,6 +20,9 @@
  */
 package org.onap.cps.spi.impl
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 import com.google.common.collect.ImmutableSet
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -32,13 +35,9 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
-
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
@@ -53,6 +52,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
     static final long UPDATE_DATA_NODE_FRAGMENT_ID = 4202L
     static final long UPDATE_DATA_NODE_SUB_FRAGMENT_ID = 4203L
+    static final long LIST_DATA_NODE_PARENT_FRAGMENT_ID = 4206L
 
     static final DataNode newDataNode = new DataNodeBuilder().build()
     static DataNode existingDataNode
@@ -145,7 +145,36 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             scenario                 | parentXpath                      | dataNode              || expectedException
             'parent does not exist'  | 'unknown'                        | newDataNode           || DataNodeNotFoundException
-            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || DataIntegrityViolationException
+            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || AlreadyDefinedException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Add list-node fragment with multiple elements.'() {
+        given: 'list node data fragment as a collection of data nodes'
+            def listNodeXpaths = ['/parent-201/child-203[@key="B"]', '/parent-201/child-203[@key="C"]']
+            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+        when: 'list-node elements added to existing parent node'
+            objectUnderTest.addListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
+        then: 'new entries successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
+            def parentFragment = fragmentRepository.getOne(LIST_DATA_NODE_PARENT_FRAGMENT_ID)
+            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            assert allChildXpaths.size() == 5
+            assert allChildXpaths.containsAll(listNodeXpaths)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Add list-node fragment error scenario: #scenario.'() {
+        given: 'list node data fragment as a collection of data nodes'
+            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+        when: 'list-node elements added to existing parent node'
+            objectUnderTest.addListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listNodeCollection)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'following parameters were used'
+            scenario                     | parentNodeXpath | listNodeXpaths                                   || expectedException
+            'parent node does not exist' | '/unknown'      | ['irrelevant']                                   || DataNodeNotFoundException
+            'already existing fragment'  | '/parent-201'   | ['/parent-201/child-203[@key1="A" and @key2=1]'] || AlreadyDefinedException
+
     }
 
     static def createDataNodeTree(String... xpaths) {
@@ -175,10 +204,10 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             assert result.getChildDataNodes().size() == 0
             assertLeavesMaps(result.getLeaves(), expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
         where: 'the following data is used'
-            scenario                      | inputXPath
-            'some xpath'                  |'/parent-100'
-            'root xpath'                  |'/'
-            'empty xpath'                 |''
+            scenario      | inputXPath
+            'some xpath'  | '/parent-100'
+            'root xpath'  | '/'
+            'empty xpath' | ''
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -196,10 +225,10 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             mappedResult.forEach(
                     (xPath, dataNode) -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xPath]))
         where: 'the following data is used'
-            scenario                      | inputXPath
-            'some xpath'                  |'/parent-100'
-            'root xpath'                  |'/'
-            'empty xpath'                 |''
+            scenario      | inputXPath
+            'some xpath'  | '/parent-100'
+            'root xpath'  | '/'
+            'empty xpath' | ''
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -297,6 +326,10 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant'       || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NON-EXISTING XPATH' || DataNodeNotFoundException
+    }
+
+    static Collection<DataNode> buildDataNodeCollection(xpaths) {
+        return xpaths.collect { new DataNodeBuilder().withXpath(it).build() }
     }
 
     static DataNode buildDataNode(xpath, leaves, childDataNodes) {
