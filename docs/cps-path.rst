@@ -51,8 +51,8 @@ General Notes
 - String values must be wrapped in quotation marks (U+0022) or apostrophes (U+0027).
 - String comparisons are case sensitive.
 
-Supported Functions
-===================
+Supported Queries
+=================
 
 Get List Elements by Any Attribute Value
 ----------------------------------------
@@ -108,3 +108,24 @@ Get Any Descendant by Any Attribute Value
 **Limitations**
   - Only string and integer values are supported (boolean and float values are not supported).
   - Multiple attributes can only be combined using 'and'. 'or' and bracketing is not supported.
+
+Query Extensions
+================
+
+Ancestor Axis
+-------------
+
+The ancestor axis can be added to any CPS path query.
+
+**Syntax**: ``//<cps-path>/ancestor::<ancestor-path>``
+  - ``cps-path``: Any CPS path query.
+  - ``ancestor-path``:  Partial path to ancestors of the target node. This can contain one or more ancestor nodes separated by a /.
+
+**Examples**
+  - ``//book/ancestor::categories``
+  - ``//categories[@genre="SciFi"]/book/ancestor::bookstore``
+  - ``book/ancestor::categories[@code=1]/books``
+
+**Limitations**
+  - Ancestor list elements can only be addressed using the list key leaf.
+  - List elements with compound keys are not supported.
