@@ -57,3 +57,13 @@ Create Anchor
     ${headers}=         Create Dictionary   Authorization=${auth}
     ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
+
+Get CPS RAN Schema Set info
+    ${ranDataspaceName}= Set Variable       NFP-Operational
+    ${ranSchemaSetName}= Set Variable       cps-ran-schema-model
+    ${uri}=              Set Variable       ${basePath}/v1/dataspaces/${ranDataspaceName}/schema-sets/${ranSchemaSetName}
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_HOST   ${uri}   headers=${headers}   expected_status=200
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${responseJson['name']}   ${ranSchemaSetName}
+    Should Be Equal As Strings              ${responseJson['dataspaceName']}   ${ranDataspaceName}
