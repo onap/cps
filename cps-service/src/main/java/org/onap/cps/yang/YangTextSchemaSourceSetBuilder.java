@@ -126,7 +126,8 @@ public final class YangTextSchemaSourceSetBuilder {
                     String.format("Exception occurred on reading resource %s.", resourceName), e);
             } catch (final YangSyntaxErrorException e) {
                 throw new ModelValidationException("Yang resource is invalid.",
-                    String.format("Yang syntax validation failed for resource %s.", resourceName), e);
+                    String.format(
+                            "Yang syntax validation failed for resource %s:%n%s", resourceName, e.getMessage()), e);
             }
         }
         try {

@@ -15,19 +15,22 @@
 # ============LICENSE_END=========================================================
 
 databaseChangeLog:
-  - include:
-      file: changelog/db/changes/01-createCPSTables.yaml
-  - include:
-      file: changelog/db/changes/02-loadData-dataspace.yaml
-  - include:
-      file: changelog/db/changes/03-loadData-schema-set.yaml
-  - include:
-      file: changelog/db/changes/04-loadData-anchor.yaml
-  - include:
-      file: changelog/db/changes/05-loadData-fragment.yaml
-  - include:
-      file: changelog/db/changes/06-delete-not-required-fragment-index.yaml
-  - include:
-      file: changelog/db/changes/07-update-yang-resource-checksums.yaml
-  - include:
-      file: changelog/db/changes/08-update-yang-resources.yaml
+  - changeSet:
+      id: 8
+      author: cps
+      label: xnf-data-preload
+      comment: Fix Yang model for cps ran
+      changes:
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-cps-ran-model-forward.sql
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-ietf-yang-types-forward.sql
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-ietf-inet-types-forward.sql
+      rollback:
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-cps-ran-model-rollback.sql
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-ietf-yang-types-rollback.sql
+        - sqlFile:
+            path: changelog/db/changes/08-update-yang-resources-ietf-inet-types-rollback.sql
