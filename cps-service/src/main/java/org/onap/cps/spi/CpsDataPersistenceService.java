@@ -55,6 +55,18 @@ public interface CpsDataPersistenceService {
         @NonNull DataNode dataNode);
 
     /**
+     * Adds list node child elements to a Fragment.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath parent node xpath
+     * @param dataNodes       collection of data nodes representing list node elements
+     */
+
+    void addListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull Collection<DataNode> dataNodes);
+
+    /**
      * Retrieves datanode by XPath for given dataspace and anchor.
      *
      * @param dataspaceName          dataspace name
@@ -100,4 +112,5 @@ public interface CpsDataPersistenceService {
      */
     Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
         @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
+
 }

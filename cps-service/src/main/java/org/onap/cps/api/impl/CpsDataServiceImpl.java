@@ -21,11 +21,13 @@
 
 package org.onap.cps.api.impl;
 
+import java.util.Collection;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.YangUtils;
@@ -65,6 +67,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void saveListNodeData(final String dataspaceName, final String anchorName,
+        final String parentNodeXpath, final String jsonData) {
+        final Collection<DataNode> dataNodesCollection =
+            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        if (dataNodesCollection.isEmpty()) {
+            throw new DataValidationException("Invalid list data.", "List node is empty.");
+        }
+        cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
+    }
+
+    @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
@@ -101,6 +114,19 @@ public class CpsDataServiceImpl implements CpsDataService {
             .withParentNodeXpath(parentNodeXpath)
             .withNormalizedNodeTree(normalizedNode)
             .build();
+    }
+
+    private Collection<DataNode> buildDataNodeCollectionFromJson(final String dataspaceName, final String anchorName,
+        final String parentNodeXpath, final String jsonData) {
+
+        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final var schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+
+        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        return new DataNodeBuilder()
+            .withParentNodeXpath(parentNodeXpath)
+            .withNormalizedNodeTree(normalizedNode)
+            .buildCollection();
     }
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
