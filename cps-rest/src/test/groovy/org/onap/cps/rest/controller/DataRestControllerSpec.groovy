@@ -33,10 +33,6 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.AnchorNotFoundException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -74,6 +70,7 @@ class DataRestControllerSpec extends Specification {
     def basePath
 
     def dataNodeBaseEndpoint
+    def listNodeEndpoint
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
 
@@ -87,6 +84,7 @@ class DataRestControllerSpec extends Specification {
 
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
+        listNodeEndpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/list-node"
     }
 
     def 'Create a node: #scenario.'() {
@@ -129,6 +127,24 @@ class DataRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
             1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, json)
+    }
+
+    def 'Create list node child elements.'() {
+        given: 'parent node xpath and json data inputs'
+            def parentNodeXpath = 'parent node xpath'
+            def jsonData = 'json data'
+        when: 'post is invoked list-node endpoint'
+            def response = mvc.perform(
+                    post(listNodeEndpoint)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .param('xpath', parentNodeXpath)
+                            .content(jsonData)
+            ).andReturn().response
+        then: 'a created response is returned'
+            response.status == HttpStatus.CREATED.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
+
     }
 
     def 'Get data node with leaves'() {

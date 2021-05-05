@@ -52,6 +52,13 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    public ResponseEntity<String> addListNodeElements(final String jsonData, final String parentNodeXpath,
+        final String dataspaceName, final String anchorName) {
+        cpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
     public ResponseEntity<Object> getNodesByDataspace(final String dataspaceName) {
         return null;
     }
@@ -62,7 +69,7 @@ public class DataRestController implements CpsDataApi {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
+            fetchDescendantsOption);
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 
