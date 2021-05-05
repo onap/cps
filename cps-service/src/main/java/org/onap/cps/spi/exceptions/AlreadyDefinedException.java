@@ -19,6 +19,8 @@
 
 package org.onap.cps.spi.exceptions;
 
+import java.util.Collection;
+
 /**
  * Already defined exception. Indicates the cps object with same name already exists.
  */
@@ -69,5 +71,11 @@ public class AlreadyDefinedException extends CpsAdminException {
     public static AlreadyDefinedException forDataNode(final String xpath, final String contextName,
         final Throwable cause) {
         return new AlreadyDefinedException("Data node", xpath, contextName, cause);
+    }
+
+    public static AlreadyDefinedException forDataNodeCollection(final Collection<String> xpathCollection,
+        final String contextName, final Throwable cause) {
+        final var name = String.format("[one or more] of %s", xpathCollection);
+        return new AlreadyDefinedException("Data node", name, contextName, cause);
     }
 }

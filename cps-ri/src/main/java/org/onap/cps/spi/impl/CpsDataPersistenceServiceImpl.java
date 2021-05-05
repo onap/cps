@@ -27,6 +27,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final var fragmentEntity =
             toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode);
         parentFragment.getChildFragments().add(fragmentEntity);
-        fragmentRepository.save(parentFragment);
+        try {
+            fragmentRepository.save(parentFragment);
+        } catch (final DataIntegrityViolationException exception) {
+            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
+        }
+    }
+
+    @Override
+    public void addListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final Collection<DataNode> dataNodesCollection) {
+        final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final List<FragmentEntity> newFragmentEntities =
+            dataNodesCollection.stream().map(
+                dataNode -> toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode)
+            ).collect(Collectors.toUnmodifiableList());
+        parentFragment.getChildFragments().addAll(newFragmentEntities);
+        try {
+            fragmentRepository.save(parentFragment);
+        } catch (final DataIntegrityViolationException exception) {
+            final List<String> conflictXpaths = dataNodesCollection.stream()
+                .map(DataNode::getXpath)
+                .collect(Collectors.toList());
+            throw AlreadyDefinedException.forDataNodeCollection(conflictXpaths, anchorName, exception);
+        }
     }
 
     @Override
@@ -82,7 +106,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final DataIntegrityViolationException exception) {
-            throw  AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
+            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
         }
     }
 
