@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0290bd6_04e7ade5",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-06T14:45:01Z",
+      "side": 0,
+      "message": "this data is being used for CPS-360 tests\nthere is a requirement for a data node with list-elements children \n(+non-list one for future delete case)",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 136
+      },
+      "revId": "10f834104ead71661cff6823a79b9346169b79e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
