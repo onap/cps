@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f62a189d_3005fc52",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-06T14:41:09Z",
+      "side": 1,
+      "message": "::info/contact",
+      "range": {
+        "startLine": 159,
+        "startChar": 95,
+        "endLine": 159,
+        "endChar": 104
+      },
+      "revId": "565ebc7ccc34a5a516a7012848c2c3673c9bf428",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37ab5b2b_61b2420c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-06T14:41:09Z",
+      "side": 1,
+      "message": "just \u0027ancestor with parent\u0027 will do\n\nthis is the more \u0027basic\u0027 test so I would move it above \u0027ancestor with parent list\u0027",
+      "range": {
+        "startLine": 159,
+        "startChar": 13,
+        "endLine": 159,
+        "endChar": 46
+      },
+      "revId": "565ebc7ccc34a5a516a7012848c2c3673c9bf428",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
