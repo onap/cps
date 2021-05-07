@@ -73,6 +73,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockcpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
 
+    def 'Add list-node elements.'() {
+        given: 'a cm handle and parent node xpath'
+            def jsonData = 'some json'
+            def xpath = '/test-node'
+        when: 'addListNodeElements is invoked'
+            objectUnderTest.addListNodeElements(cmHandle, xpath, jsonData)
+        then: 'the CPS service method is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveListNodeData(expectedDataspaceName, cmHandle, xpath, jsonData)
+    }
+
     def 'Update data node leaves.'() {
         given: 'a cm Handle and a cps path'
             def xpath = '/xpath'
