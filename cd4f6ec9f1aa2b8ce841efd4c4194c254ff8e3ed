@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f92417a6_e7d0cb0b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:58:12Z",
+      "side": 1,
+      "message": "apologies, I got mixed up it is in the right place :-(",
+      "parentUuid": "38d98ae2_896c7bf7",
+      "range": {
+        "startLine": 74,
+        "startChar": 7,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f7c9d04_1df26b76",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -293,6 +317,30 @@
       "writtenOn": "2021-05-07T13:56:03Z",
       "side": 1,
       "message": "see previous comment this behavior (and test) should be in cpsDataPersistenceService.addListDataNodes",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29dff8b1_30ed60ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:58:12Z",
+      "side": 1,
+      "message": "ignore, I was mistaken",
+      "parentUuid": "92f30fab_e0508659",
       "range": {
         "startLine": 94,
         "startChar": 0,
