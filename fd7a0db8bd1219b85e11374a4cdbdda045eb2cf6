@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ede0cba6_f0d7ede9",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:19:17Z",
+      "side": 1,
+      "message": "lets agree naming and description in the CPS-Core interface once that is doen I will re-review this patch",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 101
+      },
+      "revId": "fd7a0db8bd1219b85e11374a4cdbdda045eb2cf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
