@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "348a8021_150fe305",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:16:38Z",
+      "side": 1,
+      "message": "if I remember correctly, currently we only support \u0027replacing\u0027 the whole list!\n\nadd element(s) suggest we can add a new element to an existing list and this could be very confusing for client\n\nI think it should clearly state it adds or replaces a complete list.",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 95
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d984bad8_35573275",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:16:38Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d6d5d94_101e5b03",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:16:38Z",
+      "side": 1,
+      "message": "as per discusion in yaml description, rename this method accordingly",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92a98546_354e90cc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:16:38Z",
+      "side": 1,
+      "message": "until it is used in other test (it might never be) I would prefer it was declared locally in the relevant test method",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 24
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397bc159_db77ff89",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T14:16:38Z",
+      "side": 1,
+      "message": "until it is used in other test (it might never be) I would prefer it was declared locally in the relevant test method",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 80
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
