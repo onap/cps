@@ -68,6 +68,16 @@ public interface NetworkCmProxyDataService {
     void createDataNode(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
 
     /**
+     * Creates one or more child node elements with descendants under existing node from list-node data fragment.
+     *
+     * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm
+     *                        object managed by Network CM Proxy
+     * @param parentNodeXpath xpath to parent node
+     * @param jsonData        data as JSON string
+     */
+    void addListNodeElements(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
+
+    /**
      * Updates data node for given cm handle using xpath to parent node.
      *
      * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm object

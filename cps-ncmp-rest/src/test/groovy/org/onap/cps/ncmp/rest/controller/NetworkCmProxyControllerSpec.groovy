@@ -105,6 +105,23 @@ class NetworkCmProxyControllerSpec extends Specification {
             'parent node xpath'  | '/xpath' || '/xpath'
     }
 
+    def 'Add list-node elements.'() {
+        given: 'json data and parent node xpath'
+            def jsonData = 'json data'
+            def parentNodeXpath = 'parent node xpath'
+        when: 'post request is performed'
+            def response = mvc.perform(
+                    post("$dataNodeBaseEndpoint/cm-handles/$cmHandle/list-node")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(jsonData)
+                            .param('xpath', parentNodeXpath)
+            ).andReturn().response
+        then: 'the service method is invoked once with expected parameters'
+            1 * mockNetworkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData)
+        and: 'response status indicates success'
+            response.status == HttpStatus.CREATED.value()
+    }
+
     def 'Update data node leaves.'() {
         given: 'json data'
             def jsonData = 'json data'
