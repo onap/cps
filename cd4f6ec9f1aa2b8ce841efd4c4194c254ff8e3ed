@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "870296e1_9e3e4a52",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-07T07:17:37Z",
+      "side": 1,
+      "message": "data node is a direct reference to DataNode class which is a CPS internal data \nrepresentation artifact. list-node is reference to yang definition, and it has \na representation within a JSON (being parsed) but list-node itself never became a data node",
+      "parentUuid": "5f7c9d04_1df26b76",
+      "range": {
+        "startLine": 75,
+        "startChar": 78,
+        "endLine": 75,
+        "endChar": 83
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95fea7f0_038e84a3",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-05-05T12:14:51Z",
       "side": 1,
       "message": "should this be data node instead of node?",
+      "range": {
+        "startLine": 120,
+        "startChar": 27,
+        "endLine": 120,
+        "endChar": 31
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ce2b928_2846acc4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-07T07:17:37Z",
+      "side": 1,
+      "message": "parentNodeXpath is a generic name which has the same meaning \non all the stages of data processing. while parentDataNodeXpath assumes\nreference to CPS internal data representation, which happens _after_\nincoming data transformation. not _before_.",
+      "parentUuid": "95fea7f0_038e84a3",
       "range": {
         "startLine": 120,
         "startChar": 27,
