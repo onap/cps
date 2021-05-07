@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "38d98ae2_896c7bf7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "this behavior (and test) should be in cpsDataPersistenceService.addListDataNodes()\nThe Java API should throw the same exception!",
+      "range": {
+        "startLine": 74,
+        "startChar": 7,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f7c9d04_1df26b76",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -49,6 +72,53 @@
     },
     {
       "key": {
+        "uuid": "f2525ade_8639e933",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "i think \u0027node\u0027 without data is good",
+      "parentUuid": "870296e1_9e3e4a52",
+      "range": {
+        "startLine": 75,
+        "startChar": 78,
+        "endLine": 75,
+        "endChar": 83
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e9e477_251f6beb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "I though the word \u0027fragment\u0027 was not to be used on the outgoing interface ie. not in exception messages either...\n\nSuggetion: \"Invalid list data\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 60,
+        "endLine": 75,
+        "endChar": 68
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95fea7f0_038e84a3",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -89,6 +159,191 @@
         "startChar": 27,
         "endLine": 120,
         "endChar": 31
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c66b345d_add9dfdc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "Node (without Data-prefix )also seems consistent with previous code.  I think its OK",
+      "parentUuid": "9ce2b928_2846acc4",
+      "range": {
+        "startLine": 120,
+        "startChar": 27,
+        "endLine": 120,
+        "endChar": 31
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f1bb912_307d0a0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "generally you should not use Java interface names for variables like this\nJust \u0027dataNodes\u0027 is better",
+      "range": {
+        "startLine": 63,
+        "startChar": 13,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6fe3823_fae1dc84",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "forDataNodes",
+      "range": {
+        "startLine": 76,
+        "startChar": 42,
+        "endLine": 76,
+        "endChar": 53
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1825593_1addeb87",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "xpaths",
+      "range": {
+        "startLine": 76,
+        "startChar": 89,
+        "endLine": 76,
+        "endChar": 104
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25f58322_93602e26",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "round brackets I think is better: (one or more)",
+      "range": {
+        "startLine": 78,
+        "startChar": 40,
+        "endLine": 78,
+        "endChar": 53
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92f30fab_e0508659",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "see previous comment this behavior (and test) should be in cpsDataPersistenceService.addListDataNodes",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e44e68_6ab21eda",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "expectedNodeXpath",
+      "range": {
+        "startLine": 123,
+        "startChar": 84,
+        "endLine": 123,
+        "endChar": 93
+      },
+      "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f94525e2_e9e40e4b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-07T13:56:03Z",
+      "side": 1,
+      "message": "expectedNodeXpath",
+      "range": {
+        "startLine": 137,
+        "startChar": 84,
+        "endLine": 137,
+        "endChar": 93
       },
       "revId": "cd4f6ec9f1aa2b8ce841efd4c4194c254ff8e3ed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
