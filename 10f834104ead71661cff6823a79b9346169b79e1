@@ -22,6 +22,30 @@
       "revId": "10f834104ead71661cff6823a79b9346169b79e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064d9b73_31835d89",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-05-07T08:50:31Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b0290bd6_04e7ade5",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 136
+      },
+      "revId": "10f834104ead71661cff6823a79b9346169b79e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
