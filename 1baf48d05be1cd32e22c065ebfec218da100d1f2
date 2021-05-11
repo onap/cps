@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1f9909c_cf576706",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-11T13:41:59Z",
+      "side": 1,
+      "message": "As per latest discussions, ncmp should not alter data, we should discuss this and other existing ones, before merging. Atleast not add this and then later remove this.",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 148,
+        "endChar": 6
+      },
+      "revId": "1baf48d05be1cd32e22c065ebfec218da100d1f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
