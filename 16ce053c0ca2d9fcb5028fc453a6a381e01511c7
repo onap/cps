@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a2b7dff_24fc3505",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-11T07:03:10Z",
+      "side": 1,
+      "message": "1. replacing the whole list is a separate story https://jira.onap.org/browse/CPS-362\n2. replacement of list node content expected to be performed via PATCH request not POST\nsimilar to the API defined for data fragments\n3. combo operations like replace if exists were discussed several times already within the team\n(incl for data fragments insert/update/replace cases) with a same decision: we are not mixing \n\"add\" and \"update\" (\"replace\") operations, each of these to be performed via dedicated API method.",
+      "parentUuid": "348a8021_150fe305",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 95
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d984bad8_35573275",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 1
