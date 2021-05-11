@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "690ab1bb_2abdcca1",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-11T08:28:45Z",
+      "side": 1,
+      "message": "ok, so this operation is for adding a NEW list only, ok\n(it was probably all that discussion about teh replacing that  made me think this commit was for that",
+      "parentUuid": "2a2b7dff_24fc3505",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 95
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d984bad8_35573275",
         "filename": "cps-rest/docs/api/swagger/cpsData.yml",
         "patchSetId": 1
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5d6f10b5_2217ea6b",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-11T08:28:45Z",
+      "side": 1,
+      "message": "ok, its add (new)",
+      "parentUuid": "d984bad8_35573275",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d6d5d94_101e5b03",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 1
@@ -92,6 +140,30 @@
       "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6447bc5d_34519a47",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-11T08:28:45Z",
+      "side": 1,
+      "message": "ok, this is for add new.",
+      "parentUuid": "3d6d5d94_101e5b03",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "16ce053c0ca2d9fcb5028fc453a6a381e01511c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
