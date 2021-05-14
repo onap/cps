@@ -22,6 +22,30 @@
       "revId": "1baf48d05be1cd32e22c065ebfec218da100d1f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b619bb3_915bae35",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-14T13:17:52Z",
+      "side": 1,
+      "message": "NCMP will allow in in a pass-through scenario. but not for operational data you are correct there. So this API rest endpoint will change later with those options. \nBut for now this is OK unless we want to decide NOT to update NCMP with any new functionality until we have the new interface implemented\n\nSince Ruslan put the effort in to do it for this user story (and that was what agreed originally) I would accept this change",
+      "parentUuid": "f1f9909c_cf576706",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 148,
+        "endChar": 6
+      },
+      "revId": "1baf48d05be1cd32e22c065ebfec218da100d1f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
