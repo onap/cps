@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -251,6 +252,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentEntity.setChildFragments(childFragmentEntities);
 
         fragmentRepository.save(fragmentEntity);
+    }
+
+    @Override
+    @Transactional
+    public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final Collection<DataNode> dataNodes) {
+        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
+        final var listNodeXpath = firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("["));
+        removeListNodeDescendants(parentEntity, listNodeXpath);
+        final Set<FragmentEntity> childFragmentEntities = dataNodes.stream().map(
+            dataNode -> convertToFragmentWithAllDescendants(
+                parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode)
+        ).collect(Collectors.toUnmodifiableSet());
+        parentEntity.getChildFragments().addAll(childFragmentEntities);
+        fragmentRepository.save(parentEntity);
+    }
+
+    private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
+        final String listNodeXpathPrefix = listNodeXpath + "[";
+        if (parentFragmentEntity.getChildFragments()
+            .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
+            fragmentRepository.save(parentFragmentEntity);
+        }
     }
 
     private void removeExistingDescendants(final FragmentEntity fragmentEntity) {
