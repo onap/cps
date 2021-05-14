@@ -139,6 +139,34 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
     }
 
+    def 'Replace list-node data fragment under existing node.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace list data method is invoked with list-node json data'
+            def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
+            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, '/test-tree',
+                    { dataNodeCollection ->
+                        {
+                            assert dataNodeCollection.size() == 2
+                            assert dataNodeCollection.collect { it.getXpath() }
+                                    .containsAll(['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']'])
+                        }
+                    }
+            )
+    }
+
+    def 'Replace with empty list-node data fragment.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace list data method is invoked with empty list-node data fragment'
+            def jsonData = '{"branch": []}'
+            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData)
+        then: 'invalid data exception is thrown'
+            thrown(DataValidationException)
+    }
+
     def setupSchemaSetMocks(String... yangResources) {
         def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
