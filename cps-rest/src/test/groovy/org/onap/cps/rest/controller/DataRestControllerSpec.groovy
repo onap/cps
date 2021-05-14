@@ -142,7 +142,6 @@ class DataRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
             1 * mockCpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
-
     }
 
     def 'Get data node with leaves'() {
@@ -229,5 +228,22 @@ class DataRestControllerSpec extends Specification {
             'root node by default' | ''            || '/'
             'root node by choice'  | '/'           || '/'
             'some xpath by parent' | '/some/xpath' || '/some/xpath'
+    }
+
+    def 'Replace list node child elements.'() {
+        given: 'parent node xpath and json data inputs'
+            def parentNodeXpath = 'parent node xpath'
+            def jsonData = 'json data'
+        when: 'patch is invoked list-node endpoint'
+            def response = mvc.perform(
+                    patch("$dataNodeBaseEndpoint/anchors/$anchorName/list-node")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .param('xpath', parentNodeXpath)
+                            .content(jsonData)
+            ).andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
     }
 }
