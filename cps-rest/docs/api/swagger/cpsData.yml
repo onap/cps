@@ -50,6 +50,32 @@ listNodeByDataspaceAndAnchor:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
+  patch:
+    description: Replace list-node child elements under existing node for a given anchor and dataspace
+    tags:
+      - cps-data
+    summary: Replace list-node child element(s) under existing parent node
+    operationId: replaceListNodeElements
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
 nodesByDataspaceAndAnchor:
   post:
     description: Create a node for a given anchor and dataspace
