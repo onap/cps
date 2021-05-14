@@ -71,9 +71,6 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String parentNodeXpath, final String jsonData) {
         final Collection<DataNode> dataNodesCollection =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        if (dataNodesCollection.isEmpty()) {
-            throw new DataValidationException("Invalid list data.", "List node is empty.");
-        }
         cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
     }
 
@@ -96,6 +93,14 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
+    }
+
+    @Override
+    public void replaceListNodeData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final String jsonData) {
+        final Collection<DataNode> dataNodesCollection =
+            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
     }
 
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
@@ -123,10 +128,15 @@ public class CpsDataServiceImpl implements CpsDataService {
         final var schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
 
         final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
-        return new DataNodeBuilder()
+        final Collection<DataNode> dataNodesCollection = new DataNodeBuilder()
             .withParentNodeXpath(parentNodeXpath)
             .withNormalizedNodeTree(normalizedNode)
             .buildCollection();
+        if (dataNodesCollection.isEmpty()) {
+            throw new DataValidationException("Invalid list data.", "List node is empty.");
+        }
+        return dataNodesCollection;
+
     }
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {

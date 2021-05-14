@@ -101,6 +101,17 @@ public interface CpsDataPersistenceService {
     void replaceDataNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull DataNode dataNode);
 
     /**
+     * Replaces existing list data node content including descendants.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath parent node xpath
+     * @param dataNodes       collection of data nodes representing list node elements
+     */
+    void replaceListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
+        @NonNull String parentNodeXpath, @NonNull Collection<DataNode> dataNodes);
+
+    /**
      * Get a datanode by cps path.
      *
      * @param dataspaceName          dataspace name
