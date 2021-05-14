@@ -105,4 +105,18 @@ public interface CpsDataService {
      */
     void replaceNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull String jsonData);
+
+    /**
+     * Replaces (if exists) child data fragment representing list-node (with one or more elements)
+     * under existing data node for the given anchor and dataspace.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath parent node xpath
+     * @param jsonData        json data representing list element
+     * @throws DataValidationException   when json data is invalid (incl. list-node being empty)
+     * @throws DataNodeNotFoundException when parent node cannot be found by parent node xpath
+     */
+    void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+        @NonNull String jsonData);
 }

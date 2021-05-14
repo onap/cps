@@ -328,6 +328,36 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NON-EXISTING XPATH' || DataNodeNotFoundException
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace list-node content of #scenario.'() {
+        given: 'list node data fragment as a collection of data nodes'
+            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+        when: 'list-node elements replaced within the existing parent node'
+            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
+        then: 'child list elements are updated as expected, non-list element remains as is'
+            def parentFragment = fragmentRepository.getOne(LIST_DATA_NODE_PARENT_FRAGMENT_ID)
+            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            assert allChildXpaths.size() == expectedChildXpaths.size()
+            assert allChildXpaths.containsAll(expectedChildXpaths)
+        where: 'following parameters were used'
+            scenario                 | listNodeXpaths                      || expectedChildXpaths
+            'existing list-node'     | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
+            'non-existing list-node' | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace list-node fragment error scenario: #scenario.'() {
+        given: 'list node data fragment as a collection of data nodes'
+            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+        when: 'list-node elements were replaced under existing parent node'
+            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listNodeCollection)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'following parameters were used'
+            scenario                     | parentNodeXpath | listNodeXpaths || expectedException
+            'parent node does not exist' | '/unknown'      | ['irrelevant'] || DataNodeNotFoundException
+    }
+
     static Collection<DataNode> buildDataNodeCollection(xpaths) {
         return xpaths.collect { new DataNodeBuilder().withXpath(it).build() }
     }
