@@ -14,14 +14,14 @@ mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Djib.skip
 * Following command builds the JAR file and also generates the Docker image for all CPS components:
 
 ```bash
-mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Dnexus.repository=
+mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Dnexus.repository.push=
 ```
 
 * Following command builds the JAR file and generates the Docker image for specified CPS component:
   (with `<docker-profile>` being one of `cps-docker`, `ncmp-docker` or `cps-ncmp-docker`):
 
 ```bash
-mvn clean install -P<docker-profile> -Dnexus.repository=
+mvn clean install -P<docker-profile> -Dnexus.repository.push=
 ```
 
 ## Running Docker containers

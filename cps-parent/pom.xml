@@ -37,11 +37,11 @@
 
     <properties>
         <app>org.onap.cps.Application</app>
-        <base.image>nexus3.onap.org:10001/onap/integration-java11:8.0.0</base.image>
         <java.version>11</java.version>
         <minimum-coverage>0.9</minimum-coverage>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <nexus.public.repo>nexus3.onap.org:10001/library/</nexus.public.repo>
+        <nexus.repository.push>nexus3.onap.org:10003/</nexus.repository.push>
+        <nexus.repository.pull>nexus3.onap.org:10001/</nexus.repository.pull>
         <oparent.version>3.1.0</oparent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
@@ -325,7 +325,7 @@
                             see https://www.testcontainers.org/features/configuration/#disabling-ryuk
                          -->
                         <TESTCONTAINERS_RYUK_DISABLED>true</TESTCONTAINERS_RYUK_DISABLED>
-                        <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${nexus.public.repo}</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
+                        <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${nexus.repository.pull}library/</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
                     </environmentVariables>
                 </configuration>
             </plugin>
