@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8fc3121_8d1d64f6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-17T12:13:31Z",
+      "side": 1,
+      "message": "what about if anchor/dataspace does not exist ?",
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
