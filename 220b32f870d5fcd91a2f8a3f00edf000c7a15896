@@ -46,6 +46,30 @@
       "revId": "220b32f870d5fcd91a2f8a3f00edf000c7a15896",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb19eac_508f25b4",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-05-17T22:11:06Z",
+      "side": 1,
+      "message": "I think it would be better to define  \n\u003cimage.tag\u003e${project.version}-${maven.build.timestamp}\u003c/image.tag\u003e\nIt also gives an option to change only the image tag",
+      "parentUuid": "6c16390c_c94eb61d",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 57
+      },
+      "revId": "220b32f870d5fcd91a2f8a3f00edf000c7a15896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
