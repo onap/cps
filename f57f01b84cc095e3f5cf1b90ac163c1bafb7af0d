@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e52bcc4f_34cd07bf",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-17T12:14:43Z",
+      "side": 1,
+      "message": "what about user gives non existing anchor/dataspace. i see DataNodeNotFoundException being thrown, which translates to 404",
+      "range": {
+        "startLine": 54,
+        "startChar": 76,
+        "endLine": 54,
+        "endChar": 102
+      },
+      "revId": "f57f01b84cc095e3f5cf1b90ac163c1bafb7af0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
