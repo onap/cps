@@ -1,0 +1,34 @@
+{
+  "schema": "urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT",
+  "id": "77b8f114-4562-4069-8234-6d059ff742ac",
+  "source": "urn:cps:org.onap.cps",
+  "type": "org.onap.cps.data-updated-event",
+  "content": {
+    "observedTimestamp": "2020-12-01T00:00:00.000+0000",
+    "dataspaceName": "my-dataspace",
+    "schemaSetName": "bootstore-schemaset",
+    "anchorName": "chapters",
+    "data": {
+      "test:bookstore":{
+        "bookstore-name": "Chapters",
+        "categories": [
+          {
+            "code": "01",
+            "name": "SciFi",
+            "books": [
+              {
+                "authors": [
+                  "Iain M. Banks"
+                ],
+                "lang": "en",
+                "price": 895,
+                "pub_year": "1994",
+                "title": "Feersum Endjinn"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
