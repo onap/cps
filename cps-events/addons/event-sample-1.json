@@ -1,0 +1,19 @@
+{
+  "schema": "urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT",
+  "id": "38aa6cc6-264d-4ede-b534-18f5c1f403ea",
+  "source": "urn:cps:org.onap.cps",
+  "type": "org.onap.cps.data-updated-event",
+  "correlationId": "7515984f-064a-464f-8849-4c60f886ea4f",
+  "content": {
+    "timestamp": "2020-12-01T00:00:00.000+0000",
+    "dataspaceName": "my-dataspace",
+    "schemaSetName": "my-schema-set",
+    "anchorName": "my-anchor",
+    "data": {
+      "interface": {
+        "name": "itf-1",
+        "status": "up"
+      }
+    }
+  }
+}
