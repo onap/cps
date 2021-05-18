@@ -37,21 +37,22 @@
 
     <properties>
         <app>org.onap.cps.Application</app>
-        <java.version>11</java.version>
-        <minimum-coverage>0.9</minimum-coverage>
-        <nexusproxy>https://nexus.onap.org</nexusproxy>
         <docker.repository.push>nexus3.onap.org:10003/</docker.repository.push>
         <docker.repository.pull>nexus3.onap.org:10001/</docker.repository.pull>
+        <java.version>11</java.version>
+        <jsonschema2pojo-maven-plugin.version>1.1.1</jsonschema2pojo-maven-plugin.version>
+        <minimum-coverage>0.9</minimum-coverage>
+        <nexusproxy>https://nexus.onap.org</nexusproxy>
         <oparent.version>3.1.0</oparent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
+        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <spotbugs-maven-plugin.version>4.1.3</spotbugs-maven-plugin.version>
-        <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
         <spotbugs.slf4j.version>1.8.0-beta4</spotbugs.slf4j.version>
         <spotbugs.bug-pattern.version>1.5.0</spotbugs.bug-pattern.version>
         <spotbugs.version>4.2.0</spotbugs.version>
+        <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
         <swagger-codegen-maven-plugin.version>3.0.18</swagger-codegen-maven-plugin.version>
-        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
         <sonar.coverage.jacoco.xmlReportPaths>
@@ -176,6 +177,7 @@
                           If you run out of memory, changes the value of the effort element
                           to 'Low'.
                         -->
+                        <addSourceDirs>true</addSourceDirs>
                         <effort>Max</effort>
                         <!-- Reports all bugs (other values are medium and max) -->
                         <threshold>Low</threshold>
@@ -197,6 +199,21 @@
                             <phase>compile</phase>
                             <goals>
                                 <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>${jsonschema2pojo-maven-plugin.version}</version>
+                    <configuration>
+                        <targetVersion>${java.version}</targetVersion>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -332,6 +349,12 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>org/onap/cps/rest/model/*</exclude>
+                        <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -345,10 +368,6 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <excludes>
-                                <exclude>org/onap/cps/rest/model/*</exclude>
-                                <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
-                            </excludes>
                             <dataFile>${project.build.directory}/code-coverage/jacoco-ut.exec</dataFile>
                             <rules>
                                 <rule>
