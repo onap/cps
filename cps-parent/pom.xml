@@ -201,6 +201,18 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>1.1.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -332,6 +344,12 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>org/onap/cps/rest/model/*</exclude>
+                        <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -345,10 +363,6 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <excludes>
-                                <exclude>org/onap/cps/rest/model/*</exclude>
-                                <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
-                            </excludes>
                             <dataFile>${project.build.directory}/code-coverage/jacoco-ut.exec</dataFile>
                             <rules>
                                 <rule>
