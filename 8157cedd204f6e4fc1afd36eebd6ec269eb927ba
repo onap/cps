@@ -22,6 +22,30 @@
       "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aeb6614_83f77042",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-19T15:25:52Z",
+      "side": 1,
+      "message": "These are descendants of a provided entity but belonging to specific list-node (there could be multiple).\nList node itself (identifiable via xpath provided) is absent on this abstraction level but assumed. \nmethod also suitable for delete list-node request processing, where listNodeXpath value expected \nto be provided via request parameter, not extracted from data like here.",
+      "parentUuid": "edf61f09_19d7159f",
+      "range": {
+        "startLine": 273,
+        "startChar": 31,
+        "endLine": 273,
+        "endChar": 42
+      },
+      "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
