@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edf61f09_19d7159f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T13:36:47Z",
+      "side": 1,
+      "message": "this is probably just an interpretation issue: it is not just the descendants of the list Nodes but also the existing list elements/dataNodes themselves that are being removed, correct?",
+      "range": {
+        "startLine": 273,
+        "startChar": 31,
+        "endLine": 273,
+        "endChar": 42
+      },
+      "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
