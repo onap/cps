@@ -22,6 +22,30 @@
       "revId": "f57f01b84cc095e3f5cf1b90ac163c1bafb7af0d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2837ba6f_e13609ef",
+        "filename": "cps-rest/docs/api/swagger/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-19T07:44:22Z",
+      "side": 1,
+      "message": "the issue with incorrect response code returned is addressed by\nhttps://jira.onap.org/browse/CPS-422",
+      "parentUuid": "e52bcc4f_34cd07bf",
+      "range": {
+        "startLine": 54,
+        "startChar": 76,
+        "endLine": 54,
+        "endChar": 102
+      },
+      "revId": "f57f01b84cc095e3f5cf1b90ac163c1bafb7af0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
