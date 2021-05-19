@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "0318aa3e_bd4b8778",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T09:58:08Z",
+      "side": 1,
+      "message": "extract out removeExistingListDataNodes()",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 9
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85693476_0b2038df",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T09:58:08Z",
+      "side": 1,
+      "message": "optional: extract out saveNewListDataNodes()",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 46
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8fc3121_8d1d64f6",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 1
@@ -13,6 +59,70 @@
       "writtenOn": "2021-05-17T12:13:31Z",
       "side": 1,
       "message": "what about if anchor/dataspace does not exist ?",
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad766df5_22ce7adf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T09:58:08Z",
+      "side": 1,
+      "message": "I don\u0027t think they need to be explicitly test as they are already covered by other scenarios and the new method has no unique code path for these exceptions",
+      "parentUuid": "b8fc3121_8d1d64f6",
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dedf016d_7fbe7b0b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T09:58:08Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 101,
+        "startChar": 44,
+        "endLine": 101,
+        "endChar": 54
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0376d36_0f063cfd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-19T09:58:08Z",
+      "side": 1,
+      "message": "just dataNodes will do",
+      "range": {
+        "startLine": 131,
+        "startChar": 35,
+        "endLine": 131,
+        "endChar": 54
+      },
       "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
