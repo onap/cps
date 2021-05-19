@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0598cc2_c0133453",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-19T13:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0318aa3e_bd4b8778",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 9
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85693476_0b2038df",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -124,6 +148,30 @@
     },
     {
       "key": {
+        "uuid": "9a65c3d9_67f69f6d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-19T13:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dedf016d_7fbe7b0b",
+      "range": {
+        "startLine": 101,
+        "startChar": 44,
+        "endLine": 101,
+        "endChar": 54
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0376d36_0f063cfd",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -144,6 +192,30 @@
       "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d6c1837_90e5331d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-19T13:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0376d36_0f063cfd",
+      "range": {
+        "startLine": 131,
+        "startChar": 35,
+        "endLine": 131,
+        "endChar": 54
+      },
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
