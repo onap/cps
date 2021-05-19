@@ -26,6 +26,7 @@ import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
@@ -37,6 +38,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataInUseException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
@@ -45,6 +47,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
@@ -143,10 +146,31 @@ class CpsRestExceptionHandlerSpec extends Specification {
                                 new SchemaSetInUseException(dataspaceName, existingObjectName)]
     }
 
+    /**
+     * NB. this method tests the expected behavior for POST request only,
+     * testing of PUT and PATCH requests omitted due to condition
+     */
+    def 'Post request with #exceptionThrown.class.simpleName returns HTTP Status Bad Request.'() {
+        given: '#exception is thrown the service indicating data is not found'
+            mockCpsDataService.saveData(_, _, _, _) >> { throw exceptionThrown }
+        when: 'data update request is performed'
+            def response = mvc.perform(
+                    post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .param('xpath', 'parent node xpath')
+                            .content('json data')
+            ).andReturn().response
+        then: 'response code indicates bad input parameters'
+            response.status == BAD_REQUEST.value()
+        where: 'the following exceptions are thrown'
+            exceptionThrown << [new DataNodeNotFoundException('', ''), new NotFoundInDataspaceException('', '')]
+    }
+
     /*
      * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
      */
+
     def setupTestException(exception) {
         mockCpsAdminService.getAnchors(_) >> { throw exception }
     }

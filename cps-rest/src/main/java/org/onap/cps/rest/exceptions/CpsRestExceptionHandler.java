@@ -20,6 +20,7 @@
 
 package org.onap.cps.rest.exceptions;
 
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
@@ -65,8 +66,10 @@ public class CpsRestExceptionHandler {
     }
 
     @ExceptionHandler({NotFoundInDataspaceException.class, DataNodeNotFoundException.class})
-    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
+    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception,
+        final HttpServletRequest request) {
+        return buildErrorResponse("GET".equalsIgnoreCase(request.getMethod())
+            ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST, exception);
     }
 
     @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class})
