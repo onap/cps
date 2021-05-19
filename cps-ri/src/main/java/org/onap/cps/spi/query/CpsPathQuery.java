@@ -77,7 +77,7 @@ public class CpsPathQuery {
      */
     public static CpsPathQuery createFrom(final String cpsPathSource) {
         var cpsPath = cpsPathSource;
-        final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+        final var cpsPathQuery = new CpsPathQuery();
         var matcher = ANCESTOR_AXIS_PATTERN.matcher(cpsPath);
         if (matcher.matches()) {
             cpsPath = matcher.group(1);
