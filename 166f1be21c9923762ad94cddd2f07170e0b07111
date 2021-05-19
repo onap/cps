@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "e3ee1b9d_9928b712",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-19T10:03:14Z",
+      "side": 1,
+      "message": "I did not mean for new tests to be added. I just realized it myself about the 400/404 so commented here. A bug for this is already opened.",
+      "parentUuid": "ad766df5_22ce7adf",
+      "revId": "166f1be21c9923762ad94cddd2f07170e0b07111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dedf016d_7fbe7b0b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
