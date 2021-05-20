@@ -26,10 +26,9 @@ public class CpsPathException extends CpsException {
     /**
      * Constructor.
      *
-     * @param message the error message
      * @param details the error details
      */
-    public CpsPathException(final String message, final String details) {
-        super(message, details);
+    public CpsPathException(final String details) {
+        super("Error while parsing cpsPath expression", details);
     }
 }

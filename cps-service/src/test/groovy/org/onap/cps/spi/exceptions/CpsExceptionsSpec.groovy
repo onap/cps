@@ -115,8 +115,8 @@ class CpsExceptionsSpec extends Specification {
     def 'Creating an exception that the schema set being used and cannot be deleted.'() {
         expect: 'the exception details contains the correct message with dataspace and schema set names'
             (new SchemaSetInUseException(dataspaceName, schemaSetName)).details
-                    == ("Schema Set with name ${schemaSetName} in dataspace ${dataspaceName} is having "
-                    + "Anchor records associated.")
+                    == ("Schema Set with name ${schemaSetName} in dataspace ${dataspaceName} is having" +
+                " Anchor records associated.")
     }
 
     def 'Creating a exception that a datanode with a specified xpath does not exist.'() {
@@ -157,10 +157,8 @@ class CpsExceptionsSpec extends Specification {
 
     def 'Creating a cps path exception.'() {
         given: 'a cps path exception is created'
-            def exception = new CpsPathException(providedMessage, providedDetails)
-        expect: 'the exception has the provided message'
-            exception.message == providedMessage
-        and: 'the exception has the provided details'
+            def exception = new CpsPathException(providedDetails)
+        expect: 'the exception has the provided details'
             exception.details == providedDetails
     }
 }
