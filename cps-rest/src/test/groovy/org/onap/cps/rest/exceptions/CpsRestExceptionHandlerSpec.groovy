@@ -21,13 +21,6 @@
 
 package org.onap.cps.rest.exceptions
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.CONFLICT
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
@@ -51,6 +44,13 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest
 class CpsRestExceptionHandlerSpec extends Specification {
@@ -128,11 +128,12 @@ class CpsRestExceptionHandlerSpec extends Specification {
             setupTestException(exceptionThrown)
             def response = performTestRequest()
         then: 'an HTTP Bad Request response is returned with correct message and details'
-            assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
+            assertTestResponse(response, BAD_REQUEST, expectedErrorMessage, expectedErrorDetails)
         where: 'the following exceptions are thrown'
-            exceptionThrown << [new ModelValidationException(errorMessage, errorDetails, null),
-                                new DataValidationException(errorMessage, errorDetails, null),
-                                new CpsPathException(errorMessage, errorDetails)]
+            exceptionThrown                                                || expectedErrorMessage           | expectedErrorDetails
+            new ModelValidationException(errorMessage, errorDetails, null) || errorMessage                   | errorDetails
+            new DataValidationException(errorMessage, errorDetails, null)  || errorMessage                   | errorDetails
+            new CpsPathException(errorDetails)                             || CpsPathException.ERROR_MESSAGE | errorDetails
     }
 
     def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {

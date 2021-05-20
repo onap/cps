@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.query;
+package org.onap.cps.cpspath.parser;
 
 /**
  * The enum Cps path query type.
@@ -29,11 +29,11 @@ public enum CpsPathQueryType {
      */
     XPATH_HAS_DESCENDANT_ANYWHERE,
     /**
-     * Xpath descendant anywhere type e.g. //nodeName[@leafName=leafValue] .
+     * Xpath descendant anywhere type e.g. //nodeName[@leafName="value"] .
      */
     XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES,
     /**
-     * Xpath leaf value cps path query type e.g. /cps-path[@leafName=leafValue] .
+     * Xpath leaf value cps path query type e.g. /cps-path[@leaf1="leafValue" and @leaf2=123] .
      */
     XPATH_LEAF_VALUE
 }

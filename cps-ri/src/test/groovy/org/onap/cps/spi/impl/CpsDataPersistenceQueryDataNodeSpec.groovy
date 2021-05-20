@@ -129,18 +129,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query error scenario using descendant anywhere ends with yang list containing %scenario '() {
-        when: 'a query is executed to get a data node by the given cps path'
-            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
-        then: 'exception is thrown'
-            thrown(CpsPathException)
-        where: 'the following data is used'
-            scenario                             | cpsPath
-            'one of the leaf without value'      | '//categories[@code=1 and @name=]'
-            'more than one leaf separated by or' | '//categories[@code=1 or @name="SciFi"]'
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, INCLUDE_ALL_DESCENDANTS)
@@ -157,7 +145,15 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ['/shops/shop[@id=1]']
             'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ['/shops/shop[@id=1]/categories[@code=2]']
             'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ['/shops/shop[@id=3]/info/contact']
-            'ancestor with parent that does not exist'  | '//book/ancestor::/parentDoesNoExist/categories'     || []
+            'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []
             'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []
     }
+
+    def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
+        when: 'trying to execute a query with a syntax (parsing) error'
+            objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+        then: 'exception is thrown'
+            thrown(CpsPathException)
+    }
+
 }

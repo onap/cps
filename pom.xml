@@ -54,6 +54,7 @@
         <module>cps-rest</module>
         <module>cps-ncmp-service</module>
         <module>cps-ncmp-rest</module>
+        <module>cps-path-parser</module>
         <module>cps-ri</module>
         <module>checkstyle</module>
         <module>spotbugs</module>

@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============LICENSE_START=======================================================
+  Copyright (c) 2021 Linux Foundation.
+  ================================================================================
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ============LICENSE_END=========================================================
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -13,6 +30,7 @@
     <description>This artifact contains dependencyManagement declarations of upstream versions.</description>
 
     <properties>
+        <antlr4-runtime.version>4.9.2</antlr4-runtime.version>
         <cglib-nodep.version>3.1</cglib-nodep.version>
         <commons-codec.version>1.15</commons-codec.version>
         <commons-lang3.version>3.11</commons-lang3.version>
@@ -91,6 +109,11 @@
                 <groupId>com.vladmihalcea</groupId>
                 <artifactId>hibernate-types-52</artifactId>
                 <version>${hibernate-types.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-runtime</artifactId>
+                <version>${antlr4-runtime.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>

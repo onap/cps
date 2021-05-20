@@ -36,16 +36,17 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathQueryType;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
-import org.onap.cps.spi.query.CpsPathQuery;
-import org.onap.cps.spi.query.CpsPathQueryType;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
@@ -171,7 +172,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final FetchDescendantsOption fetchDescendantsOption) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final var cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
+        } catch (final IllegalStateException e) {
+            throw new CpsPathException(e.getMessage());
+        }
         List<FragmentEntity> fragmentEntities;
         if (CpsPathQueryType.XPATH_LEAF_VALUE.equals(cpsPathQuery.getCpsPathQueryType())) {
             fragmentEntities = fragmentRepository
@@ -283,7 +289,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentRepository.save(fragmentEntity);
     }
 
-    private boolean isRootXpath(final String xpath) {
+    private static boolean isRootXpath(final String xpath) {
         return "/".equals(xpath) || "".equals(xpath);
     }
 }
