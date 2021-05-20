@@ -22,6 +22,30 @@
       "revId": "9fde624bc0ae5373bc26c34dfc2f1e8b965dcb1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13025cd4_a9071b33",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-20T09:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0a9474d_585d398f",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 39
+      },
+      "revId": "9fde624bc0ae5373bc26c34dfc2f1e8b965dcb1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
