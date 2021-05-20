@@ -347,6 +347,7 @@
                         <configuration>
                             <excludes>
                                 <exclude>org/onap/cps/rest/model/*</exclude>
+                                <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                             </excludes>
                             <dataFile>${project.build.directory}/code-coverage/jacoco-ut.exec</dataFile>
                             <rules>
