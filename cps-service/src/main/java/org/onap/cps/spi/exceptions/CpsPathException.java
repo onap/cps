@@ -23,13 +23,14 @@ public class CpsPathException extends CpsException {
 
     private static final long serialVersionUID = 1006899957127327791L;
 
+    private static final String ERROR_MESSAGE = "Error while parsing cpsPath expression";
+
     /**
      * Constructor.
      *
-     * @param message the error message
      * @param details the error details
      */
-    public CpsPathException(final String message, final String details) {
-        super(message, details);
+    public CpsPathException(final String details) {
+        super(ERROR_MESSAGE, details);
     }
 }
