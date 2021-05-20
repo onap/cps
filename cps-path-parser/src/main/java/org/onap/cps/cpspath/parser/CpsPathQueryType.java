@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.query;
+package org.onap.cps.cpspath.parser;
 
 /**
  * The enum Cps path query type.

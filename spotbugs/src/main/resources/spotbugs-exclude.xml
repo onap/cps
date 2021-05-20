@@ -1,5 +1,9 @@
 <FindBugsFilter>
   <Match>
+    <!-- Ignore generated code from Antlr4 -->
+    <Package name="org.onap.cps.cpspath.parser.antlr4" />
+  </Match>
+  <Match>
     <Or>
       <!-- Anonymous inner classes are very common. -->
       <Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
