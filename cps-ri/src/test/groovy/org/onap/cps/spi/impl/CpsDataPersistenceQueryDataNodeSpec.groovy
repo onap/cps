@@ -21,7 +21,6 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -130,10 +129,12 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query error scenario using descendant anywhere ends with yang list containing %scenario '() {
+        //TODO EEITSIK , these error scenarios should be (and [possibly are)  handled in CpsPathQuerySpec
+
         when: 'a query is executed to get a data node by the given cps path'
             objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
         then: 'exception is thrown'
-            thrown(CpsPathException)
+            thrown(IllegalStateException)
         where: 'the following data is used'
             scenario                             | cpsPath
             'one of the leaf without value'      | '//categories[@code=1 and @name=]'
@@ -157,7 +158,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ['/shops/shop[@id=1]']
             'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ['/shops/shop[@id=1]/categories[@code=2]']
             'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ['/shops/shop[@id=3]/info/contact']
-            'ancestor with parent that does not exist'  | '//book/ancestor::/parentDoesNoExist/categories'     || []
+            'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []
             'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []
     }
 }
