@@ -65,9 +65,9 @@ public class CpsPathQuery {
 
     private static final String INDIVIDUAL_LEAF_DETAIL_PATTERN = ("\\s{1,9}and\\s{1,9}");
 
-    private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*)");
+    private static final Pattern LEAF_VALUE_PATTERN = Pattern.compile("@(\\S+?)=(.*+)");
 
-    private static final Pattern ANCESTOR_AXIS_PATTERN = Pattern.compile("(\\S+)\\/ancestor::\\/?(\\S+)");
+    private static final Pattern ANCESTOR_AXIS_PATTERN = Pattern.compile("(\\S+)\\/ancestor::\\/?(\\S++)");
 
     /**
      * Returns a cps path query.
