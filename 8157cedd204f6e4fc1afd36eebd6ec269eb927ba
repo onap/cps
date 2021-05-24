@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7b8ae0ad_37f0af47",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-24T09:38:36Z",
+      "side": 1,
+      "message": "there is no way to replace a node while keeping any of it\u0027s descendants.\n\nthe name of the method is similar to removeExistingDescendants().\nthe only difference is not all of descendants (of a defined provided node) are removed, \nbut only matching the criteria (belonging to specified list).",
+      "parentUuid": "3379dd06_42bb2f0b",
+      "range": {
+        "startLine": 273,
+        "startChar": 31,
+        "endLine": 273,
+        "endChar": 42
+      },
+      "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ac9b04ca_f01f1aaa",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "writtenOn": "2021-05-21T10:33:29Z",
       "side": 1,
       "message": "would replaceDataNodesList sound better ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 9,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f18b218_5bf6e1dd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7362
+      },
+      "writtenOn": "2021-05-24T09:38:36Z",
+      "side": 1,
+      "message": "listDataNodes means the subset of nodes achieved out of node described as a \"list\" within yang model\nDataNodesList means a generic collection of data nodes, not a better description imo",
+      "parentUuid": "ac9b04ca_f01f1aaa",
       "range": {
         "startLine": 111,
         "startChar": 9,
