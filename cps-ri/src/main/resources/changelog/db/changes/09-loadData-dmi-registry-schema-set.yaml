@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dataspace1.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'dataspace'
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.1
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set1.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'schema_set'
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.2
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/yang_resource1.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'yang_resource'
+        columns:
+          - column:
+              header:  name
+              name:  name
+              type:  STRING
+          - column:
+              header:  content
+              name: content
+              type: STRING
+          - column:
+              header:  checkstyle
+              name: checkstyle
+              type: STRING
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.3
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/schema_set_yang_resources1.csv'
+        quotchar: '"'
+        primaryKey: 'schema_set_id,yang_resource_id'
+        separator: '|'
+        tableName: 'schema_set_yang_resources'
+        usePreparedStatements:  true
+
