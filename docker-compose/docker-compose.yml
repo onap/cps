@@ -51,7 +51,7 @@ services:
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
-    image: onap/cps-and-ncmp:${VERSION:-latest}
+    image: nexus3.onap.org:10003/onap/cps-and-ncmp:${VERSION:-latest}
     ports:
       - "8883:8080"
     environment:
