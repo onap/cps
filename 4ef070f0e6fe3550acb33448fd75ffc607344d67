@@ -16,6 +16,24 @@
       "revId": "4ef070f0e6fe3550acb33448fd75ffc607344d67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5926a0b1_6aa5635d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-24T07:39:37Z",
+      "side": 1,
+      "message": "thanks for pointing that out, cut\u0026paste error :-)",
+      "parentUuid": "5626f958_d6d1269b",
+      "revId": "4ef070f0e6fe3550acb33448fd75ffc607344d67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
