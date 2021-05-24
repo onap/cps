@@ -124,7 +124,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/docs/api/swagger/openapi.yml</inputSpec>
+                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>
