@@ -1,0 +1,2 @@
+name|schema_set_id|dataspace_id
+ncmp-dmi-registery|(select id from schema_set where name='ncmp-dmi-registry-model')|(select id from dataspace where name='NCMP-Admin')
