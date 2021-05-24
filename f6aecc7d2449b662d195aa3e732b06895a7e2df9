@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f269af0_dbc9150a",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-05-24T14:57:20Z",
+      "side": 1,
+      "message": "will fix in upcoming patch",
+      "parentUuid": "eb9fdc5b_66dda437",
+      "range": {
+        "startLine": 8,
+        "startChar": 41,
+        "endLine": 8,
+        "endChar": 51
+      },
+      "revId": "f6aecc7d2449b662d195aa3e732b06895a7e2df9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "40299f24_068909ca",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang_resource1.csv",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-05-24T14:08:18Z",
       "side": 1,
       "message": "Are these using SHA-256 algorith? In CPS we had a security hotpost reported and then we switched to SHA-256.. will also help in mainitaining uniformity",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "f6aecc7d2449b662d195aa3e732b06895a7e2df9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d43e4d_d16bd588",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang_resource1.csv",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-05-24T14:57:20Z",
+      "side": 1,
+      "message": "This is wrong checksum, need to correct this.",
+      "parentUuid": "40299f24_068909ca",
       "range": {
         "startLine": 76,
         "startChar": 2,
