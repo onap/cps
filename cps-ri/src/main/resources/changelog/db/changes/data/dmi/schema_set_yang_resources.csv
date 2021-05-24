@@ -1,0 +1,3 @@
+schema_set_id|yang_resource_id
+(select id from schema_set where name='ncmp-dmi-registry-model')|(select id from yang_resource where name='dmi-registry.yang')
+
