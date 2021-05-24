@@ -1,0 +1,75 @@
+name|content|checksum
+dmi-registry.yang|"module dmi-registry {
+
+  yang-version 1.1;
+
+  namespace \"org:onap:cps:ncmp\";
+
+  prefix dmi-reg;
+
+  organization \"Ericsson Software Tech.\";
+
+  contact \"rahul.tyagi@est.tech\";
+
+  revision \"2021-05-20\" {
+    description
+    \"Initial Version\";
+  }
+
+  grouping target {
+    leaf address {
+      type string;
+      description \"Target IP address\";
+    }
+  }
+
+  container dmi-registry {
+
+    list cm-handle {
+
+      key \"id\";
+
+      leaf id {
+        type string;
+      }
+
+      leaf name {
+        type string;
+      }
+
+      leaf dmi-plugin {
+        type leafref {
+          path \"/dmi-registry/dmi-plugin/id\";
+        }
+      }
+
+      list additional-properties {
+
+        key \"name\";
+
+        leaf name {
+          type string;
+        }
+
+        leaf value {
+          type string;
+        }
+      }
+    }
+
+    list dmi-plugin {
+
+      key \"id\";
+
+      leaf id {
+        type string;
+      }
+
+      leaf name {
+        type string;
+      }
+
+      uses target;
+    }
+  }
+}"|e50d8fdb3a85615333d9acb38d18b44ed90babc7d6049b28cd6072dab9490bd6
