@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "f195889c_7104a52e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-24T13:23:37Z",
+      "side": 1,
+      "message": "we just have our wires crossed Ruslan, I don\u0027t expect you to replace nodes without replacing the descendants I was just looking for a better name for this method...\nBit it is acceptable as it is",
+      "parentUuid": "7b8ae0ad_37f0af47",
+      "range": {
+        "startLine": 273,
+        "startChar": 31,
+        "endLine": 273,
+        "endChar": 42
+      },
+      "revId": "8157cedd204f6e4fc1afd36eebd6ec269eb927ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac9b04ca_f01f1aaa",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 3
