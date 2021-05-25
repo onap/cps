@@ -16,6 +16,29 @@
       "revId": "57725244ab1e76fd6695f052c90c7d2a40743ce9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f4032fb_97a4d54c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-25T12:01:47Z",
+      "side": 1,
+      "message": "Issue-ID\n\nThis is only so that the link to JIRA is not broken",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 8
+      },
+      "revId": "57725244ab1e76fd6695f052c90c7d2a40743ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
