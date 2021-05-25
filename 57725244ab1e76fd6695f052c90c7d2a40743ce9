@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f294ad1_c1108fa8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-05-25T08:11:31Z",
+      "side": 1,
+      "message": "not a blocking comment but we use the guide outlined in this wiki when writing our commit messages.\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "57725244ab1e76fd6695f052c90c7d2a40743ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
