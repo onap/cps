@@ -1,7 +1,7 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada.
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,14 +18,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps;
+package org.onap.cps.postgres
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.onap.cps.spi.impl.CpsPersistenceSpecBase
+import org.springframework.beans.factory.annotation.Autowired
 
-/**
- * The @SpringBootApplication annotated class is required in order to run tests
- * marked with @SpringBootTest annotation.
- */
-@SpringBootApplication(scanBasePackages = "org.onap.cps.spi")
-public class TestApplication {
+class TestingPackageAdditionSpec extends CpsPersistenceSpecBase {
+
+    @Autowired
+    TestingPackageAddition objectUnderTest
+
+    def 'test should pass.'() {
+        expect :
+            objectUnderTest.test() == "test"
+    }
 }

@@ -1,7 +1,7 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada.
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,14 +18,17 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps;
+package org.onap.cps.postgres;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
-/**
- * The @SpringBootApplication annotated class is required in order to run tests
- * marked with @SpringBootTest annotation.
- */
-@SpringBootApplication(scanBasePackages = "org.onap.cps.spi")
-public class TestApplication {
+@Component
+@Slf4j
+public class TestingPackageAddition {
+
+    public String test() {
+        return "test";
+    }
+
 }
