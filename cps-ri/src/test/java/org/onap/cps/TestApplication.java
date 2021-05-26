@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +26,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * The @SpringBootApplication annotated class is required in order to run tests
  * marked with @SpringBootTest annotation.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.onap.cps.spi")
 public class TestApplication {
 }
