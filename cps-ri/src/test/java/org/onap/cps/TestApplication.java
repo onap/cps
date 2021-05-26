@@ -20,11 +20,13 @@
 package org.onap.cps;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * The @SpringBootApplication annotated class is required in order to run tests
  * marked with @SpringBootTest annotation.
  */
 @SpringBootApplication
+@ComponentScan("org.onap.cps.spi")
 public class TestApplication {
 }
