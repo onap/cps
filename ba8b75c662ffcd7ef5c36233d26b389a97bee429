@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07e98780_5aa66fb7",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "ba8b75c662ffcd7ef5c36233d26b389a97bee429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f3b1a3a_82b52b48",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "var",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "ba8b75c662ffcd7ef5c36233d26b389a97bee429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b8ae009_6e9eaf8e",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "copyright missing",
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2c29a00_99fad825",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "should not be needed. check cps-parent",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 21
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db948fe6_b1de4112",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "incase you planning on merging like this, i\u0027d suggest create a task and add that here instead of comment.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 2
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb139bcf_6c6e73ea",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 23
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "353422eb_ca232b53",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "breaks pattern of us naming our variables",
+      "range": {
+        "startLine": 40,
+        "startChar": 65,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73b856e2_4b2dc0a6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "can we rather have this in import",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de0dbde_f3565ce6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "Suggest to remove,overkill, obvious",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20bdde61_c2b5a942",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "CpsPathQuery",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3aface0_da392771",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "use var where possible",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c736115_30b655de",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "should create custom exception for this like , CpsPathParserException or similar",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 47
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e8f70d6_7e356fde",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-26T17:04:01Z",
+      "side": 1,
+      "message": "unknown in ONAP :D",
+      "range": {
+        "startLine": 132,
+        "startChar": 15,
+        "endLine": 132,
+        "endChar": 23
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
