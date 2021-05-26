@@ -21,8 +21,6 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.api.CpsAdminService
-import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ModuleReference
@@ -30,8 +28,8 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cache.CacheManager
+import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cache.caffeine.CaffeineCacheManager
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
@@ -39,17 +37,14 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 @SpringBootTest
-@ComponentScan("org.onap.cps")
-@ContextConfiguration(classes = CpsModuleServiceImplSpec.class)
+@EnableCaching
+@ContextConfiguration(classes = [YangTextSchemaSourceSetCache.class, CpsModuleServiceImpl.class])
 class CpsModuleServiceImplSpec extends Specification {
+
     @SpringBean
     CpsModulePersistenceService mockModuleStoreService = Mock()
-    @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
-    @SpringBean
-    CpsDataPersistenceService mockDataPersistenceService = Mock()
     @Autowired
-    CpsModuleServiceImpl objectUnderTest = new CpsModuleServiceImpl()
+    CpsModuleServiceImpl objectUnderTest;
     @SpringBean
     CacheManager cacheManager = new CaffeineCacheManager("yangSchema");
 
