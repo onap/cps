@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "44037403_bd9f5230",
+        "filename": "cps-ri/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-27T09:12:57Z",
+      "side": 1,
+      "message": "curious as to why this is needed now.is it because @ComponentScan is removed from test file?",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930e10b8_f3028bd5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
