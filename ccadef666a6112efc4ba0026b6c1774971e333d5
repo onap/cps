@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1b5690e4_37f37192",
+        "filename": "cps-ri/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-05-27T11:13:43Z",
+      "side": 1,
+      "message": "TestApplication class is in package org.onap.cps, so it tries to load all the component define in it. cps-service is one of the dependencies of cps-ri and also have components defined in org.onap.cps package. So, when TestApplication tried to create application context it loads all the components in cps-service. \nIt was causing test failures in cps-ri when I created a new component in cps-service that uses a configuration from application.yml. \n\n@ComponentScan is also defined @SpringBootApplication so removal should not cause any issue. But, if it was scanning only org.onao.cps.spi package then it may be the cause.",
+      "parentUuid": "44037403_bd9f5230",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930e10b8_f3028bd5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "504417b1_9aa3a068",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-05-27T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "930e10b8_f3028bd5",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02e424f0_49e9705d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ebdfdc4_1588c0de",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-05-27T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02e424f0_49e9705d",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 15
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
