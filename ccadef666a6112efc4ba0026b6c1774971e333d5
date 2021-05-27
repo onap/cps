@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "00f41500_398d0f83",
+        "filename": "cps-ri/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-27T14:28:55Z",
+      "side": 1,
+      "message": "would that not work if you added respective config in application.yml in test/resources.\nNew config could be a problem if in future there is a package like org.onap.cps.abc in this this module.it would need explicit adding that to this list.",
+      "parentUuid": "1b5690e4_37f37192",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930e10b8_f3028bd5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
