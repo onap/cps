@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b0a13a6a_41e130d0",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-05-27T09:14:21Z",
+      "side": 1,
+      "message": "add copyright",
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b8ae009_6e9eaf8e",
         "filename": "cps-path-parser/pom.xml",
         "patchSetId": 4
@@ -53,6 +70,30 @@
       "writtenOn": "2021-05-26T17:04:01Z",
       "side": 1,
       "message": "incase you planning on merging like this, i\u0027d suggest create a task and add that here instead of comment.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 2
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b68a05b_fcfaee1b",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-05-27T09:14:21Z",
+      "side": 1,
+      "message": "I agree",
+      "parentUuid": "db948fe6_b1de4112",
       "range": {
         "startLine": 30,
         "startChar": 0,
