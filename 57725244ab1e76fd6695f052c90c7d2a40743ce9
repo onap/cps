@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1df64b9b_9a4d4939",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-27T07:39:31Z",
+      "side": 1,
+      "message": "agreed (but not blocking)",
+      "parentUuid": "8f294ad1_c1108fa8",
+      "revId": "57725244ab1e76fd6695f052c90c7d2a40743ce9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f4032fb_97a4d54c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
