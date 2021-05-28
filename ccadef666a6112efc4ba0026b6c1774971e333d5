@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "a2c2d346_854209c9",
+        "filename": "cps-ri/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-05-28T14:02:37Z",
+      "side": 1,
+      "message": "I created a new package org.onap.cps.postgres to test if test cases will be skipped if the package is not added in TestApplication. It failed with error \u0027org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type \u0027org.onap.cps.postgres.TestingPackageAddition\u0027 available\u0027.\n\nChanges are in https://gerrit.onap.org/r/c/cps/+/121560/5",
+      "parentUuid": "1365b184_703f1722",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "ccadef666a6112efc4ba0026b6c1774971e333d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930e10b8_f3028bd5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
