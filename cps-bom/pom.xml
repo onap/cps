@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Modification Copyright (C) 2021 Nordix Foundation
+  Modification Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -78,6 +79,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>cps-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>cps-events</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
