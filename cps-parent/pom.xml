@@ -327,7 +327,7 @@
                             see https://www.testcontainers.org/features/configuration/#disabling-ryuk
                          -->
                         <TESTCONTAINERS_RYUK_DISABLED>true</TESTCONTAINERS_RYUK_DISABLED>
-                        <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${docker.pull.registry}/library/</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
+                        <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${docker.repository.pull}</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
                     </environmentVariables>
                 </configuration>
             </plugin>
