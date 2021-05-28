@@ -1,5 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Modification (C) 2021 Nordix Foundation
+#  Modification Copyright (C) 2021 Bell Canada.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -56,6 +57,19 @@ spring:
             enabled: true
             max-file-size: 100MB
             max-request-size: 100MB
+
+    kafka:
+        bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+        security:
+            protocol: PLAINTEXT
+        producer:
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+            client-id: cps-core
+
+notification:
+    data-updated:
+        enabled: false
+        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
 
 security:
     # comma-separated uri patterns which do not require authorization
