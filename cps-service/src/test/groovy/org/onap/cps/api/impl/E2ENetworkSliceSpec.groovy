@@ -23,6 +23,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -34,8 +35,9 @@ class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockNotificationService = Mock(NotificationService)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl()
-    def cpsDataServiceImple = new CpsDataServiceImpl()
+    def cpsDataServiceImpl = new CpsDataServiceImpl()
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
 
     def dataspaceName = 'someDataspace'
@@ -43,9 +45,10 @@ class E2ENetworkSliceSpec extends Specification {
     def schemaSetName = 'someSchemaSet'
 
     def setup() {
-        cpsDataServiceImple.cpsDataPersistenceService = mockDataStoreService
-        cpsDataServiceImple.cpsAdminService = mockCpsAdminService
-        cpsDataServiceImple.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
+        cpsDataServiceImpl.cpsDataPersistenceService = mockDataStoreService
+        cpsDataServiceImpl.cpsAdminService = mockCpsAdminService
+        cpsDataServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
+        cpsDataServiceImpl.notificationService = mockNotificationService
         cpsModuleServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
         cpsModuleServiceImpl.cpsModulePersistenceService = mockModuleStoreService
     }
@@ -88,7 +91,7 @@ class E2ENetworkSliceSpec extends Specification {
                     YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImple.saveData(dataspaceName, anchorName, jsonData)
+            cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
@@ -120,7 +123,7 @@ class E2ENetworkSliceSpec extends Specification {
             mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImple.saveData('someDataspace', 'someAnchor', jsonData)
+            cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData)
         then: 'parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
