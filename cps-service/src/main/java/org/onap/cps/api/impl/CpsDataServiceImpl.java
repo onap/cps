@@ -25,6 +25,7 @@ import java.util.Collection;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.notification.NotificationService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -53,10 +54,14 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Autowired
     private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     @Override
@@ -64,6 +69,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     @Override
@@ -72,6 +78,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> dataNodesCollection =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     @Override
@@ -86,6 +93,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     @Override
@@ -93,6 +101,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     @Override
@@ -101,6 +110,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> dataNodes =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
