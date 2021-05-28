@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright Copyright (C) 2021 Nordix Foundation
+  Modifications Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -31,6 +32,10 @@
   <artifactId>cps-service</artifactId>
 
   <dependencies>
+    <dependency>
+      <groupId>org.onap.cps</groupId>
+      <artifactId>cps-events</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-model-api</artifactId>
@@ -64,6 +69,15 @@
       <groupId>com.github.ben-manes.caffeine</groupId>
       <artifactId>caffeine</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+    </dependency>
+
     <dependency>
       <!-- For logging -->
       <groupId>org.slf4j</groupId>
@@ -104,6 +118,16 @@
       <groupId>cglib</groupId>
       <artifactId>cglib-nodep</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>1.15.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka-test</artifactId>
     </dependency>
   </dependencies>
 </project>

@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Modification Copyright (C) 2021 Nordix Foundation
+  Modifications Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -116,4 +117,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <environmentVariables>
+                        <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${docker.repository.pull}library/</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
