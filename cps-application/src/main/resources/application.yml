@@ -1,5 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Modification (C) 2021 Nordix Foundation
+#  Modification Copyright (C) 2021 Bell Canada.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -56,6 +57,28 @@ spring:
             enabled: true
             max-file-size: 100MB
             max-request-size: 100MB
+
+    kafka:
+        bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:}
+        # TODO Dmaap supports SASL_PLAINTEXT or PLAINTEXT. It uses AAF for authorization.
+#        security:
+#            protocol: SASL_SSL
+#        ssl:
+#            trust-store-type: JKS
+#            trust-store-location: ${KAFKA_SSL_TRUST_STORE_LOCATION:}
+#            trust-store-password: ${KAFKA_SSL_TRUST_STORE_PASSWORD:}
+#        properties:
+#            sasl.mechanism: SCRAM-SHA-512
+#            sasl.jaas.config: ${KAFKA_SASL_JAAS_CONFIG:}
+#            ssl.endpoint.identification.algorithm:
+        producer:
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+            cliend-id: cps
+
+notification:
+    data-updated:
+        enabled: false
+        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
 
 security:
     # comma-separated uri patterns which do not require authorization
