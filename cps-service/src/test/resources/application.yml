@@ -1,0 +1,20 @@
+notification:
+  data-updated:
+    topic: cps-event
+    enabled: true
+
+spring:
+  kafka:
+    properties:
+      request.timeout.ms: 5000
+      retries: 1
+      max.block.ms: 10000
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      cliend-id: cps
+    consumer:
+      group-id: cps-test
+      auto.offset.reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent

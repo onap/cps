@@ -57,6 +57,13 @@ spring:
             max-file-size: 100MB
             max-request-size: 100MB
 
+notification:
+    data-updated:
+        enabled: false
+        topic: testingTopic
+        # TODO change the topic name after discussing with Bruno
+        # TODO Add custom properties for Kafka producer.
+
 security:
     # comma-separated uri patterns which do not require authorization
     permit-uri: /manage/health/**,/manage/info,/swagger-ui/**,/swagger-resources/**,/v3/api-docs
