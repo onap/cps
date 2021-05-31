@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef01ff05_338387c0",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-31T14:34:43Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "43f27e90a179e4a12984fc046af3ff750cead79d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd6f92dd_cc84b5db",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-31T14:34:43Z",
+      "side": 1,
+      "message": "looks like if-else if to me",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "43f27e90a179e4a12984fc046af3ff750cead79d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d126519c_fc7237cd",
+        "filename": "pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-05-31T14:34:43Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be before cps-ri",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "43f27e90a179e4a12984fc046af3ff750cead79d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
