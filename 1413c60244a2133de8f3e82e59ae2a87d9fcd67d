@@ -283,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "2917b970_5b7ccce4",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-31T14:29:16Z",
+      "side": 1,
+      "message": "I thought I had answered this before but my reply seems to go lost:\nthe Generated code uses these variable names (in the interface and in the base impl. class) \n\nI agree it is inconsistent with our general naming convention but I think we need to follow the parent set by Antlr itself here I think. One of the advantages (and maybe the reason they did this) that one often refactor/renames rules. use the same name for the ctx variable makes it easier to move code to new rules due to this refactoring etc,",
+      "parentUuid": "353422eb_ca232b53",
+      "range": {
+        "startLine": 40,
+        "startChar": 65,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0de0dbde_f3565ce6",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 4
