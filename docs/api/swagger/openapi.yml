@@ -22,6 +22,38 @@ tags:
   - name: cps-data
     description: cps Data
 paths:
+  /v1/helloworld:
+    get:
+      description: Hello World
+      tags:
+        - dmi-plugin
+      summary: Get Hello World
+      operationId: helloWorld
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
   /v1/dataspaces:
     post:
       description: Create a new dataspace

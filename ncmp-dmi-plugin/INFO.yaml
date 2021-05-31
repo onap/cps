@@ -1,0 +1,50 @@
+---
+project: 'ncmp-dmi-plugin'
+project_creation_date: '2021-05-24'
+lifecycle_state: 'Incubation'
+project_category: ''
+project_lead: &onap_releng_ptl
+  name: 'Toine Siebelink'
+  email: 'toine.siebelink@est.tech'
+  id: 'toinesiebelink'
+  company: 'Ericsson Software Technology'
+  timezone: 'Europe/Dublin'
+primary_contact: *onap_releng_ptl
+issue_tracking:
+  type: 'jira'
+  url: 'https://jira.onap.org/projects/CPS'
+  key: 'CPS'
+mailing_list:
+  type: 'groups.io'
+  url: 'lists.onap.org'
+  tag: '<[sub-project_name]>'
+realtime_discussion: ''
+meetings:
+  - type: 'zoom'
+    agenda: 'https://wiki.onap.org/pages/viewpage.action?pageId=84644224'
+    url: 'https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09'
+    server: 'n/a'
+    channel: 'n/a'
+    repeats: 'weekly'
+    time: '08:00 America/New_York'
+committers:
+  - <<: *onap_releng_ptl
+  - name: 'Toine Siebelink'
+    email: 'toine.siebelink@est.tech'
+    company: 'Ericsson Software Technology'
+    id: 'toinesiebelink'
+    timezone: 'Europe/Dublin'
+  - name: 'Bruno Sakoto'
+    email: 'bruno.sakoto@bell.ca'
+    company: 'Bell Canada'
+    id: 'brusak'
+    timezone: 'America/Toronto'
+  - name: 'Rishi Chail'
+    email: 'rishi.chail@est.tech'
+    company: 'Ericsson Software Technology'
+    id: 'Rishi.Chail'
+    timezone: 'Europe/Dublin'
+repositories:
+  - cps/ncmp-dmi-plugin
+tsc:
+  approval: 'https://lists.onap.org/g/onap-tsc'

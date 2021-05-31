@@ -47,6 +47,7 @@
     </properties>
 
     <modules>
+        <module>ncmp-dmi-plugin/</module>
         <module>cps-dependencies</module>
         <module>cps-bom</module>
         <module>cps-parent</module>

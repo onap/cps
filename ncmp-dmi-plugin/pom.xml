@@ -1,0 +1,76 @@
+<!--
+  ============LICENSE_START=======================================================
+  Copyright (c) 2021 Linux Foundation.
+  ================================================================================
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ============LICENSE_END=========================================================
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.onap.oparent</groupId>
+        <artifactId>oparent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>org.onap.cps</groupId>
+    <artifactId>ncmp-dmi-plugin</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <name>ncmp-dmi-plugin</name>
+    <description>DMI Plugin Service</description>
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
+        <!-- Plugins and plugins dependencies versions -->
+        <spring-boot-maven-plugin.version>2.3.3.RELEASE</spring-boot-maven-plugin.version>
+        <oparent.version>3.2.0</oparent.version>
+        <cps.checkstyle.version>1.0.1</cps.checkstyle.version>
+    </properties>
+
+    <modules>
+        <module>dmi-rest</module>
+        <module>dmi-plugin</module>
+    </modules>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/license</directory>
+                <includes>
+                    <include>third-party0licenses.txt</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>target/generated-resources/licenses</directory>
+                <includes>
+                    <include>*.*</include>
+                </includes>
+                <targetPath>third-party-licenses</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
