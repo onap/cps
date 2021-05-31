@@ -519,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "aa261168_ee30be05",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-31T15:43:55Z",
+      "side": 1,
+      "message": "have added proposed solution in next patch",
+      "parentUuid": "bbfd7115_78ae4f9a",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 47
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e8f70d6_7e356fde",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 4
@@ -554,6 +578,30 @@
       "side": 1,
       "message": "old habit :-)\nI shoudln\u0027t commit though Until I have addressed this TODO",
       "parentUuid": "4e8f70d6_7e356fde",
+      "range": {
+        "startLine": 132,
+        "startChar": 15,
+        "endLine": 132,
+        "endChar": 23
+      },
+      "revId": "1413c60244a2133de8f3e82e59ae2a87d9fcd67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ca983ce_141d886a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-05-31T15:43:55Z",
+      "side": 1,
+      "message": "just checked, these scenarios are covered in org.onap.cps.cpspath.parser.CpsPathQuerySpec#Parse cps path with error: #scenario.",
+      "parentUuid": "a44c2c39_6b33365f",
       "range": {
         "startLine": 132,
         "startChar": 15,
