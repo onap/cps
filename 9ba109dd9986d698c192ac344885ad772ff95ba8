@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e3180d_0470d421",
+        "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-01T12:10:30Z",
+      "side": 1,
+      "message": "The expected iso timestamp format should be specified here \"yyyy-MM-dd\u0027T\u0027HH:mm:ss.SSSZ\" and also an example could be provided.",
+      "revId": "9ba109dd9986d698c192ac344885ad772ff95ba8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
