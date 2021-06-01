@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc1d1884_3e60a6f7",
+        "filename": "ncmp-dmi-plugin/dmi-plugin/src/main/java/org/onap/cps/api/DmiService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T12:05:38Z",
+      "side": 1,
+      "message": "what is this for",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8995e07a_6dc851a1",
+        "filename": "ncmp-dmi-plugin/dmi-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T12:05:38Z",
+      "side": 1,
+      "message": "version(s) should be inherited",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff4abb3_427c4245",
+        "filename": "ncmp-dmi-plugin/dmi-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T12:05:38Z",
+      "side": 1,
+      "message": "used where?",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 17
+      },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d359992e_8dc68bc2",
+        "filename": "ncmp-dmi-plugin/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T12:05:38Z",
+      "side": 1,
+      "message": "0.0.1",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cc2401d_90661efe",
+        "filename": "ncmp-dmi-plugin/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T12:05:38Z",
+      "side": 1,
+      "message": "required for Docker image tag, not required yet",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 89
+      },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
