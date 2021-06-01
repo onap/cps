@@ -45,8 +45,8 @@
         <spock-core.version>2.0-M5-groovy-3.0</spock-core.version>
         <spock-spring.version>2.0-M5-groovy-3.0</spock-spring.version>
         <spotbugs.version>4.2.0</spotbugs.version>
-        <springboot.version>2.3.8.RELEASE</springboot.version>
-        <springboot.cloud.version>Hoxton.SR9</springboot.cloud.version>
+        <springboot.version>2.5.0</springboot.version>
+        <springboot.cloud.version>2020.0.2</springboot.cloud.version>
         <springfox.version>3.0.0</springfox.version>
         <swagger.version>2.1.4</swagger.version>
         <testcontainers.version>1.15.1</testcontainers.version>
