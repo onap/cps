@@ -2,6 +2,108 @@
   "comments": [
     {
       "key": {
+        "uuid": "1bad9052_2f0c3440",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "remove version",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e03904c1_49d57d24",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "remove version",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bb9c31b_881eb9e0",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "${project.version}",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5569a22_fdc50f35",
+        "filename": "ncmp-dmi-plugin/INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "why is this need it? \n\nrepositories:\n  - cps/ncmp-dmi-plugin\n\nbut this is cps repo, so I might be missing some information here, but this doesnt make sense",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05e1209e_f5b7db73",
+        "filename": "ncmp-dmi-plugin/dmi-plugin/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e2ea9b2_6f3611b6",
+        "filename": "ncmp-dmi-plugin/dmi-plugin/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "remove version",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc1d1884_3e60a6f7",
         "filename": "ncmp-dmi-plugin/dmi-plugin/src/main/java/org/onap/cps/api/DmiService.java",
         "patchSetId": 1
@@ -42,6 +144,40 @@
         "endLine": 37,
         "endChar": 26
       },
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8319484_fafdf55d",
+        "filename": "ncmp-dmi-plugin/dmi-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "are those added on bom? version will be inherited, same for the next dependency",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32fb2963_53ba3793",
+        "filename": "ncmp-dmi-plugin/dmi-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-01T14:06:57Z",
+      "side": 1,
+      "message": "this seems to be duplicated on other modules already, extract to dependency management plugin,\nfor apiPackage and  modelPackage can be used module specific property to define required value",
       "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
