@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "63915d82_4b1b9fdc",
+        "filename": "ncmp-dmi-plugin/INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-01T14:57:29Z",
+      "side": 1,
+      "message": "this is to be moved to a subrepo, acted as a placeholder. Will not be merged, hence the -1",
+      "parentUuid": "c5569a22_fdc50f35",
+      "revId": "3c044675a97f7cbe8cc64c314a6abcd97f59a8ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05e1209e_f5b7db73",
         "filename": "ncmp-dmi-plugin/dmi-plugin/pom.xml",
         "patchSetId": 1
