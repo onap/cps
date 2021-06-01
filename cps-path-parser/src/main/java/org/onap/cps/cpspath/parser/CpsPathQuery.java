@@ -19,7 +19,6 @@
 
 package org.onap.cps.cpspath.parser;
 
-
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Getter;

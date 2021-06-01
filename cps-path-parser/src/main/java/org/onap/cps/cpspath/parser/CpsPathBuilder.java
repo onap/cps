@@ -1,4 +1,3 @@
-package org.onap.cps.cpspath.parser;
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
@@ -17,6 +16,8 @@ package org.onap.cps.cpspath.parser;
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
+package org.onap.cps.cpspath.parser;
 
 import java.util.HashMap;
 import java.util.Map;
