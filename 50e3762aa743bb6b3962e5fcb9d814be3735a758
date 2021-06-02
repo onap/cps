@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "08c27367_d5164bb9",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-02T10:50:48Z",
+      "side": 1,
+      "message": "Question : Can it be configured to reside in src/gen/java for obvious benefits, similar to openapi generated code.",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad800bad_7e8c5ad9",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 5
