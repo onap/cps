@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad800bad_7e8c5ad9",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-02T07:37:12Z",
+      "side": 1,
+      "message": "extract to properties",
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bae7ac50_1db12f2b",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-02T07:37:12Z",
+      "side": 1,
+      "message": "it would be better to configure the plugin to ignore folder with generated classes",
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
