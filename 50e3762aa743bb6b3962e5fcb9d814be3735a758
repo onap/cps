@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e976e292_3f42b1f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-03T13:00:36Z",
+      "side": 1,
+      "message": "think these might have to be on top (not sure though)",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08c27367_d5164bb9",
         "filename": "cps-events/pom.xml",
         "patchSetId": 5
@@ -13,6 +36,30 @@
       "writtenOn": "2021-06-02T10:50:48Z",
       "side": 1,
       "message": "Question : Can it be configured to reside in src/gen/java for obvious benefits, similar to openapi generated code.",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d1c87eb_9fcee0ca",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-03T13:00:36Z",
+      "side": 1,
+      "message": "agreed, it is important to separate generated code",
+      "parentUuid": "08c27367_d5164bb9",
       "range": {
         "startLine": 60,
         "startChar": 20,
@@ -71,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "0983b9d0_0ba4161f",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-03T13:00:36Z",
+      "side": 1,
+      "message": "agrred just use def (iam not sure about the upper case either but that is a mater of opinion)",
+      "parentUuid": "ed568aa4_35ef4b3d",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad800bad_7e8c5ad9",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 5
@@ -82,6 +153,29 @@
       "writtenOn": "2021-06-02T07:37:12Z",
       "side": 1,
       "message": "extract to properties",
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e1a4b73_5c50446c",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-03T13:00:36Z",
+      "side": 1,
+      "message": "any particular reason for teh order change",
+      "range": {
+        "startLine": 347,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 32
+      },
       "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
