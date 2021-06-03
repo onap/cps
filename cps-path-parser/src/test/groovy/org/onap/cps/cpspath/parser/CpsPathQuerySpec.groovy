@@ -84,6 +84,7 @@ class CpsPathQuerySpec extends Specification {
             'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
             'incomplete ancestor value'                                         | '//books/ancestor::'
+            'unsupported postfix after single value condition (JIRA CPS-450)'   | '/parent/child[@id=1]/somePostFix'
     }
 
     def 'Parse cps path using ancestor by schema node identifier with a #scenario.'() {

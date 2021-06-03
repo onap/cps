@@ -25,7 +25,7 @@ ancestorAxis: SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
 ancestorPath: yangElement (SLASH yangElement)* ;
 
-cpsPathWithSingleLeafCondition: prefix singleValueCondition ;
+cpsPathWithSingleLeafCondition: prefix singleValueCondition postfix? ;
 
 /*
 No need to ditinguish between cpsPathWithDescendant | cpsPathWithDescendantAndLeafConditions really!
@@ -39,6 +39,8 @@ cpsPathWithDescendantAndLeafConditions: descendant multipleValueConditions ;
 descendant: SLASH prefix ;
 
 prefix: (SLASH yangElement)* SLASH containerName ;
+
+postfix: (SLASH yangElement)+ ;
 
 yangElement: containerName listElementRef? ;
 

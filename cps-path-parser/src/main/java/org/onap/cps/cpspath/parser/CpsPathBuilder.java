@@ -28,6 +28,7 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.CpsPathWithDescendantCon
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.CpsPathWithSingleLeafConditionContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.LeafConditionContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleValueConditionsContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PostfixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.SingleValueConditionContext;
 
@@ -40,6 +41,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitPrefix(final PrefixContext ctx) {
         cpsPathQuery.setXpathPrefix(ctx.getText());
+    }
+
+    @Override
+    public void exitPostfix(final PostfixContext ctx) {
+        throw new IllegalStateException(String.format("Unsupported postfix %s encountered in CpsPath.", ctx.getText()));
     }
 
     @Override
