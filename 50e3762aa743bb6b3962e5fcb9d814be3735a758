@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "589c8be7_af8f4d95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-03T20:20:53Z",
+      "side": 1,
+      "message": "I changed it as per the suggestion. I didn\u0027t face any issue due to different order",
+      "parentUuid": "e976e292_3f42b1f8",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08c27367_d5164bb9",
         "filename": "cps-events/pom.xml",
         "patchSetId": 5
@@ -142,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "886ba518_efd96966",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-03T20:20:53Z",
+      "side": 1,
+      "message": "Changing \nstatic final String DATASPACE_NAME \u003d \u0027my-dataspace\u0027 \nto\nfinal DATASPACE_NAME \u003d \u0027my-dataspace\n\nI do need final to define constant otherwise they can be overridden.",
+      "parentUuid": "0983b9d0_0ba4161f",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad800bad_7e8c5ad9",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 5
@@ -153,6 +201,24 @@
       "writtenOn": "2021-06-02T07:37:12Z",
       "side": 1,
       "message": "extract to properties",
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c360894_dcb88bc8",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-03T20:20:53Z",
+      "side": 1,
+      "message": "I thought it is okay not to parameterized it because it was used only once and child POM will not use this property. \nCan you share why it is good to parameterized it?\n\nI have changed it to be consistent with the rest of the configuration.",
+      "parentUuid": "ad800bad_7e8c5ad9",
       "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -182,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "966d7bda_10dc329e",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-03T20:20:53Z",
+      "side": 1,
+      "message": "I think exclude parameter should contain generic exclude rules in the parent pom and child pom can override it if required. Overriding becomes easier if it is defined outside rather than inside the execution.\n \ncps-event pom defines \u003cexclude\u003e in the pom https://gerrit.onap.org/r/c/cps/+/121530/5/cps-events/pom.xml\n\nDo you think it can cause any issues in sonar report? I will run sonar jenkin job after all comments are addressed to be sure.",
+      "parentUuid": "1e1a4b73_5c50446c",
+      "range": {
+        "startLine": 347,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 32
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bae7ac50_1db12f2b",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 5
@@ -193,6 +283,24 @@
       "writtenOn": "2021-06-02T07:37:12Z",
       "side": 1,
       "message": "it would be better to configure the plugin to ignore folder with generated classes",
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c854d0b_65a252fc",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-03T20:20:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae7ac50_1db12f2b",
       "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
