@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca28ea32_99f79578",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-04T08:04:44Z",
+      "side": 1,
+      "message": "bad practice. This info is always available in git history. non blocking, please remove in future.",
+      "range": {
+        "startLine": 87,
+        "startChar": 62,
+        "endLine": 87,
+        "endChar": 76
+      },
+      "revId": "cfc500b4192c356a3499040ebb714ec0b5f26584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
