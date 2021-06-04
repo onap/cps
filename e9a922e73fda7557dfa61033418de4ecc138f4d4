@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b16bd13_ab70fbcf",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "just def should do",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a726f2e_d8708ffb",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "does the data really need to be this complex?\nI dont think it has to confirm to any model or even json format for this test.\nPlease simply to \u0027some data\u0027 or \u0027{\"json\":\"data\"}\u0027 if it has to be json.",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "755b48fc_5ae7b23b",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "when ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f06d4a80_b5500efa",
+        "filename": "cps-events/src/test/resources/bookstore-chapters.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "See comment in tets class, I think this can be simplified",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "659272a6_0626fac2",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "the convention is to keep this properties in alphabetical order",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811e56b3_1e6913c5",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "are you sure \u003cPackage name\u003d\"org.onap.cps.cpspath.parser.antlr4\" /\u003e can be removed from this!",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "d02bb3f3_4b179e25",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "the default sounds good enough to me. As long as it is (can be configured to) not picked up by any of the static code checkers like checkstyle and sonar",
+      "parentUuid": "cae33ac4_23a4d3a8",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "059def81_ab563ce0",
         "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema.json",
         "patchSetId": 5
@@ -317,6 +341,30 @@
       "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dc6a651_f8df37fc",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-04T08:36:28Z",
+      "side": 1,
+      "message": "ok, thanks",
+      "parentUuid": "966d7bda_10dc329e",
+      "range": {
+        "startLine": 347,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 32
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
