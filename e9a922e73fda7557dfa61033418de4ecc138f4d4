@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "970e2d34_9645756c",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "I need to use final to define constant otherwise they can be overridden in the tests.",
+      "parentUuid": "3b16bd13_ab70fbcf",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a726f2e_d8708ffb",
         "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2021-06-04T08:36:28Z",
       "side": 1,
       "message": "does the data really need to be this complex?\nI dont think it has to confirm to any model or even json format for this test.\nPlease simply to \u0027some data\u0027 or \u0027{\"json\":\"data\"}\u0027 if it has to be json.",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325ab505_15dd58d2",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "I would like to test all the types when converting. I thought I should not play with the bookstore structure and didn\u0027t remove repeated types with the same object ( categories -\u003e sci-fi\u0027, but I have removed second category \u0027kids\u0027, which reduced the size by 40%.",
+      "parentUuid": "5a726f2e_d8708ffb",
       "range": {
         "startLine": 46,
         "startChar": 13,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fbf4a1bc_dbe992de",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "I was using expect, but when and then makes it clearer. \nChanged it as per the suggestion.",
+      "parentUuid": "755b48fc_5ae7b23b",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f06d4a80_b5500efa",
         "filename": "cps-events/src/test/resources/bookstore-chapters.json",
         "patchSetId": 8
@@ -82,6 +154,30 @@
       "writtenOn": "2021-06-04T08:36:28Z",
       "side": 1,
       "message": "See comment in tets class, I think this can be simplified",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab55a5e6_c49b6f79",
+        "filename": "cps-events/src/test/resources/bookstore-chapters.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f06d4a80_b5500efa",
       "range": {
         "startLine": 11,
         "startChar": 4,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "0670f31c_eb1e6e7c",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "Changed the order.",
+      "parentUuid": "659272a6_0626fac2",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "811e56b3_1e6913c5",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 8
@@ -128,6 +248,30 @@
       "writtenOn": "2021-06-04T08:36:28Z",
       "side": 1,
       "message": "are you sure \u003cPackage name\u003d\"org.onap.cps.cpspath.parser.antlr4\" /\u003e can be removed from this!",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "e9a922e73fda7557dfa61033418de4ecc138f4d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98ff262b_3cd8bcff",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T12:17:44Z",
+      "side": 1,
+      "message": "I configured another property \"addSourceDirs\" as true, which adds the source path in the report. It provides the ability to filter all generated code.  \n\nhttps://gerrit.onap.org/r/c/cps/+/121530/8/cps-parent/pom.xml\n\nMore details on the configuration https://github.com/spotbugs/spotbugs/issues/694",
+      "parentUuid": "811e56b3_1e6913c5",
       "range": {
         "startLine": 23,
         "startChar": 4,
