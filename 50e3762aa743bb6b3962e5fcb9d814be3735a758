@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "cae33ac4_23a4d3a8",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T02:14:58Z",
+      "side": 1,
+      "message": "There is another property \u0027outputDirectory\u0027 which defines the directory where generated files are created. Its default value is \u0027target/generated-sources/jsonschema2pojo\u0027. \n\nDo you want to change it to \u0027target/generated-sources/jsonschema2pojo/src/gen/java\u0027?",
+      "parentUuid": "0d1c87eb_9fcee0ca",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "059def81_ab563ce0",
         "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema.json",
         "patchSetId": 5
@@ -116,6 +140,30 @@
       "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3636ab72_2a754e05",
+        "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-04T02:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "059def81_ab563ce0",
+      "range": {
+        "startLine": 51,
+        "startChar": 9,
+        "endLine": 51,
+        "endChar": 18
+      },
+      "revId": "50e3762aa743bb6b3962e5fcb9d814be3735a758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
