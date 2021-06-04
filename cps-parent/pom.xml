@@ -61,8 +61,12 @@
             ../cps-service/target/site/jacoco-aggregate/jacoco.xml,
             ../cps-rest/target/site/jacoco-ut/jacoco.xml,
             ../cps-rest/target/site/jacoco-aggregate/jacoco.xml,
+            ../cps-ncmp-service/target/site/jacoco-ut/jacoco.xml,
+            ../cps-ncmp-service/target/site/jacoco-aggregate/jacoco.xml,
             ../cps-ncmp-rest/target/site/jacoco-ut/jacoco.xml,
             ../cps-ncmp-rest/target/site/jacoco-aggregate/jacoco.xml,
+            ../cps-path-parser/target/site/jacoco-ut/jacoco.xml,
+            ../cps-path-parser/target/site/jacoco-aggregate/jacoco.xml,
             ../cps-application/target/site/jacoco-ut/jacoco.xml,
             ../cps-application/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
