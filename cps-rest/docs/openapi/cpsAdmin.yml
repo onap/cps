@@ -120,7 +120,13 @@ anchorsByDataspace:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'components.yml#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':

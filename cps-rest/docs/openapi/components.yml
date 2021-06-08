@@ -1,5 +1,20 @@
 components:
   schemas:
+
+    AnchorDetails:
+      type: object
+      title: Anchor details by anchor Name
+      properties:
+        name:
+          type: string
+          example: my_anchor
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        schemaSetName:
+          type: string
+          example: my_schema_set
+
     ErrorMessage:
       type: object
       title: Error

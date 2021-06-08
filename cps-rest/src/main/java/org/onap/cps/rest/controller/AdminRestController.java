@@ -24,11 +24,14 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
+import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -108,8 +111,18 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-    public ResponseEntity<Object> getAnchors(final String dataspaceName) {
-        final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
+    public ResponseEntity<List<AnchorDetails>> getAnchors(final String dataspaceName) {
+        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName);
+        final List<AnchorDetails> anchorDetails = new ArrayList<>();
+
+        anchors.stream().forEach(anchor -> {
+            final AnchorDetails anchordetail = new AnchorDetails();
+            anchordetail.setName(anchor.getName());
+            anchordetail.setDataspaceName(anchor.getDataspaceName());
+            anchordetail.setSchemaSetName(anchor.getSchemaSetName());
+            anchorDetails.add(anchordetail);
+        });
+
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 }
