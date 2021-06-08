@@ -1,5 +1,20 @@
 components:
   schemas:
+
+    AnchorDetails:
+      type: object
+      title: Anchor details by anchor Name
+      properties:
+        name:
+          type: string
+          example: my_anchor
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        schemaSetName:
+          type: string
+          example: my_schema_set
+
     ErrorMessage:
       type: object
       title: Error
@@ -23,6 +38,35 @@ components:
           description: multipartFile
           format: binary
           example: http://example.com/examples/example.yang
+
+    ModuleReferences:
+      type: object
+      title: Module reference object
+      properties:
+        name:
+          type: string
+          example: module_reference_name
+        namespace:
+          type: string
+          example: module_reference_namespace
+        revision:
+          type: string
+          example: module_reference_revision
+
+    SchemaSetDetails:
+      type: object
+      title: Schema set details by dataspace and schemasetName
+      properties:
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        moduleReferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleReferences'
+        name:
+          type: string
+          example: my_schema_set
 
   parameters:
     dataspaceNameInQuery:
