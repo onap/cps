@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbff7285_bd7b1d7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:11:15Z",
+      "side": 1,
+      "message": "not sure if it matters to any scripts processing this but according to the template there should be a blank line BEFORE the Issue-ID and NO blank line after it. (see https://wiki.onap.org/display/DW/Commit+Messages)",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "95b143411782c1be047ea3461b3f6abf10992b4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
