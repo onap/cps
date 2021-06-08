@@ -45,6 +45,30 @@
       "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bccebc96_d34fd6fd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-08T16:15:05Z",
+      "side": 1,
+      "message": "The actual output is not changed. This change was needed due to the AnchorDetails schema object being introduced in the example. We can discuss this further and see if we can come to a resolution.",
+      "parentUuid": "00afa9ce_f13c0132",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 0
+      },
+      "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
