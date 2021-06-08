@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "e96116ca_3d42bfe2",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-06-08T14:18:30Z",
+      "side": 1,
+      "message": "remove quotes",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 18
+      },
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c78f4085_d23336d9",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-06-08T14:18:30Z",
+      "side": 1,
+      "message": "why are you not using the parameter defined in the componsents.yml?",
+      "range": {
+        "startLine": 119,
+        "startChar": 3,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21d05889_7adc41ed",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 1
