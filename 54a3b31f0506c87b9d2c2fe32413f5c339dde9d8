@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46adfc2c_b1c9aa92",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "just \u0027def\u0027 will do",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75c9d51e_09617af6",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "don\u0027t use global variable, as the names should be different in each test even is content is the same",
+      "range": {
+        "startLine": 33,
+        "startChar": 19,
+        "endLine": 33,
+        "endChar": 38
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48334ea3_b98cee1f",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "this is not really a setup-type method. Jus define \u0027normal\u0027 groovy \u0027closure\u0027",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1640ba39_10f82aca",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "CpsDataUpdatedEvent",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 45
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4a0527_ff7e8dfb",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "a json string is converted to CpsDataUpdatedEvent pojo",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 48
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d595cedb_3d7b5d36",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "the CpsDataUpdatedEvent pojo has the excepted values",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c06458bb_ab23d892",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "an event content with data",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 48
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d5124f9_2c2fa76f",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "and: \u0027an event with that content\u0027",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 30
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760310a8_392a8020",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "the event is converted to json",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 40
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa3f1f13_863b0783",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T13:49:51Z",
+      "side": 1,
+      "message": "as per above comment use something like\nexpectedJsonString \u003d createNotificationMessage()\nassert actualMessage \u003d\u003d  actualMessage",
+      "range": {
+        "startLine": 109,
+        "startChar": 30,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "54a3b31f0506c87b9d2c2fe32413f5c339dde9d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
