@@ -111,16 +111,27 @@ schemaSetBySchemaSetName:
 
 anchorsByDataspace:
   get:
-    description: Read all anchors, given a dataspace
+    description: 'Read all anchors, given a dataspace'
     tags:
       - cps-admin
     summary: Get anchors
     operationId: getAnchors
     parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -190,3 +201,19 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+
+components:
+  schemas:
+    AnchorDetails:
+      type: object
+      title: Anchor details by anchor Name
+      properties:
+        name:
+          type: string
+          example: my_anchor
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        schemaSetName:
+          type: string
+          example: my_schema_set

@@ -28,4 +28,8 @@
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
     </Or>
   </Match>
+  <Match>
+    <!-- Ignore generated code from openapi models -->
+    <Package name="org.onap.cps.rest.model"/>
+  </Match>
 </FindBugsFilter>
