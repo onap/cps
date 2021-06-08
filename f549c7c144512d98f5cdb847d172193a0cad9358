@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "ae6521c7_57db55c3",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-08T16:41:53Z",
+      "side": 1,
+      "message": "\u003cSource name\u003d\"~.*generated-sources.*.java\"/\u003e is added in the spotbugs-exclude.xml to ignore any java which is in *generate-source* folder. https://gerrit.onap.org/r/c/cps/+/121530/10/spotbugs/src/main/resources/spotbugs-exclude.xml#23\n\nFor this condition to work, the source directory should be present when the bugs are filtered. And, \u003caddSourceDirs\u003etrue\u003c/addSourceDirs\u003e property makes sure that directory is available when filtering. \n\nWith these feature enabled, we don\u0027t have to do any exclusion for any generated code in the cps.\n\nMore details on the configuration https://github.com/spotbugs/spotbugs/issues/694",
+      "parentUuid": "2cba213a_2a0d256d",
+      "range": {
+        "startLine": 180,
+        "startChar": 24,
+        "endLine": 180,
+        "endChar": 59
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c790653_2c21b915",
         "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
         "patchSetId": 10
