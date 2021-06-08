@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21d05889_7adc41ed",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-08T14:07:25Z",
+      "side": 1,
+      "message": "Should these configurations be put into the already existing components.yml file?",
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f643d2c_f61c28e1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-08T14:07:25Z",
+      "side": 1,
+      "message": "\u0027ads\u0027 variable name is not very detailed and could be confusing as to what it is if debugging at later stage as it is also very similar to the other variable name \u0027ad\u0027. Maybe it could be named anchorDetailsList?",
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
