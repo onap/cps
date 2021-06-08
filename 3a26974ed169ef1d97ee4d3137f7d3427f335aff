@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7f585c24_b59869a7",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-08T14:23:28Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "e96116ca_3d42bfe2",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 18
+      },
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c78f4085_d23336d9",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-06-08T14:18:30Z",
       "side": 1,
       "message": "why are you not using the parameter defined in the componsents.yml?",
+      "range": {
+        "startLine": 119,
+        "startChar": 3,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a51ca650_4d3cca11",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-08T14:23:28Z",
+      "side": 1,
+      "message": "This was an oversight on my part and will be reintroduced. Thank you for spotting it.",
+      "parentUuid": "c78f4085_d23336d9",
       "range": {
         "startLine": 119,
         "startChar": 3,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "a808c049_d16d76cd",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-08T14:23:28Z",
+      "side": 1,
+      "message": "Initially, I it was this way but failed to load. However, I agree it would be neater if they were all in the same file. I will attempt to refactor this into components.yml again and see if the result is different as there is also some additional config that was not present the first time around",
+      "parentUuid": "21d05889_7adc41ed",
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f643d2c_f61c28e1",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 1
@@ -76,6 +142,24 @@
       "writtenOn": "2021-06-08T14:07:25Z",
       "side": 1,
       "message": "\u0027ads\u0027 variable name is not very detailed and could be confusing as to what it is if debugging at later stage as it is also very similar to the other variable name \u0027ad\u0027. Maybe it could be named anchorDetailsList?",
+      "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "723db940_11c42888",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-08T14:23:28Z",
+      "side": 1,
+      "message": "I had intended to refactor this and will do so now. One point though: I would advise against using \"list\" in variable names as the underlying data structure can change without a corresponding change to the variable name which could lead to confusion down the line if someone expects it to be a list and it is, for example, a map.",
+      "parentUuid": "8f643d2c_f61c28e1",
       "revId": "3a26974ed169ef1d97ee4d3137f7d3427f335aff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
