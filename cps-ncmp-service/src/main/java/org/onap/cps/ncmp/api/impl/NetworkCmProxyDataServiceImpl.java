@@ -60,7 +60,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        if (StringUtils.isEmpty(parentNodeXpath) || "/".equals(parentNodeXpath)) {
+        if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
             cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData);
         } else {
             cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
