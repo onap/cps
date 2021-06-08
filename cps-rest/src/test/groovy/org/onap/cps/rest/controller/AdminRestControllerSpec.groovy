@@ -64,7 +64,7 @@ class AdminRestControllerSpec extends Specification {
     CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = Mock()
+    ModelMapper modelMapper = Spy()
 
     @Autowired
     MockMvc mvc
