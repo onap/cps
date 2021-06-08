@@ -115,6 +115,30 @@
       "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9c00ed8_d7fca24a",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-08T21:48:39Z",
+      "side": 1,
+      "message": "Here, I understand that we are excluding all generated sources from spotbugs analysis. I think that we are aligned for that, or I am missing another concern ?",
+      "parentUuid": "2c790653_2c21b915",
+      "range": {
+        "startLine": 23,
+        "startChar": 18,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
