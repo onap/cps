@@ -28,7 +28,7 @@ dataspaceByDataspaceName:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        $ref: 'components.yml#/components/responses/NotImplemented'
       '204':
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
@@ -78,7 +78,12 @@ schemaSetBySchemaSetName:
       - $ref: 'components.yml#/components/parameters/schemaSetNameInPath'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: 'components.yml#/components/schemas/SchemaSetDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -120,7 +125,13 @@ anchorsByDataspace:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'components.yml#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -162,7 +173,11 @@ anchorByDataspaceAndAnchorName:
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
