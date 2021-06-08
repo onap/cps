@@ -25,11 +25,16 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
+import org.onap.cps.rest.model.AnchorDetails;
+import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.SchemaSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,17 +55,37 @@ public class AdminRestController implements CpsAdminApi {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Create a dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
+     */
     @Override
     public ResponseEntity<String> createDataspace(final String dataspaceName) {
         cpsAdminService.createDataspace(dataspaceName);
         return new ResponseEntity<>(dataspaceName, HttpStatus.CREATED);
     }
 
+    /**
+     * Delete a dataspace based on a given name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of {@link HttpStatus} NOT_IMPLEMENTED
+     */
     @Override
     public ResponseEntity<Object> deleteDataspace(final String dataspaceName) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    /**
+     * Create a {@link SchemaSet}.
+     *
+     * @param multipartFile multipart file
+     * @param schemaSetName schemaset name
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created schemaset name & {@link HttpStatus} CREATED
+     */
     @Override
     public ResponseEntity<String> createSchemaSet(final MultipartFile multipartFile,
         final String schemaSetName, final String dataspaceName) {
@@ -68,12 +93,27 @@ public class AdminRestController implements CpsAdminApi {
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
     }
 
+    /**
+     * Get {@link SchemaSetDetails} based on dataspace name & {@link SchemaSet} name.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schemaset name
+     * @return a {@Link ResponseEntity} of {@Link SchemaSetDetails} & {@link HttpStatus} OK
+     */
     @Override
-    public ResponseEntity<Object> getSchemaSet(final String dataspaceName, final String schemaSetName) {
+    public ResponseEntity<SchemaSetDetails> getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
-        return new ResponseEntity<>(schemaSet, HttpStatus.OK);
+        final SchemaSetDetails schemaSetDetails = modelMapper.map(schemaSet, SchemaSetDetails.class);
+        return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
     }
 
+    /**
+     * Delete a {@link SchemaSet} based on given dataspace name & schemaset name.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schemaset name
+     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     */
     @Override
     public ResponseEntity<Void> deleteSchemaSet(final String dataspaceName, final String schemaSetName) {
         cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
@@ -86,7 +126,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param dataspaceName dataspace name
      * @param schemaSetName schema set name
      * @param anchorName    anchorName
-     * @return a ResponseEntity with the anchor name.
+     * @return a ResponseEntity with the anchor name & {@link HttpStatus} CREATED
      */
     @Override
     public ResponseEntity<String> createAnchor(final String dataspaceName, final String schemaSetName,
@@ -95,21 +135,44 @@ public class AdminRestController implements CpsAdminApi {
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
     }
 
+    /**
+     * Delete an {@link Anchor} based on given dataspace name & anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     */
     @Override
     public ResponseEntity<Void> deleteAnchor(final String dataspaceName, final String anchorName) {
         cpsAdminService.deleteAnchor(dataspaceName, anchorName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Get an {@link Anchor} based on given dataspace name & anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @return a {@Link ResponseEntity} of an {@Link AnchorDetails} & {@link HttpStatus} OK
+     */
     @Override
-    public ResponseEntity<Object> getAnchor(final String dataspaceName, final String anchorName) {
+    public ResponseEntity<AnchorDetails> getAnchor(final String dataspaceName, final String anchorName) {
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        return new ResponseEntity<>(anchor, HttpStatus.OK);
+        final AnchorDetails anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
+        return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
+    /**
+     *  Get all {@link Anchor} based on given dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of all {@Link AnchorDetails} & {@link HttpStatus} OK
+     */
     @Override
-    public ResponseEntity<Object> getAnchors(final String dataspaceName) {
-        final Collection<Anchor> anchorDetails = cpsAdminService.getAnchors(dataspaceName);
+    public ResponseEntity<List<AnchorDetails>> getAnchors(final String dataspaceName) {
+        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName);
+        final List<AnchorDetails> anchorDetails = anchors.stream().map(anchor ->
+            modelMapper.map(anchor, AnchorDetails.class)).collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 }
