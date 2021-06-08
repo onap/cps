@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b3da464_3bcf84bf",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:27:15Z",
+      "side": 1,
+      "message": "good name :-)",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 36
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c6cf60b_9f5a7c5c",
+        "filename": "cps-events/src/test/resources/bookstore-chapters.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:27:15Z",
+      "side": 1,
+      "message": "I would have gone simpler (less data) still but that\u0027s personal preference",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 30,
+        "endChar": 9
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cba213a_2a0d256d",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:27:15Z",
+      "side": 1,
+      "message": "does this mean generated code wil be analyzed too?!\n(I hoep it isn\u0027t)",
+      "range": {
+        "startLine": 180,
+        "startChar": 24,
+        "endLine": 180,
+        "endChar": 59
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c790653_2c21b915",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:27:15Z",
+      "side": 1,
+      "message": "stil not sure about this, see previous comments",
+      "range": {
+        "startLine": 23,
+        "startChar": 18,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "f549c7c144512d98f5cdb847d172193a0cad9358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
