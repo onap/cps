@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "120ea6f3_ebda1f30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:18:04Z",
+      "side": 1,
+      "message": "looks like more then just re-factoring?! See comment on that class...",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00afa9ce_f13c0132",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-08T15:18:04Z",
+      "side": 1,
+      "message": "does this change the actual output?! If not, is this really needed?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 0
+      },
+      "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
