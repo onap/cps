@@ -117,6 +117,30 @@
       "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6430de34_6d3d2937",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-09T10:28:55Z",
+      "side": 1,
+      "message": "As we were directly returning Object, it wasnt required earlier. But now as the response object is specified, there would be changes in the controller code as already proposed in the wiki. \nI would also suggest using ModelMapper.",
+      "parentUuid": "cdfdc8d6_1b93aee2",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 0
+      },
+      "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
