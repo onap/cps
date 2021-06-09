@@ -69,6 +69,30 @@
       "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4bfa20e_56082162",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-09T09:48:06Z",
+      "side": 1,
+      "message": "yah, that was what I was worried about. Additional lines of could that need update any time the object structure changes, additional cost and high risk has me worried if this only driven by documentation requirement I think there must be an easier option. Don\u0027t have time to look at it in details. Inviting other reviewers to have a close look to and come up with suggestions",
+      "parentUuid": "bccebc96_d34fd6fd",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 0
+      },
+      "revId": "c399e432495ec40f5a586a0de2c24c9b81d540ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
