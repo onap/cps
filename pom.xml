@@ -50,6 +50,7 @@
         <module>cps-dependencies</module>
         <module>cps-bom</module>
         <module>cps-parent</module>
+        <module>cps-events</module>
         <module>cps-service</module>
         <module>cps-rest</module>
         <module>cps-ncmp-service</module>
