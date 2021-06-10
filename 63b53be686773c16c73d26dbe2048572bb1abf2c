@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0dfdc3b5_19a19042",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-10T11:56:55Z",
+      "side": 1,
+      "message": "I think this commit is just a first example... Lets clairify in stand-up",
+      "parentUuid": "a547ddb5_77662e24",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 55
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6103c74_f2e3196a",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d7e52b62_9774e372",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-10T11:56:55Z",
+      "side": 1,
+      "message": "I thought the same but then realized, Joseph is doing just one example in this commit, correct?\nPlease let us know if you plan more commit for the same user story, thanks",
+      "parentUuid": "f6103c74_f2e3196a",
+      "range": {
+        "startLine": 108,
+        "startChar": 3,
+        "endLine": 108,
+        "endChar": 43
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4b39213_ae1308a0",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-06-10T11:17:48Z",
       "side": 1,
       "message": "Do we need to spy modelMapper? I don\u0027t see it being used for any validation.",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13c1f54c_ed85ac7e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-10T11:56:55Z",
+      "side": 1,
+      "message": "I presume the test depend on a real instance?",
+      "parentUuid": "e4b39213_ae1308a0",
       "range": {
         "startLine": 67,
         "startChar": 4,
