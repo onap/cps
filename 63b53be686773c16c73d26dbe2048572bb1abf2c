@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a547ddb5_77662e24",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T11:17:48Z",
+      "side": 1,
+      "message": "anchorsByDataspace returns an array of AnchorDetails. I think we should also return AnchorDetails when returning anchorByDataspaceAndAnchorName. Same comment for controller class",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 55
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6103c74_f2e3196a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T11:17:48Z",
+      "side": 1,
+      "message": "Should return ResponseEntity\u003cAnchorDetail\u003e to have return type in sync for all endpoints returning anchor(s). Same comment for cpsAdmin.yaml",
+      "range": {
+        "startLine": 108,
+        "startChar": 3,
+        "endLine": 108,
+        "endChar": 43
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4b39213_ae1308a0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T11:17:48Z",
+      "side": 1,
+      "message": "Do we need to spy modelMapper? I don\u0027t see it being used for any validation.",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
