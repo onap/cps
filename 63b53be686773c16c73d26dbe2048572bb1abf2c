@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "e24932c3_7066d524",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T12:31:06Z",
+      "side": 1,
+      "message": "Thanks for the clarification. The change was not in \u0027Work In Progress\u0027 state so I thought this is the final version.",
+      "parentUuid": "96cdb6a1_f8ed3c03",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 55
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6103c74_f2e3196a",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 4
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "Yes, it does. If we mock this then the test fails as the returned AnchorDetails is null.",
       "parentUuid": "13c1f54c_ed85ac7e",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2a2c001_c1757a1e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T12:31:06Z",
+      "side": 1,
+      "message": "It should actually have the real instance which spring should inject with @Autowired. I tried it in my local and it is failing. I am not sure why.",
+      "parentUuid": "d9f28d0e_b91d01fe",
       "range": {
         "startLine": 67,
         "startChar": 4,
