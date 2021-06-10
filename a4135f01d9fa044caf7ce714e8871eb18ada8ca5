@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "ce1226a5_8e132ce8",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/dataspace.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-10T14:58:28Z",
+      "side": 1,
+      "message": "as per A/C of overlapping user story (https://jira.onap.org/browse/CPS-353) this should be \u0027NCMP-Admin\u0027",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 12
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c66f1431_1fdb9619",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 3
