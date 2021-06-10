@@ -260,6 +260,30 @@
       "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6497742_636db484",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-10T12:54:41Z",
+      "side": 1,
+      "message": "There are two improvements we can do in this test class.\n\n1. To remove extra mocking for the objects used in other controllers by specifying which controller we are testing in @WebMvcTest(AdminRestController). We will be to remove \n`   @SpringBean\n    CpsDataService mockCpsDataService \u003d Mock()\n\n    @SpringBean\n    CpsQueryService mockCpsQueryService \u003d Mock()`\nmocks from this class.\n\n2. To let spring inject the ModelMapper by adding \u0027@Import(ModelMapper)\u0027 annotation and remove \u0027@SpringBean ModelMapper modelMapper \u003d Spy()\u0027 from the Test class.\n\nThese are just suggestions and not a blocking issue. We can create another story to improve the Test in cps-rest.",
+      "parentUuid": "d2a2c001_c1757a1e",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "63b53be686773c16c73d26dbe2048572bb1abf2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
