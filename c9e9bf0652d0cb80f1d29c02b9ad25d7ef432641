@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e39bc56c_671534e4",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-11T13:05:00Z",
+      "side": 1,
+      "message": "I should have spotte that :-(",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 21
+      },
+      "revId": "c9e9bf0652d0cb80f1d29c02b9ad25d7ef432641",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4ea2fcc_3c338b09",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 12
