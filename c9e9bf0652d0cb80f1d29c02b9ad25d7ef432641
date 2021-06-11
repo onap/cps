@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4ea2fcc_3c338b09",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-11T13:04:19Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 169,
+        "startChar": 54,
+        "endLine": 169,
+        "endChar": 67
+      },
+      "revId": "c9e9bf0652d0cb80f1d29c02b9ad25d7ef432641",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
