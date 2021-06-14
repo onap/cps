@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31f020b2_5b098f27",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-14T13:23:48Z",
+      "side": 1,
+      "message": "not required here as it is already done in schemaSetDetails",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "12ff1d56b63e4311b045c8c4db0d1a66580dfbd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
