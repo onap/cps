@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "b8fe8055_6dda3280",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-15T12:19:23Z",
+      "side": 1,
+      "message": "More fine-grained configuration will be covered as a part of another story in the Istanbul release.",
+      "parentUuid": "0087b1d6_2495998c",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0c3dd63_7ef361a0",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 1
@@ -105,6 +129,30 @@
       "writtenOn": "2021-06-15T08:31:06Z",
       "side": 1,
       "message": "so no matter what change happens you always sending the COMPLETE datanode. I think we need t make sure this behavior is OFF by default. and maybe gets turned on for a specific dataspace at the time (even hardcoded to start with) I don\u0027t want it to impact our E2E Network Slicing usecases until we have a more fine grained filter option",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 107
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90a02b4_81074c13",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-15T12:19:23Z",
+      "side": 1,
+      "message": "Yes. It is false by default.",
+      "parentUuid": "7998f191_44fb74bc",
       "range": {
         "startLine": 81,
         "startChar": 0,
@@ -289,6 +337,30 @@
       "writtenOn": "2021-06-15T08:31:06Z",
       "side": 1,
       "message": "I expect more scenarios to be covered, ie. error scneario? (I woudl ahve to check in my ide what is not covered now)",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e57db029_a4d18cf2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-15T12:19:23Z",
+      "side": 1,
+      "message": "Yes. I started working on test-container implementation and will add more error cases post that. The error handling is async which makes it a little tricky to test. Still looking for a good enough way to test it.",
+      "parentUuid": "24184d3e_a7da0325",
       "range": {
         "startLine": 34,
         "startChar": 1,
