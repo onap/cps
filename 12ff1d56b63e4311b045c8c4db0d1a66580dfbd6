@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "397fd42c_aaad599f",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6862
+      },
+      "writtenOn": "2021-06-15T09:59:06Z",
+      "side": 1,
+      "message": "i would rather remove it",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 67
+      },
+      "revId": "12ff1d56b63e4311b045c8c4db0d1a66580dfbd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31f020b2_5b098f27",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 13
