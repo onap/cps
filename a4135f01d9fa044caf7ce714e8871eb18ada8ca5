@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "18c781ca_7cd64cd0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2afe32_1f75a755",
+      "range": {
+        "startLine": 52,
+        "startChar": 23,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce1226a5_8e132ce8",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/dataspace.csv",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27961cec_9e005c08",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/dataspace.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce1226a5_8e132ce8",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 12
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bb13ca43_4ad73b84",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c66f1431_1fdb9619",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a145182d_8c47e54d",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d7e70e_8108d3a4",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a145182d_8c47e54d",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "737cd9b2_80873d53",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45c0a88d_2ffb296e",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c67687e5_dd4c724e",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72cf8149_9710df58",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c67687e5_dd4c724e",
+      "range": {
+        "startLine": 62,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 7
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3cb8e621_47ff3189",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb39d275_dd8ff8c4",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 7
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "037e57dd_10900337",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 3
@@ -183,6 +351,30 @@
       "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf50b97a_12183d0d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-15T11:18:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "037e57dd_10900337",
+      "range": {
+        "startLine": 72,
+        "startChar": 11,
+        "endLine": 72,
+        "endChar": 17
+      },
+      "revId": "a4135f01d9fa044caf7ce714e8871eb18ada8ca5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
