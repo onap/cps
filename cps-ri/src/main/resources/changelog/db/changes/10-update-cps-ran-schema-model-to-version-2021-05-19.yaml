@@ -1,6 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (c) 2021 Bell Canada.
-# Modification (C) 2021 Nordix Foundation. All rights reserved.
+# Copyright (C) 2021 Nordix Foundation. All rights reserved.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,24 +12,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 # ============LICENSE_END=========================================================
 
 databaseChangeLog:
-  - include:
-      file: changelog/db/changes/01-createCPSTables.yaml
-  - include:
-      file: changelog/db/changes/02-loadData-dataspace.yaml
-  - include:
-      file: changelog/db/changes/03-loadData-schema-set.yaml
-  - include:
-      file: changelog/db/changes/04-loadData-anchor.yaml
-  - include:
-      file: changelog/db/changes/05-loadData-fragment.yaml
-  - include:
-      file: changelog/db/changes/06-delete-not-required-fragment-index.yaml
-  - include:
-      file: changelog/db/changes/07-update-yang-resource-checksums.yaml
-  - include:
-      file: changelog/db/changes/08-update-yang-resources.yaml
-  - include:
-      file: changelog/db/changes/10-update-cps-ran-schema-model-to-version-2021-05-19.yaml
+  - changeSet:
+      id: 10
+      author: cps
+      label: xnf-data-preload
+      comment: Update cps ran model to contain root container
+      changes:
+        - sqlFile:
+            path: changelog/db/changes/10-update-cps-ran-schema-model-to-version-2021-05-19-forward.sql
+      rollback:
+        - sqlFile:
+            path: changelog/db/changes/10-update-cps-ran-schema-model-to-version-2021-05-19-rollback.sql
