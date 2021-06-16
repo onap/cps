@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2fd8eb9_30760b34",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T16:09:48Z",
+      "side": 1,
+      "message": "Technology (dont shorten)\nBut I do wonder should this be Nordix instead? I wil mail Liam Fallon about that question",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
