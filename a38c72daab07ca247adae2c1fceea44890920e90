@@ -48,6 +48,63 @@
     },
     {
       "key": {
+        "uuid": "beb9f9a1_200f5bf6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Should we update the current model with a new revision like that ? \n\nAre we still ok with because we know that CPS does not have any use case with some data yet ? Because as soon as we start having data we can not do that anymore, as existing data instances compliant to any previous model will be incompatible with the new model. At some point we\u0027ll have to \"insert\" new revisions of existing model instead of updating. Is there any reason why not staring doing it now ?\n\nFor https://gerrit.onap.org/r/c/cps/+/121124 we made an update because the model format was broken and and the model we had was unusable.",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a64de7c_35f4024a",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "The checksum for the new content could not be the same as the one from previous content.",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 76
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b65dfabb_56db6531",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Indentation",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0d47003_37599803",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
         "patchSetId": 2
@@ -71,6 +128,92 @@
     },
     {
       "key": {
+        "uuid": "86e0556a_6348c3f5",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Use spaces instead of tabs",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e1d50d7_f0c9f358",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "It should be `cps-ran-schema-model@2021-01-28.yang`",
+      "range": {
+        "startLine": 1568,
+        "startChar": 14,
+        "endLine": 1568,
+        "endChar": 49
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9adeaa47_22225cfd",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "It should be `a825c571c4a1d585a7f09a3716dedbfab1146abc4725b75a16f9ac89440bf46b`, \n\nIt is coming from https://github.com/onap/cps/blob/c6865f33336bcdcd79eb2659b1a7df130aee9452/cps-ri/src/main/resources/changelog/db/changes/08-update-yang-resources-cps-ran-model-forward.sql#L3",
+      "range": {
+        "startLine": 1569,
+        "startChar": 16,
+        "endLine": 1569,
+        "endChar": 80
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b67d28b_8c228aa7",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Checksum is not correct.",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 76
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3f1a1ac_93edc741",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
         "patchSetId": 2
@@ -88,6 +231,87 @@
         "endLine": 45,
         "endChar": 24
       },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ddc9be5_dff7f3a3",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Exact, this content should be the old version.",
+      "parentUuid": "a3f1a1ac_93edc741",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69402744_451917fc",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Name and checksum are not correct.",
+      "range": {
+        "startLine": 1568,
+        "startChar": 6,
+        "endLine": 1568,
+        "endChar": 1
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b5f49a5_e2ea0bcb",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Good practice: do not remove the newline character for the last line of the file.",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43896216_3b9e9989",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T20:44:27Z",
+      "side": 1,
+      "message": "Any reason why change set id is jumping from 8 to 10 and 9 is skipped ?\n\nIf the id s changed, then the file name prefix should be changed accordingly.\n\nIs it because there is currently another change in progress with change set id 9 ?\n\nKeep in mind that liquibase is an incremental tool that is applying all change set in sequence. Every change set is applied on top off all changes set previously applied. Previous changes set already applied cannot be changed and no change set can be inserted in the middle of the sequence.\n\nThat being said, it is then important that every change set is made on top of latest master and any other not completed change is always rebased with master. Then the change set sequence is clear and clean.",
       "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
