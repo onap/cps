@@ -42,7 +42,10 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final Map<String, String> yangResourcesNameToContentMap) {
         final var yangTextSchemaSourceSet
             = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
-        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+        // Define a critical section to store the schema set
+        synchronized (this) {
+            cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+        }
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
 
