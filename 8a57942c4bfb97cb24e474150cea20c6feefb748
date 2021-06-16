@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d8b57e4_cdf9c2cc",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:38:30Z",
+      "side": 1,
+      "message": "Agree, it would make sense to me.",
+      "revId": "8a57942c4bfb97cb24e474150cea20c6feefb748",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7981178_93d3c5ca",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:38:30Z",
+      "side": 1,
+      "message": "Don\u0027t we need value-serializer and maybe some other kafka configurations for the application also ?",
+      "revId": "8a57942c4bfb97cb24e474150cea20c6feefb748",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
