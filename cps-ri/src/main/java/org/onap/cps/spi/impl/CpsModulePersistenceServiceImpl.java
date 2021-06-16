@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,10 +25,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.exception.ConstraintViolationException;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
@@ -36,6 +42,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -44,11 +51,18 @@ import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Slf4j
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
+
+    private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
+    private static final String CHECKSUM_EXCEPTION_REGEX = ".*\\(checksum\\)=\\((\\w+)\\).*";
+    private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile(CHECKSUM_EXCEPTION_REGEX);
 
     @Autowired
     private YangResourceRepository yangResourceRepository;
@@ -70,6 +84,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
+    // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
+    // can occur in case of specific concurrent requests.
+    @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 2, backoff = @Backoff(delay = 500))
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
 
@@ -107,13 +124,90 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
         final Collection<YangResourceEntity> newYangResourceEntities = checksumToEntityMap.values();
         if (!newYangResourceEntities.isEmpty()) {
-            yangResourceRepository.saveAll(newYangResourceEntities);
+            try {
+                yangResourceRepository.saveAll(newYangResourceEntities);
+            } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+                // Throw a CPS duplicated Yang resource exception if the cause of the error is a yang checksum
+                // database constraint violation.
+                // If it is not, then throw the original exception
+                final Optional<DuplicatedYangResourceException> convertedException =
+                        convertToDuplicatedYangResourceException(
+                                dataIntegrityViolationException, newYangResourceEntities);
+                convertedException.ifPresent(
+                    e ->  log.warn(
+                                "Cannot persist duplicated yang resource. "
+                                        + "A total of 2 attempts to store the schema set are planned.", e));
+                throw convertedException.isPresent() ? convertedException.get() : dataIntegrityViolationException;
+            }
         }
 
         return ImmutableSet.<YangResourceEntity>builder()
             .addAll(existingYangResourceEntities)
             .addAll(newYangResourceEntities)
             .build();
+    }
+
+    /**
+     * Convert the specified data integrity violation exception into a CPS duplicated Yang resource exception
+     * if the cause of the error is a yang checksum database constraint violation.
+     * @param originalException the original db exception.
+     * @param yangResourceEntities the collection of Yang resources involved in the db failure.
+     * @return an optional converted CPS duplicated Yang resource exception. The optional is empty if the original
+     *      cause of the error is not a yang checksum database constraint violation.
+     */
+    private Optional<DuplicatedYangResourceException> convertToDuplicatedYangResourceException(
+            final DataIntegrityViolationException originalException,
+            final Collection<YangResourceEntity> yangResourceEntities) {
+
+        // The exception result
+        DuplicatedYangResourceException duplicatedYangResourceException = null;
+
+        final Throwable cause = originalException.getCause();
+        if (cause instanceof ConstraintViolationException) {
+            final ConstraintViolationException constraintException = (ConstraintViolationException) cause;
+            if (constraintException.getConstraintName() != null
+                        && constraintException.getConstraintName().equals(
+                                YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME)) {
+                // Db constraint related to yang resource checksum uniqueness is not respected
+                final Optional<String> checksumInError = getDuplicatedChecksumFromException(constraintException);
+                final Optional<String> nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
+                duplicatedYangResourceException =
+                        new DuplicatedYangResourceException(
+                                nameInError.orElse(null), checksumInError.orElse(null), constraintException);
+            }
+        }
+
+        return Optional.ofNullable(duplicatedYangResourceException);
+
+    }
+
+    /**
+     * Get the checksum that caused the constraint violation exception.
+     * @param exception the exception having the checksum in error.
+     * @return an optional checksum in error.
+     */
+    private Optional<String> getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
+        String checksum = null;
+        final Matcher matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
+        if (matcher.find() && matcher.groupCount() == 1) {
+            checksum = matcher.group(1);
+        }
+        return Optional.ofNullable(checksum);
+    }
+
+    /**
+     * Get the name of the yang resource having the specified checksum.
+     * @param checksum an optional checksum.
+     * @param yangResourceEntities the list of yang resources to search among.
+     * @return an optional name found.
+     */
+    private Optional<String> getNameForChecksum(
+            final Optional<String> checksum, final Collection<YangResourceEntity> yangResourceEntities) {
+        return
+                yangResourceEntities.stream()
+                        .filter(entity -> StringUtils.equals(checksum.orElse(null), (entity.getChecksum())))
+                        .findFirst()
+                        .map(YangResourceEntity::getName);
     }
 
     @Override
