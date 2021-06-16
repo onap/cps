@@ -373,6 +373,30 @@
     },
     {
       "key": {
+        "uuid": "fe7b523e_a4ade5c9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:26:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e57db029_a4d18cf2",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0ca13e5_efaac0e2",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 1
