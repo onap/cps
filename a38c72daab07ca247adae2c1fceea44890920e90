@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b717e062_f40f4959",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "maybe specific the version",
+      "range": {
+        "startLine": 7,
+        "startChar": 35,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed61bef4_29bb4a25",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "for consistency maybe name it after the version update as opposed to the specific change(s there could be others) in this version\ne.g 10-udpate-cps-ran-schema-model-to-version-2021-05-19",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 68
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d47003_37599803",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "see, it could be more then just the root container stuff",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 48
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3f1a1ac_93edc741",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "Question: not sure how this liquibase rollback works, should it not contain teh OLD version?",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b20c4d42_c97fc1de",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "as per previous comment on the name of this file",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 82
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62deb55c_b8333a7c",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "as per previous comment on the name of this file",
+      "range": {
+        "startLine": 30,
+        "startChar": 40,
+        "endLine": 30,
+        "endChar": 83
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43bd9c11_17c6ebc8",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-16T15:25:23Z",
+      "side": 1,
+      "message": "I see no delete for the old file?!",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
