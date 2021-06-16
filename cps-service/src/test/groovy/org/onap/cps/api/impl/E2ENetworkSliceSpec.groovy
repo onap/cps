@@ -150,7 +150,7 @@ class E2ENetworkSliceSpec extends Specification {
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
                     'ietf/ietf-inet-types@2013-07-15.yang',
                     'ietf/ietf-yang-types@2013-07-15.yang',
-                    'e2e/basic/cps-ran-schema-model@2021-01-28.yang'
+                    'e2e/basic/cps-ran-schema-model@2021-05-19.yang'
             )
         and : 'json data'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-schema-model-data-v4.json')
