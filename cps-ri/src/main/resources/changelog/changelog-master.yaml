@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
+# Modification (C) 2021 Nordix Foundation. All rights reserved.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,3 +34,5 @@ databaseChangeLog:
       file: changelog/db/changes/08-update-yang-resources.yaml
   - include:
       file: changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml
+  - include:
+      file: changelog/db/changes/10-insert-cps-ran-schema-model-version-2021-05-19.yaml
