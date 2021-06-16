@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "6432ee26_c5b6682d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:20:26Z",
+      "side": 1,
+      "message": "Modification to be added here (and maybe in a couple of other files)",
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fc8f004_9a6c63f2",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:20:26Z",
+      "side": 1,
+      "message": "On the listener side, the topic name is configurable and the default value is currently set to `cps.cfg-state-events`. I\u0027m not aware of any naming convention for topic names.\n\nhttps://gerrit.onap.org/r/c/cps/cps-temporal/+/121700/3/src/main/resources/application.yml#60\n\nI prefer the property name you had, without referring to kafka, and I\u0027ll make the change for `app.listener.data-updated.topic` on temporal.",
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90cc7105_93f6ef3b",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationPublisher.java",
         "patchSetId": 1
@@ -95,6 +129,30 @@
     },
     {
       "key": {
+        "uuid": "03124a3f_4e11eefe",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:20:26Z",
+      "side": 1,
+      "message": "As it appeared that some effort is required for the design of the feature, a spike has been created: https://jira.onap.org/browse/CPS-474\n\nThen, the implementation may be not only providing a list of dataspaces here.",
+      "parentUuid": "b8fe8055_6dda3280",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0c3dd63_7ef361a0",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 1
@@ -165,6 +223,29 @@
     },
     {
       "key": {
+        "uuid": "1b8a16ac_6cf92cfb",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:20:26Z",
+      "side": 1,
+      "message": "Method name suggestion to reflect that more complex logic is expected to determine if the notification should be send or not: \n\n* shouldSendNotification()",
+      "range": {
+        "startLine": 92,
+        "startChar": 20,
+        "endLine": 92,
+        "endChar": 39
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8da2f339_4bb0ef50",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 1
@@ -205,6 +286,23 @@
         "endLine": 125,
         "endChar": 58
       },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "022b0594_fa90a537",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-16T23:20:26Z",
+      "side": 1,
+      "message": "Not part of this change but I think that the client should also be able to set the observed timestamp. \n\nIt will require a change on the REST API. To keep this additional information optional for the REST API, if not provided then current timestamp could be set here.",
       "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
