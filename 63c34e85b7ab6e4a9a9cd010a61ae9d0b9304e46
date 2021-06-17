@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "498c396e_d6a1e403",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T16:47:11Z",
+      "side": 1,
+      "message": "sorry I missed that in previous review:\ndocker.repository.push and docker.repository.pull already defined in oparent",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 79
+      },
+      "revId": "63c34e85b7ab6e4a9a9cd010a61ae9d0b9304e46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2bedbda_6d59bee1",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T16:47:11Z",
+      "side": 1,
+      "message": "not very sure if this s also reqd",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "63c34e85b7ab6e4a9a9cd010a61ae9d0b9304e46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
