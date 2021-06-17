@@ -37,9 +37,6 @@
         <groovy.version>3.0.8</groovy.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <liquibase.version>4.3.1</liquibase.version>
-        <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <modelmapper.version>2.3.8</modelmapper.version>
         <sonar.skip>true</sonar.skip>
         <spock-core.version>2.0-M5-groovy-3.0</spock-core.version>
@@ -52,19 +49,6 @@
         <testcontainers.version>1.15.1</testcontainers.version>
         <yangtools.version>5.0.7</yangtools.version>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>ecomp-releases</id>
-            <name>ECOMP Release Repository</name>
-            <url>${nexusproxy}${releaseNexusPath}</url>
-        </repository>
-        <snapshotRepository>
-            <id>ecomp-snapshots</id>
-            <name>ECOMP Snapshot Repository</name>
-            <url>${nexusproxy}${snapshotNexusPath}</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
