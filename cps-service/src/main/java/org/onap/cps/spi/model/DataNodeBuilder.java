@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
@@ -142,6 +143,10 @@ public class DataNodeBuilder {
 
     private DataNode buildFromNormalizedNodeTree() {
         final Collection<DataNode> dataNodeCollection = buildCollectionFromNormalizedNodeTree();
+        if (!dataNodeCollection.iterator().hasNext()) {
+            throw new DataValidationException(
+                "Unsupported xpath: ", "Unsupported xpath as it is referring to one element");
+        }
         return dataNodeCollection.iterator().next();
     }
 
