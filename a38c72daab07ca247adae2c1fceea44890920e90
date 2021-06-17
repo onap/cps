@@ -65,6 +65,24 @@
     },
     {
       "key": {
+        "uuid": "28ab464f_7dd5856b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-17T09:54:11Z",
+      "side": 1,
+      "message": "From my understanding of things, CPS going forward will be pulling these models from SDNC and thus make this process redundant. Not sure I am fully correct in saying this, but the previous model was wrong and I don\u0027t think it is usable.",
+      "parentUuid": "beb9f9a1_200f5bf6",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a64de7c_35f4024a",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-forward.sql",
         "patchSetId": 2
@@ -261,6 +279,30 @@
     },
     {
       "key": {
+        "uuid": "1e852da2_16c2b7b4",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-17T09:54:11Z",
+      "side": 1,
+      "message": "But isn\u0027t the old version missing something important (root container). Should we be rolling back to that version?",
+      "parentUuid": "1ddc9be5_dff7f3a3",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69402744_451917fc",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
         "patchSetId": 2
@@ -312,6 +354,24 @@
       "writtenOn": "2021-06-16T20:44:27Z",
       "side": 1,
       "message": "Any reason why change set id is jumping from 8 to 10 and 9 is skipped ?\n\nIf the id s changed, then the file name prefix should be changed accordingly.\n\nIs it because there is currently another change in progress with change set id 9 ?\n\nKeep in mind that liquibase is an incremental tool that is applying all change set in sequence. Every change set is applied on top off all changes set previously applied. Previous changes set already applied cannot be changed and no change set can be inserted in the middle of the sequence.\n\nThat being said, it is then important that every change set is made on top of latest master and any other not completed change is always rebased with master. Then the change set sequence is clear and clean.",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96832070_74f3efe9",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-17T09:54:11Z",
+      "side": 1,
+      "message": "\u003e Any reason why change set id is jumping from 8 to 10 and 9 is skipped ?\n\n9 is skipped because another change in progress has id 9 used.\n\n\u003e That being said, it is then important that every change set is made on top of latest master and any other not completed change is always rebased with master. Then the change set sequence is clear and clean.\n\nI was instructed to use 10. I think the change with 9 is in review right now so we can wait for that to be in and then this change can be rebased and pushed.",
+      "parentUuid": "43896216_3b9e9989",
       "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
