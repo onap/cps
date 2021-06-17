@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (C) 2020 Pantheon.tech
+  Modification Copyright (C) 2021 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -30,8 +31,8 @@
     <properties>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <sonar.skip>true</sonar.skip>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
+        <sonar.skip>true</sonar.skip>
     </properties>
 
     <distributionManagement>

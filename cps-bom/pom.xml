@@ -30,8 +30,8 @@
 
     <properties>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <sonar.skip>true</sonar.skip>
+        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
 
