@@ -29,24 +29,8 @@
     <description>This artifact contains dependencyManagement declarations of all published CPS components.</description>
 
     <properties>
-        <nexusproxy>https://nexus.onap.org</nexusproxy>
-        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <sonar.skip>true</sonar.skip>
-        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>ecomp-releases</id>
-            <name>ECOMP Release Repository</name>
-            <url>${nexusproxy}${releaseNexusPath}</url>
-        </repository>
-        <snapshotRepository>
-            <id>ecomp-snapshots</id>
-            <name>ECOMP Snapshot Repository</name>
-            <url>${nexusproxy}${snapshotNexusPath}</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>

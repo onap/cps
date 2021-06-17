@@ -38,7 +38,7 @@
         <jib-maven-plugin.version>2.8.0</jib-maven-plugin.version>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
         <minimum-coverage>0.7</minimum-coverage>
-        <base.image>${docker.repository.pull}onap/integration-java11:8.0.0</base.image>
+        <base.image>${docker.pull.registry}/onap/integration-java11:8.0.0</base.image>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
     </properties>
 
@@ -127,7 +127,7 @@
                             <tags>
                                 <tag>latest</tag>
                             </tags>
-                            <image>${docker.repository.push}onap/${image.name}:${image.tag}</image>
+                            <image>onap/${image.name}:${image.tag}</image>
                         </to>
                     </configuration>
                     <executions>
