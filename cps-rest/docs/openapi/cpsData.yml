@@ -12,7 +12,12 @@ nodeByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            example: { "child": my_child,"leafList": "leafListElement21, leafListElement2", "leaf": my_leaf }
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':

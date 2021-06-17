@@ -21,6 +21,7 @@
 
 package org.onap.cps.rest.controller;
 
+import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -39,6 +40,9 @@ public class DataRestController implements CpsDataApi {
 
     @Autowired
     private CpsDataService cpsDataService;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public ResponseEntity<String> createNode(final String jsonData, final String dataspaceName, final String anchorName,
@@ -64,8 +68,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
-        final String xpath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
+        final String anchorName, final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
@@ -97,4 +101,5 @@ public class DataRestController implements CpsDataApi {
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
     }
+
 }
