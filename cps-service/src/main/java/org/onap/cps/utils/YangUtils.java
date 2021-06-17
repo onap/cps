@@ -94,9 +94,13 @@ public class YangUtils {
             final var jsonReader = new JsonReader(new StringReader(jsonData));
             jsonParserStream.parse(jsonReader);
 
-        } catch (final IOException | IllegalStateException | JsonSyntaxException exception) {
+        } catch (final IOException | JsonSyntaxException exception) {
             throw new DataValidationException(
-                    "Failed to parse json data: " + jsonData,  exception.getMessage(), exception);
+                "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
+        } catch (final IllegalStateException illegalStateException) {
+            throw new DataValidationException(
+                "Failed to parse json data. Unsupported xpath or json data:" + jsonData, illegalStateException
+                .getMessage(), illegalStateException);
         }
         return normalizedNodeResult.getResult();
     }
