@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (C) 2020 Pantheon.tech
+  Modification Copyright (C) 2021 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -28,22 +29,21 @@
     <version>1.1.0-SNAPSHOT</version>
 
     <properties>
-        <nexusproxy>https://nexus.onap.org</nexusproxy>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <sonar.skip>true</sonar.skip>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
+        <sonar.skip>true</sonar.skip>
     </properties>
 
     <distributionManagement>
         <repository>
             <id>ecomp-releases</id>
             <name>ECOMP Release Repository</name>
-            <url>${nexusproxy}${releaseNexusPath}</url>
+            <url>${onap.nexus.url}${releaseNexusPath}</url>
         </repository>
         <snapshotRepository>
             <id>ecomp-snapshots</id>
             <name>ECOMP Snapshot Repository</name>
-            <url>${nexusproxy}${snapshotNexusPath}</url>
+            <url>${onap.nexus.url}${snapshotNexusPath}</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
