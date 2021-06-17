@@ -10,20 +10,20 @@
     <properties>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <sonar.skip>true</sonar.skip>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
+        <sonar.skip>true</sonar.skip>
     </properties>
 
     <distributionManagement>
         <repository>
             <id>ecomp-releases</id>
             <name>ECOMP Release Repository</name>
-            <url>${nexusproxy}${releaseNexusPath}</url>
+            <url>${onap.nexus.url}${releaseNexusPath}</url>
         </repository>
         <snapshotRepository>
             <id>ecomp-snapshots</id>
             <name>ECOMP Snapshot Repository</name>
-            <url>${nexusproxy}${snapshotNexusPath}</url>
+            <url>${onap.nexus.url}${snapshotNexusPath}</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
