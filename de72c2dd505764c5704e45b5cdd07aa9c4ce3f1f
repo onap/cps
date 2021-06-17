@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "686cbadb_ffa1696c",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-17T14:14:09Z",
+      "side": 1,
+      "message": "no big deal but I wouldn\u0027t try to correct the year anywhere. Just use the year you are putting in these copyrights ie. 2021",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
