@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6581d9c4_9f2687e2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-17T11:32:41Z",
+      "side": 1,
+      "message": "I think it will not work when we have multiple containers.",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "66a0e724bc32656b1bffd7772a0a5cf6f480f708",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
