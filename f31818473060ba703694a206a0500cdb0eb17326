@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c688202f_1ecd8262",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "not used any more",
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "552186ee_e0594ab5",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "not used any more",
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6c2f6a5_517b396b",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "not used... same for line no 34 \u003csnapshotNexusPath\u003e",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a552628d_64dd006b",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "not reqd any more I think",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 79
+      },
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dacad60_9d5886dc",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "is this still required? As per my understanding this isnt reqd ... and it is picked up from the parent pom.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf6158d_07898be1",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-17T13:12:46Z",
+      "side": 1,
+      "message": "are these reqd?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 79
+      },
+      "revId": "f31818473060ba703694a206a0500cdb0eb17326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
