@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94cf91ad_9e734340",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T13:54:51Z",
+      "side": 1,
+      "message": "no need to catch exception use collection size/isEmpty instead",
+      "range": {
+        "startLine": 149,
+        "startChar": 23,
+        "endLine": 149,
+        "endChar": 46
+      },
+      "revId": "a44770bca1869fd7088fb5eb90852753e8731a4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc74a5bc_b6cda041",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T13:54:51Z",
+      "side": 1,
+      "message": "update list-element data node with #scenario   \n\n(see comment on scenario content below)",
+      "range": {
+        "startLine": 128,
+        "startChar": 9,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "a44770bca1869fd7088fb5eb90852753e8731a4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3906d97b_373a0118",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T13:54:51Z",
+      "side": 1,
+      "message": "this is not a \u0027scenario\u0027 it is a java-class :-) probably the \u0027expectedException\u0027\nthe scenarios could be\n\u0027one leave\u0027\n\u0027multiple leaves\u0027",
+      "range": {
+        "startLine": 137,
+        "startChar": 13,
+        "endLine": 137,
+        "endChar": 34
+      },
+      "revId": "a44770bca1869fd7088fb5eb90852753e8731a4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
