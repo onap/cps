@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90c09143_4730e836",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-18T09:55:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2581dd_681cf937",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "686cbadb_ffa1696c",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab6d76ec_d0f69b10",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-18T09:55:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "686cbadb_ffa1696c",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0f632de7_21774d19",
+        "filename": "cps-service/lombok.config",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-18T09:55:08Z",
+      "side": 1,
+      "message": "Done, Issue fixed in other files as well",
+      "parentUuid": "7824c1b5_eb260cf0",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 42
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3700305_a4113f1e",
         "filename": "spotbugs/pom.xml",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "207d4fed_9780c127",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-18T09:55:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3700305_a4113f1e",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
