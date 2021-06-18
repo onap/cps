@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "8c83caf9_db4bea83",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-18T19:17:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ccce524f_ba505bd6",
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "686cbadb_ffa1696c",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 4
