@@ -303,6 +303,30 @@
     },
     {
       "key": {
+        "uuid": "d8a8d31e_7ba7cc61",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:46:39Z",
+      "side": 1,
+      "message": "well its is rollback to the previous state so I think it should be the old file with whatever problems it had....",
+      "parentUuid": "1e852da2_16c2b7b4",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69402744_451917fc",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model-rollback.sql",
         "patchSetId": 2
@@ -372,6 +396,24 @@
       "side": 1,
       "message": "\u003e Any reason why change set id is jumping from 8 to 10 and 9 is skipped ?\n\n9 is skipped because another change in progress has id 9 used.\n\n\u003e That being said, it is then important that every change set is made on top of latest master and any other not completed change is always rebased with master. Then the change set sequence is clear and clean.\n\nI was instructed to use 10. I think the change with 9 is in review right now so we can wait for that to be in and then this change can be rebased and pushed.",
       "parentUuid": "43896216_3b9e9989",
+      "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030931c3_e78a7e51",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-add-root-container-cps-ran-model.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:46:39Z",
+      "side": 1,
+      "message": "correct \u0027Rahul is using step 9, I f need you 2 need to coordinate and agree sequence based on who wil merge first",
+      "parentUuid": "96832070_74f3efe9",
       "revId": "a38c72daab07ca247adae2c1fceea44890920e90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
