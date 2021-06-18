@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d449dda_f088fa0c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-18T11:56:30Z",
+      "side": 1,
+      "message": "Maybe the other way you were looking for:\nhttps://www.javadoc.io/doc/org.spockframework/spock-core/latest/spock/util/concurrent/PollingConditions.html",
+      "revId": "b620cb80fdf5654a06028a65d62fa1c759d4f2a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
