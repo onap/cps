@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "ccce524f_ba505bd6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-18T12:16:13Z",
+      "side": 1,
+      "message": "This change does not impact liquibase change sets. I have checked and verified it on my local environment.",
+      "parentUuid": "4eedbdee_2ebac652",
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "686cbadb_ffa1696c",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 4
