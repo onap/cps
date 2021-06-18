@@ -125,6 +125,19 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']' | ['name': 'Name']
     }
 
+    def 'Update list-element data node with : #scenario.'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            setupSchemaSetMocks('bookstore.yang')
+        when: 'update data method is invoked with json data #jsonData and parent node xpath'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/bookstore/categories[@code=2]', jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            thrown(DataValidationException)
+        where: 'following parameters were used'
+            scenario          | jsonData
+            'multiple leaves' | '{"code": "01","name": "some-name"}'
+            'one leaf'        | '{"name": "some-name"}'
+    }
+
     def 'Replace data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
