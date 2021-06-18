@@ -39,6 +39,237 @@
       "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4c59019_19caa3c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationPublisher.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "agreed, possibly \u0027|\u0027 or \u0027,\u0027",
+      "parentUuid": "7560072d_3144d5b2",
+      "range": {
+        "startLine": 55,
+        "startChar": 85,
+        "endLine": 55,
+        "endChar": 88
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddca167b_83e5b06f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "try to avoid classnames in eth descriptions (in this it is not matching the exact name either)\nInstead use PO (Product Owner) \u0027speak\u0027 basically less technical e.g\n\u0027create an CPS update data event\u0027",
+      "range": {
+        "startLine": 46,
+        "startChar": 18,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "514090b6_2ef474c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "as before (wont repeat)",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "106485c2_64ed788d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "when I run these tests from my INtelliJ IDEA tehy seem to hang (at 5 our of 50 tests)",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb1ffea6_d66be697",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "i presume this is the \u0027objectUnderTest\u0027 so use that name it will make it clearer but I aslo have some doubts related to this below",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 47
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3ef05e9_019fcfc1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "its is not clear what is invalid to me here, has it to do with the \u00275\u0027 if so use meaningful variabel name",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 87
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b664aea_c5b45b62",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "you are testing a different object heer then the previous test, not clear what is going on here.",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c66f1b8c_e167b1c3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "Some Groovy and TimeUnit goodness :-) :\n        20.times {\n            if (consumedMessages.isEmpty()) {\n                TimeUnit.SECONDS.sleep(1);\n            } else {\n                return consumedMessages.get(0)\n            }\n        }",
+      "range": {
+        "startLine": 91,
+        "startChar": 13,
+        "endLine": 91,
+        "endChar": 26
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e8ab70_4abebd61",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "objectUnderTest",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "315369ba_789afb63",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "no comment or todo in final commit please, If need create a separate Jira and/or commit for this now",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

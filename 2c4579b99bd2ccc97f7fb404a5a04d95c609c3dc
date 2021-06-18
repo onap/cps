@@ -261,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "fe325e55_d4365ae3",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-18T14:40:56Z",
+      "side": 1,
+      "message": "ok, thanks for the answers",
+      "parentUuid": "1eb68896_8f1fdd57",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "2c4579b99bd2ccc97f7fb404a5a04d95c609c3dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0c3dd63_7ef361a0",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 1
