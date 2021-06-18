@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa74fda8_13f3f0cb",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-18T15:27:13Z",
+      "side": 0,
+      "message": "this module has no parent module set... hence it would not be inheriting these properties and distributionManagement from oparent or cps-parent\nNot sure if we should be setting the parent for this module or keep the distributionManagement details as it is.",
+      "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
