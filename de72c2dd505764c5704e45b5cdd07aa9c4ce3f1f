@@ -49,6 +49,23 @@
     },
     {
       "key": {
+        "uuid": "4eedbdee_2ebac652",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-18T11:51:34Z",
+      "side": 1,
+      "message": "As a general guideline liquibase change set files should never been changed once applied:\nhttps://www.liquibase.org/blog/dealing-with-changing-changesets\n\nI\u0027m not sure is change set checksums are calculated on the actual change set configuration only or on the overall file.\n\nCould you please ensure that this change does not impact liquibase change sets ?\nLiquibase script from this branch should not complain about inconsistent checksum when running on a database on which change sets from master branch has been applied.",
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "686cbadb_ffa1696c",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 4
