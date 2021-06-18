@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "db2581dd_681cf937",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-18T04:36:04Z",
+      "side": 1,
+      "message": "Missing separation line",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "686cbadb_ffa1696c",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 4
@@ -18,6 +41,52 @@
         "startChar": 16,
         "endLine": 2,
         "endChar": 20
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7824c1b5_eb260cf0",
+        "filename": "cps-service/lombok.config",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-18T04:36:04Z",
+      "side": 1,
+      "message": "If someone from Nordix Foundation is the creator of the file, then the text should be\n\n\u0027Copyright (C) 2021 Nordix Foundation\u0027\n\nSame comments for other files too.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 42
+      },
+      "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3700305_a4113f1e",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-18T04:36:04Z",
+      "side": 1,
+      "message": "Missing separation line",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 2
       },
       "revId": "de72c2dd505764c5704e45b5cdd07aa9c4ce3f1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
