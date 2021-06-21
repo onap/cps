@@ -504,6 +504,30 @@
       "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86f8568d_ae9f81e7",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-21T18:51:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "315369ba_789afb63",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
