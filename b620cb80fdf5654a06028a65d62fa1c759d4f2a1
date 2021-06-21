@@ -16,6 +16,24 @@
       "revId": "b620cb80fdf5654a06028a65d62fa1c759d4f2a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97345574_4d96e0ed",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-21T18:32:07Z",
+      "side": 1,
+      "message": "Done. Thanks for sharing. The new implementation cleaned up the code.",
+      "parentUuid": "6d449dda_f088fa0c",
+      "revId": "b620cb80fdf5654a06028a65d62fa1c759d4f2a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
