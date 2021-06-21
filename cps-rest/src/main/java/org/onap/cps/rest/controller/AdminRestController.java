@@ -103,7 +103,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<SchemaSetDetails> getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
-        final SchemaSetDetails schemaSetDetails = modelMapper.map(schemaSet, SchemaSetDetails.class);
+        final var schemaSetDetails = modelMapper.map(schemaSet, SchemaSetDetails.class);
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
     }
 
@@ -158,7 +158,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<AnchorDetails> getAnchor(final String dataspaceName, final String anchorName) {
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final AnchorDetails anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
+        final var anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
