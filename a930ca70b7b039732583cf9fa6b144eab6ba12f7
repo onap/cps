@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b35b6c62_4ab80147",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-21T18:01:38Z",
+      "side": 1,
+      "message": "We need a way to provide the custom docker push registry. So image name should be \u0027${docker.push.registry}/onap/${image.name}:${image.tag}\u0027.\n\nI think you removed it to fix the issue with csit failure. To fix the csit issue, the new parameter \u0027docker.push.registry\u0027 needs to be passed when running the job.\n\nUse https://gerrit.onap.org/r/c/ci-management/+/121383/2/jjb/cps/cps-csit.yaml as reference",
+      "range": {
+        "startLine": 130,
+        "startChar": 34,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "a930ca70b7b039732583cf9fa6b144eab6ba12f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
