@@ -142,6 +142,7 @@ Known Limitations, Issues and Workarounds
    - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
    - `CPS-264 <https://jira.onap.org/browse/CPS-264>`_ Unique timestamp is missing when tagging docker images.
    - Methods exposed on API which are yet not implemented : deleteAnchor, getNodesByDataspace & deleteDataspace.
+   - `CPS-465 <https://jira.onap.org/browse/CPS-465>`_ Update data node leaves API does not support updating a list element with compound keys.
 
 
 *System Limitations*
