@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9d516871_3e8e4b98",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-21T17:46:58Z",
+      "side": 1,
+      "message": "Any reason to load data from file rather than providing information in the change-set itself?\n\nIf we use change-set it can help to reduce the number of files and makes it easier to read too.\n\n            tableName: \u0027schema_set\u0027\n            columns:\n              - column:\n                  name: \u0027name\u0027\n                  value: \u0027ncmp-dmi-registry-model\u0027\n              - column:\n                  name: \u0027dataspace_id\u0027\n                  valueComputed: \u0027( select id from dataspace where name \u003d \u0027\u0027NCMP-Admin\u0027\u0027)\u0027",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "298064e0_6c4590f4",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 4
