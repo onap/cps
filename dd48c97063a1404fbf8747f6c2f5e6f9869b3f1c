@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30e19b59_04961b2b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-22T12:06:14Z",
+      "side": 1,
+      "message": "Should we also mention CPS-464 ?",
+      "revId": "dd48c97063a1404fbf8747f6c2f5e6f9869b3f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
