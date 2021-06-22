@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "55e16a90_d42f8a63",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-06-22T15:35:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 83,
+        "startChar": 34,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd90dd14_4b5fe517",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -94,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "fca3cf03_ebd7b95e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-06-22T15:35:38Z",
+      "side": 1,
+      "message": "dataIntegrityViolationException",
+      "range": {
+        "startLine": 125,
+        "startChar": 59,
+        "endLine": 125,
+        "endChar": 60
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3631ff0d_4e2f6327",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -110,6 +156,29 @@
         "startChar": 20,
         "endLine": 131,
         "endChar": 29
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c0d85e9_60001701",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-06-22T15:35:38Z",
+      "side": 1,
+      "message": "duplicatedYangResourceException",
+      "range": {
+        "startLine": 157,
+        "startChar": 40,
+        "endLine": 157,
+        "endChar": 47
       },
       "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
