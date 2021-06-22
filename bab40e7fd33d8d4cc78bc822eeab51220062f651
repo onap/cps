@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "880541f6_c6d41724",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Just to be in sync with previous changes I followed file approach, as this is only one column change , agree, this can be done inline but due to synchronicity I chose this one.",
+      "parentUuid": "9d516871_3e8e4b98",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "298064e0_6c4590f4",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee16b0c_79c89259",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "298064e0_6c4590f4",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "329c7d32_aa3e8bec",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d7f79de_6d21e1bf",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4ece09f_04cfc196",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 4
@@ -73,6 +133,24 @@
       "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3457ce5e_bfef8066",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4ece09f_04cfc196",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "56c558e7_b92066f1",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a9cced3_a8279052",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7915e019_01495f68",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 4
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "f1c2843d_4fbd0efa",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7915e019_01495f68",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bf0f7c5_00058d4e",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 4
@@ -121,6 +235,30 @@
       "writtenOn": "2021-06-18T23:52:00Z",
       "side": 1,
       "message": "I\u0027m suggesting adding the version in the name. It may help later on when we\u0027ll have new versions for this module.\n\n  dmi-registry@2021-05-20.yang",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd0c1d9_00e16353",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Agree, version in the name will make is more readable.",
+      "parentUuid": "4bf0f7c5_00058d4e",
       "range": {
         "startLine": 2,
         "startChar": 0,
@@ -204,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "86ffbfa1_32ca9c56",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962bf543_14778722",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b5e08a1_8efa8399",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 4
@@ -221,6 +383,24 @@
     },
     {
       "key": {
+        "uuid": "56283317_bec11a90",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b5e08a1_8efa8399",
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "466231e5_6cb397e6",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
         "patchSetId": 4
@@ -232,6 +412,30 @@
       "writtenOn": "2021-06-18T23:52:00Z",
       "side": 1,
       "message": "Can you double check this is the correct SHA 256 checksum for the module ?\n\nIsn\u0027t it `aafac7fefdecd4911864db48a75436a650d4584089a9f19007879ab5e973bfca` ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3e99f68_34716b15",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-22T10:30:58Z",
+      "side": 1,
+      "message": "I calculated it using postman , how you are calculating it. As file changes this will change again.",
+      "parentUuid": "466231e5_6cb397e6",
       "range": {
         "startLine": 47,
         "startChar": 3,
