@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "de5875b4_4ab5f5ee",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-22T18:56:09Z",
+      "side": 1,
+      "message": "The file in the wiki page above that you are generating the cheksum for is not the same as the one that is inserted in the database using liquibase script, hence checksum is different. See eof.",
+      "parentUuid": "e140c22e_02362b6f",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "758e8ae4900e268bb5f68222e5e1b8b2bdcd51ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d587307e_df08d4ce",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 5
@@ -123,6 +147,24 @@
       "revId": "758e8ae4900e268bb5f68222e5e1b8b2bdcd51ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9df7cb6c_d0a3e360",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-22T18:56:09Z",
+      "side": 1,
+      "message": "It is now done in in patch 6.",
+      "parentUuid": "c59e8c50_9d53ea69",
+      "revId": "758e8ae4900e268bb5f68222e5e1b8b2bdcd51ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
