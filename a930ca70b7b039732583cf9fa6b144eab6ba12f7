@@ -70,6 +70,30 @@
       "revId": "a930ca70b7b039732583cf9fa6b144eab6ba12f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e99a983_0cb56a0f",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-22T14:06:19Z",
+      "side": 1,
+      "message": "OK.. then I think the CI changes would be reqd",
+      "parentUuid": "8f545997_89cb3a7c",
+      "range": {
+        "startLine": 130,
+        "startChar": 34,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "a930ca70b7b039732583cf9fa6b144eab6ba12f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
