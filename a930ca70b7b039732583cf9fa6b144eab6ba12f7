@@ -46,6 +46,30 @@
       "revId": "a930ca70b7b039732583cf9fa6b144eab6ba12f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f545997_89cb3a7c",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-22T12:08:19Z",
+      "side": 1,
+      "message": "I don\u0027t think it works without the variable in the \u003cimage\u003e. Have we tested with it without variable?\n\nI works fine with fabric8io docker plugin but I am not 100% sure with jib.",
+      "parentUuid": "e43bc686_c5cb876d",
+      "range": {
+        "startLine": 130,
+        "startChar": 34,
+        "endLine": 130,
+        "endChar": 37
+      },
+      "revId": "a930ca70b7b039732583cf9fa6b144eab6ba12f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
