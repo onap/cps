@@ -4,6 +4,7 @@
 *.zip
 *.log
 
+cps-application/archunit_store
 target/
 log/
 
