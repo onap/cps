@@ -1,0 +1,3 @@
+#
+#Mon Jul 05 09:13:47 BST 2021
+classes\ that\ reside\ in\ a\ package\ 'org.onap.cps.api..'\ or\ reside\ in\ a\ package\ 'org.onap.cps.spi..'\ should\ only\ have\ dependent\ classes\ that\ reside\ in\ any\ package\ ['org.onap.cps.rest..',\ 'org.onap.cps.api..',\ 'org.onap.cps.spi..',\ 'org.onap.cps.ncmp.rest..',\ 'org.onap.cps.ncmp.api..',\ 'org.onap.cps.yang..']=749d11cd-18dd-47d0-b2d0-cd11b7e1a82f
