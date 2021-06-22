@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d1736996_f407ea3e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-22T13:00:45Z",
+      "side": 1,
+      "message": "I also agree that it would be better and more easy to have data in the change set.\n\nTo be improved next time, if ever not done with this change.",
+      "parentUuid": "880541f6_c6d41724",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "298064e0_6c4590f4",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 4
@@ -268,6 +292,30 @@
       "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cdf7d9c_2cbded8a",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-22T13:00:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fd0c1d9_00e16353",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "bab40e7fd33d8d4cc78bc822eeab51220062f651",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
