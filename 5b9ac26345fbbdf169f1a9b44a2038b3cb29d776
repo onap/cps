@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "45a4ca6b_f579e38f",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-23T15:39:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c37af0_27fef2e2",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d27ac34e_8b4c8349",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2021-06-23T11:32:48Z",
       "side": 1,
       "message": "I don\u0027t think general utility packages should depend on service packages. From a design point of view it should be the opposite.",
+      "range": {
+        "startLine": 127,
+        "startChar": 38,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b18bb0_02f1a61d",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-23T15:39:20Z",
+      "side": 1,
+      "message": "Currently there are references and calls to methods within the spi package from the utils package and this test will fail if these are not included. An example of this is a method call to DataNode.getXpath from the DataMapUtils class.\n\nThe DataNode class is within the spi.models package, a suggestion here could be to extract that package to a different layer maybe? I am not sure how vital it is that the models package is within spi?",
+      "parentUuid": "bf1e3581_1a0c9f94",
       "range": {
         "startLine": 127,
         "startChar": 38,
