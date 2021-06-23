@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76e451d4_d88a9e2e",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-23T18:56:43Z",
+      "side": 1,
+      "message": "the previous test is \u0027 api and spi service should NOT depend on controller\u0027 \nand the highlighted test is \u0027should only depend Controller and services\u0027.\nThe test case names are contradictory.",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "3833baf0867dc50161fc0d98fcdfe83311eb8e52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c0106a_4f0be520",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-23T18:56:43Z",
+      "side": 1,
+      "message": "As per the name, repository depends on services and repository, which can mean services instances are in repository. I think we are testing something else.",
+      "range": {
+        "startLine": 93,
+        "startChar": 26,
+        "endLine": 93,
+        "endChar": 75
+      },
+      "revId": "3833baf0867dc50161fc0d98fcdfe83311eb8e52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
