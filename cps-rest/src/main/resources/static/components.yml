@@ -196,6 +196,7 @@ components:
         application/json:
           schema:
             type: object
+          example: { "key": "value" }
     Created:
       description: Created
       content:

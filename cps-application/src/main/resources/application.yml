@@ -73,6 +73,11 @@ notification:
         enabled: false
         topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
 
+springdoc:
+    swagger-ui:
+        url: /openapi.yml
+        path: /swagger-ui/index.html
+        
 security:
     # comma-separated uri patterns which do not require authorization
     permit-uri: /manage/**,/swagger-ui/**,/swagger-resources/**,/v3/api-docs
