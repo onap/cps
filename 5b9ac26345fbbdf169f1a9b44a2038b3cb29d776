@@ -22,6 +22,75 @@
       "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d27ac34e_8b4c8349",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-23T11:32:48Z",
+      "side": 1,
+      "message": "The role of Yang schema as an application layer is not clear to me ... \nMaybe, later on, it would need to be moved to another already defined layer.",
+      "range": {
+        "startLine": 127,
+        "startChar": 53,
+        "endLine": 127,
+        "endChar": 72
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf1e3581_1a0c9f94",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-23T11:32:48Z",
+      "side": 1,
+      "message": "I don\u0027t think general utility packages should depend on service packages. From a design point of view it should be the opposite.",
+      "range": {
+        "startLine": 127,
+        "startChar": 38,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b87c035e_5404773b",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-23T11:32:48Z",
+      "side": 1,
+      "message": "This rule name is not consistent with other rule names.",
+      "range": {
+        "startLine": 130,
+        "startChar": 26,
+        "endLine": 130,
+        "endChar": 73
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
