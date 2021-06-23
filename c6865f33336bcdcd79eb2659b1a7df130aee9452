@@ -16,6 +16,23 @@
       "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e103054_1c78c487",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-23T15:20:39Z",
+      "side": 0,
+      "message": "you need this, cps-parent pom inherits from oparent, and oparent from version(parent).\nHere we don\u0027t use oparent, because it will bring too much config and dependencies that are not need it,\nkeeping it light weight.\nIf you are trying to reduce duplicate config, then create a new module called cps-parent-lite, containing this common config, and reuse it across all modules that have the same config.\nccsdk has one  odlparent-lite, maybe we could reuse it( I dont recommend to do it,is better to have ours). But we could have the same naming maybe?.\nAlso Aditya mentioned something about DistributionManagement been present under settings.xml(.m2/settings.xml ?), that is a system individual configuration and independent from project. So I hope that is not reason to removing this.\nRegards",
+      "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
