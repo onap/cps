@@ -35,7 +35,7 @@ info:
       url: "cps_logo.png"
 
 servers:
-  - url: //localhost:8088
+  - url: /cps/api
 tags:
   - name: cps-admin
     description: cps Admin
