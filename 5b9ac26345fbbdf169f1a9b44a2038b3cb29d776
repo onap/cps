@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10c37af0_27fef2e2",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-23T09:28:49Z",
+      "side": 1,
+      "message": "You could create constants for these as some are mentioned several times in the file and one change would be better than multiple changes, as well as mitigating the risk of missing some if updates are needed.",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
