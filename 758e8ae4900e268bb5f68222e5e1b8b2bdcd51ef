@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "a545e3e4_c686972c",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource.csv",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-24T13:26:27Z",
+      "side": 1,
+      "message": "rather than adding eof recalculated the checksum again, not adding eof because other yang modules already stored in this are without eof.",
+      "parentUuid": "de5875b4_4ab5f5ee",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "758e8ae4900e268bb5f68222e5e1b8b2bdcd51ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d587307e_df08d4ce",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 5
