@@ -31,3 +31,5 @@ databaseChangeLog:
       file: changelog/db/changes/07-update-yang-resource-checksums.yaml
   - include:
       file: changelog/db/changes/08-update-yang-resources.yaml
+  - include:
+      file: changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml
