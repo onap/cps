@@ -22,6 +22,69 @@
       "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2baee313_1e1640f7",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-24T14:34:06Z",
+      "side": 1,
+      "message": "you removed library/ in previous file https://gerrit.onap.org/r/c/cps/+/121905/11/cps-parent/pom.xml , does it need here",
+      "range": {
+        "startLine": 128,
+        "startChar": 87,
+        "endLine": 128,
+        "endChar": 95
+      },
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e135df_3d2ab34e",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-24T14:34:06Z",
+      "side": 1,
+      "message": "pull this version to the properties tag would be better option.",
+      "range": {
+        "startLine": 125,
+        "startChar": 14,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9efff13a_943d7606",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-06-24T14:34:06Z",
+      "side": 1,
+      "message": "Just need an opinion on it, as i see we are sending notification at the end of each request for cpsdata except get. This looks good case to use interceptors for posthandle.",
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
