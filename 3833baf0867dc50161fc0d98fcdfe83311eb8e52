@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7fd225c5_c9a36201",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-24T09:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76e451d4_d88a9e2e",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "3833baf0867dc50161fc0d98fcdfe83311eb8e52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0c0106a_4f0be520",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "3833baf0867dc50161fc0d98fcdfe83311eb8e52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50628e22_64d97ee2",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-24T09:09:01Z",
+      "side": 1,
+      "message": "Thanks for pointing this out Renu, this was lazy naming on my sake and didn\u0027t provide an accurate representation of what the test is carrying out. I have changed both names now to more accurately represent the tests.\n\nDone",
+      "parentUuid": "f0c0106a_4f0be520",
+      "range": {
+        "startLine": 93,
+        "startChar": 26,
+        "endLine": 93,
+        "endChar": 75
+      },
+      "revId": "3833baf0867dc50161fc0d98fcdfe83311eb8e52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
