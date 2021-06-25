@@ -16,6 +16,24 @@
       "revId": "f75723c6ba23b8a9fda5aa659cbd276816d6c0a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acf40488_fead284b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-update-cps-ran-schema-model-to-version-2021-05-19-forward.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-25T14:03:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a8d1095_1118b762",
+      "revId": "f75723c6ba23b8a9fda5aa659cbd276816d6c0a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
