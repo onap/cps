@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "68f8dc9b_7b82e933",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-insert-cps-ran-schema-model-version-2021-05-19-forward.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-06-25T14:50:55Z",
+      "side": 1,
+      "message": "cheksum doesnt match the data below.\nAlso the data is not compliant with the yang file added in the Jira.\nQuestion : As this schemaset has come with a new version ... does that mean the existing data which is loaded wont be using the latest schemaset? If not then with which data are we going to test querying and updating nodes?",
+      "range": {
+        "startLine": 2,
+        "startChar": 49,
+        "endLine": 2,
+        "endChar": 113
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "330c5c1f_8533245c",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 7
