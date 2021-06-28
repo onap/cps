@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0febd479_2a030a6f",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-insert-cps-ran-schema-model-version-2021-05-19-forward.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-28T15:40:45Z",
+      "side": 1,
+      "message": "in my opinion the schema set used by the pre-defined anchor is \u0027obsolete\u0027 and will soon be replaced by a schemaset that will be imported from the xNF(s) itself",
+      "parentUuid": "84bbeb8a_aefd2f31",
+      "range": {
+        "startLine": 2,
+        "startChar": 49,
+        "endLine": 2,
+        "endChar": 113
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "330c5c1f_8533245c",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 7
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Cannot make changes to this file as we are not the owners of this file.",
       "parentUuid": "330c5c1f_8533245c",
+      "range": {
+        "startLine": 897,
+        "startChar": 2,
+        "endLine": 897,
+        "endChar": 3
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36f0b1fb_dd2b91a0",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-28T15:40:45Z",
+      "side": 1,
+      "message": "agreed, we cannot change any content of this file",
+      "parentUuid": "60d43aea_9b0800e8",
       "range": {
         "startLine": 897,
         "startChar": 2,
