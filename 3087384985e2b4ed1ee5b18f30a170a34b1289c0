@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2c06c07_bdbbf0d4",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:53:01Z",
+      "side": 1,
+      "message": "are we using it?",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 8
+      },
+      "revId": "3087384985e2b4ed1ee5b18f30a170a34b1289c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c09d715b_b0b005fa",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:53:01Z",
+      "side": 1,
+      "message": "Readme needs to be updated with new instructions. Existing instructions are not valid anymore.",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 85
+      },
+      "revId": "3087384985e2b4ed1ee5b18f30a170a34b1289c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db251217_dade81ec",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:53:01Z",
+      "side": 1,
+      "message": "are we using it?",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 8
+      },
+      "revId": "3087384985e2b4ed1ee5b18f30a170a34b1289c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
