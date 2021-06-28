@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "84bbeb8a_aefd2f31",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-insert-cps-ran-schema-model-version-2021-05-19-forward.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-28T09:55:38Z",
+      "side": 1,
+      "message": "checksum and data issue is solved. The question still remains to be answered",
+      "parentUuid": "68f8dc9b_7b82e933",
+      "range": {
+        "startLine": 2,
+        "startChar": 49,
+        "endLine": 2,
+        "endChar": 113
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "330c5c1f_8533245c",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "60d43aea_9b0800e8",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-28T09:55:38Z",
+      "side": 1,
+      "message": "Cannot make changes to this file as we are not the owners of this file.",
+      "parentUuid": "330c5c1f_8533245c",
+      "range": {
+        "startLine": 897,
+        "startChar": 2,
+        "endLine": 897,
+        "endChar": 3
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "108c2149_9e9d85a2",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2021-06-28T07:45:09Z",
       "side": 1,
       "message": "Looks like the indentation here is not correct",
+      "range": {
+        "startLine": 1130,
+        "startChar": 0,
+        "endLine": 1135,
+        "endChar": 2
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c664ce9_b34164a1",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-28T09:55:38Z",
+      "side": 1,
+      "message": "Cannot make changes to this file as we are not the owners of this file.",
+      "parentUuid": "108c2149_9e9d85a2",
       "range": {
         "startLine": 1130,
         "startChar": 0,
