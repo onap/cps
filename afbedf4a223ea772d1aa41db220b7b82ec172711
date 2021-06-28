@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3484a855_3ff61d35",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T18:44:44Z",
+      "side": 1,
+      "message": "need to add repository \u0027DOCKER_REPO\u0027 to the image in the commented services too.",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 47
+      },
+      "revId": "afbedf4a223ea772d1aa41db220b7b82ec172711",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
