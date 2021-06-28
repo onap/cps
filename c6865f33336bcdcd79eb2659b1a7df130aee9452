@@ -77,6 +77,30 @@
     },
     {
       "key": {
+        "uuid": "592ad54d_b6354500",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7718
+      },
+      "writtenOn": "2021-06-28T16:04:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c2970aba_1cc20af5",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 29
+      },
+      "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9ab4ea4_2c5de2a7",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 12
@@ -100,6 +124,30 @@
     },
     {
       "key": {
+        "uuid": "0425b00f_30d895b1",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7718
+      },
+      "writtenOn": "2021-06-28T16:04:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e9ab4ea4_2c5de2a7",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdb58a5e_87e52083",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 12
@@ -111,6 +159,30 @@
       "writtenOn": "2021-06-28T11:53:01Z",
       "side": 0,
       "message": "comment in cps-bom/pom.xml is applicable here too",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "c6865f33336bcdcd79eb2659b1a7df130aee9452",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0b56fa6_29a08e35",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7718
+      },
+      "writtenOn": "2021-06-28T16:04:07Z",
+      "side": 0,
+      "message": "\u003e comment in cps-bom/pom.xml is applicable here too\n\nThis will be inherited from oparent, so we don\u0027t need",
+      "parentUuid": "cdb58a5e_87e52083",
       "range": {
         "startLine": 76,
         "startChar": 0,
