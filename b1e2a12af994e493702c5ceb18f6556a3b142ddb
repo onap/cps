@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1ce70079_667a03f3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T22:55:39Z",
+      "side": 1,
+      "message": "The changed is made for the configuration as it is confirmed that it does not restrict the scope of the retry to have it here.",
+      "parentUuid": "db38f435_c40a91d6",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 12
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be3ad193_35584ed6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2021-06-28T12:39:30Z",
       "side": 1,
       "message": "can be changed to var?",
+      "range": {
+        "startLine": 161,
+        "startChar": 14,
+        "endLine": 161,
+        "endChar": 23
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "122c040a_6e5014b2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T22:55:39Z",
+      "side": 1,
+      "message": "Probably it could be. As I think that the team has a preference for typed variables and as long my local Sonar is not complaining, I\u0027m not using var. Could it be possible that my local Sonar is not in sync with ONAP one ? Anyway, if it finally appears that this is an issue for ONAP Sonar, we\u0027ll make the change.",
+      "parentUuid": "be3ad193_35584ed6",
       "range": {
         "startLine": 161,
         "startChar": 14,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "68686e92_466e19e3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T22:55:39Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "parentUuid": "1016467d_e5015e56",
+      "range": {
+        "startLine": 163,
+        "startChar": 18,
+        "endLine": 163,
+        "endChar": 46
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7371777_dc5463ab",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "e33e8047_e3a3ad85",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T22:55:39Z",
+      "side": 1,
+      "message": "I\u0027m not sure about the filtering you are thinking about. Is it something like:\n\n    List\u003cYangResourceEntity\u003e filteredYangResourceEntities \u003d\n            yangResourceEntities\n                .stream()\n                .filter(entity -\u003e\n                        constraintException.getSQLException().getMessage()\n                                .contains(entity.getChecksum()))\n                .collect(Collectors.toList());\n\nAnything else ?",
+      "parentUuid": "f7371777_dc5463ab",
+      "range": {
+        "startLine": 171,
+        "startChar": 20,
+        "endLine": 171,
+        "endChar": 106
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a00139c_709900cc",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2021-06-28T12:39:30Z",
       "side": 1,
       "message": "As per existing functionality, can we store two yang resources when creating schema-set?",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 173,
+        "endChar": 69
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba439a1e_26765939",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T22:55:39Z",
+      "side": 1,
+      "message": "Exact, several yang resources can be associated to the schema set to be created.\n\nAnd one of these yang resource is causing the DataIntegrityViolationException. Here we just want to have this specific yang resource that caused the sql error in the business exception in order to have the information in the logs.",
+      "parentUuid": "1a00139c_709900cc",
       "range": {
         "startLine": 172,
         "startChar": 24,
