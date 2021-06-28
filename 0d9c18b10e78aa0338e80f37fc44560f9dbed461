@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3604c8b2_06d5209f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:30:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8efebdbe_8d727612",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2baee313_1e1640f7",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 11
