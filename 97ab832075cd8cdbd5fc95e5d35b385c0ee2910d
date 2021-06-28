@@ -563,6 +563,30 @@
       "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9448ac20_96301651",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-28T23:09:07Z",
+      "side": 1,
+      "message": "I have a preference to keep them here with a comment.\nWhen the notification flag is turned on to true in local envs, it is good to be able to quickly un-comment these services to have cps application running.\n\nI can see it similar to `cps-standalone` and `ncmp-standalone` services above.",
+      "parentUuid": "104419fd_c35dee39",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 1
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
