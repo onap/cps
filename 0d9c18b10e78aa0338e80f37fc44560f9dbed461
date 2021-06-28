@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "b19bf340_e5703daf",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:27:51Z",
+      "side": 1,
+      "message": "the docker image for the kafka and postgres test containers are at diff location in the nexus. \n\nkafka - nexus3.onap.org:10001/confluentinc/cp-kafka:6.1.1\npostgres - nexus3.onap.org:10001/library/postgres:13.3\n\nHence, postgres specific location is defined in the the cps-ri pom.",
+      "parentUuid": "2baee313_1e1640f7",
+      "range": {
+        "startLine": 128,
+        "startChar": 87,
+        "endLine": 128,
+        "endChar": 95
+      },
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11e135df_3d2ab34e",
         "filename": "cps-service/pom.xml",
         "patchSetId": 11
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "1e2d96f1_a31bce3a",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:27:51Z",
+      "side": 1,
+      "message": "moved the version to cps-dependencies",
+      "parentUuid": "11e135df_3d2ab34e",
+      "range": {
+        "startLine": 125,
+        "startChar": 14,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9efff13a_943d7606",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 11
@@ -82,6 +130,24 @@
       "writtenOn": "2021-06-24T14:34:06Z",
       "side": 1,
       "message": "Just need an opinion on it, as i see we are sending notification at the end of each request for cpsdata except get. This looks good case to use interceptors for posthandle.",
+      "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b97a46_092b2699",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T11:27:51Z",
+      "side": 1,
+      "message": "Sending notification is not an action which needs to be done for all the POST methods. It is required only for DataNode change APIs. And I see this feature more as a part of service layer than controller.\n\nI was initially considering to implement it using \u0027AOP\u0027 or \u0027event publisher\u0027 but both these alternatives are more complex than required for our use case.",
+      "parentUuid": "9efff13a_943d7606",
       "revId": "0d9c18b10e78aa0338e80f37fc44560f9dbed461",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
