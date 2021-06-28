@@ -45,6 +45,29 @@
       "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "108c2149_9e9d85a2",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-06-28T07:45:09Z",
+      "side": 1,
+      "message": "Looks like the indentation here is not correct",
+      "range": {
+        "startLine": 1130,
+        "startChar": 0,
+        "endLine": 1135,
+        "endChar": 2
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
