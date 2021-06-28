@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "525c98c0_b18a5fee",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/KafkaProducerListener.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cec00ae_c302819a",
+      "range": {
+        "startLine": 42,
+        "startChar": 72,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71d7b1ec_5ae1e557",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationPublisher.java",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66520558_4f9be229",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationPublisher.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d7b1ec_5ae1e557",
+      "range": {
+        "startLine": 39,
+        "startChar": 14,
+        "endLine": 39,
+        "endChar": 23
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0ca0a30d_b59262c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8de87f22_de97b6a2",
+      "range": {
+        "startLine": 38,
+        "startChar": 52,
+        "endLine": 38,
+        "endChar": 65
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8deac39b_77b0dc8d",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 13
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "58810482_bf59eb6f",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "shouldSendNotification() has a potential to be complicated in the next few stories, so decided to keep the if condition inside try block too.",
+      "parentUuid": "8deac39b_77b0dc8d",
+      "range": {
+        "startLine": 62,
+        "startChar": 1,
+        "endLine": 63,
+        "endChar": 43
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dba3910_09d29bd5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 13
@@ -114,6 +210,30 @@
       "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4202dc5b_397db9fd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dba3910_09d29bd5",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +283,54 @@
     },
     {
       "key": {
+        "uuid": "c2443dc9_93d3d83e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1ce223d_0d684665",
+      "range": {
+        "startLine": 53,
+        "startChar": 79,
+        "endLine": 53,
+        "endChar": 83
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f43b1b90_55a955b6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "940db67c_97ed4f0d",
+      "range": {
+        "startLine": 53,
+        "startChar": 87,
+        "endLine": 53,
+        "endChar": 94
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef2508a4_7bbdc00a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 13
@@ -183,6 +351,30 @@
       "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2898e5f_1eee9319",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef2508a4_7bbdc00a",
+      "range": {
+        "startLine": 73,
+        "startChar": 58,
+        "endLine": 73,
+        "endChar": 74
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "1e263feb_d2317589",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "450d3cd3_3b05cf60",
+      "range": {
+        "startLine": 77,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 15
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8dc85fb_c75d8a6b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/KafkaPublisherSpecBase.groovy",
         "patchSetId": 13
@@ -229,6 +445,30 @@
       "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5f8960a_5c1cb9c8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/KafkaPublisherSpecBase.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8dc85fb_c75d8a6b",
+      "range": {
+        "startLine": 91,
+        "startChar": 7,
+        "endLine": 91,
+        "endChar": 63
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "051b1e98_1631fea8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "I want to mention that this test case tests that no errors are thrown. \nChanged the name to \u0027notification service does not throw error\u0027 \nAny other suggestions are welcome.",
+      "parentUuid": "634948b7_a1a7205d",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 106
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c55097b_22986539",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 13
@@ -266,6 +530,30 @@
       "writtenOn": "2021-06-28T12:31:35Z",
       "side": 1,
       "message": "not sure what you are suggestion here. I suspect you want this to easy enable something, when should this could be uncommented. If so can you add a comment about this.\nIf it is not needed at all it should be deleted",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 1
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "104419fd_c35dee39",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-06-28T13:03:43Z",
+      "side": 1,
+      "message": "This part is not finalized yet as it is dependent on the CSIT user story. https://jira.onap.org/browse/CPS-476.\n\nI can remove it for now and will be added with this story.\nWhat do you suggest?",
+      "parentUuid": "2c55097b_22986539",
       "range": {
         "startLine": 77,
         "startChar": 0,
