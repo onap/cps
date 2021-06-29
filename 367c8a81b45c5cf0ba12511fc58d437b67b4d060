@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9248648e_fbdd715e",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-29T12:26:49Z",
+      "side": 1,
+      "message": "where is onap.nexus.url defined?",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 32
+      },
+      "revId": "367c8a81b45c5cf0ba12511fc58d437b67b4d060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52ab20ed_a401b2e3",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-06-29T12:26:49Z",
+      "side": 1,
+      "message": "same here and others with no parent",
+      "revId": "367c8a81b45c5cf0ba12511fc58d437b67b4d060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
