@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c0eb0253_0d01afe1",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T12:57:13Z",
+      "side": 1,
+      "message": "Agree, it appears that some design refactoring would be needed here.\n\nAs discussed, are we able to use Freeze feature to avoid adding design rules that enforce bad practices ?\n\nhttps://www.archunit.org/userguide/html/000_Index.html#_freezing_arch_rules",
+      "parentUuid": "18b18bb0_02f1a61d",
+      "range": {
+        "startLine": 127,
+        "startChar": 38,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b87c035e_5404773b",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 1
