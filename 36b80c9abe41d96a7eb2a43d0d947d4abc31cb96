@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4633a59_28de631f",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-29T10:34:06Z",
+      "side": 1,
+      "message": "Add Modification copyright after this.\nModification (C) 2021 Nordix Foundation",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "36b80c9abe41d96a7eb2a43d0d947d4abc31cb96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71cd32c4_4ebcb615",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-06-29T10:34:06Z",
+      "side": 1,
+      "message": "Same comment as for checkstyles pom file",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "36b80c9abe41d96a7eb2a43d0d947d4abc31cb96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
