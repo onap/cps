@@ -236,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "2995b326_d9006ce4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fca3cf03_ebd7b95e",
+      "range": {
+        "startLine": 125,
+        "startChar": 59,
+        "endLine": 125,
+        "endChar": 60
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3631ff0d_4e2f6327",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -294,6 +318,30 @@
       "writtenOn": "2021-06-22T15:35:38Z",
       "side": 1,
       "message": "duplicatedYangResourceException",
+      "range": {
+        "startLine": 157,
+        "startChar": 40,
+        "endLine": 157,
+        "endChar": 47
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8caf589_1eca8c54",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c0d85e9_60001701",
       "range": {
         "startLine": 157,
         "startChar": 40,
