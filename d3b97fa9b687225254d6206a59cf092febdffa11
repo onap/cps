@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ac8eac56_20a2c373",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-29T13:31:56Z",
+      "side": 1,
+      "message": "No need to upgrade liquibase version of this model as in Instanbul this will be replaced by a model discovered on the xNF themselves",
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68f8dc9b_7b82e933",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/10-insert-cps-ran-schema-model-version-2021-05-19-forward.sql",
         "patchSetId": 7
