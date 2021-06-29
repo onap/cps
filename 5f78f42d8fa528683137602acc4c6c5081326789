@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "708465e7_de62def0",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:36:30Z",
+      "side": 1,
+      "message": "Team decided to keep it.",
+      "parentUuid": "54078448_336de676",
+      "range": {
+        "startLine": 54,
+        "startChar": 24,
+        "endLine": 54,
+        "endChar": 36
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86c571ce_f4d115ba",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e92afb69_902d4fed",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:36:30Z",
+      "side": 1,
+      "message": "Team decided to keep it.",
+      "parentUuid": "86c571ce_f4d115ba",
+      "range": {
+        "startLine": 58,
+        "startChar": 24,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4da7427_178ffa52",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "975639d5_e5527ae1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:36:30Z",
+      "side": 1,
+      "message": "Team decided to keep it.",
+      "parentUuid": "c4da7427_178ffa52",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 12
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "d61b8be7_3a15dc1c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:36:30Z",
+      "side": 1,
+      "message": "Team decided to keep it.",
+      "parentUuid": "fd90dd14_4b5fe517",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 111
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fca3cf03_ebd7b95e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -160,6 +256,30 @@
       "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87c8d0b6_6eba31ff",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-29T21:36:30Z",
+      "side": 1,
+      "message": "Team decided to keep it.",
+      "parentUuid": "3631ff0d_4e2f6327",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 29
+      },
+      "revId": "5f78f42d8fa528683137602acc4c6c5081326789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
