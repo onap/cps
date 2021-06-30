@@ -3,14 +3,14 @@ module cps-ran-schema-model {
   namespace "org:onap:ccsdk:features:sdnr:northbound:cps-ran-schema-model";
   prefix rn;
 
-   import ietf-inet-types {
+  import ietf-inet-types {
     prefix inet;
   }
   import ietf-yang-types {
     prefix yang;
   }
 
-        organization
+  organization
     "Open Network Automation Platform - ONAP
      <https://www.onap.org>";
   contact
@@ -38,6 +38,13 @@ module cps-ran-schema-model {
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.";
+
+     revision 2021-05-19 {
+       description
+         "Added support for OOF PCI SON Use case";
+       reference
+         "https://wiki.onap.org/display/DW/CPS+APIs";
+     }
 
   revision 2021-01-28 {
     description
@@ -855,7 +862,7 @@ module cps-ran-schema-model {
           reference "gNB ID in 3GPP TS 38.300, Global gNB ID in 3GPP TS 38.413";
         }
 
-        list pLMNInfoList {
+  	list pLMNInfoList {
           uses PLMNInfo;
           key "mcc mnc";
           description "The PLMNInfoList is a list of PLMNInfo data type. It defines which PLMNs that can be served by the nearRTRIC.";
@@ -875,6 +882,7 @@ module cps-ran-schema-model {
         standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
         abstract RRMPolicy_ IOC. For details see subclause 4.3.36.";
     }
+
     leaf-list ranNFNSSIIdList{
                 type string;
                 config true;
@@ -886,17 +894,17 @@ module cps-ran-schema-model {
 
 
 
-        grouping Configuration{
-                leaf configParameter{
-                        type string;
-                        description "Type of the configuration parameter";
+  	grouping Configuration{
+  		leaf configParameter{
+  			type string;
+  			description "Type of the configuration parameter";
         }
-                leaf configValue{
-                        type int64;
-                        description "Identifies the configuration to be done for the network elements under the NearRTRIC";
+  		leaf configValue{
+  			type int64;
+  			description "Identifies the configuration to be done for the network elements under the NearRTRIC";
 
-                }
-        }
+  		}
+  	}
 
 
   grouping GNBDUFunctionGroup {
@@ -994,6 +1002,31 @@ module cps-ran-schema-model {
       reference
         "NCI in 3GPP TS 38.300";
     }
+
+    leaf siteLatitude {
+      type decimal64 {
+        fraction-digits 4;
+        range "-90.0000..+90.0000";
+      }
+      description "The latitude of the site where the ManagedFunction
+        instance resides, based on World Geodetic System (1984 version)
+        global reference frame (WGS 84). Positive values correspond to
+        the northern hemisphere. This attribute is optional in case of
+        BTSFunction and RNCFunction instance(s).";
+    }
+
+    leaf siteLongitude {
+      type decimal64 {
+        fraction-digits 4;
+        range "-180.0000..+180.0000";
+      }
+      description "The longitude of the site where the ManagedFunction
+        instance resides, based on World Geodetic System (1984 version)
+        global reference frame (WGS 84). Positive values correspond to
+        degrees east of 0 degrees longitude. This attribute is optional in
+        case of BTSFunction and RNCFunction instance(s).";
+    }
+
     list pLMNInfoList {
       key "mcc mnc";
       min-elements 1;
@@ -1085,21 +1118,21 @@ module cps-ran-schema-model {
 
 
   grouping sNSSAIConfig{
-        leaf sNssai {
+	leaf sNssai {
         type string;
         description "s-NSSAI of a network slice.";
-           reference "3GPP TS 23.003";
+	   reference "3GPP TS 23.003";
       }
-         leaf status {
+ 	 leaf status {
         type string;
         description "status of s-NSSAI";
       }
-        list configData{
-                uses Configuration;
-                key "configParameter";
-                description "List of configurations to be done at the network elements";
-        }
-        }
+	list configData{
+		uses Configuration;
+		key "configParameter";
+		description "List of configurations to be done at the network elements";
+	}
+	}
 
   grouping RRMPolicy_Group {
     description
@@ -1290,6 +1323,23 @@ module cps-ran-schema-model {
     }
   } // grouping NRCellCUGroup
 
+  grouping RegionNRCellCUMappingGroup {
+    description
+      "Represents the NRCellCU IOC.";
+    reference
+      "3GPP TS 28.541";
+    leaf cellLocalId {
+      type int32 {
+        range "0..16383";
+      }
+      mandatory false;
+      description
+        "Identifies an NR cell of a gNB. Together with corresponding
+         gNB ID it forms the NR Cell Identifier (NCI).";
+    }
+
+  } // grouping RegionNRCellCUMappingGroup
+
   grouping NRCellRelationGroup {
     description
       "Represents the NRCellRelation IOC.";
@@ -1304,6 +1354,17 @@ module cps-ran-schema-model {
     }
   } // grouping
 
+  typedef RegionId {
+    type union {
+      type uint8;
+      type string {
+        length 8;
+      }
+    }
+    reference "similar to clause 2.10.1 of 3GPP TS 23.003";
+  }
+
+
   // container for RAN Network
 
   container cps-ran-schema {
@@ -1312,6 +1373,56 @@ module cps-ran-schema-model {
       relationships among O-RAN managed elements for the
       purposes of storing in Configuration and Persistence
       ONAP system ";
+
+    list Regions {
+      key "regionId"; // list Regions
+      description
+        "A list of regions in the RAN network to map to mutually exclusive NRCellCU's";
+      leaf regionId {
+        type RegionId;
+      }
+      container cps-region-cell-mapping {
+        list NRCellCU {
+          key "idNRCellCU";
+          description
+            "Represents the information required by CU that is
+             responsible for the management of inter-cell mobility and neighbour
+             relations via ANR.";
+          reference
+            "3GPP TS 28.541";
+          leaf idNRCellCU {
+            type string;
+            description
+              "TODO";
+          }
+          container attributes {
+            description
+              "TODO";
+            uses RegionNRCellCUMappingGroup;
+          }
+          list NRCellRelation {
+            key "idNRCellRelation";
+            description
+              "Represents a neighbour cell relation from a source cell
+               to a target cell, where the target cell is an NRCellCU or
+               ExternalNRCellCU instance.";
+            reference
+              "3GPP TS 28.541";
+            leaf idNRCellRelation {
+              type string;
+              description
+                "TODO";
+            }
+            container attributes {
+              description
+                "TODO";
+              uses NRCellRelationGroup;
+            }
+          } // list NRCellRelation
+        }
+      }
+    }
+
     list NearRTRIC {
       key "idNearRTRIC"; // list GNBCUCPFunction
       description

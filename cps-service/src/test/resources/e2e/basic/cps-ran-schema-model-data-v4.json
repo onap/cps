@@ -4,9 +4,9 @@
       {
         "idNearRTRIC": "11",
         "attributes":{
-        "ranNFNSSIIdList":[
-        "ac8ca1a9-e1ec-4480-8720-c74e92566885"
-        ]
+          "ranNFNSSIIdList":[
+            "ac8ca1a9-e1ec-4480-8720-c74e92566885"
+          ]
         },
         "GNBCUUPFunction": [
           {
