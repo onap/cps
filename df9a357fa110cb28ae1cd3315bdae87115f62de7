@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcfd2403_c49e2a42",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T09:03:44Z",
+      "side": 1,
+      "message": "my pet hate; unnecessary constants :-(\nI dont think these add value and I prefer to see string literals, (even if they are used multiple times)\nAlthough SonarQube might complain if you use the same string 3 or more times (this is a rule we changed in a previous project but cannot do that in ONAP)",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 58
+      },
+      "revId": "df9a357fa110cb28ae1cd3315bdae87115f62de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e0736e4_6c7928e5",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T09:03:44Z",
+      "side": 1,
+      "message": "in this case the names add a \u0027little value\u0027 to indicate they are package with its not clear from teh string literals. So you can keep these",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 53,
+        "endChar": 76
+      },
+      "revId": "df9a357fa110cb28ae1cd3315bdae87115f62de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "207e8a27_fd7a4dec",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T09:03:44Z",
+      "side": 1,
+      "message": "maybe split into 2 separate test one for API(s), one for SPI(s). but its just my preference, do whatever you prefer...",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 34
+      },
+      "revId": "df9a357fa110cb28ae1cd3315bdae87115f62de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
