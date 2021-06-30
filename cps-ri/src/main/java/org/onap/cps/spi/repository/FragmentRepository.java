@@ -48,12 +48,15 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }
 
-    Optional<FragmentEntity> findFirstByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
-        @NonNull AnchorEntity anchorEntity);
+    @Query(
+        value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND dataspace_id = :dataspace AND parent_id is NULL",
+        nativeQuery = true)
+    List<FragmentEntity> findRootsByDataspaceAndAnchor(
+        @Param("dataspace") int dataspaceId, @Param("anchor") int anchorId);
 
-    default FragmentEntity getFirstByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
+    default FragmentEntity findFirstRootByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
         @NonNull AnchorEntity anchorEntity) {
-        return findFirstByDataspaceAndAnchor(dataspaceEntity, anchorEntity)
+        return findRootsByDataspaceAndAnchor(dataspaceEntity.getId(), anchorEntity.getId()).stream().findFirst()
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName()));
     }
 
