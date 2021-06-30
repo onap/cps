@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "a04683c8_241905b7",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 8
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:46:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51ee1f67_caae9cf7",
+      "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c01fa48_8b601b78",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 8
@@ -89,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "46c711d3_4f8132f3",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 8
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:46:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7c01fa48_8b601b78",
+      "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "181f75de_9ee139d9",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 8
@@ -103,6 +139,24 @@
       "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a2368cd_7d02b657",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 8
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:46:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "181f75de_9ee139d9",
+      "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
