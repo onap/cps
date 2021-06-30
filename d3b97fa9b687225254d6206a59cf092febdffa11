@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "98e4448e_e4c4e2cd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T12:55:08Z",
+      "side": 1,
+      "message": "Shiva has mailed Claudio and I also added a comment to the bug to explain our decisions regarding this bug.",
+      "parentUuid": "df7bd5c6_045223e6",
+      "range": {
+        "startLine": 153,
+        "startChar": 31,
+        "endLine": 153,
+        "endChar": 67
+      },
+      "revId": "d3b97fa9b687225254d6206a59cf092febdffa11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "330c5c1f_8533245c",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 7
