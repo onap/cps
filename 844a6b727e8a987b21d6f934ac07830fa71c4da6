@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b589cfc4_94247712",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T13:01:48Z",
+      "side": 1,
+      "message": "Hey Bruno, we can also get rid of this. The reason this was left in is as it checks for real accesses to these layers, as opposed to depends on which catches a different variety of violations such as having method parameters, extending types etc, in the dependent packages",
+      "parentUuid": "9adb3f55_a0549ae6",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8498f114_4700f139",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "674ee431_b8d4f720",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T13:01:48Z",
+      "side": 1,
+      "message": "It generates a directory under cps-application/archunit_store. \n\nSeeing as this is generated, I wasn\u0027t sure if it had to be included in the commit. I will include it now",
+      "parentUuid": "8498f114_4700f139",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1158ba8e_2ed0d48f",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2021-06-30T12:34:30Z",
       "side": 1,
       "message": "As with previous rule, I don\u0027t think that Utility classes should depend on repository layer, it should be the opposite.\n\nShould we have a dependency of cps service yang schema on repository layer ? I think it is not expected.",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea99aec5_58e3d5fc",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T13:01:48Z",
+      "side": 1,
+      "message": "The reason I put these in here, is because they are part of the service layer which goes with the rule. I can remove both of these, and we can potentially refactor further by adding a separate service layer independent of the util and yang packages",
+      "parentUuid": "1158ba8e_2ed0d48f",
       "range": {
         "startLine": 81,
         "startChar": 16,
