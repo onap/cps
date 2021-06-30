@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a3ecb3b_dc63cc35",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T09:17:27Z",
+      "side": 1,
+      "message": "No problem I can change this Toine, I added these as part of Joe\u0027s comment on patch set one, because it was also the convention I would follow previously too.\n\nBut if you feel like it\u0027s unnecessary I can remove them :)",
+      "parentUuid": "dcfd2403_c49e2a42",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 58
+      },
+      "revId": "df9a357fa110cb28ae1cd3315bdae87115f62de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e0736e4_6c7928e5",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 7
@@ -59,6 +83,30 @@
       "writtenOn": "2021-06-30T09:03:44Z",
       "side": 1,
       "message": "maybe split into 2 separate test one for API(s), one for SPI(s). but its just my preference, do whatever you prefer...",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 34
+      },
+      "revId": "df9a357fa110cb28ae1cd3315bdae87115f62de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882ad9f4_f73c089b",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T09:17:27Z",
+      "side": 1,
+      "message": "I originally had them as two separate test cases, but changed them in patch set two as part of Bruno\u0027s comments left on patch set 1.\n\nI can revert this again, but I feel like it\u0027s probably better to keep everything in services consistent and being accessed by the same packages, with a potential refactor at a later stage to put api and spi within the same service layer package later.",
+      "parentUuid": "207e8a27_fd7a4dec",
       "range": {
         "startLine": 79,
         "startChar": 26,
