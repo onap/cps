@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "47e2bbd2_502920f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:25:38Z",
+      "side": 1,
+      "message": "Commit message does not reflect the change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "905ae526de58551668945a8551a0a068b9466d26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b99f303f_3ffa61d0",
         "filename": "checkstyle/pom.xml",
         "patchSetId": 17
@@ -46,6 +69,57 @@
       "revId": "905ae526de58551668945a8551a0a068b9466d26",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22032021_d7f33405",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 17
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:25:38Z",
+      "side": 1,
+      "message": "For now, it is possible to build the application by having the base integration image in the local registry and keeping `docker.repository.pull` value empty.\n\nThis will not be possible anymore with this change that requires to have a value for `docker.pull.registry`.\n\nBecause of that, it seems that I\u0027m not able to build the application anymore in Bell env as the proxy is blocking the connection to onap pull registry.\n\nI\u0027m curious about how other Bell team members are building locally and if they are still able to build the application using Bell proxy, with this change.",
+      "revId": "905ae526de58551668945a8551a0a068b9466d26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b9261e_5131dde6",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:25:38Z",
+      "side": 1,
+      "message": "This image name is not consistent with the 2 below.",
+      "revId": "905ae526de58551668945a8551a0a068b9466d26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f479884c_a9672e13",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-06-30T11:25:38Z",
+      "side": 1,
+      "message": "Docker image name for ncmp standalone is cps-ncmp.",
+      "revId": "905ae526de58551668945a8551a0a068b9466d26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
