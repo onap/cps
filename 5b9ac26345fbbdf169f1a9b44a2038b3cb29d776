@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d1e0cd87_c480348e",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T10:06:02Z",
+      "side": 1,
+      "message": "AS per later comment: constant in my opinion over over-used and decrease readability. \nOnly if a string is really used many times or the constant name adds \u0027value\u0027 to the string literal they shoudl be used.",
+      "parentUuid": "45a4ca6b_f579e38f",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d27ac34e_8b4c8349",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 1
