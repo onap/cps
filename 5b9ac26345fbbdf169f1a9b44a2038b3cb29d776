@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "9b813530_d22486cc",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-06-30T10:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0eb0253_0d01afe1",
+      "range": {
+        "startLine": 127,
+        "startChar": 38,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "5b9ac26345fbbdf169f1a9b44a2038b3cb29d776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b87c035e_5404773b",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 1
