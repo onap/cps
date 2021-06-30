@@ -249,6 +249,30 @@
     },
     {
       "key": {
+        "uuid": "19ec88fd_12a1247c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T08:43:36Z",
+      "side": 1,
+      "message": "I just ran the test again on paths #16 and all is working fie now, thanks!",
+      "parentUuid": "794c0165_1deb0b80",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb1ffea6_d66be697",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
         "patchSetId": 8
@@ -425,6 +449,30 @@
       "side": 1,
       "message": "Bruno suggested using PollingConditions.\nhttps://spockframework.org/spock/javadoc/1.0/spock/util/concurrent/PollingConditions.html\n\nI changed the implementation and it looks a lot better now",
       "parentUuid": "c66f1b8c_e167b1c3",
+      "range": {
+        "startLine": 91,
+        "startChar": 13,
+        "endLine": 91,
+        "endChar": 26
+      },
+      "revId": "15c53ff7c0c94376faae334950f0ed2d447aee8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d57689c_3ccc1229",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T08:43:36Z",
+      "side": 1,
+      "message": "even better :-)",
+      "parentUuid": "527185a4_e128d97c",
       "range": {
         "startLine": 91,
         "startChar": 13,
