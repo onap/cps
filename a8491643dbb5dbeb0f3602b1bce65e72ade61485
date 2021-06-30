@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "996d10f4_36c25d76",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T08:54:03Z",
+      "side": 1,
+      "message": "very early on I have doen a study of the capabilities of ODL yang parser and validation.\n\nsee https://wiki.onap.org/display/DW/Existing+Yang+Parser\n\nThere are many limitation which eventually need to address with additional validation but this has not made it to any of our current priorities",
+      "parentUuid": "5ae1067f_6a032070",
+      "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d33319_f274e288",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2021-06-29T22:29:38Z",
       "side": 1,
       "message": "Use spaces instead of tab",
+      "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51ee1f67_caae9cf7",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 8
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-06-30T08:54:03Z",
+      "side": 1,
+      "message": "as per previous comments, we are not the owner of this file so we won\u0027t make any changes to it, we add it to out tets as-is...",
+      "parentUuid": "64d33319_f274e288",
       "revId": "a8491643dbb5dbeb0f3602b1bce65e72ade61485",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
