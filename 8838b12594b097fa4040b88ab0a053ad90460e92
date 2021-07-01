@@ -143,6 +143,75 @@
     },
     {
       "key": {
+        "uuid": "8f371dc9_44bcbedf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-01T14:07:17Z",
+      "side": 1,
+      "message": "dnt think this is need following the naming convention (correctly) would make this clear it is a (groovy) Specification for the CpsModulePersistenceService  class",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 3
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd2db7ba_9dac1c51",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-01T14:07:17Z",
+      "side": 1,
+      "message": "it seems that this test focusses on the error handling only (as positive scenarios are covered by integration tets, which is great!)\n\nso I would suggest to name this \"CpsModulePersistenceServiceErrorHandlingSpec\"",
+      "range": {
+        "startLine": 36,
+        "startChar": 33,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "263da5ee_1ae11b16",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-01T14:07:17Z",
+      "side": 1,
+      "message": "wrong name",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 37
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ab8ab92_b920c20e",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
         "patchSetId": 4
@@ -200,6 +269,30 @@
       "writtenOn": "2021-07-01T13:36:15Z",
       "side": 1,
       "message": "don\u0027t think this is needed in this case",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 100
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb2799ad_d01ad78f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DuplicatedYangResourceException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-01T14:07:17Z",
+      "side": 1,
+      "message": "just check this exception is on the same level as DataValidationException not breaking teh level limit :-)",
+      "parentUuid": "d9903afe_9d11a54e",
       "range": {
         "startLine": 26,
         "startChar": 1,
