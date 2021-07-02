@@ -171,3 +171,28 @@ listNodeByCmHandleAndXpath:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
+
+cmHandleNotification:
+  post:
+    description: Notify NCMP of new, deleted and changed CM handles, along with initial registration
+    tags:
+      - network-cm-proxy
+    summary: Notify NCMP of new CM handles
+    operationId: registerCmHandles
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'

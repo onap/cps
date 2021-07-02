@@ -70,6 +70,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<String> registerCmHandles(final String jsonData) {
+        networkCmProxyDataService.registerCmHandleEvent(jsonData);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
     public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
         @Valid final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)

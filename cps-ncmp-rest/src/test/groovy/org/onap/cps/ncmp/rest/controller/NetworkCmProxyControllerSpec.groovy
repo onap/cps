@@ -54,8 +54,11 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def dataNodeBaseEndpoint
 
+    def ncmpDmiEndpoint
+
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1"
+        ncmpDmiEndpoint = "$basePath/ncmp-dmi/v1"
     }
 
     def cmHandle = 'some handle'
@@ -172,5 +175,22 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
     }
+
+    def 'Register CM Handle Event' () {
+        given: 'jsonData'
+
+            def jsonData = 'json data'
+        when: 'post request is performed'
+            def response = mvc.perform(
+                post("$ncmpDmiEndpoint/ch")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonData)
+            ).andReturn().response
+        then: 'the service method is invoked with correct parameters'
+        1 * mockNetworkCmProxyDataService.registerCmHandleEvent(jsonData)
+        and: 'response status is successful'
+            response.status == HttpStatus.CREATED.value()
+    }
+
 }
 
