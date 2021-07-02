@@ -1,0 +1,16 @@
+{
+  "dmi-registry": {
+    "cm-handles": [
+      {
+        "dmi-service-name": "service_name_example",
+        "id": "string",
+        "additional-properties": [
+          {
+            "name": "example_value",
+            "value": "value_string_example"
+          }
+        ]
+      }
+    ]
+  }
+}

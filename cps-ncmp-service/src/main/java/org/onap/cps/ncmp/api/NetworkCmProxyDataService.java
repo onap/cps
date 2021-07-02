@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -97,5 +98,12 @@ public interface NetworkCmProxyDataService {
      * @param jsonData        json data
      */
     void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
+
+    /**
+     * Registration of New CM Handles.
+     *
+     * @param apiCmHandles CM Handle List
+     */
+    void registerCmHandles(ApiDmiRegistry apiCmHandles) throws JsonProcessingException;
 
 }
