@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -96,5 +96,12 @@ public interface NetworkCmProxyDataService {
      * @param jsonData        json data
      */
     void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
+
+    /**
+     * Registration of New CM Handles.
+     *
+     * @param jsonData json data
+     */
+    void registerCmHandles(@NonNull String jsonData);
 
 }

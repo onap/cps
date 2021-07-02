@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
@@ -102,4 +102,14 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockcpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
+
+    def 'Register CM Handles.'(){
+        given: 'a dataspace, anchor and json data'
+            def jsonData = 'json data'
+        when: 'cm handles are registered'
+            objectUnderTest.registerCmHandles(jsonData)
+        then: 'the CPS service method is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData('NCMP-Admin', 'ncmp-dmi-registry', jsonData)
+    }
+
 }

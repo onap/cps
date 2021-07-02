@@ -52,10 +52,13 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Value('${rest.api.ncmp-base-path}')
     def basePath
 
-    def dataNodeBaseEndpoint
+    def deprecatedDataNodeBaseEndPoint
+
+    def ncmpDmiEndpoint
 
     def setup() {
-        dataNodeBaseEndpoint = "$basePath/v1"
+        deprecatedDataNodeBaseEndPoint = "$basePath/v1"
+        ncmpDmiEndpoint = "$basePath/ncmp-dmi/v1"
     }
 
     def cmHandle = 'some handle'
@@ -67,7 +70,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cpsPath = 'some cps-path'
             mockNetworkCmProxyDataService.queryDataNodes(cmHandle, cpsPath, expectedCpsDataServiceOption) >> [dataNode]
         and: 'the query endpoint'
-            def dataNodeEndpoint = "$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes/query"
+            def dataNodeEndpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes/query"
         when: 'query data nodes API is invoked'
             def response = mvc.perform(get(dataNodeEndpoint)
                     .param('cps-path', cpsPath)
@@ -89,7 +92,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def jsonData = 'json data'
         when: 'post request is performed'
             def response = mvc.perform(
-                    post("$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes")
+                    post("$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', reqXpath)
@@ -111,7 +114,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def parentNodeXpath = 'parent node xpath'
         when: 'post request is performed'
             def response = mvc.perform(
-                    post("$dataNodeBaseEndpoint/cm-handles/$cmHandle/list-node")
+                    post("$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/list-node")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', parentNodeXpath)
@@ -126,7 +129,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'json data'
             def jsonData = 'json data'
         and: 'the query endpoint'
-            def endpoint = "$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes"
+            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes"
         when: 'patch request is performed'
             def response = mvc.perform(
                     patch(endpoint)
@@ -144,7 +147,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'json data'
             def jsonData = 'json data'
         and: 'the query endpoint'
-            def endpoint = "$dataNodeBaseEndpoint/cm-handles/$cmHandle/nodes"
+            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes"
         when: 'put request is performed'
             def response = mvc.perform(
                     put(endpoint)
@@ -164,7 +167,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(["leaf": "value"]).build()
             mockNetworkCmProxyDataService.getDataNode(cmHandle, xpath, OMIT_DESCENDANTS) >> dataNode
         and: 'the query endpoint'
-            def endpoint = "$dataNodeBaseEndpoint/cm-handles/$cmHandle/node"
+            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/node"
         when: 'get request is performed through REST API'
             def response = mvc.perform(get(endpoint).param('xpath', xpath)).andReturn().response
         then: 'a success response is returned'
@@ -172,5 +175,21 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
     }
+
+    def 'Register CM Handle Event' () {
+        given: 'jsonData'
+            def jsonData = 'json data'
+        when: 'post request is performed'
+            def response = mvc.perform(
+                post("$ncmpDmiEndpoint/ch")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonData)
+            ).andReturn().response
+        then: 'the service method is invoked with correct parameters'
+        1 * mockNetworkCmProxyDataService.registerCmHandles(jsonData)
+        and: 'response status is created'
+            response.status == HttpStatus.CREATED.value()
+    }
+
 }
 
