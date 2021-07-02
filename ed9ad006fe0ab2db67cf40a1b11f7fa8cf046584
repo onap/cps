@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a29caa66_7fe76a4c",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-02T14:56:02Z",
+      "side": 1,
+      "message": "y is this different from the above APIs?",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "622ac7be_4c92a5e1",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-02T14:56:02Z",
+      "side": 1,
+      "message": "does this refer to cm-handles?",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c725e5c_2c0b255c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-02T14:56:02Z",
+      "side": 1,
+      "message": "not very sure y do we hav 2 different base endpoints?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c6d43a8_45e34510",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-02T14:56:02Z",
+      "side": 1,
+      "message": "are these always fixed? Should these be configurable?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 71
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
