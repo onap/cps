@@ -36,6 +36,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static final String NF_PROXY_DATASPACE_NAME = "NFP-Operational";
 
+    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+
+    private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
+
     @Autowired
     private CpsDataService cpsDataService;
 
@@ -44,6 +48,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private String getDataspaceName() {
         return NF_PROXY_DATASPACE_NAME;
+    }
+
+    private String getDataspaceForCmHandleRegister() {
+        return NCMP_DATASPACE_NAME;
+    }
+
+    private String getAnchorNameForCmHandleRegister() {
+        return NCMP_ANCHOR_NAME;
     }
 
     @Override
@@ -80,5 +92,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+    }
+
+    @Override
+    public void registerCmHandles(final String jsonData) {
+        cpsDataService.saveData(getDataspaceForCmHandleRegister(), getAnchorNameForCmHandleRegister(), jsonData);
     }
 }
