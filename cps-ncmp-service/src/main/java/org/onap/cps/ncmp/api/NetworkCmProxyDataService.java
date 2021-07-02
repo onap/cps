@@ -98,4 +98,11 @@ public interface NetworkCmProxyDataService {
      */
     void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
 
+    /**
+     * Registration of New CM Handles.
+     *
+     * @param jsonData json data
+     */
+    void registerCmHandles(@NonNull String jsonData);
+
 }
