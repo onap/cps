@@ -19,22 +19,30 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps.ncmp.api.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.ncmp.api.ApiCmHandle
+import org.onap.cps.ncmp.api.ApiCmHandles
+import org.onap.cps.ncmp.api.ApiDmiRegistry
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl
 import org.onap.cps.spi.FetchDescendantsOption
+import org.spockframework.spring.SpringBean
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
+
     def objectUnderTest = new NetworkCmProxyDataServiceImpl()
     def mockcpsDataService = Mock(CpsDataService)
     def mockcpsQueryService = Mock(CpsQueryService)
+    def mockObjectMapper = Mock(ObjectMapper)
 
     def setup() {
         objectUnderTest.cpsDataService = mockcpsDataService
         objectUnderTest.cpsQueryService = mockcpsQueryService
+        objectUnderTest.mapper = mockObjectMapper
     }
 
     def cmHandle = 'some handle'
@@ -103,4 +111,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockcpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
+
+    def 'Register CM Handle Event.'() {
+        when: 'cm handles are registered'
+            objectUnderTest.registerCmHandles(new ApiDmiRegistry())
+        then: 'the CPS service method is invoked once with the expected parameters'
+            1 * mockcpsDataService.saveData('NCMP-Admin', 'ncmp-dmi-registry', _)
+    }
+
 }

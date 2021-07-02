@@ -29,15 +29,46 @@ components:
           type: string
         details:
           type: string
-    MultipartFile:
-      required:
-        - file
-      properties:
-        multipartFile:
-          type: string
-          description: multipartFile
-          format: binary
 
+    rest-dmi-registry:
+      type: object
+      properties:
+        dmi-registry:
+          type: object
+          $ref: '#/components/schemas/rest-cm-handles'
+
+    rest-cm-handles:
+      type: object
+      properties:
+        cm-handles:
+          type: array
+          items:
+            $ref: '#/components/schemas/rest-CmHandle'
+
+    rest-CmHandle:
+      required:
+        - id
+        - dmi-service-name
+      type: object
+      properties:
+        id:
+          type: string
+        dmi-service-name:
+          type: string
+          example: service_name_example
+        additional-properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/handleProperties'
+    handleProperties:
+        type: object
+        properties:
+          name:
+            type: string
+            example: example_value
+          value:
+            type: string
+            example: value_string_example
   parameters:
     cmHandleInPath:
       name: cm-handle
