@@ -21,15 +21,22 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import javax.validation.Valid;
+import org.onap.cps.ncmp.api.ApiDmiRegistry;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.model.RestDmiRegistry;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,24 +50,45 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final Gson GSON = new GsonBuilder().create();
 
+
+    private static final Logger LOG = LoggerFactory.getLogger(NetworkCmProxyController.class);
+
     @Autowired
     private NetworkCmProxyDataService networkCmProxyDataService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    /**
+     * Create Node.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<String> createNode(final String jsonData, final String cmHandle,
         final String parentNodeXpath) {
         networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Add List-node Child Element.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<String> addListNodeElements(final String jsonData, final String parentNodeXpath,
         final String cmHandle) {
         networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Get Node By CM Handle and X-Path.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
         @Valid final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -69,7 +97,30 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
     }
 
+    /**
+     * Register New CM Handle.
+     * @param restCmHandles data as JSON string
+     */
     @Override
+    public ResponseEntity<String> registerCmHandles(final @Valid RestDmiRegistry restCmHandles) {
+        try {
+            final String jsonString = objectMapper.writeValueAsString(restCmHandles);
+            final ApiDmiRegistry apiDmiRegistry = objectMapper.readValue(jsonString,
+                new TypeReference<>() {});
+            networkCmProxyDataService.registerCmHandles(apiDmiRegistry);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (final JsonProcessingException e) {
+            LOG.error("Parsing error occured while converting cm-handles to JSON {}", restCmHandles);
+            return new ResponseEntity<>("Wrong data", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    /**
+     * Query Data Nodes.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
+    @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
         @Valid final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -79,14 +130,24 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
     }
 
+    /**
+     * Replace Node With Descendants.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> replaceNode(@Valid final String jsonData, final String cmHandle,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Update Node Leaves.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> updateNodeLeaves(@Valid final String jsonData, final String cmHandle,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);

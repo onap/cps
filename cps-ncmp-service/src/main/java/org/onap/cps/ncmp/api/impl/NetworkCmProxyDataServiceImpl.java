@@ -22,12 +22,17 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collection;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.ncmp.api.ApiDmiRegistry;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -37,11 +42,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static final String NF_PROXY_DATASPACE_NAME = "NFP-Operational";
 
+    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+
+    private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
+
     @Autowired
     private CpsDataService cpsDataService;
 
     @Autowired
+    private ObjectMapper mapper;
+
+    @Autowired
     private CpsQueryService cpsQueryService;
+
+    private static final Logger LOG = LoggerFactory.getLogger(NetworkCmProxyDataServiceImpl.class);
 
     private String getDataspaceName() {
         return NF_PROXY_DATASPACE_NAME;
@@ -81,5 +95,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+    }
+
+    @Override
+    public void registerCmHandles(final ApiDmiRegistry apiDmiRegistry) throws JsonProcessingException {
+        final String jsonData = mapper.writeValueAsString(apiDmiRegistry);
+        cpsDataService.saveData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, mapper.writeValueAsString(jsonData));
     }
 }
