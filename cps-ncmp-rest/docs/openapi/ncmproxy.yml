@@ -20,6 +20,7 @@
 nodeByCmHandleAndXpath:
   get:
     description: Get a node with an option to retrieve all the children for a given cm Handle
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Get a node given a cm Handle and xpath
@@ -43,6 +44,7 @@ nodeByCmHandleAndXpath:
 nodesByCmHandleAndCpsPath:
   get:
     description: Query nodes for the given cps path and cm Handle
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Query data nodes
@@ -66,6 +68,7 @@ nodesByCmHandleAndCpsPath:
 nodesByCmHandleAndXpath:
   post:
     description: Create a node with descendants for the given CM Handle; top level or under existing node (requires xpath)
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Create a node with descendants
@@ -93,6 +96,7 @@ nodesByCmHandleAndXpath:
 
   patch:
     description: Update node leaves for the given cps path and cm Handle
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Update node leaves
@@ -120,6 +124,7 @@ nodesByCmHandleAndXpath:
 
   put:
     description: Replace a node with descendants for the given cps path and cm Handle
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Replace a node with descendants
@@ -148,6 +153,7 @@ nodesByCmHandleAndXpath:
 listNodeByCmHandleAndXpath:
   post:
     description: Add one or more list-node child elements under existing node for the given CM Handle
+    deprecated: true
     tags:
       - network-cm-proxy
     summary: Add list-node child element(s)
@@ -172,3 +178,26 @@ listNodeByCmHandleAndXpath:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
+
+cmHandleNotification:
+  post:
+    description: Register A DMI Plugin with any new, deleted and changed CM Handles.
+    tags:
+      - network-cm-proxy
+    summary: Notify NCMP of new CM handles
+    operationId: registerCmHandles
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
