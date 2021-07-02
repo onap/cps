@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 10
+      changes:
+        - insert:
+            tableName: 'fragment'
+            columns:
+               - column:
+                   name: id
+                   value: 144
+               - column:
+                   name: xpath
+                   value: /dmi-registry
+               - column:
+                   name: attributes
+                   value: '{}'
+               - column:
+                   name: anchor_id
+                   valueComputed: (select id from anchor where name='ncmp-dmi-registry')
+               - column:
+                   name: dataspace_id
+                   valueComputed: (select id from dataspace where name='NCMP-Admin')
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 10.1
+      changes:
+        - sql:
+            comment: Fixes the id sequence after data insert with predefined ids
+            dbms: postgresql
+            sql: ALTER SEQUENCE IF EXISTS fragment_id_seq RESTART WITH 200
+

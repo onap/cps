@@ -1,0 +1,12 @@
+{
+  "dmi-plugin": "onap-dmi-plugin",
+  "created-cm-handles": [
+    {
+      "additional-properties": {
+          "name": "example_name",
+          "value": "example_value"
+        },
+      "cmHandle": "example_name"
+    }
+  ]
+}
