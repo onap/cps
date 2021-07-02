@@ -22,26 +22,55 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandle;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+@Slf4j
 @Service
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
     private static final String NF_PROXY_DATASPACE_NAME = "NFP-Operational";
 
-    @Autowired
+    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+
+    private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
+
+    private static final String NCMP_DATA_TOP_PATH = "/dmi-registry";
+
     private CpsDataService cpsDataService;
 
-    @Autowired
+    private ObjectMapper objectMapper;
+
     private CpsQueryService cpsQueryService;
+
+    /**
+     * Constructor Injection for Dependencies.
+     * @param cpsDataService Data Service Interface
+     * @param cpsQueryService Query Service Interface
+     * @param objectMapper Object Mapper
+     */
+    public NetworkCmProxyDataServiceImpl(final CpsDataService cpsDataService,
+        final CpsQueryService cpsQueryService, final ObjectMapper objectMapper) {
+        this.cpsDataService = cpsDataService;
+        this.cpsQueryService = cpsQueryService;
+        this.objectMapper = objectMapper;
+    }
 
     private String getDataspaceName() {
         return NF_PROXY_DATASPACE_NAME;
@@ -81,5 +110,29 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+    }
+
+    @Override
+    public void updateDmiPluginRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        try {
+            final List<PersistenceCmHandle> persistenceCmHandles =
+                new ArrayList<>();
+            for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
+                final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
+                persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
+                persistenceCmHandle.setId(cmHandle.getCmHandle());
+                persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+                persistenceCmHandles.add(persistenceCmHandle);
+            }
+            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+            persistenceCmHandlesList.setCmHandles(persistenceCmHandles);
+            final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, NCMP_DATA_TOP_PATH,
+                cmHandleJsonData);
+        } catch (final JsonProcessingException e) {
+            throw new DataValidationException(
+                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
+                .getMessage(), e);
+        }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "dmiPlugin": "onap-dmi-plugin",
+  "createdCmHandles": [
+    {
+      "cmHandle": "example-name",
+      "cmHandleProperties": {
+          "subSystemId" : "system-001"
+        }
+    }
+  ]
+}
