@@ -112,4 +112,3 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: delete from anchor where name = 'ncmp-dmi-registry'
-
