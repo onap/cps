@@ -143,6 +143,23 @@
     },
     {
       "key": {
+        "uuid": "db549de2_0b28e678",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T10:28:04Z",
+      "side": 1,
+      "message": "Why is this a global constant when it\u0027s just referenced once in the class?\n\nCould it not just be used as a literal String below?",
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f371dc9_44bcbedf",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
         "patchSetId": 4
