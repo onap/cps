@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "fad86ec3_4575ae5b",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T15:13:32Z",
+      "side": 1,
+      "message": "I don\u0027t think so Aditya. There are no parameters passed in to this API through the URL.",
+      "parentUuid": "622ac7be_4c92a5e1",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "463d5aa6_53d392bf",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T15:13:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure \u0027why\u0027 it\u0027s different to the other API\u0027s in Network-cm-proxy. But I implemented it as outlined in the API details on the wiki for spike CPS-390, which outlines it as {ncmp-root}/ncmp-dmi/v1/ch/.\n\nhttps://wiki.onap.org/display/DW/CPS-390+Spike%3A+Define+and+Agree+DMI+Plugin+REST+Interface#CPS390Spike:DefineandAgreeDMIPluginRESTInterface-DMIInventory,Model\u0026DataSyncAPI",
+      "parentUuid": "a29caa66_7fe76a4c",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c725e5c_2c0b255c",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "16710638_91b1cc02",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T15:13:32Z",
+      "side": 1,
+      "message": "I created another endpoint as the endpoint for the DMI Registration endpoint has \u0027ncmp-dmi\u0027 after the base path but before v1.\n\nExample {ncmp-root}/ncmp-dmi/v1/ch/\n\nWhere as the other endpoints within network-cm-proxy don\u0027t contain ncmp-dmi before /v1:\n/cps-ncmp/api/v1/cm-handles/{cm-handle}/node.\n\nSo to test the endpoint within this class, I had to create another endpoint.",
+      "parentUuid": "4c725e5c_2c0b255c",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c6d43a8_45e34510",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2021-07-02T14:56:02Z",
       "side": 1,
       "message": "are these always fixed? Should these be configurable?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 71
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "697d6442_99eaab67",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T15:13:32Z",
+      "side": 1,
+      "message": "Yes, the anchor and dataspace are fixed for the DMI Registration Handle.",
+      "parentUuid": "7c6d43a8_45e34510",
       "range": {
         "startLine": 37,
         "startChar": 4,
