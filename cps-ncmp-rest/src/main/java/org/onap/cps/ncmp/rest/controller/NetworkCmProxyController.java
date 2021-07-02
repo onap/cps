@@ -46,21 +46,36 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Autowired
     private NetworkCmProxyDataService networkCmProxyDataService;
 
+    /**
+     * Create Node.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<String> createNode(final String jsonData, final String cmHandle,
         final String parentNodeXpath) {
         networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Add List-node Child Element.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<String> addListNodeElements(final String jsonData, final String parentNodeXpath,
         final String cmHandle) {
         networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Get Node By CM Handle and X-Path.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
         @Valid final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -70,6 +85,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<String> registerCmHandles(final String jsonData) {
+        networkCmProxyDataService.registerCmHandles(jsonData);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Query Data Nodes.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
+    @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
         @Valid final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -79,14 +105,24 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
     }
 
+    /**
+     * Replace Node With Descendants.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> replaceNode(@Valid final String jsonData, final String cmHandle,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Update Node Leaves.
+     * @deprecated This Method is no longer used as part of NCMP.
+     */
     @Override
+    @Deprecated(forRemoval = false)
     public ResponseEntity<Object> updateNodeLeaves(@Valid final String jsonData, final String cmHandle,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);
