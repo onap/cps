@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a84fd90_e0759318",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 18
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T10:46:34Z",
+      "side": 1,
+      "message": "Not a huge deal just there\u0027s a line break here. 😊 I presume we want to keep it all together.",
+      "revId": "0b7a02c870b58bddc407af5c2091cc2345b8cd37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fed98e77_c9690950",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T10:46:34Z",
+      "side": 1,
+      "message": "Unneeded indent here",
+      "revId": "0b7a02c870b58bddc407af5c2091cc2345b8cd37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2711453_1e41148a",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-02T10:46:34Z",
+      "side": 1,
+      "message": "Unneeded Indent here",
+      "revId": "0b7a02c870b58bddc407af5c2091cc2345b8cd37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
