@@ -330,6 +330,7 @@
                     <excludes>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
+                        <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

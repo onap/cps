@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 10
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dmi/fragment.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'fragment'
+        columns:
+          - column:
+              header: id
+              name: id
+              type: NUMERIC
+          - column:
+              header: xpath
+              name: xpath
+              type: STRING
+          - column:
+              header: attributes
+              name: attributes
+              type: CLOB
+          - column:
+              header: anchor_id
+              name: anchor_id
+              type: NUMERIC
+          - column:
+              header: parent_id
+              name: parent_id
+              type: NUMERIC
+          - column:
+              header: dataspace_id
+              name: dataspace_id
+              type: NUMERIC
+          - column:
+              header: schema_node_id
+              name: schema_node_id
+              type: NUMERIC
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 5.1
+      changes:
+        - sql:
+            comment: Fixes the id sequence after data insert with predefined ids
+            dbms: postgresql
+            sql: ALTER SEQUENCE IF EXISTS fragment_id_seq RESTART WITH 200
+
