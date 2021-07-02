@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.api;
 
 import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
@@ -97,5 +98,12 @@ public interface NetworkCmProxyDataService {
      * @param jsonData        json data
      */
     void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
+
+    /**
+     * Registration of New CM Handles.
+     *
+     * @param dmiPluginRegistration Dmi Plugin Registration
+     */
+    void updateDmiPluginRegistration(DmiPluginRegistration dmiPluginRegistration);
 
 }

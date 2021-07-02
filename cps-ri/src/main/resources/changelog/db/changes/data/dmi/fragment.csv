@@ -1,0 +1,2 @@
+id|xpath|attributes|anchor_id|parent_id|dataspace_id|schema_node_id
+144|/dmi-registry|{}|(select id from anchor where name='ncmp-dmi-registry')|null|(select id from dataspace where name='NCMP-Admin')|null

@@ -29,14 +29,33 @@ components:
           type: string
         details:
           type: string
-    MultipartFile:
-      required:
-        - file
+
+    RestDmiPluginRegistration:
+      type: object
       properties:
-        multipartFile:
+        dmiPlugin:
           type: string
-          description: multipartFile
-          format: binary
+          example: onap-dmi-plugin
+        createdCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestCmHandle'
+
+    RestCmHandle:
+      required:
+        - cmHandle
+      type: object
+      properties:
+        cmHandle:
+          type: string
+          example: cmHandle123
+        cmHandleProperties:
+            $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
+    RestCmHandleAdditionalProperties:
+        type: object
+        additionalProperties:
+            type: string
+            example: system-001
 
   parameters:
     cmHandleInPath:
@@ -124,10 +143,7 @@ components:
             type: object
     Created:
       description: Created
-      content:
-        text/plain:
-          schema:
-            type: string
+      content: {}
     NoContent:
       description: No Content
       content: {}
