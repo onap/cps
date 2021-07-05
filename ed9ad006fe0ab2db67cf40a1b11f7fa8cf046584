@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "02d4c8c6_4faa23b2",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "it probably time to delete these old API methods now, this has been agreed in meetings with Ericsson and E2E Slicing team",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a29caa66_7fe76a4c",
         "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
         "patchSetId": 1
@@ -96,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "39326b10_cbd90853",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "de old methods are being deprecated and the new |API we intensively discussed and represented.\nIf anything we need to delete the old API methods now...",
+      "parentUuid": "463d5aa6_53d392bf",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c725e5c_2c0b255c",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -143,6 +190,53 @@
     },
     {
       "key": {
+        "uuid": "697c141e_d3bf11a9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "as per previous comment, NCMP interface is being re-written and I think we should remove old methods now....",
+      "parentUuid": "16710638_91b1cc02",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba098c50_2e71af09",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "registerCmHandles",
+      "range": {
+        "startLine": 105,
+        "startChar": 9,
+        "endLine": 105,
+        "endChar": 30
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c6d43a8_45e34510",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -183,6 +277,76 @@
         "startChar": 4,
         "endLine": 41,
         "endChar": 71
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1b766c6_a3d4d879",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "no need to make these configurable, same data is embedded in liquibase files and would be very hard to make configurable. Also simply no need this is data NCMP owns...",
+      "parentUuid": "697d6442_99eaab67",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 71
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51351208_e868d6a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "Handles (plural)",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06aba9ff_49882a09",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T08:25:10Z",
+      "side": 1,
+      "message": "don\u0027t use method names in descriptions, use PO (product Owner) speak / plain English instead\neg. (when) \u0027cm handles are registered\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 16,
+        "endLine": 112,
+        "endChar": 36
       },
       "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
