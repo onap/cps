@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6dc9fd37_02561eba",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-05T14:01:13Z",
+      "side": 1,
+      "message": "From reading the documentation I was under impression that access validation is a subset included in dependency validation.\n\nCan you please confirm and get rid of access validation if this is the case ? \n\n\n* https://javadoc.io/static/com.tngtech.archunit/archunit/0.20.0/com/tngtech/archunit/lang/syntax/elements/ClassesShould.html#onlyHaveDependentClassesThat()\n* https://javadoc.io/static/com.tngtech.archunit/archunit/0.20.0/com/tngtech/archunit/lang/syntax/elements/ClassesShould.html#onlyBeAccessed()",
+      "parentUuid": "b589cfc4_94247712",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8498f114_4700f139",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 8
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5bd405c9_927dffa4",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-05T14:01:13Z",
+      "side": 1,
+      "message": "Yes please.\n\nThis file is supposed to be updated when we are going to fix the technical dept.",
+      "parentUuid": "674ee431_b8d4f720",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1158ba8e_2ed0d48f",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 8
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "The reason I put these in here, is because they are part of the service layer which goes with the rule. I can remove both of these, and we can potentially refactor further by adding a separate service layer independent of the util and yang packages",
       "parentUuid": "1158ba8e_2ed0d48f",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52d4b24c_a7b3e8dc",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-05T14:01:13Z",
+      "side": 1,
+      "message": "Sounds good to me for Utility.\n\nI think that Yang is event not a dependency here for current code.",
+      "parentUuid": "ea99aec5_58e3d5fc",
       "range": {
         "startLine": 81,
         "startChar": 16,
