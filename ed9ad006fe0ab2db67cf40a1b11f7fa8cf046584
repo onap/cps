@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "4859d863_1b0e02c9",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-05T11:59:47Z",
+      "side": 1,
+      "message": "use open \u0027API deprecated: true\u0027",
+      "parentUuid": "02d4c8c6_4faa23b2",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a29caa66_7fe76a4c",
         "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
         "patchSetId": 1
