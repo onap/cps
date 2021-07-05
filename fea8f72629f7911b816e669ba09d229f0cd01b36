@@ -34,6 +34,24 @@
       "revId": "fea8f72629f7911b816e669ba09d229f0cd01b36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96b36abb_6d44bcdf",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-05T15:52:35Z",
+      "side": 1,
+      "message": "I did not have the chance to validate with GitHub, but for me, the rendering is broken in IntelliJ, Visual Studio Code, GitLab. (see attached screenshots in https://jira.onap.org/browse/CPS-467). This is the reason why I was suspecting a not standard Markdown comment.",
+      "parentUuid": "4a6937a6_b9b6eaae",
+      "revId": "fea8f72629f7911b816e669ba09d229f0cd01b36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
