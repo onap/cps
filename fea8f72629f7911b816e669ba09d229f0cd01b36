@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7178faf0_1ec64647",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-05T15:02:26Z",
+      "side": 1,
+      "message": "Did we validated the impact of this change on the Markdown rendering ? Is this considered as a markdown comment ?\n\nSee https://github.com/onap/cps/blob/master/README.md for the current rendering.",
+      "revId": "fea8f72629f7911b816e669ba09d229f0cd01b36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
