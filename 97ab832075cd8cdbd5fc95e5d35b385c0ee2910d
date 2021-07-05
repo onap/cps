@@ -543,6 +543,30 @@
     },
     {
       "key": {
+        "uuid": "97935e58_423f2a77",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-05T18:46:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7dcd1710_62dae3ef",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 106
+      },
+      "revId": "97ab832075cd8cdbd5fc95e5d35b385c0ee2910d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c55097b_22986539",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 13
