@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "342e041e_19836b9b",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-05T09:32:23Z",
+      "side": 1,
+      "message": "I know you didn\u0027t make this change but the \"Modification\" be \"Copyright\" in this case",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "164346f5_9f568a44",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-05T09:32:23Z",
+      "side": 1,
+      "message": "Same as my previous comment, should be \"Copyright\"",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "02d4c8c6_4faa23b2",
         "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
         "patchSetId": 1
@@ -207,6 +253,29 @@
         "startChar": 0,
         "endLine": 61,
         "endChar": 49
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e33a5e55_ca8bafba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-05T09:32:23Z",
+      "side": 1,
+      "message": "I know you didn\u0027t make this change but this should be \"Modifications Copyright (C)\"",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 13
       },
       "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
