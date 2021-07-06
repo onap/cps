@@ -23,6 +23,12 @@
           ]
         }
       }
+    ],
+    "fruit": [
+      {
+        "name": "Apple",
+        "color": "Green"
+      }
     ]
   }
 }

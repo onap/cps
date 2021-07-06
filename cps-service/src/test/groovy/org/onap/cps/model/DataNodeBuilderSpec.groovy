@@ -28,11 +28,12 @@ import spock.lang.Specification
 class DataNodeBuilderSpec extends Specification {
 
     Map<String, Map<String, Object>> expectedLeavesByXpathMap = [
-            '/test-tree'                             : [],
-            '/test-tree/branch[@name=\'Left\']'      : [name: 'Left'],
-            '/test-tree/branch[@name=\'Left\']/nest' : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
-            '/test-tree/branch[@name=\'Right\']'     : [name: 'Right'],
-            '/test-tree/branch[@name=\'Right\']/nest': [name: 'Big', birds: ['Owl', 'Raven', 'Crow']]
+            '/test-tree'                                            : [],
+            '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
+            '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
+            '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
+            '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
+            '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
     ]
 
     String[] networkTopologyModelRfc8345 = [
@@ -55,7 +56,7 @@ class DataNodeBuilderSpec extends Specification {
             def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: '5 DataNode objects with unique xpath were created in total'
-            mappedResult.size() == 5
+            mappedResult.size() == 6
         and: 'all expected xpaths were built'
             mappedResult.keySet().containsAll(expectedLeavesByXpathMap.keySet())
         and: 'each data node contains the expected attributes'
