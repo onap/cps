@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "893b1b9e_8b0b2bc5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Class property is now private",
+      "parentUuid": "db549de2_0b28e678",
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f371dc9_44bcbedf",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
         "patchSetId": 4
@@ -171,6 +189,30 @@
       "writtenOn": "2021-07-01T14:07:17Z",
       "side": 1,
       "message": "dnt think this is need following the naming convention (correctly) would make this clear it is a (groovy) Specification for the CpsModulePersistenceService  class",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 3
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0f2557_490ebe03",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f371dc9_44bcbedf",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -206,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "4bd4a0a6_15cc3f16",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "I don\u0027t see this specification test only dedicated to error handling. Additional other unit tests could be added later on depending on coming changes. \nI see this class as being the default specification unit test for `CpsModulePersistenceService` class. Then, simply naming this class `CpsModulePersistenceServiceSpec` would make sense to me.\nThe only reason why I did not give this name in this change is that this class was already existing and it would have been more difficult to follow the changes made here.\nIf we agree on this final name https://jira.onap.org/browse/CPS-493 is created for renaming after this change is reviewed and merged.\n\nPrevious `CpsModulePersistenceServiceSpec` is renamed `CpsModulePersistenceServiceIntegrationSpec` to reflect that this one is integration testing.",
+      "parentUuid": "bd2db7ba_9dac1c51",
+      "range": {
+        "startLine": 36,
+        "startChar": 33,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "263da5ee_1ae11b16",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
         "patchSetId": 4
@@ -217,6 +283,30 @@
       "writtenOn": "2021-07-01T14:07:17Z",
       "side": 1,
       "message": "wrong name",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 37
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36762f79_e8afb7e2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "263da5ee_1ae11b16",
       "range": {
         "startLine": 78,
         "startChar": 19,
@@ -252,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "a9ee155f_426755dd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ab8ab92_b920c20e",
+      "range": {
+        "startLine": 79,
+        "startChar": 19,
+        "endLine": 79,
+        "endChar": 42
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "024207b7_1de83e28",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
         "patchSetId": 4
@@ -263,6 +377,30 @@
       "writtenOn": "2021-07-01T13:36:15Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 81,
+        "startChar": 81,
+        "endLine": 81,
+        "endChar": 82
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc92b918_b3f84891",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024207b7_1de83e28",
       "range": {
         "startLine": 81,
         "startChar": 81,
@@ -310,6 +448,30 @@
       "side": 1,
       "message": "just check this exception is on the same level as DataValidationException not breaking teh level limit :-)",
       "parentUuid": "d9903afe_9d11a54e",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 100
+      },
+      "revId": "8838b12594b097fa4040b88ab0a053ad90460e92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddaa5fc8_1c100d84",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DuplicatedYangResourceException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb2799ad_d01ad78f",
       "range": {
         "startLine": 26,
         "startChar": 1,

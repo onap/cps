@@ -286,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "8f1c92b5_249a1fde",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "This is refactored with separated dedicated methods. Seems better now ...",
+      "parentUuid": "450ac010_d1709b6f",
+      "range": {
+        "startLine": 171,
+        "startChar": 20,
+        "endLine": 171,
+        "endChar": 106
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a00139c_709900cc",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -345,6 +369,30 @@
       "side": 1,
       "message": "Is it possible to use some other data-structure in the exception to store yang-resource name and checksum. Currently it uses two string, which is not intuitive as there can be multiple yang resources for which it can fail.",
       "parentUuid": "ba439a1e_26765939",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 173,
+        "endChar": 69
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be2f9b0f_3e665e33",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-06T10:38:07Z",
+      "side": 1,
+      "message": "Only one checksum (and its corresponding name) is expected in the exception. This is the unique checksum coming from the db exception.",
+      "parentUuid": "e42a8239_98867192",
       "range": {
         "startLine": 172,
         "startChar": 24,
