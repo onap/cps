@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1888fc43_3043c3fa",
+        "filename": "cps-application/archunit_store/749d11cd-18dd-47d0-b2d0-cd11b7e1a82f",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-06T09:41:54Z",
+      "side": 1,
+      "message": "Deleted generated files and directories",
+      "parentUuid": "7a37cb7e_c8fd6b64",
+      "revId": "4971aa11cbf4749609cbaa5d36cedd7f03919d80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "829b0358_452e88ea",
         "filename": "cps-application/archunit_store/stored.rules",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "4971aa11cbf4749609cbaa5d36cedd7f03919d80",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5212c960_67b5cc1e",
+        "filename": "cps-application/archunit_store/stored.rules",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-06T09:41:54Z",
+      "side": 1,
+      "message": "Deleted generated files and directories.",
+      "parentUuid": "829b0358_452e88ea",
+      "revId": "4971aa11cbf4749609cbaa5d36cedd7f03919d80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
