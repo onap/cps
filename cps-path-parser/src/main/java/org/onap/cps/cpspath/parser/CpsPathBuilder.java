@@ -31,6 +31,7 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleValueConditionsC
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PostfixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.SingleValueConditionContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.TextFunctionConditionContext;
 
 public class CpsPathBuilder extends CpsPathBaseListener {
 
@@ -101,6 +102,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitAncestorAxis(final AncestorAxisContext ctx) {
         cpsPathQuery.setAncestorSchemaNodeIdentifier(ctx.ancestorPath().getText());
+    }
+
+    @Override
+    public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
+        cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
+        cpsPathQuery.setTextFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
     }
 
     CpsPathQuery build() {

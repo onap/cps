@@ -186,11 +186,33 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } else if (CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES.equals(cpsPathQuery.getCpsPathQueryType())) {
             final String leafDataAsJson = GSON.toJson(cpsPathQuery.getLeavesData());
             fragmentEntities = fragmentRepository
-                .getByAnchorAndDescendentNameAndLeafValues(anchorEntity.getId(), cpsPathQuery.getDescendantName(),
+                .getByAnchorAndDescendantNameAndLeafValues(anchorEntity.getId(), cpsPathQuery.getDescendantName(),
                     leafDataAsJson);
         } else {
-            fragmentEntities = fragmentRepository
-                .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
+            if (cpsPathQuery.hasTextFunctionCondition()) {
+                try {
+                    final int textValueAsInt = Integer.parseInt(cpsPathQuery.getTextFunctionConditionValue());
+                    fragmentEntities = fragmentRepository
+                        .getByAnchorAndXpathEndsInDescendantNameWithTextConditionOnIntValue(
+                            anchorEntity.getId(),
+                            cpsPathQuery.getDescendantName(),
+                            cpsPathQuery.getTextFunctionConditionLeafName(),
+                            cpsPathQuery.getTextFunctionConditionValue(),
+                            textValueAsInt
+                        );
+                } catch (final NumberFormatException e) {
+                    fragmentEntities = fragmentRepository
+                        .getByAnchorAndXpathEndsInDescendantNameWithTextCondition(
+                            anchorEntity.getId(),
+                            cpsPathQuery.getDescendantName(),
+                            cpsPathQuery.getTextFunctionConditionLeafName(),
+                            cpsPathQuery.getTextFunctionConditionValue()
+                        );
+                }
+            } else {
+                fragmentEntities = fragmentRepository
+                    .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
+            }
         }
         if (cpsPathQuery.hasAncestorAxis()) {
             final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);

@@ -42,6 +42,8 @@ public class CpsPathQuery {
     private String descendantName;
     private Map<String, Object> leavesData;
     private String ancestorSchemaNodeIdentifier = "";
+    private String textFunctionConditionLeafName;
+    private String textFunctionConditionValue;
 
     /**
      * Returns a cps path query.
@@ -67,12 +69,21 @@ public class CpsPathQuery {
     }
 
     /**
-     * Has ancestor axis been populated.
+     * Has ancestor axis been included in cpsPath.
      *
      * @return boolean value.
      */
     public boolean hasAncestorAxis() {
         return !(ancestorSchemaNodeIdentifier.isEmpty());
+    }
+
+    /**
+     * Has text function condition been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasTextFunctionCondition() {
+        return !(textFunctionConditionLeafName == null);
     }
 
 }

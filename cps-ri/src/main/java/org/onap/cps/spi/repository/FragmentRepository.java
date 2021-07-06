@@ -40,10 +40,12 @@ import org.springframework.stereotype.Repository;
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> {
 
     Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-        @NonNull AnchorEntity anchorEntity, @NonNull String xpath);
+                                                              @NonNull AnchorEntity anchorEntity,
+                                                              @NonNull String xpath);
 
     default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-        @NonNull AnchorEntity anchorEntity, @NonNull String xpath) {
+                                                           @NonNull AnchorEntity anchorEntity,
+                                                           @NonNull String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }
@@ -61,32 +63,56 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long> 
     }
 
     List<FragmentEntity> findAllByAnchorAndXpathIn(@NonNull AnchorEntity anchorEntity,
-        @NonNull Collection<String> xpath);
+                                                   @NonNull Collection<String> xpath);
 
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
     void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
 
     @Query(value =
-        "SELECT * FROM FRAGMENT WHERE (anchor_id = :anchor) AND (xpath = (:xpath) OR xpath LIKE "
+        "SELECT * FROM FRAGMENT WHERE (anchor_id = :anchorId) AND (xpath = (:xpath) OR xpath LIKE "
             + "CONCAT(:xpath,'\\[@%]')) AND attributes @> jsonb_build_object(:leafName , :leafValue)",
         nativeQuery = true)
     // Above query will match an xpath with or without the index for a list [@key=value] and match anchor id,
     // leaf name and leaf value
-    List<FragmentEntity> getByAnchorAndXpathAndLeafAttributes(@Param("anchor") int anchorId, @Param("xpath")
+    List<FragmentEntity> getByAnchorAndXpathAndLeafAttributes(@Param("anchorId") int anchorId, @Param("xpath")
         String xpathPrefix, @Param("leafName") String leafName, @Param("leafValue") Object leafValue);
 
-    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND xpath LIKE CONCAT('%/',:descendantName)",
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId AND xpath LIKE CONCAT('%/',:descendantName)",
         nativeQuery = true)
     // Above query will match the anchor id and last descendant name
-    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchor") int anchorId,
+    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantName(@Param("anchorId") int anchorId,
                                                                  @Param("descendantName") String descendantName);
 
-    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND (xpath LIKE CONCAT('%/',:descendantName) OR "
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId AND xpath LIKE CONCAT('%/',:descendantName) AND "
+        + "(attributes @> jsonb_build_object(:textLeafName, :textValue) OR "
+        +  "attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValue)))", nativeQuery = true)
+    // Above query will match the anchor id and last descendant name and a text value condition
+    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantNameWithTextCondition(
+        @Param("anchorId") int anchorId,
+        @Param("descendantName") String descendantName,
+        @Param("textLeafName") String textLeafName,
+        @Param("textValue") String textValue);
+
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId AND xpath LIKE CONCAT('%/',:descendantName) AND "
+        + "(attributes @> jsonb_build_object(:textLeafName, :textValue) OR "
+        +  "attributes @> jsonb_build_object(:textLeafName, :textValueAsInt) OR "
+        +  "attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValue)) OR "
+        +  "attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValueAsInt)))", nativeQuery = true)
+    // Above query will match the anchor id and last descendant name and a text value condition
+    List<FragmentEntity> getByAnchorAndXpathEndsInDescendantNameWithTextConditionOnIntValue(
+        @Param("anchorId") int anchorId,
+        @Param("descendantName") String descendantName,
+        @Param("textLeafName") String textLeafName,
+        @Param("textValue") String textValue,
+        @Param("textValueAsInt") int textValueAsInt
+    );
+
+    @Query(value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId AND (xpath LIKE CONCAT('%/',:descendantName) OR "
         + "xpath LIKE CONCAT('%/', :descendantName,'\\[@%]')) AND attributes @> :leafDataAsJson\\:\\:jsonb",
         nativeQuery = true)
     // Above query will match the anchor id, last descendant name and all parameters passed into leafDataASJson with the
-    // attribute values of the requested data node eg: {"leaf_name":"value", "another_leaf_name":"another value"}​​​​​​
-    List<FragmentEntity> getByAnchorAndDescendentNameAndLeafValues(@Param("anchor") int anchorId,
+    // attribute values of the requested data node eg: {"leaf_name":"value", "another_leaf_name":"another value"}
+    List<FragmentEntity> getByAnchorAndDescendantNameAndLeafValues(@Param("anchorId") int anchorId,
         @Param("descendantName") String descendantName, @Param("leafDataAsJson") String leafDataAsJson);
 }
