@@ -91,6 +91,23 @@
     },
     {
       "key": {
+        "uuid": "76e2224f_855b0c26",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-06T09:54:32Z",
+      "side": 1,
+      "message": "Not a huge deal, but just whitespaces here and on line 25 that could be addressed as part of the commit changing the copyright owner from Nordix to Pantheon 😊",
+      "revId": "fea8f72629f7911b816e669ba09d229f0cd01b36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7eb397b_ff980e76",
         "filename": "csit/README.md",
         "patchSetId": 1
