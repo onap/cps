@@ -284,6 +284,30 @@
       "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02f16667_fba41c3b",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-06T08:14:25Z",
+      "side": 1,
+      "message": "not sure about teh above comments, did you agree to remove YANG_SCHEMA  or not I any case I see no updated patch...",
+      "parentUuid": "2de41aee_6d026416",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
