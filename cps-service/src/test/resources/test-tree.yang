@@ -20,5 +20,17 @@ module test-tree {
                 }
             }
         }
+        list fruit {
+            key "name color";
+
+            leaf name {
+                type string;
+            }
+
+            leaf color {
+                type string;
+            }
+
+        }
     }
 }
