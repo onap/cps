@@ -23,8 +23,10 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 /**
  * The Postgresql database test container wrapper.
- * Singleton implementation allows saving time on database initialization which
- * otherwise would occur on each test.
+ * Singleton implementation allows saving time on database initialization which otherwise would occur on each test.
+ * for debugging/developing purposes you can suspend any test and connect to this database:
+ *  docker exec -it {container-id} sh
+ *  psql -d test -U test
  */
 public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
     private static final String IMAGE_VERSION = "postgres:13.2";
