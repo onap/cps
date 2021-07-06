@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5298299e_20b9c1c1",
+        "filename": "csit/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-06T11:56:23Z",
+      "side": 1,
+      "message": "should be Pantheon.tech, applies to all files with the Pantheon copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 31
+      },
+      "revId": "30a5d0542004e343783cbc242df2d04537b3cae5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
