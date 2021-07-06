@@ -186,11 +186,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } else if (CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES.equals(cpsPathQuery.getCpsPathQueryType())) {
             final String leafDataAsJson = GSON.toJson(cpsPathQuery.getLeavesData());
             fragmentEntities = fragmentRepository
-                .getByAnchorAndDescendentNameAndLeafValues(anchorEntity.getId(), cpsPathQuery.getDescendantName(),
+                .getByAnchorAndDescendantNameAndLeafValues(anchorEntity.getId(), cpsPathQuery.getDescendantName(),
                     leafDataAsJson);
         } else {
-            fragmentEntities = fragmentRepository
-                .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
+            fragmentEntities = fragmentRepository.executeCpsPathQuery(anchorEntity.getId(), cpsPathQuery);
         }
         if (cpsPathQuery.hasAncestorAxis()) {
             final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
