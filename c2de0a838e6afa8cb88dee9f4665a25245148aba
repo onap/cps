@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffa600d7_f1fe2abc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-06T03:46:01Z",
+      "side": 1,
+      "message": "FragmentEntity class does not have any parent field. If the field is added, multiple changes are required to the existing save Fragment flow. \nAs we are interested only in null check, I believe the native query is a simpler and equally effective approach. \n\nThis query also returns all the roots and the first row is picked programmatically.\n \nReason: As we are using native query, we have to add limit in the query to restrict the number of results. I think limit is not supported by all the DBs and number of rows are less, so decided to do it programmatically.\n\nPlease let me know if you see any issues with it?",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 55,
+        "endChar": 76
+      },
+      "revId": "c2de0a838e6afa8cb88dee9f4665a25245148aba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
