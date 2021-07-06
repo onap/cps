@@ -309,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "61f30c3b_045c9090",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-06T13:21:26Z",
+      "side": 1,
+      "message": "what is the resource here? \u0027ch\u0027 doesnt clearly indicate anything",
+      "parentUuid": "fad86ec3_4575ae5b",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "ed9ad006fe0ab2db67cf40a1b11f7fa8cf046584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c725e5c_2c0b255c",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
