@@ -308,6 +308,30 @@
       "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "718a6e57_6f010859",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-06T08:22:22Z",
+      "side": 1,
+      "message": "Hey Toine, I removed Yang Schema because it there is no classes within the REPO package currently depend on packages that reside in YANG_SCHEMA. I feel like it makes more sense to remove it now, and refactor the service layer package later potentially adding an extra layer which contains all services, as opposed to checking for the YANG_SCHEMA package here in case there are potentially dependencies added to it at a later time for the REPO package.",
+      "parentUuid": "02f16667_fba41c3b",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "844a6b727e8a987b21d6f934ac07830fa71c4da6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
