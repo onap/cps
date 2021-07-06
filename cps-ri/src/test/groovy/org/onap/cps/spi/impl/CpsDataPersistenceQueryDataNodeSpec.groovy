@@ -41,19 +41,19 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, includeDescendantsOption)
         then: 'the correct data is returned'
-            def leaves = '[price:15.0, title:Dune]'
+            def leaves = '[price:5.0, title:Dune, labels:[special offer, classics, ]]'
             DataNode dataNode = result.stream().findFirst().get()
             dataNode.getLeaves().toString() == leaves
             dataNode.getChildDataNodes().size() == expectedNumberOfChidlNodes
         where: 'the following data is used'
             type                        | cpsPath                                                      | includeDescendantsOption || expectedNumberOfChidlNodes
             'String and no descendants' | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS         || 0
-            'Integer and descendants'   | '/shops/shop[@id=1]/categories[@code=1]/book[@price=15]'     | INCLUDE_ALL_DESCENDANTS  || 1
+            'Integer and descendants'   | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'     | INCLUDE_ALL_DESCENDANTS  || 1
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
-        when: 'a query is executed to get datanodes for the given cps path'
+        when: 'a query is executed to get data nodes for the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
         then: 'no data is returned'
             result.isEmpty()
@@ -89,9 +89,16 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                                  | cpsPath                 || expectedXPaths
-            'fully unique descendant name'            | '//categories[@code=2]' || ['/shops/shop[@id=1]/categories[@code=2]', '/shops/shop[@id=2]/categories[@code=1]', '/shops/shop[@id=2]/categories[@code=2]']
-            'descendant name match end of other node' | '//book'                || ['/shops/shop[@id=1]/categories[@code=1]/book', '/shops/shop[@id=1]/categories[@code=2]/book']
+            scenario                                                 | cpsPath                                 || expectedXPaths
+            'fully unique descendant name'                           | '//categories[@code=2]'                 || ['/shops/shop[@id=1]/categories[@code=2]', '/shops/shop[@id=2]/categories[@code=1]', '/shops/shop[@id=2]/categories[@code=2]']
+            'descendant name match end of other node'                | '//book'                                || ['/shops/shop[@id=1]/categories[@code=1]/book', '/shops/shop[@id=1]/categories[@code=2]/book']
+            'descendant with text condition on leaf'                 | '//book/title[text()="Chapters"]'       || ['/shops/shop[@id=1]/categories[@code=2]/book']
+            'descendant with text condition case mismatch'           | '//book/title[text()="chapters"]'       || []
+            'descendant with text condition on int leaf'             | '//book/price[text()="5"]'              || ['/shops/shop[@id=1]/categories[@code=1]/book']
+            'descendant with text condition on leaf-list'            | '//book/labels[text()="special offer"]' || ['/shops/shop[@id=1]/categories[@code=1]/book']
+            'descendant with text condition partial match'           | '//book/labels[text()="special"]'       || []
+            'descendant with text condition (existing) empty string' | '//book/labels[text()=""]'              || ['/shops/shop[@id=1]/categories[@code=1]/book']
+            'descendant with text condition on int leaf-list'        | '//book/editions[text()="2000"]'        || ['/shops/shop[@id=1]/categories[@code=2]/book']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -105,10 +112,11 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                   | cpsPath                                            || expectedXPaths
-            'one leaf'                 | '//author[@FirstName="Joe"]'                       || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]', '/shops/shop[@id=1]/categories[@code=2]/book/author[@FirstName="Joe" and @Surname="Smith"]']
-            'more than one leaf'       | '//author[@FirstName="Joe" and @Surname="Bloggs"]' || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
-            'leaves reversed in order' | '//author[@Surname="Bloggs" and @FirstName="Joe"]' || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
+            scenario                   | cpsPath                                               || expectedXPaths
+            'one leaf'                 | '//author[@FirstName="Joe"]'                          || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]', '/shops/shop[@id=1]/categories[@code=2]/book/author[@FirstName="Joe" and @Surname="Smith"]']
+            'more than one leaf'       | '//author[@FirstName="Joe" and @Surname="Bloggs"]'    || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
+            'leaves reversed in order' | '//author[@Surname="Bloggs" and @FirstName="Joe"]'    || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
+            'leaf and text condition'  | '//author[@FirstName="Joe"]/Surname[text()="Bloggs"]' || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -145,6 +153,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ['/shops/shop[@id=1]']
             'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ['/shops/shop[@id=1]/categories[@code=2]']
             'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ['/shops/shop[@id=3]/info/contact']
+            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ['/shops/shop[@id=1]']
             'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []
             'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []
     }

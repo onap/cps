@@ -37,7 +37,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
-import org.onap.cps.cpspath.parser.CpsPathQueryType;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -178,20 +177,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final IllegalStateException e) {
             throw new CpsPathException(e.getMessage());
         }
-        List<FragmentEntity> fragmentEntities;
-        if (CpsPathQueryType.XPATH_LEAF_VALUE.equals(cpsPathQuery.getCpsPathQueryType())) {
-            fragmentEntities = fragmentRepository
-                .getByAnchorAndXpathAndLeafAttributes(anchorEntity.getId(), cpsPathQuery.getXpathPrefix(),
-                    cpsPathQuery.getLeafName(), cpsPathQuery.getLeafValue());
-        } else if (CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES.equals(cpsPathQuery.getCpsPathQueryType())) {
-            final String leafDataAsJson = GSON.toJson(cpsPathQuery.getLeavesData());
-            fragmentEntities = fragmentRepository
-                .getByAnchorAndDescendentNameAndLeafValues(anchorEntity.getId(), cpsPathQuery.getDescendantName(),
-                    leafDataAsJson);
-        } else {
-            fragmentEntities = fragmentRepository
-                .getByAnchorAndXpathEndsInDescendantName(anchorEntity.getId(), cpsPathQuery.getDescendantName());
-        }
+        List<FragmentEntity> fragmentEntities =
+            fragmentRepository.executeCpsPathQuery(anchorEntity.getId(), cpsPathQuery);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
             fragmentEntities = ancestorXpaths.isEmpty()
