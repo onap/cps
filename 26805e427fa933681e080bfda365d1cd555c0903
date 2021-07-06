@@ -22,6 +22,30 @@
       "revId": "26805e427fa933681e080bfda365d1cd555c0903",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8354dc4a_5829bcb1",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-06T15:39:05Z",
+      "side": 1,
+      "message": "I have checked documentation which states it is a comment character as well as ran the framework\u0027s demo code with licenses included. See Slack for more info",
+      "parentUuid": "3642941c_35973db7",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "26805e427fa933681e080bfda365d1cd555c0903",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
