@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a37cb7e_c8fd6b64",
+        "filename": "cps-application/archunit_store/749d11cd-18dd-47d0-b2d0-cd11b7e1a82f",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-06T08:45:20Z",
+      "side": 1,
+      "message": "is this not a runtime generated file? should it be added to source control?!",
+      "revId": "4971aa11cbf4749609cbaa5d36cedd7f03919d80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "829b0358_452e88ea",
+        "filename": "cps-application/archunit_store/stored.rules",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-06T08:45:20Z",
+      "side": 1,
+      "message": "is this not a runtime generated file? should it be added to source control?!",
+      "revId": "4971aa11cbf4749609cbaa5d36cedd7f03919d80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
