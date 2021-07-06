@@ -19,6 +19,8 @@
 
 package org.onap.cps.cpspath.parser;
 
+import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
+
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,13 +37,13 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 @Setter(AccessLevel.PACKAGE)
 public class CpsPathQuery {
 
-    private CpsPathQueryType cpsPathQueryType;
     private String xpathPrefix;
-    private String leafName;
-    private Object leafValue;
+    private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
     private Map<String, Object> leavesData;
     private String ancestorSchemaNodeIdentifier = "";
+    private String textFunctionConditionLeafName;
+    private String textFunctionConditionValue;
 
     /**
      * Returns a cps path query.
@@ -67,12 +69,30 @@ public class CpsPathQuery {
     }
 
     /**
-     * Has ancestor axis been populated.
+     * Has ancestor axis been included in cpsPath.
      *
      * @return boolean value.
      */
     public boolean hasAncestorAxis() {
         return !(ancestorSchemaNodeIdentifier.isEmpty());
+    }
+
+    /**
+     * Have leaf value conditions been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasLeafConditions() {
+        return leavesData != null;
+    }
+
+    /**
+     * Has text function condition been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasTextFunctionCondition() {
+        return !(textFunctionConditionLeafName == null);
     }
 
 }

@@ -21,19 +21,16 @@
 package org.onap.cps.cpspath.parser;
 
 /**
- * The enum Cps path query type.
+ * The enum Cps path prefix type.
  */
-public enum CpsPathQueryType {
+public enum CpsPathPrefixType {
     /**
-     * Xpath descendant anywhere type e.g. //nodeName .
+     * Fully qualified Xpath starting from root with single slash e.g. /parent/child .
      */
-    XPATH_HAS_DESCENDANT_ANYWHERE,
+    ABSOLUTE,
+
     /**
-     * Xpath descendant anywhere type e.g. //nodeName[@leafName="value"] .
+     * Xpath descendant anywhere starting with double slash type e.g. //child/grandchild .
      */
-    XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES,
-    /**
-     * Xpath leaf value cps path query type e.g. /cps-path[@leaf1="leafValue" and @leaf2=123] .
-     */
-    XPATH_LEAF_VALUE
+    DESCENDANT
 }

@@ -21,17 +21,21 @@ package org.onap.cps.cpspath.parser
 
 import spock.lang.Specification
 
+import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE
+import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT
+
 class CpsPathQuerySpec extends Specification {
 
     def 'Parse cps path with valid cps path and a filter with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
-        then: 'the query has the right type'
-            result.cpsPathQueryType == CpsPathQueryType.XPATH_LEAF_VALUE
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == ABSOLUTE
         and: 'the right query parameters are set'
             result.xpathPrefix == expectedXpathPrefix
-            result.leafName == expectedLeafName
-            result.leafValue == expectedLeafValue
+            result.hasLeafConditions() == true
+            result.leavesData.containsKey(expectedLeafName) == true
+            result.leavesData.get(expectedLeafName) == expectedLeafValue
         where: 'the following data is used'
             scenario               | cpsPath                                                    || expectedXpathPrefix                         | expectedLeafName       | expectedLeafValue
             'leaf of type String'  | '/parent/child[@common-leaf-name="common-leaf-value"]'     || '/parent/child'                             | 'common-leaf-name'     | 'common-leaf-value'
@@ -45,8 +49,8 @@ class CpsPathQuerySpec extends Specification {
     def 'Parse cps path of type ends with a #scenario.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
-        then: 'the query has the right type'
-            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
         and: 'the right ends with parameters are set'
             result.descendantName == expectedDescendantName
         where: 'the following data is used'
@@ -58,15 +62,36 @@ class CpsPathQuerySpec extends Specification {
     def 'Parse cps path that ends with a yang list containing #scenario.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
-        then: 'the query has the right type'
-            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES
-        and: 'the right ends with parameters are set'
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'the right parameters are set'
             result.descendantName == "child"
             result.leavesData.size() == expectedNumberOfLeaves
         where: 'the following data is used'
             scenario                  | cpsPath                                            || expectedNumberOfLeaves
             'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
             'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+    }
+
+    def 'Parse #scenario cps path with text function condition'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'leaf conditions are only present when expected'
+            result.hasLeafConditions() == expectLeafConditions
+        and: 'the right text function condition is set'
+            result.hasTextFunctionCondition()
+            result.textFunctionConditionLeafName == 'leaf-name'
+            result.textFunctionConditionValue == 'search'
+        and: 'the ancestor is only present when expected'
+            assert result.hasAncestorAxis() == expectHasAncestorAxis
+        where: 'the following data is used'
+            scenario                                  | cpsPath                                                              || expectLeafConditions | expectHasAncestorAxis
+            'descendant anywhere'                     | '//someContainer/leaf-name[text()="search"]'                         || false                | false
+            'descendant with leaf value'              | '//child[@other-leaf=1]/leaf-name[text()="search"]'                  || true                 | false
+            'descendant anywhere and ancestor'        | '//someContainer/leaf-name[text()="search"]/ancestor::parent'        || false                | true
+            'descendant with leaf value and ancestor' | '//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent' || true                 | true
     }
 
     def 'Parse cps path with error: #scenario.'() {
@@ -84,18 +109,20 @@ class CpsPathQuerySpec extends Specification {
             'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
             'incomplete ancestor value'                                         | '//books/ancestor::'
-            'unsupported postfix after single value condition (JIRA CPS-450)'   | '/parent/child[@id=1]/somePostFix'
+//  DISCUSS WITH TEAM :           'unsupported postfix after value condition (JIRA CPS-450)'          | '/parent/child[@id=1]/somePostFix'
     }
 
     def 'Parse cps path using ancestor by schema node identifier with a #scenario.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom('//descendant/ancestor::' + ancestorPath)
         then: 'the query has the right type'
-            result.cpsPathQueryType == CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
+            result.cpsPathPrefixType == DESCENDANT
         and: 'the result has ancestor axis'
             result.hasAncestorAxis()
         and: 'the correct ancestor schema node identifier is set'
             result.ancestorSchemaNodeIdentifier == ancestorPath
+        and: 'there are no leaves conditions'
+            result.hasLeafConditions() == false
         where:
             scenario                  | ancestorPath
             'basic container'         | 'someContainer'
@@ -108,18 +135,20 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath + '/ancestor::someAncestor')
         then: 'the query has the right type'
-            result.cpsPathQueryType == expectedCpsPathQueryType
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'leaf conditions are only present when expected'
+            result.hasLeafConditions() == expectLeafConditions
         and: 'the result has ancestor axis'
             result.hasAncestorAxis()
         and: 'the correct ancestor schema node identifier is set'
             result.ancestorSchemaNodeIdentifier == 'someAncestor'
             result.descendantName == expectedDescendantName
         where:
-            scenario                     | cpsPath                               || expectedDescendantName | expectedCpsPathQueryType
-            'basic container'            | '//someContainer'                     || 'someContainer'        | CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
-            'container with parent'      | '//parent/child'                      || 'parent/child'         | CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
-            'container with list-parent' | '//parent[@id=1]/child'               || 'parent[@id=1]/child'  | CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE
-            'container with list-parent' | '//parent[@id=1]/child[@name="test"]' || 'parent[@id=1]/child'  | CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES
+            scenario                     | cpsPath                               || expectedDescendantName | expectLeafConditions
+            'basic container'            | '//someContainer'                     || 'someContainer'        | false
+            'container with parent'      | '//parent/child'                      || 'parent/child'         | false
+            'container with list-parent' | '//parent[@id=1]/child'               || 'parent[@id=1]/child'  | false
+            'container with list-parent' | '//parent[@id=1]/child[@name="test"]' || 'parent[@id=1]/child'  | true
     }
 
 }

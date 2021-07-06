@@ -34,16 +34,16 @@ class CpsAdminServiceImplSpec extends Specification {
     }
 
     def 'Create dataspace method invokes persistence service.'() {
-        when: 'Create dataspace method is invoked'
+        when: 'create dataspace method is invoked'
             objectUnderTest.createDataspace('someDataspace')
-        then: 'The persistence service method is invoked with same parameters'
+        then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
     }
 
     def 'Create anchor method invokes persistence service.'() {
-        when: 'Create anchor method is invoked'
+        when: 'create anchor method is invoked'
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
-        then: 'The persistence service method is invoked with same parameters'
+        then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
     }
 
@@ -60,7 +60,7 @@ class CpsAdminServiceImplSpec extends Specification {
             Anchor anchor = new Anchor()
             mockCpsAdminPersistenceService.getAnchor('someDataspace','someAnchor') >>  anchor
         expect: 'the anchor provided by persistence service is returned as result'
-            objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
+            assert objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
     }
 
     def 'Delete anchor.'() {

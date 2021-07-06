@@ -19,18 +19,18 @@
 
 package org.onap.cps.cpspath.parser;
 
+import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.CpsPathWithDescendantAndLeafConditionsContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.CpsPathWithDescendantContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.CpsPathWithSingleLeafConditionContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.DescendantContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.IncorrectPrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.LeafConditionContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleValueConditionsContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PostfixContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleLeafConditionsContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.SingleValueConditionContext;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.TextFunctionConditionContext;
 
 public class CpsPathBuilder extends CpsPathBaseListener {
 
@@ -44,8 +44,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
-    public void exitPostfix(final PostfixContext ctx) {
-        throw new IllegalStateException(String.format("Unsupported postfix %s encountered in CpsPath.", ctx.getText()));
+    public void exitIncorrectPrefix(final IncorrectPrefixContext ctx) {
+        throw new IllegalStateException("CPS Path can only start with oen ot two slashes (/)");
     }
 
     @Override
@@ -63,44 +63,30 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
-    public void enterSingleValueCondition(final SingleValueConditionContext ctx) {
+    public void exitDescendant(final DescendantContext ctx) {
+        cpsPathQuery.setCpsPathPrefixType(DESCENDANT);
+        cpsPathQuery.setDescendantName(ctx.getText().substring(2));
+    }
+
+    @Override
+    public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
         leavesData.clear();
     }
 
     @Override
-    public void enterMultipleValueConditions(final MultipleValueConditionsContext ctx) {
-        leavesData.clear();
-    }
-
-    @Override
-    public void exitSingleValueCondition(final SingleValueConditionContext ctx) {
-        final String leafName = ctx.leafCondition().leafName().getText();
-        cpsPathQuery.setLeafName(leafName);
-        cpsPathQuery.setLeafValue(leavesData.get(leafName));
-    }
-
-    @Override
-    public void exitCpsPathWithSingleLeafCondition(final CpsPathWithSingleLeafConditionContext ctx) {
-        cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_LEAF_VALUE);
-    }
-
-    @Override
-    public void exitCpsPathWithDescendant(final CpsPathWithDescendantContext ctx) {
-        cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_ANYWHERE);
-        cpsPathQuery.setDescendantName(cpsPathQuery.getXpathPrefix().substring(1));
-    }
-
-    @Override
-    public void exitCpsPathWithDescendantAndLeafConditions(
-        final CpsPathWithDescendantAndLeafConditionsContext ctx) {
-        cpsPathQuery.setCpsPathQueryType(CpsPathQueryType.XPATH_HAS_DESCENDANT_WITH_LEAF_VALUES);
-        cpsPathQuery.setDescendantName(cpsPathQuery.getXpathPrefix().substring(1));
+    public void exitMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
         cpsPathQuery.setLeavesData(leavesData);
     }
 
     @Override
     public void exitAncestorAxis(final AncestorAxisContext ctx) {
         cpsPathQuery.setAncestorSchemaNodeIdentifier(ctx.ancestorPath().getText());
+    }
+
+    @Override
+    public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
+        cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
+        cpsPathQuery.setTextFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
     }
 
     CpsPathQuery build() {

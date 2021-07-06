@@ -19,56 +19,50 @@
 
 grammar CpsPath ;
 
-cpsPath: (cpsPathWithSingleLeafCondition | cpsPathWithDescendant | cpsPathWithDescendantAndLeafConditions) ancestorAxis? ;
+cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? ancestorAxis? ;
 
-ancestorAxis: SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
+ancestorAxis : SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
-ancestorPath: yangElement (SLASH yangElement)* ;
+ancestorPath : yangElement ( SLASH yangElement)* ;
 
-cpsPathWithSingleLeafCondition: prefix singleValueCondition postfix? ;
+textFunctionCondition : SLASH leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB;
 
-/*
-No need to ditinguish between cpsPathWithDescendant | cpsPathWithDescendantAndLeafConditions really!
-See https://jira.onap.org/browse/CPS-436
-*/
+prefix : ( SLASH yangElement)* SLASH containerName ;
 
-cpsPathWithDescendant: descendant ;
+descendant : SLASH prefix ;
 
-cpsPathWithDescendantAndLeafConditions: descendant multipleValueConditions ;
+incorrectPrefix : SLASH SLASH SLASH+ ;
 
-descendant: SLASH prefix ;
+yangElement : containerName listElementRef? ;
 
-prefix: (SLASH yangElement)* SLASH containerName ;
+containerName : QName ;
 
-postfix: (SLASH yangElement)+ ;
+listElementRef :  OB leafCondition ( KW_AND leafCondition)* CB ;
 
-yangElement: containerName listElementRef? ;
+multipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;
 
-containerName: QName ;
+leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
 
-listElementRef: multipleValueConditions ;
-
-singleValueCondition: '[' leafCondition ']' ;
-
-multipleValueConditions: '[' leafCondition (' and ' leafCondition)* ']' ;
-
-leafCondition: '@' leafName '=' (IntegerLiteral | StringLiteral ) ;
-
-//To Confirm: defintion of Lefname with external xPath grammar
-leafName: QName ;
+leafName : QName ;
 
 /*
  * Lexer Rules
- * Most of the lexer rules below are 'imporetd' from
+ * Most of the lexer rules below are inspired by
  * https://raw.githubusercontent.com/antlr/grammars-v4/master/xpath/xpath31/XPath31.g4
  */
 
-SLASH : '/';
+AT : '@' ;
+CB : ']' ;
 COLONCOLON : '::' ;
+EQ : '=' ;
+OB : '[' ;
+SLASH : '/' ;
 
 // KEYWORDS
 
 KW_ANCESTOR : 'ancestor' ;
+KW_AND : 'and' ;
+KW_TEXT_FUNCTION: 'text()' ;
 
 IntegerLiteral : FragDigits ;
 // Add below type definitions for leafvalue comparision in https://jira.onap.org/browse/CPS-440
