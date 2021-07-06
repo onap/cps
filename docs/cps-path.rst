@@ -14,8 +14,8 @@ CPS Path
 Introduction
 ============
 
-Several CPS APIs use the cps-path (or cpsPath in Java API) parameter.
-The CPS Path parameter is used for querying xpaths. CPS Path is insprired by the `XML Path Language (XPath) 3.1. <https://www.w3.org/TR/2017/REC-xpath-31-20170321/>`_
+Several CPS APIs use the CPS path (or cpsPath in Java API) parameter.
+The CPS path parameter is used for querying xpaths. CPS path is inspired by the `XML Path Language (XPath) 3.1. <https://www.w3.org/TR/2017/REC-xpath-31-20170321/>`_
 
 This section describes the functionality currently supported by CPS Path.
 
@@ -28,103 +28,136 @@ The xml below describes some basic data to be used to illustrate the CPS Path fu
 
     <shops>
        <bookstore name="Chapters">
-         <bookstore-name>Chapters</bookstore-name>
-         <categories code="1" name="SciFi" numberOfBooks="2">
-           <books>
-             <book name="Space Odyssee"/>
-             <book name="Dune"/>
-           </books>
-        </categories>
-        <categories code="2" name="Kids" numberOfBooks="1">
-           <books>
-             <book name="Matilda"/>
-           </books>
-        </categories>
+          <bookstore-name>Chapters</bookstore-name>
+          <categories code="1" name="SciFi" numberOfBooks="2">
+             <books>
+                <book title="2001: A Space Odyssey" price="5">
+                   <label>sale</label>
+                   <label>classic</label>
+                   <edition>1968</edition>
+                   <edition>2018</edition>
+              </book>
+                <book title="Dune" price="5">
+                   <label>classic</label>
+                   <edition>1965</edition>
+                </book>
+             </books>
+          </categories>
+          <categories code="2" name="Kids" numberOfBooks="1">
+             <books>
+                <book title="Matilda" />
+             </books>
+          </categories>
        </bookstore>
     </shops>
 
-**Note.** 'categories' is a Yang List and 'code' is its key leaf. All other data nodes are Yang Containers
+**Note.** 'categories' is a Yang List and 'code' is its key leaf. All other data nodes are Yang Containers. 'label' and 'edition' are both leaf-lists.
 
 General Notes
 =============
 
-- String values must be wrapped in quotation marks (U+0022) or apostrophes (U+0027).
+- String values must be wrapped in quotation marks ``"`` (U+0022) or apostrophes ``'`` (U+0027).
 - String comparisons are case sensitive.
+- List key-fields containing ``\`` or ``@[`` will not be processed correctly when being referenced with such key values in absolute or descendant paths. This means such entries will be omitted from any query result. See `CPS-500 <https://jira.onap.org/browse/CPS-500>`_ Special Character Limitations of cpsPath Queries
 
-Supported Queries
-=================
+Query Syntax
+============
 
-Get List Elements by Any Attribute Value
-----------------------------------------
+``( <absolute-path> | <descendant-path> ) [ <leaf-conditions> ] [ <text()-condition> ] [ <ancestor-axis> ]``
 
-**Syntax**: ``<xpath>/<target-node>[@<leaf-name>=<leaf-value>]``
-  - ``xpath``: The xpath to the parent of the target node including all ancestors.
-  - ``target-node``: The name of the (list) node which elements will queried.
+Each CPS path expression need to start with an 'absolute' or 'descendant' xpath.
+
+absolute-path
+-------------
+
+**Syntax**: ``'/' <container-name> ( '[' <list-key> ']' )? ( '/' <containerName> ( '[' <list-key> ']' )? )*``
+
+  - ``container name``: Any yang container or list.
+  - ``list-key``:  One or more key-value pairs, each preceded by the ``@`` symbol, combined using the ``and`` keyword.
+  - The above van repeated any number of times.
+
+**Examples**
+  - ``/shops/bookstore``
+  - ``/shops/bookstore/categories[@code=1]``
+  - ``/shops/bookstore/categories[@code=1]/book``
+
+**Limitations**
+  - Absolute paths must start with the top element (data node) as per the model tree.
+  - Each list reference must include a valid instance reference to the key for that list. Except when it is the last element.
+
+descendant-path
+---------------
+
+**Syntax**: ``'//' <container-name> ( '[' <list-key> ']' )? ( '/' <containerName> ( '[' <list-key> ']' )? )*``
+
+  - The syntax of a descendant path is identical to a absolute path except that it is preceded by a double slash ``//``.
+
+**Examples**
+  - ``//bookstore``
+  - ``//categories[@code=1]/book``
+  - ``//bookstore/categories``
+
+**Limitations**
+  - Each list reference must include a valid instance reference to the key for that list.  Except when it is the last element.
+
+leaf-conditions
+---------------
+
+**Syntax**: ``<xpath> '[' @<leaf-name1> '=' <leaf-value1> ( ' and ' @<leaf-name> '=' <leaf-value> )* ']'``
+  - ``xpath``: Absolute or descendant or xpath to the (list) node which elements will be queried.
   - ``leaf-name``: The name of the leaf which value needs to be compared.
   - ``leaf-value``: The required value of the leaf.
 
 **Examples**
   - ``/shops/bookstore/categories[@numberOfBooks=1]``
-  - ``/shops/bookstore/categories[@name="Kids"]``
-  - ``/shops/bookstore/categories[@name='Kids']``
+  - ``//categories[@name="Kids"]``
+  - ``//categories[@name='Kids']``
+  - ``//categories[@code=1]/book[@title='Dune' and price=5]``
 
 **Limitations**
-  - Only one list (last descendant) can be queried for a non-key value. Any ancestor list will have to be referenced by its key name-value pair(s).
-  - Only one attribute can be queried.
-  - Only string and integer values are supported (boolean and float values are not supported).
+  - Only the last list or container can be queried leaf values. Any ancestor list will have to be referenced by its key name-value pair(s).
+  - Multiple attributes can only be combined using ``and``. ``or`` and bracketing is not supported.
+  - Only leaves can be used, leaf-list are not supported.
+  - Only string and integer values are supported, boolean and float values are not supported.
 
 **Notes**
   - For performance reasons it does not make sense to query using key leaf as attribute. If the key value is known it is better to execute a get request with the complete xpath.
 
-Get Any Descendant
-------------------
+text()-condition
+----------------
 
-**Syntax**: ``//<direct-ancestors><target-node>``
-  - ``direct-ancestors``: Optional path to direct ancestors of the target node. This can contain zero to many ancestor nodes separated by a /.
-  - ``target-node``: The name of the (list) node from which element will be selected. If the target node is a Yang List he element needs to be specified using the key as normal e.g. ``categories[@code=1]``.
+The text()-condition  can be added to any CPS path query.
 
-**Examples**
-  - ``//book``
-  - ``//books/book``
-  - ``//categories[@code=1]``
-  - ``//categories[@code=1]/books``
-
-**Limitations**
-  - List elements can only be addressed using the list key leaf.
-
-Get Any Descendant by Any Attribute Value
------------------------------------------
-
-**Syntax**: ``//<direct-ancestors><target-node>[@<leaf-name>=<leaf-value>]``
-  - ``direct-ancestors``: Optional path to direct ancestors of the target node. This can contain zero to many ancestor nodes separated by a /.
-  - ``target-node``: The name of the (list) node which elements will queried.
-  - ``leaf1-name .. leafN-name:``: One or more leaves whose value needs to be compared.
-  - ``leaf1-value .. leafN-value:``: One or more required leaf values (multiple condition can be combined using the 'and' keyword).
+**Syntax**: ``<cps-path> ( '/' <leaf-name> '[text()=' <string-value> ']' )?``
+  - ``cps-path``: Any CPS path query.
+  - ``leaf-name``: The name of the leaf or leaf-list which value needs to be compared.
+  - ``string-value``: The required value of the leaf or leaf-list element as a string wrapped in quotation marks (U+0022) or apostrophes (U+0027). This wil still match integer values.
 
 **Examples**
-  - ``//categories[@name='Kids']``
-  - ``//categories[@name='Kids' and @numberOfBooks=1]``
+  - ``//book/label[text()="classic"]``
+  - ``//book/edition[text()="1965"]``
 
 **Limitations**
-  - Only string and integer values are supported (boolean and float values are not supported).
-  - Multiple attributes can only be combined using 'and'. 'or' and bracketing is not supported.
+  - Only the last list or container can be queried for leaf values with a text() condition. Any ancestor list will have to be referenced by its key name-value pair(s).
+  - Only one leaf or leaf-list can be tested.
+  - Only string and integer values are supported, boolean and float values are not supported.
+  - Since CPS cannot return individual leaves it will always return the container with all its leaves. Ancestor-axis can be used to specify a parent higher up the tree.
+  - When querying a leaf value (instead of leaf-list) it is better, more performant to use a text value condition use @<leaf-name> as described above.
 
-Query Extensions
-================
-
-Ancestor Axis
+ancestor-axis
 -------------
 
-The ancestor axis can be added to any CPS path query.
+The ancestor axis can be added to any CPS path query but has to be the last part.
 
-**Syntax**: ``//<cps-path>/ancestor::<ancestor-path>``
+**Syntax**: ``<cps-path> ( '/ancestor::' <ancestor-path> )?``
   - ``cps-path``: Any CPS path query.
-  - ``ancestor-path``:  Partial path to ancestors of the target node. This can contain one or more ancestor nodes separated by a /.
+  - ``ancestor-path``: Partial path to ancestors of the target node. This can contain one or more ancestor nodes separated by a ``/``.
 
 **Examples**
   - ``//book/ancestor::categories``
   - ``//categories[@genre="SciFi"]/book/ancestor::bookstore``
   - ``book/ancestor::categories[@code=1]/books``
+  - ``//book/label[text()="classic"]/ancestor::shop``
 
 **Limitations**
   - Ancestor list elements can only be addressed using the list key leaf.
