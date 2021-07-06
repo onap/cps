@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3642941c_35973db7",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-06T13:56:28Z",
+      "side": 1,
+      "message": "are you sure about the #-comment in the .robot files, were you able to run them?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "26805e427fa933681e080bfda365d1cd555c0903",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
