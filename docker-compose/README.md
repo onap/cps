@@ -50,8 +50,13 @@ mvn clean install -P<docker-profile>
 `docker-compose/docker-compose.yml` file is provided to be run with `docker-compose` tool and images previously built.
 It starts both Postgres database and CPS services.
 
-1. Edit `docker-compose.yml` and uncomment desired service to be deployed, by default `cps-and-ncmp`
-   is enabled. You can comment it and uncomment `cps-standalone` or `ncmp-standalone`.
+1. Edit `docker-compose.yml`
+   1. uncomment desired service to be deployed, by default `cps-and-ncmp` is enabled. You can comment it and uncomment `cps-standalone` or `ncmp-standalone`.
+   2. To send data-updated events to kafka, 
+      * uncomment the `zookeeper` and `kafka` services. 
+      * uncomment environment variables 
+        * `notification.data-updated.enabled: 'true'`
+        * `KAFKA_BOOTSTRAP_SERVER: kafka:9092`
 2. Execute following command from `docker-compose` folder:
 
 Use one of the below version type that has been generated in the local system's docker image list after the build.
@@ -59,7 +64,7 @@ Use one of the below version type that has been generated in the local system's 
 VERSION=latest DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
 or
 VERSION=<version> DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
-``` 
+```
 
 ## Running or debugging Java built code
 
