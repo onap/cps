@@ -22,6 +22,30 @@
       "revId": "7f399b36ee440f482b293d34b7951499e1133205",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b006c747_3c276a2f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-07T11:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcac65aa_6cc86b38",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "7f399b36ee440f482b293d34b7951499e1133205",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
