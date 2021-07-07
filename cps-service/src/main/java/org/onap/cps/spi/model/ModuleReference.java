@@ -1,6 +1,7 @@
-/*-
+/*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation. All rights reserved.
+ * Copyright (C) 2020 Nordix Foundation.
+ * Modifications Copyright 2020-2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
