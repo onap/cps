@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "240436b5_3abf7613",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Me, Toine and Niamh had an internal discussion to deprecate these api\u0027s instead of removing them completely as they may be refactored in the future, so there is no point in completely removing them. I can add this to the current tasks Jira though?",
+      "parentUuid": "fd16dd6b_11201cdb",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5089a824_8e5da287",
         "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
         "patchSetId": 4
@@ -68,6 +92,30 @@
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54aa90cc_2b53cf70",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9d51bea_5a950bd6",
+      "range": {
+        "startLine": 183,
+        "startChar": 17,
+        "endLine": 183,
+        "endChar": 100
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "d7f3c5b5_3e7fd406",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "For the moment, this is just a post request to for the new cm handle registration and to post to the fragment table. We will be working on update/delete as part of a separate task!",
+      "parentUuid": "88959a0a_17707146",
+      "range": {
+        "startLine": 194,
+        "startChar": 10,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a288d8dd_787225a7",
         "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
         "patchSetId": 4
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "d6d47898_7cca93ea",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "a288d8dd_787225a7",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 10
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4aac84c6_75c2d3d3",
         "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
         "patchSetId": 4
@@ -151,6 +247,30 @@
       "writtenOn": "2021-07-07T10:17:48Z",
       "side": 1,
       "message": "different file should be used for all the api pointing to dmi",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b7e306b_41997a00",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Because we will be refactoring all api\u0027s with the new endpoint in this module, it makes sense to keep these API endpoints in the same file currently.\n\nJira story had been created for this but needs to be groomed furter.\n\nCPS-496",
+      "parentUuid": "4aac84c6_75c2d3d3",
       "range": {
         "startLine": 40,
         "startChar": 11,
@@ -183,6 +303,30 @@
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7800c7b_f24028e1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b366d4f_b71c350b",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +376,30 @@
     },
     {
       "key": {
+        "uuid": "29b35494_ba25170b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Updating cm handles will be part of a different task",
+      "parentUuid": "5ff666bc_b864858f",
+      "range": {
+        "startLine": 90,
+        "startChar": 55,
+        "endLine": 90,
+        "endChar": 56
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c64276f5_f47e22da",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 4
@@ -252,6 +420,30 @@
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eeab5fb_6f9cea63",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c64276f5_f47e22da",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 29
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -278,6 +470,30 @@
     },
     {
       "key": {
+        "uuid": "15cd90b0_3b422057",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c90c6f92_10970332",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 43
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "809282ab_7b266d1b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 4
@@ -301,6 +517,30 @@
     },
     {
       "key": {
+        "uuid": "87a189b9_76bedc41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "809282ab_7b266d1b",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 101,
+        "endChar": 13
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdaa050c_03f67807",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
@@ -312,6 +552,30 @@
       "writtenOn": "2021-07-07T08:22:09Z",
       "side": 1,
       "message": "not sure why you need getters for private constants?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8798005f_9db528df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "I was following the same format as done for the previous dataspace name. But you\u0027re right, seeing as these are constants, it is uneseccary to have a separate method dedicated to just getting the String.",
+      "parentUuid": "bdaa050c_03f67807",
       "range": {
         "startLine": 53,
         "startChar": 1,
@@ -344,6 +608,30 @@
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07884d88_9a02c740",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-07T17:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7493483_a3193641",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
