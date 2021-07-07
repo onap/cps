@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "fd16dd6b_11201cdb",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "i think these all deprecations do not relate to this task, they should come from some spike or other task so that its easy to find this change in future.\nalso deprecated date should be here for best practise.",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5089a824_8e5da287",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "this api is specifically for component-internal audience. for best practise we should not mix api with differenct audience. this is good in terms of publishing apis to target audience.",
+      "range": {
+        "startLine": 182,
+        "startChar": 1,
+        "endLine": 182,
+        "endChar": 7
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9d51bea_5a950bd6",
         "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
         "patchSetId": 4
@@ -18,6 +64,167 @@
         "startChar": 17,
         "endLine": 183,
         "endChar": 100
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbfc3316_1edba0f0",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "any kind of string will pass this schema validation",
+      "range": {
+        "startLine": 193,
+        "startChar": 12,
+        "endLine": 193,
+        "endChar": 24
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88959a0a_17707146",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "will this post not support update, only create?",
+      "range": {
+        "startLine": 194,
+        "startChar": 10,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a288d8dd_787225a7",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "is 404 possible in case of post",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 10
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aac84c6_75c2d3d3",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "different file should be used for all the api pointing to dmi",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b366d4f_b71c350b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "description of this controller method missing",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d185af2e_f7d2e6f4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "looks like any kind of string can reach service impl, without any validation",
+      "range": {
+        "startLine": 89,
+        "startChar": 52,
+        "endLine": 89,
+        "endChar": 60
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff666bc_b864858f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "i think it should support updation too, are you planning to write put method too. is that a possiblity that dmi can send same same cmhandle multiple times with different data , like additional params.\n\nAs i see control of id of resouce is given to client for this post request. So imo post and put in this case are equivalent.",
+      "range": {
+        "startLine": 90,
+        "startChar": 55,
+        "endLine": 90,
+        "endChar": 56
       },
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -64,6 +271,29 @@
         "startChar": 14,
         "endLine": 190,
         "endChar": 43
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "809282ab_7b266d1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-07T10:17:48Z",
+      "side": 1,
+      "message": "as this service reside in ncmp , this desc looks inappropriate.\n\nRegistration of new cmhandles",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 101,
+        "endChar": 13
       },
       "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
