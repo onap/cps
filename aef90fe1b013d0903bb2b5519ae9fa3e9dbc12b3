@@ -22,6 +22,30 @@
       "revId": "aef90fe1b013d0903bb2b5519ae9fa3e9dbc12b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a88ccd56_24a35275",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-07T16:21:14Z",
+      "side": 1,
+      "message": "When not forced by Sonar, I prefer to use explicit types for better clarity and to know what we are manipulating.",
+      "parentUuid": "22f58845_f8cc5ccb",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 15
+      },
+      "revId": "aef90fe1b013d0903bb2b5519ae9fa3e9dbc12b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
