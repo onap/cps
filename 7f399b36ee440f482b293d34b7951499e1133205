@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcac65aa_6cc86b38",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-07T10:45:26Z",
+      "side": 1,
+      "message": "The title/slogan (def label) of tests should start with upper case (because thy are not preceded by a word like given,then etc.)\nnot a blocking comment",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "7f399b36ee440f482b293d34b7951499e1133205",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
