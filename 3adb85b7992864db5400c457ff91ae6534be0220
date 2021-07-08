@@ -82,6 +82,53 @@
     },
     {
       "key": {
+        "uuid": "aee18540_1cf8849e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-08T23:06:55Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "8f922067_8bc84f41",
+      "range": {
+        "startLine": 3,
+        "startChar": 36,
+        "endLine": 3,
+        "endChar": 56
+      },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5605ad22_e4658dc5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-08T23:06:55Z",
+      "side": 1,
+      "message": "The creation should be 2020 only.\n2021 should be a modification.",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "898112f7_9a20733d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 1
