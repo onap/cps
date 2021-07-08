@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "06805ba8_e3dd545f",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "\u0027SPDX-License-Identifier: Apache-2.0\u0027 missing",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "775b37bb_6481f56b",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "\u0027SPDX-License-Identifier: Apache-2.0\u0027 missing",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5220d6f9_333dacaa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 1
@@ -88,6 +122,80 @@
         "endLine": 11,
         "endChar": 3
       },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a457661b_48f18ec4",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "SPDX-License-Identifier: Apache-2.0 missing",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fababbc7_9ad6c18e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "remove this and add 2021 to line # 4",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 49
+      },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52d72fc6_4285e30f",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "SPDX-License-Identifier: Apache-2.0 missing",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958d2dde_039ed716",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-08T14:31:37Z",
+      "side": 1,
+      "message": "SPDX-License-Identifier: Apache-2.0 missing",
       "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
