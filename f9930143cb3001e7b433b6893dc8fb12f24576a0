@@ -93,6 +93,30 @@
       "revId": "f9930143cb3001e7b433b6893dc8fb12f24576a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bd87365_b0ddd64e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-08T23:44:54Z",
+      "side": 1,
+      "message": "Does not seem to be done yet. The change does not appear in patch 5.",
+      "parentUuid": "5c270053_d9610829",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 49
+      },
+      "revId": "f9930143cb3001e7b433b6893dc8fb12f24576a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
