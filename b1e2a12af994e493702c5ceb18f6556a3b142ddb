@@ -402,6 +402,30 @@
       "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "378f338f_e18698e4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-08T16:38:38Z",
+      "side": 1,
+      "message": "If multiple yang resources have checksum issues, does it report only one or all? If it reports more than one, then the existing code will return \u0027checksumInerror\u0027 as null",
+      "parentUuid": "be2f9b0f_3e665e33",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 173,
+        "endChar": 69
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
