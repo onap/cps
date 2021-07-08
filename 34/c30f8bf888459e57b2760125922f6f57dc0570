@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Luke Gleeson <luke.gleeson@est.tech>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Dylan Byrne <dylan.byrne@est.tech>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Thu, 08 Jul 2021 12:25:59 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/122501
+Project: cps
+Branch: refs/heads/master
