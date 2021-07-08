@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "edeff026_5529751f",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-08T11:25:55Z",
+      "side": 1,
+      "message": "I think it is OK to do it in this task, no need for the overhead of a separate task.\nWe have created a new task to cleanup the deprecated methods during Istanbul timeframe: https://jira.onap.org/browse/CPS-496",
+      "parentUuid": "240436b5_3abf7613",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5089a824_8e5da287",
         "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
         "patchSetId": 4
@@ -177,6 +201,30 @@
       "side": 1,
       "message": "For the moment, this is just a post request to for the new cm handle registration and to post to the fragment table. We will be working on update/delete as part of a separate task!",
       "parentUuid": "88959a0a_17707146",
+      "range": {
+        "startLine": 194,
+        "startChar": 10,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "50ded8d304a6bd1551798bc253da5606053042b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "125703b3_f81891dd",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-08T11:25:55Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "d7f3c5b5_3e7fd406",
       "range": {
         "startLine": 194,
         "startChar": 10,
