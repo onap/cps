@@ -68,6 +68,8 @@ fi
 # The CPS host according to docker-compose.yml
 CPS_HOST="http://localhost:8883"
 
+MANAGEMENT_URL="http://localhost:8887/manage"
+
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v DATADIR:$WORKSPACE/data"
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v MANAGEMENT_URL:MANAGEMENT_URL -v DATADIR:$WORKSPACE/data"
 
