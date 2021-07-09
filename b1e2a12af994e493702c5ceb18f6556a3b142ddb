@@ -426,6 +426,30 @@
       "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d4b9110_43703326",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "As discussed, only one checksum is expected in the db exception. \nIf ever, for any unexpected reason, checksumInError is null, it is not a blocker, we still want to throw a DuplicatedYangResourceException, it does not change the process.",
+      "parentUuid": "378f338f_e18698e4",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 173,
+        "endChar": 69
+      },
+      "revId": "b1e2a12af994e493702c5ceb18f6556a3b142ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

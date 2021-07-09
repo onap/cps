@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2497736b_215ff12d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e4b1892_30a65118",
+      "range": {
+        "startLine": 156,
+        "startChar": 12,
+        "endLine": 156,
+        "endChar": 43
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa114058_56a2d05f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2021-07-08T16:38:38Z",
       "side": 1,
       "message": "If checksum or yangresources are null, do we still want to send DuplicatedYangResourceException or the original exception is good.",
+      "range": {
+        "startLine": 172,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 111
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c39fe9e6_7e3d4d5a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "We want to throw a DuplicatedYangResourceException as soon as the error is related to YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME violation, even if checksumInError or nameInError are null. These 2 are optional additional information to provide more context in the exception, but not absolutely required.",
+      "parentUuid": "fa114058_56a2d05f",
       "range": {
         "startLine": 172,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9cb5ac93_8013e7a4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2461e296_7893031f",
+      "range": {
+        "startLine": 186,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 18
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d038aa7_892c21b2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2021-07-08T16:38:38Z",
       "side": 1,
       "message": "can return optional if null is expected.",
+      "range": {
+        "startLine": 201,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 18
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0248711b_2bec8de0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d038aa7_892c21b2",
       "range": {
         "startLine": 201,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "1248f81d_b32c957d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14547be0_8f0201de",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 31
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68ac8910_9c957c9a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -128,6 +248,30 @@
       "writtenOn": "2021-07-08T16:38:38Z",
       "side": 1,
       "message": "continuing looping over yangresources even if expected yang resource is found.\n\nSuggestion: can also use stream.filter().findFirst.",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 209,
+        "endChar": 13
+      },
+      "revId": "43d380e7c3459bdd4ba647a20cd6f9a77b47145e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939d8139_529fa9ba",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68ac8910_9c957c9a",
       "range": {
         "startLine": 205,
         "startChar": 12,
