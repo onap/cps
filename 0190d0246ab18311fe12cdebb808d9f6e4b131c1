@@ -46,6 +46,30 @@
       "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a800db61_fb716296",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-09T12:04:55Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "a8cf70e9_6dd205c1",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
