@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ce304967_fe51def4",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-09T09:55:54Z",
+      "side": 1,
+      "message": "we should not modify licenses inserted by Pantheon",
+      "parentUuid": "5fea96c7_2b28d2ae",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "775b37bb_6481f56b",
         "filename": "cps-bom/pom.xml",
         "patchSetId": 1
