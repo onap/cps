@@ -147,6 +147,30 @@
     },
     {
       "key": {
+        "uuid": "f21e11ce_a4f55914",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-09T09:28:23Z",
+      "side": 1,
+      "message": "I was following the following guidelines for licensing formatting: https://wiki.nordix.org/display/DEV/Copyright+and+Licences+for+ONAP\n\n\"In the example files, the copyright line is specified as follows:\nCopyright (C) 20XX-20YY Nordix Foundation.\nWhere XX is the year of the creation of the file and YY  is the year of the last modification of the file. Modify the XX and YY  dates as appropriate.\"",
+      "parentUuid": "5605ad22_e4658dc5",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "898112f7_9a20733d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 1
