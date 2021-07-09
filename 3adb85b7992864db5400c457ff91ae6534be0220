@@ -522,6 +522,24 @@
       "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c1fab2_50afa942",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-09T11:03:40Z",
+      "side": 1,
+      "message": "Not implemented due to Pantheon ownership.",
+      "parentUuid": "958d2dde_039ed716",
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
