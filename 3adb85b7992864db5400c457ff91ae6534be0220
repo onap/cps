@@ -307,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "8be2f30f_3e234981",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-09T10:55:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce5ea209_5e764bbe",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 3
+      },
+      "revId": "3adb85b7992864db5400c457ff91ae6534be0220",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a457661b_48f18ec4",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 1
