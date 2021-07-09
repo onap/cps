@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0de79daf_2483ca50",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-09T14:39:20Z",
+      "side": 1,
+      "message": "looks like Pantheon didn\u0027t put their licence in correctly. SO this is the bets we can do for now. Maybe we should try to get them to approve this commit too!",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc959bee_4b91f235",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-09T14:39:20Z",
+      "side": 1,
+      "message": "technically this should be done by Bell but since Bruno approved this commit it is OK",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d03c918_dc646600",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-09T14:39:20Z",
+      "side": 1,
+      "message": "should be approved by Pantheon",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
