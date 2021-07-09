@@ -23,7 +23,7 @@ Library               Collections
 Library               OperatingSystem
 Library               RequestsLibrary
 
-Suite Setup           Create Session      CPS_HOST    ${CPS_HOST}
+Suite Setup           Create Session      CPS_URL    http://${CPS_HOST}:${CPS_PORT}
 
 *** Variables ***
 
@@ -40,7 +40,7 @@ Create Dataspace
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces
     ${params}=          Create Dictionary   dataspace-name=${dataspaceName}
     ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Create Schema Set from YANG file
@@ -50,7 +50,7 @@ Create Schema Set from YANG file
     ${fileTuple}=       Create List         test.yang   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
     ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   files=${files}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Create Schema Set from ZIP file
@@ -60,13 +60,13 @@ Create Schema Set from ZIP file
     ${fileTuple}=       Create List         test.zip   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
     ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   files=${files}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Get Schema Set info
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/schema-sets/${schemaSetName}
     ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        Get On Session      CPS_HOST   ${uri}   headers=${headers}   expected_status=200
+    ${response}=        Get On Session      CPS_URL   ${uri}   headers=${headers}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()}
     Should Be Equal As Strings              ${responseJson['name']}   ${schemaSetName}
     Should Be Equal As Strings              ${responseJson['dataspaceName']}   ${dataspaceName}
@@ -75,13 +75,13 @@ Create Anchor
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors
     ${params}=          Create Dictionary   schema-set-name=${schemaSetName}   anchor-name=${anchorName}
     ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_HOST   ${uri}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Get CPS RAN Schema Set info
     ${uri}=              Set Variable       ${basePath}/v1/dataspaces/${ranDataspaceName}/schema-sets/${ranSchemaSetName}
     ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_HOST   ${uri}   headers=${headers}   expected_status=200
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=200
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${responseJson['name']}   ${ranSchemaSetName}
     Should Be Equal As Strings              ${responseJson['dataspaceName']}   ${ranDataspaceName}

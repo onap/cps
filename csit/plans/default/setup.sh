@@ -17,6 +17,7 @@
 # Modifications copyright (c) 2017 AT&T Intellectual Property
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
+# Modifications Copyright (C) 2021 Bell Canada.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -66,8 +67,11 @@ if [ "$TIME" -gt "$TIME_OUT" ]; then
 fi
 
 # The CPS host according to docker-compose.yml
-CPS_HOST="http://localhost:8883"
+CPS_HOST="localhost"
+CPS_PORT="8883"
+
+MANAGEMENT_PORT="8887"
 
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v DATADIR:$WORKSPACE/data"
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v CPS_PORT:$CPS_PORT -v MANAGEMENT_PORT:$MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data"
 
