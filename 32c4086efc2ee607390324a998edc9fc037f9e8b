@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9880bf8c_cb2965ef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T16:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33c0de62_597e6e1f",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "32c4086efc2ee607390324a998edc9fc037f9e8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7d56580_d77b6de6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 8
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "69c4c84d_d2d5adcb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T16:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9837202b_32844e9a",
+      "range": {
+        "startLine": 168,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 70
+      },
+      "revId": "32c4086efc2ee607390324a998edc9fc037f9e8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72cd43f7_4a44d5c3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 8
@@ -82,6 +130,30 @@
       "writtenOn": "2021-07-09T14:31:19Z",
       "side": 1,
       "message": "maybe the basic null check are better suited for this use-case? otherwise the optional adds lots of extra method calls.\n\nSorry about the Optional suggestion 😞",
+      "range": {
+        "startLine": 204,
+        "startChar": 12,
+        "endLine": 204,
+        "endChar": 28
+      },
+      "revId": "32c4086efc2ee607390324a998edc9fc037f9e8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b4dd3b_cbb5e2ed",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T16:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72cd43f7_4a44d5c3",
       "range": {
         "startLine": 204,
         "startChar": 12,
