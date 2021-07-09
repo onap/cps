@@ -17,6 +17,7 @@
 # Modifications copyright (c) 2017 AT&T Intellectual Property
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
+# Modifications Copyright (C) 2021 Bell Canada.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -68,6 +69,8 @@ fi
 # The CPS host according to docker-compose.yml
 CPS_HOST="http://localhost:8883"
 
+MANAGEMENT_URL="http://localhost:8887/manage"
+
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v DATADIR:$WORKSPACE/data"
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v MANAGEMENT_URL:$MANAGEMENT_URL -v DATADIR:$WORKSPACE/data"
 
