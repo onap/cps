@@ -22,16 +22,20 @@ Documentation         CPS - Actuator endpoints
 Library               Collections
 Library               RequestsLibrary
 
-Suite Setup           Create Session    CPS_HOST    ${CPS_HOST}
+Suite Setup           Create Session    MANAGEMENT_URL    ${MANAGEMENT_URL}
 
 *** Variables ***
 
 
 *** Test Cases ***
 Test Liveness Probe Endpoint
-    ${response}=      GET On Session    CPS_HOST     /manage/health/liveness     expected_status=200
+    ${response}=      GET On Session    MANAGEMENT_URL     health/liveness     expected_status=200
     Should Be Equal As Strings          ${response.json()['status']}      UP
 
 Test Readiness Probe Endpoint
-    ${response}=      GET On Session    CPS_HOST     /manage/health/readiness    expected_status=200
+    ${response}=      GET On Session    MANAGEMENT_URL     health/readiness    expected_status=200
+    Should Be Equal As Strings          ${response.json()['status']}      UP
+
+Test prometheus Probe Endpoint
+    ${response}=      GET On Session    MANAGEMENT_URL     prometheus    expected_status=200
     Should Be Equal As Strings          ${response.json()['status']}      UP
