@@ -22,6 +22,30 @@
       "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8cf70e9_6dd205c1",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-09T12:03:09Z",
+      "side": 0,
+      "message": "This one is to be added for Nordix changes.",
+      "parentUuid": "cfb2151f_59c1aef5",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
