@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fc8c2776_655e224f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/CpsConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 0,
+      "message": "I remember I pointed out my doubts about being correct to have this \"All right reserved\". \nSince you are removing it now, how did you arrive to the same conclusion or decision to remove it?\nI never had any official link or reference to be sure what was correct, so I\u0027m curious.\nRegards",
+      "range": {
+        "startLine": 3,
+        "startChar": 42,
+        "endLine": 3,
+        "endChar": 61
+      },
+      "revId": "84f7d693397aa48df7aace95dc8799932ecaa253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ad96b31_de8c5aec",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 1

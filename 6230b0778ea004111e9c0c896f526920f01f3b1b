@@ -25,6 +25,103 @@
     },
     {
       "key": {
+        "uuid": "28fd5fc5_e3a4254e",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84d13148_1ccee302",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "Modifications ?",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e08eb33e_f62c69a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "Modification?",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3361ac69_814fcf41",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "635ec05d_b80a75cc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/CpsConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc959bee_4b91f235",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 2
@@ -48,6 +145,23 @@
     },
     {
       "key": {
+        "uuid": "f55578c1_3e4de890",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2d03c918_dc646600",
         "filename": "cps-ri/pom.xml",
         "patchSetId": 2
@@ -65,6 +179,278 @@
         "endLine": 4,
         "endChar": 39
       },
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "503907c9_d120e671",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/DataspaceEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19767baf_c861ce72",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ef85e7_d8eb384c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f8dbc9a_fb389d45",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/05-loadData-fragment.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70886334_c49c8b56",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb9d721e_da0a099f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2020 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8808692_5a263064",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28211511_bd80bbc8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf6c67bf_544e53cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataValidationException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "Copyright (C) 2020 Pantheon.tech \n Modifications (C) 2020 Nordix Foundation",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcc9a466_dfd7ff2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f92c05be_4c3bcdef",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "318c0a3c_ae1a892c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983a93c6_c4888aad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab51ab01_93859a85",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22b6d1ed_28d96503",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangTextSchemaSourceSetSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "Copyright (C) 2020 Pantheon.tech\nModification Copyright (C) 2020 Nordix Foundation",
+      "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e982ee5_a997656e",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-12T08:03:17Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
       "revId": "6230b0778ea004111e9c0c896f526920f01f3b1b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
