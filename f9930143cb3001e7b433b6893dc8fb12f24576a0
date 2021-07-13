@@ -117,6 +117,30 @@
       "revId": "f9930143cb3001e7b433b6893dc8fb12f24576a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac8a029c_8ab345a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-13T14:39:02Z",
+      "side": 1,
+      "message": "Done now Bruno. Forgot to include in initial commit. Thank you",
+      "parentUuid": "5bd87365_b0ddd64e",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 49
+      },
+      "revId": "f9930143cb3001e7b433b6893dc8fb12f24576a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
