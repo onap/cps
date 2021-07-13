@@ -186,7 +186,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
      */
     private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
         String checksum = null;
-        final Matcher matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
+        final var matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
         if (matcher.find() && matcher.groupCount() == 1) {
             checksum = matcher.group(1);
         }
