@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -186,7 +185,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
      */
     private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
         String checksum = null;
-        final Matcher matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
+        final var matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
         if (matcher.find() && matcher.groupCount() == 1) {
             checksum = matcher.group(1);
         }
