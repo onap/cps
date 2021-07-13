@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f00bcc_5eaabf17",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-13T13:21:56Z",
+      "side": 1,
+      "message": "Historical question: Do we know why this is not Pantheon copyright and it is not following the license template ?",
+      "revId": "765f9c521128f89a4288a9f6430d9944498e341a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d51dc710_cee6e90c",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-13T13:21:56Z",
+      "side": 1,
+      "message": "I wondering about being able to set CPS_HOST to any host (different from localhost) and having management hardcoded to localhost. This will not work is CPS_HOST is not set to localhost,\n\nEither management url should use the same host has CPS_HOST and only the port is different or CPS_HOST should be hardcoded to localhost too is there is no need for another host than localhost.\n\nWhat I mean is that features endpoints and mananagement endpoints should be both consistent using the same host.",
+      "revId": "765f9c521128f89a4288a9f6430d9944498e341a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
