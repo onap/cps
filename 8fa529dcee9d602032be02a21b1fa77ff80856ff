@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2df51c35_670a04f0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-07-13T09:47:58Z",
+      "side": 1,
+      "message": "I thought the previous format was correct here?",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 85
+      },
+      "revId": "8fa529dcee9d602032be02a21b1fa77ff80856ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
