@@ -22,6 +22,30 @@
       "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adfb4c38_fe8a74d3",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-13T10:30:31Z",
+      "side": 0,
+      "message": "Even without this, the current configuration will expose loggers using config management.endpoints.exposure.include",
+      "parentUuid": "b44b8419_8a1601f3",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 25
+      },
+      "revId": "0190d0246ab18311fe12cdebb808d9f6e4b131c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
