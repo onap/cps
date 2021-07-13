@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "632736cc_f3244faa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6679
+      },
+      "writtenOn": "2021-07-13T05:36:12Z",
+      "side": 1,
+      "message": "please include Modification Copyright (C) 2021 Pantheon.tech",
+      "revId": "de8a5e0a493a83bfd3fb9cd5730043bdfd572247",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
