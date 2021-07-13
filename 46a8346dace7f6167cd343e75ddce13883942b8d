@@ -22,6 +22,30 @@
       "revId": "46a8346dace7f6167cd343e75ddce13883942b8d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9679fe_a3a8eacd",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-13T13:09:43Z",
+      "side": 1,
+      "message": "Hey Aditya, I think so as this is what was outlined in Spike CPS-390\n\nhttps://wiki.onap.org/display/DW/CPS-390+Spike%3A+Define+and+Agree+DMI+Plugin+REST+Interface\n\nThe endpoint is {ncmp-root}/ncmp-dmi/v1/ch/",
+      "parentUuid": "46a238ef_6811be1b",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "46a8346dace7f6167cd343e75ddce13883942b8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
