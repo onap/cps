@@ -93,6 +93,30 @@
       "revId": "8fa529dcee9d602032be02a21b1fa77ff80856ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d4a9a72_ef007176",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-14T15:52:24Z",
+      "side": 1,
+      "message": "My IntelliJ now formats like this when I insert an enter for liens that are too long. I actually do think it looks beter and will apply same to all methods in this class for consistency",
+      "parentUuid": "271904f2_39c39976",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 85
+      },
+      "revId": "8fa529dcee9d602032be02a21b1fa77ff80856ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
