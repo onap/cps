@@ -69,6 +69,24 @@
       "revId": "765f9c521128f89a4288a9f6430d9944498e341a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78b1bcfe_9aa62294",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-14T13:09:58Z",
+      "side": 1,
+      "message": "proposal from standup, split into 3 variables:\n\nCPS_HOST\nCPS_PORT\nMANAGEMENT_PORT\n\nuse these in Robot files",
+      "parentUuid": "3823bbf1_13e6acd4",
+      "revId": "765f9c521128f89a4288a9f6430d9944498e341a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
