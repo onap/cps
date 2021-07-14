@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f442077_1055c17a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-14T08:36:13Z",
+      "side": 1,
+      "message": "as per discussion this morning, just typesafe objects created in service API (not dependent on REST API)",
+      "range": {
+        "startLine": 93,
+        "startChar": 52,
+        "endLine": 93,
+        "endChar": 60
+      },
+      "revId": "b75747e64aedfac2c5c5bbf5e811d7f165f50c8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "119f1b7f_20f0f3ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-14T08:36:13Z",
+      "side": 1,
+      "message": "as before; use objects defined in service API",
+      "range": {
+        "startLine": 91,
+        "startChar": 47,
+        "endLine": 91,
+        "endChar": 55
+      },
+      "revId": "b75747e64aedfac2c5c5bbf5e811d7f165f50c8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
