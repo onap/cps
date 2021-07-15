@@ -59,6 +59,7 @@
                     <sourceDirectory>${basedir}/src/main/resources/schemas</sourceDirectory>
                     <targetPackage>org.onap.cps.event.model</targetPackage>
                     <generateBuilders>true</generateBuilders>
+                    <serializable>true</serializable>
                 </configuration>
             </plugin>
             <plugin>
