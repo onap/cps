@@ -80,14 +80,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(@Valid final String jsonData, final String cmHandle,
+    public ResponseEntity<Object> replaceNode(final String cmHandle, @Valid final String jsonData,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(@Valid final String jsonData, final String cmHandle,
+    public ResponseEntity<Object> updateNodeLeaves(final String cmHandle, @Valid final String jsonData,
         @Valid final String parentNodeXpath) {
         networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);

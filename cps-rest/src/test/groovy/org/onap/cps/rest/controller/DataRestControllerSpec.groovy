@@ -101,7 +101,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, json)
+            1 * mockCpsDataService.saveData(anchorName, json, dataspaceName)
         where: 'following xpath parameters are are used'
             scenario                     | parentNodeXpath
             'no xpath parameter'         | ''
@@ -125,7 +125,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, json)
+            1 * mockCpsDataService.saveData(anchorName, json, parentNodeXpath, dataspaceName)
     }
 
     def 'Create list node child elements.'() {
@@ -142,7 +142,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
+            1 * mockCpsDataService.saveListNodeData(anchorName, jsonData, dataspaceName, parentNodeXpath)
     }
 
     def 'Get data node with leaves'() {
@@ -198,7 +198,7 @@ class DataRestControllerSpec extends Specification {
                                     .param('xpath', inputXpath)
                     ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonData)
+            1 * mockCpsDataService.updateNodeLeaves(anchorName, jsonData, xpathServiceParameter, dataspaceName)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -221,7 +221,7 @@ class DataRestControllerSpec extends Specification {
                                     .param('xpath', inputXpath))
                             .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonData)
+            1 * mockCpsDataService.replaceNodeTree(anchorName, jsonData, xpathServiceParameter, dataspaceName)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -245,6 +245,6 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
+            1 * mockCpsDataService.replaceListNodeData(anchorName,  jsonData, dataspaceName, parentNodeXpath)
     }
 }
