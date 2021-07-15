@@ -68,6 +68,11 @@ spring:
             value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
             client-id: cps-core
 
+springdoc:
+    swagger-ui:
+        url: /openapi.yml
+        path: /swagger-ui/index.html
+
 notification:
     data-updated:
         enabled: false

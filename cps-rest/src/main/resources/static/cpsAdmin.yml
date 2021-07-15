@@ -1,0 +1,222 @@
+# ============LICENSE_START=======================================================
+# Copyright (c) 2021 Bell Canada.
+# ================================================================================
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ============LICENSE_END=========================================================
+
+dataspaces:
+  post:
+    description: Create a new dataspace
+    tags:
+      - cps-admin
+    summary: Create a dataspace
+    operationId: createDataspace
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInQuery'
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+dataspaceByDataspaceName:
+  delete:
+    description: Delete the given dataspace - DRAFT
+    tags:
+      - cps-admin
+    summary: Delete a dataspace
+    operationId: deleteDataspace
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+
+schemaSet:
+  post:
+    description: Create a new schema set in the given dataspace
+    tags:
+      - cps-admin
+    summary: Create a schema set
+    operationId: createSchemaSet
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/schemaSetNameInQuery'
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: 'components.yml#/components/schemas/MultipartFile'
+
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+schemaSetBySchemaSetName:
+  get:
+    description: Read a schema set given a schema set name and a dataspace
+    tags:
+      - cps-admin
+    summary: Get a schema set
+    operationId: getSchemaSet
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/schemaSetNameInPath'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/SchemaSetDetails'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
+
+  delete:
+    description: Delete a schema set given a schema set name and a dataspace
+    tags:
+      - cps-admin
+    summary: Delete a schema set
+    operationId: deleteSchemaSet
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/schemaSetNameInPath'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+
+anchorsByDataspace:
+  get:
+    description: Read all anchors, given a dataspace
+    tags:
+      - cps-admin
+    summary: Get anchors
+    operationId: getAnchors
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'components.yml#/components/schemas/AnchorDetails'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
+
+  post:
+    description: Create a new anchor in the given dataspace
+    tags:
+      - cps-admin
+    summary: Create an anchor
+    operationId: createAnchor
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/schemaSetNameInQuery'
+      - $ref: 'components.yml#/components/parameters/anchorNameInQuery'
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
+anchorByDataspaceAndAnchorName:
+  get:
+    description: Read an anchor given an anchor name and a dataspace
+    tags:
+      - cps-admin
+    summary: Get an anchor
+    operationId: getAnchor
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/AnchorDetails'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '404':
+        $ref: 'components.yml#/components/responses/NotFound'
+
+  delete:
+    description: Delete an anchor given an anchor name and a dataspace
+    tags:
+      - cps-admin
+    summary: Delete an anchor
+    operationId: deleteAnchor
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
