@@ -1,0 +1,209 @@
+# ============LICENSE_START=======================================================
+# Copyright (c) 2021 Bell Canada.
+# ================================================================================
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ============LICENSE_END=========================================================
+
+components:
+  schemas:
+
+    AnchorDetails:
+      type: object
+      title: Anchor details by anchor Name
+      properties:
+        name:
+          type: string
+          example: my_anchor
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        schemaSetName:
+          type: string
+          example: my_schema_set
+
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+          example: 400
+        message:
+          type: string
+          example: Dataspace not found
+        details:
+          type: string
+          example: Dataspace with name D1 does not exist.
+
+    MultipartFile:
+      required:
+        - file
+      properties:
+        multipartFile:
+          type: string
+          description: multipartFile
+          format: binary
+          example: http://example.com/examples/example.yang
+
+    ModuleReferences:
+      type: object
+      title: Module reference object
+      properties:
+        name:
+          type: string
+          example: module_reference_name
+        namespace:
+          type: string
+          example: module_reference_namespace
+        revision:
+          type: string
+          example: module_reference_revision
+
+    SchemaSetDetails:
+      type: object
+      title: Schema set details by dataspace and schemasetName
+      properties:
+        dataspaceName:
+          type: string
+          example: my_dataspace
+        moduleReferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleReferences'
+        name:
+          type: string
+          example: my_schema_set
+
+  parameters:
+    dataspaceNameInQuery:
+      name: dataspace-name
+      in: query
+      description: dataspace-name
+      required: true
+      schema:
+        type: string
+    dataspaceNameInPath:
+      name: dataspace-name
+      in: path
+      description: dataspace-name
+      required: true
+      schema:
+        type: string
+    anchorNameInPath:
+      name: anchor-name
+      in: path
+      description: anchor-name
+      required: true
+      schema:
+        type: string
+    schemaSetNameInQuery:
+      name: schema-set-name
+      in: query
+      description: schema-set-name
+      required: true
+      schema:
+        type: string
+    schemaSetNameInPath:
+      name: schema-set-name
+      in: path
+      description: schema-set-name
+      required: true
+      schema:
+        type: string
+    anchorNameInQuery:
+      name: anchor-name
+      in: query
+      description: anchor-name
+      required: true
+      schema:
+        type: string
+    xpathInQuery:
+      name: xpath
+      in: query
+      description: xpath
+      required: false
+      schema:
+        type: string
+        default: /
+    requiredXpathInQuery:
+      name: xpath
+      in: query
+      description: xpath
+      required: true
+      schema:
+        type: string
+    cpsPathInQuery:
+      name: cps-path
+      in: query
+      description: cps-path
+      required: false
+      schema:
+        type: string
+        default: /
+    includeDescendantsOptionInQuery:
+      name: include-descendants
+      in: query
+      description: include-descendants
+      required: false
+      schema:
+        type: boolean
+        default: false
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    Ok:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            example: { "abcd" : "abcd" }
+          example: { "outerabcd": "outerabcd" }
+    Created:
+      description: Created
+      content:
+        text/plain:
+          schema:
+            type: string
+    NoContent:
+      description: No Content
+      content: {}
