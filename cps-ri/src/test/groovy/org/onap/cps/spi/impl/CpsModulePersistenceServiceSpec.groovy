@@ -33,7 +33,7 @@ import java.sql.SQLException
 /**
  * Specification unit test class for CPS module persistence service.
  */
-class CpsModulePersistenceServiceUnitSpec extends Specification {
+class CpsModulePersistenceServiceSpec extends Specification {
 
     // Instance to test
     CpsModulePersistenceService objectUnderTest
