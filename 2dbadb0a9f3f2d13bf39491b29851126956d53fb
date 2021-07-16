@@ -22,6 +22,30 @@
       "revId": "2dbadb0a9f3f2d13bf39491b29851126956d53fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc8469b7_0297cc3f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-07-16T10:48:30Z",
+      "side": 1,
+      "message": "Your right, this is a hangover from the previous approach taken with entities. I\u0027ll revert it to a Mock now",
+      "parentUuid": "70831c63_d0bbfad5",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 35
+      },
+      "revId": "2dbadb0a9f3f2d13bf39491b29851126956d53fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
