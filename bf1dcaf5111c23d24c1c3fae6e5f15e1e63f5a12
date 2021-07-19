@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94105e6d_15306483",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "It seems that `incorrectPrefix` is added for throwing an exception when cps path has an invalid prefix.\n\nIs there any reason for handling this specific parsing failure this way ? What about all other cps path errors ?\n\nThen, I\u0027m wondering if not having `incorrectPrefix` in the grammar would not bring some advantages:\n* Avoid an initial confusion that make thinking that `incorrectPrefix` is part of cps path grammar, the same way all others parser rules are (all others parser rule are positive, `incorrectPrefix is a negative one, where  comes some confusion).\n* Grammar is more simple without considering errors as parser rules\n* No specific process for specific parsing failures, all failures are handled the same way.\n* Exception has to be thrown anyway for all other kind of cps path errors. Could it be done in a generic way by using default antlr error management ?\n\nMaybe what is done here is the way to get rid early when parsing of a case that is causing trouble if we let it go, but I\u0027m not sure ... Thanks for clarifying and refreshing my mind about this.",
+      "range": {
+        "startLine": 23,
+        "startChar": 34,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30cc6754_a2707f28",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "Simplification:\n  return textFunctionConditionLeafName !\u003d null;",
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918e54ee_2a06af4c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "I think \"All right reserved.\" is not part of the template.\n\nSame comment for some other files.",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 65
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25bb1967_ac07ff3e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "I think \"All right reserved.\" is not part of the template.",
+      "range": {
+        "startLine": 3,
+        "startChar": 42,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8df5897c_0e2b99ce",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "Suggestion, what about a method name like `findByAnchorAndCpsPath` or `retrieveByAnchorAndCpsPath` ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9018d471_f1f42fd7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-19T22:28:45Z",
+      "side": 1,
+      "message": "Sonar potential issue here: https://sonarcloud.io/organizations/onap/rules?open\u003djava%3AS5361\u0026q\u003dS5361",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
