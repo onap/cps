@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "36eb84cb_ff72cba2",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-20T18:07:33Z",
+      "side": 1,
+      "message": "Good to me, it explains. Thanks for the reminder.",
+      "parentUuid": "aaabda55_c59dd6c1",
+      "range": {
+        "startLine": 23,
+        "startChar": 34,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30cc6754_a2707f28",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
         "patchSetId": 7
