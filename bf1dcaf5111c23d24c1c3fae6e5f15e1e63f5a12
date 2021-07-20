@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "3d55dfff_2f587973",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-20T08:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30cc6754_a2707f28",
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "918e54ee_2a06af4c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 7
@@ -62,6 +80,30 @@
       "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "559c5097_5f18f56a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-20T08:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "918e54ee_2a06af4c",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 65
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "5d262e78_0ddcf1c8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-20T08:45:19Z",
+      "side": 1,
+      "message": "done (as part of rebase)",
+      "parentUuid": "25bb1967_ac07ff3e",
+      "range": {
+        "startLine": 3,
+        "startChar": 42,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8df5897c_0e2b99ce",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQuery.java",
         "patchSetId": 7
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "98026915_01a987d1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQuery.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-20T08:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8df5897c_0e2b99ce",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9018d471_f1f42fd7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
         "patchSetId": 7
@@ -131,6 +221,30 @@
       "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f534e2d_34d5fa4d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-20T08:45:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9018d471_f1f42fd7",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "bf1dcaf5111c23d24c1c3fae6e5f15e1e63f5a12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
