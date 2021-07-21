@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "857ade18_9a33e1c7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceUnitSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-21T01:35:06Z",
+      "side": 1,
+      "message": "The name should be CpsDataPersistenceServiceSpec and it will be updated as a part of diff patch. If it is changed as a part of this patch, the patch diff does not highlight the actual change made for the issue.",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "942beca096bc341dc2aace30c59ae45cc5935dce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
