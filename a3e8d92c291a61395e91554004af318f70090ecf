@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a624fa8_2055c852",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceUnitSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-22T11:33:16Z",
+      "side": 1,
+      "message": "Do we have a Jira to rename this class in another change if making the change now is going to  make this current change confusing ?\n\nSee https://wiki.onap.org/pages/viewpage.action?pageId\u003d92998161#Groovy\u0026SpockTestCodeConventions-Namingconventions",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "a3e8d92c291a61395e91554004af318f70090ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
