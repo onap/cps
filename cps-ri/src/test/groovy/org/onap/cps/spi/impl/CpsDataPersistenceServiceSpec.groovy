@@ -21,6 +21,8 @@
  */
 package org.onap.cps.spi.impl
 
+import org.onap.cps.spi.exceptions.ConcurrencyException
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -305,13 +307,53 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
+        and: 'existing child entry is not updated as content is same'
+            def childFragment = updatedFragment.getChildFragments().iterator().next()
+            childFragment.getXpath() == '/parent-200/child-201/grand-child'
+            def childLeaves = getLeavesMap(childFragment)
+            assert childLeaves.'leaf-value' == 'original'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace data node tree with same descendants but changed leaf value.'() {
+        given: 'data node object with leaves updated, having child with old content'
+            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
+                    buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'new'], [])
+            ])
+        when: 'update is performed including descendants'
+            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+        then: 'leaves have been updated for selected data node'
+            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedLeaves = getLeavesMap(updatedFragment)
+            assert updatedLeaves.size() == 1
+            assert updatedLeaves.'leaf-value' == 'new'
+        and: 'existing child entry is updated with the new content'
+            def childFragment = updatedFragment.getChildFragments().iterator().next()
+            childFragment.getXpath() == '/parent-200/child-201/grand-child'
+            def childLeaves = getLeavesMap(childFragment)
+            assert childLeaves.'leaf-value' == 'new'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace data node tree with different descendants xpath'() {
+        given: 'data node object with leaves updated, having child with old content'
+            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
+                    buildDataNode("/parent-200/child-201/grand-child-new", ['leaf-value': 'new'], [])
+            ])
+        when: 'update is performed including descendants'
+            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+        then: 'leaves have been updated for selected data node'
+            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedLeaves = getLeavesMap(updatedFragment)
+            assert updatedLeaves.size() == 1
+            assert updatedLeaves.'leaf-value' == 'new'
         and: 'previously attached child entry is removed from database'
             fragmentRepository.findById(UPDATE_DATA_NODE_SUB_FRAGMENT_ID).isEmpty()
-        and: 'new child entry with same content is created'
+        and: 'new child entry is persisted'
             def childFragment = updatedFragment.getChildFragments().iterator().next()
+            childFragment.getXpath() == '/parent-200/child-201/grand-child-new'
             def childLeaves = getLeavesMap(childFragment)
-            assert childFragment.getId() != UPDATE_DATA_NODE_SUB_FRAGMENT_ID
-            assert childLeaves.'leaf-value' == 'original'
+            assert childLeaves.'leaf-value' == 'new'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -320,7 +362,7 @@ class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def submittedDataNode = buildDataNode(xpath, ['leaf-name': 'leaf-value'], [])
         when: 'attempt to update data node for #scenario'
             objectUnderTest.replaceDataNodeTree(dataspaceName, anchorName, submittedDataNode)
-        then: 'a #expectedException is thrown'
+        then: 'a #expectedException is thrown'  
             thrown(expectedException)
         where: 'the following data is used'
             scenario                 | dataspaceName  | anchorName                        | xpath                || expectedException

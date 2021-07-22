@@ -37,6 +37,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.StaleStateException;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -44,27 +46,39 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
-    @Autowired
     private DataspaceRepository dataspaceRepository;
 
-    @Autowired
     private AnchorRepository anchorRepository;
 
-    @Autowired
     private FragmentRepository fragmentRepository;
+
+    /**
+     * Constructor.
+     *
+     * @param dataspaceRepository dataspaceRepository
+     * @param anchorRepository    anchorRepository
+     * @param fragmentRepository  fragmentRepository
+     */
+    public CpsDataPersistenceServiceImpl(final DataspaceRepository dataspaceRepository,
+        final AnchorRepository anchorRepository, final FragmentRepository fragmentRepository) {
+        this.dataspaceRepository = dataspaceRepository;
+        this.anchorRepository = anchorRepository;
+        this.fragmentRepository = fragmentRepository;
+    }
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@\\S+?]){0,1})";
@@ -234,18 +248,41 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+    public void replaceDataNodeTree(final String dataspaceName, final String anchorName,
+        final DataNode dataNode) {
         final var fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
-        removeExistingDescendants(fragmentEntity);
+        replaceDataNodeTree(fragmentEntity, dataNode);
+        try {
+            fragmentRepository.save(fragmentEntity);
+        } catch (final StaleStateException staleStateException) {
+            throw new ConcurrencyException("Concurrent Transactions",
+                String.format("dataspace :'%s', Anchor : '%s' and xpath: '%s' is updated by another transaction.",
+                    dataspaceName, anchorName, dataNode.getXpath()),
+                staleStateException);
+        }
+    }
 
-        fragmentEntity.setAttributes(GSON.toJson(dataNode.getLeaves()));
-        final Set<FragmentEntity> childFragmentEntities = dataNode.getChildDataNodes().stream().map(
-            childDataNode -> convertToFragmentWithAllDescendants(
-                fragmentEntity.getDataspace(), fragmentEntity.getAnchor(), childDataNode)
-        ).collect(Collectors.toUnmodifiableSet());
-        fragmentEntity.setChildFragments(childFragmentEntities);
+    private void replaceDataNodeTree(final FragmentEntity existingFragmentEntity, final DataNode submittedDataNode) {
 
-        fragmentRepository.save(fragmentEntity);
+        existingFragmentEntity.setAttributes(GSON.toJson(submittedDataNode.getLeaves()));
+
+        final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments()
+            .stream().collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
+
+        final var updatedChildFragments = new HashSet<FragmentEntity>();
+
+        for (final DataNode submittedChildDataNode : submittedDataNode.getChildDataNodes()) {
+            final FragmentEntity childFragment;
+            if (existingChildrenByXpath.containsKey(submittedChildDataNode.getXpath())) {
+                childFragment = existingChildrenByXpath.get(submittedChildDataNode.getXpath());
+                replaceDataNodeTree(childFragment, submittedChildDataNode);
+            } else {
+                childFragment = convertToFragmentWithAllDescendants(
+                    existingFragmentEntity.getDataspace(), existingFragmentEntity.getAnchor(), submittedChildDataNode);
+            }
+            updatedChildFragments.add(childFragment);
+        }
+        existingFragmentEntity.setChildFragments(updatedChildFragments);
     }
 
     @Override
@@ -270,11 +307,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
             fragmentRepository.save(parentFragmentEntity);
         }
-    }
-
-    private void removeExistingDescendants(final FragmentEntity fragmentEntity) {
-        fragmentEntity.setChildFragments(Collections.emptySet());
-        fragmentRepository.save(fragmentEntity);
     }
 
     private static boolean isRootXpath(final String xpath) {
