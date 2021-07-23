@@ -28,7 +28,7 @@ import org.onap.cps.spi.repository.FragmentRepository
 import spock.lang.Specification
 
 
-class CpsDataPersistenceServiceUnitSpec extends Specification {
+class CpsDataPersistenceServiceSpec extends Specification {
 
     def mockDataspaceRepository = Mock(DataspaceRepository)
     def mockAnchorRepository = Mock(AnchorRepository)
