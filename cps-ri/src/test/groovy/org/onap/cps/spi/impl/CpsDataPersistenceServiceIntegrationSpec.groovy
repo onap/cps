@@ -42,7 +42,7 @@ import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
 
-class CpsDataPersistenceServiceSpec extends CpsPersistenceSpecBase {
+class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
