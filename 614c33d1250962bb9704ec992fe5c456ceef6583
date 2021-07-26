@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7332a636_54220b57",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "Use lombok @Slf4j",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e681bded_37816642",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "Suggestion: \nreturn objectMapper.convertValue(restDmiPluginRegistration,DmiPluginRegistration.class);\n\nAlso don\u0027t have to handle JsonProcessingException",
+      "range": {
+        "startLine": 161,
+        "startChar": 7,
+        "endLine": 163,
+        "endChar": 38
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42664302_a5b1c702",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "I prefer keeping the test data close to the test cases rather than in a separate file. It think it makes the code easier to follow. It will also reduce the number of files ( TestUtil and cmhandles.json )\n\nSuggestion: \n\ndef requestPayload \u003d \u0027\u0027\u0027{\n                \"dmi-plugin\": \"onap-dmi-plugin\",\n                \"created-cm-handles\": [\n                        {\n                            \"additional-properties\": {\n                                \"name\": \"example_name\",\n                                \"value\": \"example_value\"\n                            },\n                            \"cmHandle\": \"example_name\"\n                        }\n                ]\n             }\u0027\u0027\u0027",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 81
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936cb761_27f4b8ad",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "This Test case may not be required if the changes related to object mapper are implemented.",
+      "range": {
+        "startLine": 202,
+        "startChar": 4,
+        "endLine": 202,
+        "endChar": 70
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8128787b_839a5846",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "label should be: dmi-registry-schema-preload",
+      "range": {
+        "startLine": 4,
+        "startChar": 6,
+        "endLine": 4,
+        "endChar": 29
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e993ec0b_857f929d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "Id should be 10",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f28f4924_9a454602",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "Can add values inline in the changeset instead of reading it from the file\n\nchanges:\n        - insert:\n            tableName: \u0027fragment\u0027\n            columns:\n              - column:\n                  name: id\n                  value: 144\n              - column:\n                  name: xpath\n                  value: /dmi-registry\n              - column:\n                  name: attributes\n                  value: \u0027{}\u0027\n              - column:\n                  name: anchor_id\n                  valueComputed: (select id from anchor where name\u003d\u0027ncmp-dmi-registry\u0027)\n              - column:\n                  name: dataspace_id\n                  valueComputed: (select id from dataspace where name\u003d\u0027NCMP-Admin\u0027)",
+      "range": {
+        "startLine": 6,
+        "startChar": 6,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce34f7d_6bee2f81",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "dmi label",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 29
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da567a2b_6285ba8d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-26T18:49:07Z",
+      "side": 1,
+      "message": "10.1",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
