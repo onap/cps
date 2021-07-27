@@ -401,6 +401,34 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'parent node does not exist' | '/unknown'      | ['irrelevant'] || DataNodeNotFoundException
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete list-node content of #scenario.'() {
+        given: 'list node data fragments are present in database'
+        when: 'list-node elements deleted within the existing parent node'
+        objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+        then: 'child list elements are removed as expected, non-list element remains as is'
+        def parentFragment = fragmentRepository.getOne(LIST_DATA_NODE_PARENT_FRAGMENT_ID)
+        def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+        assert allChildXpaths.size() == expectedChildXpaths.size()
+        assert allChildXpaths.containsAll(expectedChildXpaths)
+        where: 'following parameters were used'
+        scenario                 | listNodeXpaths                      || expectedChildXpaths
+        'existing list-node'     | '/parent-201/child-204' || ['/parent-201/child-203']
+        'non-existing list-node' | '/parent-201/child-205' || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete list-node fragment error scenario: #scenario.'() {
+        given: 'list node data fragments are present in database'
+        when: 'list-node elements are deleted under existing parent node'
+        objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+        then: 'a #expectedException is thrown'
+        thrown(expectedException)
+        where: 'following parameters were used'
+        scenario                     | listNodeXpaths     || expectedException
+        'list nodes do not exist'    | '/unknown/unknown' || DataNodeNotFoundException
+    }
+
     static Collection<DataNode> buildDataNodeCollection(xpaths) {
         return xpaths.collect { new DataNodeBuilder().withXpath(it).build() }
     }
