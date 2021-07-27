@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59352d6b_7cf75164",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-27T16:07:46Z",
+      "side": 1,
+      "message": "Issue ID missing",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "4b606727f77b4eb4528322989fee0b4fab23452c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25a94138_4080a464",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-27T16:07:46Z",
+      "side": 1,
+      "message": "Fix indentations \neg.\ngiven: \u0027schema set for given anchor and dataspace references test-tree model\u0027\n    setupSchemaSetMocks(\u0027test-tree.yang\u0027)",
+      "range": {
+        "startLine": 201,
+        "startChar": 4,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "4b606727f77b4eb4528322989fee0b4fab23452c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
