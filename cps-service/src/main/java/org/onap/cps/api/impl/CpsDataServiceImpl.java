@@ -114,6 +114,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
 
+    @Override
+    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+    }
+
+
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData) {
 

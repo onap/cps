@@ -112,6 +112,16 @@ public interface CpsDataPersistenceService {
         @NonNull String parentNodeXpath, @NonNull Collection<DataNode> dataNodes);
 
     /**
+     * Deletes existing list data node content including descendants.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param listNodeXpath   list node xpath
+     */
+    void deleteListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
+                              @NonNull String listNodeXpath);
+
+    /**
      * Get a datanode by cps path.
      *
      * @param dataspaceName          dataspace name
