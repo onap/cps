@@ -28,7 +28,9 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.exceptions.MissingMandatoryParameterException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
@@ -195,6 +197,32 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData)
         then: 'invalid data exception is thrown'
             thrown(DataValidationException)
+    }
+
+    def 'Delete list-node data fragment under existing node.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'delete list data method is invoked with list-node json data'
+            objectUnderTest.deleteListNodeData(dataspaceName, anchorName, '/test-tree/branch')
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, '/test-tree/branch')
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName)
+    }
+
+    def 'Delete with #scenario.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'delete list data method is invoked with empty list-node XPath'
+            objectUnderTest.deleteListNodeData(dataspaceName, anchorName, listNodeXpath)
+        then: 'invalid data exception is thrown'
+            thrown(exception)
+        where: 'following parameters were used'
+            scenario                                    | listNodeXpath     | exception
+            "invalid list-node XPath no slash"          | "invalidxpath"    | CpsPathException
+            "invalid list-node XPath misplaced slash"   | "invalidxpath/"   | CpsPathException
+            "invalid list-node XPath only slash"        | "///"             | CpsPathException
+            "empty list-node XPath"                     | ""                | MissingMandatoryParameterException
     }
 
     def setupSchemaSetMocks(String... yangResources) {

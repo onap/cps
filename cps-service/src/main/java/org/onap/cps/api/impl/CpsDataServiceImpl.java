@@ -29,7 +29,9 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.MissingMandatoryParameterException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.YangUtils;
@@ -113,6 +115,19 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
     }
+
+    @Override
+    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+        if (listNodeXpath.isEmpty()) {
+            throw new MissingMandatoryParameterException("No List-Node XPath provided.");
+        } else if (!listNodeXpath.matches("(\\/[^\\/]+)+")) {
+            throw new CpsPathException("Invalid List-Node XPath provided.");
+        }
+
+        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+    }
+
 
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData) {

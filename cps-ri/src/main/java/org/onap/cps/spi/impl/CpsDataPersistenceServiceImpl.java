@@ -301,8 +301,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentRepository.save(parentEntity);
     }
 
+    @Override
+    @Transactional
+    public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+        final var parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
+        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        removeListNodeDescendants(parentEntity, listNodeXpath);
+    }
+
     private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
-        final String listNodeXpathPrefix = listNodeXpath + "[";
+        final String listNodeXpathPrefix = listNodeXpath.replaceAll("\\[(.*?)\\]", "");
         if (parentFragmentEntity.getChildFragments()
             .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
             fragmentRepository.save(parentFragmentEntity);

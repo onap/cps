@@ -24,6 +24,7 @@ package org.onap.cps.api;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
@@ -120,4 +121,16 @@ public interface CpsDataService {
      */
     void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull String jsonData);
+
+    /**
+     * Deletes (if exists) child data fragment representing list-node (with one or more elements)
+     * under existing data node for the given anchor and dataspace.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param listNodeXpath   list node xpath
+     * @throws DataNodeNotFoundException when parent node cannot be found by list-node xpath
+     * @throws CpsPathException when list-node xpath cannot be parsed
+     */
+    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath);
 }
