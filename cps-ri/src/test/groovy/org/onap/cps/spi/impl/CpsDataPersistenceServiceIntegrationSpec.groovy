@@ -21,7 +21,7 @@
  */
 package org.onap.cps.spi.impl
 
-import org.onap.cps.spi.exceptions.ConcurrencyException
+import org.onap.cps.spi.exceptions.DataValidationException
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -55,7 +55,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
     static final long UPDATE_DATA_NODE_FRAGMENT_ID = 4202L
     static final long UPDATE_DATA_NODE_SUB_FRAGMENT_ID = 4203L
-    static final long LIST_DATA_NODE_PARENT_FRAGMENT_ID = 4206L
+    static final long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
+    static final long LIST_DATA_NODE_PARENT203_FRAGMENT_ID = 4214L
+    static final long LIST_DATA_NODE_CHILD202_FRAGMENT_ID = 4204L
+    static final long LIST_DATA_NODE_PARENT202_FRAGMENT_ID = 4211L
 
     static final DataNode newDataNode = new DataNodeBuilder().build()
     static DataNode existingDataNode
@@ -159,7 +162,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'list-node elements added to existing parent node'
             objectUnderTest.addListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
         then: 'new entries successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
-            def parentFragment = fragmentRepository.getOne(LIST_DATA_NODE_PARENT_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
             assert allChildXpaths.size() == 5
             assert allChildXpaths.containsAll(listNodeXpaths)
@@ -253,7 +256,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             objectUnderTest.updateDataLeaves(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
                     "/parent-200/child-201", ['leaf-value': 'new'])
         then: 'leaves are updated for selected data node'
-            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -284,7 +287,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'replace data node tree is performed'
             objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -303,7 +306,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -323,7 +326,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -343,7 +346,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getOne(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -378,7 +381,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'list-node elements replaced within the existing parent node'
             objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
         then: 'child list elements are updated as expected, non-list element remains as is'
-            def parentFragment = fragmentRepository.getOne(LIST_DATA_NODE_PARENT_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
             assert allChildXpaths.size() == expectedChildXpaths.size()
             assert allChildXpaths.containsAll(expectedChildXpaths)
@@ -399,6 +402,46 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         where: 'following parameters were used'
             scenario                     | parentNodeXpath | listNodeXpaths || expectedException
             'parent node does not exist' | '/unknown'      | ['irrelevant'] || DataNodeNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete list-node content of #scenario.'() {
+        given: 'list node data fragments are present in database'
+        when: 'list-node elements deleted within the existing parent node'
+            objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+        then: 'child list elements are removed as expected, non-list element remains as is'
+            def parentFragment = fragmentRepository.getById(listNodeFragmentID)
+            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            assert allChildXpaths.size() == expectedChildXpaths.size()
+            assert allChildXpaths.containsAll(expectedChildXpaths)
+        where: 'following parameters were used'
+            scenario                                     | listNodeXpaths                                               | listNodeFragmentID                   || expectedChildXpaths
+            'existing list-node'                         | '/parent-203/child-204[@key="A"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]']
+            'existing list-node'                         | '/parent-203/child-204[@key="X"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="A"]']
+            'existing grand-child list node'             | '/parent-203/child-204[@key="X"]/grand-child-204[@key2="Y"]' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]', '/parent-203/child-204[@key="A"]']
+            'existing list-node with two keys'           | '/parent-202/child-205[@key="A" and @key2="B"]'              | LIST_DATA_NODE_PARENT202_FRAGMENT_ID || ['/parent-202/child-206[@key="A"]']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete list-node fragment error scenario: #scenario.'() {
+        given: 'list node data fragments are present in database'
+        when: 'list-node elements are deleted under existing parent node'
+            objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'following parameters were used'
+            scenario                                           | listNodeXpaths                                     || expectedException
+            'existing list-node'                               | '/parent-203/child-204'                            || DataValidationException
+            'existing grandchild list-node'                    | '/parent-200/child-202/grand-child-202'            || DataValidationException
+            'existing grand-child list node with key'          | '/parent-203/child-204[@key="X"]/grand-child-204'  || DataValidationException
+            'list parent node does not exist'                  | '/unknown/unknown'                                 || DataNodeNotFoundException
+            'list child nodes parent does not exist'           | '/parent-200/unknown'                              || DataValidationException
+            'list child nodes parent does not exist'           | '/parent-200/unknown[@key="C"]'                    || DataNodeNotFoundException
+            'list grandchild nodes parent does not exist'      | '/parent-200/unknown/unknown'                      || DataNodeNotFoundException
+            'non-existing parent with existing list-node'      | '/unknown/child-204'                               || DataNodeNotFoundException
+            'non-existing parent with existing list-node & key'| '/unknown/child-204[@key="A"]'                     || DataNodeNotFoundException
+            'valid with non existing key'                      | '/parent-200/child-202/grand-child-202[@key="A"]'  || DataNodeNotFoundException
+            'child list node without key'                      | '/parent-200/child-204/grand-child-204'            || DataNodeNotFoundException
     }
 
     static Collection<DataNode> buildDataNodeCollection(xpaths) {

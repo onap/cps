@@ -34,6 +34,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -48,6 +50,8 @@ import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsPathException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -82,6 +86,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@\\S+?]){0,1})";
+    private static final String REG_EX_FOR_LIST_NODE_KEY = "(\\@(.*?))+( and)*\\]";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -290,9 +295,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final Collection<DataNode> dataNodes) {
         final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
-        final var listNodeXpath = firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("["));
-        removeListNodeDescendants(parentEntity, listNodeXpath);
+        var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
+        firstChildNodeXpath =  firstChildNodeXpath.replaceAll(REG_EX_FOR_LIST_NODE_KEY, "");
+        removeListNodeDescendants(parentEntity, firstChildNodeXpath);
         final Set<FragmentEntity> childFragmentEntities = dataNodes.stream().map(
             dataNode -> convertToFragmentWithAllDescendants(
                 parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode)
@@ -301,10 +306,28 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentRepository.save(parentEntity);
     }
 
+    @Override
+    @Transactional
+    public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+        final var parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
+        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final String descendantNode = listNodeXpath.substring(listNodeXpath.lastIndexOf('/'), listNodeXpath.length());
+        final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(descendantNode);
+        final Predicate<FragmentEntity> xpathIsValidForAChildFragment =
+            (fragment) -> fragment.getXpath().equals(listNodeXpath);
+        if (!descendantNodeHasListNodeKey.find()) {
+            throw new DataValidationException("Invalid xpath.", "Xpath does not direct to a List-Node.");
+        } else if (parentEntity.getChildFragments().stream().anyMatch(xpathIsValidForAChildFragment)) {
+            removeListNodeDescendants(parentEntity, listNodeXpath);
+        } else {
+            throw new DataNodeNotFoundException(parentEntity.getDataspace().getName(),
+                parentEntity.getAnchor().getName(), listNodeXpath);
+        }
+    }
+
     private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
-        final String listNodeXpathPrefix = listNodeXpath + "[";
         if (parentFragmentEntity.getChildFragments()
-            .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
+            .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpath))) {
             fragmentRepository.save(parentFragmentEntity);
         }
     }
