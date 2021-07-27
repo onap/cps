@@ -16,6 +16,24 @@
       "revId": "15b93e7ad7db7372d51c4c1ad45f95d463aaaffc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fdb71c5_26555474",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/PersistenceServicesSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f60cda3a_980d452e",
+      "revId": "15b93e7ad7db7372d51c4c1ad45f95d463aaaffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -259,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "d6cf0623_355e558b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c958ce20_2ce773db",
+      "range": {
+        "startLine": 62,
+        "startChar": 25,
+        "endLine": 62,
+        "endChar": 37
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35b1acdd_e77e47f7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -423,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "f2666672_60637f95",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73104429_9071c263",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 101
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8858841c_87630f36",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -443,6 +491,30 @@
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58d0012f_70f02041",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8858841c_87630f36",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -469,6 +541,30 @@
     },
     {
       "key": {
+        "uuid": "7e049d01_92a860fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "We get an error here is if we don\u0027t remove the square bracket which wraps the string\nFound an unexpected array nested under (org:onap:cps:ncmp?revision\u003d2021-05-20)dmi-registry\".\nThis comes from the mapper.writevalueasstring function above.",
+      "parentUuid": "da527b7d_e53426dc",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 107
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8fffdedc_75f0f7e1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
         "patchSetId": 11
@@ -480,6 +576,30 @@
       "writtenOn": "2021-07-27T13:46:59Z",
       "side": 1,
       "message": "It represents only one property. And there is another class AdditionalProperty inside the PersistenceCMHandle. Do we need these two separate classes?",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a16d608_a112da40",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "There are two potential properties. We use this model for the initial mapping of the properties to their values, whereas the second model is for persisting to the DB. The naming is confusing, the key in both cases is name and value. Value isn\u0027t a value in the mapping sense.",
+      "parentUuid": "8fffdedc_75f0f7e1",
       "range": {
         "startLine": 28,
         "startChar": 13,
@@ -607,6 +727,30 @@
     },
     {
       "key": {
+        "uuid": "75f37682_6cb59f16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "CM Handle is the initial model class which handles the data we receive from DMI, whereas the PersistenceCmHandle is what we then map the values received to before we persist the data to our own DB. Me and Toine came to this naming convention. It can be changed on further discussion if you feel it is not appropriate.",
+      "parentUuid": "b9a4977d_d861e06e",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1d7664f_9274635c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 11
@@ -627,6 +771,30 @@
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c684f15_9ca9101f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1d7664f_9274635c",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 9
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -673,6 +841,30 @@
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7ea817_98659a01",
+        "filename": "cps-ncmp-service/src/test/java/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-27T19:13:52Z",
+      "side": 1,
+      "message": "This was left over from old files which read the json data. Is now removed 😊",
+      "parentUuid": "0b81c4d6_c4bfc1e2",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
