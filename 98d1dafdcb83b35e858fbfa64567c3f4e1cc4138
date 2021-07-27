@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2e1171a_f139fbcc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T22:40:30Z",
+      "side": 1,
+      "message": "recommended to use constructor autowiring.\nSame comment for all the @component",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50718a5f_aedb152a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T22:40:30Z",
+      "side": 1,
+      "message": "As persistenceCmHandlesList is getting created only outside the loop, we can execute this statement outside the loop.",
+      "range": {
+        "startLine": 118,
+        "startChar": 16,
+        "endLine": 118,
+        "endChar": 76
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0af054f5_d8f28a51",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T22:40:30Z",
+      "side": 1,
+      "message": "Instead of persistenceCmHandlesLists if we use persistenceCmHandlesList variable, we don\u0027t have to trim the writeObjectDataAsString. \n\nSuggestion: \n\nfinal String writeObjectDataAsString \u003d mapper.writeValueAsString(persistenceCmHandlesList);\n cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, \"/dmi-registry\",\n                writeObjectDataAsString);\n\n-----------\nWe don\u0027t need \u0027persistenceCmHandlesLists\u0027 variable anymore.",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 104
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03be9813_104abba1",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/fragment.csv",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T22:40:30Z",
+      "side": 1,
+      "message": "Do we still need this file?",
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
