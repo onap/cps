@@ -117,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "077afac6_08d25bc6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "it is recommended to us constructor autowiring",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c958ce20_2ce773db",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -202,6 +225,98 @@
         "startChar": 14,
         "endLine": 109,
         "endChar": 21
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73104429_9071c263",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "we are creating new PersistenceCMHandleList for each CM Handle and and at the end we will have same number of peristenceCMHandlesList as we have CMhandle.\nIs it expected?",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 101
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8858841c_87630f36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "we are adding persistenceCmHandle in persistenceCMHandles but we never reset the value of  persistenceCmHandles. So the last persistenceCMHandlesList will have all the cmHandles.\nIs it expected?",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da527b7d_e53426dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "What are we removing here?",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 107
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fffdedc_75f0f7e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "It represents only one property. And there is another class AdditionalProperty inside the PersistenceCMHandle. Do we need these two separate classes?",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 33
       },
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -301,6 +416,29 @@
     },
     {
       "key": {
+        "uuid": "b9a4977d_d861e06e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "PersistenceCMHandle and CMHandle. These two class names are similar and does not tell much what they represent.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1d7664f_9274635c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 11
@@ -340,6 +478,29 @@
         "startChar": 2,
         "endLine": 101,
         "endChar": 3
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b81c4d6_c4bfc1e2",
+        "filename": "cps-ncmp-service/src/test/java/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-27T13:46:59Z",
+      "side": 1,
+      "message": "Where is it being used? and the .json files inside the resources folder.",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 22
       },
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
