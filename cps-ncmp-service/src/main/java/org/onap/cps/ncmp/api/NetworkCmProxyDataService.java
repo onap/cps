@@ -98,4 +98,14 @@ public interface NetworkCmProxyDataService {
      */
     void replaceNodeTree(@NonNull String cmHandle, @NonNull String parentNodeXpath, @NonNull String jsonData);
 
+    /**
+     * Fetch all modules from a cm-handle.
+     *
+     * @param cmHandle        The identifier for a network function, network element, subnetwork or any other cm object
+     *                        by managed Network CM Proxy
+     *
+     * @return json string for all modules
+     */
+    String getAllModules(@NonNull String cmHandle);
+
 }

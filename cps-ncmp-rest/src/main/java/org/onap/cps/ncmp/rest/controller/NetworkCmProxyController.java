@@ -92,4 +92,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> getAllModulesByCmHandle(final String cmHandle) {
+        networkCmProxyDataService.getAllModules(cmHandle);
+    }
 }

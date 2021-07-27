@@ -23,6 +23,8 @@
 package org.onap.cps.ncmp.api.impl;
 
 import java.util.Collection;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
@@ -81,5 +83,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+    }
+
+    @Override
+    public String getAllModules(@NonNull String cmHandle) {
+        return null;
     }
 }
