@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7b90fa07_5d20ed32",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-28T14:20:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2e1171a_f139fbcc",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50718a5f_aedb152a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "472a3fc4_fbfc58de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-28T14:20:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50718a5f_aedb152a",
+      "range": {
+        "startLine": 118,
+        "startChar": 16,
+        "endLine": 118,
+        "endChar": 76
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c59436d0_d36582be",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-28T14:20:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0af054f5_d8f28a51",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 104
+      },
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03be9813_104abba1",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/fragment.csv",
         "patchSetId": 13
@@ -82,6 +154,24 @@
       "writtenOn": "2021-07-27T22:40:30Z",
       "side": 1,
       "message": "Do we still need this file?",
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c86316ef_b175380c",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/fragment.csv",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-28T14:20:32Z",
+      "side": 1,
+      "message": "We decided to revert these changes and keep this file to keep it consistent with how other data is loaded into the DB",
+      "parentUuid": "03be9813_104abba1",
       "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
