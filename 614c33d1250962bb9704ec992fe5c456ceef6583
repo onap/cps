@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "33b02d4c_2c43c3bf",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-28T11:14:43Z",
+      "side": 1,
+      "message": "agree, neither is right or wrong but so far we have put \u0027large; json definitions in separate files with a meaningful name. I have a slight preference for that and at this stage it is an established pattenr so lets keep using that",
+      "parentUuid": "8bb4e254_6bf4ea53",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 81
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "936cb761_27f4b8ad",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
