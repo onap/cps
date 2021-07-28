@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "981f76a9_a5bd9368",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-28T21:57:21Z",
+      "side": 1,
+      "message": "getOne is deprecated. To be replaced by getById.",
+      "range": {
+        "startLine": 410,
+        "startChar": 52,
+        "endLine": 410,
+        "endChar": 58
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fda6de6b_9f8f0a09",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-28T21:57:21Z",
+      "side": 1,
+      "message": "I\u0027m wondering if this is really a cps path exception as path is still valid. Isn\u0027t it that  deleting any root list node is not allowed ?",
+      "range": {
+        "startLine": 227,
+        "startChar": 19,
+        "endLine": 227,
+        "endChar": 35
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
