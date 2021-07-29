@@ -784,6 +784,30 @@
       "revId": "630e73b454e30c4a947d8e843ee214791b7758ca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3048e6ba_6ead392a",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-29T11:42:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e65a9ae5_666de0d1",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "630e73b454e30c4a947d8e843ee214791b7758ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
