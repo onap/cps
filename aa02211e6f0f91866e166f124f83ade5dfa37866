@@ -45,6 +45,30 @@
       "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8386338e_07365d4d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-29T08:38:21Z",
+      "side": 1,
+      "message": "Correct me if I\u0027m wrong but the way I was understanding it was that in this case \"/unknown\" is a parent node so the child list-node has been left empty. So \"/unknown/child\" would be valid as long as \"child\" exists. Since an invalid XPath has been entered for this usage I used CpsPathException. Is there a better Exception I can use instead?",
+      "parentUuid": "fda6de6b_9f8f0a09",
+      "range": {
+        "startLine": 227,
+        "startChar": 19,
+        "endLine": 227,
+        "endChar": 35
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
