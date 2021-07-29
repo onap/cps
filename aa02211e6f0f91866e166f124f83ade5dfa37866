@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c2e21b5d_c8f01c53",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-29T15:51:50Z",
+      "side": 1,
+      "message": "I will update here. getOne is used by other tests in the same file (Line 162). Should I update those to getById too while I am editing the file?",
+      "parentUuid": "981f76a9_a5bd9368",
+      "range": {
+        "startLine": 410,
+        "startChar": 52,
+        "endLine": 410,
+        "endChar": 58
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a24a6659_1f5cc63d",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
