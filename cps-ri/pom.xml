@@ -32,6 +32,14 @@
 
     <artifactId>cps-ri</artifactId>
 
+    <repositories>
+        <repository>
+            <id>nordix-liquibase-repo</id>
+            <name>liquibase</name>
+            <url>https://artifactory.nordix.org/artifactory/liquibase</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -78,6 +86,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <version>4.4.2-nordix</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
