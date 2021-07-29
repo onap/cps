@@ -175,6 +175,24 @@
       "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4608bd13_f9046b89",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/fragment.csv",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "This refactoring will be done as a part of another jira story.",
+      "parentUuid": "c86316ef_b175380c",
+      "revId": "98d1dafdcb83b35e858fbfa64567c3f4e1cc4138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

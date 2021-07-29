@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "01390b31_a2f56cee",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "33b02d4c_2c43c3bf",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 81
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "936cb761_27f4b8ad",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
@@ -237,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "a04026e1_6cd3b81a",
+        "filename": "cps-ncmp-rest/src/test/resources/cmHandlesBody.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "Same issue in openapi.yml too",
+      "parentUuid": "c5f6b35c_ef1843d2",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "077afac6_08d25bc6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -257,6 +305,30 @@
       "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95e9eb6_8f978297",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "077afac6_08d25bc6",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -589,6 +661,30 @@
     },
     {
       "key": {
+        "uuid": "4cd33220_0e88b402",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "This line is removed in the future patches.",
+      "parentUuid": "7e049d01_92a860fb",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 107
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8fffdedc_75f0f7e1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
         "patchSetId": 11
@@ -763,6 +859,30 @@
       "side": 1,
       "message": "CM Handle is the initial model class which handles the data we receive from DMI, whereas the PersistenceCmHandle is what we then map the values received to before we persist the data to our own DB. Me and Toine came to this naming convention. It can be changed on further discussion if you feel it is not appropriate.",
       "parentUuid": "b9a4977d_d861e06e",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a32e1730_1d7e1f5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:26:50Z",
+      "side": 1,
+      "message": "We also have a class defined in the ncmp-rest which represents the input from DMI. \nI am wondering do we need two classes within the ncmp-service to represent service input and db representation? \n\nI suggest to use only one. The data conversion from controller model to service model should be handled in the ncmp-rest.",
+      "parentUuid": "75f37682_6cb59f16",
       "range": {
         "startLine": 40,
         "startChar": 13,
