@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98c2544f_5607e526",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:11:33Z",
+      "side": 1,
+      "message": "I was looking at the API def in \u0027https://wiki.onap.org/display/DW/CPS-390+Spike%3A+Define+and+Agree+DMI+Plugin+REST+Interface\u0027 and as per that additionalProperties is a Map.\n\nRequest Body : {\n      \"dmiPlugin\" : \"onap.dmi.plugin\",\n      \"createdCmHandles\" : [ {   \"cmHandle\" : \"rf4er5454\",\n                                 \"additionalProperties\" :\n                                   { \"subSystemId\" : \"system-001\" }\n                             }, {..} ],\n      \"updatedCmHandles\" : [ .. ],\n      \"removedCmHandles\" : [ \"node-1\", \"node-2\" , ... ]\n  }\n\nI hope I am looking at the right place.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feb813cb_ee59b009",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:11:33Z",
+      "side": 1,
+      "message": "String response is expected but we don\u0027t return anything",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 56
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a47f9ff0_a0953841",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-29T12:11:33Z",
+      "side": 1,
+      "message": "Why this method was created when we already have setter?\nIf intention is to add one PerisistenceCMHandler at a time, the implementation needs to be changed.",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 0
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
