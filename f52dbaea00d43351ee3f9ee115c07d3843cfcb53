@@ -68,6 +68,29 @@
       "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69aa43cd_1e1e3492",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-07-30T12:28:55Z",
+      "side": 1,
+      "message": "Not sure why this is removed but I think we should not remove it.",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 68
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
