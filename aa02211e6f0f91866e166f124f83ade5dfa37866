@@ -306,6 +306,29 @@
     },
     {
       "key": {
+        "uuid": "9d42e4dd_1575c656",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-30T22:56:06Z",
+      "side": 1,
+      "message": "Which json data the exception is about ?\nIs there any unit tests to illustrate this error scenario ?",
+      "range": {
+        "startLine": 131,
+        "startChar": 46,
+        "endLine": 131,
+        "endChar": 55
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33c59dd2_dc348c9b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
