@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "732b3d4a_64e654a1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "HttpStatus.CREATED is an HTTP status which is expected to be sent in ResponseEntity. But apart from that, we are expected to return a string in response body too.\n\nIf it is not expected, wiki and openapi.yml should be updated.",
+      "parentUuid": "f80b96dc_efb06ff4",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 56
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a47f9ff0_a0953841",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
         "patchSetId": 15
@@ -164,6 +188,30 @@
       "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f23bd1e5_ba45b645",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "I think he suggested to add one cmhandle at a time otherwise setter should be enough. \n\nIf this method replacing the content, then setCmHandles is a better name then addCMHandles. \u0027Add\u0027 gives the impression that we adding to something existing which is not the case in this method.\n\nI also posted a suggestion in the PersistenceCMHandleList patchset 14 based on Toine\u0027s comment.",
+      "parentUuid": "91568b62_374b7b73",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 0
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

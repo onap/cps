@@ -25,6 +25,98 @@
     },
     {
       "key": {
+        "uuid": "86b698da_617375d7",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi-registration.json",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "The additional properties are little confusing.\n\nCan we change it to something else which makes it clear that these two key-value pair are not related. \n\nInstead of :\n\"additionalProperties\": {\n     \"name\": \"example-name\",\n     \"value\": \"example-value\"\n}\nto \n\n\"additionalProperties\": {\n       \"example-name\": \"example-value\"\n}",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 34
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "904872a7_9472e9b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "Either we change it to setCmHandles or call new ( which adds only one cmhandle) addCMHandle inside the loop.",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72cf5f1f_923c1000",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "Is this class still used?",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c0ca94_04923559",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-07-30T13:24:40Z",
+      "side": 1,
+      "message": "As we are replacing the value in additionalProperties, we should name it setAdditionalProperties",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8f8459f_d7800ee5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 16
