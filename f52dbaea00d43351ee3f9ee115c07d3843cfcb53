@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "cefce897_3f312cd9",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi-registration.json",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T16:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86b698da_617375d7",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 34
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "904872a7_9472e9b7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
@@ -140,6 +164,30 @@
       "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6880c3ed_21eb04c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T16:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "904872a7_9472e9b7",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "16797d66_a138dd53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T16:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72cf5f1f_923c1000",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6c0ca94_04923559",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 16
@@ -224,6 +296,30 @@
       "writtenOn": "2021-07-30T16:34:10Z",
       "side": 1,
       "message": "agreed",
+      "parentUuid": "d6c0ca94_04923559",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1bde69_685502ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T16:51:46Z",
+      "side": 1,
+      "message": "We aren\u0027t replacing values here Renu. We use this method to add the mapped key and value to a list of additional properties.",
       "parentUuid": "d6c0ca94_04923559",
       "range": {
         "startLine": 54,
