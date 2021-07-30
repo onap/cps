@@ -255,6 +255,30 @@
       "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2c6bda2_ae75f6fc",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-07-30T15:15:59Z",
+      "side": 1,
+      "message": "@Dylan i dont see any change in this file except some new lines are being removed, can be restored.\n@Shiva this is a rollback statement, if creation of this anchor failed anyhow this will execute.",
+      "parentUuid": "69aa43cd_1e1e3492",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 68
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
