@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6c6a89b9_2f7289e2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:10:53Z",
+      "side": 1,
+      "message": "so instead of the \"properties\" OpenAPI keyword we now use \u0027additionalProperties\u0027 keyword which defined a map in open API",
+      "parentUuid": "e5592ba2_61de053f",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feb813cb_ee59b009",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 15
