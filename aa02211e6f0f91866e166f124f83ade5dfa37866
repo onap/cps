@@ -213,6 +213,29 @@
     },
     {
       "key": {
+        "uuid": "6953cb1b_1331070e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-07-30T14:48:20Z",
+      "side": 1,
+      "message": "As per the story, if the list-node xpath is provided like /parent-201/child-204[key\u003d\"A\"], even then the deletion should work as it would for /parent-201/child-204.\nPlease add a scenario to test the same.\n\nAlso add a scenario to test the deletion of a list-node like /parent-201/child-203/grandchild-205[@key\u003d\"A\"]",
+      "range": {
+        "startLine": 416,
+        "startChar": 40,
+        "endLine": 416,
+        "endChar": 61
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0864c74_20c7f390",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
