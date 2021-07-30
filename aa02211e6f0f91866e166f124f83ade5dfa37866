@@ -396,6 +396,30 @@
       "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60319ca9_bccddf87",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-07-30T22:31:32Z",
+      "side": 1,
+      "message": "As per the way CpsPathException was designed and is currently used, it is for errors while parsing cpsPath expression: \n\nhttps://github.com/onap/cps/blob/master/cps-service/src/main/java/org/onap/cps/spi/exceptions/CpsPathException.java#L27\n\nhttps://github.com/onap/cps/blob/master/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java#L193\n\nAnd here the error might not be caused by a cps path parsing error. It is more that this specific cps path (that might valid from a grammar point of view) is not supported the this specific operation.\n\nSame comment for line 218 above. It does not seem to me to be a cps path parsing error, It is more a missing mandatory parameter error.\n\nOn the other side, if an cps path that cannot be parsed is provided, such as @/unknown for example, no CpsPathException is thrown.\n\nThis could be a bit confusing and misleading for clients if precise and consistent explanation of the error is not provided.\n\nWe can still have a quick team discussion about the usage of CPSPathExcpetion here.",
+      "parentUuid": "8386338e_07365d4d",
+      "range": {
+        "startLine": 227,
+        "startChar": 19,
+        "endLine": 227,
+        "endChar": 35
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
