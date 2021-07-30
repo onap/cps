@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e5592ba2_61de053f",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T09:59:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98c2544f_5607e526",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feb813cb_ee59b009",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2021-07-29T12:11:33Z",
       "side": 1,
       "message": "String response is expected but we don\u0027t return anything",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 56
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f80b96dc_efb06ff4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T09:59:16Z",
+      "side": 1,
+      "message": "HttpStatus.CREATED is of type String Renu. This is generated through the open api yml files and can be found in NetworkCmProxyApi.java",
+      "parentUuid": "feb813cb_ee59b009",
       "range": {
         "startLine": 112,
         "startChar": 8,
@@ -68,6 +116,30 @@
       "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91568b62_374b7b73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T09:59:16Z",
+      "side": 1,
+      "message": "This was suggested by Toine from the previous patchset, as to remove more list creations within the service layer class. I left in the getter and setter accidentally, and have no removed them!",
+      "parentUuid": "a47f9ff0_a0953841",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 0
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

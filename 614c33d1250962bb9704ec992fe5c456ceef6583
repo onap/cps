@@ -285,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "bcd0d510_63b427f8",
+        "filename": "cps-ncmp-rest/src/test/resources/cmHandlesBody.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-07-30T09:59:16Z",
+      "side": 1,
+      "message": "Done\n\nThis can be kept the same. But map now created, so values don\u0027t have to be \"name\" and \"value\" and can be anything.",
+      "parentUuid": "a04026e1_6cd3b81a",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "614c33d1250962bb9704ec992fe5c456ceef6583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "077afac6_08d25bc6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
