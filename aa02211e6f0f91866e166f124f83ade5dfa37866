@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c77ea880_69ebb394",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "shoudl this be LASTindexOf ?!",
+      "range": {
+        "startLine": 307,
+        "startChar": 77,
+        "endLine": 307,
+        "endChar": 83
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "981f76a9_a5bd9368",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "I will update here. getOne is used by other tests in the same file (Line 162). Should I update those to getById too while I am editing the file?",
       "parentUuid": "981f76a9_a5bd9368",
+      "range": {
+        "startLine": 410,
+        "startChar": 52,
+        "endLine": 410,
+        "endChar": 58
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ae8700_cf076841",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "yeas always good to update other tests as well, if you run into big problems check with me and/or Bruno again",
+      "parentUuid": "c2e21b5d_c8f01c53",
       "range": {
         "startLine": 410,
         "startChar": 52,
@@ -143,6 +190,52 @@
     },
     {
       "key": {
+        "uuid": "8041859d_0ee1c8e9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "can you add test with a grandparent (related to my comment on lastIndexOf \u0027/\u0027)",
+      "range": {
+        "startLine": 416,
+        "startChar": 40,
+        "endLine": 416,
+        "endChar": 52
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0864c74_20c7f390",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "probably use existing parent... (or even have 2 cases)",
+      "range": {
+        "startLine": 429,
+        "startChar": 45,
+        "endLine": 429,
+        "endChar": 52
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbca646f_c1dfa4bc",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 2
@@ -187,6 +280,52 @@
       "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33c59dd2_dc348c9b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "I think we also need at least 2 / tokens ?!\nMaybe a regex check might be better (could be handles as future robustness-improvement user story)",
+      "range": {
+        "startLine": 120,
+        "startChar": 1,
+        "endLine": 124,
+        "endChar": 9
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c996ffe8_d05dd21a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T11:19:51Z",
+      "side": 1,
+      "message": "I think these 2 tets can easily be combined into 1",
+      "range": {
+        "startLine": 212,
+        "startChar": 1,
+        "endLine": 221,
+        "endChar": 50
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
