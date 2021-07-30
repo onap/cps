@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a0cc52e_f7c26627",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-30T10:20:19Z",
+      "side": 1,
+      "message": "At the moment, the existing list node scenario deletes the nodes associated with child-204 so child-204[@key\u003d\"A\"] and child-204[@key\u003d\"X\"]. That is why the only expected child xpath in the table is child-203. I think that tests the deletion of multiple datanodes but I can implement another test on different data if you think thats better?",
+      "parentUuid": "a24a6659_1f5cc63d",
+      "range": {
+        "startLine": 411,
+        "startChar": 0,
+        "endLine": 413,
+        "endChar": 66
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ccd8232_78f7b3fc",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d8df2374_ae8044fb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-30T10:20:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ccd8232_78f7b3fc",
+      "range": {
+        "startLine": 416,
+        "startChar": 63,
+        "endLine": 416,
+        "endChar": 65
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbca646f_c1dfa4bc",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 2
@@ -115,6 +163,30 @@
       "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bd9853c_648275f3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-07-30T10:20:19Z",
+      "side": 1,
+      "message": "They are yes",
+      "parentUuid": "cbca646f_c1dfa4bc",
+      "range": {
+        "startLine": 131,
+        "startChar": 5,
+        "endLine": 131,
+        "endChar": 9
+      },
+      "revId": "aa02211e6f0f91866e166f124f83ade5dfa37866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
