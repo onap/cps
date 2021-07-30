@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4bd1c800_34fd0186",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi-registration.json",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T16:34:10Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "86b698da_617375d7",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 34
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "904872a7_9472e9b7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
@@ -83,6 +107,30 @@
       "writtenOn": "2021-07-30T13:24:40Z",
       "side": 1,
       "message": "Either we change it to setCmHandles or call new ( which adds only one cmhandle) addCMHandle inside the loop.",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85ac1388_ae6de522",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T16:34:10Z",
+      "side": 1,
+      "message": "agreed that was my intention too",
+      "parentUuid": "904872a7_9472e9b7",
       "range": {
         "startLine": 128,
         "startChar": 12,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "6bd1dd91_f2845fd6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/AdditionalProperties.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T16:34:10Z",
+      "side": 1,
+      "message": "indeed, I agree again :-D",
+      "parentUuid": "72cf5f1f_923c1000",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6c0ca94_04923559",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 16
@@ -129,6 +201,30 @@
       "writtenOn": "2021-07-30T13:24:40Z",
       "side": 1,
       "message": "As we are replacing the value in additionalProperties, we should name it setAdditionalProperties",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a96b46b_bfaa8743",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T16:34:10Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "d6c0ca94_04923559",
       "range": {
         "startLine": 54,
         "startChar": 16,
@@ -270,6 +366,30 @@
       "side": 1,
       "message": "@Dylan i dont see any change in this file except some new lines are being removed, can be restored.\n@Shiva this is a rollback statement, if creation of this anchor failed anyhow this will execute.",
       "parentUuid": "69aa43cd_1e1e3492",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 68
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71aeb4ba_8128db94",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-07-30T16:34:10Z",
+      "side": 1,
+      "message": "this file should be removed from changelist: use checkout file in git)",
+      "parentUuid": "a2c6bda2_ae75f6fc",
       "range": {
         "startLine": 114,
         "startChar": 12,
