@@ -333,6 +333,30 @@
     },
     {
       "key": {
+        "uuid": "8fc8390a_8e073648",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-02T13:00:28Z",
+      "side": 1,
+      "message": "It is not a direct replace as input parameters is a map and additionalProperties type is a List. But logically we are removing all the values in the additionalProperties and adding them from the map. \nAs it is a replace, we should name it \u0027setAdditionalProperties\u0027",
+      "parentUuid": "ef1bde69_685502ec",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "f52dbaea00d43351ee3f9ee115c07d3843cfcb53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8f8459f_d7800ee5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 16
