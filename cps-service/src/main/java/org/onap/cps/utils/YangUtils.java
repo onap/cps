@@ -44,6 +44,7 @@ import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeS
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
+import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 @Slf4j
@@ -83,7 +84,7 @@ public class YangUtils {
     private static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final Optional<DataSchemaNode> optionalParentSchemaNode) {
         final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-            .getShared(schemaContext);
+            .getShared((EffectiveModelContext) schemaContext);
         final var normalizedNodeResult = new NormalizedNodeResult();
         final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
             .from(normalizedNodeResult);
