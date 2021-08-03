@@ -154,7 +154,7 @@ listNodeByCmHandleAndXpath:
     operationId: addListNodeElements
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
-      - $ref: 'components.yaml#/components/parameters/requiredXpathInQuery'
+      - $ref: 'components.yaml#/components/parameters/xpathInQuery'
     requestBody:
       required: true
       content:

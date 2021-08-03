@@ -47,15 +47,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private NetworkCmProxyDataService networkCmProxyDataService;
 
     @Override
-    public ResponseEntity<String> createNode(final String jsonData, final String cmHandle,
-        final String parentNodeXpath) {
+    public ResponseEntity<String> createNode(final String cmHandle, final String jsonData,
+                                             final String parentNodeXpath) {
         networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<String> addListNodeElements(final String jsonData, final String parentNodeXpath,
-        final String cmHandle) {
+    public ResponseEntity<String> addListNodeElements(final String cmHandle, final String jsonData,
+                                                      final String parentNodeXpath) {
         networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -80,15 +80,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(@Valid final String jsonData, final String cmHandle,
-        @Valid final String parentNodeXpath) {
+    public ResponseEntity<Object> replaceNode(final String cmHandle, @Valid final String jsonData,
+                                              @Valid final String parentNodeXpath) {
         networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(@Valid final String jsonData, final String cmHandle,
-        @Valid final String parentNodeXpath) {
+    public ResponseEntity<Object> updateNodeLeaves(final String cmHandle, @Valid final String jsonData,
+                                                   @Valid final String parentNodeXpath) {
         networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
