@@ -16,6 +16,29 @@
       "revId": "1895d0fd4e832dd6d35d4364a840d59ff7ad1cda",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c0ddd7b_e7223d59",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-03T11:42:26Z",
+      "side": 1,
+      "message": "version is already defined in dependencies. Do we need it here?",
+      "range": {
+        "startLine": 44,
+        "startChar": 45,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "1895d0fd4e832dd6d35d4364a840d59ff7ad1cda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
