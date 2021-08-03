@@ -21,6 +21,8 @@
 
 package org.onap.cps.rest.controller;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -41,8 +43,8 @@ public class DataRestController implements CpsDataApi {
     private CpsDataService cpsDataService;
 
     @Override
-    public ResponseEntity<String> createNode(final String jsonData, final String dataspaceName, final String anchorName,
-        final String parentNodeXpath) {
+    public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
+        final String jsonData, final String parentNodeXpath) {
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, jsonData);
         } else {
@@ -52,8 +54,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> addListNodeElements(final String jsonData, final String parentNodeXpath,
-        final String dataspaceName, final String anchorName) {
+    public ResponseEntity<String> addListNodeElements(final String parentNodeXpath,
+        final String dataspaceName, final String anchorName, final String jsonData) {
         cpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -74,22 +76,22 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(final String jsonData, final String dataspaceName,
-        final String anchorName, final String parentNodeXpath) {
+    public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
+        final String anchorName, final String jsonData, final String parentNodeXpath) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(final String jsonData, final String dataspaceName,
-        final String anchorName, final String parentNodeXpath) {
+    public ResponseEntity<Object> replaceNode(final String dataspaceName,
+        final String anchorName, @Valid final String jsonData, @Valid final String parentNodeXpath) {
         cpsDataService.replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<String> replaceListNodeElements(final String jsonData, final String parentNodeXpath,
-        final String dataspaceName, final String anchorName) {
+    public ResponseEntity<String> replaceListNodeElements(@NotNull @Valid final String parentNodeXpath,
+        final String dataspaceName, final String anchorName, @Valid final String jsonData) {
         cpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -28,6 +28,8 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
@@ -63,7 +65,7 @@ public class AdminRestController implements CpsAdminApi {
      * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
      */
     @Override
-    public ResponseEntity<String> createDataspace(final String dataspaceName) {
+    public ResponseEntity<String> createDataspace(@NotNull @Valid final String dataspaceName) {
         cpsAdminService.createDataspace(dataspaceName);
         return new ResponseEntity<>(dataspaceName, HttpStatus.CREATED);
     }
@@ -88,8 +90,8 @@ public class AdminRestController implements CpsAdminApi {
      * @return a {@Link ResponseEntity} of created schemaset name & {@link HttpStatus} CREATED
      */
     @Override
-    public ResponseEntity<String> createSchemaSet(final MultipartFile multipartFile,
-        final String schemaSetName, final String dataspaceName) {
+    public ResponseEntity<String> createSchemaSet(@NotNull @Valid final String schemaSetName,
+        final String dataspaceName, @Valid final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
     }
@@ -130,8 +132,8 @@ public class AdminRestController implements CpsAdminApi {
      * @return a ResponseEntity with the anchor name & {@link HttpStatus} CREATED
      */
     @Override
-    public ResponseEntity<String> createAnchor(final String dataspaceName, final String schemaSetName,
-        final String anchorName) {
+    public ResponseEntity<String> createAnchor(final String dataspaceName, @NotNull @Valid final String schemaSetName,
+        @NotNull @Valid final String anchorName) {
         cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
     }

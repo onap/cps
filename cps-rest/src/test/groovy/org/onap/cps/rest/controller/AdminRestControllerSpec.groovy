@@ -49,7 +49,7 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 
-@WebMvcTest
+@WebMvcTest(AdminRestController)
 class AdminRestControllerSpec extends Specification {
 
     @SpringBean
@@ -57,12 +57,6 @@ class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
-
-    @SpringBean
-    CpsDataService mockCpsDataService = Mock()
-
-    @SpringBean
-    CpsQueryService mockCpsQueryService = Mock()
 
     @SpringBean
     ModelMapper modelMapper = Spy()

@@ -41,23 +41,11 @@ import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
-@WebMvcTest
+@WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
 
     @SpringBean
-    CpsDataService mockCpsDataService = Mock()
-
-    @SpringBean
-    CpsModuleService mockCpsModuleService = Mock()
-
-    @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
-
-    @SpringBean
     CpsQueryService mockCpsQueryService = Mock()
-
-    @SpringBean
-    ModelMapper modelMapper = Mock()
 
     @Autowired
     MockMvc mvc

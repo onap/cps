@@ -46,23 +46,11 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 
-@WebMvcTest
+@WebMvcTest(DataRestController)
 class DataRestControllerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
-
-    @SpringBean
-    CpsModuleService mockCpsModuleService = Mock()
-
-    @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
-
-    @SpringBean
-    CpsQueryService mockCpsQueryService = Mock()
-
-    @SpringBean
-    ModelMapper modelMapper = Mock()
 
     @Autowired
     MockMvc mvc
