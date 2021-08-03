@@ -41,8 +41,8 @@ public class DataRestController implements CpsDataApi {
     private CpsDataService cpsDataService;
 
     @Override
-    public ResponseEntity<String> createNode(final String jsonData, final String dataspaceName, final String anchorName,
-        final String parentNodeXpath) {
+    public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
+                                             final String jsonData, final String parentNodeXpath) {
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, jsonData);
         } else {

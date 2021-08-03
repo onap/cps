@@ -95,7 +95,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .param('xpath', reqXpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.createDataNode(cmHandle, usedXpath, jsonData)
+            1 * mockNetworkCmProxyDataService.createDataNode(jsonData, usedXpath, cmHandle)
         and: 'response status indicates success'
             response.status == HttpStatus.CREATED.value()
         where: 'following parameters were used'
@@ -117,7 +117,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .param('xpath', parentNodeXpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData)
+            1 * mockNetworkCmProxyDataService.addListNodeElements(jsonData, cmHandle, parentNodeXpath)
         and: 'response status indicates success'
             response.status == HttpStatus.CREATED.value()
     }
