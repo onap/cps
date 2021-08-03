@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "2cdfda22_c0dfb6af",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-03T12:59:11Z",
+      "side": 1,
+      "message": "add a black space befoe starting parameters",
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94697b53_7987b1d1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-03T12:59:11Z",
+      "side": 1,
+      "message": "this method is specific to conversion of RestDmiPluginRegistration object... can this method be made more generic as the name suggests?",
+      "range": {
+        "startLine": 155,
+        "startChar": 34,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac5588be_d836fcf2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-03T12:59:11Z",
+      "side": 1,
+      "message": "Do we really need ObjectMapper here ? ModelMapper should suffice if its just an object conversion..",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 97
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9655281c_4b1024b6",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 19

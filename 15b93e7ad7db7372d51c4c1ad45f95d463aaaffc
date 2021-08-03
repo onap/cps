@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "860114a2_118d2d27",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-03T12:59:11Z",
+      "side": 0,
+      "message": "Is  this no longer required?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "15b93e7ad7db7372d51c4c1ad45f95d463aaaffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f60cda3a_980d452e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/PersistenceServicesSpec.groovy",
         "patchSetId": 11
