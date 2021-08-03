@@ -54,7 +54,7 @@ listNodeByDataspaceAndAnchor:
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
-      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
     requestBody:
       required: true
       content:
@@ -80,7 +80,7 @@ listNodeByDataspaceAndAnchor:
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
-      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
     requestBody:
       required: true
       content:
