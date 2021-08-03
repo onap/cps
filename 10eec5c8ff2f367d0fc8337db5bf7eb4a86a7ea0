@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7215916e_a5c50b42",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cdfda22_c0dfb6af",
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94697b53_7987b1d1",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 19
@@ -30,6 +48,30 @@
       "writtenOn": "2021-08-03T12:59:11Z",
       "side": 1,
       "message": "this method is specific to conversion of RestDmiPluginRegistration object... can this method be made more generic as the name suggests?",
+      "range": {
+        "startLine": 155,
+        "startChar": 34,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dff53db_da1c9e46",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Mentioned in patchset 14 by Toine to keep the name until we have similar methods.",
+      "parentUuid": "94697b53_7987b1d1",
       "range": {
         "startLine": 155,
         "startChar": 34,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "1af05695_4f2b004c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Is there any advantage to using Model Mapper here over Object Mapper? We used Model Mapper, as it was what was previously used when writing the object as a string, before it was suggested in patchset 11 by Renu to use convert value instead",
+      "parentUuid": "ac5588be_d836fcf2",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 97
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9655281c_4b1024b6",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 19
@@ -85,6 +151,30 @@
       "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7621190_9d043075",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9655281c_4b1024b6",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 50
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "555fd42c_91d9b0bf",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41d8b621_d944ee42",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3283b04_8f7e2502",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 19
@@ -125,6 +239,24 @@
       "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae5dcdca_27f1f305",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3283b04_8f7e2502",
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -148,6 +280,30 @@
       "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68ab2079_683f37b6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76b1b4b5_acf79e55",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

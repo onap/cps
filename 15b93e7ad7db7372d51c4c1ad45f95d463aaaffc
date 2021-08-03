@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a71139c7_25152df7",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 0,
+      "message": "Hey Aditya, this wasn\u0027t used previously within NCMP Proxy which is why it was removed. I can add it back in, but I don\u0027t see the point in keeping unused objects within these files.",
+      "parentUuid": "860114a2_118d2d27",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "15b93e7ad7db7372d51c4c1ad45f95d463aaaffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f60cda3a_980d452e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/PersistenceServicesSpec.groovy",
         "patchSetId": 11

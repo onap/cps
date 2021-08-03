@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "0a492b91_4c09f7ae",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-03T15:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25864179_526345b6",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 56
+      },
+      "revId": "1c829a3b7836b106612f0cd2aa5bdc17fd440b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47f9ff0_a0953841",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
         "patchSetId": 15
