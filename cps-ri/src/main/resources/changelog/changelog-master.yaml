@@ -35,3 +35,5 @@ databaseChangeLog:
       file: changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml
   - include:
       file: changelog/db/changes/10-loadData-dmi-registry-fragment.yaml
+  - include:
+      file: changelog/db/changes/11-add-column-to-yang-resources-table.yaml

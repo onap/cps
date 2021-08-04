@@ -21,10 +21,12 @@
 
 package org.onap.cps.api.impl;
 
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +63,10 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final CascadeDeleteAllowed cascadeDeleteAllowed) {
         cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName, cascadeDeleteAllowed);
     }
+
+    @Override
+    public List<ModuleReference> getAllYangResourcesModuleReferences() {
+        return cpsModulePersistenceService.getAllYangResourcesModuleReferences();
+    }
+
 }

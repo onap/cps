@@ -22,9 +22,16 @@
 
 package org.onap.cps.spi.impl;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,14 +49,22 @@ import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
+import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.opendaylight.yangtools.yang.common.Revision;
+import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
+import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
+import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Backoff;
@@ -63,6 +78,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
     private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile(".*\\(checksum\\)=\\((\\w+)\\).*");
+    private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
+            .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
     @Autowired
     private YangResourceRepository yangResourceRepository;
@@ -83,6 +100,29 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private CpsAdminPersistenceService cpsAdminPersistenceService;
 
     @Override
+    public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        return schemaSetEntity.getYangResources().stream().collect(
+            Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+    }
+
+    @Override
+    public Map<String, String> getYangSchemaSetResources(final String dataspaceName, final String anchorName) {
+        final var anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+        return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
+    }
+
+    @Override
+    public List<ModuleReference> getAllYangResourcesModuleReferences() {
+        final List<YangResourceModuleReference> yangResourceModuleReferenceList =
+                yangResourceRepository.findAllModuleNameAndRevision();
+        return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
     // can occur in case of specific concurrent requests.
@@ -91,7 +131,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Map<String, String> yangResourcesNameToContentMap) {
 
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
+        final var yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
         final var schemaSetEntity = new SchemaSetEntity();
         schemaSetEntity.setName(schemaSetName);
         schemaSetEntity.setDataspace(dataspaceEntity);
@@ -103,13 +143,37 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         }
     }
 
+    @Override
+    @Transactional
+    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
+        final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);
+        if (!anchorEntities.isEmpty()) {
+            if (cascadeDeleteAllowed != CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) {
+                throw new SchemaSetInUseException(dataspaceName, schemaSetName);
+            }
+            fragmentRepository.deleteByAnchorIn(anchorEntities);
+            anchorRepository.deleteAll(anchorEntities);
+        }
+        schemaSetRepository.delete(schemaSetEntity);
+        yangResourceRepository.deleteOrphans();
+    }
+
     private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
         final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
+                final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
+                            entry.getValue());
                 final var yangResourceEntity = new YangResourceEntity();
                 yangResourceEntity.setName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
+                yangResourceEntity.setModuleName(moduleNameAndRevisionMap.get("moduleName"));
+                yangResourceEntity.setRevision(moduleNameAndRevisionMap.get("revision"));
                 yangResourceEntity.setChecksum(checksum);
                 return yangResourceEntity;
             })
@@ -147,6 +211,42 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             .build();
     }
 
+    private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
+        final Map<String, String> metaDataMap = new HashMap<>();
+        final var revisionSourceIdentifier =
+                createIdentifierFromSourceName(checkNotNull(sourceName));
+
+        final var tempYangTextSchemaSource = new YangTextSchemaSource(revisionSourceIdentifier) {
+            @Override
+            protected MoreObjects.ToStringHelper addToStringAttributes(
+                    final MoreObjects.ToStringHelper toStringHelper) {
+                return toStringHelper;
+            }
+
+            @Override
+            public InputStream openStream() {
+                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
+            }
+        };
+        try {
+            final var dependencyInfo = YangModelDependencyInfo.forYangText(tempYangTextSchemaSource);
+            metaDataMap.put("moduleName", dependencyInfo.getName());
+            metaDataMap.put("revision", dependencyInfo.getFormattedRevision());
+        } catch (final YangSyntaxErrorException | IOException e) {
+            throw new ModelValidationException("Yang resource is invalid.",
+                   String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
+        }
+        return metaDataMap;
+    }
+
+    private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
+        final var matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
+        if (matcher.matches()) {
+            return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
+        }
+        return RevisionSourceIdentifier.create(sourceName);
+    }
+
     /**
      * Convert the specified data integrity violation exception into a CPS duplicated Yang resource exception
      * if the cause of the error is a yang checksum database constraint violation.
@@ -179,20 +279,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     /**
-     * Get the checksum that caused the constraint violation exception.
-     * @param exception the exception having the checksum in error.
-     * @return the checksum in error or null if not found.
-     */
-    private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
-        String checksum = null;
-        final var matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
-        if (matcher.find() && matcher.groupCount() == 1) {
-            checksum = matcher.group(1);
-        }
-        return checksum;
-    }
-
-    /**
      * Get the name of the yang resource having the specified checksum.
      * @param checksum the checksum. Null is supported.
      * @param yangResourceEntities the list of yang resources to search among.
@@ -208,38 +294,24 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                         .orElse(null);
     }
 
-    @Override
-    public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var schemaSetEntity =
-            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        return schemaSetEntity.getYangResources().stream().collect(
-            Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
-    }
-
-    @Override
-    public Map<String, String> getYangSchemaSetResources(final String dataspaceName, final String anchorName) {
-        final var anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
-        return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
-    }
-
-    @Override
-    @Transactional
-    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
-        final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var schemaSetEntity =
-            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-
-        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);
-        if (!anchorEntities.isEmpty()) {
-            if (cascadeDeleteAllowed != CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) {
-                throw new SchemaSetInUseException(dataspaceName, schemaSetName);
-            }
-            fragmentRepository.deleteByAnchorIn(anchorEntities);
-            anchorRepository.deleteAll(anchorEntities);
+    /**
+     * Get the checksum that caused the constraint violation exception.
+     * @param exception the exception having the checksum in error.
+     * @return the checksum in error or null if not found.
+     */
+    private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
+        String checksum = null;
+        final var matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
+        if (matcher.find() && matcher.groupCount() == 1) {
+            checksum = matcher.group(1);
         }
-        schemaSetRepository.delete(schemaSetEntity);
-        yangResourceRepository.deleteOrphans();
+        return checksum;
+    }
+
+    private static ModuleReference toModuleReference(final YangResourceModuleReference yangResourceModuleReference) {
+        return ModuleReference.builder()
+                .name(yangResourceModuleReference.getModuleName())
+                .revision(yangResourceModuleReference.getRevision())
+                .build();
     }
 }
