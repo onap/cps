@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@ package org.onap.cps.spi.repository;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
+import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,6 +34,9 @@ import org.springframework.stereotype.Repository;
 public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long> {
 
     List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
+
+    @Query(value = "SELECT module_name, revision FROM yang_resource", nativeQuery = true)
+    List<YangResourceModuleReference> findAllModuleNameAndRevision();
 
     @Modifying
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "

@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -60,6 +61,14 @@ public class YangResourceEntity implements Serializable {
     @NotNull
     @Column
     private String content;
+
+    @NotNull
+    @Column
+    private String moduleName;
+
+    @NotNull
+    @Column
+    private String revision;
 
     @ManyToMany(mappedBy = "yangResources")
     private Set<SchemaSetEntity> schemaSets;
