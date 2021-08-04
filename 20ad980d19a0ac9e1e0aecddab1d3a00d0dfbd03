@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2f9b61b_5b283b5a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-04T12:50:14Z",
+      "side": 1,
+      "message": "extract constant with meaningfull name",
+      "range": {
+        "startLine": 313,
+        "startChar": 68,
+        "endLine": 313,
+        "endChar": 81
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92c68107_83186365",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-04T12:50:14Z",
+      "side": 1,
+      "message": "i expected these 2 tests:\n\u0027/unknowParent/someChild\u0027\n\u0027/parent-200/unknowChild\u0027",
+      "range": {
+        "startLine": 433,
+        "startChar": 61,
+        "endLine": 433,
+        "endChar": 91
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ef91c6_57dbc449",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-04T12:50:14Z",
+      "side": 1,
+      "message": "extract out meaning full constant (also check possible SonarQube violations on these, it often complains about unlimited captures in regex)",
+      "range": {
+        "startLine": 123,
+        "startChar": 43,
+        "endLine": 123,
+        "endChar": 56
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84834dc8_567b0dbc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/MissingMandatoryParameterException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-04T12:50:14Z",
+      "side": 1,
+      "message": "no need for constant, jsut use string literal on line 35",
+      "range": {
+        "startLine": 27,
+        "startChar": 49,
+        "endLine": 27,
+        "endChar": 97
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
