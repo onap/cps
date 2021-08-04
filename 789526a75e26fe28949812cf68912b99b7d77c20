@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "46c3cb70_7f384e1a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-04T07:42:54Z",
+      "side": 1,
+      "message": "This was checked out from another review. Will double check this and get back to you regarding your comments in this review",
+      "parentUuid": "cddf85a4_9359742a",
+      "range": {
+        "startLine": 98,
+        "startChar": 46,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "789526a75e26fe28949812cf68912b99b7d77c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ef94e32_2f09c820",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
