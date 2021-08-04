@@ -103,4 +103,12 @@ class CpsModuleServiceImplSpec extends Specification {
             'dataspace-1' | 'schemas-set-1' | CASCADE_DELETE_ALLOWED
             'dataspace-2' | 'schemas-set-2' | CASCADE_DELETE_PROHIBITED
     }
+
+    def 'Get all yang resources, module and revision.'(){
+        given: 'an already present module reference'
+            def moduleReferences = [new ModuleReference()]
+            mockModuleStoreService.getAllYangResourcesModuleReferences() >> moduleReferences
+        expect: 'the list provided by persistence service is returned as result'
+            objectUnderTest.getAllYangResourcesModuleReferences() == moduleReferences
+    }
 }
