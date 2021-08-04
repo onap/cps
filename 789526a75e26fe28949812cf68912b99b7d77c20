@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cddf85a4_9359742a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-04T03:31:08Z",
+      "side": 1,
+      "message": "NetworkCMProxyDataService is not updated as a part of this patch, so why the parameters order has to be changed?",
+      "range": {
+        "startLine": 98,
+        "startChar": 46,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "789526a75e26fe28949812cf68912b99b7d77c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ef94e32_2f09c820",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-04T03:31:08Z",
+      "side": 1,
+      "message": "same comment as above",
+      "range": {
+        "startLine": 120,
+        "startChar": 46,
+        "endLine": 120,
+        "endChar": 65
+      },
+      "revId": "789526a75e26fe28949812cf68912b99b7d77c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfb87c23_b817d2ac",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-04T03:31:08Z",
+      "side": 1,
+      "message": "Same comments for all the changes in the file.\n\nCpsDataService was not changed as a part of this patch. Why we had to change the order of parameters?",
+      "range": {
+        "startLine": 201,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 111
+      },
+      "revId": "789526a75e26fe28949812cf68912b99b7d77c20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
