@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd51703a_5ba7a273",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "what will be the value of previously stored modules in this case.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260324b9_13d882b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "put all these methods at the end of file.",
+      "range": {
+        "startLine": 169,
+        "startChar": 3,
+        "endLine": 169,
+        "endChar": 4
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3540d7c1_04195e6c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "log and throw for better handling",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 19
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a1452d_302d398b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "end",
+      "range": {
+        "startLine": 196,
+        "startChar": 3,
+        "endLine": 196,
+        "endChar": 4
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbcfaac2_afaf9c81",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "write fallback statements like drop column",
+      "range": {
+        "startLine": 33,
+        "startChar": 5,
+        "endLine": 33,
+        "endChar": 11
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f22c5917_a1165644",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-04T13:51:04Z",
+      "side": 1,
+      "message": "are you going to write a method which return tuple list of name and revision",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 6
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
