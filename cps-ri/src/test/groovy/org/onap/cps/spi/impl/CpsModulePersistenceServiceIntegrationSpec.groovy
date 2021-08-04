@@ -57,8 +57,20 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
 
     static final Long NEW_RESOURCE_ABSTRACT_ID = 0L
     static final String NEW_RESOURCE_NAME = 'some new resource'
-    static final String NEW_RESOURCE_CONTENT = 'some resource content'
-    static final String NEW_RESOURCE_CHECKSUM = '09002da02ee2683898d2c81c67f9e22cdbf8577d8c2de16c84d724e4ae44a0a6'
+    static final String NEW_RESOURCE_CONTENT = 'module stores {\n' +
+            '    yang-version 1.1;\n' +
+            '    namespace "org:onap:ccsdk:sample";\n' +
+            '\n' +
+            '    prefix book-store;\n' +
+            '\n' +
+            '    revision "2020-09-15" {\n' +
+            '        description\n' +
+            '        "Sample Model";\n' +
+            '    }' +
+            '}'
+    static final String NEW_RESOURCE_CHECKSUM = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
+    static final String NEW_RESOURCE_MODULE_NAME = 'stores'
+    static final String NEW_RESOURCE_REVISION = '2020-09-15'
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]
     def dataspaceEntity
@@ -85,7 +97,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             objectUnderTest.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, newYangResourcesNameToContentMap)
         then: 'the schema set is persisted correctly'
             assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, NEW_RESOURCE_ABSTRACT_ID, NEW_RESOURCE_NAME,
-                    NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM)
+                    NEW_RESOURCE_CONTENT, NEW_RESOURCE_CHECKSUM, NEW_RESOURCE_MODULE_NAME, NEW_RESOURCE_REVISION)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -103,16 +115,19 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Storing duplicate schema content.'() {
         given: 'a new schema set with a resource with the same content as an existing resource'
-            def existingResourceContent = 'CONTENT-001'
+            def existingResourceContent = 'module test { yang-version 1.1; revision "2020-09-15"; }'
             def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):existingResourceContent]
         when: 'the schema set with duplicate resource is stored'
             objectUnderTest.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, newYangResourcesNameToContentMap)
         then: 'the schema persisted (re)uses the existing id, name and has the same checksum'
-            def existingResourceId = 3001L
+            def existingResourceId = 8L
             def existingResourceName = 'module1@2020-02-02.yang'
-            def existingResourceChecksum = 'e8bdda931099310de66532e08c3fafec391db29f55c81927b168f6aa8f81b73b'
-            assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
-                    existingResourceId, existingResourceName, existingResourceContent, existingResourceChecksum)
+            def existingResourceChecksum = 'bea1afcc3d1517e7bf8cae151b3b6bfbd46db77a81754acdcb776a50368efa0a'
+            def existingResourceModelName = 'test'
+            def existingResourceRevision = '2020-09-15'
+        assertSchemaSetPersisted(DATASPACE_NAME, SCHEMA_SET_NAME_NEW,
+                existingResourceId, existingResourceName, existingResourceContent, existingResourceChecksum,
+                existingResourceModelName, existingResourceRevision)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -163,11 +178,13 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     }
 
     def assertSchemaSetPersisted(expectedDataspaceName,
-                             expectedSchemaSetName,
-                             expectedYangResourceId,
-                             expectedYangResourceName,
-                             expectedYangResourceContent,
-                             expectedYangResourceChecksum) {
+                                 expectedSchemaSetName,
+                                 expectedYangResourceId,
+                                 expectedYangResourceName,
+                                 expectedYangResourceContent,
+                                 expectedYangResourceChecksum,
+                                 expectedYangResourceModuleName,
+                                 expectedYangResourceRevision) {
         // assert the schema set is persisted
         def schemaSetEntity = schemaSetRepository
                 .findByDataspaceAndName(dataspaceEntity, expectedSchemaSetName).orElseThrow()
@@ -188,6 +205,8 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         yangResourceEntity.name == expectedYangResourceName
         yangResourceEntity.content == expectedYangResourceContent
         yangResourceEntity.checksum == expectedYangResourceChecksum
+        yangResourceEntity.moduleName == expectedYangResourceModuleName
+        yangResourceEntity.revision == expectedYangResourceRevision
     }
 
 }

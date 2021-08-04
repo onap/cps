@@ -61,6 +61,14 @@ public class YangResourceEntity implements Serializable {
     @Column
     private String content;
 
+    @NotNull
+    @Column
+    private String moduleName;
+
+    @NotNull
+    @Column
+    private String revision;
+
     @ManyToMany(mappedBy = "yangResources")
     private Set<SchemaSetEntity> schemaSets;
 
