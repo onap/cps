@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b0e1b66e_6eaf052a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "The value of the previously stored modules would be null, no errors were being thrown in my testing.",
+      "parentUuid": "fd51703a_5ba7a273",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "260324b9_13d882b5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ea9ef65_f274bd62",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "260324b9_13d882b5",
+      "range": {
+        "startLine": 169,
+        "startChar": 3,
+        "endLine": 169,
+        "endChar": 4
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "247a2197_0c5fbec5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3540d7c1_04195e6c",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 19
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8a1452d_302d398b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c6d168b_f8cbd6b7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8a1452d_302d398b",
+      "range": {
+        "startLine": 196,
+        "startChar": 3,
+        "endLine": 196,
+        "endChar": 4
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d56340d4_cf3e9ef2",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "According to this page https://docs.liquibase.com/change-types/community/add-column.html auto-rollback is supported for addColumn and thus not needed explicity",
+      "parentUuid": "fbcfaac2_afaf9c81",
+      "range": {
+        "startLine": 33,
+        "startChar": 5,
+        "endLine": 33,
+        "endChar": 11
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f22c5917_a1165644",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2021-08-04T13:51:04Z",
       "side": 1,
       "message": "are you going to write a method which return tuple list of name and revision",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 6
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "318c6bcf_0cecd58a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-04T15:50:15Z",
+      "side": 1,
+      "message": "Not sure why that is required.",
+      "parentUuid": "f22c5917_a1165644",
       "range": {
         "startLine": 69,
         "startChar": 4,
