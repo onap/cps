@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "3671bbc9_b45a8351",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-04T03:00:18Z",
+      "side": 1,
+      "message": "My initial suggestion was not to use convert object to json and then convert to another Object Type. I found the convertValue method and suggested the same.\n\nModelMapper has been used in cps for similar use case and should be preferred here for being consistent.",
+      "parentUuid": "1af05695_4f2b004c",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 97
+      },
+      "revId": "10eec5c8ff2f367d0fc8337db5bf7eb4a86a7ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9655281c_4b1024b6",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 19
