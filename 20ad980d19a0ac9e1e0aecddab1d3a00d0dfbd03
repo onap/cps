@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "d2f85922_72db51ab",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-05T14:37:37Z",
+      "side": 1,
+      "message": "In DB an entry with xpath \u0027/parent-200/child-202/grand-child-202[@key\u003d\"A\"]\u0027 doesnt exist. It should not delete the data node with xpath /parent-200/child-202/grand-child-202.\n/parent-201/child-204 - does not end with a list node, so this also should not delete the data node.",
+      "range": {
+        "startLine": 419,
+        "startChar": 55,
+        "endLine": 419,
+        "endChar": 103
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92c68107_83186365",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
