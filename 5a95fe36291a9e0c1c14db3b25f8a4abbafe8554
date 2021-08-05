@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad69fcda_632d3fdc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-05T15:01:42Z",
+      "side": 1,
+      "message": "this information is more related to patch(give it in comments section) , this section is for commit information",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
