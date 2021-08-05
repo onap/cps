@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b63ab7b3_77beb5c0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-05T09:13:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0e1b66e_6eaf052a",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "260324b9_13d882b5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 1
@@ -281,6 +305,30 @@
       "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b37cb03c_927b2f1a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-05T09:13:39Z",
+      "side": 1,
+      "message": "In new patch",
+      "parentUuid": "318c6bcf_0cecd58a",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 6
+      },
+      "revId": "87180ef3d937c0b2dc8939236bf8d755f9834793",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
