@@ -22,6 +22,144 @@
       "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ede71662_8c9e6387",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "possible add more details about changes next time",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57cbb185_f8c62bcf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleNameAndRevision.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "SUggested name YangResourceModuleReference",
+      "range": {
+        "startLine": 25,
+        "startChar": 17,
+        "endLine": 25,
+        "endChar": 39
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25463af9_551c7707",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleNameAndRevision.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "is this really needed? (Aditya advised to use SQL-trace to see generated SQL)",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 35
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f024842f_26163a90",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/ModuleNameAndRevision.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "if name is the same this should not be needed",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d836d44_8e99c782",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "consider duplicate code for new util-jar (JIRA TBC)",
+      "range": {
+        "startLine": 215,
+        "startChar": 1,
+        "endLine": 230,
+        "endChar": 10
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16873782_e981f2f4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-05T15:23:15Z",
+      "side": 1,
+      "message": "i this still needed?",
+      "range": {
+        "startLine": 38,
+        "startChar": 3,
+        "endLine": 38,
+        "endChar": 89
+      },
+      "revId": "5a95fe36291a9e0c1c14db3b25f8a4abbafe8554",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
