@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ef4c3212_759123ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceModuleReference.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-06T10:02:57Z",
+      "side": 1,
+      "message": "Without this here, module_name is not being mapped to getModuleName, this is the reason I kept it here. I am using examples from here to model this part of the code https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#projections . What I am doing here is called Open Projection, this allows us to match interface methods with unmatched names with return values computed at runtime. \n\nWith that being said if I were to remove this line and rename the method to getModule_Name then the mapping would be done automatically. But this breaks our naming conventions and thus I opted to use this way.",
+      "parentUuid": "13c90665_b76660f2",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24b0f2c8_3358ebb0",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "dce1d58005d90950e00b22078d82559748dcb255",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20c2d3b2_9f4c94bf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-06T10:02:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "24b0f2c8_3358ebb0",
+      "range": {
+        "startLine": 236,
+        "startChar": 11,
+        "endLine": 236,
+        "endChar": 12
+      },
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
