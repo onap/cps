@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "a259e5b8_828cd482",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-08-06T16:08:40Z",
+      "side": 1,
+      "message": "it is always recommended to only make changes required for the functionality especially in such  big patches ... that makes review easier",
+      "range": {
+        "startLine": 102,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24b0f2c8_3358ebb0",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
