@@ -19,7 +19,7 @@
 
 package org.onap.cps.notification
 
-import org.onap.cps.event.model.CpsDataUpdatedEvent
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent
 import spock.lang.Specification
 
 class NotificationServiceSpec extends Specification {

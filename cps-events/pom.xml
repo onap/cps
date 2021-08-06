@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.onap.cps</groupId>
         <artifactId>cps-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../cps-parent/pom.xml</relativePath>
     </parent>
 
@@ -67,7 +67,7 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>org/onap/cps/event/model/*</exclude>
+                        <exclude>org/onap/cps/event/model/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>

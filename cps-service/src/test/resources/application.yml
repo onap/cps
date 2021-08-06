@@ -34,7 +34,7 @@ spring:
       auto-offset-reset: earliest
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent
+        spring.json.value.default.type: org.onap.cps.event.model.v1.CpsDataUpdatedEvent
 
 logging:
   level:

@@ -1,5 +1,5 @@
 {
-  "schema": "urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT",
+  "schema": "urn:cps:org.onap.cps:data-updated-event-schema:v0",
   "id": "77b8f114-4562-4069-8234-6d059ff742ac",
   "source": "urn:cps:org.onap.cps",
   "type": "org.onap.cps.data-updated-event",

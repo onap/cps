@@ -21,7 +21,7 @@ package org.onap.cps.notification;
 
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.event.model.CpsDataUpdatedEvent;
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

@@ -20,9 +20,8 @@
 package org.onap.cps.notification
 
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.clients.producer.RecordMetadata
-import org.onap.cps.event.model.Content
-import org.onap.cps.event.model.CpsDataUpdatedEvent
+import org.onap.cps.event.model.v1.Content
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent
 import org.spockframework.spring.SpringBean
 import org.springframework.kafka.KafkaException
 import org.springframework.kafka.core.KafkaTemplate

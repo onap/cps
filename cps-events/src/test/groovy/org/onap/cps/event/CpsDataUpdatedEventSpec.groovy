@@ -20,9 +20,9 @@ package org.onap.cps.event
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
-import org.onap.cps.event.model.Content
-import org.onap.cps.event.model.CpsDataUpdatedEvent
-import org.onap.cps.event.model.Data
+import org.onap.cps.event.model.v0.Content
+import org.onap.cps.event.model.v0.CpsDataUpdatedEvent
+import org.onap.cps.event.model.v0.Data
 import spock.lang.Specification
 
 /**
@@ -39,7 +39,7 @@ class CpsDataUpdatedEventSpec extends Specification {
     final EVENT_ID = '77b8f114-4562-4069-8234-6d059ff742ac'
     final EVENT_SOURCE = new URI('urn:cps:org.onap.cps')
     final EVENT_TYPE = 'org.onap.cps.data-updated-event'
-    final EVENT_SCHEMA = 'urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT'
+    final EVENT_SCHEMA = new URI('urn:cps:org.onap.cps:data-updated-event-schema:v0')
 
     final DATA = [
             'test:bookstore': [
@@ -67,7 +67,7 @@ class CpsDataUpdatedEventSpec extends Specification {
         then: 'CpsDataUpdatedEvent POJO has the excepted values'
             cpsDataUpdatedEvent.id == EVENT_ID
             cpsDataUpdatedEvent.source == EVENT_SOURCE
-            cpsDataUpdatedEvent.schema.value() == EVENT_SCHEMA
+            cpsDataUpdatedEvent.schema == EVENT_SCHEMA
             cpsDataUpdatedEvent.type == EVENT_TYPE
             def content = cpsDataUpdatedEvent.content
             content.observedTimestamp == EVENT_TIMESTAMP
@@ -90,8 +90,7 @@ class CpsDataUpdatedEventSpec extends Specification {
         and: 'CpsDataUpdatedEvent with the content'
             def cpsDataUpdateEvent = new CpsDataUpdatedEvent()
             cpsDataUpdateEvent
-                    .withSchema(
-                            CpsDataUpdatedEvent.Schema.fromValue(EVENT_SCHEMA))
+                    .withSchema(EVENT_SCHEMA)
                     .withId(EVENT_ID)
                     .withSource(EVENT_SOURCE)
                     .withType(EVENT_TYPE)
