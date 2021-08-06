@@ -93,6 +93,57 @@
       "revId": "dce1d58005d90950e00b22078d82559748dcb255",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "911c37f9_6b044fb8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-06T15:19:03Z",
+      "side": 1,
+      "message": "Why are we using static finals instead of def here, but in the next test class using def instead of static final. Should this be kept consistent across all test classes.",
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ace6af_fee306c3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-06T15:19:03Z",
+      "side": 1,
+      "message": "Not a blocking issue. But for future reference would it be better to leverage the TestUtils class to read in jsonFiles, as opposed to using long strings which take up multiple lines of code.",
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26c10a46_15e98de0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-06T15:19:03Z",
+      "side": 1,
+      "message": "Same comment applies here as left on previous file",
+      "revId": "dce1d58005d90950e00b22078d82559748dcb255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
