@@ -72,6 +72,7 @@ notification:
     data-updated:
         enabled: false
         topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
+    event-schema-version: ${CPS_CHANGE_EVENT_SCHEMA_VERSION:v1}
 
 springdoc:
     swagger-ui:

@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.notification.NotificationService
+import org.onap.cps.notification.v1.V1NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -36,7 +37,7 @@ class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
-    def mockNotificationService = Mock(NotificationService)
+    def mockNotificationService = Mock(V1NotificationService)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl()
     def cpsDataServiceImpl = new CpsDataServiceImpl()
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
@@ -49,7 +50,7 @@ class E2ENetworkSliceSpec extends Specification {
         cpsDataServiceImpl.cpsDataPersistenceService = mockDataStoreService
         cpsDataServiceImpl.cpsAdminService = mockCpsAdminService
         cpsDataServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
-        cpsDataServiceImpl.notificationService = mockNotificationService
+        cpsDataServiceImpl.@notificationService = mockNotificationService
         cpsModuleServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
         cpsModuleServiceImpl.cpsModulePersistenceService = mockModuleStoreService
     }

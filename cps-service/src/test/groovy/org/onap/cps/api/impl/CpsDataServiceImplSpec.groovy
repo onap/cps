@@ -26,6 +26,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.notification.NotificationService
+import org.onap.cps.notification.v1.V1NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -40,7 +41,7 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
-    def mockNotificationService = Mock(NotificationService)
+    def mockNotificationService = Mock(V1NotificationService)
 
     def objectUnderTest = new CpsDataServiceImpl()
 
@@ -49,7 +50,7 @@ class CpsDataServiceImplSpec extends Specification {
         objectUnderTest.cpsAdminService = mockCpsAdminService
         objectUnderTest.cpsModuleService = mockCpsModuleService
         objectUnderTest.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
-        objectUnderTest.notificationService = mockNotificationService
+        objectUnderTest.@notificationService = mockNotificationService
     }
 
     def dataspaceName = 'some dataspace'

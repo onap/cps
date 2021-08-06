@@ -19,10 +19,11 @@
 
 package org.onap.cps.notification
 
+import org.mapstruct.factory.Mappers
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.event.model.CpsDataUpdatedEvent
-import org.onap.cps.event.model.Data
+import org.onap.cps.event.model.EventSchemaMapper
+import org.onap.cps.event.model.v1.Data
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -35,8 +36,9 @@ class CpsDataUpdateEventFactorySpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockEventSchemaMapper = Mappers.getMapper(EventSchemaMapper.class)
 
-    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService, mockCpsAdminService)
+    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService, mockCpsAdminService, mockEventSchemaMapper)
 
     def myDataspaceName = 'my-dataspace'
     def myAnchorName = 'my-anchorname'
@@ -55,13 +57,13 @@ class CpsDataUpdateEventFactorySpec extends Specification {
                     myDataspaceName, myAnchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
 
         when: 'CPS data updated event is created'
-            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(myDataspaceName, myAnchorName)
+            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEventV1(myDataspaceName, myAnchorName)
 
         then: 'CPS data updated event is created with expected values'
             with(cpsDataUpdatedEvent) {
                 type == 'org.onap.cps.data-updated-event'
                 source == new URI('urn:cps:org.onap.cps')
-                schema == CpsDataUpdatedEvent.Schema.URN_CPS_ORG_ONAP_CPS_DATA_UPDATED_EVENT_SCHEMA_1_1_0_SNAPSHOT
+                schema == new URI('urn:cps:org.onap.cps:data-updated-event-schema:v1')
                 StringUtils.hasText(id)
                 content != null
             }

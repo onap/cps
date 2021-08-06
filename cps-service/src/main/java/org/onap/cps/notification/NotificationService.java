@@ -18,6 +18,8 @@
 
 package org.onap.cps.notification;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,10 +27,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class NotificationService {
+public abstract class NotificationService {
 
     private boolean dataUpdatedEventNotificationEnabled;
-    private NotificationPublisher notificationPublisher;
+    @Getter(AccessLevel.PROTECTED)
     private CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private NotificationErrorHandler notificationErrorHandler;
 
@@ -37,18 +39,15 @@ public class NotificationService {
      *
      * @param dataUpdatedEventNotificationEnabled   notification can be enabled by setting
      *                                              'notification.data-updated.enabled=true' in application properties
-     * @param notificationPublisher                 notification Publisher
      * @param cpsDataUpdatedEventFactory            to create CPSDataUpdatedEvent
      * @param notificationErrorHandler              error handler
      */
     @Autowired
-    public NotificationService(
+    protected NotificationService(
         @Value("${notification.data-updated.enabled}") final boolean dataUpdatedEventNotificationEnabled,
-        final NotificationPublisher notificationPublisher,
         final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory,
         final NotificationErrorHandler notificationErrorHandler) {
         this.dataUpdatedEventNotificationEnabled = dataUpdatedEventNotificationEnabled;
-        this.notificationPublisher = notificationPublisher;
         this.cpsDataUpdatedEventFactory = cpsDataUpdatedEventFactory;
         this.notificationErrorHandler = notificationErrorHandler;
     }
@@ -63,10 +62,7 @@ public class NotificationService {
         log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
         try {
             if (shouldSendNotification()) {
-                final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName);
-                log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
-                notificationPublisher.sendNotification(cpsDataUpdatedEvent);
+                notify(dataspaceName, anchorName);
             }
         } catch (final Exception exception) {
             /* All the exceptions are handled to not to propagate it to caller.
@@ -76,6 +72,8 @@ public class NotificationService {
                 exception, dataspaceName, anchorName);
         }
     }
+
+    protected abstract void notify(String dataspaceName, String anchorName);
 
     /*
         Add more complex rules based on dataspace and anchor later

@@ -17,42 +17,37 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.v1;
 
-import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent;
+import org.onap.cps.notification.NotificationPublisher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
+public class V1NotificationPublisher extends NotificationPublisher<CpsDataUpdatedEvent> {
 
-public abstract class NotificationPublisher<V> {
-
-    @Getter(AccessLevel.PROTECTED)
-    private final KafkaTemplate<String, V> kafkaTemplate;
-
-    @Getter(AccessLevel.PROTECTED)
-    private final String topicName;
-
-    /**
-     * Create an instance of Notification Publisher.
-     *
-     * @param kafkaTemplate kafkaTemplate is send event using kafka
-     * @param topicName     topic, to which cpsDataUpdatedEvent is sent, is provided by setting
-     *                      'notification.data-updated.topic' in the application properties
-     */
-    @Autowired
-    protected NotificationPublisher(
-        final KafkaTemplate<String, V> kafkaTemplate,
-        final @Value("${notification.data-updated.topic}") String topicName) {
-        this.kafkaTemplate = kafkaTemplate;
-        this.topicName = topicName;
+    public V1NotificationPublisher(
+            final KafkaTemplate<String, CpsDataUpdatedEvent> kafkaTemplate,
+            final @Value("${notification.data-updated.topic}") String topicName) {
+        super(kafkaTemplate, topicName);
     }
 
-    protected abstract void sendNotification(@NonNull final V event);
+    /**
+     * Send event to Kafka with correct message key.
+     *
+     * @param cpsDataUpdatedEvent event to be sent to kafka
+     */
+    protected void sendNotification(@NonNull final CpsDataUpdatedEvent cpsDataUpdatedEvent) {
+        final var messageKey = cpsDataUpdatedEvent.getContent().getDataspaceName() + ","
+                                   + cpsDataUpdatedEvent.getContent().getAnchorName();
+        log.debug("Data Updated event is being sent with messageKey: '{}' & body : {} ",
+            messageKey, cpsDataUpdatedEvent);
+        super.getKafkaTemplate().send(super.getTopicName(), messageKey, cpsDataUpdatedEvent);
+    }
+
 }

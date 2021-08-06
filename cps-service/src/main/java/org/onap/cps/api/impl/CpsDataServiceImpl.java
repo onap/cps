@@ -36,6 +36,8 @@ import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -55,8 +57,15 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Autowired
     private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
 
-    @Autowired
+    @Value("${notification.event-schema-version}NotificationService")
+    private String notificationServiceQualifier;
+
     private NotificationService notificationService;
+
+    @Autowired
+    public void setNotificationService(final ApplicationContext applicationContext) {
+        this.notificationService = (NotificationService) applicationContext.getBean(notificationServiceQualifier);
+    }
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {

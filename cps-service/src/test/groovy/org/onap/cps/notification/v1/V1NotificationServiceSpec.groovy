@@ -17,18 +17,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification
+package org.onap.cps.notification.v1
 
-import org.onap.cps.event.model.CpsDataUpdatedEvent
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent
+import org.onap.cps.notification.CpsDataUpdatedEventFactory
+import org.onap.cps.notification.NotificationErrorHandler
 import spock.lang.Specification
 
-class NotificationServiceSpec extends Specification {
+class V1NotificationServiceSpec extends Specification {
 
-    def mockNotificationPublisher = Mock(NotificationPublisher)
+    def mockNotificationPublisher = Mock(V1NotificationPublisher)
     def spyNotificationErrorHandler = Spy(new NotificationErrorHandler())
     def mockCpsDataUpdatedEventFactory = Mock(CpsDataUpdatedEventFactory)
 
-    def objectUnderTest = new NotificationService(true, mockNotificationPublisher,
+    def objectUnderTest = new V1NotificationService(true, mockNotificationPublisher,
             mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler)
 
     def myDataspaceName = 'my-dataspace'
@@ -37,7 +39,8 @@ class NotificationServiceSpec extends Specification {
     def 'Skip sending notification when disabled.'() {
 
         given: 'notification is disabled'
-            objectUnderTest.dataUpdatedEventNotificationEnabled = false
+            objectUnderTest = new V1NotificationService(false, mockNotificationPublisher,
+                    mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler)
 
         when: 'dataUpdatedEvent is received'
             objectUnderTest.processDataUpdatedEvent(myDataspaceName, myAnchorName)
@@ -49,10 +52,11 @@ class NotificationServiceSpec extends Specification {
     def 'Send notification when enabled.'() {
 
         given: 'notification is enabled'
-            objectUnderTest.dataUpdatedEventNotificationEnabled = true
+            objectUnderTest = new V1NotificationService(true, mockNotificationPublisher,
+                    mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler)
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(myDataspaceName, myAnchorName) >> cpsDataUpdatedEvent
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEventV1(myDataspaceName, myAnchorName) >> cpsDataUpdatedEvent
 
         when: 'dataUpdatedEvent is received'
             objectUnderTest.processDataUpdatedEvent(myDataspaceName, myAnchorName)
@@ -63,7 +67,7 @@ class NotificationServiceSpec extends Specification {
 
     def 'Error handling in notification service.'(){
         given: 'event factory can not create event successfully'
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(myDataspaceName, myAnchorName) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEventV1(myDataspaceName, myAnchorName) >>
                     { throw new Exception("Could not create event") }
 
         when: 'event is sent for processing'

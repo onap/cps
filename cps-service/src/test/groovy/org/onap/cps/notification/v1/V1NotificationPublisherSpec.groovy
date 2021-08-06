@@ -17,18 +17,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification
+package org.onap.cps.notification.v1
 
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.clients.producer.RecordMetadata
-import org.onap.cps.event.model.Content
-import org.onap.cps.event.model.CpsDataUpdatedEvent
+import org.onap.cps.event.model.v1.Content
+import org.onap.cps.event.model.v1.CpsDataUpdatedEvent
+import org.onap.cps.notification.KafkaProducerListener
+import org.onap.cps.notification.KafkaPublisherSpecBase
+import org.onap.cps.notification.NotificationErrorHandler
+import org.onap.cps.notification.NotificationPublisher
 import org.spockframework.spring.SpringBean
 import org.springframework.kafka.KafkaException
 import org.springframework.kafka.core.KafkaTemplate
 import spock.util.concurrent.PollingConditions
 
-class NotificationPublisherSpec extends KafkaPublisherSpecBase {
+class V1NotificationPublisherSpec extends KafkaPublisherSpecBase {
 
     @SpringBean
     NotificationErrorHandler spyNotificationErrorHandler = Spy(new NotificationErrorHandler())
@@ -49,7 +52,7 @@ class NotificationPublisherSpec extends KafkaPublisherSpecBase {
 
     def setup() {
         spyKafkaTemplate = Spy(kafkaTemplate)
-        objectUnderTest = new NotificationPublisher(spyKafkaTemplate, cpsEventTopic);
+        objectUnderTest = new V1NotificationPublisher(spyKafkaTemplate, cpsEventTopic);
     }
 
     def 'Sending event to message bus with correct message Key.'() {
@@ -74,7 +77,7 @@ class NotificationPublisherSpec extends KafkaPublisherSpecBase {
 
     def 'Handling of async errors from message bus.'() {
         given: 'topic does not exist'
-            objectUnderTest.topicName = 'non-existing-topic'
+            objectUnderTest = new V1NotificationPublisher(spyKafkaTemplate, 'non-existing-topic')
 
         when: 'message to sent to a non-existing topic'
             objectUnderTest.sendNotification(cpsDataUpdatedEvent)
