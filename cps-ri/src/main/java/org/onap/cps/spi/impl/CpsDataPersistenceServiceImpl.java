@@ -108,6 +108,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         parentFragment.getChildFragments().addAll(newFragmentEntities);
         try {
             fragmentRepository.save(parentFragment);
+            dataNodes.forEach(
+                dataNode -> getChildFragments(dataspaceName, anchorName, dataNode)
+            );
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = dataNodes.stream()
                 .map(DataNode::getXpath)
@@ -152,6 +155,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return parentFragment;
     }
 
+    private void getChildFragments(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+        FragmentEntity childFragmentEntity;
+        FragmentEntity getChildsParentFragmentByXPath;
+        for (final DataNode childDataNode: dataNode.getChildDataNodes()) {
+            getChildsParentFragmentByXPath =
+                getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+            childFragmentEntity = toChildFragmentEntity(getChildsParentFragmentByXPath.getDataspace(),
+                getChildsParentFragmentByXPath.getAnchor(), childDataNode);
+            getChildsParentFragmentByXPath.getChildFragments().add(childFragmentEntity);
+            fragmentRepository.save(getChildsParentFragmentByXPath);
+        }
+    }
+
     private static FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
         final AnchorEntity anchorEntity, final DataNode dataNode) {
         return FragmentEntity.builder()
@@ -160,6 +176,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .xpath(dataNode.getXpath())
             .attributes(GSON.toJson(dataNode.getLeaves()))
             .build();
+    }
+
+    private static FragmentEntity toChildFragmentEntity(final DataspaceEntity dataspaceEntity,
+                                                   final AnchorEntity anchorEntity, final DataNode dataNode) {
+        return FragmentEntity.builder()
+                .dataspace(dataspaceEntity)
+                .anchor(anchorEntity)
+                .xpath(dataNode.getXpath())
+                .attributes(GSON.toJson(dataNode.getLeaves()))
+                .build();
     }
 
     @Override
