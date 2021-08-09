@@ -108,6 +108,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         parentFragment.getChildFragments().addAll(newFragmentEntities);
         try {
             fragmentRepository.save(parentFragment);
+            dataNodes.forEach(
+                dataNode -> getChildFragments(dataspaceName, anchorName, dataNode)
+            );
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = dataNodes.stream()
                 .map(DataNode::getXpath)
@@ -150,6 +153,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         parentFragment.setChildFragments(childFragmentsImmutableSetBuilder.build());
         return parentFragment;
+    }
+
+    private void getChildFragments(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+        for (final DataNode childDataNode: dataNode.getChildDataNodes()) {
+            final FragmentEntity getChildsParentFragmentByXPath =
+                getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+            final FragmentEntity childFragmentEntity = toFragmentEntity(getChildsParentFragmentByXPath.getDataspace(),
+                getChildsParentFragmentByXPath.getAnchor(), childDataNode);
+            getChildsParentFragmentByXPath.getChildFragments().add(childFragmentEntity);
+            fragmentRepository.save(getChildsParentFragmentByXPath);
+        }
     }
 
     private static FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
