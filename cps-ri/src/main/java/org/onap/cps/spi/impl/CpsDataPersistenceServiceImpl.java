@@ -28,6 +28,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
@@ -101,13 +103,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void addListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final Collection<DataNode> dataNodes) {
         final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final List<FragmentEntity> newChildFragmentEntities = new ArrayList<>();
         final List<FragmentEntity> newFragmentEntities =
             dataNodes.stream().map(
                 dataNode -> toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode)
             ).collect(Collectors.toUnmodifiableList());
-        parentFragment.getChildFragments().addAll(newFragmentEntities);
+        for (final DataNode dataNode: dataNodes) {
+            final List<FragmentEntity>  newChildFragmentEntity =
+                toChildFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode);
+            newChildFragmentEntities.addAll(newChildFragmentEntity);
+        }
+        final List<FragmentEntity> parentAndChildFragmentEntities =
+            Stream.of(newFragmentEntities, newChildFragmentEntities)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
+        parentFragment.getChildFragments().addAll(parentAndChildFragmentEntities);
         try {
-            fragmentRepository.save(parentFragment);
+            fragmentRepository.save(
+                parentFragment);
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = dataNodes.stream()
                 .map(DataNode::getXpath)
@@ -115,6 +128,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             throw AlreadyDefinedException.forDataNodes(conflictXpaths, anchorName, exception);
         }
     }
+
 
     @Override
     public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
@@ -160,6 +174,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .xpath(dataNode.getXpath())
             .attributes(GSON.toJson(dataNode.getLeaves()))
             .build();
+    }
+
+    private static List<FragmentEntity> toChildFragmentEntity(final DataspaceEntity dataspaceEntity,
+                                                   final AnchorEntity anchorEntity, final DataNode dataNode) {
+        FragmentEntity childEntity;
+        final List<FragmentEntity> fragmentEntityList = new ArrayList<>();
+        for (final DataNode childDataNode: dataNode.getChildDataNodes()) {
+            childEntity = FragmentEntity.builder()
+                .dataspace(dataspaceEntity)
+                .anchor(anchorEntity)
+                .xpath(childDataNode.getXpath())
+                .attributes(GSON.toJson(childDataNode.getLeaves()))
+                .build();
+            fragmentEntityList.add(childEntity);
+        }
+        return fragmentEntityList;
     }
 
     @Override
