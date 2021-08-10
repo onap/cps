@@ -22,6 +22,8 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.spi.model.DataNode
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -67,7 +69,8 @@ class QueryRestControllerSpec extends Specification {
 
     def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
-            def dataNode = new DataNodeBuilder().withXpath('/xpath').build()
+             def dataNode = new DataNodeBuilder().withXpath('/xpath')
+                    .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
             def dataspaceName = 'my_dataspace'
             def anchorName = 'my_anchor'
             def cpsPath = 'some cps-path'
@@ -83,7 +86,7 @@ class QueryRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains(new Gson().toJson(dataNode))
+            response.getContentAsString() == '{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}'
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS
