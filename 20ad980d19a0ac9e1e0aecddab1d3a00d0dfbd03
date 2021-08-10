@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "706b56e1_d965b105",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "753d7edc_11168932",
+      "range": {
+        "startLine": 313,
+        "startChar": 69,
+        "endLine": 313,
+        "endChar": 80
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2cea806a_1088d262",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2f9b61b_5b283b5a",
+      "range": {
+        "startLine": 313,
+        "startChar": 68,
+        "endLine": 313,
+        "endChar": 81
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2f85922_72db51ab",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf01ca5_584933b0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2f85922_72db51ab",
+      "range": {
+        "startLine": 419,
+        "startChar": 55,
+        "endLine": 419,
+        "endChar": 103
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "27ece964_d1bb6e97",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f45af06b_7b6b2c7c",
+      "range": {
+        "startLine": 420,
+        "startChar": 77,
+        "endLine": 420,
+        "endChar": 86
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92c68107_83186365",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "57350543_0fd0a731",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92c68107_83186365",
+      "range": {
+        "startLine": 433,
+        "startChar": 61,
+        "endLine": 433,
+        "endChar": 91
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dfa941d_e762353b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df29c0e1_b7520c5c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dfa941d_e762353b",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 69
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "6ac51ddf_60c4b184",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604c41ed_6a2e284a",
+      "range": {
+        "startLine": 123,
+        "startChar": 43,
+        "endLine": 123,
+        "endChar": 56
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84834dc8_567b0dbc",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/MissingMandatoryParameterException.java",
         "patchSetId": 3
@@ -207,6 +375,30 @@
       "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fed83ef_0a2fa982",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/MissingMandatoryParameterException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-10T15:32:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84834dc8_567b0dbc",
+      "range": {
+        "startLine": 27,
+        "startChar": 49,
+        "endLine": 27,
+        "endChar": 97
+      },
+      "revId": "20ad980d19a0ac9e1e0aecddab1d3a00d0dfbd03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
