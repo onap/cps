@@ -22,6 +22,30 @@
       "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e46c21dc_d7e6a99a",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-10T10:40:07Z",
+      "side": 1,
+      "message": "I think perhaps we should keep the parameter if we wish to revisit this and try get it fixed in the future.",
+      "parentUuid": "af009931_80e14743",
+      "range": {
+        "startLine": 163,
+        "startChar": 54,
+        "endLine": 163,
+        "endChar": 66
+      },
+      "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
