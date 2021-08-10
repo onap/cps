@@ -21,12 +21,16 @@
 package org.onap.cps.rest.controller;
 
 import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.DataMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +51,10 @@ public class QueryRestController implements CpsQueryApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
-        return new ResponseEntity<>(new Gson().toJson(dataNodes), HttpStatus.OK);
+        final List<Map<String, Object>> dataNodeList = new ArrayList<>();
+        for (final DataNode dataNode : dataNodes) {
+            dataNodeList.add(DataMapUtils.toDataMap(dataNode));
+        }
+        return new ResponseEntity<>(new Gson().toJson(dataNodeList), HttpStatus.OK);
     }
 }
