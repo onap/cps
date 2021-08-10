@@ -46,6 +46,30 @@
       "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90f2013_d83f2138",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T10:49:21Z",
+      "side": 1,
+      "message": "I think we should keep the code as clean as possible and closer to what we use or support. In case, we want to revisit the older implementation then we can also check the history in git.",
+      "parentUuid": "e46c21dc_d7e6a99a",
+      "range": {
+        "startLine": 163,
+        "startChar": 54,
+        "endLine": 163,
+        "endChar": 66
+      },
+      "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
