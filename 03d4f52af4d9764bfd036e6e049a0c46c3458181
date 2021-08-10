@@ -70,6 +70,30 @@
       "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7641061c_76373d3e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-10T11:16:52Z",
+      "side": 1,
+      "message": "True, I can remove it",
+      "parentUuid": "b90f2013_d83f2138",
+      "range": {
+        "startLine": 163,
+        "startChar": 54,
+        "endLine": 163,
+        "endChar": 66
+      },
+      "revId": "03d4f52af4d9764bfd036e6e049a0c46c3458181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
