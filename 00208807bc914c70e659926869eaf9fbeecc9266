@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87a485d9_465bf04e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T19:03:08Z",
+      "side": 1,
+      "message": "The expression does not have \u0027[\u0027. Is it expected?  I can see both\u0027[\u0027 and \u0027]\u0027 in the REG_EX_FOR_OPTIONAL_LIST_INDEX regex but not in the newly added one.",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 82
+      },
+      "revId": "00208807bc914c70e659926869eaf9fbeecc9266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd8822e0_6b96dc69",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T19:03:08Z",
+      "side": 1,
+      "message": "I assume that you are removing the item specific key to get the listNode. Any reason for renaming the variable?",
+      "range": {
+        "startLine": 299,
+        "startChar": 8,
+        "endLine": 299,
+        "endChar": 27
+      },
+      "revId": "00208807bc914c70e659926869eaf9fbeecc9266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d85eec1a_f62c4769",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T19:03:08Z",
+      "side": 1,
+      "message": "No need to pass second param to substring if you need rest of the string \nlistNodeXpath.substring(listNodeXpath.lastIndexOf(\u0027/\u0027));",
+      "range": {
+        "startLine": 314,
+        "startChar": 38,
+        "endLine": 314,
+        "endChar": 118
+      },
+      "revId": "00208807bc914c70e659926869eaf9fbeecc9266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01706feb_02122245",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T19:03:08Z",
+      "side": 1,
+      "message": "What I understand from the story that we want to support deleting listNodeElement (each item) and listNode ( entire collection ).\nBut I don\u0027t see any test cases for deleting the entire collection. I do see it in the service layer but the persistence layer is mocked, it is not tested fully.\n\nI tried to do it check list Node collection deletion in my local but it didn\u0027t work.\n\nAre we planning to support listNode ( entire collection ) deletion as a part of this patch or story?",
+      "range": {
+        "startLine": 389,
+        "startChar": 12,
+        "endLine": 389,
+        "endChar": 20
+      },
+      "revId": "00208807bc914c70e659926869eaf9fbeecc9266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eba67f73_b659c4d4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-10T19:03:08Z",
+      "side": 1,
+      "message": "I could not understand what is wrong with this input by looking at the test cases.\nSame issue with the next two scenarios.\nCan you please rename the scenario to mention what is wrong with the input",
+      "range": {
+        "startLine": 434,
+        "startChar": 12,
+        "endLine": 434,
+        "endChar": 32
+      },
+      "revId": "00208807bc914c70e659926869eaf9fbeecc9266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
