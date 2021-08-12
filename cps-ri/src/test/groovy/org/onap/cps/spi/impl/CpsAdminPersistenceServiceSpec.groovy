@@ -22,11 +22,13 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.ModuleReference
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -35,10 +37,14 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
+    @Autowired
+    CpsModulePersistenceService cpsModulePersistenceService
+
     static final String SET_DATA = '/data/anchor.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
+    static final String NEW_DATASPACE_NAME = "NCMP-Admin"
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
@@ -70,6 +76,30 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             anchor.name == newAnchorName
             anchor.dataspaceName == DATASPACE_NAME
             anchor.schemaSetName == SCHEMA_SET_NAME1
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Create and retrieve a new anchor and new schema set from new modules and existing modules.'() {
+        given: 'cm handle Id, map of new modules, a list of existing modules, module reference and a valid dataspace'
+            def cmHandleId = 'someCmHandleId'
+            def mapOfNewModules = [newModule1: 'module newmodule { yang-version 1.1; revision "2021-10-12" { } }']
+            def moduleReferenceForExistingModule = new ModuleReference("test","test.org","2021-10-12")
+            def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
+            def mapOfExisitingModule = [test: 'module test { yang-version 1.1; revision "2021-10-12" { } }']
+            objectUnderTest.createDataspace(NEW_DATASPACE_NAME)
+            cpsModulePersistenceService.storeSchemaSet(NEW_DATASPACE_NAME, "someSchemaSetName", mapOfExisitingModule)
+        when: 'a new anchor and new schema set is created from these new modules and existing modules'
+            objectUnderTest.createAnchorFromNewModulesAndExistingModules(cmHandleId, mapOfNewModules,
+                    listOfExistingModulesModuleReference)
+        then: 'that anchor and the schema set can be retrieved'
+            def anchor = objectUnderTest.getAnchor(NEW_DATASPACE_NAME, cmHandleId)
+            anchor.name == cmHandleId
+            anchor.dataspaceName == NEW_DATASPACE_NAME
+            anchor.schemaSetName == cmHandleId
+            def expectedYangResourcesMapAfterAnchorHasBeenCreated = mapOfNewModules + mapOfExisitingModule
+            def actualYangResourcesMapAfterAnchorHasBeenCreated =
+                    cpsModulePersistenceService.getYangSchemaSetResources(NEW_DATASPACE_NAME, cmHandleId)
+            actualYangResourcesMapAfterAnchorHasBeenCreated == expectedYangResourcesMapAfterAnchorHasBeenCreated
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

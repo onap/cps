@@ -24,6 +24,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
 class CpsAdminServiceImplSpec extends Specification {
@@ -46,6 +47,16 @@ class CpsAdminServiceImplSpec extends Specification {
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
         then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
+    }
+
+    def 'Create anchor from new modules and existing modules method invokes persistence service.'() {
+        given: 'cm handle Id, map of new modules, a list of existing modules, module reference and a valid dataspace'
+            def moduleReferenceForExistingModule = new ModuleReference("test","test.org","2021-10-12")
+            def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
+        when: 'create anchor from new modules and existing modules method is invoked'
+            objectUnderTest.createAnchorFromNewModulesAndExistingModules("someDataspace", [newModule: "newContent"], listOfExistingModulesModuleReference)
+        then: 'the persistence service method is invoked with same parameters'
+            1 * mockCpsAdminPersistenceService.createAnchorFromNewModulesAndExistingModules("someDataspace", [newModule: "newContent"], listOfExistingModulesModuleReference)
     }
 
     def 'Retrieve all anchors for dataspace.'() {
