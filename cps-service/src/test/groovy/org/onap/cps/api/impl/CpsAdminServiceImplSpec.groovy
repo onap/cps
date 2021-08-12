@@ -24,6 +24,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
 class CpsAdminServiceImplSpec extends Specification {

@@ -35,6 +35,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -53,6 +54,9 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Autowired
     private FragmentRepository fragmentRepository;
+
+    @Autowired
+    private YangResourceRepository yangResourceRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {

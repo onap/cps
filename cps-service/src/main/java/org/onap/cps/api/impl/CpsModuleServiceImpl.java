@@ -51,6 +51,15 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
+    public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                           final Map<String, String> newYangResourcesModuleNameToContentMap,
+                                           final List<ModuleReference> moduleReferenceList) {
+        cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
+                newYangResourcesModuleNameToContentMap, moduleReferenceList);
+
+    }
+
+    @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);

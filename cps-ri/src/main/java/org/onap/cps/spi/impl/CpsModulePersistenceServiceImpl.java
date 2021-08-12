@@ -30,6 +30,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -141,6 +142,22 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         } catch (final DataIntegrityViolationException e) {
             throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
         }
+    }
+
+    @Override
+    @Transactional
+    public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                          final Map<String, String> newYangResourcesModuleNameToContentMap,
+                                          final List<ModuleReference> moduleReferenceList) {
+        storeSchemaSet(dataspaceName, schemaSetName, newYangResourcesModuleNameToContentMap);
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var schemaSetEntity =
+                schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        final List<Long> listOfYangResourceIds = new ArrayList<>();
+        moduleReferenceList.forEach(moduleReference ->
+                listOfYangResourceIds.add(yangResourceRepository.getIdByModuleNameAndRevision(
+                        moduleReference.getName(), moduleReference.getRevision())));
+        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), listOfYangResourceIds);
     }
 
     @Override

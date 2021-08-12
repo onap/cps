@@ -22,11 +22,13 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.ModuleReference
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -35,10 +37,14 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
+    @Autowired
+    CpsModulePersistenceService cpsModulePersistenceService
+
     static final String SET_DATA = '/data/anchor.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
+    static final String NEW_DATASPACE_NAME = "NCMP-Admin"
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
