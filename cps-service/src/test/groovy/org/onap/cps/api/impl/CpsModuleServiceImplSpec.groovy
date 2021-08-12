@@ -52,13 +52,24 @@ class CpsModuleServiceImplSpec extends Specification {
     @Autowired
     CpsModuleServiceImpl objectUnderTest
 
-    def 'Create schema set'() {
+    def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+    }
+
+    def 'Create schema set from new modules and existing modules.'() {
+        given: 'a list of existing modules module reference'
+            def moduleReferenceForExistingModule = new ModuleReference("test", "test.org", "2021-10-12")
+            def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
+        when: 'create schema set from modules method is invoked'
+            objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
+        then: 'processing is delegated to persistence service'
+            1 * mockModuleStoreService.storeSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
+
     }
 
     def 'Create schema set from invalid resources'() {

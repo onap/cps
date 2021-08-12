@@ -35,6 +35,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
+
     static final String SET_DATA = '/data/anchor.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
