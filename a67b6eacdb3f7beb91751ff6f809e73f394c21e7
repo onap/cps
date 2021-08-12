@@ -16,6 +16,29 @@
       "revId": "a67b6eacdb3f7beb91751ff6f809e73f394c21e7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8129da6_5ea042f8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-12T13:54:06Z",
+      "side": 1,
+      "message": "a bit confusing to read, maybe rename newParentFragmentEntities",
+      "range": {
+        "startLine": 117,
+        "startChar": 22,
+        "endLine": 117,
+        "endChar": 41
+      },
+      "revId": "a67b6eacdb3f7beb91751ff6f809e73f394c21e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
