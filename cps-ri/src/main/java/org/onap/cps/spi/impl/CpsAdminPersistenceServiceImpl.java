@@ -22,19 +22,25 @@
 
 package org.onap.cps.spi.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -53,6 +59,12 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Autowired
     private FragmentRepository fragmentRepository;
+
+    @Autowired
+    private YangResourceRepository yangResourceRepository;
+
+    @Autowired
+    private CpsModulePersistenceService cpsModulePersistenceService;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -78,6 +90,25 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         } catch (final DataIntegrityViolationException e) {
             throw AlreadyDefinedException.forAnchor(anchorName, dataspaceName, e);
         }
+    }
+
+    @Override
+    public void createAnchorFromModules(final String anchorName,
+                                        final Map<String, String> newYangResourcesModuleNameToContentMap,
+                                        final List<ModuleReference> moduleReferenceList) {
+        final var dataspaceName = "NCMP-Admin";
+        final var schemaSetName = anchorName;
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName,
+                newYangResourcesModuleNameToContentMap);
+        final var schemaSetEntity =
+                schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        final List<Long> listOfYangResourceIds = new ArrayList<>();
+        moduleReferenceList.forEach(moduleReference ->
+                listOfYangResourceIds.add(yangResourceRepository.getIdByModuleNameAndRevision(
+                        moduleReference.getName(), moduleReference.getRevision())));
+        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), listOfYangResourceIds);
+        createAnchor(dataspaceName, schemaSetName, anchorName);
     }
 
     @Override

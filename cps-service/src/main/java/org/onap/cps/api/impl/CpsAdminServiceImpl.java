@@ -23,9 +23,12 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +46,14 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+    }
+
+    @Override
+    public void createAnchorFromModules(final String anchorName,
+                                        final Map<String, String> newYangResourcesModuleNameToContentMap,
+                                        final List<ModuleReference> moduleReferenceList) {
+        cpsAdminPersistenceService.createAnchorFromModules(anchorName, newYangResourcesModuleNameToContentMap,
+                moduleReferenceList);
     }
 
     @Override

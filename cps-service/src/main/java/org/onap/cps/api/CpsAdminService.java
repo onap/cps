@@ -23,10 +23,13 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.ModuleReference;
 
 /**
  * CPS Admin Service.
@@ -50,6 +53,17 @@ public interface CpsAdminService {
      * @throws CpsException if input data is invalid.
      */
     void createAnchor(@NonNull String dataspaceName, @NonNull String schemaSetName, @NonNull String anchorName);
+
+    /**
+     * Create a schema set and then an Anchor from new modules and existing modules.
+     *
+     * @param anchorName                             anchor name
+     * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param moduleReferenceList                    List of YANG resources module references of existing modules
+     */
+    void createAnchorFromModules(@NonNull String anchorName,
+                                 @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
+                                 @NonNull List<ModuleReference> moduleReferenceList);
 
     /**
      * Read all anchors in the given dataspace.
