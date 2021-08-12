@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eada9061_c4e5d9a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-12T10:58:39Z",
+      "side": 1,
+      "message": "looks good to me but you should probably add a new test for this bug. This can be done as a separate task if needed",
+      "revId": "a67b6eacdb3f7beb91751ff6f809e73f394c21e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
