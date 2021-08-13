@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f77215b6_cef785d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-13T09:31:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7abd67bb_08372b20",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 68
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "350247c1_f6f3214a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9e73201c_03215e4a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-13T09:31:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "350247c1_f6f3214a",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 60
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4c04882_0464c597",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2021-08-13T08:47:11Z",
       "side": 1,
       "message": "what happens if the yang resource already exists in the db? does it just get overridden by the new resource?",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 111
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb9bd598_a4528f98",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-13T09:31:02Z",
+      "side": 1,
+      "message": "This part of the code that you highlighted is dealing with the yang resources that are already in the db (So basically this is creating a relation between the schema set and the already existing resources).\n\nThe part of the code that adds new yang resources is in line 102. To answer your question about duplicates. When a yang resource already exists in the db, we don\u0027t add it to the db. All this is taken care of by the storeSchemaSet method in the CpsModulePersistenceService.",
+      "parentUuid": "d4c04882_0464c597",
       "range": {
         "startLine": 109,
         "startChar": 8,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "bd6ac9d2_6a4f3982",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-13T09:31:02Z",
+      "side": 1,
+      "message": "Not sure I see the benefit in splitting this method. As most of this method actually process the existing ones and one line, line 102 process the new modules.",
+      "parentUuid": "77da5240_cb153e22",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 0
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0b85cf9_a7fea12b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8410229_ddb6ac58",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-13T09:31:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e0b85cf9_a7fea12b",
+      "range": {
+        "startLine": 52,
+        "startChar": 60,
+        "endLine": 52,
+        "endChar": 95
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
