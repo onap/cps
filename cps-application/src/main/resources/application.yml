@@ -105,3 +105,8 @@ logging:
     level:
         org:
             springframework: INFO
+
+dmi:
+    auth:
+        username: mydmiusername
+        password: mydmipassword

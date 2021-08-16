@@ -28,6 +28,8 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
+
+
 /*
  * Datastore interface for handling CPS data.
  */
@@ -106,4 +108,9 @@ public interface NetworkCmProxyDataService {
      */
     void updateDmiPluginRegistration(DmiPluginRegistration dmiPluginRegistration);
 
+    Object getResourceDataOperationalFoCmHandle(@NonNull String cmHandle,
+                                                @NonNull String resourceIdentifier,
+                                                String accept,
+                                                String fields,
+                                                Integer depth);
 }
