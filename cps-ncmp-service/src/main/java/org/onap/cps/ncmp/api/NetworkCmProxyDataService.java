@@ -106,4 +106,20 @@ public interface NetworkCmProxyDataService {
      */
     void updateDmiPluginRegistration(DmiPluginRegistration dmiPluginRegistration);
 
+    /**
+     * Get resource data for data store pass-through operational
+     * using dmi.
+     *
+     * @param cmHandle cm handle
+     * @param resourceIdentifier resource identifier
+     * @param accept accept param
+     * @param fields fields query
+     * @param depth depth query
+     * @return {@code Object} resource data
+     */
+    Object getResourceDataOperationalFoCmHandle(@NonNull String cmHandle,
+                                                @NonNull String resourceIdentifier,
+                                                String accept,
+                                                String fields,
+                                                Integer depth);
 }

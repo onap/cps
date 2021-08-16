@@ -201,3 +201,49 @@ updateDmiRegistration:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+
+getResourceDataForPassthroughOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data for cm handle
+    description: Get resource data for given cm handle
+    operationId: getResourceDataOperationalForCmHandle
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - name: resourceIdentifier
+        in: path
+        description: Resource identifier to fetch the resource data
+        required: true
+        schema:
+          type: string
+      - name: accept
+        in: header
+        required: false
+        description: Accept parameter for response, if accept parameter is null, that means client can accept any format.
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Fields parameter to filter resource
+        required: false
+        schema:
+          type: string
+      - name: depth
+        in: query
+        description: Depth parameter for response
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'

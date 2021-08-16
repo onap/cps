@@ -39,3 +39,8 @@ paths:
 
   /ncmp-dmi/v1/ch:
     $ref: 'ncmproxy.yml#/updateDmiRegistration'
+
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational/{resourceIdentifier}:
+    $ref: 'ncmproxy.yml#/getResourceDataForPassthroughOperational'
+
+  

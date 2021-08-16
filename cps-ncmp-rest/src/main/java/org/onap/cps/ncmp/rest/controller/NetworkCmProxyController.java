@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
@@ -151,6 +152,29 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Get resource data for for operational datastore.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param accept accept header parameter
+     * @param fields fields query parameter
+     * @param depth depth query parameter
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+    @Override
+    public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
+                                                                        final String resourceIdentifier,
+                                                                        final String accept,
+                                                                        final @Valid String fields,
+                                                                        final @Min(1) @Valid Integer depth) {
+        final var responseObject = networkCmProxyDataService.getResourceDataOperationalFoCmHandle(cmHandle,
+                resourceIdentifier,
+                accept,
+                fields,
+                depth);
+        return ResponseEntity.ok(responseObject);
+    }
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
