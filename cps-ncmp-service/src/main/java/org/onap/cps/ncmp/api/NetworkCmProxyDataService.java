@@ -106,4 +106,9 @@ public interface NetworkCmProxyDataService {
      */
     void updateDmiPluginRegistration(DmiPluginRegistration dmiPluginRegistration);
 
+    Object getResourceDataOperationalFoCmHandle(@NonNull String cmHandle,
+                                                @NonNull String resourceIdentifier,
+                                                String accept,
+                                                String fields,
+                                                Integer depth);
 }

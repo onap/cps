@@ -28,9 +28,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.operation.DmiOperations;
 import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
@@ -38,6 +40,7 @@ import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -49,7 +52,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
 
-    private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
+    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
     private static final String NCMP_DATA_TOP_PATH = "/dmi-registry";
 
@@ -59,14 +62,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CpsQueryService cpsQueryService;
 
+    private DmiOperations dmiOperations;
+
     /**
      * Constructor Injection for Dependencies.
+     * @param dmiOperations dmi operation
      * @param cpsDataService Data Service Interface
      * @param cpsQueryService Query Service Interface
      * @param objectMapper Object Mapper
      */
-    public NetworkCmProxyDataServiceImpl(final CpsDataService cpsDataService,
+    public NetworkCmProxyDataServiceImpl(final DmiOperations dmiOperations, final CpsDataService cpsDataService,
         final CpsQueryService cpsQueryService, final ObjectMapper objectMapper) {
+        this.dmiOperations = dmiOperations;
         this.cpsDataService = cpsDataService;
         this.cpsQueryService = cpsQueryService;
         this.objectMapper = objectMapper;
@@ -127,7 +134,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
             persistenceCmHandlesList.setCmHandles(persistenceCmHandles);
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, NCMP_DATA_TOP_PATH,
+            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DATA_TOP_PATH,
                 cmHandleJsonData);
         } catch (final JsonProcessingException e) {
             throw new DataValidationException(
@@ -135,4 +142,34 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 .getMessage(), e);
         }
     }
+
+    @Override
+    public Object getResourceDataOperationalFoCmHandle(final String cmHandle,
+                                                       final String resourceIdentifier,
+                                                       final String acceptParam,
+                                                       final String fieldsQueryParam,
+                                                       final Integer depthQueryParam) {
+
+        final String xpathForDmiRegistryToFetchCmHandle = "dmi-registry/cm-handles@[id=" + cmHandle + "]";
+        final var dataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR,
+                xpathForDmiRegistryToFetchCmHandle,
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        final String dmiServiceName = dataNode.getLeaves().get("dmi-service-name");
+        final ResponseEntity<Object> response = dmiOperations.getResouceDataFromNode(dmiServiceName,
+                cmHandle,
+                resourceIdentifier,
+                fieldsQueryParam,
+                depthQueryParam,
+                acceptParam,
+                "");
+
+        return handleResponse(response);
+    }
+
+    private Object handleResponse(final ResponseEntity<Object> responseEntity) {
+        return responseEntity.getBody();
+    }
+
+
 }

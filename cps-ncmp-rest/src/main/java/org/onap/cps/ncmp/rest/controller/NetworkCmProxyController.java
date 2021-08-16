@@ -151,6 +151,28 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Get resource data for for operational datastore.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param accept accept header parameter
+     * @param fields fields query parameter
+     * @param depth depth query parameter
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+    @Override
+    public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
+                                                                        final String resourceIdentifier,
+                                                                        final String accept,
+                                                                        final @Valid String fields,
+                                                                        final @Valid Integer depth) {
+        return new ResponseEntity( networkCmProxyDataService.getResourceDataOperationalFoCmHandle(cmHandle,
+                resourceIdentifier,
+                accept,
+                fields,
+                depth), HttpStatus.OK);
+    }
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
