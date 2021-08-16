@@ -201,3 +201,28 @@ updateDmiRegistration:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+
+getResourceDataForPassthroughOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through operational for cm handle
+    description: Get resource data from pass-through operational for given cm handle
+    operationId: getResourceDataOperationalForCmHandle
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInPath'
+      - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
+      - $ref: 'components.yaml#/components/parameters/fieldsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/depthParamInQuery'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'

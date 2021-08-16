@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@ package org.onap.cps.ncmp.rest.exceptions;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -57,6 +59,11 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    @ExceptionHandler({NcmpException.class})
+    public static ResponseEntity<Object> handleNcmpExceptions(final NcmpException exception) {
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
@@ -64,6 +71,13 @@ public class NetworkCmProxyRestExceptionHandler {
         final var errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(exception.getMessage());
+        if (exception instanceof CpsException) {
+            errorMessage.setDetails(((CpsException) exception).getDetails());
+        } else if (exception instanceof NcmpException) {
+            errorMessage.setDetails(((NcmpException) exception).getDetails());
+        } else {
+            errorMessage.setDetails(CHECK_LOGS_FOR_DETAILS);
+        }
         errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
             CHECK_LOGS_FOR_DETAILS);
         return new ResponseEntity<>(errorMessage, status);
