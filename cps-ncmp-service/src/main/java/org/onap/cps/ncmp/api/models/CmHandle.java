@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +34,8 @@ import org.springframework.validation.annotation.Validated;
 @Setter
 public class CmHandle {
 
-    private String cmHandle;
+    @JsonProperty("cmHandle")
+    private String cmHandleID;
 
     private Map<String, String> cmHandleProperties;
 

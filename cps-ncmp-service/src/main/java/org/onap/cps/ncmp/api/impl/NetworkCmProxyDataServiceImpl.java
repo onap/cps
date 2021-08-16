@@ -51,8 +51,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
 
-    private static final String NCMP_DATA_TOP_PATH = "/dmi-registry";
-
     private CpsDataService cpsDataService;
 
     private ObjectMapper objectMapper;
@@ -118,16 +116,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<PersistenceCmHandle> persistenceCmHandles =
                 new ArrayList<>();
             for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
-                final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
+                final var persistenceCmHandle = new PersistenceCmHandle();
                 persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
-                persistenceCmHandle.setId(cmHandle.getCmHandle());
+                persistenceCmHandle.setId(cmHandle.getCmHandleID());
                 persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
                 persistenceCmHandles.add(persistenceCmHandle);
             }
-            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+            final var persistenceCmHandlesList = new PersistenceCmHandlesList();
             persistenceCmHandlesList.setCmHandles(persistenceCmHandles);
-            final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, NCMP_DATA_TOP_PATH,
+            final var cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, "/dmi-registry",
                 cmHandleJsonData);
         } catch (final JsonProcessingException e) {
             throw new DataValidationException(

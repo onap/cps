@@ -97,7 +97,7 @@ public final class YangTextSchemaSourceSetBuilder {
         private static ModuleReference toModuleReference(final Module module) {
             return ModuleReference.builder()
                 .name(module.getName())
-                .namespace(module.getNamespace().toString())
+                .namespace(module.getQNameModule().getNamespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();
         }

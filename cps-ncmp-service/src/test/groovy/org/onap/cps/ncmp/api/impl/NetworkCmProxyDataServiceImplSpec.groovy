@@ -99,7 +99,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             def cmHandle = new CmHandle()
-            cmHandle.cmHandle = '123'
+            cmHandle.cmHandleID = '123'
             cmHandle.cmHandleProperties = [ name1: 'value1', name2: 'value2']
             dmiPluginRegistration.createdCmHandles = [ cmHandle ]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
