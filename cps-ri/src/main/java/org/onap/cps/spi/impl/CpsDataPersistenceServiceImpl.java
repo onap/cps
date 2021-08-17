@@ -81,7 +81,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static final Gson GSON = new GsonBuilder().create();
-    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@\\S+?]){0,1})";
+    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -222,8 +222,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();
         final var pattern =
-            Pattern.compile("(\\S*\\/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
-                + REG_EX_FOR_OPTIONAL_LIST_INDEX + "\\/\\S*");
+            Pattern.compile("([\\s\\S]*\\/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
+                + REG_EX_FOR_OPTIONAL_LIST_INDEX + "\\/[\\s\\S]*");
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
             final var matcher = pattern.matcher(fragmentEntity.getXpath());
             if (matcher.matches()) {
