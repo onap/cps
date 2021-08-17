@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "972667cb_51fe7621",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-17T11:54:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0151f45f_f5a8ede8",
+      "range": {
+        "startLine": 64,
+        "startChar": 70,
+        "endLine": 64,
+        "endChar": 80
+      },
+      "revId": "8352c1f39aa97cd856e5c395ff4a49984540b9ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0b85cf9_a7fea12b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 1
