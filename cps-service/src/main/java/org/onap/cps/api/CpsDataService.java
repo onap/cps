@@ -23,9 +23,6 @@ package org.onap.cps.api;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 
 /*
@@ -39,7 +36,6 @@ public interface CpsDataService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param jsonData      json data
-     * @throws DataValidationException when json data is invalid
      */
     void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
 
@@ -50,9 +46,6 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
      * @param jsonData        json data
-     * @throws DataValidationException   when json data is invalid
-     * @throws DataNodeNotFoundException when parent node cannot be found by parent node xpath
-     * @throws AlreadyDefinedException   when child data node with same xpath already exists
      */
     void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull String jsonData);
@@ -65,9 +58,6 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
      * @param jsonData        json data representing list element
-     * @throws DataValidationException   when json data is invalid (incl. list-node being empty)
-     * @throws DataNodeNotFoundException when parent node cannot be found by parent node xpath
-     * @throws AlreadyDefinedException   when any of child data nodes is having xpath of already existing node
      */
     void saveListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull String jsonData);
@@ -115,9 +105,17 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
      * @param jsonData        json data representing list element
-     * @throws DataValidationException   when json data is invalid (incl. list-node being empty)
-     * @throws DataNodeNotFoundException when parent node cannot be found by parent node xpath
      */
     void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull String jsonData);
+
+    /**
+     * Deletes (if exists) child data fragment representing list-node (with one or more elements)
+     * under existing data node for the given anchor and dataspace.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param listNodeXpath   list node xpath
+     */
+    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath);
 }

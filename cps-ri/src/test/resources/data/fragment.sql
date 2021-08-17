@@ -49,8 +49,16 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4202, 1001, 3003, 4201, '/parent-200/child-201', '{"leaf-value": "original"}'),
     (4203, 1001, 3003, 4202, '/parent-200/child-201/grand-child', '{"leaf-value": "original"}'),
     (4204, 1001, 3003, 4201, '/parent-200/child-202', '{"common-leaf-name": "common-leaf value", "common-leaf-name-int" : 5}'),
-    (4205, 1001, 3003, 4204, '/parent-200/child-202/grand-child-202', '{"common-leaf-name": "common-leaf value", "common-leaf-name-int" : 5}'),
+    (4205, 1001, 3003, 4204, '/parent-200/child-202/grand-child-202[@key="D"]', '{"common-leaf-name": "common-leaf value", "common-leaf-name-int" : 5}'),
     (4206, 1001, 3003, null, '/parent-201', '{"leaf-value": "original"}'),
     (4207, 1001, 3003, 4206, '/parent-201/child-203', '{}'),
     (4208, 1001, 3003, 4206, '/parent-201/child-204[@key="A"]', '{"key": "A"}'),
-    (4209, 1001, 3003, 4206, '/parent-201/child-204[@key="X"]', '{"key": "X"}');
+    (4209, 1001, 3003, 4206, '/parent-201/child-204[@key="X"]', '{"key": "X"}'),
+    (4211, 1001, 3003, null, '/parent-202', '{"leaf-value": "original"}'),
+    (4212, 1001, 3003, 4211, '/parent-202/child-205[@key="A" and @key2="B"]', '{"key": "A", "key2": "B"}'),
+    (4213, 1001, 3003, 4211, '/parent-202/child-206[@key="A"]', '{"key": "A"}'),
+    (4214, 1001, 3003, null, '/parent-203', '{"leaf-value": "original"}'),
+    (4215, 1001, 3003, 4214, '/parent-203/child-203', '{}'),
+    (4216, 1001, 3003, 4214, '/parent-203/child-204[@key="A"]', '{"key": "A"}'),
+    (4217, 1001, 3003, 4214, '/parent-203/child-204[@key="X"]', '{"key": "X"}'),
+    (4218, 1001, 3003, 4217, '/parent-203/child-204[@key="X"]/grand-child-204[@key2="Y"]', '{"key": "X", "key2": "Y"}');
