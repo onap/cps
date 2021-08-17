@@ -91,6 +91,10 @@
       <artifactId>spring-context</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
       <!-- For parsing JSON object -->
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>

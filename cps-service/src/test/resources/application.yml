@@ -17,8 +17,10 @@
 
 notification:
   data-updated:
-    topic: cps-event
+    filters:
+      enabled-dataspaces: ".*-published,.*-important"
     enabled: true
+    topic: cps-event
 
 spring:
   kafka:
