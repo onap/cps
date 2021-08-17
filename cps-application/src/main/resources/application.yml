@@ -72,6 +72,8 @@ notification:
     data-updated:
         enabled: false
         topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
+        filters:
+            enabled-dataspaces: ${DATASPACE_FILTER_PATTERN}
 
 springdoc:
     swagger-ui:
