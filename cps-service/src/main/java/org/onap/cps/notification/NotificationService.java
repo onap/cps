@@ -18,39 +18,56 @@
 
 package org.onap.cps.notification;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class NotificationService {
 
-    private boolean dataUpdatedEventNotificationEnabled;
+    private NotificationProperties notificationProperties;
     private NotificationPublisher notificationPublisher;
     private CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private NotificationErrorHandler notificationErrorHandler;
+    private List<Pattern> dataspacePatterns;
 
     /**
      * Create an instance of Notification Subscriber.
      *
-     * @param dataUpdatedEventNotificationEnabled   notification can be enabled by setting
-     *                                              'notification.data-updated.enabled=true' in application properties
-     * @param notificationPublisher                 notification Publisher
-     * @param cpsDataUpdatedEventFactory            to create CPSDataUpdatedEvent
-     * @param notificationErrorHandler              error handler
+     * @param notificationProperties     properties for notification
+     * @param notificationPublisher      notification Publisher
+     * @param cpsDataUpdatedEventFactory to create CPSDataUpdatedEvent
+     * @param notificationErrorHandler   error handler
      */
     @Autowired
     public NotificationService(
-        @Value("${notification.data-updated.enabled}") final boolean dataUpdatedEventNotificationEnabled,
+        final NotificationProperties notificationProperties,
         final NotificationPublisher notificationPublisher,
         final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory,
         final NotificationErrorHandler notificationErrorHandler) {
-        this.dataUpdatedEventNotificationEnabled = dataUpdatedEventNotificationEnabled;
+        this.notificationProperties = notificationProperties;
         this.notificationPublisher = notificationPublisher;
         this.cpsDataUpdatedEventFactory = cpsDataUpdatedEventFactory;
         this.notificationErrorHandler = notificationErrorHandler;
+        this.dataspacePatterns = getDataspaceFilterPatterns(notificationProperties);
+    }
+
+    private List<Pattern> getDataspaceFilterPatterns(final NotificationProperties notificationProperties) {
+        if (notificationProperties.isEnabled()) {
+            return Arrays.stream(notificationProperties.getFilters()
+                .getOrDefault("enabled-dataspaces", "")
+                .split(","))
+                .map(filterPattern -> Pattern.compile(filterPattern, Pattern.CASE_INSENSITIVE))
+                .collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     /**
@@ -62,7 +79,7 @@ public class NotificationService {
     public void processDataUpdatedEvent(final String dataspaceName, final String anchorName) {
         log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
         try {
-            if (shouldSendNotification()) {
+            if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
                     cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName);
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
@@ -80,8 +97,11 @@ public class NotificationService {
     /*
         Add more complex rules based on dataspace and anchor later
      */
-    private boolean shouldSendNotification() {
-        return dataUpdatedEventNotificationEnabled;
+    private boolean shouldSendNotification(final String dataspaceName) {
+
+        return notificationProperties.isEnabled()
+            && dataspacePatterns.stream()
+            .anyMatch(pattern -> pattern.matcher(dataspaceName).find());
     }
 
 }

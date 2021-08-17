@@ -72,12 +72,14 @@ notification:
     data-updated:
         enabled: false
         topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
+        filters:
+            enabled-dataspaces: ${DATASPACE_FILTER_PATTERNS}
 
 springdoc:
     swagger-ui:
         url: /openapi.yml
         path: /swagger-ui/index.html
-        
+
 security:
     # comma-separated uri patterns which do not require authorization
     permit-uri: /manage/**,/swagger-ui/**,/swagger-resources/**,/v3/api-docs
