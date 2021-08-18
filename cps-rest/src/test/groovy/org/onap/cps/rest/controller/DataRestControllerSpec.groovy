@@ -24,6 +24,7 @@ package org.onap.cps.rest.controller
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -234,5 +235,19 @@ class DataRestControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         then: 'the java API was called with the correct parameters'
             1 * mockCpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData)
+    }
+
+    def 'Delete list node child elements.'() {
+        given: 'list node xpath'
+            def listNodeXpath = 'list node xpath'
+        when: 'delete is invoked list-node endpoint'
+            def response = mvc.perform(
+                    delete("$dataNodeBaseEndpoint/anchors/$anchorName/list-node")
+                        .param('xpath', listNodeXpath)
+            ).andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.NO_CONTENT.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.deleteListNodeData(dataspaceName, anchorName, listNodeXpath)
     }
 }
