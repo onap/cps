@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82b2103e_5c10573d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-18T00:07:19Z",
+      "side": 1,
+      "message": "The environment var could be set outside from this yaml file so it might not be always easy to get the intent. Maybe good to also have \"NOTIFICATION\" within the name to give some more context about this dataspace filtering. Example `NOTIFICATION_DATASPACE_FILTER_PATTERNS` or any other suggestion ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 34,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "8f01bf67befd7f73d3208a8279e7d2ea8cc89423",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce67df79_57d7a507",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-18T00:07:19Z",
+      "side": 1,
+      "message": "In case some later investigations are needed, maybe good to log notification properties when the service is instantiated.",
+      "revId": "8f01bf67befd7f73d3208a8279e7d2ea8cc89423",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
