@@ -28,7 +28,6 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -148,8 +147,21 @@ class CpsDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
         where: 'following parameters were used'
             scenario          | jsonData
-            'multiple leaves' | '{"code": "01","name": "some-name"}'
+            'multiple expectedLeaves' | '{"code": "01","name": "some-name"}'
             'one leaf'        | '{"name": "some-name"}'
+    }
+
+    def 'Update cm-handle properties' () {
+        given: 'a dmi registry model'
+            setupSchemaSetMocks('dmi-registry.yang')
+        and: 'the expected json string'
+            def jsonData = '{"cm-handles":[{"id":"cmHandle001", "additional-properties":[{"name":"P1"}]}]}'
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName, '/dmi-registry', jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, "/dmi-registry/cm-handles[@id='cmHandle001']", ['id': 'cmHandle001'])
+        and: 'the data updated event is sent to the notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName)
     }
 
     def 'Replace data node: #scenario.'() {
