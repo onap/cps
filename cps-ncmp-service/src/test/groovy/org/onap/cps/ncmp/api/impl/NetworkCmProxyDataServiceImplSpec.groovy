@@ -102,6 +102,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             cmHandle.cmHandleID = '123'
             cmHandle.cmHandleProperties = [ name1: 'value1', name2: 'value2']
             dmiPluginRegistration.createdCmHandles = [ cmHandle ]
+            dmiPluginRegistration.updatedCmHandles = [ cmHandle ]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
