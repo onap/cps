@@ -40,6 +40,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RestCmHandle'
+        updatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestCmHandle'
 
     RestCmHandle:
       required:
