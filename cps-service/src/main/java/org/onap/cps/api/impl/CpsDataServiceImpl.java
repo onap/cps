@@ -91,10 +91,26 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
-        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService
-            .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        if (jsonData.contains("cm-handles")) {
+            final Collection<DataNode> dataNodeCollection =
+                buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+            for (final DataNode dataNode: dataNodeCollection) {
+                cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
+                    dataNode.getXpath(), dataNode.getLeaves());
+                notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+                final Collection<DataNode> childDataNodeCollection = dataNode.getChildDataNodes();
+                for (final DataNode childDataNode: childDataNodeCollection) {
+                    cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
+                        childDataNode.getXpath(), childDataNode.getLeaves());
+                    notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+                }
+            }
+        } else {
+            final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+            cpsDataPersistenceService
+                .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
+            notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        }
     }
 
     @Override
