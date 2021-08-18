@@ -24,9 +24,9 @@ package org.onap.cps.ncmp.api.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -124,24 +124,48 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void updateDmiPluginRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        if (dmiPluginRegistration.getCreatedCmHandles() != null) {
+            parseAndCreateCmHandlesInDmiRegistration(dmiPluginRegistration);
+        }
+        if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
+            parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
+        }
+    }
+
+    private void parseAndCreateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         try {
-            final List<PersistenceCmHandle> persistenceCmHandles =
-                new ArrayList<>();
+            final List<PersistenceCmHandle> createdPersistenceCmHandles =
+                new LinkedList<>();
             for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
-                final var persistenceCmHandle = new PersistenceCmHandle();
-                persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
-                persistenceCmHandle.setId(cmHandle.getCmHandleID());
-                persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
-                persistenceCmHandles.add(persistenceCmHandle);
+                createdPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration, cmHandle));
             }
-            final var persistenceCmHandlesList = new PersistenceCmHandlesList();
-            persistenceCmHandlesList.setCmHandles(persistenceCmHandles);
+            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+            persistenceCmHandlesList.setCmHandles(createdPersistenceCmHandles);
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME,
-                    NCMP_DMI_REGISTRY_ANCHOR,
-                    "/dmi-registry",
+            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
                 cmHandleJsonData);
         } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON for Dmi Registry.");
+            throw new DataValidationException(
+                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
+                .getMessage(), e);
+        }
+    }
+
+    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        try {
+            final List<PersistenceCmHandle> updatedPersistenceCmHandles =
+                new LinkedList<>();
+            for (final CmHandle cmHandle: dmiPluginRegistration.getUpdatedCmHandles()) {
+                updatedPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration, cmHandle));
+            }
+            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+            persistenceCmHandlesList.setCmHandles(updatedPersistenceCmHandles);
+            final String cmHandlesJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+            cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry", cmHandlesJsonData);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON Dmi Registry.");
             throw new DataValidationException(
                 "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
                 .getMessage(), e);
@@ -216,5 +240,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
+    private PersistenceCmHandle toPersistenceCmHandle(final DmiPluginRegistration dmiPluginRegistration,
+                                                      final CmHandle cmHandle) {
+        final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
+        persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
+        persistenceCmHandle.setId(cmHandle.getCmHandleID());
+        persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+        return persistenceCmHandle;
+    }
 
 }
