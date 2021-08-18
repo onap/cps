@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60106fa8_4542b20a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-18T13:15:01Z",
+      "side": 1,
+      "message": "what is expected as response?",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "49635ac2dc398cc2a417bc7f9985a46e94d74989",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a2c720e_49608b07",
+        "filename": "cps-rest/src/main/resources/static/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-18T13:15:01Z",
+      "side": 1,
+      "message": "\u0027204\u0027:\n        $ref: \u0027components.yml#/components/responses/NoContent\u0027\nWe are returning same response for deleteSchemaset",
+      "range": {
+        "startLine": 111,
+        "startChar": 6,
+        "endLine": 112,
+        "endChar": 55
+      },
+      "revId": "49635ac2dc398cc2a417bc7f9985a46e94d74989",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0997e87_630938b8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-18T13:15:01Z",
+      "side": 1,
+      "message": "nb: indentation issue",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 251,
+        "endChar": 91
+      },
+      "revId": "49635ac2dc398cc2a417bc7f9985a46e94d74989",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
