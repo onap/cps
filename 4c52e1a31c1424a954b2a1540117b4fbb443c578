@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bba63e31_3a65e7a0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-18T02:57:28Z",
+      "side": 1,
+      "message": "nb: too many things happening in given. We can add \u0027and\u0027 to make it easier to read.",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 100
+      },
+      "revId": "4c52e1a31c1424a954b2a1540117b4fbb443c578",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed9224bf_c28cd223",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-18T02:57:28Z",
+      "side": 1,
+      "message": "Q: In the previous implementation, we were creating both anchor and schema-set. But in the new implementation, we are not creating anchor. Is it expected?",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "4c52e1a31c1424a954b2a1540117b4fbb443c578",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
