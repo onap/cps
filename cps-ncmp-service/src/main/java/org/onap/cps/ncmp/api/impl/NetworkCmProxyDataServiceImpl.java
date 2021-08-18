@@ -51,6 +51,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static final String NCMP_ANCHOR_NAME = "ncmp-dmi-registry";
 
+    private static final String ROOT_NODE_XPATH = "/";
+
+    private static final String DMI_REGISTRY = "dmi-registry";
+
     private CpsDataService cpsDataService;
 
     private ObjectMapper objectMapper;
@@ -113,24 +117,55 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void updateDmiPluginRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         try {
-            final List<PersistenceCmHandle> persistenceCmHandles =
-                new ArrayList<>();
-            for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
-                final var persistenceCmHandle = new PersistenceCmHandle();
-                persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
-                persistenceCmHandle.setId(cmHandle.getCmHandleID());
-                persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
-                persistenceCmHandles.add(persistenceCmHandle);
+            if (dmiPluginRegistration.getCreatedCmHandles() != null) {
+                createdCmHandles(dmiPluginRegistration);
             }
-            final var persistenceCmHandlesList = new PersistenceCmHandlesList();
-            persistenceCmHandlesList.setCmHandles(persistenceCmHandles);
-            final var cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, "/dmi-registry",
-                cmHandleJsonData);
+            if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
+                updatedCmHandles(dmiPluginRegistration);
+            }
+
         } catch (final JsonProcessingException e) {
             throw new DataValidationException(
                 "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
                 .getMessage(), e);
         }
+    }
+
+    private void createdCmHandles(final DmiPluginRegistration dmiPluginRegistration)
+        throws JsonProcessingException {
+        final List<PersistenceCmHandle> createdPersistenceCmHandles =
+            new ArrayList<>();
+        for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
+            buildPersistenceCmHandle(dmiPluginRegistration, createdPersistenceCmHandles, cmHandle);
+        }
+        final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+        persistenceCmHandlesList.setCmHandles(createdPersistenceCmHandles);
+        final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+        cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, ROOT_NODE_XPATH + DMI_REGISTRY,
+            cmHandleJsonData);
+    }
+
+    private void updatedCmHandles(final DmiPluginRegistration dmiPluginRegistration)
+        throws JsonProcessingException {
+        final List<PersistenceCmHandle> updatePersistenceCmHandles =
+            new ArrayList<>();
+        for (final CmHandle cmHandle: dmiPluginRegistration.getUpdatedCmHandles()) {
+            buildPersistenceCmHandle(dmiPluginRegistration, updatePersistenceCmHandles, cmHandle);
+        }
+        final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+        persistenceCmHandlesList.setCmHandles(updatePersistenceCmHandles);
+        final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_ANCHOR_NAME, ROOT_NODE_XPATH + DMI_REGISTRY,
+            cmHandleJsonData);
+    }
+
+    private void buildPersistenceCmHandle(final DmiPluginRegistration dmiPluginRegistration,
+                                         final List<PersistenceCmHandle> createdPersistenceCmHandles,
+                                          final CmHandle cmHandle) {
+        final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
+        persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
+        persistenceCmHandle.setId(cmHandle.getCmHandleID());
+        persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+        createdPersistenceCmHandles.add(persistenceCmHandle);
     }
 }

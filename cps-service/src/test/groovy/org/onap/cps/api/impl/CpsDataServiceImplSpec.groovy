@@ -152,6 +152,21 @@ class CpsDataServiceImplSpec extends Specification {
             'one leaf'        | '{"name": "some-name"}'
     }
 
+    def 'Update cm-handle properties' () {
+        given: 'json data, xpaths, lead nodes, schema set for given anchor and dataspace references dmi-registry model'
+            setupSchemaSetMocks('dmi-registry.yang')
+            def parentNodeXpath = '/dmi-registry'
+            def jsonData = '{"cm-handles":[{"id":"cmHandle001", "additional-properties":[{"name":"P1"}]}]}'
+            def expectedNodeXpath = "/dmi-registry/cm-handles[@id='cmHandle001']"
+            def leaves = ['id': 'cmHandle001']
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, expectedNodeXpath, leaves)
+        and: 'the data updated event is sent to the notification service'
+            2 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName)
+    }
+
     def 'Replace data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
