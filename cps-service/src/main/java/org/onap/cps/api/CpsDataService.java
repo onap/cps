@@ -118,4 +118,16 @@ public interface CpsDataService {
      * @param listNodeXpath   list node xpath
      */
     void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath);
+
+    /**
+     * Updates DataNode for given dataspace and anchor using xpath,
+     * along with the Child Data Nodes of the datanode created.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param parentNodeXpath xpath
+     * @param jsonData json data
+     */
+    void updateNodeLeavesAndChildDataNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath,
+                              String jsonData);
 }

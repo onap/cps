@@ -104,17 +104,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
     def 'Register CM Handle Event.'() {
         given: 'a registration '
+            def dmiRegistryAnchor = 'ncmp-dmi-registry'
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             def cmHandle = new CmHandle()
             cmHandle.cmHandleID = '123'
             cmHandle.cmHandleProperties = [ name1: 'value1', name2: 'value2']
             dmiPluginRegistration.createdCmHandles = [ cmHandle ]
+            dmiPluginRegistration.updatedCmHandles = [ cmHandle ]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
-        then: 'the CPS service method is invoked once with the expected parameters'
+        then: 'the CPS save list node data is invoked with the expected parameters'
             1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+        and: 'Update Node and Child Data Nodes is invoked with correct parameter'
+            1 * mockCpsDataService.updateNodeLeavesAndChildDataNodeLeaves('NCMP-Admin', dmiRegistryAnchor, '/dmi-registry', expectedJsonData)
     }
     def 'Get resource data for pass-through operational from dmi.'() {
         given: 'xpath'

@@ -98,6 +98,21 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void updateNodeLeavesAndChildDataNodeLeaves(final String dataspaceName, final String anchorName,
+                                            final String parentNodeXpath, final String jsonData) {
+        final DataNode dataNode =
+            buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
+            dataNode.getXpath(), dataNode.getLeaves());
+        final Collection<DataNode> childDataNodeCollection = dataNode.getChildDataNodes();
+        for (final DataNode childDataNode: childDataNodeCollection) {
+            cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
+                childDataNode.getXpath(), childDataNode.getLeaves());
+        }
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+    }
+
+    @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
