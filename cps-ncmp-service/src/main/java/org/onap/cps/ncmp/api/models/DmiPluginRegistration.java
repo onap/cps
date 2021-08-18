@@ -21,19 +21,26 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * DmiRegistry.
+ * Dmi Registry request object.
  */
 @Getter
 @Setter
+@JsonInclude(Include.NON_NULL)
 public class DmiPluginRegistration {
 
     private String dmiPlugin;
 
     private List<CmHandle> createdCmHandles;
+
+    private List<CmHandle> updatedCmHandles;
+
+    private List<CmHandle> deletedCmHandles;
 
 }

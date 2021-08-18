@@ -33,9 +33,13 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import spock.lang.Shared
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
+
+    @Shared
+    def persistenceCmHandle = new CmHandle()
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
@@ -43,6 +47,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsDataService, mockCpsQueryService, new ObjectMapper())
 
     def cmHandle = 'some handle'
+
     def expectedDataspaceName = 'NFP-Operational'
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a cm Handle and a cps path'
@@ -102,19 +107,29 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData)
     }
+
     def 'Register CM Handle Event.'() {
         given: 'a registration '
+            def dmiRegistryAnchor = 'ncmp-dmi-registry'
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
-            def cmHandle = new CmHandle()
-            cmHandle.cmHandleID = '123'
-            cmHandle.cmHandleProperties = [ name1: 'value1', name2: 'value2']
-            dmiPluginRegistration.createdCmHandles = [ cmHandle ]
+            persistenceCmHandle.cmHandleID = '123'
+            persistenceCmHandle.cmHandleProperties = [name1: 'value1', name2: 'value2']
+            dmiPluginRegistration.createdCmHandles = createdCmHandles
+            dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
-        then: 'the CPS service method is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+        then: 'the CPS save list node data is invoked with the expected parameters'
+            expectedCallsToSaveNode * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+        and: 'update Node and Child Data Nodes is invoked with correct parameter'
+            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', dmiRegistryAnchor, '/dmi-registry', expectedJsonData)
+        where:
+            scenario                           | createdCmHandles     | updatedCmHandles   || expectedCallsToSaveNode | expectedCallsToUpdateNode
+            'create cm handles'                | [persistenceCmHandle ] | []                     || 1 | 0
+            'update cm handles'                | []                     | [persistenceCmHandle ] || 0 | 1
+            'create and update cm handles'     | [persistenceCmHandle ] | [persistenceCmHandle ] || 1 | 1
+
     }
     def 'Get resource data for pass-through operational from dmi.'() {
         given: 'xpath'
