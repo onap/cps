@@ -96,6 +96,13 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Object> deleteListNodeElements(final String dataspaceName, final String anchorName,
+                                                         final String listNodeXpath) {
+        cpsDataService.deleteListNodeData(dataspaceName, anchorName, listNodeXpath);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
     }

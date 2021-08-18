@@ -97,6 +97,26 @@ listNodeByDataspaceAndAnchor:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
+  delete:
+    description: Delete list-node child elements under existing node for a given anchor and dataspace
+    tags:
+      - cps-data
+    summary: Delete list-node child element(s) under existing parent node
+    operationId: deleteListNodeElements
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
 nodesByDataspaceAndAnchor:
   post:
     description: Create a node for a given anchor and dataspace
