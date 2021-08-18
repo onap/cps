@@ -43,6 +43,18 @@ public interface CpsModulePersistenceService {
         @NonNull Map<String, String> yangResourcesNameToContentMap);
 
     /**
+     * Stores a schema set from new modules and existing modules.
+     *
+     * @param dataspaceName                          Dataspace name
+     * @param schemaSetName                          Schema set name
+     * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param moduleReferenceList                    List of YANG resources module references
+     */
+    void storeSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
+                                   @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
+                                   @NonNull List<ModuleReference> moduleReferenceList);
+
+    /**
      * Deletes Schema Set.
      *
      * @param dataspaceName        dataspace name

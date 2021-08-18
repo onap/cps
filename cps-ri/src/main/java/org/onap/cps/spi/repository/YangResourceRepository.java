@@ -28,15 +28,20 @@ import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long> {
+public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long>,
+        SchemaSetYangResourceRepository {
 
     List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
 
     @Query(value = "SELECT module_name, revision FROM yang_resource", nativeQuery = true)
     List<YangResourceModuleReference> findAllModuleNameAndRevision();
+
+    @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
+    Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);
 
     @Modifying
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
