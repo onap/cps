@@ -23,17 +23,23 @@ package org.onap.cps.ncmp.api.models;
 
 import java.util.List;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
- * DmiRegistry.
+ * Dmi Registry request object.
  */
 @Getter
 @Setter
+@NonNull
 public class DmiPluginRegistration {
 
     private String dmiPlugin;
 
     private List<CmHandle> createdCmHandles;
+
+    private List<CmHandle> updatedCmHandles;
+
+    private List<CmHandle> deletedCmHandles;
 
 }
