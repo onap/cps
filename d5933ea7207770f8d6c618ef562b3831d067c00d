@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7d38c1c1_7c6b0719",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T11:49:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c88e48e_c92f003f",
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14767252_22b75215",
         "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
         "patchSetId": 3
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "5ae44bcb_60d6b1b9",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T11:49:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14767252_22b75215",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 219,
+        "endChar": 22
+      },
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b21a7e49_b24cf1ed",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
         "patchSetId": 3
@@ -62,6 +104,30 @@
       "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8459a928_39e9a60a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T11:49:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b21a7e49_b24cf1ed",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
