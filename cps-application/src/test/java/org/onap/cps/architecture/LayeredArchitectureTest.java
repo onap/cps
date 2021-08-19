@@ -38,9 +38,10 @@ public class LayeredArchitectureTest {
     private static final String NCMP_REST_PACKAGE = "org.onap.cps.ncmp.rest..";
     private static final String API_SERVICE_PACKAGE = "org.onap.cps.api..";
     private static final String SPI_SERVICE_PACKAGE = "org.onap.cps.spi..";
-    private static final String NCMP_SERVICE_PACKAGE =  "org.onap.cps.ncmp.api..";
+    private static final String NCMP_SERVICE_PACKAGE = "org.onap.cps.ncmp.api..";
     private static final String SPI_REPOSITORY_PACKAGE = "org.onap.cps.spi.repository..";
     private static final String YANG_SCHEMA_PACKAGE = "org.onap.cps.yang..";
+    private static final String NOTIFICATION_SERVICE_PACKAGE = "org.onap.cps.api.notification..";
 
     @ArchTest
     static final ArchRule restControllerShouldOnlyDependOnRestController =
@@ -52,7 +53,7 @@ public class LayeredArchitectureTest {
         freeze(classes().that().resideInAPackage(API_SERVICE_PACKAGE)
             .or().resideInAPackage(SPI_SERVICE_PACKAGE).should().onlyHaveDependentClassesThat()
             .resideInAnyPackage(REST_CONTROLLER_PACKAGE, API_SERVICE_PACKAGE, SPI_SERVICE_PACKAGE, NCMP_REST_PACKAGE,
-                NCMP_SERVICE_PACKAGE, YANG_SCHEMA_PACKAGE));
+                NCMP_SERVICE_PACKAGE, YANG_SCHEMA_PACKAGE, NOTIFICATION_SERVICE_PACKAGE));
 
     @ArchTest
     static final ArchRule repositoryShouldOnlyBeDependedOnByServicesAndRepository =
