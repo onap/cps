@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c88e48e_c92f003f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-19T10:34:15Z",
+      "side": 1,
+      "message": "add issue id",
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14767252_22b75215",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-19T10:34:15Z",
+      "side": 1,
+      "message": "this param will be re used so I would extract it out as a reference to resourceIdentifierInPath",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 219,
+        "endChar": 22
+      },
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21a7e49_b24cf1ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-19T10:34:15Z",
+      "side": 1,
+      "message": "get modules is called from the node",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "d5933ea7207770f8d6c618ef562b3831d067c00d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
