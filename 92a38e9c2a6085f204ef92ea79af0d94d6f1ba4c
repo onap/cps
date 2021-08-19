@@ -2,6 +2,167 @@
   "comments": [
     {
       "key": {
+        "uuid": "11d5cd7d_ac3ebe71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "DMI_REGISTRY_PARENT_XPATH",
+      "range": {
+        "startLine": 54,
+        "startChar": 32,
+        "endLine": 54,
+        "endChar": 50
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2174b9b_77a0330e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "log error",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 11
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b083f257_0c576245",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "i see lot of common code in both methods, extract that common code out for reusability",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 4
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c06c21a7_03f348fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "createdPersistenceCmHandles",
+      "range": {
+        "startLine": 134,
+        "startChar": 40,
+        "endLine": 134,
+        "endChar": 65
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed762993_2f321c5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "Dmi Registry request object",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c89f7d8_6c7d0d30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "only include non null INCLUDE NON-NULL",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fd300cf_86509501",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "you should also check updateListNodeData with correct params",
+      "range": {
+        "startLine": 110,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 12
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2baf645a_6da46f72",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -25,6 +186,29 @@
     },
     {
       "key": {
+        "uuid": "94c62013_92ca622a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "this kind of custom fit code at cps core leve which is generic in terms of storing data is not re commanded. Try to take this code to ncmp and call cps-service from there accordingly. If cps-service lacks any method to perform that. Create generic methods to achieve that.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 45
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccddf575_3cadb711",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -41,6 +225,52 @@
         "startChar": 4,
         "endLine": 105,
         "endChar": 91
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ce6c345_9f88d237",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "use double quotes, then no need for escape chars",
+      "range": {
+        "startLine": 160,
+        "startChar": 36,
+        "endLine": 160,
+        "endChar": 37
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a42c89d6_7a57a559",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-19T09:26:13Z",
+      "side": 1,
+      "message": "? nothing in where",
+      "range": {
+        "startLine": 168,
+        "startChar": 16,
+        "endLine": 168,
+        "endChar": 25
       },
       "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
