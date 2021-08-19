@@ -30,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
@@ -149,8 +150,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataOperationalFoCmHandle(final String cmHandle,
-                                                       final String resourceIdentifier,
+    public Object getResourceDataOperationalFoCmHandle(final @NonNull String cmHandle,
+                                                       final @NonNull String resourceIdentifier,
                                                        final String acceptParam,
                                                        final String fieldsQueryParam,
                                                        final Integer depthQueryParam) {
@@ -159,12 +160,32 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final String dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
         final Collection<DataNode> additionalPropsList = dataNode.getChildDataNodes();
         final String jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
-        final ResponseEntity<Object> response = dmiOperations.getResouceDataFromDmi(dmiServiceName,
+        final ResponseEntity<Object> response = dmiOperations.getResouceDataOperationalFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
                 fieldsQueryParam,
                 depthQueryParam,
                 acceptParam,
+                jsonBody);
+        return handleResponse(response);
+    }
+
+    @Override
+    public Object getResourceDataPassThroughRunningFoCmHandle(final @NonNull String cmHandle,
+                                                              final @NonNull String resourceIdentifier,
+                                                              final String accept,
+                                                              final String fields,
+                                                              final Integer depth) {
+        final DataNode dataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final String dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
+        final Collection<DataNode> additionalPropsList = dataNode.getChildDataNodes();
+        final String jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
+        final ResponseEntity<Object> response = dmiOperations.getResouceDataPassThroughRunningFromDmi(dmiServiceName,
+                cmHandle,
+                resourceIdentifier,
+                fields,
+                depth,
+                accept,
                 jsonBody);
         return handleResponse(response);
     }
