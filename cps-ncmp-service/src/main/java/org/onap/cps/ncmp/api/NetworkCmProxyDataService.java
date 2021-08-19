@@ -23,6 +23,7 @@
 package org.onap.cps.ncmp.api;
 
 import java.util.Collection;
+import javax.validation.constraints.NotNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -117,9 +118,26 @@ public interface NetworkCmProxyDataService {
      * @param depth depth query
      * @return {@code Object} resource data
      */
-    Object getResourceDataOperationalFoCmHandle(@NonNull String cmHandle,
-                                                @NonNull String resourceIdentifier,
-                                                String accept,
-                                                String fields,
-                                                Integer depth);
+    Object getResourceDataOperationalForCmHandle(@NotNull String cmHandle,
+                                                 @NotNull String resourceIdentifier,
+                                                 String accept,
+                                                 String fields,
+                                                 Integer depth);
+
+    /**
+     * Get resource data for data store pass-through running
+     * using dmi.
+     *
+     * @param cmHandle cm handle
+     * @param resourceIdentifier resource identifier
+     * @param accept accept param
+     * @param fields fields query
+     * @param depth depth query
+     * @return {@code Object} resource data
+     */
+    Object getResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
+                                                        @NotNull String resourceIdentifier,
+                                                        String accept,
+                                                        String fields,
+                                                        Integer depth);
 }

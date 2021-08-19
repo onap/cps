@@ -29,6 +29,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
@@ -149,23 +150,43 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataOperationalFoCmHandle(final String cmHandle,
-                                                       final String resourceIdentifier,
-                                                       final String acceptParam,
-                                                       final String fieldsQueryParam,
-                                                       final Integer depthQueryParam) {
+    public Object getResourceDataOperationalForCmHandle(final @NotNull String cmHandle,
+                                                        final @NotNull String resourceIdentifier,
+                                                        final String acceptParam,
+                                                        final String fieldsQueryParam,
+                                                        final Integer depthQueryParam) {
 
-        final DataNode dataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
-        final String dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
+        final var dataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final var dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
         final Collection<DataNode> additionalPropsList = dataNode.getChildDataNodes();
-        final String jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
-        final ResponseEntity<Object> response = dmiOperations.getResouceDataFromDmi(dmiServiceName,
+        final var jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
+        final ResponseEntity<Object> response = dmiOperations.getResouceDataOperationalFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
                 fieldsQueryParam,
                 depthQueryParam,
                 acceptParam,
                 jsonBody);
+        return handleResponse(response);
+    }
+
+    @Override
+    public Object getResourceDataPassThroughRunningForCmHandle(final @NotNull String cmHandle,
+                                                               final @NotNull String resourceIdentifier,
+                                                               final String accept,
+                                                               final String fields,
+                                                               final Integer depth) {
+        final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name"));
+        final Collection<DataNode> additionalPropsList = cmHandleDataNode.getChildDataNodes();
+        final var dmiRequesBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
+        final ResponseEntity<Object> response = dmiOperations.getResouceDataPassThroughRunningFromDmi(dmiServiceName,
+                cmHandle,
+                resourceIdentifier,
+                fields,
+                depth,
+                accept,
+                dmiRequesBody);
         return handleResponse(response);
     }
 
@@ -180,12 +201,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private String prepareOperationBody(final GenericRequestBody.OperationEnum operation,
                                         final Collection<DataNode> additionalPropertyList) {
-        final GenericRequestBody requestBody = new GenericRequestBody();
+        final var requestBody = new GenericRequestBody();
         final Map<String, String> additionalPropertyMap = getAdditionalPropertiesMap(additionalPropertyList);
         requestBody.setOperation(GenericRequestBody.OperationEnum.READ);
         requestBody.setCmHandleProperties(additionalPropertyMap);
         try {
-            final String requestJson = objectMapper.writeValueAsString(requestBody);
+            final var requestJson = objectMapper.writeValueAsString(requestBody);
             return requestJson;
         } catch (final JsonProcessingException je) {
             log.error("Parsing error occurred while converting Object to JSON.");
@@ -199,7 +220,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return null;
         }
         final Map<String, String> additionalPropertyMap = new LinkedHashMap<>();
-        for (final DataNode node: additionalPropertyList) {
+        for (final var node: additionalPropertyList) {
             additionalPropertyMap.put(String.valueOf(node.getLeaves().get("name")),
                     String.valueOf(node.getLeaves().get("value")));
         }

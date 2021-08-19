@@ -153,7 +153,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Get resource data for for operational datastore.
+     * Get resource data from operational datastore.
      *
      * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
@@ -168,7 +168,31 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                         final String accept,
                                                                         final @Valid String fields,
                                                                         final @Min(1) @Valid Integer depth) {
-        final var responseObject = networkCmProxyDataService.getResourceDataOperationalFoCmHandle(cmHandle,
+        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
+                resourceIdentifier,
+                accept,
+                fields,
+                depth);
+        return ResponseEntity.ok(responseObject);
+    }
+
+    /**
+     * Get resource data from pass-through running datastore.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param accept accept header parameter
+     * @param fields fields query parameter
+     * @param depth depth query parameter
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+    @Override
+    public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandle,
+                                                                    final String resourceIdentifier,
+                                                                    final String accept,
+                                                                    final @Valid String fields,
+                                                                    final @Min(1) @Valid Integer depth) {
+        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier,
                 accept,
                 fields,
