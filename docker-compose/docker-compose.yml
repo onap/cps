@@ -33,6 +33,7 @@ services:
   #    DB_PASSWORD: ${DB_PASSWORD:-cps}
   #    #KAFKA_BOOTSTRAP_SERVER: kafka:9092
   #    #notification.data-updated.enabled: 'true'
+  #    #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
   #  restart: unless-stopped
   #  depends_on:
   #    - dbpostgresql
@@ -51,6 +52,7 @@ services:
   #    DB_PASSWORD: ${DB_PASSWORD:-cps}
   #    #KAFKA_BOOTSTRAP_SERVER: kafka:9092
   #    #notification.data-updated.enabled: 'true'
+  #    #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
   #  restart: unless-stopped
   #  depends_on:
   #    - dbpostgresql
@@ -69,6 +71,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-cps}
       #KAFKA_BOOTSTRAP_SERVER: kafka:9092
       #notification.data-updated.enabled: 'true'
+      #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
     depends_on:
       - dbpostgresql

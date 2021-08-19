@@ -54,7 +54,7 @@ public class NotificationPublisher {
      *
      * @param cpsDataUpdatedEvent event to be sent to kafka
      */
-    void sendNotification(@NonNull final CpsDataUpdatedEvent cpsDataUpdatedEvent) {
+    public void sendNotification(@NonNull final CpsDataUpdatedEvent cpsDataUpdatedEvent) {
         final var messageKey = cpsDataUpdatedEvent.getContent().getDataspaceName() + ","
             + cpsDataUpdatedEvent.getContent().getAnchorName();
         log.debug("Data Updated event is being sent with messageKey: '{}' & body : {} ",
