@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6f273aa3_75e7a347",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-19T10:05:04Z",
+      "side": 1,
+      "message": "I had to change this in the Sonar Qube fix because it complains about a URI being hardcoded. https://rules.sonarsource.com/java/RSPEC-1075",
+      "parentUuid": "11d5cd7d_ac3ebe71",
+      "range": {
+        "startLine": 54,
+        "startChar": 32,
+        "endLine": 54,
+        "endChar": 50
+      },
+      "revId": "92a38e9c2a6085f204ef92ea79af0d94d6f1ba4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2174b9b_77a0330e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
