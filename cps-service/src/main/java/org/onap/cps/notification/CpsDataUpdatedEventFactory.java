@@ -36,14 +36,14 @@ import org.onap.cps.utils.DataMapUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-class CpsDataUpdatedEventFactory {
+public class CpsDataUpdatedEventFactory {
 
     private static final URI EVENT_SOURCE;
     private static final String EVENT_TYPE = "org.onap.cps.data-updated-event";
     private static final DateTimeFormatter dateTimeFormatter =
         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    static  {
+    static {
         try {
             EVENT_SOURCE = new URI("urn:cps:org.onap.cps");
         } catch (final URISyntaxException e) {
@@ -60,7 +60,14 @@ class CpsDataUpdatedEventFactory {
         this.cpsAdminService = cpsAdminService;
     }
 
-    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    /**
+     * Generates CPS Data Updated event.
+     *
+     * @param dataspaceName dataspaceName
+     * @param anchorName    anchorName
+     * @return CpsDataUpdatedEvent
+     */
+    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
         final var dataNode = cpsDataService
             .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);

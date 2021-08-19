@@ -21,10 +21,12 @@ package org.onap.cps.notification;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,12 +47,12 @@ public class NotificationService {
      * @param cpsDataUpdatedEventFactory to create CPSDataUpdatedEvent
      * @param notificationErrorHandler   error handler
      */
-    @Autowired
     public NotificationService(
         final NotificationProperties notificationProperties,
         final NotificationPublisher notificationPublisher,
         final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory,
         final NotificationErrorHandler notificationErrorHandler) {
+        log.info("Notification Properties {}", notificationProperties);
         this.notificationProperties = notificationProperties;
         this.notificationPublisher = notificationPublisher;
         this.cpsDataUpdatedEventFactory = cpsDataUpdatedEventFactory;
@@ -76,7 +78,8 @@ public class NotificationService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      */
-    public void processDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    @Async("notificationExecutor")
+    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName) {
         log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
         try {
             if (shouldSendNotification(dataspaceName)) {
@@ -92,6 +95,7 @@ public class NotificationService {
             notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
                 exception, dataspaceName, anchorName);
         }
+        return CompletableFuture.completedFuture(null);
     }
 
     /*
