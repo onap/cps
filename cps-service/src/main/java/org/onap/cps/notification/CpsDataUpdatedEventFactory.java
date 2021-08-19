@@ -6,13 +6,15 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *        http://www.apache.org/licenses/LICENSE-2.0
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
 
@@ -36,14 +38,14 @@ import org.onap.cps.utils.DataMapUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-class CpsDataUpdatedEventFactory {
+public class CpsDataUpdatedEventFactory {
 
     private static final URI EVENT_SOURCE;
     private static final String EVENT_TYPE = "org.onap.cps.data-updated-event";
     private static final DateTimeFormatter dateTimeFormatter =
         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    static  {
+    static {
         try {
             EVENT_SOURCE = new URI("urn:cps:org.onap.cps");
         } catch (final URISyntaxException e) {
@@ -60,7 +62,14 @@ class CpsDataUpdatedEventFactory {
         this.cpsAdminService = cpsAdminService;
     }
 
-    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    /**
+     * Generates CPS Data Updated event.
+     *
+     * @param dataspaceName dataspaceName
+     * @param anchorName    anchorName
+     * @return CpsDataUpdatedEvent
+     */
+    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
         final var dataNode = cpsDataService
             .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
