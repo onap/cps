@@ -23,6 +23,7 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
@@ -39,6 +40,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
@@ -62,7 +64,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
@@ -79,7 +81,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> dataNodesCollection =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
@@ -102,7 +104,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
@@ -111,13 +113,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> dataNodes =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
     @Override
     public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath) {
         cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName);
     }
 
 
@@ -155,6 +157,14 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
         return dataNodes;
 
+    }
+
+    private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName) {
+        try {
+            notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        } catch (final Exception exception) {
+            log.error("Failed to send message to notification service", exception);
+        }
     }
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
