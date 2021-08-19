@@ -57,6 +57,7 @@ It starts both Postgres database and CPS services.
       * uncomment environment variables 
         * `notification.data-updated.enabled: 'true'`
         * `KAFKA_BOOTSTRAP_SERVER: kafka:9092`
+        *  `NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'`
 2. Execute following command from `docker-compose` folder:
 
 Use one of the below version type that has been generated in the local system's docker image list after the build.
