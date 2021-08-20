@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6a948a9_d2cbd57d",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-20T04:49:42Z",
+      "side": 1,
+      "message": "It seems to me that `org.onap.cps.notification` package should be moved to `org.onap.cps.api.impl.notification`.\n\nIt would better reflect its belonging to `org.onap.cps.api.impl` that is the place where it is used. Then, no change is required in LayeredArchitectureTest that should emphasizes main layers (rest, service and persistence). Even yang should not appear here as a layer.\n\nAlso it seems that freeze configuration is currently broken and not complete even it has been previously done: https://gerrit.onap.org/r/c/cps/+/122108/8/cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java#72",
+      "revId": "27ee3e776747c8b1a176c753d41e034aa52c5555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
