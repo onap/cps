@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31a4c641_065ca60d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-20T10:20:35Z",
+      "side": 1,
+      "message": "Small Typo, missing r in \"For\", non blocking",
+      "range": {
+        "startLine": 171,
+        "startChar": 87,
+        "endLine": 171,
+        "endChar": 91
+      },
+      "revId": "c328551bdfd069343cc4c4e0249516d07938c78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8394bbf7_9823c3dd",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-20T10:20:35Z",
+      "side": 1,
+      "message": "Same typo comment as previous but will not update with refactoring so commenting here too",
+      "range": {
+        "startLine": 209,
+        "startChar": 77,
+        "endLine": 209,
+        "endChar": 81
+      },
+      "revId": "c328551bdfd069343cc4c4e0249516d07938c78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
