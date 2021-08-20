@@ -191,7 +191,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                 .content(jsonData)
             ).andReturn().response
         then: 'the cm handles are registered with the service'
-            1 * mockNetworkCmProxyDataService.updateDmiPluginRegistration(_)
+            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
         and: 'response status is created'
             response.status == HttpStatus.CREATED.value()
     }

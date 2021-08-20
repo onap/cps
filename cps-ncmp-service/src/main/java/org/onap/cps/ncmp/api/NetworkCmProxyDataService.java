@@ -105,7 +105,7 @@ public interface NetworkCmProxyDataService {
      *
      * @param dmiPluginRegistration Dmi Plugin Registration
      */
-    void updateDmiPluginRegistration(DmiPluginRegistration dmiPluginRegistration);
+    void updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
 
     /**
      * Get resource data for data store pass-through operational

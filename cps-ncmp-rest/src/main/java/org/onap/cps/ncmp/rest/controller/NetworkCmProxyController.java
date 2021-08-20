@@ -109,7 +109,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
         final DmiPluginRegistration dmiPluginRegistration =
             convertRestObjectToJavaApiObject(restDmiPluginRegistration);
-        networkCmProxyDataService.updateDmiPluginRegistration(dmiPluginRegistration);
+        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
