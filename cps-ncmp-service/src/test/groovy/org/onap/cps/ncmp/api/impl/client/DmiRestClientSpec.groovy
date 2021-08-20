@@ -35,7 +35,7 @@ class DmiRestClientSpec extends Specification {
     def objectUnderTest = new DmiRestClient(mockRestTemplate, mockDmiProperties)
 
     def 'DMI PUT operation.'() {
-        given: 'a get url'
+        given: 'a PUT url'
             def getResourceDataUrl = 'http://some-uri/getResourceDataUrl'
         and: 'dmi properties'
             setupTestConfigurationData()
@@ -44,6 +44,20 @@ class DmiRestClientSpec extends Specification {
             mockRestTemplate.exchange(getResourceDataUrl, HttpMethod.PUT, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'PUT operation is invoked'
             def result = objectUnderTest.putOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
+        then: 'the output of the method is equal to the output from the test template'
+            result == mockResponseEntity
+    }
+
+    def 'DMI POST operation.'() {
+        given: 'a POSt url'
+            def getResourceDataUrl = 'http://some-uri/createResourceDataUrl'
+        and: 'dmi properties'
+            setupTestConfigurationData()
+        and: 'the rest template returns a valid response entity'
+            def mockResponseEntity = Mock(ResponseEntity)
+            mockRestTemplate.postForEntity(getResourceDataUrl, _ as HttpEntity, Void.class) >> mockResponseEntity
+        when: 'POST operation is invoked'
+            def result = objectUnderTest.postOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
     }

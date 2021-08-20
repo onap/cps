@@ -156,17 +156,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                         final String fieldsQueryParam,
                                                         final Integer depthQueryParam) {
 
-        final var dataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
-        final var dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
-        final Collection<DataNode> additionalPropsList = dataNode.getChildDataNodes();
-        final var jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
+        final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name"));
+        final String dmiRequestBody = getGenericRequestBody(cmHandleDataNode);
         final ResponseEntity<Object> response = dmiOperations.getResouceDataOperationalFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
                 fieldsQueryParam,
                 depthQueryParam,
                 acceptParam,
-                jsonBody);
+                dmiRequestBody);
         return handleResponse(response);
     }
 
@@ -178,16 +177,40 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final Integer depth) {
         final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name"));
-        final Collection<DataNode> additionalPropsList = cmHandleDataNode.getChildDataNodes();
-        final var dmiRequesBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
+        final String dmiRequestBody = getGenericRequestBody(cmHandleDataNode);
         final ResponseEntity<Object> response = dmiOperations.getResouceDataPassThroughRunningFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
                 fields,
                 depth,
                 accept,
-                dmiRequesBody);
+                dmiRequestBody);
         return handleResponse(response);
+    }
+
+    @Override
+    public void createResourceDataPassThroughRunningForCmHandle(final @NotNull String cmHandle,
+                                                                final @NotNull String resourceIdentifier,
+                                                                final @NotNull Object requestBody,
+                                                                final String contentType) {
+        final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name"));
+        final Collection<DataNode> additionalPropsList = cmHandleDataNode.getChildDataNodes();
+        final var builder = new GenericRequestBody.Builder();
+        final Map<String, String> additionalPropertyMap = getAdditionalPropertiesMap(additionalPropsList);
+        final var dmiRequestBodyObject = builder
+                .setOperation(GenericRequestBody.OperationEnum.CREATE)
+                .setDataType(contentType)
+                .setData(requestBody)
+                .setCmHandleProperties(additionalPropertyMap)
+                .build();
+        final var dmiRequestBody = prepareOperationBody(dmiRequestBodyObject);
+        final ResponseEntity<Void> responseEntity = dmiOperations
+                .createResouceDataPassThroughRunningFromDmi(dmiServiceName,
+                cmHandle,
+                resourceIdentifier,
+                dmiRequestBody);
+        handleResponseForPost(responseEntity);
     }
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
@@ -199,14 +222,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return dataNode;
     }
 
-    private String prepareOperationBody(final GenericRequestBody.OperationEnum operation,
-                                        final Collection<DataNode> additionalPropertyList) {
-        final var requestBody = new GenericRequestBody();
-        final Map<String, String> additionalPropertyMap = getAdditionalPropertiesMap(additionalPropertyList);
-        requestBody.setOperation(GenericRequestBody.OperationEnum.READ);
-        requestBody.setCmHandleProperties(additionalPropertyMap);
+    private String prepareOperationBody(final GenericRequestBody requetBodyObject) {
         try {
-            final var requestJson = objectMapper.writeValueAsString(requestBody);
+            final var requestJson = objectMapper.writeValueAsString(requetBodyObject);
             return requestJson;
         } catch (final JsonProcessingException je) {
             log.error("Parsing error occurred while converting Object to JSON.");
@@ -227,8 +245,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return additionalPropertyMap;
     }
 
-    private Object handleResponse(final ResponseEntity<Object> responseEntity) {
-        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+    private Object handleResponse(final @NotNull ResponseEntity<Object> responseEntity) {
+        if (responseEntity.getStatusCode() == HttpStatus.OK
+                || responseEntity.getStatusCode() == HttpStatus.CREATED) {
             return responseEntity.getBody();
         } else {
             throw new NcmpException("Not able to get resource data.",
@@ -237,5 +256,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
+    private void handleResponseForPost(final @NotNull ResponseEntity<Void> responseEntity) {
+        if (responseEntity.getStatusCode() != HttpStatus.CREATED) {
+            throw new NcmpException("Not able to get resource data.",
+                    "DMI status code: " + responseEntity.getStatusCodeValue()
+                            + ", DMI response body: " + responseEntity.getBody());
+        }
+    }
+
+    private String getGenericRequestBody(final DataNode cmHandleDataNode) {
+        final Collection<DataNode> additionalPropsList = cmHandleDataNode.getChildDataNodes();
+        final var builder = new GenericRequestBody.Builder();
+        final Map<String, String> additionalPropertyMap = getAdditionalPropertiesMap(additionalPropsList);
+        final var requetBodyObject = builder
+                .setOperation(GenericRequestBody.OperationEnum.READ)
+                .setCmHandleProperties(additionalPropertyMap)
+                .build();
+        return prepareOperationBody(requetBodyObject);
+    }
 
 }

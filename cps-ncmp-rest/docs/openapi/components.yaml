@@ -104,7 +104,7 @@ components:
       schema:
         type: string
     acceptParamInHeader:
-      name: accept
+      name: Accept
       in: header
       required: false
       description: Accept parameter for response, if accept parameter is null, that means client can accept any format.
@@ -126,6 +126,15 @@ components:
       schema:
         type: integer
         minimum: 1
+    contentParamInHeader:
+      name: Content-Type
+      in: header
+      required: false
+      description: Content parameter for request, if content parameter is null, default value is application/json.
+      schema:
+        type: string
+        enum: [ application/json, application/yang-data+json ]
+        default: [ application/json ]
 
 
   responses:

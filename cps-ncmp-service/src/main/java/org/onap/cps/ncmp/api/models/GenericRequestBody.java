@@ -25,14 +25,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Map;
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @JsonInclude(Include.NON_NULL)
+@Getter
 public class GenericRequestBody   {
     public enum OperationEnum {
-        READ("read");
+        READ("read"),
+        CREATE("create");
         private String value;
 
         OperationEnum(final String value) {
@@ -48,6 +47,45 @@ public class GenericRequestBody   {
 
     private OperationEnum operation;
     private String dataType;
-    private String data;
+    private Object data;
     private Map<String, String> cmHandleProperties;
+
+    private GenericRequestBody(final OperationEnum operation, final String dataType,
+                               final Object data, final Map<String, String> cmHandleProperties) {
+        this.operation = operation;
+        this.dataType = dataType;
+        this.data = data;
+        this.cmHandleProperties = cmHandleProperties;
+    }
+
+    public static class Builder {
+        private OperationEnum operation;
+        private String dataType;
+        private Object data;
+        private Map<String, String> cmHandleProperties;
+
+        public Builder setOperation(final OperationEnum operation) {
+            this.operation = operation;
+            return this;
+        }
+
+        public Builder setDataType(final String dataType) {
+            this.dataType = dataType;
+            return this;
+        }
+
+        public Builder setData(final Object data) {
+            this.data = data;
+            return this;
+        }
+
+        public Builder setCmHandleProperties(final Map<String, String> cmHandleProperties) {
+            this.cmHandleProperties = cmHandleProperties;
+            return this;
+        }
+
+        public GenericRequestBody build() {
+            return new GenericRequestBody(operation, dataType, data, cmHandleProperties);
+        }
+    }
 }

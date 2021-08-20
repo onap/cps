@@ -237,5 +237,22 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'response contains valid object body'
             response.getContentAsString() == '{valid-json}'
     }
+
+    def 'Create Resource Data from pass-through running using POST.' () {
+        given: 'resource data url'
+            def getUrl = "$basePath/v1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+                    "/testResourceIdentifier"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                    post(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON_VALUE)
+                            .accept(MediaType.APPLICATION_JSON_VALUE).content('{"some-json":"value"}')
+            ).andReturn().response
+        then: 'ncmp service method to create resource called'
+            1 * mockNetworkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'testResourceIdentifier', ['some-json':'value'], 'application/json;charset=UTF-8')
+        and: 'resource is created'
+            response.status == HttpStatus.CREATED.value()
+    }
 }
 

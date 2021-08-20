@@ -70,4 +70,16 @@ class DmiOperationsSpec extends Specification {
         then: 'the put operation is executed with the correct URL'
             1 * mockDmiRestClient.putOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
     }
+    def 'call create resource data for pass-through:running datastore from dmi.'() {
+        given: 'expected url'
+            def expectedUrl = 'testDmiBasePath/v1/ch/testCmhandle/data/ds' +
+                    '/ncmp-datastore:passthrough-running/testResourceId'
+        when: 'get resource data is called to dmi'
+            objectUnderTest.createResouceDataPassThroughRunningFromDmi('testDmiBasePath',
+                    'testCmhandle',
+                    'testResourceId',
+                    'testJsonbody')
+        then: 'the put operation is executed with the correct URL'
+            1 * mockDmiRestClient.postOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
+    }
 }

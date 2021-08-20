@@ -115,6 +115,14 @@ public class DmiOperations {
         return dmiRestClient.putOperationWithJsonData(builder.toString(), jsonBody, httpHeaders);
     }
 
+    public ResponseEntity<Void> createResouceDataPassThroughRunningFromDmi(final String dmiBasePath,
+                                                                          final String cmHandle,
+                                                                          final String resourceId,
+                                                                          final String jsonBody) {
+        final var builder = getBasePassThroughRunningUrl(dmiBasePath, cmHandle, resourceId, PassThroughEnum.RUNNING);
+        return dmiRestClient.postOperationWithJsonData(builder.toString(), jsonBody, new HttpHeaders());
+    }
+
     @NotNull
     private StringBuilder getDmiResourceDataUrl(final String dmiBasePath,
                                                 final String cmHandle,
@@ -122,11 +130,20 @@ public class DmiOperations {
                                                 final String fieldsQuery,
                                                 final Integer depthQuery,
                                        final PassThroughEnum passThrough) {
+        final StringBuilder builder = getBasePassThroughRunningUrl(dmiBasePath, cmHandle, resourceId, passThrough);
+        appendFieldsAndDepth(fieldsQuery, depthQuery, builder);
+        return builder;
+    }
+
+    @NotNull
+    private StringBuilder getBasePassThroughRunningUrl(final String dmiBasePath,
+                                                       final String cmHandle,
+                                                       final String resourceId,
+                                                       final PassThroughEnum passThrough) {
         final var builder =  new StringBuilder(PARENT_CM_HANDLE_URI.replace("{cmHandle}", cmHandle));
+        builder.insert(0, dmiBasePath);
         builder.append(passThrough.getValue());
         builder.insert(builder.length(), resourceId);
-        appendFieldsAndDepth(fieldsQuery, depthQuery, builder);
-        builder.insert(0, dmiBasePath);
         return builder;
     }
 
