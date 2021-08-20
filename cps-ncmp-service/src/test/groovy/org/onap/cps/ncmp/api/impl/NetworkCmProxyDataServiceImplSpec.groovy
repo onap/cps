@@ -18,21 +18,29 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.ncmp.api.impl
 
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.ncmp.api.impl.exception.NcmpException
+import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, mockCpsQueryService, new ObjectMapper())
+    def mockDmiOperations = Mock(DmiOperations)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsDataService, mockCpsQueryService, new ObjectMapper())
 
     def cmHandle = 'some handle'
     def expectedDataspaceName = 'NFP-Operational'
@@ -107,5 +115,87 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS service method is invoked once with the expected parameters'
             1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+    }
+    def 'Get resource data for pass-through operational from dmi.'() {
+        given: 'xpath'
+            def xpath = "/dmi-registry/cm-handles[@id='testCmHandle']"
+        and: 'data node'
+            def dataNode = new DataNode()
+            dataNode.leaves = ['dmi-service-name':'testDmiService']
+            def childDataNode = new DataNode()
+            childDataNode.leaves = ['name':'testName','value':'testValue']
+            dataNode.childDataNodes = [childDataNode]
+        when: 'get resource data is called'
+            def response = objectUnderTest.getResourceDataOperationalFoCmHandle('testCmHandle',
+            'testResourceId',
+            'testAcceptParam',
+            'testFieldQuery',
+            5)
+        then: 'cps data service is being called once to get data node'
+            1 * mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'dmi operation is being calle to get resource data'
+            1 * mockDmiOperations.getResouceDataFromDmi('testDmiService',
+                    'testCmHandle',
+                    'testResourceId',
+                    'testFieldQuery',
+                    5,
+                    'testAcceptParam',
+            '{"operation":"read","cmHandleProperties":{"testName":"testValue"}}') >> new ResponseEntity<>('result-json', HttpStatus.OK)
+        and: 'dmi returns ok response'
+            response == 'result-json'
+    }
+    def 'Get resource data for pass-through operational from dmi threw parsing exception.'() {
+        given: 'xpath'
+            def xpath = "/dmi-registry/cm-handles[@id='testCmHandle']"
+        and: 'data node'
+            def dataNode = new DataNode()
+            dataNode.leaves = ['dmi-service-name':'testDmiService']
+            def childDataNode = new DataNode()
+            childDataNode.leaves = ['name':'testName','value':'testValue']
+            dataNode.childDataNodes = [childDataNode]
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'objectMapper not able to parse object'
+            def mockObjectMapper = Mock(ObjectMapper)
+            objectUnderTest.objectMapper = mockObjectMapper
+            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException("testException") }
+        when: 'get resource data is called'
+            def response = objectUnderTest.getResourceDataOperationalFoCmHandle('testCmHandle',
+                    'testResourceId',
+                    'testAcceptParam',
+                    'testFieldQuery',
+                    5)
+        then: 'exception is thrown'
+            thrown(NcmpException.class)
+    }
+    def 'Get resource data for pass-through operational from dmi return NOK response.'() {
+        given: 'xpath'
+            def xpath = "/dmi-registry/cm-handles[@id='testCmHandle']"
+        and: 'data node'
+            def dataNode = new DataNode()
+            dataNode.leaves = ['dmi-service-name':'testDmiService']
+            def childDataNode = new DataNode()
+            childDataNode.leaves = ['name':'testName','value':'testValue']
+            dataNode.childDataNodes = [childDataNode]
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'dmi returns NOK response'
+            mockDmiOperations.getResouceDataFromDmi('testDmiService',
+                    'testCmHandle',
+                    'testResourceId',
+                    'testFieldQuery',
+                    5,
+                    'testAcceptParam',
+                    '{"operation":"read","cmHandleProperties":{"testName":"testValue"}}')
+                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
+        when: 'get resource data is called'
+            def response = objectUnderTest.getResourceDataOperationalFoCmHandle('testCmHandle',
+                    'testResourceId',
+                    'testAcceptParam',
+                    'testFieldQuery',
+                    5)
+        then: 'exception is thrown'
+            thrown(NcmpException.class)
     }
 }

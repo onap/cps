@@ -96,6 +96,36 @@ components:
       schema:
         type: string
         default: /
+    resourceIdentifierInPath:
+      name: resourceIdentifier
+      in: path
+      description: Resource identifier to get/set the resource data
+      required: true
+      schema:
+        type: string
+    acceptParamInHeader:
+      name: accept
+      in: header
+      required: false
+      description: Accept parameter for response, if accept parameter is null, that means client can accept any format.
+      schema:
+        type: string
+        enum: [ application/json, application/yang-data+json ]
+    fieldsParamInQuery:
+      name: fields
+      in: query
+      description: Fields parameter to filter resource
+      required: false
+      schema:
+        type: string
+    depthParamInQuery:
+      name: depth
+      in: query
+      description: Depth parameter for response
+      required: false
+      schema:
+        type: integer
+        minimum: 1
 
 
   responses:

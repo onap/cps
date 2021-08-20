@@ -49,6 +49,8 @@ services:
   #    DB_HOST: dbpostgresql
   #    DB_USERNAME: ${DB_USERNAME:-cps}
   #    DB_PASSWORD: ${DB_PASSWORD:-cps}
+  #    DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
+  #    DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
   #    #KAFKA_BOOTSTRAP_SERVER: kafka:9092
   #    #notification.data-updated.enabled: 'true'
   #  restart: unless-stopped
@@ -67,6 +69,8 @@ services:
       DB_HOST: dbpostgresql
       DB_USERNAME: ${DB_USERNAME:-cps}
       DB_PASSWORD: ${DB_PASSWORD:-cps}
+      DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
+      DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       #KAFKA_BOOTSTRAP_SERVER: kafka:9092
       #notification.data-updated.enabled: 'true'
     restart: unless-stopped

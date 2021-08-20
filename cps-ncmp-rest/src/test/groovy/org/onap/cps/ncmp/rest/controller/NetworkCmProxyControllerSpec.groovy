@@ -196,5 +196,25 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
     }
 
+    def 'Get Resource Data from pass-through operational.' () {
+        given: 'resource data url'
+            def getUrl = "$basePath/v1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
+                    "/testResourceIdentifier?fields=testFields&depth=5"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                    get(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+        then: 'the NCMP data service is called with getResourceDataOperationalFoCmHandle'
+            1 * mockNetworkCmProxyDataService.getResourceDataOperationalFoCmHandle('testCmHandle',
+                    'testResourceIdentifier',
+                    'application/json',
+                    'testFields',
+                    5)
+        and: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
+    }
+
 }
 
