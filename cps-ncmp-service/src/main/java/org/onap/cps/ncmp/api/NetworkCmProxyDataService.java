@@ -140,4 +140,18 @@ public interface NetworkCmProxyDataService {
                                                         String accept,
                                                         String fields,
                                                         Integer depth);
+
+    /**
+     * Create resource data for data store pass-through running
+     * using dmi for given cm-handle.
+     *
+     * @param cmHandle cm handle
+     * @param resourceIdentifier resource identifier
+     * @param requestBody request body to create resource
+     * @param contentType content type in body
+     */
+    void createResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
+                                                         @NotNull String resourceIdentifier,
+                                                         @NotNull Object requestBody,
+                                                         String contentType);
 }
