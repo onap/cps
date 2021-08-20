@@ -25,16 +25,23 @@ package org.onap.cps.ncmp.api.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
@@ -44,10 +51,12 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.GenericRequestBody;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
+import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -75,6 +84,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private DmiOperations dmiOperations;
 
+    private CpsModuleService cpsModuleService;
+
+    private CpsAdminService cpsAdminService;
+
+    public static final String NO_NAMESPACE = null;
+
     /**
      * Constructor Injection for Dependencies.
      * @param dmiOperations DMI operation
@@ -82,58 +97,60 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @param cpsQueryService Query Service Interface
      * @param objectMapper Object Mapper
      */
-    public NetworkCmProxyDataServiceImpl(final DmiOperations dmiOperations, final CpsDataService cpsDataService,
-                                         final CpsQueryService cpsQueryService, final ObjectMapper objectMapper) {
+    public NetworkCmProxyDataServiceImpl(final DmiOperations dmiOperations,
+        final CpsModuleService cpsModuleService,
+        final CpsDataService cpsDataService,
+        final CpsQueryService cpsQueryService,
+        final CpsAdminService cpsAdminService,
+        final ObjectMapper objectMapper) {
         this.dmiOperations = dmiOperations;
+        this.cpsModuleService = cpsModuleService;
         this.cpsDataService = cpsDataService;
         this.cpsQueryService = cpsQueryService;
+        this.cpsAdminService = cpsAdminService;
         this.objectMapper = objectMapper;
-    }
-
-    private String getDataspaceName() {
-        return NF_PROXY_DATASPACE_NAME;
     }
 
     @Override
     public DataNode getDataNode(final String cmHandle, final String xpath,
-                                final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNode(getDataspaceName(), cmHandle, xpath, fetchDescendantsOption);
+        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNode(NF_PROXY_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
     }
 
     @Override
     public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
-                                               final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsQueryService.queryDataNodes(getDataspaceName(), cmHandle, cpsPath, fetchDescendantsOption);
+        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
     }
 
     @Override
     public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
-            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData, NO_TIMESTAMP);
+            cpsDataService.saveData(NF_PROXY_DATASPACE_NAME, cmHandle, jsonData, NO_TIMESTAMP);
         } else {
-            cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+            cpsDataService.saveData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
         }
     }
 
     @Override
     public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListNodeData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.saveListNodeData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
     }
 
     @Override
     public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.updateNodeLeaves(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
     }
 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.replaceNodeTree(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
     }
 
     @Override
-    public void updateDmiPluginRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+    public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
         if (dmiPluginRegistration.getCreatedCmHandles() != null) {
-            parseAndCreateCmHandlesInDmiRegistration(dmiPluginRegistration);
+            parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
         }
         if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
             parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
@@ -218,10 +235,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private String prepareOperationBody(final GenericRequestBody requestBodyObject) {
         try {
             return objectMapper.writeValueAsString(requestBodyObject);
-        } catch (final JsonProcessingException je) {
+        } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON.");
             throw new NcmpException("Parsing error occurred while converting given object to JSON.",
-                    je.getMessage());
+                e.getMessage());
         }
     }
 
@@ -265,6 +282,47 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return prepareOperationBody(requetBodyObject);
     }
 
+    private void parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(
+        final DmiPluginRegistration dmiPluginRegistration) {
+        try {
+            final var persistenceCmHandlesList = new PersistenceCmHandlesList();
+            for (final CmHandle cmHandle : dmiPluginRegistration.getCreatedCmHandles()) {
+                final PersistenceCmHandle persistenceCmHandle =
+                    toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
+                persistenceCmHandlesList.add(persistenceCmHandle);
+                createAnchorAndSyncModel(persistenceCmHandle);
+            }
+            final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
+                cmHandleJsonData, NO_TIMESTAMP);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON for DMI Registry.");
+            throw new DataValidationException(
+                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
+                .getMessage(), e);
+        }
+    }
+
+    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        try {
+            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+
+            for (final CmHandle cmHandle : dmiPluginRegistration.getUpdatedCmHandles()) {
+                final PersistenceCmHandle persistenceCmHandle =
+                    toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
+                persistenceCmHandlesList.add(persistenceCmHandle);
+            }
+            final String cmHandlesJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+            cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry", cmHandlesJsonData, NO_TIMESTAMP);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON DMI Registry.");
+            throw new DataValidationException(
+                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
+                .getMessage(), e);
+        }
+    }
+
     private PersistenceCmHandle toPersistenceCmHandle(final String dmiPluginService,
                                                       final CmHandle cmHandle) {
         final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
@@ -278,54 +336,79 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return persistenceCmHandle;
     }
 
-    private void parseAndCreateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        try {
-            final List<PersistenceCmHandle> createdPersistenceCmHandles =
-                    new LinkedList<>();
-            for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
-                createdPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle));
-            }
-            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
-            persistenceCmHandlesList.setCmHandles(createdPersistenceCmHandles);
-            final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
-                    cmHandleJsonData, NO_TIMESTAMP);
-        } catch (final JsonProcessingException e) {
-            log.error("Parsing error occurred while converting Object to JSON for DMI Registry.");
-            throw new DataValidationException(
-                    "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
-                    .getMessage(), e);
-        }
-    }
-
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        try {
-            final List<PersistenceCmHandle> updatedPersistenceCmHandles =
-                    new LinkedList<>();
-            for (final CmHandle cmHandle: dmiPluginRegistration.getUpdatedCmHandles()) {
-                updatedPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle));
-            }
-            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
-            persistenceCmHandlesList.setCmHandles(updatedPersistenceCmHandles);
-            final String cmHandlesJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    "/dmi-registry", cmHandlesJsonData, NO_TIMESTAMP);
-        } catch (final JsonProcessingException e) {
-            log.error("Parsing error occurred while converting Object to JSON DMI Registry.");
-            throw new DataValidationException(
-                    "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
-                    .getMessage(), e);
-        }
-    }
-
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        for (final String cmHandle: dmiPluginRegistration.getRemovedCmHandles()) {
+        for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
                 cpsDataService.deleteListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
+                    "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
             } catch (final DataNodeNotFoundException e) {
                 log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
             }
         }
+    }
+
+    protected void createAnchorAndSyncModel(final PersistenceCmHandle cmHandle) {
+        final var modulesForCmHandle =
+            dmiOperations.getResourceFromDmi(cmHandle.getDmiServiceName(), cmHandle.getId(), "modules");
+
+        final List<ModuleReference> moduleReferencesFromDmiForCmHandle = getModuleReferences(modulesForCmHandle);
+
+        final var knownModuleReferencesInCps = cpsModuleService.getAllYangResourcesModuleReferences();
+
+        final List<ModuleReference> existingModuleReferences = new ArrayList<>();
+        for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromDmiForCmHandle) {
+            if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
+                existingModuleReferences.add(moduleReferenceFromDmiForCmHandle);
+            }
+        }
+
+        final Map<String, String> newYangResourcesModuleNameToContentMap =
+            getNewYangResources(cmHandle);
+
+        cpsModuleService.createSchemaSetFromModules(NCMP_DATASPACE_NAME, cmHandle.getId(),
+            newYangResourcesModuleNameToContentMap, existingModuleReferences);
+
+        cpsAdminService.createAnchor(NCMP_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
+    }
+
+    private Map<String, String> getNewYangResources(final PersistenceCmHandle cmHandle) {
+        final var moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmi(
+            cmHandle.getDmiServiceName(), cmHandle.getId(), "moduleResources");
+        final JsonArray moduleResources = new Gson().fromJson(moduleResourcesAsJsonString.getBody(), JsonArray.class);
+        final Map<String, String> newYangResourcesModuleNameToContentMap = new HashMap<>();
+
+        for (final JsonElement moduleResource : moduleResources) {
+            final YangResource yangResource = toYangResource((JsonObject) moduleResource);
+            newYangResourcesModuleNameToContentMap.put(yangResource.getName(), yangResource.getYangSource());
+        }
+        return newYangResourcesModuleNameToContentMap;
+    }
+
+    private YangResource toYangResource(final JsonObject yangResourceAsJson) {
+        final YangResource yangResource = new YangResource();
+        yangResource.setName(yangResourceAsJson.get("name").getAsString());
+        yangResource.setRevision(yangResourceAsJson.get("revision").getAsString());
+        yangResource.setYangSource(yangResourceAsJson.get("yang-source").getAsString());
+        return yangResource;
+    }
+
+    private List<ModuleReference> getModuleReferences(final ResponseEntity<String> response) {
+        final List<ModuleReference> modulesFromDmiForCmHandle = new ArrayList<>();
+        final JsonObject convertedObject = new Gson().fromJson(response.getBody(), JsonObject.class);
+        final JsonObject schemas = convertedObject.getAsJsonObject("schemas");
+        final JsonArray moduleReferencesAsJson = schemas.getAsJsonArray("schema");
+        for (final JsonElement moduleReferenceAsJson : moduleReferencesAsJson) {
+            final ModuleReference moduleReference = toModuleReference((JsonObject) moduleReferenceAsJson);
+            modulesFromDmiForCmHandle.add(moduleReference);
+        }
+        return modulesFromDmiForCmHandle;
+    }
+
+    private ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
+        final var moduleReference = new ModuleReference();
+        moduleReference.setName(moduleReferenceAsJson.get("identifier").getAsString());
+        moduleReference.setNamespace(NO_NAMESPACE);
+        moduleReference.setRevision(moduleReferenceAsJson.get("version").getAsString());
+        return moduleReference;
     }
 }
