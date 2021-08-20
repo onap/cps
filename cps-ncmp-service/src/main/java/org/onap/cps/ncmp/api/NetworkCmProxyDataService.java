@@ -130,14 +130,28 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandle cm handle
      * @param resourceIdentifier resource identifier
-     * @param accept accept param
+     * @param acceptParam accept param
      * @param fields fields query
      * @param depth depth query
      * @return {@code Object} resource data
      */
     Object getResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
                                                         @NotNull String resourceIdentifier,
-                                                        String accept,
+                                                        String acceptParam,
                                                         String fields,
                                                         Integer depth);
+
+    /**
+     * Create resource data for data store pass-through running
+     * using dmi for given cm-handle.
+     *
+     * @param cmHandle cm handle
+     * @param resourceIdentifier resource identifier
+     * @param requestBody request body to create resource
+     * @param contentType content type in body
+     */
+    void createResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
+                                                         @NotNull String resourceIdentifier,
+                                                         @NotNull Object requestBody,
+                                                         String contentType);
 }
