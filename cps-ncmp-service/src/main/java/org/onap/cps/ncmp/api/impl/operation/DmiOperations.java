@@ -30,7 +30,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DmiOperations {
-
     @Getter
     public enum DataStoreEnum {
         PASSTHROUGH_OPERATIONAL("ncmp-datastore:passthrough-operational"),
@@ -51,7 +50,9 @@ public class DmiOperations {
     private DmiRestClient dmiRestClient;
     private static final String DMI_BASE_PATH = "/dmi/api";
     private static final String PARENT_CM_HANDLE_URI =
-            "/v1/ch/{cmHandle}/data/ds";
+        "/v1/ch/{cmHandle}/data/ds";
+    private static final String PARENT_CM_HANDLE_URI_WITHOUT_DATASTORE =
+        "/v1/ch/{cmHandle}";
     private static final String URL_SEPARATOR = "/";
 
     /**
@@ -68,12 +69,12 @@ public class DmiOperations {
      * identifier on given resource using dmi client.
      *
      * @param dmiBasePath dmi base path
-     * @param cmHandle network resource identifier
-     * @param resourceId resource identifier
+     * @param cmHandle    network resource identifier
+     * @param resourceId  resource identifier
      * @param fieldsQuery fields query
-     * @param depthQuery depth query
+     * @param depthQuery  depth query
      * @param acceptParam accept parameter
-     * @param jsonBody json body for put operation
+     * @param jsonBody    json body for put operation
      * @return {@code ResponseEntity} response entity
      */
     public ResponseEntity<Object> getResourceDataOperationalFromDmi(final String dmiBasePath,
@@ -84,7 +85,7 @@ public class DmiOperations {
                                                                     final String acceptParam,
                                                                     final String jsonBody) {
         final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
-                fieldsQuery, depthQuery, DataStoreEnum.PASSTHROUGH_OPERATIONAL);
+            fieldsQuery, depthQuery, DataStoreEnum.PASSTHROUGH_OPERATIONAL);
         final var httpHeaders = prepareHeader(acceptParam);
         return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
@@ -94,12 +95,12 @@ public class DmiOperations {
      * identifier on given resource using dmi client.
      *
      * @param dmiBasePath dmi base path
-     * @param cmHandle network resource identifier
-     * @param resourceId resource identifier
+     * @param cmHandle    network resource identifier
+     * @param resourceId  resource identifier
      * @param fieldsQuery fields query
-     * @param depthQuery depth query
+     * @param depthQuery  depth query
      * @param acceptParam accept parameter
-     * @param jsonBody json body for put operation
+     * @param jsonBody    json body for put operation
      * @return {@code ResponseEntity} response entity
      */
     public ResponseEntity<Object> getResourceDataPassThroughRunningFromDmi(final String dmiBasePath,
@@ -110,9 +111,47 @@ public class DmiOperations {
                                                                            final String acceptParam,
                                                                            final String jsonBody) {
         final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
-                fieldsQuery, depthQuery, DataStoreEnum.PASSTHROUGH_RUNNING);
+            fieldsQuery, depthQuery, DataStoreEnum.PASSTHROUGH_RUNNING);
         final var httpHeaders = prepareHeader(acceptParam);
         return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+    }
+
+    /**
+     * Get resource from DMI.
+     *
+     * @param dmiServiceName dmi base path
+     * @param cmHandle cmHandle
+     * @param resourceId resource Id
+     * @return {@code ResponseEntity} response entity
+     */
+    public ResponseEntity<String> getResourceFromDmi(final String dmiServiceName,
+                                                     final String cmHandle,
+                                                     final String resourceId) {
+        final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiServiceName, cmHandle, resourceId);
+        final var httpHeaders = new HttpHeaders();
+        return dmiRestClient.postOperation(dmiResourceDataUrl, httpHeaders);
+
+    }
+
+    @NotNull
+    private String getDmiResourceDataUrl(final String dmiServiceName,
+                                         final String cmHandle,
+                                         final String resourceId,
+                                         final String fieldsQuery,
+                                         final Integer depthQuery,
+                                         final DataStoreEnum dataStoreEnum) {
+        final var stringBuilder = getStringBuilderForPassThroughRunningUrl(dmiServiceName,
+            cmHandle, resourceId, dataStoreEnum);
+        appendFieldsAndDepth(stringBuilder, fieldsQuery, depthQuery);
+        return stringBuilder.toString();
+    }
+
+    @NotNull
+    private String getDmiResourceDataUrl(final String dmiServiceName,
+                                         final String cmHandle,
+                                         final String resourceId) {
+        final var stringbuilder = getStringBuilderForModules(dmiServiceName, cmHandle, resourceId);
+        return stringbuilder.toString();
     }
 
     /**
@@ -120,9 +159,9 @@ public class DmiOperations {
      * identifier on given resource using dmi client.
      *
      * @param dmiBasePath dmi base path
-     * @param cmHandle network resource identifier
-     * @param resourceId resource identifier
-     * @param jsonBody json body for put operation
+     * @param cmHandle    network resource identifier
+     * @param resourceId  resource identifier
+     * @param jsonBody    json body for put operation
      * @return {@code ResponseEntity} response entity
      */
     public ResponseEntity<Void> createResourceDataPassThroughRunningFromDmi(final String dmiBasePath,
@@ -130,21 +169,8 @@ public class DmiOperations {
                                                                             final String resourceId,
                                                                             final String jsonBody) {
         final var stringBuilder = getStringBuilderForPassThroughRunningUrl(dmiBasePath,
-                cmHandle, resourceId, DataStoreEnum.PASSTHROUGH_RUNNING);
+            cmHandle, resourceId, DataStoreEnum.PASSTHROUGH_RUNNING);
         return dmiRestClient.postOperationWithJsonData(stringBuilder.toString(), jsonBody, new HttpHeaders());
-    }
-
-    @NotNull
-    private String getDmiResourceDataUrl(final String dmiBasePath,
-                                                final String cmHandle,
-                                                final String resourceId,
-                                                final String fieldsQuery,
-                                                final Integer depthQuery,
-                                                final DataStoreEnum dataStoreEnum) {
-        final var stringBuilder = getStringBuilderForPassThroughRunningUrl(dmiBasePath,
-                cmHandle, resourceId, dataStoreEnum);
-        appendFieldsAndDepth(stringBuilder, fieldsQuery, depthQuery);
-        return stringBuilder.toString();
     }
 
     @NotNull
@@ -152,11 +178,22 @@ public class DmiOperations {
                                                                    final String cmHandle,
                                                                    final String resourceId,
                                                                    final DataStoreEnum dataStoreEnum) {
-        final var stringBuilder =  new StringBuilder(dmiServiceName);
+        final var stringBuilder = new StringBuilder(dmiServiceName);
         stringBuilder.append(DMI_BASE_PATH);
         stringBuilder.append(PARENT_CM_HANDLE_URI.replace("{cmHandle}", cmHandle));
         stringBuilder.append(URL_SEPARATOR + dataStoreEnum.getValue());
-        stringBuilder.insert(stringBuilder.length(), URL_SEPARATOR + resourceId);
+        stringBuilder.append(URL_SEPARATOR + resourceId);
+        return stringBuilder;
+    }
+
+    @NotNull
+    private StringBuilder getStringBuilderForModules(final String dmiServiceName,
+                                                     final String cmHandle,
+                                                     final String resourceId) {
+        final var stringBuilder = new StringBuilder(dmiServiceName);
+        stringBuilder.append(DMI_BASE_PATH);
+        stringBuilder.append(PARENT_CM_HANDLE_URI_WITHOUT_DATASTORE.replace("{cmHandle}", cmHandle));
+        stringBuilder.append(URL_SEPARATOR + resourceId);
         return stringBuilder;
     }
 
