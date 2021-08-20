@@ -51,11 +51,12 @@ public interface CpsModuleService {
      * @param dataspaceName                          Dataspace name
      * @param schemaSetName                          schema set name
      * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param moduleReferenceList                    List of YANG resources module references
+     * @param existingModuleReferences               List of YANG resources module references of the modules
+     *                                               needed for this handle that are already in CPS
      */
     void createSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
                                     @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
-                                    @NonNull List<ModuleReference> moduleReferenceList);
+                                    @NonNull List<ModuleReference> existingModuleReferences);
 
     /**
      * Read schema set in the given dataspace.

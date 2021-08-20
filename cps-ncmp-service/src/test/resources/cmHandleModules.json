@@ -1,0 +1,12 @@
+{   "schemas": [
+  {
+    "moduleName": "module1",
+    "revision": "1",
+    "namespace": "some namespace"
+  },
+  {
+    "moduleName": "module2",
+    "revision": "1",
+    "namespace": "some namespace"
+  }]
+}
