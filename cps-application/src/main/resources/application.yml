@@ -25,6 +25,8 @@ rest:
     api:
         cps-base-path: /cps/api
         ncmp-base-path: /cps-ncmp/api
+        dmi-plugin-base-path: ncmp-dmi-plugin:8783
+
 
 spring:
     main:

@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

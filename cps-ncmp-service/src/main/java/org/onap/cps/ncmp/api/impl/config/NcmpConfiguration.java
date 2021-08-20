@@ -38,6 +38,9 @@ public class NcmpConfiguration {
         private String authUsername;
         @Value("${dmi.auth.password}")
         private String authPassword;
+        @Value("${rest.api.dmi-plugin-base-path}")
+        private String dmiPluginBasePath;
+
     }
 
     @Bean

@@ -20,25 +20,19 @@
 
 package org.onap.cps.ncmp.api.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-public class PersistenceCmHandlesList {
+@Data
+@Getter
+@Setter
+public class YangResource {
 
-    @JsonProperty("cm-handles")
-    private List<PersistenceCmHandle> persistenceCmHandles;
+    private String name;
 
-    /**
-     * Add a persistenceCmHandle.
-     *
-     * @param persistenceCmHandle the persistenceCmHandle to add
-     */
-    public void add(final PersistenceCmHandle persistenceCmHandle) {
-        if (persistenceCmHandles == null) {
-            persistenceCmHandles = new ArrayList<>();
-        }
-        persistenceCmHandles.add(persistenceCmHandle);
-    }
+    private String revision;
+
+    private String yangSource;
 
 }
