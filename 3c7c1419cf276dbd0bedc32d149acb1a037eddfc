@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "03d22a60_06f73f56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-20T10:55:53Z",
+      "side": 1,
+      "message": "Small typo, missing r in for, non blocking",
+      "range": {
+        "startLine": 153,
+        "startChar": 45,
+        "endLine": 153,
+        "endChar": 48
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2fa4dbf_e2d7b06f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
