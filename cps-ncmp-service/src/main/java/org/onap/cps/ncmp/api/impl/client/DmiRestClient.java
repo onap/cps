@@ -24,6 +24,7 @@ import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -45,8 +46,15 @@ public class DmiRestClient {
         return restTemplate.exchange(dmiResourceUrl, HttpMethod.PUT, httpEntity, Object.class);
     }
 
+    public ResponseEntity<Void> postOperationWithJsonData(final String dmiResourceUrl,
+                                                            final String jsonData, final HttpHeaders headers) {
+        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(headers));
+        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Void.class);
+    }
+
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
         httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
     }
 }
