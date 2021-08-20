@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "79321dc7_e18e1703",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "JsonProcessingException should be handled in the method where the source is.",
+      "range": {
+        "startLine": 139,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 9
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "027ede76_d1f1eb43",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "nb: \nThis is a fixed string and can be stored a variable instead of concatinating it for each request.",
+      "range": {
+        "startLine": 156,
+        "startChar": 87,
+        "endLine": 156,
+        "endChar": 117
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90819f7d_45ef8e89",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
@@ -71,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "53e0acbf_f3cd5e68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "We are calling updateNodeAndChildDataNodes for each cmHandle. Is it expected? \nFrom xpath it looks like we are updating all at once.\n\nIf it is, we are not re-initialing the updatePersistenceCmHandles for each cmHandle, so the each request will have all the cmHandles which previous once processed.",
+      "range": {
+        "startLine": 169,
+        "startChar": 12,
+        "endLine": 170,
+        "endChar": 66
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b42d445_c019d98b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
@@ -87,6 +156,52 @@
         "startChar": 3,
         "endLine": 174,
         "endChar": 6
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da15972e_507946a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "nb: \n  \nThis method is doing multiple things and method name does not clearly explains it-\u003e \n1. converting CMhanlde to PersistenceCMHandle\n2. adding it to another list.\n\nSuggestion:\nWe can just return the persistenceCMHandle add to the list in the calling method.\n\nprivate PersistenceCmHandle toPersistenceCmHandle(final String dmiServiceName,\n        final CmHandle cmHandle) {\n        final PersistenceCmHandle persistenceCmHandle \u003d new PersistenceCmHandle();\n        persistenceCmHandle.setDmiServiceName(dmiServiceName);\n        persistenceCmHandle.setId(cmHandle.getCmHandleID());\n        persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());\n        return persistenceCmHandle;\n}\n\nThis suggestion will have effects on other methods too.",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 41
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8385efe9_1b561f17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "nb: suggestion: \nAs we are interested only in dmi-serviceName, we can pass that instead of entire object.",
+      "range": {
+        "startLine": 174,
+        "startChar": 42,
+        "endLine": 174,
+        "endChar": 91
       },
       "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -133,6 +248,29 @@
         "startChar": 5,
         "endLine": 34,
         "endChar": 8
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "336263ed_61222cfd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "can we store it as a variable? I think I will make the code more readable.\n\ndef dmiRegistryAnchor \u003d \u0027ncmp-dmi-registry\u0027",
+      "range": {
+        "startLine": 118,
+        "startChar": 66,
+        "endLine": 118,
+        "endChar": 85
       },
       "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -209,6 +347,29 @@
     },
     {
       "key": {
+        "uuid": "56410c63_b15335ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "cps code should not have ncmp in it. Please rename the variables.",
+      "range": {
+        "startLine": 131,
+        "startChar": 44,
+        "endLine": 131,
+        "endChar": 61
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48f87db9_5759fa17",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 4
@@ -248,6 +409,29 @@
         "startChar": 6,
         "endLine": 105,
         "endChar": 8
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "912753a9_cfaafd62",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T13:54:31Z",
+      "side": 1,
+      "message": "I think this implementation belongs to ncmp service module. cps-core should have code only if new feature needs to be added. \nWas this option explored?",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 0
       },
       "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
