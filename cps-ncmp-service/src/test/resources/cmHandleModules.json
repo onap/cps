@@ -1,0 +1,13 @@
+{
+  "schemas": {
+    "schema": [{
+      "identifier": "module1",
+      "version": "1",
+      "namespace": "some namespace"
+    }, {
+      "identifier": "module2",
+      "version": "1",
+      "namespace": "some namespace"
+    }]
+  }
+}
