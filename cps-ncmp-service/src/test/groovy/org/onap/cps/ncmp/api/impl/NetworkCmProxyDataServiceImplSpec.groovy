@@ -24,7 +24,9 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
@@ -33,6 +35,7 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
@@ -40,7 +43,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockDmiOperations = Mock(DmiOperations)
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsDataService, mockCpsQueryService, new ObjectMapper())
+    def mockCpsModuleService = Mock(CpsModuleService)
+    def mockRestTemplate = Mock(RestTemplate)
+    def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
+
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiProperties, mockDmiOperations, mockCpsModuleService,
+            mockCpsDataService, mockCpsQueryService, new ObjectMapper(), mockRestTemplate)
 
     def cmHandle = 'some handle'
     def expectedDataspaceName = 'NFP-Operational'
@@ -104,6 +112,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
     def 'Register CM Handle Event.'() {
         given: 'a registration '
+            def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiProperties, mockDmiOperations, mockCpsModuleService,
+                    mockCpsDataService, mockCpsQueryService, new ObjectMapper(), mockRestTemplate))
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             def cmHandle = new CmHandle()
@@ -111,6 +121,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             cmHandle.cmHandleProperties = [ name1: 'value1', name2: 'value2']
             dmiPluginRegistration.createdCmHandles = [ cmHandle ]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
+
+            1 * objectUnderTest.modelSync(_) >> null
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS service method is invoked once with the expected parameters'
