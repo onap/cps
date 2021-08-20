@@ -27,7 +27,6 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.event.model.Content;
 import org.onap.cps.event.model.CpsDataUpdatedEvent;
-import org.onap.cps.event.model.CpsDataUpdatedEvent.Schema;
 import org.onap.cps.event.model.Data;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
@@ -38,6 +37,7 @@ import org.springframework.stereotype.Component;
 @Component
 class CpsDataUpdatedEventFactory {
 
+    private static final URI EVENT_SCHEMA;
     private static final URI EVENT_SOURCE;
     private static final String EVENT_TYPE = "org.onap.cps.data-updated-event";
     private static final DateTimeFormatter dateTimeFormatter =
@@ -45,6 +45,7 @@ class CpsDataUpdatedEventFactory {
 
     static  {
         try {
+            EVENT_SCHEMA = new URI("urn:cps:org.onap.cps:data-updated-event-schema:v1");
             EVENT_SOURCE = new URI("urn:cps:org.onap.cps");
         } catch (final URISyntaxException e) {
             // As it is fixed string, I don't expect to see this error
@@ -52,8 +53,8 @@ class CpsDataUpdatedEventFactory {
         }
     }
 
-    private CpsDataService cpsDataService;
-    private CpsAdminService cpsAdminService;
+    private final CpsDataService cpsDataService;
+    private final CpsAdminService cpsAdminService;
 
     public CpsDataUpdatedEventFactory(final CpsDataService cpsDataService, final CpsAdminService cpsAdminService) {
         this.cpsDataService = cpsDataService;
@@ -71,7 +72,7 @@ class CpsDataUpdatedEventFactory {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
         cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
-        cpsDataUpdatedEvent.withSchema(Schema.URN_CPS_ORG_ONAP_CPS_DATA_UPDATED_EVENT_SCHEMA_1_1_0_SNAPSHOT);
+        cpsDataUpdatedEvent.withSchema(EVENT_SCHEMA);
         cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
         cpsDataUpdatedEvent.withType(EVENT_TYPE);
         return cpsDataUpdatedEvent;

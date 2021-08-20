@@ -1,7 +1,7 @@
 {
 
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT",
+  "$id": "urn:cps:org.onap.cps:data-updated-event-schema:v1",
 
   "$ref": "#/definitions/CpsDataUpdatedEvent",
 
@@ -12,10 +12,9 @@
       "type": "object",
       "properties": {
         "schema": {
-          "description": "The schema, including its version, that this event adheres to.",
+          "description": "The schema, including its version, that this event adheres to. Ex: 'urn:cps:org.onap.cps:data-updated-event-schema:v1'.",
           "type": "string",
-          "default": "urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT",
-          "enum": ["urn:cps:org.onap.cps:data-updated-event-schema:1.1.0-SNAPSHOT"]
+          "format": "uri"
         },
         "id": {
           "description": "The unique id identifying the event for the specified source. Producer must ensure that source + id is unique for each distinct event.",
@@ -69,7 +68,7 @@
         }
       },
       "required": [
-        "timestamp",
+        "observedTimestamp",
         "dataspaceName",
         "schemaSetName",
         "anchorName",

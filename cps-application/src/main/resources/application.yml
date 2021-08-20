@@ -71,7 +71,7 @@ spring:
 notification:
     data-updated:
         enabled: false
-        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.cfg-state-events}
+        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.data-updated-events}
         filters:
             enabled-dataspaces: ${DATASPACE_FILTER_PATTERNS:""}
 
