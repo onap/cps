@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a5b4870_8b53353f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "parseAndCreateCmHandlesInDmiRegistration",
+      "range": {
+        "startLine": 133,
+        "startChar": 16,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72f3e575_c012ae7e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "parseAndUpdateCmHandlesInDmiRegistration",
+      "range": {
+        "startLine": 136,
+        "startChar": 16,
+        "endLine": 136,
+        "endChar": 32
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90819f7d_45ef8e89",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "cmHandle is being added to the list -\u003e  line 165\nthen you added this list to another list param. -\u003e line 167\ncreated json for all added cmhandles -\u003e line 168\n\nand calling the above json.\n\nso for each iteration\n\nthis json method will look like ,\n\ncpsdataservice.updatenodeandchilddatanode(x,x,x, {cmhandle1}) 1st iteration\ncpsdataservice.updatenodeandchilddatanode(x,x,x, {cmhandle1,cmhandle2}) 2st iteration\ncpsdataservice.updatenodeandchilddatanode(x,x,x, {cmhandle1,cmhandle2,cmhandle3}) 3st iteration\n\n..... and so on\n\nthat means at every iteration you are calling redundant data with this operation. \n\ni think this is not required?",
+      "range": {
+        "startLine": 170,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b42d445_c019d98b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "take all these private method after all public methods",
+      "range": {
+        "startLine": 174,
+        "startChar": 3,
+        "endLine": 174,
+        "endChar": 6
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50712052_ff31cd07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "persistenceCmHandleList\n\nas it is called by updated as well created",
+      "range": {
+        "startLine": 175,
+        "startChar": 73,
+        "endLine": 175,
+        "endChar": 100
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beef5f7a_b20af86d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "@JsonInclude(Include.NON_NULL)",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 8
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9cb1ec3_0809ee2a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "put it in and:, nonblocking",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 11
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d3c1520_bcd2cb42",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "ncmp is client to cps core, do not include client name in server variables. dataspaceName, anchorName",
+      "range": {
+        "startLine": 131,
+        "startChar": 44,
+        "endLine": 131,
+        "endChar": 61
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a6edb79_ae1c337e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "NodeLeaves",
+      "range": {
+        "startLine": 131,
+        "startChar": 17,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48f87db9_5759fa17",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "jsonData",
+      "range": {
+        "startLine": 132,
+        "startChar": 37,
+        "endLine": 132,
+        "endChar": 53
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db331c43_67f6e1bd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "void updateLeavesAndChild(dataspaceName, anchorName, xpath, datanode){\n        if(datanode \u003d\u003d null)\n           return;\n        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,\n            xpath, dataNode.getLeaves());\n        final Collection\u003cDataNode\u003e childDataNodeCollection \u003d dataNode.getChildDataNodes();\n        for (final DataNode childDataNode: childDataNodeCollection) {\n             updateLeavesAndChild(dataspaceName, anchorName, childDataNode.getXpath(), childDataNode.getLeaves());\n        }\n}\n\ncan you check this recursive method after replacing 105 to 111.",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 8
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "473b50de_045cfe5b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-20T13:43:38Z",
+      "side": 1,
+      "message": "this method will be called again for leave P1",
+      "range": {
+        "startLine": 164,
+        "startChar": 11,
+        "endLine": 164,
+        "endChar": 116
+      },
+      "revId": "2646b61ff4b9f543755a9efb8eba0f484973e1e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
