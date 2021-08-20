@@ -57,9 +57,9 @@ class DmiRestClientSpec extends Specification {
             def mockResponseEntity = Mock(ResponseEntity)
             mockRestTemplate.postForEntity(getResourceDataUrl, _ as HttpEntity, Void.class) >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
+        def result = objectUnderTest.postOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
         then: 'the output of the method is equal to the output from the test template'
-            result == mockResponseEntity
+        result == mockResponseEntity
     }
 
     def setupTestConfigurationData() {

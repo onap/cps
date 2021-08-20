@@ -57,4 +57,9 @@ public class DmiRestClient {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
     }
+
+    public ResponseEntity<String> postOperation(final String dmiResourceUrl, final HttpHeaders httpHeaders) {
+        final var httpEntity = new HttpEntity<>(configureHttpHeaders(httpHeaders));
+        return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, String.class);
+    }
 }

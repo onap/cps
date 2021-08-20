@@ -38,4 +38,5 @@ public class ModuleReference implements Serializable {
     private String name;
     private String namespace;
     private String revision;
+
 }
