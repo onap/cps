@@ -22,6 +22,7 @@
 package org.onap.cps.spi.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,4 +39,32 @@ public class ModuleReference implements Serializable {
     private String name;
     private String namespace;
     private String revision;
+
+    @Override
+    public String toString() {
+        return "ModuleReference{"
+            + "name='" + name + '\''
+            + ", namespace='" + namespace + '\''
+            + ", revision='" + revision + '\''
+            + '}';
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final ModuleReference that = (ModuleReference) o;
+        return Objects.equals(name, that.name)
+            && Objects.equals(namespace, that.namespace)
+            && Objects.equals(revision, that.revision);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, namespace, revision);
+    }
 }
