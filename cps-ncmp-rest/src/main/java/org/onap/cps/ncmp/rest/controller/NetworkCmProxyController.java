@@ -200,6 +200,22 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return ResponseEntity.ok(responseObject);
     }
 
+    /**
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param requestBody requestBody
+     * @return
+     */
+    @Override
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final @NotNull String cmHandle,
+                                                                     final @NotNull String resourceIdentifier,
+                                                                     final @Valid Object requestBody) {
+
+        
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
         return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);
