@@ -24,7 +24,9 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
@@ -34,6 +36,7 @@ import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Shared
+import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
@@ -44,7 +47,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockDmiOperations = Mock(DmiOperations)
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsDataService, mockCpsQueryService, new ObjectMapper())
+    def mockCpsModuleService = Mock(CpsModuleService)
+    def mockRestTemplate = Mock(RestTemplate)
+    def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
+
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiProperties, mockDmiOperations, mockCpsModuleService,
+            mockCpsDataService, mockCpsQueryService, new ObjectMapper(), mockRestTemplate)
 
     def cmHandle = 'some handle'
 
@@ -111,6 +119,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
         given: 'a registration '
             def dmiRegistryAnchor = 'ncmp-dmi-registry'
+            def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiProperties, mockDmiOperations, mockCpsModuleService,
+                    mockCpsDataService, mockCpsQueryService, new ObjectMapper(), mockRestTemplate))
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
@@ -118,6 +128,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
+
+            objectUnderTest.modelSync(_) >> null
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
@@ -134,12 +146,15 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Register a DMI Plugin for the given cmHandle without additional properties.'() {
         given: 'a registration without cmHandle properties '
+            def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiProperties, mockDmiOperations, mockCpsModuleService,
+                    mockCpsDataService, mockCpsQueryService, new ObjectMapper(), mockRestTemplate))
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.cmHandleProperties = null
             dmiPluginRegistration.createdCmHandles = [persistenceCmHandle ]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[]}]}'
+        objectUnderTest.modelSync(_) >> null
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
