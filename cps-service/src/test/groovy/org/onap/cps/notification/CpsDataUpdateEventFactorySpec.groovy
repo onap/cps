@@ -21,7 +21,6 @@ package org.onap.cps.notification
 
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.onap.cps.event.model.Data
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.Anchor
@@ -61,7 +60,7 @@ class CpsDataUpdateEventFactorySpec extends Specification {
             with(cpsDataUpdatedEvent) {
                 type == 'org.onap.cps.data-updated-event'
                 source == new URI('urn:cps:org.onap.cps')
-                schema == CpsDataUpdatedEvent.Schema.URN_CPS_ORG_ONAP_CPS_DATA_UPDATED_EVENT_SCHEMA_1_1_0_SNAPSHOT
+                schema == new URI('urn:cps:org.onap.cps:data-updated-event-schema:v1')
                 StringUtils.hasText(id)
                 content != null
             }
