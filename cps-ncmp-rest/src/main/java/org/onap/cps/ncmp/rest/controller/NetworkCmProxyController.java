@@ -200,6 +200,26 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return ResponseEntity.ok(responseObject);
     }
 
+    /**
+     * Create resource data in datastore pass through running
+     * for given cm-handle.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param requestBody requestBody
+     * @param contentType content type of body
+     * @return {@code ResponseEntity} response from dmi plugi
+     */
+    @Override
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String cmHandle,
+                                                                     final String resourceIdentifier,
+                                                                     final Object requestBody,
+                                                                     final String contentType) {
+        networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,
+                resourceIdentifier, requestBody, contentType);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
         return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);

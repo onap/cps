@@ -24,15 +24,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Map;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @JsonInclude(Include.NON_NULL)
+@Getter
+@Builder
 public class GenericRequestBody   {
     public enum OperationEnum {
-        READ("read");
+        READ("read"),
+        CREATE("create");
         private String value;
 
         OperationEnum(final String value) {
@@ -48,6 +49,6 @@ public class GenericRequestBody   {
 
     private OperationEnum operation;
     private String dataType;
-    private String data;
+    private Object data;
     private Map<String, String> cmHandleProperties;
 }
