@@ -70,4 +70,15 @@ class DmiOperationsSpec extends Specification {
         then: 'the put operation is executed with the correct URL'
             1 * mockDmiRestClient.putOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
     }
+
+    def 'Call get resource from dmi.'() {
+        given: 'expected url'
+            def expectedUrl = 'testDmiBasePath/v1/ch/testCmhandle/data/dstestResourceId'
+        when: 'get resource data is called to dmi'
+            objectUnderTest.getResourceFromDmi('testDmiBasePath',
+                    'testCmhandle',
+                    'testResourceId')
+        then: 'the post operation is executed with the correct URL'
+            1 * mockDmiRestClient.postOperation(expectedUrl, _ as HttpHeaders)
+    }
 }

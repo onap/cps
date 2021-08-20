@@ -48,6 +48,20 @@ class DmiRestClientSpec extends Specification {
             result == mockResponseEntity
     }
 
+    def 'DMI POST operation.'() {
+        given: 'a post url'
+            def postResourceDataUrl = 'http://some-uri/postResourceDataUrl'
+        and: 'dmi properties'
+            setupTestConfigurationData()
+        and: 'the rest template returns a valid response entity'
+            def mockResponseEntity = Mock(ResponseEntity)
+            mockRestTemplate.exchange(postResourceDataUrl, HttpMethod.POST, _ as HttpEntity, String.class) >> mockResponseEntity
+        when: 'POST operation is invoked'
+            def result = objectUnderTest.postOperation(postResourceDataUrl, new HttpHeaders())
+        then: 'the output of the method is equal to the output from the test template'
+            result == mockResponseEntity
+    }
+
     def setupTestConfigurationData() {
         mockDmiProperties.authUsername >> 'some-username'
         mockDmiProperties.authPassword >> 'some-password'

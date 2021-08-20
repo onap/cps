@@ -83,10 +83,50 @@ public class DmiOperations {
                                                                    final Integer depthQuery,
                                                                    final String acceptParam,
                                                                    final String jsonBody) {
-        final var builder = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
+        final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
                 fieldsQuery, depthQuery, PassThroughEnum.OPERATIONAL);
         final var httpHeaders = prepareHeader(acceptParam);
-        return dmiRestClient.putOperationWithJsonData(builder.toString(), jsonBody, httpHeaders);
+        return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+    }
+
+    /**
+     * Get resource from DMI.
+     *
+     * @param dmiBasePath dmi base path
+     * @param cmHandle cmHandle
+     * @param resourceId resource Id
+     * @return {@code ResponseEntity} response entity
+     */
+    public ResponseEntity<String> getResourceFromDmi(final String dmiBasePath,
+        final String cmHandle,
+        final String resourceId) {
+        final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId);
+        final var httpHeaders = new HttpHeaders();
+        return dmiRestClient.postOperation(dmiResourceDataUrl, httpHeaders);
+    }
+
+    @NotNull
+    private String getDmiResourceDataUrl(final String dmiBasePath,
+                                                final String cmHandle,
+                                                final String resourceId,
+                                                final String fieldsQuery,
+                                                final Integer depthQuery,
+                                                final PassThroughEnum passThrough) {
+        final var stringBuilder =  new StringBuilder(dmiBasePath);
+        stringBuilder.append(PARENT_CM_HANDLE_URI.replace("{cmHandle}", cmHandle));
+        stringBuilder.append(passThrough.getValue());
+        stringBuilder.append(resourceId);
+        appendFieldsAndDepth(fieldsQuery, depthQuery, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private String getDmiResourceDataUrl(final String dmiBasePath,
+                                                final String cmHandle,
+                                                final String resourceId) {
+        final var stringBuilder =  new StringBuilder(PARENT_CM_HANDLE_URI.replace("{cmHandle}", cmHandle));
+        stringBuilder.insert(stringBuilder.length(), resourceId);
+        stringBuilder.insert(0, dmiBasePath);
+        return stringBuilder.toString();
     }
 
     /**
@@ -109,25 +149,10 @@ public class DmiOperations {
                                                                    final Integer depthQuery,
                                                                    final String acceptParam,
                                                                    final String jsonBody) {
-        final var builder = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
+        final var dmiResourceDataUrl = getDmiResourceDataUrl(dmiBasePath, cmHandle, resourceId,
                 fieldsQuery, depthQuery, PassThroughEnum.RUNNING);
         final var httpHeaders = prepareHeader(acceptParam);
-        return dmiRestClient.putOperationWithJsonData(builder.toString(), jsonBody, httpHeaders);
-    }
-
-    @NotNull
-    private StringBuilder getDmiResourceDataUrl(final String dmiBasePath,
-                                                final String cmHandle,
-                                                final String resourceId,
-                                                final String fieldsQuery,
-                                                final Integer depthQuery,
-                                       final PassThroughEnum passThrough) {
-        final var builder =  new StringBuilder(PARENT_CM_HANDLE_URI.replace("{cmHandle}", cmHandle));
-        builder.append(passThrough.getValue());
-        builder.insert(builder.length(), resourceId);
-        appendFieldsAndDepth(fieldsQuery, depthQuery, builder);
-        builder.insert(0, dmiBasePath);
-        return builder;
+        return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
 
     private void appendFieldsAndDepth(final String fieldsQuery, final Integer depthQuery, final StringBuilder builder) {

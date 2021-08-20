@@ -25,7 +25,9 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
@@ -35,6 +37,7 @@ import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Shared
+import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
@@ -47,7 +50,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockDmiOperations = Mock(DmiOperations)
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsDataService, mockCpsQueryService, new ObjectMapper())
+    def mockCpsModuleService = Mock(CpsModuleService)
+    def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
+
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
+            mockCpsDataService, mockCpsQueryService, new ObjectMapper())
 
     def cmHandle = 'some handle'
     def noTimestamp = null
@@ -114,6 +121,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
         given: 'a registration '
+            def dmiRegistryAnchor = 'ncmp-dmi-registry'
+            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
@@ -145,6 +154,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Register a DMI Plugin for the given cmHandle without additional properties.'() {
         given: 'a registration without cmHandle properties '
+            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
@@ -325,4 +335,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'exception is thrown'
             thrown(NcmpException.class)
     }
+
+    def getObjectUnderTestWithModelSyncDisabled() {
+        def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
+                mockCpsDataService, mockCpsQueryService, new ObjectMapper()))
+        objectUnderTest.modelSync(_) >> null
+        return objectUnderTest
+    }
+
 }
