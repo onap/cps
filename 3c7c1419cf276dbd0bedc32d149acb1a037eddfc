@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "e028ea2f_62319859",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: extra space",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 2
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e66c38_f3079730",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb but important: \n1. var name can be changed to something which it represent.\n2. Here using var does not tell anything about the response type. It can\u0027t be figured out from controller method response type, variable name or the operation on the right side.",
+      "range": {
+        "startLine": 195,
+        "startChar": 14,
+        "endLine": 195,
+        "endChar": 17
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8a433d3_6eaa8ea9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "indentation issues",
+      "range": {
+        "startLine": 220,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 26
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0afc09f_67da58e3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: \nsuggestion: rather than checking the invocation count, it would be good if we compare the response.",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 18
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af3aa42_0a3606ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "@NotNull from javax.validation.constraints ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 58
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03d22a60_06f73f56",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -18,6 +133,259 @@
         "startChar": 45,
         "endLine": 153,
         "endChar": 48
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "813c9243_6f0756b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: typo",
+      "range": {
+        "startLine": 174,
+        "startChar": 18,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e486645_0a1dfd5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "name suggestion: cmHandleDataNode",
+      "range": {
+        "startLine": 179,
+        "startChar": 23,
+        "endLine": 179,
+        "endChar": 31
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43475c6b_d0ea818f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: name should be what this string represents. dmiRequesBody?",
+      "range": {
+        "startLine": 182,
+        "startChar": 21,
+        "endLine": 182,
+        "endChar": 29
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c7bd3c_0f131166",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "We consider all response ( 404 , 500 ) in a same way. Is it expected?",
+      "range": {
+        "startLine": 190,
+        "startChar": 15,
+        "endLine": 190,
+        "endChar": 40
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d26fae_3ede9a5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "Do we still need them after defining enum separately?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 51
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "751b01b4_ccfb5566",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: suggestion: final StringBuilder builder \u003d  new StringBuilder(PARENT_CM_HANDLE_URI.replace(\"{cmHandle}\", cmHandle);",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 70
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4159ffaa_cd3d5df2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "data node represents cmhandle configuration. block name and variables name should represent that too.",
+      "range": {
+        "startLine": 204,
+        "startChar": 13,
+        "endLine": 204,
+        "endChar": 24
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f6bf64_1d315ccb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: we don\u0027t need to check the invocation count as it is being tested in this mockDmiOperations.getResouceDataPassThroughRunningFromDmi",
+      "range": {
+        "startLine": 217,
+        "startChar": 16,
+        "endLine": 218,
+        "endChar": 86
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "665189b4_ae4e94e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: same. no need to check invocation and can validate the execution by comparing the response.",
+      "range": {
+        "startLine": 220,
+        "startChar": 12,
+        "endLine": 226,
+        "endChar": 143
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82160d12_c13641b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "nb: block text as \u0027get resource data returns expected response\u0027 because we are validating service layer response.",
+      "range": {
+        "startLine": 227,
+        "startChar": 14,
+        "endLine": 227,
+        "endChar": 37
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19f0fcae_658677f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "same comment",
+      "range": {
+        "startLine": 234,
+        "startChar": 12,
+        "endLine": 238,
+        "endChar": 53
       },
       "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -65,6 +433,29 @@
         "startChar": 68,
         "endLine": 254,
         "endChar": 71
+      },
+      "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0e385e7_fdca89d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-20T11:19:06Z",
+      "side": 1,
+      "message": "same comment",
+      "range": {
+        "startLine": 258,
+        "startChar": 11,
+        "endLine": 264,
+        "endChar": 86
       },
       "revId": "3c7c1419cf276dbd0bedc32d149acb1a037eddfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
