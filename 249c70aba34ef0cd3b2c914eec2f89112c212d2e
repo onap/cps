@@ -164,6 +164,29 @@
     },
     {
       "key": {
+        "uuid": "490dfa97_a1fa17b8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T16:13:08Z",
+      "side": 1,
+      "message": "data-consistency issue: It is recursive method and we are calling Db to update in each method call. We need to implement it differently so it can be executed in one transaction to keep data consistent and for better performance.\n\nWe can think of moving the logic to SPI layer and add transaction to the method.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 5
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6652c032_1ad2a759",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 7
