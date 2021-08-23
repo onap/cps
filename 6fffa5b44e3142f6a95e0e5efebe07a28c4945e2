@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "9987b30b_39f1a963",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: suggestion: Can the type be changed to MediaType ?",
+      "range": {
+        "startLine": 156,
+        "startChar": 57,
+        "endLine": 156,
+        "endChar": 63
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92019b67_f2761551",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: suggestion: can be a constant. Used at three places",
+      "range": {
+        "startLine": 179,
+        "startChar": 83,
+        "endLine": 179,
+        "endChar": 101
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a323e7_8197229e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: cmHandleProperties?",
+      "range": {
+        "startLine": 198,
+        "startChar": 35,
+        "endLine": 198,
+        "endChar": 54
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87c872e7_f73ff5a6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -18,6 +87,144 @@
         "startChar": 16,
         "endLine": 250,
         "endChar": 71
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "022388af_d2b577dd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/GenericRequestBody.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "@lombok.Builder",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 1
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4700914e_bdb927a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "cmhandleXpath",
+      "range": {
+        "startLine": 287,
+        "startChar": 16,
+        "endLine": 287,
+        "endChar": 21
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa9600d3_3216ef28",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: suggestion: cmhandleDataNode",
+      "range": {
+        "startLine": 289,
+        "startChar": 16,
+        "endLine": 289,
+        "endChar": 24
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d1d208e_6b7c269e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: suggestion: additionalPropertiesDataNode",
+      "range": {
+        "startLine": 291,
+        "startChar": 16,
+        "endLine": 291,
+        "endChar": 29
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8311d313_8fca067b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: suggestion: \ncmHandle information is more like a set which will be required for other test cases too. Would it be possible to seperate it from the test case. It will make it more readable.",
+      "range": {
+        "startLine": 286,
+        "startChar": 8,
+        "endLine": 296,
+        "endChar": 86
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d72a9b02_255a3df9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-23T17:05:07Z",
+      "side": 1,
+      "message": "nb: same comment about moving it out of test case",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 86
       },
       "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
