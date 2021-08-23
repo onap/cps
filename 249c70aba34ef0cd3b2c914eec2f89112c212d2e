@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3083696a_b97bf226",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "does not add much value but is OK for consistency in this class...",
+      "range": {
+        "startLine": 62,
+        "startChar": 32,
+        "endLine": 62,
+        "endChar": 44
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "464a3563_7f5848d7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
@@ -25,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "154c558b_92e52942",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "this method is doing 2 things at once which gives trouble with name and makes it hard to read.\nI would make this method return the PersistenceCmHandle (as the current name suggests) and add it to the list whereever you call it now (even if it is used multiple times, no big deal)",
+      "range": {
+        "startLine": 245,
+        "startChar": 17,
+        "endLine": 245,
+        "endChar": 38
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4f6a345_e952d0c6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 7
@@ -41,6 +87,99 @@
         "startChar": 53,
         "endLine": 114,
         "endChar": 64
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3916cfb3_0b65a28f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "agreed but depending time as ssuggested as later (post code-freeze) improvement",
+      "parentUuid": "c4f6a345_e952d0c6",
+      "range": {
+        "startLine": 114,
+        "startChar": 53,
+        "endLine": 114,
+        "endChar": 64
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fa2c555_29ae1b7c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "mind casing (not blocking)",
+      "range": {
+        "startLine": 120,
+        "startChar": 14,
+        "endLine": 120,
+        "endChar": 15
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1a3a315_9af60242",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "does it do multiple children, whole tree? Name could be misleading",
+      "range": {
+        "startLine": 105,
+        "startChar": 21,
+        "endLine": 105,
+        "endChar": 28
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6652c032_1ad2a759",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-23T15:07:37Z",
+      "side": 1,
+      "message": "need to discuss :-)",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 25
       },
       "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
