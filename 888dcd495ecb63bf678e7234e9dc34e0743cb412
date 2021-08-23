@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b1066b9_59ada734",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-23T09:56:35Z",
+      "side": 1,
+      "message": "nb: curious why this is NotNull and not NonNull, all other methods in this interface have it as NonNull",
+      "range": {
+        "startLine": 121,
+        "startChar": 49,
+        "endLine": 121,
+        "endChar": 57
+      },
+      "revId": "888dcd495ecb63bf678e7234e9dc34e0743cb412",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
