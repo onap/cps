@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "464a3563_7f5848d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-23T14:22:41Z",
+      "side": 1,
+      "message": "{\"cm-handles\":[{\"id\":\"123\",\"dmi-service-name\":\"my-server\",\"additional-properties\":[{\"name\":\"name1\",\"value\":\"value1\"},{\"name\":\"name2\",\"value\":\"value2\"}]},\n{\"id\":\"124\",\"dmi-service-name\":\"my-server\",\"additional-properties\":[{\"name\":\"name21\",\"value\":\"value21\"},{\"name\":\"name22\",\"value\":\"value22\"}]}\n]}\n\ncan you send all this data to cmdataservice at once whihc have two datanodes/cmhandles and would cps data service handle it at once? \n\nplease try if yes\nthen you need to extract few lines from for loop and it\u0027ll do\n\nif not then its fine.",
+      "range": {
+        "startLine": 167,
+        "startChar": 34,
+        "endLine": 167,
+        "endChar": 50
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4f6a345_e952d0c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-23T14:22:41Z",
+      "side": 1,
+      "message": "use multiple cmhandles for this example\n\n[cmhandle1, cmhandle2]\n\nthis will give more rebustness to this test. btw preferable is if you write new test for update. and then simultaneous test for register and update. \n\n:nb (can be written afterwards)",
+      "range": {
+        "startLine": 114,
+        "startChar": 53,
+        "endLine": 114,
+        "endChar": 64
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
