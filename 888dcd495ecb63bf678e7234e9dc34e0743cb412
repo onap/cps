@@ -46,6 +46,30 @@
       "revId": "888dcd495ecb63bf678e7234e9dc34e0743cb412",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5345ebec_2ba5c9ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-23T10:43:21Z",
+      "side": 1,
+      "message": "Ack. If they both do the same thing, then I think we should decide on one and settle with that. I checked other parts of the CPS codebase and both NonNull and NotNull are used. Just gonna keep this comment open to see what others in the team think. I think we should stick with one for this, maybe a refactor task can be created.",
+      "parentUuid": "6cb62d46_3056ced7",
+      "range": {
+        "startLine": 121,
+        "startChar": 49,
+        "endLine": 121,
+        "endChar": 57
+      },
+      "revId": "888dcd495ecb63bf678e7234e9dc34e0743cb412",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
