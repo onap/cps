@@ -76,6 +76,24 @@
     },
     {
       "key": {
+        "uuid": "ddc0397d_098ac1d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T13:10:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79f109d8_77eb73db",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b0cddf8_ea20f7ee",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
@@ -90,6 +108,24 @@
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72373f28_b43d5d30",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T13:10:40Z",
+      "side": 1,
+      "message": "My mistake, missed these as part of my initial review",
+      "parentUuid": "7b0cddf8_ea20f7ee",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +187,24 @@
     },
     {
       "key": {
+        "uuid": "0f096a3b_f661da92",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T13:10:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3f76df0_519a9f22",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f112ef1_7d734382",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 5
@@ -165,6 +219,24 @@
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6326184_0aa7f077",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T13:10:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8f112ef1_7d734382",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
