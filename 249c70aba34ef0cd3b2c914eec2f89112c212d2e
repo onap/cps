@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "0672472a_a4b4b05c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T08:58:09Z",
+      "side": 1,
+      "message": "yes, i agree on this that it is should be an atomic operation to negate the data inconsistency, but given that fragment table sees each property as independent data node and allows independent operation on them , lets assume an example below\n\n{ x: val, y [ y1 : yval1 , z [ z1 : zval1 ]]}\n\nhere are three data nodes x , y1, z1  and as there are two lists there can be much more. \nbut in fragment table x, y1, z1 can be updated independently. let say x, y1 are updated and z1 failed then rollback should happen at x and y1.  \n\nand rather than rollback on all previous sub-transaction, it should be retry for the failed transaction.\n\nLooks like the edge cases are complex and hidden , so imo we should take it as improvement or bug separately on cps-core, but not put burden of this improvement on ncmp task. Please give your opinion.",
+      "parentUuid": "490dfa97_a1fa17b8",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 5
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6652c032_1ad2a759",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 7
