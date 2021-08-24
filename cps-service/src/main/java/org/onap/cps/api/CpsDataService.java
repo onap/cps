@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2021 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +22,7 @@
 
 package org.onap.cps.api;
 
+import java.time.OffsetDateTime;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -36,8 +38,10 @@ public interface CpsDataService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param jsonData      json data
+     * @param observedTimestamp observedTimestamp
      */
-    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
+    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
@@ -46,21 +50,23 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
      * @param jsonData        json data
+     * @param observedTimestamp observedTimestamp
      */
     void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Persists child data fragment representing list-node (with one or more elements) under existing data node
-     * for the given anchor and dataspace.
+     * Persists child data fragment representing list-node (with one or more elements) under existing data node for the
+     * given anchor and dataspace.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
      * @param jsonData        json data representing list element
+     * @param observedTimestamp observedTimestamp
      */
     void saveListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -82,9 +88,10 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath xpath to parent node
      * @param jsonData        json data
+     * @param observedTimestamp observedTimestamp
      */
     void updateNodeLeaves(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
      * Replaces existing data node content including descendants.
@@ -93,42 +100,47 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param parentNodeXpath xpath to parent node
      * @param jsonData        json data
+     * @param observedTimestamp observedTimestamp
      */
     void replaceNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Replaces (if exists) child data fragment representing list-node (with one or more elements)
-     * under existing data node for the given anchor and dataspace.
+     * Replaces (if exists) child data fragment representing list-node (with one or more elements) under existing data
+     * node for the given anchor and dataspace.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath parent node xpath
-     * @param jsonData        json data representing list element
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param jsonData          json data representing list element
+     * @param observedTimestamp observedTimestamp
      */
     void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Deletes (if exists) child data fragment representing list-node (with one or more elements)
-     * under existing data node for the given anchor and dataspace.
-     *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param listNodeXpath   list node xpath
-     */
-    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath);
-
-    /**
-     * Updates leaves of DataNode for given dataspace and anchor using xpath,
-     * along with the leaves of each Child Data Node which already exists.
-     * This method will throw an exception if data node update or any descendant update does not exist.
+     * Deletes (if exists) child data fragment representing list-node (with one or more elements) under existing data
+     * node for the given anchor and dataspace.
      *
      * @param dataspaceName dataspace name
-     * @param anchorName anchor name
-     * @param parentNodeXpath xpath
+     * @param anchorName    anchor name
+     * @param listNodeXpath list node xpath
+     * @param observedTimestamp observedTimestamp
+     */
+    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath,
+        OffsetDateTime observedTimestamp);
+
+    /**
+     * Updates leaves of DataNode for given dataspace and anchor using xpath, along with the leaves of each Child Data
+     * Node which already exists. This method will throw an exception if data node update or any descendant update does
+     * not exist.
+     *
+     * @param dataspaceName         dataspace name
+     * @param anchorName            anchor name
+     * @param parentNodeXpath       xpath
      * @param dataNodeUpdatesAsJson json data representing data node updates
+     * @param observedTimestamp observedTimestamp
      */
     void updateNodeLeavesAndExistingDescendantLeaves(String dataspaceName, String anchorName, String parentNodeXpath,
-                                                     String dataNodeUpdatesAsJson);
+        String dataNodeUpdatesAsJson, OffsetDateTime observedTimestamp);
 }
