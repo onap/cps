@@ -158,6 +158,14 @@ components:
       schema:
         type: boolean
         default: false
+    observedTimestampInQuery:
+      name: observed-timestamp
+      in: query
+      description: observed-timestamp
+      required: false
+      schema:
+        type: string
+        example: '2021-03-21T00:10:34.030-0100'
 
   responses:
     NotFound:

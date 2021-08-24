@@ -20,6 +20,7 @@
 
 package org.onap.cps.notification;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -79,15 +80,17 @@ public class NotificationService {
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
+     * @param observedTimestamp observedTimestamp
      * @return future
      */
     @Async("notificationExecutor")
-    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
+        final OffsetDateTime observedTimestamp) {
         log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
         try {
             if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName);
+                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }
