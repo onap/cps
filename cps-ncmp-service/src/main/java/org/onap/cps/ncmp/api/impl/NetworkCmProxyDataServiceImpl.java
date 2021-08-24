@@ -131,6 +131,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
             parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
         }
+        if (dmiPluginRegistration.getRemovedCmHandles() != null) {
+            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
+        }
     }
 
     private void parseAndCreateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
@@ -170,6 +173,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             throw new DataValidationException(
                 "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
                 .getMessage(), e);
+        }
+    }
+
+    private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        try {
+            for (final String cmHandle: dmiPluginRegistration.getRemovedCmHandles()) {
+                cpsDataService.deleteListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                    "/dmi-registry/cm-handles[@id='" + cmHandle + "']");
+            }
+        } catch (final Exception e) {
+            log.error("{} Test", e.getMessage());
         }
     }
 
