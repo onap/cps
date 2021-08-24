@@ -92,7 +92,7 @@ class E2ENetworkSliceSpec extends Specification {
                     YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData)
+            cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData, null)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
@@ -124,7 +124,7 @@ class E2ENetworkSliceSpec extends Specification {
             mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData)
+            cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData, null)
         then: 'parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
