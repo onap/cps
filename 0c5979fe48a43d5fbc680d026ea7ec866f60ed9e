@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "152a5153_f0434b7e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-24T09:45:12Z",
+      "side": 1,
+      "message": "do we need to create a custom exception for notifications?",
+      "range": {
+        "startLine": 165,
+        "startChar": 23,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ff7aa82_69d266ff",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-24T09:45:12Z",
+      "side": 1,
+      "message": "can you explain how this will be used?",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
