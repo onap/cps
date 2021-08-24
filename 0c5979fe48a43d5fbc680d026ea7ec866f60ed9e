@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "be09e3de_a832ceb2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "The intention is to not stop cps processing for any kind of error. Hence, decided to catch Exception instead of custom exception. \nThe exception can be related to async processing and we are not aware of what type it would be.",
+      "parentUuid": "152a5153_f0434b7e",
+      "range": {
+        "startLine": 165,
+        "startChar": 23,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09a90077_7f016dee",
         "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
         "patchSetId": 5
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "41cafa8e_f11747da",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "Copy paste error 😞.\nDone",
+      "parentUuid": "09a90077_7f016dee",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce983847_3062bc96",
         "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
         "patchSetId": 5
@@ -53,6 +95,24 @@
       "writtenOn": "2021-08-24T10:53:51Z",
       "side": 1,
       "message": "Blank line missing. See https://wiki.onap.org/display/DW/Contribution+and+Development#ContributionandDevelopment-LicenceDeclarations",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c51b9b92_2be55c74",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce983847_3062bc96",
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -152,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "005f9017_bbcfb2bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f4eebe2_ff058f1b",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 17
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81bcb34e_43ea350b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 5
@@ -205,6 +289,24 @@
     },
     {
       "key": {
+        "uuid": "1a7b6d10_83e72be2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "I think future is better name because it is useful to know when response is completed.\nI did and another \u0027and\u0027 block to make it more readable.\n\nwhen: \u0027dataUpdatedEvent is received\u0027\n      def future \u003d objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName)\nand: \u0027async processing is completed\u0027\n      future.get()",
+      "parentUuid": "c3f76df0_519a9f22",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f112ef1_7d734382",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 5
@@ -233,6 +335,24 @@
       "writtenOn": "2021-08-24T13:10:40Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "8f112ef1_7d734382",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c9772c2_1abc2cf4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T13:43:11Z",
+      "side": 1,
+      "message": "Marking it resolved. Tracking it with the previous test comment.",
       "parentUuid": "8f112ef1_7d734382",
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
