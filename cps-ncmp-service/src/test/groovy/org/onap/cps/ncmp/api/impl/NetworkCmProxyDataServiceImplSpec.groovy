@@ -40,6 +40,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     @Shared
     def persistenceCmHandle = new CmHandle()
+    @Shared
+    def cmHandlesArray = ['cmHandle001']
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsQueryService = Mock(CpsQueryService)
@@ -110,25 +112,28 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
         given: 'a registration '
-            def dmiRegistryAnchor = 'ncmp-dmi-registry'
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.cmHandleProperties = [name1: 'value1', name2: 'value2']
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
+            dmiPluginRegistration.removedCmHandles = removedCmHandles
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
             expectedCallsToSaveNode * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
-        and: 'update Node and Child Data Nodes is invoked with correct parameter'
-            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', dmiRegistryAnchor, '/dmi-registry', expectedJsonData)
+        and: 'update Node and Child Data Nodes is invoked with correct parameters'
+            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin',  'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+        and : 'delete list data node is invoked with the correct parameters'
+            expectedCallsToDeleteListDataNode * mockCpsDataService.deleteListNodeData('NCMP-Admin', 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']")
         where:
-            scenario                | createdCmHandles       | updatedCmHandles       || expectedCallsToSaveNode   | expectedCallsToUpdateNode
-            'create'                | [persistenceCmHandle ] | []                     || 1                         | 0
-            'update'                | []                     | [persistenceCmHandle ] || 0                         | 1
-            'create and update'     | [persistenceCmHandle ] | [persistenceCmHandle ] || 1                         | 1
+            scenario                        | createdCmHandles       | updatedCmHandles       | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListDataNode
+            'create'                        | [persistenceCmHandle ] | []                     | []               || 1                         | 0                         | 0
+            'update'                        | []                     | [persistenceCmHandle ] | []               || 0                         | 1                         | 0
+            'create, update and delete'     | [persistenceCmHandle ] | [persistenceCmHandle ] | cmHandlesArray   || 1                         | 1                         | 1
+            'delete'                        | []                     | []                     | cmHandlesArray   || 0                         | 0                         | 1
 
     }
     def 'Get resource data for pass-through operational from dmi.'() {

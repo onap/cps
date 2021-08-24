@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +42,6 @@ public class DmiPluginRegistration {
 
     private List<CmHandle> updatedCmHandles;
 
-    private List<CmHandle> deletedCmHandles;
+    private ArrayList<String> removedCmHandles;
 
 }
