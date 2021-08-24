@@ -22,6 +22,7 @@
 package org.onap.cps.rest.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
@@ -65,6 +66,11 @@ public class CpsRestExceptionHandler {
         CpsPathException.class})
     public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
+    }
+
+    @ExceptionHandler({ValidationException.class})
+    public static ResponseEntity<Object> handleBadRequestExceptions(final ValidationException validationException) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, validationException);
     }
 
     @ExceptionHandler({NotFoundInDataspaceException.class, DataNodeNotFoundException.class})
