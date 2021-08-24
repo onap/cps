@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "eff54d91_7b922c55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T20:08:55Z",
+      "side": 1,
+      "message": "You\u0027re right, DataNodeNotFoundException should be caught and logged here in order for the next cm handle to be processed.",
+      "parentUuid": "83bb4a61_435814ac",
+      "range": {
+        "startLine": 181,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 68
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36c2d878_62d00b9f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
         "patchSetId": 1
