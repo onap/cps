@@ -37,7 +37,8 @@ public interface CpsDataService {
      * @param anchorName    anchor name
      * @param jsonData      json data
      */
-    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData);
+    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData,
+        String observedTimestamp);
 
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
@@ -48,7 +49,7 @@ public interface CpsDataService {
      * @param jsonData        json data
      */
     void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, String observedTimestamp);
 
     /**
      * Persists child data fragment representing list-node (with one or more elements) under existing data node
@@ -60,7 +61,7 @@ public interface CpsDataService {
      * @param jsonData        json data representing list element
      */
     void saveListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, String observedTimestamp);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -84,7 +85,7 @@ public interface CpsDataService {
      * @param jsonData        json data
      */
     void updateNodeLeaves(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, String observedTimestamp);
 
     /**
      * Replaces existing data node content including descendants.
@@ -95,7 +96,7 @@ public interface CpsDataService {
      * @param jsonData        json data
      */
     void replaceNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, String observedTimestamp);
 
     /**
      * Replaces (if exists) child data fragment representing list-node (with one or more elements)
@@ -107,7 +108,7 @@ public interface CpsDataService {
      * @param jsonData        json data representing list element
      */
     void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData);
+        @NonNull String jsonData, String observedTimestamp);
 
     /**
      * Deletes (if exists) child data fragment representing list-node (with one or more elements)
@@ -117,5 +118,6 @@ public interface CpsDataService {
      * @param anchorName      anchor name
      * @param listNodeXpath   list node xpath
      */
-    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath);
+    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath,
+        String observedTimestamp);
 }

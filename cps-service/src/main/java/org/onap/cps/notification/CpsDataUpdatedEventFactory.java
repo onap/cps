@@ -20,7 +20,6 @@ package org.onap.cps.notification;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import org.onap.cps.api.CpsAdminService;
@@ -60,16 +59,18 @@ class CpsDataUpdatedEventFactory {
         this.cpsAdminService = cpsAdminService;
     }
 
-    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName,
+        final String observedTimestamp) {
         final var dataNode = cpsDataService
             .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        return toCpsDataUpdatedEvent(anchor, dataNode);
+        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp);
     }
 
-    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode) {
+    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
+        final String observedTimestamp) {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
-        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode));
+        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
         cpsDataUpdatedEvent.withSchema(Schema.URN_CPS_ORG_ONAP_CPS_DATA_UPDATED_EVENT_SCHEMA_1_1_0_SNAPSHOT);
         cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
@@ -83,13 +84,13 @@ class CpsDataUpdatedEventFactory {
         return data;
     }
 
-    private Content createContent(final Anchor anchor, final DataNode dataNode) {
+    private Content createContent(final Anchor anchor, final DataNode dataNode, final String observedTimestamp) {
         final var content = new Content();
         content.withAnchorName(anchor.getName());
         content.withDataspaceName(anchor.getDataspaceName());
         content.withSchemaSetName(anchor.getSchemaSetName());
         content.withData(createData(dataNode));
-        content.withObservedTimestamp(dateTimeFormatter.format(OffsetDateTime.now()));
+        content.withObservedTimestamp(observedTimestamp);
         return content;
     }
 }

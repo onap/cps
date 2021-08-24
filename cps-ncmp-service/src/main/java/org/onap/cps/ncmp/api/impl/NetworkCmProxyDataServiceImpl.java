@@ -101,7 +101,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
-            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData);
+            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData, "");
         } else {
             cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
         }
@@ -109,17 +109,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListNodeData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.saveListNodeData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, "");
     }
 
     @Override
     public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, "");
     }
 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, "");
     }
 
     @Override
@@ -140,7 +140,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME,
                     NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry",
-                cmHandleJsonData);
+                cmHandleJsonData, "");
         } catch (final JsonProcessingException e) {
             throw new DataValidationException(
                 "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
