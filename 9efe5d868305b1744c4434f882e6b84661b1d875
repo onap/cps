@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "244555c4_95e76eb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T17:48:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8131ec64_6e73e640",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 9
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fb8192a_1cf7baa1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "agreed silently ignore (just log maybe) is best approach",
       "parentUuid": "3fb8192a_1cf7baa1",
+      "range": {
+        "startLine": 181,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 68
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83bb4a61_435814ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T17:48:05Z",
+      "side": 1,
+      "message": "What if there is a case where there are multiple nodes being deleted for example.\n\n[CM-HANDLE001, CM-HANDLE002].\n\nIf CM-HANDLE001 doesn\u0027t exist, and CM-HANDLE002 does exist, and it throws an exception silently, then CM-HANDLE002 will also not be deleted, because the exception was thrown before it could throw this within the DB.",
+      "parentUuid": "610ccb76_0537857d",
       "range": {
         "startLine": 181,
         "startChar": 12,
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "424e462a_1aaa0d16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T17:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "293d0afa_b0d5a1af",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 21
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "135b2d6c_0a151346",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 1
@@ -163,6 +235,30 @@
       "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fb89788_bec8ff54",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T17:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "135b2d6c_0a151346",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 110
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
