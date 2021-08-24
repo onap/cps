@@ -46,6 +46,8 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
+
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -111,7 +113,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
             def response = performTestRequest()
         then: 'an HTTP Not Found response is returned with correct message and details'
             assertTestResponse(response, NOT_FOUND, 'Object not found',
-                    'Description does not exist in dataspace MyDataSpace.')
+                'Description does not exist in dataspace MyDataSpace.')
     }
 
     def 'Request with an object already defined exception returns HTTP Status Conflict.'() {
@@ -120,8 +122,8 @@ class CpsRestExceptionHandlerSpec extends Specification {
             def response = performTestRequest()
         then: 'a HTTP conflict response is returned with correct message an details'
             assertTestResponse(response, CONFLICT,
-                    "Already defined exception",
-                    "Anchor with name ${existingObjectName} already exists for ${dataspaceName}.")
+                "Already defined exception",
+                "Anchor with name ${existingObjectName} already exists for ${dataspaceName}.")
     }
 
     def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
@@ -152,15 +154,16 @@ class CpsRestExceptionHandlerSpec extends Specification {
      * NB. This method tests the expected behavior for POST request only;
      * testing of PUT and PATCH requests omitted due to same NOT 'GET' condition is being used.
      */
+
     def 'Post request with #exceptionThrown.class.simpleName returns HTTP Status Bad Request.'() {
         given: '#exception is thrown the service indicating data is not found'
-            mockCpsDataService.saveData(_, _, _, _) >> { throw exceptionThrown }
+            mockCpsDataService.saveData(_, _, _, _, _) >> { throw exceptionThrown }
         when: 'data update request is performed'
             def response = mvc.perform(
-                    post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .param('xpath', 'parent node xpath')
-                            .content('json data')
+                post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .param('xpath', 'parent node xpath')
+                    .content('json data')
             ).andReturn().response
         then: 'response code indicates bad input parameters'
             response.status == BAD_REQUEST.value()
@@ -179,8 +182,8 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     def performTestRequest() {
         return mvc.perform(
-                get("$basePath/v1/dataspaces/dataspace-name/anchors"))
-                .andReturn().response
+            get("$basePath/v1/dataspaces/dataspace-name/anchors"))
+            .andReturn().response
     }
 
     static void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {
