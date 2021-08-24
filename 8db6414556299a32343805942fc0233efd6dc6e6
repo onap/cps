@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04d9e5b1_1320f392",
+        "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T16:35:39Z",
+      "side": 1,
+      "message": "I think \"e.g.\" is the preferred term to be used in technical docs",
+      "range": {
+        "startLine": 15,
+        "startChar": 89,
+        "endLine": 15,
+        "endChar": 91
+      },
+      "revId": "8db6414556299a32343805942fc0233efd6dc6e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
