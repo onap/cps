@@ -25,6 +25,74 @@
     },
     {
       "key": {
+        "uuid": "79f109d8_77eb73db",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T09:48:09Z",
+      "side": 1,
+      "message": "Do we need this autowired tag, if we are injecting the dependencies through a constructor.",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b0cddf8_ea20f7ee",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T09:48:09Z",
+      "side": 1,
+      "message": "Should include java doc comments for dependency injections, this seems to be done consistently throughout the rest of CPS.",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81bcb34e_43ea350b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T09:48:09Z",
+      "side": 1,
+      "message": "I don\u0027t think future is a clear indication of what is being stored in this variable.\nMaybe \u0027processedDataUpdatedEvent\u0027 to indicate that the notification was sent successfully?",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f112ef1_7d734382",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T09:48:09Z",
+      "side": 1,
+      "message": "Same issue here as above",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ff7aa82_69d266ff",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 5
