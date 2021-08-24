@@ -98,6 +98,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void updateNodeLeavesAndExistingDescendantLeaves(final String dataspaceName, final String anchorName,
+                                                            final String parentNodeXpath,
+                                                            final String dataNodeUpdatesAsJson) {
+        final Collection<DataNode> dataNodeUpdates =
+            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, dataNodeUpdatesAsJson);
+        for (final DataNode dataNodeUpdate : dataNodeUpdates) {
+            processDataNodeUpdate(dataspaceName, anchorName, dataNodeUpdate);
+        }
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+    }
+
+    @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
@@ -159,5 +171,18 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
         return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
+    }
+
+    private void processDataNodeUpdate(final String dataspaceName, final String anchorName,
+                                       final DataNode dataNodeUpdate) {
+        if (dataNodeUpdate == null) {
+            return;
+        }
+        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, dataNodeUpdate.getXpath(),
+            dataNodeUpdate.getLeaves());
+        final Collection<DataNode> childDataNodeUpdates = dataNodeUpdate.getChildDataNodes();
+        for (final DataNode childDataNodeUpdate : childDataNodeUpdates) {
+            processDataNodeUpdate(dataspaceName, anchorName, childDataNodeUpdate);
+        }
     }
 }
