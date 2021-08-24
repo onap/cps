@@ -22,6 +22,7 @@
 
 package org.onap.cps.api.impl
 
+import java.time.OffsetDateTime
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.notification.NotificationService
@@ -44,6 +45,7 @@ class E2ENetworkSliceSpec extends Specification {
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
+    def observedTimestamp = OffsetDateTime.now()
 
     def setup() {
         cpsDataServiceImpl.cpsDataPersistenceService = mockDataStoreService
@@ -92,7 +94,7 @@ class E2ENetworkSliceSpec extends Specification {
                     YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData)
+            cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
@@ -124,7 +126,7 @@ class E2ENetworkSliceSpec extends Specification {
             mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
         when: 'saveData method is invoked'
-            cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData)
+            cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData, observedTimestamp)
         then: 'parameters are validated and processing is delegated to persistence service'
             1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}

@@ -20,6 +20,7 @@
 
 package org.onap.cps.notification
 
+import java.time.OffsetDateTime
 import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.spockframework.spring.SpringBean
@@ -55,12 +56,13 @@ class NotificationServiceSpec extends Specification {
     @Shared
     def myDataspacePublishedName = 'my-dataspace-published'
     def myAnchorName = 'my-anchorname'
+    def myObservedTimestamp = OffsetDateTime.now()
 
     def 'Skip sending notification when disabled.'() {
         given: 'notification is disabled'
             spyNotificationProperties.isEnabled() >> false
         when: 'dataUpdatedEvent is received'
-            objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
+            objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName, myObservedTimestamp)
         then: 'the notification is not sent'
             0 * mockNotificationPublisher.sendNotification(_)
     }
@@ -70,9 +72,10 @@ class NotificationServiceSpec extends Specification {
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, myAnchorName) >> cpsDataUpdatedEvent
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, myAnchorName, myObservedTimestamp) >>
+                cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
-            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName)
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName, myObservedTimestamp)
         and: 'wait for async processing is completed'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -89,10 +92,10 @@ class NotificationServiceSpec extends Specification {
         given: 'notification is enabled'
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory can not create event successfully'
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(myDataspacePublishedName, myAnchorName) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(myDataspacePublishedName, myAnchorName, myObservedTimestamp) >>
                 { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
-            def future = objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
+            def future = objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName, myObservedTimestamp)
         and: 'wait for async processing is completed'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
