@@ -402,6 +402,29 @@
     },
     {
       "key": {
+        "uuid": "5272d16e_163f294c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:52:32Z",
+      "side": 1,
+      "message": "requestJson variable is not needed, it can be inlined.",
+      "range": {
+        "startLine": 227,
+        "startChar": 22,
+        "endLine": 227,
+        "endChar": 33
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87c872e7_f73ff5a6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -418,6 +441,29 @@
         "startChar": 16,
         "endLine": 250,
         "endChar": 71
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf326ec8_d84079c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:52:32Z",
+      "side": 1,
+      "message": "Isn\u0027t a create error here ?\n\nSuggestion for later improvement: Manipulating http response code should not be bubble up to here, it could be done closer to the rest client call. THis could simplify the code here and also hide the implementation detail about how the integration with dmi is done.",
+      "range": {
+        "startLine": 261,
+        "startChar": 49,
+        "endLine": 261,
+        "endChar": 52
       },
       "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
