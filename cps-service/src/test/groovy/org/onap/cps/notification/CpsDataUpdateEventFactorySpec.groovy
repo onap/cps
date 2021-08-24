@@ -19,6 +19,7 @@
 
 package org.onap.cps.notification
 
+import org.onap.cps.DateTimeUtility
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.event.model.CpsDataUpdatedEvent
@@ -27,8 +28,10 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.util.StringUtils
+import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class CpsDataUpdateEventFactorySpec extends Specification {
@@ -52,10 +55,11 @@ class CpsDataUpdateEventFactorySpec extends Specification {
             def xpath = '/'
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(['leafName': 'leafValue']).build()
             mockCpsDataService.getDataNode(
-                    myDataspaceName, myAnchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                myDataspaceName, myAnchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
 
         when: 'CPS data updated event is created'
-            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(myDataspaceName, myAnchorName)
+            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(myDataspaceName,
+                myAnchorName, DateTimeUtility.toOffsetDateTime(inputObservedTimestamp))
 
         then: 'CPS data updated event is created with expected values'
             with(cpsDataUpdatedEvent) {
@@ -67,11 +71,18 @@ class CpsDataUpdateEventFactorySpec extends Specification {
             }
             with(cpsDataUpdatedEvent.content) {
                 assert isExpectedDateTimeFormat(observedTimestamp): "$observedTimestamp is not in $dateTimeFormat format"
+                if (inputObservedTimestamp != null)
+                    observedTimestamp == inputObservedTimestamp
+                else
+                    OffsetDateTime.now().minusMinutes(2).isBefore(
+                        DateTimeUtility.toOffsetDateTime(observedTimestamp))
                 anchorName == myAnchorName
                 dataspaceName == myDataspaceName
                 schemaSetName == mySchemasetName
                 data == new Data().withAdditionalProperty('leafName', 'leafValue')
             }
+        where:
+            inputObservedTimestamp << [null, '2021-01-01T23:00:00.345-0200']
     }
 
     def isExpectedDateTimeFormat(String observedTimestamp) {

@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
@@ -65,7 +66,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'createDataNode is invoked'
             objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
         then: 'the CPS service method is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, jsonData)
+            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, jsonData, _)
         where: 'following parameters were used'
             scenario           | xpath
             'no xpath'         | ''
@@ -78,7 +79,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'createDataNode is invoked'
             objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
         then: 'the CPS service method is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData)
+            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData, _)
     }
     def 'Add list-node elements.'() {
         given: 'a cm handle and parent node xpath'
@@ -87,7 +88,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'addListNodeElements is invoked'
             objectUnderTest.addListNodeElements(cmHandle, xpath, jsonData)
         then: 'the CPS service method is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveListNodeData(expectedDataspaceName, cmHandle, xpath, jsonData)
+            1 * mockCpsDataService.saveListNodeData(expectedDataspaceName, cmHandle, xpath, jsonData, _)
     }
     def 'Update data node leaves.'() {
         given: 'a cm Handle and a cps path'
@@ -96,7 +97,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'updateNodeLeaves is invoked'
             objectUnderTest.updateNodeLeaves(cmHandle, xpath, jsonData)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataService.updateNodeLeaves(expectedDataspaceName, cmHandle, xpath, jsonData)
+            1 * mockCpsDataService.updateNodeLeaves(expectedDataspaceName, cmHandle, xpath, jsonData, _)
     }
     def 'Replace data node tree.'() {
         given: 'a cm Handle and a cps path'
@@ -105,7 +106,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'replaceNodeTree is invoked'
             objectUnderTest.replaceNodeTree(cmHandle, xpath, jsonData)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData)
+            1 * mockCpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData, _)
     }
 
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
@@ -121,9 +122,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'registration is updated'
             objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
-            expectedCallsToSaveNode * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+            expectedCallsToSaveNode * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _)
         and: 'update Node and Child Data Nodes is invoked with correct parameter'
-            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', dmiRegistryAnchor, '/dmi-registry', expectedJsonData)
+            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', dmiRegistryAnchor, '/dmi-registry', expectedJsonData, _)
         where:
             scenario                | createdCmHandles       | updatedCmHandles       || expectedCallsToSaveNode   | expectedCallsToUpdateNode
             'create'                | [persistenceCmHandle ] | []                     || 1                         | 0

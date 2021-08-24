@@ -102,25 +102,25 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
-            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData);
+            cpsDataService.saveData(getDataspaceName(), cmHandle, jsonData, null);
         } else {
-            cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+            cpsDataService.saveData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, null);
         }
     }
 
     @Override
     public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListNodeData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.saveListNodeData(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, null);
     }
 
     @Override
     public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.updateNodeLeaves(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, null);
     }
 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData);
+        cpsDataService.replaceNodeTree(getDataspaceName(), cmHandle, parentNodeXpath, jsonData, null);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             persistenceCmHandlesList.setCmHandles(createdPersistenceCmHandles);
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
             cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
-                cmHandleJsonData);
+                cmHandleJsonData, null);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON for Dmi Registry.");
             throw new DataValidationException(
@@ -164,7 +164,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             persistenceCmHandlesList.setCmHandles(updatedPersistenceCmHandles);
             final String cmHandlesJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
             cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry", cmHandlesJsonData);
+                "/dmi-registry", cmHandlesJsonData, null);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON Dmi Registry.");
             throw new DataValidationException(

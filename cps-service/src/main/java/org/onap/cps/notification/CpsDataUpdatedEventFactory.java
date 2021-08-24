@@ -40,10 +40,10 @@ class CpsDataUpdatedEventFactory {
 
     private static final URI EVENT_SOURCE;
     private static final String EVENT_TYPE = "org.onap.cps.data-updated-event";
-    private static final DateTimeFormatter dateTimeFormatter =
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    static  {
+    static {
         try {
             EVENT_SOURCE = new URI("urn:cps:org.onap.cps");
         } catch (final URISyntaxException e) {
@@ -60,16 +60,18 @@ class CpsDataUpdatedEventFactory {
         this.cpsAdminService = cpsAdminService;
     }
 
-    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName) {
+    CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName,
+        final OffsetDateTime observedTimestamp) {
         final var dataNode = cpsDataService
             .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        return toCpsDataUpdatedEvent(anchor, dataNode);
+        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp);
     }
 
-    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode) {
+    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
+        final OffsetDateTime observedTimestamp) {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
-        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode));
+        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
         cpsDataUpdatedEvent.withSchema(Schema.URN_CPS_ORG_ONAP_CPS_DATA_UPDATED_EVENT_SCHEMA_1_1_0_SNAPSHOT);
         cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
@@ -83,13 +85,15 @@ class CpsDataUpdatedEventFactory {
         return data;
     }
 
-    private Content createContent(final Anchor anchor, final DataNode dataNode) {
+    private Content createContent(final Anchor anchor, final DataNode dataNode,
+        final OffsetDateTime observedTimestamp) {
         final var content = new Content();
         content.withAnchorName(anchor.getName());
         content.withDataspaceName(anchor.getDataspaceName());
         content.withSchemaSetName(anchor.getSchemaSetName());
         content.withData(createData(dataNode));
-        content.withObservedTimestamp(dateTimeFormatter.format(OffsetDateTime.now()));
+        content.withObservedTimestamp(
+            DATE_TIME_FORMATTER.format(observedTimestamp == null ? OffsetDateTime.now() : observedTimestamp));
         return content;
     }
 }
