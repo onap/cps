@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "4744959f_3d25c9de",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T14:48:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41cafa8e_f11747da",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce983847_3062bc96",
         "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
         "patchSetId": 5
@@ -116,6 +134,24 @@
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "494f5af0_7bf2a62c",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T14:48:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c51b9b92_2be55c74",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -380,6 +416,30 @@
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ad30af6_ab2fc6e9",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T14:48:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6196f64a_8ddb0929",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 60,
+        "endChar": 11
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
