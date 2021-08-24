@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ac302567_ba2c0a93",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T10:49:37Z",
+      "side": 1,
+      "message": "ok, as discussed these are standard header parqmneters and name is defined by that",
+      "parentUuid": "c83dabce_9e1d677d",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 13
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "681ee3f1_e85929d4",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 2
@@ -93,6 +117,30 @@
       "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b61e231b_c57b0df4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T10:49:37Z",
+      "side": 1,
+      "message": "agreed on standard name",
+      "parentUuid": "7fab75b8_6b600e46",
+      "range": {
+        "startLine": 130,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 24
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -397,6 +445,30 @@
       "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c9696b1_c8d44332",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T10:49:37Z",
+      "side": 1,
+      "message": "agreed that this can be addressed later without affect the rest client interface",
+      "parentUuid": "93aa7633_54253b09",
+      "range": {
+        "startLine": 118,
+        "startChar": 49,
+        "endLine": 118,
+        "endChar": 67
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
