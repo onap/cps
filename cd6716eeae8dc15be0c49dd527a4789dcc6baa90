@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bcf6e54_da25b60d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T08:58:20Z",
+      "side": 1,
+      "message": "use #scenario here",
+      "range": {
+        "startLine": 111,
+        "startChar": 28,
+        "endLine": 111,
+        "endChar": 35
+      },
+      "revId": "cd6716eeae8dc15be0c49dd527a4789dcc6baa90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843347b9_eafaa811",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T08:58:20Z",
+      "side": 1,
+      "message": "you can remove common terms from scenario variable\nie. set the slogan (test title) to\n\n\u0027Register or re-register a DMI Plugin with #scenario cm handles\u0027\nth3 3 values then would be\n\u0027created\u0027\n\u0027updated\u0027\n\u0027created and updated\u0027",
+      "range": {
+        "startLine": 129,
+        "startChar": 20,
+        "endLine": 129,
+        "endChar": 30
+      },
+      "revId": "cd6716eeae8dc15be0c49dd527a4789dcc6baa90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9621e7e_b86002f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T08:58:20Z",
+      "side": 1,
+      "message": "to much in one, use additional \u0027and:\u0027 labels (if still needed after applying more string literals)\ngiven: \u0027a dmi registry model and data\u0027 (not need to be more specific)\nand: \u0027the expected json string\u0027  (there mist be a way to move this to the then block, I am a bit puzzled by this)",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 45
+      },
+      "revId": "cd6716eeae8dc15be0c49dd527a4789dcc6baa90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0fa5896_de59e511",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T08:58:20Z",
+      "side": 1,
+      "message": "use string literal below instead",
+      "range": {
+        "startLine": 157,
+        "startChar": 16,
+        "endLine": 157,
+        "endChar": 32
+      },
+      "revId": "cd6716eeae8dc15be0c49dd527a4789dcc6baa90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1151c63_b06ce012",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-24T08:58:20Z",
+      "side": 1,
+      "message": "I think both of these can be applied as string literals so they don\u0027t have to be defined in the given block which seems unnatural to me :-(",
+      "range": {
+        "startLine": 159,
+        "startChar": 1,
+        "endLine": 160,
+        "endChar": 46
+      },
+      "revId": "cd6716eeae8dc15be0c49dd527a4789dcc6baa90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
