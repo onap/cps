@@ -59,27 +59,28 @@ public class CpsDataServiceImpl implements CpsDataService {
     private NotificationService notificationService;
 
     @Override
-    public void saveData(final String dataspaceName, final String anchorName, final String jsonData) {
+    public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
+        final String observedTimestamp) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData) {
+        final String jsonData, final String observedTimestamp) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
     public void saveListNodeData(final String dataspaceName, final String anchorName,
-        final String parentNodeXpath, final String jsonData) {
+        final String parentNodeXpath, final String jsonData, final String observedTimestamp) {
         final Collection<DataNode> dataNodesCollection =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
@@ -90,34 +91,35 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData) {
+        final String jsonData, final String observedTimestamp) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData) {
+        final String jsonData, final String observedTimestamp) {
         final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
     public void replaceListNodeData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData) {
+        final String jsonData, final String observedTimestamp) {
         final Collection<DataNode> dataNodes =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
-    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath,
+        final String observedTimestamp) {
         cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
-        notificationService.processDataUpdatedEvent(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
     }
 
 
