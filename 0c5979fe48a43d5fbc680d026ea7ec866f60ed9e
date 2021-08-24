@@ -25,6 +25,40 @@
     },
     {
       "key": {
+        "uuid": "09a90077_7f016dee",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:53:51Z",
+      "side": 1,
+      "message": "Bell",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce983847_3062bc96",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:53:51Z",
+      "side": 1,
+      "message": "Blank line missing. See https://wiki.onap.org/display/DW/Contribution+and+Development#ContributionandDevelopment-LicenceDeclarations",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79f109d8_77eb73db",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
@@ -59,6 +93,29 @@
     },
     {
       "key": {
+        "uuid": "8f4eebe2_ff058f1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:53:51Z",
+      "side": 1,
+      "message": "I was thinking having this information with INFO level to ensure that it is logged with the default configuration when the service is starting.",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 17
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81bcb34e_43ea350b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 5
@@ -87,6 +144,29 @@
       "writtenOn": "2021-08-24T09:48:09Z",
       "side": 1,
       "message": "Same issue here as above",
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6196f64a_8ddb0929",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T10:53:51Z",
+      "side": 1,
+      "message": "Extra space.",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 60,
+        "endChar": 11
+      },
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
