@@ -193,6 +193,30 @@
       "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "291d80da_8c946de2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T11:23:53Z",
+      "side": 1,
+      "message": "This is https://wiki.onap.org/display/DW/CPS-474%3A+Spike+on+data+updated+event+notification+filtering+for+dataspace#CPS474:Spikeondataupdatedeventnotificationfilteringfordataspace-Proposition3:Useapplicationpropertiesfornotificationconfiguration",
+      "parentUuid": "0ff7aa82_69d266ff",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "0c5979fe48a43d5fbc680d026ea7ec866f60ed9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
