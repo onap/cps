@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c83dabce_9e1d677d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T09:20:52Z",
+      "side": 1,
+      "message": "yes they are standard fields for header and case sensitive, picked them from postman",
+      "parentUuid": "238a92a6_5a71d85d",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 13
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "681ee3f1_e85929d4",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-08-24T07:55:43Z",
       "side": 1,
       "message": "Same comment as on \u0027Accept\u0027 above, we might need a quick team decision on these..",
+      "range": {
+        "startLine": 130,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 24
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fab75b8_6b600e46",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T09:20:52Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "681ee3f1_e85929d4",
       "range": {
         "startLine": 130,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a0787c7e_3ca1aeca",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T09:20:52Z",
+      "side": 1,
+      "message": "initially i put it in param but then i needed to do lot of if else in controller\ncoz \noperation -\u003e get(read), and post put pathch and delete are irrelevant \npassthrough -\u003e get , post , patch , put, delete needed\n\nthat why i fixed them in url",
+      "parentUuid": "42b8550e_8bac86ca",
+      "range": {
+        "startLine": 214,
+        "startChar": 46,
+        "endLine": 214,
+        "endChar": 57
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b55fb1d2_67293cb2",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3a542f42_623b225b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T09:20:52Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "b55fb1d2_67293cb2",
+      "range": {
+        "startLine": 218,
+        "startChar": 53,
+        "endLine": 218,
+        "endChar": 70
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9987b30b_39f1a963",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2021-08-23T17:05:07Z",
       "side": 1,
       "message": "nb: suggestion: Can the type be changed to MediaType ?",
+      "range": {
+        "startLine": 156,
+        "startChar": 57,
+        "endLine": 156,
+        "endChar": 63
+      },
+      "revId": "6fffa5b44e3142f6a95e0e5efebe07a28c4945e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6207123_59bbc120",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-24T09:20:52Z",
+      "side": 1,
+      "message": "passing the string here for any custom content type which is not supported in mediatype",
+      "parentUuid": "9987b30b_39f1a963",
       "range": {
         "startLine": 156,
         "startChar": 57,
