@@ -41,6 +41,6 @@ public class DmiPluginRegistration {
 
     private List<CmHandle> updatedCmHandles;
 
-    private List<CmHandle> deletedCmHandles;
+    private List<String> removedCmHandles;
 
 }

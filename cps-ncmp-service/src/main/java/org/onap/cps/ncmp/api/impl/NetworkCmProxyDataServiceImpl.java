@@ -42,6 +42,7 @@ import org.onap.cps.ncmp.api.models.GenericRequestBody;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.http.HttpStatus;
@@ -131,6 +132,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
             parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
         }
+        if (dmiPluginRegistration.getRemovedCmHandles() != null) {
+            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
+        }
     }
 
     private void parseAndCreateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
@@ -170,6 +174,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             throw new DataValidationException(
                 "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
                 .getMessage(), e);
+        }
+    }
+
+    private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        for (final String cmHandle: dmiPluginRegistration.getRemovedCmHandles()) {
+            try {
+                cpsDataService.deleteListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                    "/dmi-registry/cm-handles[@id='" + cmHandle + "']");
+            } catch (final DataNodeNotFoundException e) {
+                log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
+            }
         }
     }
 
