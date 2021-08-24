@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "09a9d057_24a0a52f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T11:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c742e829_06401a13",
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3083696a_b97bf226",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
@@ -89,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "8c00f73e_682fc129",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T11:23:13Z",
+      "side": 1,
+      "message": "I can remove this log Bruno. Me and Rahul, just thought it might add some extra context as to where the exception is being thrown. In this case, converting the json object.",
+      "parentUuid": "e752d28f_5b6bc8fd",
+      "range": {
+        "startLine": 150,
+        "startChar": 12,
+        "endLine": 150,
+        "endChar": 98
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b51a5be9_2c818db7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
@@ -100,6 +142,30 @@
       "writtenOn": "2021-08-24T10:58:08Z",
       "side": 1,
       "message": "It seems that this exception is going to lead to an Internal Server Error Http response code. Is it what is happening here or is this error caused by some incorrect input data from the client ?",
+      "range": {
+        "startLine": 151,
+        "startChar": 22,
+        "endLine": 151,
+        "endChar": 45
+      },
+      "revId": "249c70aba34ef0cd3b2c914eec2f89112c212d2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de31dc20_aab71916",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-24T11:23:13Z",
+      "side": 1,
+      "message": "Yes, so if the client inputs data, which cannot be converted to the necessary json string, we will throw this data validation exception, along with the compulsory JsonProcessingException which must be thrown with objectMapper.writeValueAsString.\n\nDo you not this is necessary as part of this update method to throw this exception",
+      "parentUuid": "b51a5be9_2c818db7",
       "range": {
         "startLine": 151,
         "startChar": 22,
