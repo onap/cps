@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "888b8a11_7480c24f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T16:19:44Z",
+      "side": 1,
+      "message": "nb: unrelated to the story\n\nIf any operation fails a cm-handle, do we continue with others as they are unrelated? \nIf we plan to continue with others, then the response has to be more complicated. \n\nIn fact the proper response is still missing because create cm-handles can be successful even if the update operation is failed. We are not rolling back anything.\n\nI think we need to think more about the response structure as we are doing multiple things in one rest call.",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 9
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fb8192a_1cf7baa1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T16:19:44Z",
+      "side": 1,
+      "message": "Q: If cmHandle does not exist, cpsDataService.deleteListNodeData throws an error. Should we silently ignore it?",
+      "range": {
+        "startLine": 181,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 68
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c2d878_62d00b9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T16:19:44Z",
+      "side": 1,
+      "message": "Why changed to ArrayList?",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 21
+      },
+      "revId": "9efe5d868305b1744c4434f882e6b84661b1d875",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
