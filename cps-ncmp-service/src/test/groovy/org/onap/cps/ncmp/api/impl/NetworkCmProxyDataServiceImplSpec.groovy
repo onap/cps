@@ -131,6 +131,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             'create and update'     | [persistenceCmHandle ] | [persistenceCmHandle ] || 1                         | 1
 
     }
+
+    def 'Register a DMI Plugin for the given cmHandle without additional properties.'() {
+        given: 'a registration without cmHandle properties '
+            def dmiPluginRegistration = new DmiPluginRegistration()
+            dmiPluginRegistration.dmiPlugin = 'my-server'
+            persistenceCmHandle.cmHandleID = '123'
+            persistenceCmHandle.cmHandleProperties = null
+            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle ]
+            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[]}]}'
+        when: 'registration is updated'
+            objectUnderTest.updateDmiPluginRegistration(dmiPluginRegistration)
+        then: 'the CPS save list node data is invoked with the expected parameters'
+            1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData)
+    }
+
     def 'Get resource data for pass-through operational from dmi.'() {
         given: 'xpath'
             def xpath = "/dmi-registry/cm-handles[@id='testCmHandle']"

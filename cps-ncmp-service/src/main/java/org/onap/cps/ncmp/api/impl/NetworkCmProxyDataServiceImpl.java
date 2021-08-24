@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -70,10 +71,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     /**
      * Constructor Injection for Dependencies.
-     * @param dmiOperations dmi operation
-     * @param cpsDataService Data Service Interface
+     *
+     * @param dmiOperations   dmi operation
+     * @param cpsDataService  Data Service Interface
      * @param cpsQueryService Query Service Interface
-     * @param objectMapper Object Mapper
+     * @param objectMapper    Object Mapper
      */
     public NetworkCmProxyDataServiceImpl(final DmiOperations dmiOperations, final CpsDataService cpsDataService,
         final CpsQueryService cpsQueryService, final ObjectMapper objectMapper) {
@@ -95,7 +97,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
-                                               final FetchDescendantsOption fetchDescendantsOption) {
+        final FetchDescendantsOption fetchDescendantsOption) {
         return cpsQueryService.queryDataNodes(getDataspaceName(), cmHandle, cpsPath, fetchDescendantsOption);
     }
 
@@ -137,7 +139,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         try {
             final List<PersistenceCmHandle> createdPersistenceCmHandles =
                 new LinkedList<>();
-            for (final CmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
+            for (final CmHandle cmHandle : dmiPluginRegistration.getCreatedCmHandles()) {
                 createdPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration, cmHandle));
             }
             final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
@@ -157,7 +159,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         try {
             final List<PersistenceCmHandle> updatedPersistenceCmHandles =
                 new LinkedList<>();
-            for (final CmHandle cmHandle: dmiPluginRegistration.getUpdatedCmHandles()) {
+            for (final CmHandle cmHandle : dmiPluginRegistration.getUpdatedCmHandles()) {
                 updatedPersistenceCmHandles.add(toPersistenceCmHandle(dmiPluginRegistration, cmHandle));
             }
             final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
@@ -175,56 +177,56 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public Object getResourceDataOperationalForCmHandle(final @NotNull String cmHandle,
-                                                        final @NotNull String resourceIdentifier,
-                                                        final String acceptParam,
-                                                        final String fieldsQueryParam,
-                                                        final Integer depthQueryParam) {
+        final @NotNull String resourceIdentifier,
+        final String acceptParam,
+        final String fieldsQueryParam,
+        final Integer depthQueryParam) {
 
         final var dataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final var dmiServiceName = String.valueOf(dataNode.getLeaves().get("dmi-service-name"));
         final Collection<DataNode> additionalPropsList = dataNode.getChildDataNodes();
         final var jsonBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
         final ResponseEntity<Object> response = dmiOperations.getResouceDataOperationalFromDmi(dmiServiceName,
-                cmHandle,
-                resourceIdentifier,
-                fieldsQueryParam,
-                depthQueryParam,
-                acceptParam,
-                jsonBody);
+            cmHandle,
+            resourceIdentifier,
+            fieldsQueryParam,
+            depthQueryParam,
+            acceptParam,
+            jsonBody);
         return handleResponse(response);
     }
 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final @NotNull String cmHandle,
-                                                               final @NotNull String resourceIdentifier,
-                                                               final String accept,
-                                                               final String fields,
-                                                               final Integer depth) {
+        final @NotNull String resourceIdentifier,
+        final String accept,
+        final String fields,
+        final Integer depth) {
         final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name"));
         final Collection<DataNode> additionalPropsList = cmHandleDataNode.getChildDataNodes();
         final var dmiRequesBody = prepareOperationBody(GenericRequestBody.OperationEnum.READ, additionalPropsList);
         final ResponseEntity<Object> response = dmiOperations.getResouceDataPassThroughRunningFromDmi(dmiServiceName,
-                cmHandle,
-                resourceIdentifier,
-                fields,
-                depth,
-                accept,
-                dmiRequesBody);
+            cmHandle,
+            resourceIdentifier,
+            fields,
+            depth,
+            accept,
+            dmiRequesBody);
         return handleResponse(response);
     }
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         final var dataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
-                NCMP_DMI_REGISTRY_ANCHOR,
-                xpathForDmiRegistryToFetchCmHandle,
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+            NCMP_DMI_REGISTRY_ANCHOR,
+            xpathForDmiRegistryToFetchCmHandle,
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return dataNode;
     }
 
     private String prepareOperationBody(final GenericRequestBody.OperationEnum operation,
-                                        final Collection<DataNode> additionalPropertyList) {
+        final Collection<DataNode> additionalPropertyList) {
         final var requestBody = new GenericRequestBody();
         final Map<String, String> additionalPropertyMap = getAdditionalPropertiesMap(additionalPropertyList);
         requestBody.setOperation(GenericRequestBody.OperationEnum.READ);
@@ -235,7 +237,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final JsonProcessingException je) {
             log.error("Parsing error occurred while converting Object to JSON.");
             throw new NcmpException("Parsing error occurred while converting given object to JSON.",
-                    je.getMessage());
+                je.getMessage());
         }
     }
 
@@ -244,9 +246,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return null;
         }
         final Map<String, String> additionalPropertyMap = new LinkedHashMap<>();
-        for (final var node: additionalPropertyList) {
+        for (final var node : additionalPropertyList) {
             additionalPropertyMap.put(String.valueOf(node.getLeaves().get("name")),
-                    String.valueOf(node.getLeaves().get("value")));
+                String.valueOf(node.getLeaves().get("value")));
         }
         return additionalPropertyMap;
     }
@@ -256,17 +258,21 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return responseEntity.getBody();
         } else {
             throw new NcmpException("Not able to get resource data.",
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
+                "DMI status code: " + responseEntity.getStatusCodeValue()
+                    + ", DMI response body: " + responseEntity.getBody());
         }
     }
 
     private PersistenceCmHandle toPersistenceCmHandle(final DmiPluginRegistration dmiPluginRegistration,
-                                                      final CmHandle cmHandle) {
+        final CmHandle cmHandle) {
         final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
         persistenceCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
         persistenceCmHandle.setId(cmHandle.getCmHandleID());
-        persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+        if (cmHandle.getCmHandleProperties() != null) {
+            persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+        } else {
+            persistenceCmHandle.setAdditionalProperties(Collections.EMPTY_MAP);
+        }
         return persistenceCmHandle;
     }
 
