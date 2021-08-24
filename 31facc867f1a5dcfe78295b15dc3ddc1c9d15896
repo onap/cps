@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca3f9c4f_942c4026",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-24T14:32:52Z",
+      "side": 1,
+      "message": "nb: We can pass the dmi-service-name instead of dmiPluginRegistration, as we are interested im only that field.",
+      "range": {
+        "startLine": 243,
+        "startChar": 54,
+        "endLine": 243,
+        "endChar": 103
+      },
+      "revId": "31facc867f1a5dcfe78295b15dc3ddc1c9d15896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
