@@ -16,6 +16,24 @@
       "revId": "27ee3e776747c8b1a176c753d41e034aa52c5555",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3adfa495_e34b8e29",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-24T14:53:02Z",
+      "side": 1,
+      "message": "As discussed, let\u0027s plan some work for next release on the package structure and layer tests.",
+      "parentUuid": "f6a948a9_d2cbd57d",
+      "revId": "27ee3e776747c8b1a176c753d41e034aa52c5555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
