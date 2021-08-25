@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "d8bebce5_cc3bc3e3",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T20:56:27Z",
+      "side": 1,
+      "message": "This is not looking consistent to me.\n\nLine 26 and 27 are specifying the path cps is exposing its own endpoints (core and ncmp)\nLine 28 looks more as hostname and port to reach a tier service.\n\nThese different concepts should not be mixed here.",
+      "parentUuid": "5ec14656_0a7f4d65",
+      "range": {
+        "startLine": 28,
+        "startChar": 46,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f16c05a4_6df6a534",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
