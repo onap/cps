@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9331c606_4616bc84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T12:24:16Z",
+      "side": 1,
+      "message": "generate them using your IDEA (preferred) or revert back to LIST",
+      "parentUuid": "7e294c5b_f0655548",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce83b29b_bac82d41",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
