@@ -79,6 +79,7 @@ public class NotificationService {
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
+     * @return future
      */
     @Async("notificationExecutor")
     public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName) {
