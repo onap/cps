@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "281254e5_2b664640",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T14:35:08Z",
+      "side": 1,
+      "message": "Often, max line lengths are violated\n\n* Summary: 50\n* Body: 72",
+      "parentUuid": "695518e9_30658177",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e294c5b_f0655548",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
         "patchSetId": 2

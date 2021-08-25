@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cfbac7f_c0d04948",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T14:35:08Z",
+      "side": 1,
+      "message": "Do not catch and ignore all operations. Only DataNodeNotFoundException can be ignored I think.",
+      "range": {
+        "startLine": 184,
+        "startChar": 27,
+        "endLine": 184,
+        "endChar": 36
+      },
+      "revId": "3868ebd81241cfead76f43c4b4090e520cde2e25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2925269_cd750955",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T14:35:08Z",
+      "side": 1,
+      "message": "Isn\u0027t it a warning one ?\n\nThere is nothing much that can be done in this situation that is originating from the data provided by the client.\nThen, it is not expected that operation support teams get alerted when monitoring the application (likely by having alerts on error logs message).",
+      "range": {
+        "startLine": 185,
+        "startChar": 20,
+        "endLine": 185,
+        "endChar": 25
+      },
+      "revId": "3868ebd81241cfead76f43c4b4090e520cde2e25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
