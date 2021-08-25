@@ -42,7 +42,7 @@ public class AsyncConfig {
     @Min(2)
     private int maxPoolSize = 10;
     @Min(0)
-    private int queueCapacity = 2147483647;
+    private int queueCapacity = Integer.MAX_VALUE;
     private boolean waitForTasksToCompleteOnShutdown = true;
     private String threadNamePrefix = "Async-";
 

@@ -32,6 +32,8 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.util.concurrent.TimeUnit
+
 @SpringBootTest
 @EnableAsync
 @EnableConfigurationProperties
@@ -71,9 +73,11 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, myAnchorName) >> cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
             def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName)
-        and: 'async processing is completed'
-            future.get()
-        then: 'notification is sent'
+        and: 'wait for async processing is completed'
+            future.get(10, TimeUnit.SECONDS)
+        then: 'async process completed successfully'
+            future.isDone()
+        and: 'notification is sent'
             expectedSendNotificationCount * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
         where:
             scenario                               | dataspaceName            || expectedSendNotificationCount
@@ -89,9 +93,11 @@ class NotificationServiceSpec extends Specification {
                 { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
             def future = objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
-        and: 'async processing is completed'
-            future.get()
-        then: 'error is handled and not thrown to caller'
+        and: 'wait for async processing is completed'
+            future.get(10, TimeUnit.SECONDS)
+        then: 'async process completed successfully'
+            future.isDone()
+        and: 'error is handled and not thrown to caller'
             notThrown Exception
             1 * spyNotificationErrorHandler.onException(_, _, _, _)
     }
