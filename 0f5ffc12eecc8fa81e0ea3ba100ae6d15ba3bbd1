@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "695518e9_30658177",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-25T11:21:44Z",
+      "side": 1,
+      "message": "I\u0027m confused Bruno, I thought the format was\n\n*Summary*\n\u003cblank line\u003e\n*Paragraph*\n\u003cblank line\u003e\n*External reference*\n\nWhich is what is followed here.",
+      "parentUuid": "2083d8ec_c86da95f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e294c5b_f0655548",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
         "patchSetId": 2
