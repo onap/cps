@@ -22,6 +22,98 @@
       "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e294c5b_f0655548",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T10:40:14Z",
+      "side": 1,
+      "message": "as you changed it to set now, i think you should override equal and hashcode method in cmhandle.",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce83b29b_bac82d41",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T10:40:14Z",
+      "side": 1,
+      "message": "this is used in only one test, i think pulling it to member level is not reqd",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 7
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1bc7f1b_d978c31e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T10:40:14Z",
+      "side": 1,
+      "message": "this is used in only one test, i think pulling it to member level is not reqd",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39874bdc_830d670e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T10:40:14Z",
+      "side": 1,
+      "message": "wrong definition of test",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
