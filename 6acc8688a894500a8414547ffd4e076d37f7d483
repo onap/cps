@@ -203,6 +203,29 @@
     },
     {
       "key": {
+        "uuid": "6566c161_1265ef23",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-25T16:25:09Z",
+      "side": 1,
+      "message": "The namespace field of the modules references returned by cps will have a null in them. This was done as part of CPS-506 and because of this the If statement here needs to be revisited. For example, with the current code the following would be added to missing modules list even though its not a missing modules.\nModule reference for a module already in cps.\nModuleReference {\n  name:\"someModule\",\n  nameSpace: null,\n  revision: \"someRevision\"\n}\nFrom DMI we get this moduleReference.\nModuleReference {\n  name:\"someModule\",\n  nameSpace: \"someNamespace\",\n  revision: \"someRevision\"\n}\nThe current code will say that this is a new module and add it to the missing modules list even though it is not.",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 316,
+        "endChar": 9
+      },
+      "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e34fa41_10bfc979",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -311,6 +334,52 @@
         "startChar": 12,
         "endLine": 325,
         "endChar": 74
+      },
+      "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e90fa75f_e6d95492",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-25T16:25:09Z",
+      "side": 1,
+      "message": "Should be NCMP_DATASPACE_NAME",
+      "range": {
+        "startLine": 332,
+        "startChar": 52,
+        "endLine": 332,
+        "endChar": 75
+      },
+      "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2fe6ff2_a15db726",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-08-25T16:25:09Z",
+      "side": 1,
+      "message": "This should be the list of modules, module references for the modules that are in cps that the node requires. Right now you are passing in all the module references that the node requires.",
+      "range": {
+        "startLine": 333,
+        "startChar": 52,
+        "endLine": 333,
+        "endChar": 77
       },
       "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
