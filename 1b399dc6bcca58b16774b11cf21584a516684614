@@ -1,0 +1,458 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20bd9be5_04b95069",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "prefcer a \u0027constant\u0027 to make this more readable\ne.g. final String NO_TIMESTAMP \u003d null",
+      "range": {
+        "startLine": 106,
+        "startChar": 76,
+        "endLine": 106,
+        "endChar": 80
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d23e2a2a_e0e0d7ce",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "suggestion: would it be easier/safer to return a default timestamp ie. of 0?",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 19
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15e43f60_ba484b5e",
+        "filename": "cps-rest/src/main/resources/static/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "maybe add a real time after 12am\nalso reading this I am still not sure what thee last \"-0000\" represent....\nI presume it is the offset from UTC in (+/-)hhmm",
+      "range": {
+        "startLine": 168,
+        "startChar": 29,
+        "endLine": 168,
+        "endChar": 46
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "806b86ee_5d9b9135",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "I think it might be better to use a hardcoded string here, wont affect test and it wil help the developer (ie. me :-)) to understand the format used...\n(not needed for each endpoint possibly in another test class: the one that does all the error responses)",
+      "range": {
+        "startLine": 103,
+        "startChar": 36,
+        "endLine": 103,
+        "endChar": 82
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95115d67_c65a32d4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "can you add a test with an invalid formatted timestamp string to explain how it would be handled (I presume we get a runtime exception)",
+      "range": {
+        "startLine": 166,
+        "startChar": 12,
+        "endLine": 166,
+        "endChar": 47
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3b6ce3b_cf774ce3",
+        "filename": "cps-rest/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "candidate for a utils module (maybe we create this in Jakarta)",
+      "range": {
+        "startLine": 21,
+        "startChar": 17,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d99f792e_5d41288a",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "Why can you not use your new utility class?",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 66
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccb40738_2397200e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "I think you could define this only once as a class property (instead of in multiple tests)",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaf9570b_6cdba2c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "why use null for this case?\nif really needed use constant to have clear name instead",
+      "range": {
+        "startLine": 155,
+        "startChar": 26,
+        "endLine": 155,
+        "endChar": 30
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478fcb80_21d48331",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "null again?",
+      "range": {
+        "startLine": 224,
+        "startChar": 99,
+        "endLine": 224,
+        "endChar": 103
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44f61948_34464d12",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "extract out String NO_TIMESTAMP \u003d null to improve readability",
+      "range": {
+        "startLine": 95,
+        "startChar": 77,
+        "endLine": 95,
+        "endChar": 81
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "029259d8_faeabd29",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "I think you might need \u0027assert\u0027 keyword here (not sure though but it might be better for readability anyhow)",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 74,
+        "endChar": 63
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c764f40_1b518ec5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "stil think this is a large margin for a unit test but it doens\u0027t mater much I suppose",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 56
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7bc29e3_57c52d84",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "I think you might need \u0027assert\u0027 keyword here (not sure though but it might be better for readability anyhow)",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 76
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "955b6507_65dc8eee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "maybe extract this into separate method (or rather closure) with meaningful name",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 76
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae82171_a322e86f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "add test for invalid timestamp?",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 73
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d4f3140_f547fb59",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "not sure why you used observedTimestamp only in one test but not in others\nIf needed use constant again NO_TIMESTAMP",
+      "range": {
+        "startLine": 57,
+        "startChar": 92,
+        "endLine": 57,
+        "endChar": 96
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7675ad96_b85087ea",
+        "filename": "cps-service/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "as mentioned before, more util duplicates lets take note and address this in Jakarta\npossibly (add to) https://jira.onap.org/browse/CPS-324 or a variation of that (it seems to target REST utils only but maybe we can change that after discussing in team)",
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "678a85be_7a49e225",
+        "filename": "cps-service/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "I suspect this code is covered implicitly by many other test but it would be good to have a dedicated groovy test for this class too especially to explore the edge cases (empty string, incorrect format) etc.",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28866785_6bbc94e2",
+        "filename": "cps-service/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T07:22:00Z",
+      "side": 1,
+      "message": "seeems a very bsaic valdiation I can still pass an incorret string with the expected length?!",
+      "range": {
+        "startLine": 33,
+        "startChar": 29,
+        "endLine": 33,
+        "endChar": 62
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
