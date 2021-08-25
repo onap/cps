@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "49840e4b_a24e4049",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T17:54:55Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "79fb5c53_3234a3cd",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33838a17_89ff2e2e",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9ccd9656_5295b815",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T17:54:55Z",
+      "side": 1,
+      "message": "Yes. Logic moved to CpsDataUpdatedEventFactory class.",
+      "parentUuid": "33838a17_89ff2e2e",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42b7ca9d_33867c15",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2021-08-25T16:07:54Z",
       "side": 1,
       "message": "Don\u0027t we need the the test without observed timestamp anymore ?",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d17b525f_b1dd20a8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T17:54:55Z",
+      "side": 1,
+      "message": "Done. In this in between patch, I was evaluating if it makes sense for service to set observedTimestamp in the service layer if it is missing. Thats is why you see default values at multiple places :)\n\nAnyway it will require more thought and we can evaluate it later if required,",
+      "parentUuid": "42b7ca9d_33867c15",
       "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
