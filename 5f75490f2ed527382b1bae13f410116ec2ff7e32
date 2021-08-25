@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbe244a8_cea26e24",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T21:45:09Z",
+      "side": 1,
+      "message": "Parameter to be removed if not needed.",
+      "range": {
+        "startLine": 341,
+        "startChar": 77,
+        "endLine": 341,
+        "endChar": 99
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02d44462_ad41d3d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T21:45:09Z",
+      "side": 1,
+      "message": "Any reason why the test for this class does not belong to NetworkCmProxyDataServiceImplSpec specification class ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 59
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233feaff_5bd1c19c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T21:45:09Z",
+      "side": 1,
+      "message": "Variable to be removed if not used.",
+      "range": {
+        "startLine": 123,
+        "startChar": 16,
+        "endLine": 123,
+        "endChar": 33
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de67b05e_d0bd9a08",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T21:45:09Z",
+      "side": 1,
+      "message": "Is it the final design to keep the spy on the object under test or are we going to look for testing on the actual object later ?",
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
