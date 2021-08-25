@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22d40ef0_fa69ea8e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T11:56:26Z",
+      "side": 1,
+      "message": "The reason for keeping the properties inside the notification is to highlight that this thread-pool is for notification only. And if in future we add more async scenario, we should  evaluate if we want to keep common thread-pool or specific based on use-case requirement.",
+      "parentUuid": "da5d0328_6ad00624",
+      "range": {
+        "startLine": 82,
+        "startChar": 28,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2db98140_3ef71f4e",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8a36ab1d_f25eacf6",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T11:56:26Z",
+      "side": 1,
+      "message": "I can do as a part of another change if there is no blocking comments for this patch",
+      "parentUuid": "2db98140_3ef71f4e",
+      "range": {
+        "startLine": 82,
+        "startChar": 5,
+        "endLine": 82,
+        "endChar": 7
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "199b445d_6eedf24e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2021-08-25T09:02:47Z",
       "side": 1,
       "message": "i think it is always good to have timeout here , so that for any case this test is not stuck on jenkins and not give slot to other builds. same for beolw future.get",
+      "range": {
+        "startLine": 75,
+        "startChar": 19,
+        "endLine": 75,
+        "endChar": 24
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bd51835_f10d61fc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T11:56:26Z",
+      "side": 1,
+      "message": "In these test cases, there are no dependencies on any other component. Kafka and DB both are mocked so I don\u0027t think it can be blocked for any reason.\nIf it does, then it would be due to coding issues and it should get highlighted when running test case. \n\nWhat is your opinion on it?",
+      "parentUuid": "199b445d_6eedf24e",
       "range": {
         "startLine": 75,
         "startChar": 19,
