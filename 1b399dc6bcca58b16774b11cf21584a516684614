@@ -1358,6 +1358,30 @@
       "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "015e8397_9f5da77c",
+        "filename": "cps-service/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T20:36:13Z",
+      "side": 1,
+      "message": "I think that the intent with hasLength() is only to check if the string timestamp is null or empty.\n\nIf a valid length timestamp (28 characters) is provided but format is incorrect, parse() method is going to throw an exception and the test that is using this utility method is going to fail anyway, I think. Same will happen for any not null and non empty timestamp string provided.\n\nI\u0027m also a bit confuse, as being a utility conversion class for tests, I\u0027m not expecting to see any kind of validation here neither ...",
+      "parentUuid": "c0f61960_30c94742",
+      "range": {
+        "startLine": 33,
+        "startChar": 29,
+        "endLine": 33,
+        "endChar": 62
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
