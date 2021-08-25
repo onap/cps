@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7068292_10d76ce9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T15:27:46Z",
+      "side": 1,
+      "message": "For the message, something like \"CM Handle not found\" could be more meaningful and helpful in the context.",
+      "range": {
+        "startLine": 186,
+        "startChar": 26,
+        "endLine": 186,
+        "endChar": 60
+      },
+      "revId": "e999b02056c3b4f4a7d891d105d75435d101e6ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
