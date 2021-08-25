@@ -1,12 +1,13 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Bell Canada. All rights reserved.
+ *  Copyright (c) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
- *        http://www.apache.org/licenses/LICENSE-2.0
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,30 +20,35 @@
 
 package org.onap.cps.notification
 
+import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.spockframework.spring.SpringBean
+import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest
+@EnableAsync
 @EnableConfigurationProperties
-@ContextConfiguration(classes = [NotificationProperties])
+@ContextConfiguration(classes = [NotificationProperties, NotificationService, NotificationErrorHandler, AsyncConfig])
 class NotificationServiceSpec extends Specification {
 
     @SpringBean
     NotificationPublisher mockNotificationPublisher = Mock()
     @SpringBean
-    NotificationErrorHandler spyNotificationErrorHandler = Spy(new NotificationErrorHandler())
-    @SpringBean
     CpsDataUpdatedEventFactory mockCpsDataUpdatedEventFactory = Mock()
+    @SpringSpy
+    NotificationErrorHandler spyNotificationErrorHandler
+    @SpringSpy
+    NotificationProperties spyNotificationProperties
 
     @Autowired
-    NotificationProperties notificationProperties
-    NotificationProperties spyNotificationProperties
+    NotificationService objectUnderTest
 
     @Shared
     def myDataspacePublishedName = 'my-dataspace-published'
@@ -50,7 +56,7 @@ class NotificationServiceSpec extends Specification {
 
     def 'Skip sending notification when disabled.'() {
         given: 'notification is disabled'
-            def objectUnderTest = createNotificationService(false)
+            spyNotificationProperties.isEnabled() >> false
         when: 'dataUpdatedEvent is received'
             objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
         then: 'the notification is not sent'
@@ -59,12 +65,14 @@ class NotificationServiceSpec extends Specification {
 
     def 'Send notification when enabled: #scenario.'() {
         given: 'notification is enabled'
-            def objectUnderTest = createNotificationService(true)
+            spyNotificationProperties.isEnabled() >> true
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, myAnchorName) >> cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
-            objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName)
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, myAnchorName)
+        and: 'async processing is completed'
+            future.get()
         then: 'notification is sent'
             expectedSendNotificationCount * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
         where:
@@ -75,12 +83,14 @@ class NotificationServiceSpec extends Specification {
 
     def 'Error handling in notification service.'() {
         given: 'notification is enabled'
-            def objectUnderTest = createNotificationService(true)
+            spyNotificationProperties.isEnabled() >> true
         and: 'event factory can not create event successfully'
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(myDataspacePublishedName, myAnchorName) >>
                 { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
-            objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
+            def future = objectUnderTest.processDataUpdatedEvent(myDataspacePublishedName, myAnchorName)
+        and: 'async processing is completed'
+            future.get()
         then: 'error is handled and not thrown to caller'
             notThrown Exception
             1 * spyNotificationErrorHandler.onException(_, _, _, _)

@@ -2,6 +2,7 @@
   ============LICENSE_START=======================================================
    Copyright (C) 2020 Pantheon.tech
    Modifications Copyright (C) 2020-2021 Nordix Foundation.
+   Modifications Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -52,11 +53,12 @@ It starts both Postgres database and CPS services.
 
 1. Edit `docker-compose.yml`
    1. uncomment desired service to be deployed, by default `cps-and-ncmp` is enabled. You can comment it and uncomment `cps-standalone` or `ncmp-standalone`.
-   2. To send data-updated events to kafka, 
-      * uncomment the `zookeeper` and `kafka` services. 
-      * uncomment environment variables 
+   2. To send data-updated events to kafka,
+      * uncomment the `zookeeper` and `kafka` services.
+      * uncomment environment variables
         * `notification.data-updated.enabled: 'true'`
         * `KAFKA_BOOTSTRAP_SERVER: kafka:9092`
+        * `NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'`
 2. Execute following command from `docker-compose` folder:
 
 Use one of the below version type that has been generated in the local system's docker image list after the build.
