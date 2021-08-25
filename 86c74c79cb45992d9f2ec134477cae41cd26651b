@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "bb901b7e_17fdbe2a",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T13:22:00Z",
+      "side": 1,
+      "message": "Integer.MAX_VALUE",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a53749e0_3dd1ed7b",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T13:22:00Z",
+      "side": 1,
+      "message": "DO I understand correctly taht all these values will be overridden by those defined in the yaml file?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2db98140_3ef71f4e",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 7
@@ -131,6 +177,30 @@
       "side": 1,
       "message": "In these test cases, there are no dependencies on any other component. Kafka and DB both are mocked so I don\u0027t think it can be blocked for any reason.\nIf it does, then it would be due to coding issues and it should get highlighted when running test case. \n\nWhat is your opinion on it?",
       "parentUuid": "199b445d_6eedf24e",
+      "range": {
+        "startLine": 75,
+        "startChar": 19,
+        "endLine": 75,
+        "endChar": 24
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b665989e_c6744628",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T13:22:00Z",
+      "side": 1,
+      "message": "jut add timeout to prevent any doubts\n(and check if get was successful) \nCan be done in separate commit",
+      "parentUuid": "5bd51835_f10d61fc",
       "range": {
         "startLine": 75,
         "startChar": 19,
