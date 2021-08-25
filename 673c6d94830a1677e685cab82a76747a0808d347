@@ -22,6 +22,30 @@
       "revId": "673c6d94830a1677e685cab82a76747a0808d347",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d06fd654_8b6bdde5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T21:07:43Z",
+      "side": 1,
+      "message": "Spock spy needs an object which it will be spy on. If we want to Spy an object which is autowired, we have to do it in the set up method.\n\nExample\n\n@Autowired \nNotificationErrorHandler notificationErrorHandler\nNotificationErrorHandler spyNotificationErrorHandler\n\ndef setup() {\n    spyNotificationErrorHandler \u003d Spy(notificationErrorHandler)\n    objectUnderTest \u003d ... construct the object....\n\n}\n\nBut if use @SpringSpy, it creates an Spy on the spring bean and inject the spiedBean.\n\nExample:\n\n@SpringSpy\nNotificationErrorHandler spyNotificationErrorHandler\n\n@Autowired\nType objectUnderTest;\n\nI think @SpringSpy fulfils a different use-case and it has its place when writing spring-boot test.",
+      "parentUuid": "96d2200a_edf35109",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "673c6d94830a1677e685cab82a76747a0808d347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
