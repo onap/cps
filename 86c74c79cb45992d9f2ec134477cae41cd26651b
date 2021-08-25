@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "87f1e280_ed968485",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T13:42:39Z",
+      "side": 1,
+      "message": "Yes, if provided",
+      "parentUuid": "a53749e0_3dd1ed7b",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2db98140_3ef71f4e",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 7
@@ -130,6 +154,30 @@
       "side": 1,
       "message": "I can do as a part of another change if there is no blocking comments for this patch",
       "parentUuid": "2db98140_3ef71f4e",
+      "range": {
+        "startLine": 82,
+        "startChar": 5,
+        "endLine": 82,
+        "endChar": 7
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cc3e69c_a037c646",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T13:42:39Z",
+      "side": 1,
+      "message": "Done. https://gerrit.onap.org/r/c/cps/+/123546",
+      "parentUuid": "8a36ab1d_f25eacf6",
       "range": {
         "startLine": 82,
         "startChar": 5,
@@ -201,6 +249,30 @@
       "side": 1,
       "message": "jut add timeout to prevent any doubts\n(and check if get was successful) \nCan be done in separate commit",
       "parentUuid": "5bd51835_f10d61fc",
+      "range": {
+        "startLine": 75,
+        "startChar": 19,
+        "endLine": 75,
+        "endChar": 24
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59ec999d_ef70ff2f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-25T13:42:39Z",
+      "side": 1,
+      "message": "Done. https://gerrit.onap.org/r/c/cps/+/123546",
+      "parentUuid": "b665989e_c6744628",
       "range": {
         "startLine": 75,
         "startChar": 19,
