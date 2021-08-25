@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7d8fc692_870d5845",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T13:48:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87f1e280_ed968485",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "86c74c79cb45992d9f2ec134477cae41cd26651b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2db98140_3ef71f4e",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 7
