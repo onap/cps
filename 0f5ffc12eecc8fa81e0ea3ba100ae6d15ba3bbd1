@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "d597c9d7_b536fa2c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-25T11:19:10Z",
+      "side": 1,
+      "message": "This has to be a global variable Rahul, along with the cmHandlesArray below, as it is being used in a where clause scenario. If it isn\u0027t defined here and is defined in the test case, the variable in the scenario will be null each time and fail the tests.",
+      "parentUuid": "ce83b29b_bac82d41",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 7
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1bc7f1b_d978c31e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "67d17c81_ab81540a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-25T11:19:10Z",
+      "side": 1,
+      "message": "Same as above comment",
+      "parentUuid": "a1bc7f1b_d978c31e",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39874bdc_830d670e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -105,6 +153,30 @@
       "writtenOn": "2021-08-25T10:40:14Z",
       "side": 1,
       "message": "wrong definition of test",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "0f5ffc12eecc8fa81e0ea3ba100ae6d15ba3bbd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b80f9505_e5512416",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-25T11:19:10Z",
+      "side": 1,
+      "message": "I think this fits the test case based on the scenario clause and is inline with the user story here\n\nhttps://jira.onap.org/browse/CPS-442.\n\nWhat would you suggest would fit better in this case Rahul?",
+      "parentUuid": "39874bdc_830d670e",
       "range": {
         "startLine": 113,
         "startChar": 8,
