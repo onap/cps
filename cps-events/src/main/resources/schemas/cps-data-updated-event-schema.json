@@ -12,7 +12,7 @@
       "type": "object",
       "properties": {
         "schema": {
-          "description": "The schema, including its version, that this event adheres to. Ex: 'urn:cps:org.onap.cps:data-updated-event-schema:v1'.",
+          "description": "The schema, including its version, that this event adheres to. E.g. 'urn:cps:org.onap.cps:data-updated-event-schema:v99'.",
           "type": "string",
           "format": "uri"
         },
