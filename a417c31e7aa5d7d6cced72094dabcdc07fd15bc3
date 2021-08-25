@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "022db179_0fe94ad2",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T19:44:19Z",
+      "side": 1,
+      "message": "it could change later depending on our strategy for all write operations but OK for now",
+      "parentUuid": "ac7f7562_4ad26580",
+      "range": {
+        "startLine": 275,
+        "startChar": 53,
+        "endLine": 275,
+        "endChar": 60
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9d7a961_84048715",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 3
@@ -506,6 +530,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d7eebecb_1e38f949",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 79
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eee15ad_aaa2c050",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T19:44:19Z",
+      "side": 1,
+      "message": "turns out this improvent is in JOe\u0027s patch I mixed up, will add improvemnt Jira for taht taht can be addressed later",
+      "parentUuid": "3a812667_f3e704ba",
       "range": {
         "startLine": 295,
         "startChar": 0,

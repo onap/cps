@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41ba3db3_d039ea8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T19:44:19Z",
+      "side": 1,
+      "message": "meant to remove List but can be done later, not blocking\nMayeb OK sicne you have both ...Map and ...List in same method",
+      "range": {
+        "startLine": 224,
+        "startChar": 104,
+        "endLine": 224,
+        "endChar": 108
+      },
+      "revId": "d2e1cb869ba38f50c3f6e415491a2b4609bb3b5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5b686a7_06217171",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-25T19:44:19Z",
+      "side": 1,
+      "message": "should be String you marked as Done but not changed...",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "d2e1cb869ba38f50c3f6e415491a2b4609bb3b5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
