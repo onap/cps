@@ -104,6 +104,24 @@
       "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b36a97cf_6fbd192c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T20:41:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d17b525f_b1dd20a8",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
