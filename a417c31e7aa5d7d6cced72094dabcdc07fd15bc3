@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ae442c6_a0a7d6b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T08:38:21Z",
+      "side": 1,
+      "message": "refactored due to merge issues, moved these private methods down, not related to this commit",
+      "range": {
+        "startLine": 268,
+        "startChar": 2,
+        "endLine": 268,
+        "endChar": 4
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5465a0ff_83a26fbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T08:38:21Z",
+      "side": 1,
+      "message": "refactored due to merge issues",
+      "range": {
+        "startLine": 288,
+        "startChar": 2,
+        "endLine": 288,
+        "endChar": 4
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
