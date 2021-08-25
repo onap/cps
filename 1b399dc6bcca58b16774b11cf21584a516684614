@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "028825e2_574931c4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T12:46:27Z",
+      "side": 1,
+      "message": "I would keep a dumb utility converter method without any logic, intelligence or responsibility: \"if input is null output is null\".",
+      "parentUuid": "d23e2a2a_e0e0d7ce",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 19
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15e43f60_ba484b5e",
         "filename": "cps-rest/src/main/resources/static/components.yml",
         "patchSetId": 5
@@ -117,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "8250f766_0677da58",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T12:46:27Z",
+      "side": 1,
+      "message": "For the rest http response it should be a 400 bad request.",
+      "parentUuid": "95115d67_c65a32d4",
+      "range": {
+        "startLine": 166,
+        "startChar": 12,
+        "endLine": 166,
+        "endChar": 47
+      },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b3b6ce3b_cf774ce3",
         "filename": "cps-rest/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
         "patchSetId": 5
@@ -157,6 +205,23 @@
         "endLine": 44,
         "endChar": 66
       },
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc512fa4_0e16137e",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T12:46:27Z",
+      "side": 1,
+      "message": "As this method has package visibility, sonar does not require to provide javadoc. Maybe still worth to have it here to document that observedTimestamp is not mandatory and if not provided then observed timestamp of returned event is current timestamp.",
       "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -404,6 +469,24 @@
       "writtenOn": "2021-08-25T07:22:00Z",
       "side": 1,
       "message": "as mentioned before, more util duplicates lets take note and address this in Jakarta\npossibly (add to) https://jira.onap.org/browse/CPS-324 or a variation of that (it seems to target REST utils only but maybe we can change that after discussing in team)",
+      "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e31dfb41_305dd18f",
+        "filename": "cps-service/src/test/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T12:46:27Z",
+      "side": 1,
+      "message": "The duplication might also appear as an issue in Sonar, anyway, will see ...",
+      "parentUuid": "7675ad96_b85087ea",
       "revId": "1b399dc6bcca58b16774b11cf21584a516684614",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
