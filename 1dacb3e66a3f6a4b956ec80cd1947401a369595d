@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79fb5c53_3234a3cd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T16:07:54Z",
+      "side": 1,
+      "message": "I\u0027m not sure why this one is handled differently form the others ...",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33838a17_89ff2e2e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T16:07:54Z",
+      "side": 1,
+      "message": "Are we spreading in 2 places the logic to set a default current timestamp when no timestamp is provided ? Here and in CpsDataUpdatedEventFactory ?\n\nShouldn\u0027t it be in one place only ?",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42b7ca9d_33867c15",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T16:07:54Z",
+      "side": 1,
+      "message": "Don\u0027t we need the the test without observed timestamp anymore ?",
+      "revId": "1dacb3e66a3f6a4b956ec80cd1947401a369595d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
