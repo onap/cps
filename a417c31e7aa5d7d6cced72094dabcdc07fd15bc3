@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "363a4459_307d2b2e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-25T10:51:15Z",
+      "side": 1,
+      "message": "is this needed? I thought we only support application/json for now or did we agree to keep it in the openapi but make it default in the service layer?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 62
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ee4059d_56c3a85e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-25T10:51:15Z",
+      "side": 1,
+      "message": "should this be Ok instead as we agreed to make the create generic?",
+      "range": {
+        "startLine": 275,
+        "startChar": 53,
+        "endLine": 275,
+        "endChar": 60
+      },
+      "revId": "a417c31e7aa5d7d6cced72094dabcdc07fd15bc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ae442c6_a0a7d6b7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
