@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a90e8c58_a1b64025",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-25T14:38:41Z",
+      "side": 1,
+      "message": "Read \"all exceptions\" and not \"all operations\" in the message above.\n\nAlso, it would be nice to have some unit test covering both situations with DataNodeNotFoundException and another type of exception.",
+      "parentUuid": "7cfbac7f_c0d04948",
+      "range": {
+        "startLine": 184,
+        "startChar": 27,
+        "endLine": 184,
+        "endChar": 36
+      },
+      "revId": "3868ebd81241cfead76f43c4b4090e520cde2e25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2925269_cd750955",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 5
