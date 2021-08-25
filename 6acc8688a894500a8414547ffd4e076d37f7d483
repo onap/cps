@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "f16c05a4_6df6a534",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-25T15:43:45Z",
+      "side": 1,
+      "message": "use DmiOperations -\u003e DmiRestClient classes for all dmi communications",
+      "revId": "6acc8688a894500a8414547ffd4e076d37f7d483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a02c6bfb_a8485552",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
