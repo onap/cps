@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2571dab2_0f5a77c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T09:29:28Z",
+      "side": 1,
+      "message": "add \"Builder\" to methodname (later)",
+      "range": {
+        "startLine": 143,
+        "startChar": 34,
+        "endLine": 143,
+        "endChar": 62
+      },
+      "revId": "f7248f1a95c3e93dd2164c00968bbb550b0b01b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
