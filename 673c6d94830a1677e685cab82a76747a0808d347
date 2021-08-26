@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "97937c1b_96fe8ff6",
+        "filename": "cps-rest/src/main/resources/static/components.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-26T13:24:56Z",
+      "side": 1,
+      "message": "as given in openapi specs \n\nformat: date-time\n\ncan work for \"2021-08-20T09:12:28Z\" , please check.",
+      "parentUuid": "6304556f_335edd55",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 20
+      },
+      "revId": "673c6d94830a1677e685cab82a76747a0808d347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96d2200a_edf35109",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 11
