@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6304556f_335edd55",
+        "filename": "cps-rest/src/main/resources/static/components.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:19:25Z",
+      "side": 1,
+      "message": "The date format validation is in controller layer. I wanted to use the auto generated code for the format validation. There are two ways to define it.\nOption 1: is to define the format as regular expression which I think is less intuitive.\nOption 2: to define the format at date-time and pattern. But the swagger codegen does not create field with OffsetDateTime and it gives error even if the user passed the valid date.\n\n\nBoth of the options are not good enough. Let me know if you know how to achieve it in auto-generated code.",
+      "parentUuid": "7615c40c_83fdf09f",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 20
+      },
+      "revId": "673c6d94830a1677e685cab82a76747a0808d347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96d2200a_edf35109",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 11
