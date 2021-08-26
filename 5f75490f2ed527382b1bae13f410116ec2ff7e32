@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "adadb8d6_1a4a9e38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-26T08:06:52Z",
+      "side": 1,
+      "message": "this should not be done in the service class. please add this to org.onap.cps.ncmp.api.impl.operation.DmiOperations\n\nI would also give it a more meaningful name like GetModuleResourceFromDmi",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 5
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "02d44462_ad41d3d4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 5
