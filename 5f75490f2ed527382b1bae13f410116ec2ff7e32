@@ -268,6 +268,30 @@
     },
     {
       "key": {
+        "uuid": "9ad9a01a_14c125ab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T12:34:44Z",
+      "side": 1,
+      "message": "actually forgot about that, I introduce it as separate class for convenience but is probably ready now to be put back into main test class",
+      "parentUuid": "02d44462_ad41d3d4",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 59
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "233feaff_5bd1c19c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 5
@@ -302,6 +326,24 @@
       "writtenOn": "2021-08-25T21:45:09Z",
       "side": 1,
       "message": "Is it the final design to keep the spy on the object under test or are we going to look for testing on the actual object later ?",
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927ec188_046372ef",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T12:34:44Z",
+      "side": 1,
+      "message": "it only affects 2 existing tests. and the method that is being skipped is test in the other test class (which now can be combined)",
+      "parentUuid": "de67b05e_d0bd9a08",
       "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
