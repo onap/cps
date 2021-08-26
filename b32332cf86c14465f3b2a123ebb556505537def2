@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "3faa7495_81f6180a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "Q: Does model sync make sense when dmi-service-name is updated in the updatecmhandle flow? May be not relevant for this release.",
+      "range": {
+        "startLine": 308,
+        "startChar": 19,
+        "endLine": 308,
+        "endChar": 28
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75e75675_032a80e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "nb: Model sync and related methods should be in a separate class.",
+      "range": {
+        "startLine": 308,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 3
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c031fae5_7d112b9d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "nb: will it cause any performance issue as we are fetching all? Did we consider the option of checking only for interested module references if they exist in cps-core?",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 102
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d9ee554_ef650b75",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "nb: getNewYangResources",
+      "range": {
+        "startLine": 333,
+        "startChar": 32,
+        "endLine": 333,
+        "endChar": 48
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e348c22_61957333",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 6
@@ -25,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "9b6ec1fd_fce4b00c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/YangResource.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "nb: Getter and Setter are added by Data.\nThese two annotations are not required\n\n\nhttps://devwithus.com/lombok-data-annotation/",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 7
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a103376_ee2632e0",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 6
@@ -41,6 +156,29 @@
         "startChar": 53,
         "endLine": 54,
         "endChar": 93
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44b23655_5a29c712",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:54:16Z",
+      "side": 1,
+      "message": "nb: Do we need these methods? @Data also adds all of them.\nhttps://devwithus.com/lombok-data-annotation/",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
       },
       "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
