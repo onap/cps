@@ -88,6 +88,30 @@
     },
     {
       "key": {
+        "uuid": "b667a4a8_e07c8343",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T12:27:26Z",
+      "side": 1,
+      "message": "i decide against that since cmHandle is already in the method signature but whatever Joe prefers...",
+      "parentUuid": "e7308ada_6a58eeaa",
+      "range": {
+        "startLine": 319,
+        "startChar": 19,
+        "endLine": 319,
+        "endChar": 27
+      },
+      "revId": "5f75490f2ed527382b1bae13f410116ec2ff7e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d9d8542_3f3d3d3a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 5
