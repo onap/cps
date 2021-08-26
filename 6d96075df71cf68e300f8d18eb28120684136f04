@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f9ec74a_994e386b",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-26T11:25:06Z",
+      "side": 1,
+      "message": "CpsDataUpdatedEventFactory class which is in org.onap.cps.notification package calling spi layer, but archtests failed due to the accessiblity rights. So fixed it. can be discussed later",
+      "revId": "6d96075df71cf68e300f8d18eb28120684136f04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
