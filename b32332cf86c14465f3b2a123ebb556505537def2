@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "866b88c7_083614db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T13:50:20Z",
+      "side": 1,
+      "message": "suggest to refactor later",
+      "parentUuid": "75e75675_032a80e6",
+      "range": {
+        "startLine": 308,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 3
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c031fae5_7d112b9d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 6
@@ -59,6 +83,30 @@
       "writtenOn": "2021-08-26T12:54:16Z",
       "side": 1,
       "message": "nb: will it cause any performance issue as we are fetching all? Did we consider the option of checking only for interested module references if they exist in cps-core?",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 102
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b8da7d_f1fff9cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T13:50:20Z",
+      "side": 1,
+      "message": "this is as per the proposal... Bit late to consider changing this now",
+      "parentUuid": "c031fae5_7d112b9d",
       "range": {
         "startLine": 314,
         "startChar": 8,
@@ -174,6 +222,30 @@
       "writtenOn": "2021-08-26T12:54:16Z",
       "side": 1,
       "message": "nb: Do we need these methods? @Data also adds all of them.\nhttps://devwithus.com/lombok-data-annotation/",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c34592b7_dc191a22",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T13:50:20Z",
+      "side": 1,
+      "message": "was wondering if Lombok handles that, I had hoped so. You sure it will consider to 2 object with same string contents as same, I suppose a quick tets can proof that",
+      "parentUuid": "44b23655_5a29c712",
       "range": {
         "startLine": 43,
         "startChar": 0,
