@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7615c40c_83fdf09f",
+        "filename": "cps-rest/src/main/resources/static/components.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-26T09:14:25Z",
+      "side": 1,
+      "message": "nb: as i see that you are throwing validationexception on date format in service, is it good to add \n\nschema:\n    type: string\n    pattern: \u0027date pattern\u0027\n\nto make it fail fast on controller and not propagate to other layers.",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 20
+      },
+      "revId": "673c6d94830a1677e685cab82a76747a0808d347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96d2200a_edf35109",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 11
