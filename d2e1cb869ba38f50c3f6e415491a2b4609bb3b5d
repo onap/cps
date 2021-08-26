@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1b67bd08_40551e71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-26T08:51:07Z",
+      "side": 1,
+      "message": "As this is list too, so keeping it as is.",
+      "parentUuid": "41ba3db3_d039ea8b",
+      "range": {
+        "startLine": 224,
+        "startChar": 104,
+        "endLine": 224,
+        "endChar": 108
+      },
+      "revId": "d2e1cb869ba38f50c3f6e415491a2b4609bb3b5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5b686a7_06217171",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "d2e1cb869ba38f50c3f6e415491a2b4609bb3b5d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d9fdb1e_54ed60e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-26T08:51:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5b686a7_06217171",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "d2e1cb869ba38f50c3f6e415491a2b4609bb3b5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
