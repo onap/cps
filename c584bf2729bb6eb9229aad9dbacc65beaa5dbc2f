@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f210fa0_3bd6a76e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:12:01Z",
+      "side": 1,
+      "message": "nb: cmhandle details",
+      "range": {
+        "startLine": 171,
+        "startChar": 60,
+        "endLine": 171,
+        "endChar": 69
+      },
+      "revId": "c584bf2729bb6eb9229aad9dbacc65beaa5dbc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be262915_01303423",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:12:01Z",
+      "side": 1,
+      "message": "nb: can be in given block and validating the response would be enough",
+      "range": {
+        "startLine": 175,
+        "startChar": 11,
+        "endLine": 182,
+        "endChar": 66
+      },
+      "revId": "c584bf2729bb6eb9229aad9dbacc65beaa5dbc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae7b6222_08e1de8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:12:01Z",
+      "side": 1,
+      "message": "nb: cmhandle datanode",
+      "range": {
+        "startLine": 304,
+        "startChar": 43,
+        "endLine": 304,
+        "endChar": 51
+      },
+      "revId": "c584bf2729bb6eb9229aad9dbacc65beaa5dbc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26154348_554f8111",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-26T12:12:01Z",
+      "side": 1,
+      "message": "nb: I think exception should be enough validation.\n\n1* looks odd in the given block",
+      "range": {
+        "startLine": 326,
+        "startChar": 11,
+        "endLine": 326,
+        "endChar": 16
+      },
+      "revId": "c584bf2729bb6eb9229aad9dbacc65beaa5dbc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
