@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6df43174_26784ab7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T15:23:07Z",
+      "side": 1,
+      "message": "is this not the same as append?!",
+      "range": {
+        "startLine": 183,
+        "startChar": 22,
+        "endLine": 183,
+        "endChar": 51
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5054234_350e1881",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T15:23:07Z",
+      "side": 1,
+      "message": "1) should just use groovy closure\n2) move all  \u0027helper\u0027 method to bottom of file (not hidden between tests)",
+      "range": {
+        "startLine": 357,
+        "startChar": 4,
+        "endLine": 357,
+        "endChar": 12
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f90677_3709bc2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-26T15:23:07Z",
+      "side": 1,
+      "message": "Renu argued these aren\u0027t need a quick (permanent)groovy test would proof that",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
