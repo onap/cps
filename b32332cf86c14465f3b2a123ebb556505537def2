@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b70fba7a_b4cffc46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "866b88c7_083614db",
+      "range": {
+        "startLine": 308,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 3
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c031fae5_7d112b9d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 6
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "d0a93b9a_aa82a1cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87b8da7d_f1fff9cb",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 102
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d9ee554_ef650b75",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 6
@@ -139,6 +187,30 @@
       "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcb6c99d_cebb736f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d9ee554_ef650b75",
+      "range": {
+        "startLine": 333,
+        "startChar": 32,
+        "endLine": 333,
+        "endChar": 48
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "40ceec4a_840cc5e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e348c22_61957333",
+      "range": {
+        "startLine": 334,
+        "startChar": 36,
+        "endLine": 334,
+        "endChar": 67
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b6ec1fd_fce4b00c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/YangResource.java",
         "patchSetId": 6
@@ -188,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "dd86ebdf_c8140661",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/YangResource.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b6ec1fd_fce4b00c",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 7
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a103376_ee2632e0",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 6
@@ -208,6 +328,30 @@
       "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d29df8ae_5bd75382",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a103376_ee2632e0",
+      "range": {
+        "startLine": 54,
+        "startChar": 53,
+        "endLine": 54,
+        "endChar": 93
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -246,6 +390,30 @@
       "side": 1,
       "message": "was wondering if Lombok handles that, I had hoped so. You sure it will consider to 2 object with same string contents as same, I suppose a quick tets can proof that",
       "parentUuid": "44b23655_5a29c712",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "b32332cf86c14465f3b2a123ebb556505537def2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5e49a4a_00f74650",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-26T14:41:16Z",
+      "side": 1,
+      "message": "Can add this as an improvement after the release",
+      "parentUuid": "c34592b7_dc191a22",
       "range": {
         "startLine": 43,
         "startChar": 0,
