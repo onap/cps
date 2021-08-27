@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8df340ee_c496a874",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "is this name still correct\ndo we not have more images now?",
+      "range": {
+        "startLine": 225,
+        "startChar": 41,
+        "endLine": 225,
+        "endChar": 67
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1f1bad_28b16238",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "might be beter to have a small group from team to discuss content of this part...\nGood start though :-D",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 8
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e105b39d_a49f6b46",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "not yet?",
+      "range": {
+        "startLine": 238,
+        "startChar": 19,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32fe62b0_3966019e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "CM",
+      "range": {
+        "startLine": 239,
+        "startChar": 39,
+        "endLine": 239,
+        "endChar": 41
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff457185_06027731",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "Not sure do we have separate deliverables for CPS Temporal/ NCMP /DMI Plugin ?!",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 253,
+        "endChar": 43
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c231741_4d03a382",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "need to discuss: should this include EVERY bug we did in Istanbul timeframe ?!",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 9
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad9f776_524a4f06",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "did you create this using a script or something, which would be great!",
+      "range": {
+        "startLine": 258,
+        "startChar": 3,
+        "endLine": 258,
+        "endChar": 88
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8b3c0ed_45810ab3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:43:14Z",
+      "side": 1,
+      "message": "What about CPS Temporal, NCMP and DMI plugin...",
+      "range": {
+        "startLine": 298,
+        "startChar": 6,
+        "endLine": 300,
+        "endChar": 18
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
