@@ -88,6 +88,29 @@
     },
     {
       "key": {
+        "uuid": "86cdba66_5db245dd",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:37:31Z",
+      "side": 1,
+      "message": "NCMP is coming with Core by default and could be moved to line 300 and DMI Plugin can be left alone here as being an independent component.",
+      "range": {
+        "startLine": 302,
+        "startChar": 10,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de9a8b89_0d3876c2",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
