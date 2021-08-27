@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "aa554263_772c08cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "looks like this is not rebased correctly i see these methods in latest repo as \n\n @NotNull\n    private String getDmiResourceDataUrl(final String dmiBasePath,\n                                                final String cmHandle,\n                                                final String resourceId,\n                                                final String fieldsQuery,\n                                                final Integer depthQuery,\n                                                final DataStoreEnum dataStoreEnum) {\n        final var stringBuilder \u003d getStringBuilderForPassThroughRunningUrl(dmiBasePath,\n                cmHandle, resourceId, dataStoreEnum);\n        appendFieldsAndDepth(stringBuilder, fieldsQuery, depthQuery);\n        return stringBuilder.toString();\n    }\n\n    @NotNull\n    private StringBuilder getStringBuilderForPassThroughRunningUrl(final String dmiServiceName,\n                                                                   final String cmHandle,\n                                                                   final String resourceId,\n                                                                   final DataStoreEnum dataStoreEnum) {\n        final var stringBuilder \u003d  new StringBuilder(dmiServiceName);\n        stringBuilder.append(DMI_BASE_PATH);\n        stringBuilder.append(PARENT_CM_HANDLE_URI.replace(\"{cmHandle}\", cmHandle));\n        stringBuilder.append(URL_SEPARATOR + dataStoreEnum.getValue());\n        stringBuilder.insert(stringBuilder.length(), URL_SEPARATOR + resourceId);\n        return stringBuilder;\n    }",
+      "range": {
+        "startLine": 143,
+        "startChar": 1,
+        "endLine": 143,
+        "endChar": 4
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6df43174_26784ab7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 7
@@ -41,6 +64,121 @@
         "startChar": 4,
         "endLine": 357,
         "endChar": 12
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "658bc90c_4bb1da9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "indent this test",
+      "range": {
+        "startLine": 366,
+        "startChar": 3,
+        "endLine": 366,
+        "endChar": 4
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fbb31ec_18dea9d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "where: \u0027given #scenario\u0027",
+      "range": {
+        "startLine": 378,
+        "startChar": 11,
+        "endLine": 378,
+        "endChar": 14
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5675bf4b_eaa713bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 60,
+        "startChar": 7,
+        "endLine": 60,
+        "endChar": 8
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "018aff8e_f757aa7d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 8
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ec852a8_32944e24",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T12:37:58Z",
+      "side": 1,
+      "message": "it should be testDmiBasePath/dmi/api/v1/....",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 50
       },
       "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
