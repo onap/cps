@@ -201,3 +201,165 @@ Quick Links:
 
         - `CPS project page <https://wiki.onap.org/pages/viewpage.action?pageId=71834216>`_
         - `Passing Badge information for CPS <https://bestpractices.coreinfrastructure.org/en/projects/4398>`_
+
+
+..      ========================
+..      * * *   ISTANBUL   * * *
+..      ========================
+
+Version: 2.0.0
+==============
+
+Abstract
+--------
+
+This document provides the release notes for Istanbul release.
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-nf-proxy:2.0.0                            |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 2.0.0 Istanbul                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2021-14-10                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+Register DMI Plugins with NCMP for CM Handle registrations.
+Update, Create and Remove CM Handles.
+Add support for retrieving and writing CM Handle data through NCMP datastores.
+Automatic retrieval and caching of model information for CM Handles within NCMP.
+
+.. _istanbul_deliverable:
+
+Deliverables
+------------
+
+Software Deliverables
+
+.. csv-table::
+   :header: "Repository", "SubModules", "Version & Docker Image (if applicable)"
+   :widths: auto
+
+   "cps", "", "onap/cps-and-nf-proxy:2.0.0"
+
+Bug Fixes
+---------
+
+   - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed.
+   - `CPS-264 <https://jira.onap.org/browse/CPS-264>`_ CPS Release Process - Unique timestamp is missing when tagging docker images from maven-docker-stage-master job
+   - `CPS-310 <https://jira.onap.org/browse/CPS-310>`_ Data schema migration from Honolulu to Istanbul is failing
+   - `CPS-316 <https://jira.onap.org/browse/CPS-316>`_ Xpath cannot be created for augmentation data node
+   - `CPS-336 <https://jira.onap.org/browse/CPS-336>`_ Ends-with functionality in cpsPath does not conform with standard xPath behavior
+   - `CPS-367 <https://jira.onap.org/browse/CPS-367>`_ Get descendent does not support xpaths that end in list values
+   - `CPS-377 <https://jira.onap.org/browse/CPS-377>`_ Init ran model validation is failing, error details are not provided
+   - `CPS-407 <https://jira.onap.org/browse/CPS-407>`_ CPS Temporal is not using base onap integration docker image
+   - `CPS-422 <https://jira.onap.org/browse/CPS-422>`_ REST 404 response returned instead of 400 for POST/PUT/PATCH request types
+   - `CPS-450 <https://jira.onap.org/browse/CPS-450>`_ Datanode query using full path to node causes NPE
+   - `CPS-451 <https://jira.onap.org/browse/CPS-451>`_ cps-ran-schema-model@2021-01-28.yang missing root container
+   - `CPS-464 <https://jira.onap.org/browse/CPS-464>`_ Request to update node leaves (patch) responds with Internal Server Error
+   - `CPS-465 <https://jira.onap.org/browse/CPS-465>`_ Request to update node leaves (patch) responds with json parsing failure
+   - `CPS-466 <https://jira.onap.org/browse/CPS-466>`_ Concurrent requests to create schema sets for the same yang model are not supported
+   - `CPS-479 <https://jira.onap.org/browse/CPS-479>`_ Get Nodes API does not always return the object from the root
+   - `CPS-480 <https://jira.onap.org/browse/CPS-480>`_ Incorrect test data in cps-ri
+   - `CPS-500 <https://jira.onap.org/browse/CPS-500>`_ Special Character Limitations of cpsPath Queries
+   - `CPS-501 <https://jira.onap.org/browse/CPS-501>`_ Put DataNode API has missing transaction and error handling for concurrency issues
+   - `CPS-504 <https://jira.onap.org/browse/CPS-504>`_ Checkstyle rules are not enforced for cps-ncmp-dmi-plugin
+   - `CPS-515 <https://jira.onap.org/browse/CPS-515>`_ Maven build is not failing when test containers are not able to run
+   - `CPS-520 <https://jira.onap.org/browse/CPS-520>`_ Fix docker profile in cps-temporal and cps-ncmp-dmi-plugin
+   - `CPS-524 <https://jira.onap.org/browse/CPS-524>`_ Issue with CPSData API to add an item to an existing list node
+   - `CPS-560 <https://jira.onap.org/browse/CPS-560>`_ Response from cps query using text() contains escape characters
+   - `CPS-566 <https://jira.onap.org/browse/CPS-566>`_ Can't access grandparent node through ancestor axis
+   - `CPS-585 <https://jira.onap.org/browse/CPS-585>`_ app Maven property is not defined in temporal pom
+   - `CPS-586 <https://jira.onap.org/browse/CPS-586>`_ App username and password environment variables are missing from temporal docker compose
+   - `CPS-587 <https://jira.onap.org/browse/CPS-587>`_ cps-ncmp-service NullpointerException when DmiPluginRegistration has no additionProperties
+
+This document provides the release notes for Istanbul release.
+
+Summary
+-------
+
+Following CPS components are available with default ONAP/CPS installation.
+
+
+    * Platform components
+
+        - CPS (Helm charts)
+
+    * Service components
+
+        - CPS Core
+        - CPS Temporal
+        - NCMP and DMI Plugin
+
+    * Additional resources that CPS utilizes deployed using ONAP common charts
+
+        - Postgres Database
+
+
+Below service components (mS) are available to be deployed on-demand.
+    - CPS-TBDMT
+
+
+Under OOM (Kubernetes) all CPS component containers are deployed as Kubernetes Pods/Deployments/Services into Kubernetes cluster.
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+   - `CPS-524 <https://jira.onap.org/browse/CPS-524>`_ Issue with CPSData API to add an item to an existing list node
+
+*System Limitations*
+
+Limitations to the amount of child nodes that can be added to the fix above. The current limit is 3.
+
+*Known Vulnerabilities*
+
+None
+
+*Workarounds*
+
+Add recursive method to save list node data to loop through all corresponding child nodes.
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+   - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
+   - `CPS-581 <https://jira.onap.org/browse/CPS-581>`_ Remove security vulnerabilities
+
+*Known Security Issues*
+
+Test Results
+------------
+    * `Integration tests <https://wiki.onap.org/display/DW/CPS+Integration+Test+Cases>`_
+
+References
+----------
+
+For more information on the ONAP Istanbul release, please see:
+
+#. `ONAP Home Page`_
+#. `ONAP Documentation`_
+#. `ONAP Release Downloads`_
+#. `ONAP Wiki Page`_
+
+
+.. _`ONAP Home Page`: https://www.onap.org
+.. _`ONAP Wiki Page`: https://wiki.onap.org
+.. _`ONAP Documentation`: https://docs.onap.org
+.. _`ONAP Release Downloads`: https://git.onap.org
+
+Quick Links:
+
+        - `CPS project page <https://wiki.onap.org/pages/viewpage.action?pageId=71834216>`_
+        - `Passing Badge information for CPS <https://bestpractices.coreinfrastructure.org/en/projects/4398>`_
