@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "304165c6_e9c05f36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "now i see this method creates schema and anchor to need to rename it.",
+      "range": {
+        "startLine": 350,
+        "startChar": 19,
+        "endLine": 350,
+        "endChar": 39
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "763b83d2_766d787f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "can be done like in method at 411.",
+      "range": {
+        "startLine": 388,
+        "startChar": 7,
+        "endLine": 388,
+        "endChar": 8
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d021cf11_1409368c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "module is java defined var, use any other name",
+      "range": {
+        "startLine": 404,
+        "startChar": 31,
+        "endLine": 404,
+        "endChar": 37
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c197db_b6cc0848",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "final var stringBuilder \u003d new StringBuilder(dmiServiceName);\n        stringBuilder.append(DMI_BASE_PATH);\n        stringBuilder.append(PARENT_CM_HANDLE_URI.replace(\"{cmHandle}\", cmHandle));\n        stringBuilder.append(URL_SEPARATOR + resourceId);\n        return stringBuilder;\n\ncheck method at line 175",
+      "range": {
+        "startLine": 136,
+        "startChar": 6,
+        "endLine": 136,
+        "endChar": 8
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ec14460_88d33032",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 8
@@ -71,6 +163,29 @@
     },
     {
       "key": {
+        "uuid": "8249c2fc_f84690f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "Blocking : previous comment not fixed testDmiBasePath/dmi/api/.... should be the correct url to call dmi. check line 74 or 59 for reference.",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d575c33c_9f6640a9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
         "patchSetId": 8
@@ -111,6 +226,23 @@
         "endLine": 10,
         "endChar": 46
       },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8a3e1a_099f2159",
+        "filename": "cps-ncmp-service/src/test/resources/cmHandleModules.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-27T15:22:35Z",
+      "side": 1,
+      "message": "i tested dmi get modules and i got this output \n\n{\n    \"schemas\": [\n        {\n            \"moduleName\": \"nc-notifications\",\n            \"revision\": \"2008-07-14\",\n            \"namespace\": \"urn:ietf:params:xml:ns:netmod:notification\"\n        },\n        {\n            \"moduleName\": \"ietf-tls-server\",\n            \"revision\": \"2016-11-02\",\n            \"namespace\": \"urn:ietf:params:xml:ns:yang:ietf-tls-server\"\n        },\n        {\n            \"moduleName\": \"ietf-ssh-server\",\n            \"revision\": \"2016-11-02\",\n            \"namespace\": \"urn:ietf:params:xml:ns:yang:ietf-ssh-server\"\n        }\n    ]\n}\n\nI checked https://jira.onap.org/browse/CPS-531 but format is not mentioned. @Niamh @Toine could you please comment.",
       "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
