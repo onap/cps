@@ -186,6 +186,30 @@
     },
     {
       "key": {
+        "uuid": "521df2ef_a860d2cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "that would be crititcal!\no is just a matter of mock setup?!\nif it is mock setup it should be clear from content....",
+      "parentUuid": "2ec852a8_32944e24",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "509ba0568ebf9367c1d6abc3e6f1b15709f46123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7f90677_3709bc2f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
         "patchSetId": 7

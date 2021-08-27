@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ec14460_88d33032",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "as some label like \u0027with the following data\u0027",
+      "range": {
+        "startLine": 372,
+        "startChar": 8,
+        "endLine": 372,
+        "endChar": 14
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09452806_2c481795",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "getCmHandleDataNode or\ngetCmHandleDataNodeForTest  \n\nor similar",
+      "range": {
+        "startLine": 394,
+        "startChar": 8,
+        "endLine": 394,
+        "endChar": 31
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05116517_8c70471b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "restore indentation",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d575c33c_9f6640a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "test should be with \u0027some namespace\u0027",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89847f3b_f0ec47ae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T14:38:40Z",
+      "side": 1,
+      "message": "annotation correctly implements toString and hashCode methods",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
