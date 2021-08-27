@@ -186,6 +186,30 @@
     },
     {
       "key": {
+        "uuid": "169e5dff_8b198a88",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-27T15:45:36Z",
+      "side": 1,
+      "message": "we have fix, waiting for Joe to push latest, he is probably addressing you other comments too now",
+      "parentUuid": "8249c2fc_f84690f3",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d575c33c_9f6640a9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
         "patchSetId": 8
