@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cd098ae5_d0a0acbd",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "I am not fully sure, I wasn\u0027t fully sure what to include in this section other than what was in the container yaml in cps/releases. At the moment the latest one is 1.1.0, but I presumed a new one has to be created at a later point",
+      "parentUuid": "8df340ee_c496a874",
+      "range": {
+        "startLine": 225,
+        "startChar": 41,
+        "endLine": 225,
+        "endChar": 67
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c1f1bad_28b16238",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f1ad9995_f2d62649",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0c1f1bad_28b16238",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 8
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e105b39d_a49f6b46",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2021-08-27T15:43:14Z",
       "side": 1,
       "message": "not yet?",
+      "range": {
+        "startLine": 238,
+        "startChar": 19,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7213b71f_2c52827f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "Submitted as part of this commit\nhttps://gerrit.onap.org/r/c/cps/+/123514",
+      "parentUuid": "e105b39d_a49f6b46",
       "range": {
         "startLine": 238,
         "startChar": 19,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "6ad7b192_049610b3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "I am not too sure on this Toine. Who is a good person to contact in regard to this.",
+      "parentUuid": "ff457185_06027731",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 253,
+        "endChar": 43
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c231741_4d03a382",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "7aab637f_c61b8e21",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c231741_4d03a382",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 9
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ad9f776_524a4f06",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
@@ -151,6 +271,30 @@
       "writtenOn": "2021-08-27T15:43:14Z",
       "side": 1,
       "message": "did you create this using a script or something, which would be great!",
+      "range": {
+        "startLine": 258,
+        "startChar": 3,
+        "endLine": 258,
+        "endChar": 88
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff7adb93_aea458be",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "Not done with a script unfortunately. Could definitely be something for future reference to save manually adding all the bugs.",
+      "parentUuid": "3ad9f776_524a4f06",
       "range": {
         "startLine": 258,
         "startChar": 3,
@@ -183,6 +327,30 @@
       "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "079d6d94_29fc51cb",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-27T15:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8b3c0ed_45810ab3",
+      "range": {
+        "startLine": 298,
+        "startChar": 6,
+        "endLine": 300,
+        "endChar": 18
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
