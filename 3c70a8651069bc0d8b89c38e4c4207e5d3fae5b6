@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac36435e_3a10f425",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "Previous release notes are in descending order, then this one should be moved at the beginning of the file.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 14
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa4056a6_f221e41c",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "onap/cps-and-ncmp",
+      "range": {
+        "startLine": 225,
+        "startChar": 41,
+        "endLine": 225,
+        "endChar": 62
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4df32314_3c056bb1",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be the date when the release is made ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 41,
+        "endLine": 231,
+        "endChar": 51
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56bea9e7_17d7e5ca",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "Maybe good to add bullet points for the list.",
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de9a8b89_0d3876c2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "The link seems to be Honolulu",
+      "range": {
+        "startLine": 344,
+        "startChar": 26,
+        "endLine": 344,
+        "endChar": 85
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842d8e95_2558df04",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-08-27T16:23:39Z",
+      "side": 1,
+      "message": "This section is a duplicate of the same one above, then to be removed I think.",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 10
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
