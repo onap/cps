@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "b9079188_b7460658",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-27T16:00:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05116517_8c70471b",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8249c2fc_f84690f3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
         "patchSetId": 8
@@ -198,6 +222,30 @@
       "side": 1,
       "message": "we have fix, waiting for Joe to push latest, he is probably addressing you other comments too now",
       "parentUuid": "8249c2fc_f84690f3",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa64c279_3ddb9f9f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-08-27T16:00:15Z",
+      "side": 1,
+      "message": "Fix incoming.",
+      "parentUuid": "169e5dff_8b198a88",
       "range": {
         "startLine": 87,
         "startChar": 31,
