@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0661a5c1_0a8024b8",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T17:56:43Z",
+      "side": 1,
+      "message": "Possible Improvement: May need to consider having different profiles. If profile cps-docker is used, still application.yml will have these irrelevant properties.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "389279f9_41e61085",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T17:56:43Z",
+      "side": 1,
+      "message": "Q: Why we have ncmp-dmi in the beginning of this api only?",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 17
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21589dcc_3e470600",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T17:56:43Z",
+      "side": 1,
+      "message": "this had to be changed to show File upload button in the swagger-ui.",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f969fc10_0979b61d",
+        "filename": "docs/api/swagger/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T17:56:43Z",
+      "side": 1,
+      "message": "To keep docs in sync with api changes",
+      "range": {
+        "startLine": 342,
+        "startChar": 13,
+        "endLine": 346,
+        "endChar": 21
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
