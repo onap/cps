@@ -42,7 +42,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
-@WebMvcTest
+@WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
 
     @Autowired
@@ -54,17 +54,8 @@ class NetworkCmProxyControllerSpec extends Specification {
     @SpringBean
     ObjectMapper objectMapper = new ObjectMapper()
 
-    @Value('${rest.api.ncmp-base-path}')
-    def basePath
-
-    def deprecatedDataNodeBaseEndPoint
-
-    def ncmpDmiEndpoint
-
-    def setup() {
-        deprecatedDataNodeBaseEndPoint = "$basePath/v1"
-        ncmpDmiEndpoint = "$basePath/ncmp-dmi/v1"
-    }
+    @Value('${rest.api.ncmp-base-path}/v1')
+    def ncmpBasePathV1
 
     def cmHandle = 'some handle'
     def xpath = 'some xpath'
@@ -75,7 +66,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cpsPath = 'some cps-path'
             mockNetworkCmProxyDataService.queryDataNodes(cmHandle, cpsPath, expectedCpsDataServiceOption) >> [dataNode]
         and: 'the query endpoint'
-            def dataNodeEndpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes/query"
+            def dataNodeEndpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes/query"
         when: 'query data nodes API is invoked'
             def response = mvc.perform(get(dataNodeEndpoint)
                     .param('cps-path', cpsPath)
@@ -97,7 +88,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def jsonData = 'json data'
         when: 'post request is performed'
             def response = mvc.perform(
-                    post("$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes")
+                    post("$ncmpBasePathV1/cm-handles/$cmHandle/nodes")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', reqXpath)
@@ -119,7 +110,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def parentNodeXpath = 'parent node xpath'
         when: 'post request is performed'
             def response = mvc.perform(
-                    post("$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/list-node")
+                    post("$ncmpBasePathV1/cm-handles/$cmHandle/list-node")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonData)
                             .param('xpath', parentNodeXpath)
@@ -134,7 +125,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'json data'
             def jsonData = 'json data'
         and: 'the query endpoint'
-            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes"
+            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
         when: 'patch request is performed'
             def response = mvc.perform(
                     patch(endpoint)
@@ -152,7 +143,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'json data'
             def jsonData = 'json data'
         and: 'the query endpoint'
-            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/nodes"
+            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
         when: 'put request is performed'
             def response = mvc.perform(
                     put(endpoint)
@@ -172,7 +163,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(["leaf": "value"]).build()
             mockNetworkCmProxyDataService.getDataNode(cmHandle, xpath, OMIT_DESCENDANTS) >> dataNode
         and: 'the query endpoint'
-            def endpoint = "$deprecatedDataNodeBaseEndPoint/cm-handles/$cmHandle/node"
+            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/node"
         when: 'get request is performed through REST API'
             def response = mvc.perform(get(endpoint).param('xpath', xpath)).andReturn().response
         then: 'a success response is returned'
@@ -186,7 +177,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
         when: 'post request is performed'
             def response = mvc.perform(
-                post("$ncmpDmiEndpoint/ch")
+                post("$ncmpBasePathV1/ch")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonData)
             ).andReturn().response
@@ -198,7 +189,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
-            def getUrl = "$basePath/v1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
                     "/testResourceIdentifier?fields=testFields&depth=5"
         when: 'get data resource request is performed'
             def response = mvc.perform(
@@ -218,7 +209,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Get Resource Data from pass-through running.' () {
         given: 'resource data url'
-            def getUrl = "$basePath/v1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "/testResourceIdentifier?fields=testFields&depth=5"
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
@@ -240,7 +231,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Create Resource Data from pass-through running using POST.' () {
         given: 'resource data url'
-            def getUrl = "$basePath/v1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "/testResourceIdentifier"
         when: 'get data resource request is performed'
             def response = mvc.perform(

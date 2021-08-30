@@ -46,9 +46,6 @@ paths:
   /v1/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspaces'
 
-  /v1/dataspaces/{dataspace-name}:
-    $ref: 'cpsAdmin.yml#/dataspaceByDataspaceName'
-
   /v1/dataspaces/{dataspace-name}/anchors:
     $ref: 'cpsAdmin.yml#/anchorsByDataspace'
 
@@ -69,9 +66,6 @@ paths:
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     $ref: 'cpsData.yml#/listNodeByDataspaceAndAnchor'
-
-  /v1/dataspaces/{dataspace-name}/nodes:
-    $ref: 'cpsData.yml#/nodesByDataspace'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
