@@ -12,6 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 # ============LICENSE_END=========================================================
 
 dataspaces:
@@ -32,28 +34,6 @@ dataspaces:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
-dataspaceByDataspaceName:
-  delete:
-    description: Delete the given dataspace - DRAFT
-    tags:
-      - cps-admin
-    summary: Delete a dataspace
-    operationId: deleteDataspace
-    parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-    responses:
-      '200':
-        $ref: 'components.yml#/components/responses/Ok'
-      '204':
-        $ref: 'components.yml#/components/responses/NoContent'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
-      '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
-
 
 schemaSet:
   post:
