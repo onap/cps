@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fe5746d0_f51ea1b2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa4056a6_f221e41c",
+      "range": {
+        "startLine": 225,
+        "startChar": 41,
+        "endLine": 225,
+        "endChar": 62
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4df32314_3c056bb1",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "1c7f83e0_0100f771",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "We decided to use RC0 for this Bruno and update it once another release date was decided upon.\n\nhttps://wiki.onap.org/display/DW/Release+Planning%3A+Istanbul",
+      "parentUuid": "4df32314_3c056bb1",
+      "range": {
+        "startLine": 231,
+        "startChar": 41,
+        "endLine": 231,
+        "endChar": 51
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56bea9e7_17d7e5ca",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
@@ -133,6 +181,24 @@
       "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff4b491a_4c9d3ed7",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56bea9e7_17d7e5ca",
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -159,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "e079ac55_b49c6e27",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86cdba66_5db245dd",
+      "range": {
+        "startLine": 302,
+        "startChar": 10,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de9a8b89_0d3876c2",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
@@ -170,6 +260,30 @@
       "writtenOn": "2021-08-27T16:23:39Z",
       "side": 1,
       "message": "The link seems to be Honolulu",
+      "range": {
+        "startLine": 344,
+        "startChar": 26,
+        "endLine": 344,
+        "endChar": 85
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6b716f9_b232b4ff",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "I have left this as a place holder Bruno, as I don\u0027t think we have integration tests cases for Istanbul release yet.\n\nHave left blank now until then.",
+      "parentUuid": "de9a8b89_0d3876c2",
       "range": {
         "startLine": 344,
         "startChar": 26,
@@ -226,6 +340,30 @@
       "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c98e9c0_f6f33a0d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-08-30T09:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "842d8e95_2558df04",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 10
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
