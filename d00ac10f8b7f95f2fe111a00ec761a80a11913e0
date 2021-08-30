@@ -46,6 +46,30 @@
       "revId": "d00ac10f8b7f95f2fe111a00ec761a80a11913e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "441a30ca_34374e79",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-08-30T10:32:19Z",
+      "side": 1,
+      "message": "Yes, I thought about this also but considered that if I start preparsing the String before the fromJson then theres not much point in having the fromJson parser. Figured 1.0 to int scenario would be ok as int can parse to float fairly easily. I will start writing test and we can discuss implementation in Technical Catch Up tomorrow?",
+      "parentUuid": "9c123075_b173c445",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 16
+      },
+      "revId": "d00ac10f8b7f95f2fe111a00ec761a80a11913e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
