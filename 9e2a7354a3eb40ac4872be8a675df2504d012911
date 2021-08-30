@@ -71,6 +71,52 @@
     },
     {
       "key": {
+        "uuid": "37f40d14_a22879a7",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T18:00:55Z",
+      "side": 1,
+      "message": "We don\u0027t have any implementation for this method. Do we want to keep it ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34477a0c_2b09ab8b",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-30T18:00:55Z",
+      "side": 1,
+      "message": "We don\u0027t have any implementation for this method. Do we want to keep it ?",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 16
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f969fc10_0979b61d",
         "filename": "docs/api/swagger/openapi.yml",
         "patchSetId": 5
