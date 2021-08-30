@@ -46,10 +46,11 @@ components:
           example: Dataspace with name D1 does not exist.
 
     MultipartFile:
+      type: object
       required:
         - file
       properties:
-        multipartFile:
+        file:
           type: string
           description: multipartFile
           format: binary
