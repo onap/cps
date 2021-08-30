@@ -15,6 +15,8 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+  SPDX-License-Identifier: Apache-2.0
   ============LICENSE_END=========================================================
 -->
 
@@ -65,10 +67,6 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -123,6 +121,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>docs/openapi</directory>
+                <targetPath>static/api-docs/cps-core</targetPath>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!-- Swagger code generation. -->
             <plugin>
@@ -134,7 +143,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/static/openapi.yml</inputSpec>
+                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>

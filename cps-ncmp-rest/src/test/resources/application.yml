@@ -18,5 +18,5 @@
 
 rest:
     api:
-        ncmp-base-path: /cps-ncmp/api
+        ncmp-base-path: /ncmp
 spring:
