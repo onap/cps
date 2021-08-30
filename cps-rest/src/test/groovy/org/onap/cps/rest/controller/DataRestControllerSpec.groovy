@@ -150,7 +150,7 @@ class DataRestControllerSpec extends Specification {
             def parentNodeXpath = 'parent node xpath'
             def jsonData = 'json data'
         when: 'post is invoked list-node endpoint'
-            def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-node")
+            def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
                 .content(jsonData)
@@ -307,14 +307,14 @@ class DataRestControllerSpec extends Specification {
         given: 'parent node xpath and json data inputs'
             def parentNodeXpath = 'parent node xpath'
             def jsonData = 'json data'
-        when: 'patch is invoked list-node endpoint'
-            def patchRequestBuilder = patch("$dataNodeBaseEndpoint/anchors/$anchorName/list-node")
+        when: 'put is invoked list-node endpoint'
+            def putRequestBuilder = put("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
                 .content(jsonData)
             if (observedTimestamp != null)
-                patchRequestBuilder.param('observed-timestamp', observedTimestamp)
-            def response = mvc.perform(patchRequestBuilder).andReturn().response
+                putRequestBuilder.param('observed-timestamp', observedTimestamp)
+            def response = mvc.perform(putRequestBuilder).andReturn().response
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
@@ -331,7 +331,7 @@ class DataRestControllerSpec extends Specification {
         given: 'list node xpath'
             def listNodeXpath = 'list node xpath'
         when: 'delete is invoked list-node endpoint'
-            def deleteRequestBuilder = delete("$dataNodeBaseEndpoint/anchors/$anchorName/list-node")
+            def deleteRequestBuilder = delete("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .param('xpath', listNodeXpath)
             if (observedTimestamp != null)
                 deleteRequestBuilder.param('observed-timestamp', observedTimestamp)

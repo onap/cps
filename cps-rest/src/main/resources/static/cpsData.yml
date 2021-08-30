@@ -72,7 +72,7 @@ listNodeByDataspaceAndAnchor:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
-  patch:
+  put:
     description: Replace list-node child elements under existing node for a given anchor and dataspace
     tags:
       - cps-data
