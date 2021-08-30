@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e6bdf9e_6bcc7487",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T12:12:52Z",
+      "side": 1,
+      "message": "obviously one extends the other so more logical would be \nPARENT_CM_HANDLE_URI \u003d \"/v1/ch/{cmHandle}\";\nPARENET_CM_HANDLE_URI_WITH_DATASTORE \u003d PARENT_CM_HANDLE_URI + \"/data/ds\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 28
+      },
+      "revId": "9fd11c517323170c6cae69819e3cb9fdcbaf9806",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5db6a78a_fedbb673",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T12:12:52Z",
+      "side": 1,
+      "message": "admin service create anchor method ...",
+      "range": {
+        "startLine": 371,
+        "startChar": 14,
+        "endLine": 371,
+        "endChar": 20
+      },
+      "revId": "9fd11c517323170c6cae69819e3cb9fdcbaf9806",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
