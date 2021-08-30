@@ -22,6 +22,30 @@
       "revId": "d00ac10f8b7f95f2fe111a00ec761a80a11913e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c123075_b173c445",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:50:01Z",
+      "side": 1,
+      "message": "agreed, looks like something that belongs in a utility class (e.g. org/onap/cps/utils/DataMapUtils.java) and requires separate test!\n\n\nAlso would this inadvertently convert  real floats  like 1.0 to an int, how can we prevent that if we don\u0027t check the original String? I am not sure if this is the right solution...",
+      "parentUuid": "6d887c00_5c7b1664",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 16
+      },
+      "revId": "d00ac10f8b7f95f2fe111a00ec761a80a11913e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
