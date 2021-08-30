@@ -67,7 +67,7 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
 
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-node:
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     $ref: 'cpsData.yml#/listNodeByDataspaceAndAnchor'
 
   /v1/dataspaces/{dataspace-name}/nodes:
