@@ -432,6 +432,24 @@
       "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c5f2e47_5857a48d",
+        "filename": "cps-ncmp-service/src/test/resources/cmHandleModules.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:14:56Z",
+      "side": 1,
+      "message": "I this is now handled by https://jira.onap.org/browse/CPS-589",
+      "parentUuid": "17469941_fd7224af",
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
