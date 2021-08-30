@@ -328,6 +328,30 @@
       "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81c15c67_9b4bee0c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T10:24:32Z",
+      "side": 1,
+      "message": "I know this is a bit controversial but I really wanted to see it. \nIt could be removed now but I don\u0027t think there is any harm keeping it... Comments from others appreciated to decide",
+      "parentUuid": "dfc77bd3_a021763b",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 25
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
