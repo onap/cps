@@ -19,6 +19,7 @@
 package org.onap.cps.spi.impl
 
 import org.hibernate.StaleStateException
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -66,6 +67,33 @@ class CpsDataPersistenceServiceSpec extends Specification {
             assert concurrencyException.getDetails().contains(myDataspaceName)
             assert concurrencyException.getDetails().contains(myAnchorName)
             assert concurrencyException.getDetails().contains(parentXpath)
+    }
+
+    def 'Testing data objects in JSON payload are retained after parsing.'() {
+
+        def xpath = 'parent-01'
+        def myDataspaceName = 'my-dataspace'
+        def myAnchorName = 'my-anchor'
+        def fetchDescendants = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
+        given: 'Fragment to be parsed'
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+            def fragmentEntity = new FragmentEntity()
+            fragmentEntity.setXpath(xpath)
+            fragmentEntity.setChildFragments(Collections.emptySet())
+            fragmentEntity.setAttributes('{"cellLocalId": '+dataString+'}')
+            return fragmentEntity
+        }
+        when: 'Fragment converted to DataNode'
+            def datanode = objectUnderTest.getDataNode(myDataspaceName, myAnchorName, xpath, fetchDescendants)
+        then: 'The data type is as expected and the value is retained'
+            assert datanode.leaves.get("cellLocalId").class == dataClass
+            assert datanode.leaves.get("cellLocalId") == dataObject
+        where: 'The following Data Type is passed'
+        scenario    |dataString         ||dataObject        |dataClass
+        'Integer'   |'15174'            ||15174             |Integer
+        'Double'    |'15174.32'         ||15174.32          |Double
+        'Long'      |'123456789101112'  ||123456789101112   |Long
     }
 
 
