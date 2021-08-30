@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "1fbfcf5b_13cd87bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T08:53:20Z",
+      "side": 1,
+      "message": "Hi Rahul, I presume this is all fixed no,c an you cofirm please?",
+      "parentUuid": "f7c197db_b6cc0848",
+      "range": {
+        "startLine": 136,
+        "startChar": 6,
+        "endLine": 136,
+        "endChar": 8
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ec14460_88d33032",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 8
@@ -303,6 +327,30 @@
       "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bed540a7_710485a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T08:53:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aa64c279_3ddb9f9f",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
