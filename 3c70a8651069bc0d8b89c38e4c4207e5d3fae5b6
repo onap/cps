@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "44989cf1_b83f0019",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:00:18Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "ac36435e_3a10f425",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 14
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa4056a6_f221e41c",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2021-08-27T16:23:39Z",
       "side": 1,
       "message": "Shouldn\u0027t it be the date when the release is made ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 41,
+        "endLine": 231,
+        "endChar": 51
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b28ec710_bf8e12f7",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:00:18Z",
+      "side": 1,
+      "message": "Yes maybe we should leave it open for now...\nWe should break this issue in t2o, for now we work on the \u0027Preliminary\u0027 release notes. We will get an ONAP task anyway to finalize it at a later milestone...",
+      "parentUuid": "4df32314_3c056bb1",
       "range": {
         "startLine": 231,
         "startChar": 41,
@@ -145,6 +193,30 @@
       "writtenOn": "2021-08-27T16:23:39Z",
       "side": 1,
       "message": "This section is a duplicate of the same one above, then to be removed I think.",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 10
+      },
+      "revId": "3c70a8651069bc0d8b89c38e4c4207e5d3fae5b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879ab700_5d7d0c95",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:00:18Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "842d8e95_2558df04",
       "range": {
         "startLine": 346,
         "startChar": 0,

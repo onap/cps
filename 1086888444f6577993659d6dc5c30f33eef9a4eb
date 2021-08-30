@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "ffae9fe8_1c64085d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T09:00:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7213b71f_2c52827f",
+      "range": {
+        "startLine": 238,
+        "startChar": 19,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "1086888444f6577993659d6dc5c30f33eef9a4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32fe62b0_3966019e",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
