@@ -123,6 +123,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>docs/openapi</directory>
+                <targetPath>static/api-docs/cps-core</targetPath>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!-- Swagger code generation. -->
             <plugin>
@@ -134,7 +145,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/static/openapi.yml</inputSpec>
+                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>
