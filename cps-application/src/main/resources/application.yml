@@ -84,12 +84,17 @@ notification:
 
 springdoc:
     swagger-ui:
-        url: /openapi.yml
-        path: /swagger-ui/index.html
+        disable-swagger-default-url: true
+        urlsPrimaryName: cps-core
+        urls:
+            - name: cps-core
+              url: /api-docs/cps-core/openapi.yml
+            - name: cps-ncmp
+              url: /api-docs/cps-ncmp/openapi.yml
 
 security:
     # comma-separated uri patterns which do not require authorization
-    permit-uri: /manage/**,/swagger-ui/**,/swagger-resources/**,/v3/api-docs
+    permit-uri: /manage/**,/swagger-ui/**,/swagger-resources/**,/api-docs
     auth:
         username: ${CPS_USERNAME}
         password: ${CPS_PASSWORD}

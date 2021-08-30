@@ -64,10 +64,6 @@
         <groupId>io.swagger.core.v3</groupId>
         <artifactId>swagger-annotations</artifactId>
     </dependency>
-    <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-boot-starter</artifactId>
-    </dependency>
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>
         <groupId>org.codehaus.groovy</groupId>
@@ -112,6 +108,17 @@
 </dependencies>
 
 <build>
+    <resources>
+        <resource>
+            <directory>docs/openapi</directory>
+            <targetPath>static/api-docs/cps-ncmp</targetPath>
+            <filtering>true</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
     <plugins>
         <!-- Swagger code generation. -->
         <plugin>

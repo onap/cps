@@ -23,7 +23,7 @@ info:
   description: NCMP to CPS Proxy API
   version: "1.0"
 servers:
-  - url: //localhost:8088/
+  - url: /cps-ncmp/api
 paths:
   /v1/cm-handles/{cm-handle}/node:
     $ref: 'ncmproxy.yml#/nodeByCmHandleAndXpath'
