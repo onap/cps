@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,17 +68,6 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<String> createDataspace(@NotNull @Valid final String dataspaceName) {
         cpsAdminService.createDataspace(dataspaceName);
         return new ResponseEntity<>(dataspaceName, HttpStatus.CREATED);
-    }
-
-    /**
-     * Delete a dataspace based on a given name.
-     *
-     * @param dataspaceName dataspace name
-     * @return a {@Link ResponseEntity} of {@link HttpStatus} NOT_IMPLEMENTED
-     */
-    @Override
-    public ResponseEntity<Object> deleteDataspace(final String dataspaceName) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     /**

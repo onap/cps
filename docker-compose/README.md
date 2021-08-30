@@ -103,8 +103,9 @@ Here are the steps to run or debug the application from Intellij:
 
 Swagger UI and Open API specifications are available to discover service endpoints and send requests.
 
-* `http://localhost:<port-number>/swagger-ui/index.html`
-* `http://localhost:<port-number>/v3/api-docs?group=cps-docket`
+* `http://localhost:<port-number>/swagger-ui.html`
+* `http://localhost:<port-number>/api-docs/cps-core/openapi.yaml`
+* `http://localhost:<port-number>/api-docs/cps-ncmp/openapi.yaml`
 
 with <port-number> being either `8080` if running the plain Java build or retrieved using following command
 if running from `docker-compose`:

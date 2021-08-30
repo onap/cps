@@ -181,7 +181,7 @@ listNodeByCmHandleAndXpath:
 
 updateDmiRegistration:
   post:
-    description: Register a DMI Plugin with any new CM Handles.
+    description: Register a DMI Plugin with any new, updated or removed CM Handles.
     tags:
       - network-cm-proxy
     summary: DMI notifies NCMP of new CM Handles
