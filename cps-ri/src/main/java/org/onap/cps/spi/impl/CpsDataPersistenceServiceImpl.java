@@ -238,7 +238,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static DataNode toDataNode(final FragmentEntity fragmentEntity,
         final FetchDescendantsOption fetchDescendantsOption) {
-        final Map<String, Object> leaves = GSON.fromJson(fragmentEntity.getAttributes(), Map.class);
+        final Map<String, Object> fromJsonData = GSON.fromJson(fragmentEntity.getAttributes(), Map.class);
+
+        final Map<String, Object> leaves = fromJsonData.entrySet().stream().collect(
+            Collectors.toMap(map -> map.getKey(), map -> {
+                if (map.getValue() instanceof Double
+                    && ((Double) map.getValue()).intValue() == (Double) map.getValue()) {
+                    return ((Double) map.getValue()).intValue();
+                } else {
+                    return map.getValue();
+                }
+            }));
+
         final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
         return new DataNodeBuilder()
             .withXpath(fragmentEntity.getXpath())
