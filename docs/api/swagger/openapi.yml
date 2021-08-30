@@ -339,10 +339,11 @@ paths:
         content:
           multipart/form-data:
             schema:
+              type: object
               required:
                 - file
               properties:
-                multipartFile:
+                file:
                   type: string
                   description: multipartFile
                   format: binary

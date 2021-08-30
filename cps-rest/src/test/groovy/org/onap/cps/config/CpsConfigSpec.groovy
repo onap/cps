@@ -22,7 +22,6 @@ package org.onap.cps.config
 
 import org.modelmapper.ModelMapper
 import spock.lang.Specification
-import springfox.documentation.spring.web.plugins.Docket
 
 class CpsConfigSpec extends Specification {
     def objectUnderTest = new CpsConfig()
@@ -30,10 +29,5 @@ class CpsConfigSpec extends Specification {
     def 'CPS configuration has a Model Mapper'() {
         expect: 'the CPS configuration has a Model Mapper'
             objectUnderTest.modelMapper() instanceof ModelMapper
-    }
-
-    def 'CPS configuration has a Docket API'() {
-        expect: 'the CPS configuration has a Docket API'
-            objectUnderTest.api() instanceof Docket
     }
 }
