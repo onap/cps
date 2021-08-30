@@ -318,6 +318,24 @@
       "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17469941_fd7224af",
+        "filename": "cps-ncmp-service/src/test/resources/cmHandleModules.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T07:48:37Z",
+      "side": 1,
+      "message": "part of the scope of CPS-531 is to agree the format",
+      "parentUuid": "4a8a3e1a_099f2159",
+      "revId": "3bbe929b9ba7a4dbd47ef11e30a0096fe95f9c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a90007af_79e0e95f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T07:48:37Z",
+      "side": 1,
+      "message": "creatAnchorSyncModel\n\n(since cmHandle is the parameter I dont think its needed in the name)",
+      "range": {
+        "startLine": 350,
+        "startChar": 19,
+        "endLine": 350,
+        "endChar": 39
+      },
+      "revId": "562cf1f8b4fa900ebff016b6907b4a4af639adfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8447804c_ddfb08fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T07:48:37Z",
+      "side": 1,
+      "message": "moduleReferenceAsJson",
+      "range": {
+        "startLine": 404,
+        "startChar": 31,
+        "endLine": 404,
+        "endChar": 38
+      },
+      "revId": "562cf1f8b4fa900ebff016b6907b4a4af639adfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4494f7d_f5392c3a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T07:48:37Z",
+      "side": 1,
+      "message": "moduleReferencesAsJson",
+      "range": {
+        "startLine": 404,
+        "startChar": 40,
+        "endLine": 404,
+        "endChar": 47
+      },
+      "revId": "562cf1f8b4fa900ebff016b6907b4a4af639adfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d33c4335_0b978657",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-30T07:48:37Z",
+      "side": 1,
+      "message": "moduleReferenceAsJson",
+      "range": {
+        "startLine": 411,
+        "startChar": 63,
+        "endLine": 411,
+        "endChar": 69
+      },
+      "revId": "562cf1f8b4fa900ebff016b6907b4a4af639adfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
