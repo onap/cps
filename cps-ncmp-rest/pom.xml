@@ -112,6 +112,17 @@
 </dependencies>
 
 <build>
+    <resources>
+        <resource>
+            <directory>docs/openapi</directory>
+            <targetPath>static/api-docs/cps-ncmp</targetPath>
+            <filtering>true</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
     <plugins>
         <!-- Swagger code generation. -->
         <plugin>
