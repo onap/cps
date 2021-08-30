@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50bd5eb1_2536e120",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "keep private methods at the end.\npublic\nprotected\ndefault\nprivate",
+      "range": {
+        "startLine": 285,
+        "startChar": 2,
+        "endLine": 285,
+        "endChar": 4
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "978b527b_8691de0e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "can you change dmiBasePath to dmiServiceName, possibly in every method",
+      "range": {
+        "startLine": 125,
+        "startChar": 66,
+        "endLine": 125,
+        "endChar": 77
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6738980d_b9da3ce3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "blocking: url required to get modules is\n\ndmiservice/dmi/api/v1/ch/cmhandleid/modules\n\nand your method is preparing \n\ndmiservice/dmi/api/v1/ch/cmhandleid/data/ds/ncmp-datastore:passthrough-running/modules\n\nwhich is wrong, please fix it.",
+      "range": {
+        "startLine": 131,
+        "startChar": 43,
+        "endLine": 131,
+        "endChar": 61
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea9a5bcc_5306490c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "is it good to pull them inside test, as they are not used in any other test.",
+      "range": {
+        "startLine": 363,
+        "startChar": 76,
+        "endLine": 363,
+        "endChar": 105
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "818ae99a_9da60432",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "and: \u0027description\u0027",
+      "range": {
+        "startLine": 371,
+        "startChar": 9,
+        "endLine": 371,
+        "endChar": 12
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2026fdf_31a87703",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "use directly, bring them near usage",
+      "range": {
+        "startLine": 380,
+        "startChar": 48,
+        "endLine": 380,
+        "endChar": 57
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d395ee_6f14fde2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/moduleReferenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "I think testing a 3gpp func should not be in scope of ncmp tests. We can read docs and write test just to understand the func/behavior but including them in active test stack opens a whole new area of testing imo.",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 25
+      },
+      "revId": "5273efec3909e3970425160ec51d9a66f04927a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

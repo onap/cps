@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "038c2f8a_73516ad2",
+        "filename": "cps-ncmp-service/src/test/resources/cmHandleModules.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-08-30T09:51:02Z",
+      "side": 1,
+      "message": "blocking:\n\n{   \"schemas\": [\n        {\n            \"moduleName\": \"nc-notifications\",\n            \"revision\": \"2008-07-14\",\n            \"namespace\": \"urn:ietf:params:xml:ns:netmod:notification\"\n        },\n        {\n            \"moduleName\": \"ietf-tls-server\",\n            \"revision\": \"2016-11-02\",\n            \"namespace\": \"urn:ietf:params:xml:ns:yang:ietf-tls-server\"\n        },\n        {\n            \"moduleName\": \"ietf-ssh-server\",\n            \"revision\": \"2016-11-02\",\n            \"namespace\": \"urn:ietf:params:xml:ns:yang:ietf-ssh-server\"\n        }\n    ]\n}\n\nwhen i am testing getModules url on dmi i am getting above output, which is not in sync with below json. \n\nthere is gap in the output from dmi and json parsing in ncmp. Please look into it thoroughly .",
+      "revId": "f8b0f28005bd99836a1f05e7dd62dd46d5e085b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
