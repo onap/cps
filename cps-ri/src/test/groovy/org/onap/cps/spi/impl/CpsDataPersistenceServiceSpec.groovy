@@ -19,6 +19,7 @@
 package org.onap.cps.spi.impl
 
 import org.hibernate.StaleStateException
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -66,6 +67,40 @@ class CpsDataPersistenceServiceSpec extends Specification {
             assert concurrencyException.getDetails().contains(myDataspaceName)
             assert concurrencyException.getDetails().contains(myAnchorName)
             assert concurrencyException.getDetails().contains(parentXpath)
+    }
+
+    def 'Converting fragment with property String #scenario'() {
+
+        def xpath = 'parent-01'
+        def myDataspaceName = 'my-dataspace'
+        def myAnchorName = 'my-anchor'
+        def fetchDescendants = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
+        given: 'fragment to be parsed'
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+            def fragmentEntity = new FragmentEntity()
+            fragmentEntity.setXpath(xpath)
+            fragmentEntity.setChildFragments(Collections.emptySet())
+            fragmentEntity.setAttributes('{"cellLocalId": '+dataString+'}')
+            return fragmentEntity
+        }
+        when: 'fragment converted to DataNode'
+            def datanode = objectUnderTest.getDataNode(myDataspaceName, myAnchorName, xpath, fetchDescendants)
+        then: 'the data type is as expected and the value is retained'
+            assert datanode.leaves.get("cellLocalId").class == dataClass
+            assert datanode.leaves.get("cellLocalId") == dataObject
+        where: 'the following Data Type is passed'
+        scenario                        |dataString             ||dataObject            |dataClass
+        'Without dot'                   |'15174'                ||15174                 |Integer
+        'With dot'                      |'15174.32'             ||15174.32              |Double
+        'With 0 value after dot'        |'15174.0'              ||15174.0               |Double
+        'With 0 value before dot'       |'0.32'                 ||0.32                  |Double
+        'Higher than max int'           |'2147483648'           ||2147483648            |Long
+        'Text'                          |'"Test"'               ||'Test'                |String
+        'With exponent'                 |'1.2345e5'             ||1.2345e5              |Double
+        'Long with 0 value after dot'   |'123456789101112.0'    ||123456789101112.0     |Double
+        'With Text and Numbers'         |'"String = \'1234\'"'  ||'String = \'1234\''   |String
+        'With String Number'            |'"12345"'              ||'12345'               |String
     }
 
 

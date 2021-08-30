@@ -24,12 +24,15 @@ package org.onap.cps.spi.impl;
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +53,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -68,6 +72,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private FragmentRepository fragmentRepository;
 
+    private final ObjectMapper objectMapper;
+
     /**
      * Constructor.
      *
@@ -80,6 +86,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         this.dataspaceRepository = dataspaceRepository;
         this.anchorRepository = anchorRepository;
         this.fragmentRepository = fragmentRepository;
+        this.objectMapper = new ObjectMapper();
     }
 
     private static final Gson GSON = new GsonBuilder().create();
@@ -236,17 +243,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return ancestorXpath;
     }
 
-    private static DataNode toDataNode(final FragmentEntity fragmentEntity,
+    private DataNode toDataNode(final FragmentEntity fragmentEntity,
         final FetchDescendantsOption fetchDescendantsOption) {
-        final Map<String, Object> leaves = GSON.fromJson(fragmentEntity.getAttributes(), Map.class);
         final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        Map<String, Object> leaves = new HashMap<>();
+        if (fragmentEntity.getAttributes() != null) {
+            try {
+                leaves = objectMapper.readValue(fragmentEntity.getAttributes(), Map.class);
+            } catch (final JsonProcessingException jsonProcessingException) {
+                log.error("Parsing error occurred while converting Object to JSON for fragmentEntity toDataNode.");
+                throw new DataValidationException("Parsing error occurred while processing fragmentEntity attributes.",
+                    jsonProcessingException.getMessage(), jsonProcessingException);
+            }
+        }
         return new DataNodeBuilder()
             .withXpath(fragmentEntity.getXpath())
             .withLeaves(leaves)
             .withChildDataNodes(childDataNodes).build();
     }
 
-    private static List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
+    private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
         final FetchDescendantsOption fetchDescendantsOption) {
         if (fetchDescendantsOption == INCLUDE_ALL_DESCENDANTS) {
             return fragmentEntity.getChildFragments().stream()
