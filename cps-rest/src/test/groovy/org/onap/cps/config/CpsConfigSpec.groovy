@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +23,6 @@ package org.onap.cps.config
 
 import org.modelmapper.ModelMapper
 import spock.lang.Specification
-import springfox.documentation.spring.web.plugins.Docket
 
 class CpsConfigSpec extends Specification {
     def objectUnderTest = new CpsConfig()
@@ -30,10 +30,5 @@ class CpsConfigSpec extends Specification {
     def 'CPS configuration has a Model Mapper'() {
         expect: 'the CPS configuration has a Model Mapper'
             objectUnderTest.modelMapper() instanceof ModelMapper
-    }
-
-    def 'CPS configuration has a Docket API'() {
-        expect: 'the CPS configuration has a Docket API'
-            objectUnderTest.api() instanceof Docket
     }
 }
