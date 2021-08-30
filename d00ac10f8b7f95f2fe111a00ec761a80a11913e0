@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d887c00_5c7b1664",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-08-30T09:38:10Z",
+      "side": 1,
+      "message": "a bit difficult to read, is there any way to simplify this or even do it in multiple steps? also please add a test",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 16
+      },
+      "revId": "d00ac10f8b7f95f2fe111a00ec761a80a11913e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
