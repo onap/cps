@@ -22,6 +22,30 @@
       "revId": "73557198083bf8c44930c3a1dde8013a66efac43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "469d60d9_c9a62121",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T17:49:41Z",
+      "side": 1,
+      "message": "In this test class, we were referring base path in three ways\n\n1. deprecatedDataNodeBaseEndPoint \u003d $basePath/v1 -\u003e old endpoints.\n2. ncmpDmiEndpoint \u003d $basePath/ncmp-dmi/v1 -\u003e only dmi registration because the endpoint was not different from others. After the change both deprecatedDataNodeBaseEndPoint and ncmpDmiEndpoint are same.\n3. basePath \u003d  $basePath -\u003e in the passthrough endpoint test cases.\n\nWith the new api change, we can use the same path for all three and I believe it is an improvement over what we had before.",
+      "parentUuid": "73e94685_693034f0",
+      "range": {
+        "startLine": 70,
+        "startChar": 37,
+        "endLine": 70,
+        "endChar": 51
+      },
+      "revId": "73557198083bf8c44930c3a1dde8013a66efac43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
