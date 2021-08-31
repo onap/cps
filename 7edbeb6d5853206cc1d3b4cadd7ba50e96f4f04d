@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c07b4635_81b884dc",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T16:19:42Z",
+      "side": 0,
+      "message": "not being used by test cases",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 7
+      },
+      "revId": "7edbeb6d5853206cc1d3b4cadd7ba50e96f4f04d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3ebcf59e_1edc5cb4",
         "filename": "docker-compose/README.md",
         "patchSetId": 5

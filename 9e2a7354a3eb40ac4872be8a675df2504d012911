@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6455a724_7714ea3d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8147c322_f7588090",
+      "range": {
+        "startLine": 27,
+        "startChar": 24,
+        "endLine": 27,
+        "endChar": 37
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0661a5c1_0a8024b8",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 5
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "0dc435b5_31999f50",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb79f25d_e1085519",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 17
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21589dcc_3e470600",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 5
@@ -237,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "51489bf2_415b43a9",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "befdb94f_69beaf85",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34477a0c_2b09ab8b",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 5
@@ -281,6 +353,30 @@
       "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b74412_abfb8875",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb42cf3d_f8866a60",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 16
+      },
+      "revId": "9e2a7354a3eb40ac4872be8a675df2504d012911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
