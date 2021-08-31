@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67d6803b_45b08f1d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T20:00:39Z",
+      "side": 1,
+      "message": "Copies the generated openapi.yaml to static folder for spring to expose it \u0027http://localhost:\u003cport-number\u003e/api-docs/cps-ncmp/openapi.yaml\u0027",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 17
+      },
+      "revId": "c5e9904bb0d3a9c5ced186a461053484f3c7f164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f940533_b853e3f5",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-08-31T20:00:39Z",
+      "side": 1,
+      "message": "This execution creates a single openapi.yaml file in the generates-sources/swagger folder.",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 138,
+        "endChar": 33
+      },
+      "revId": "c5e9904bb0d3a9c5ced186a461053484f3c7f164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
