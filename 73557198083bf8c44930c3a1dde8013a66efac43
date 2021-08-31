@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73e94685_693034f0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-08-31T16:42:31Z",
+      "side": 1,
+      "message": "I think there was a good reason we had a separate \u0027deprecated\u0027 rest endpoint (check with Dylan) E might need some discussion on this!",
+      "range": {
+        "startLine": 70,
+        "startChar": 37,
+        "endLine": 70,
+        "endChar": 51
+      },
+      "revId": "73557198083bf8c44930c3a1dde8013a66efac43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
