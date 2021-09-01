@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c71f7351_8e1ef2f4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-01T12:03:26Z",
+      "side": 1,
+      "message": "Statement after each block should begin with a lower case letter.",
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9b47c8e_d985f4f4",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 3
