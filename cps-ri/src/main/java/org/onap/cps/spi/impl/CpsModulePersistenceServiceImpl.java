@@ -116,11 +116,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public List<ModuleReference> getAllYangResourcesModuleReferences() {
-        final List<YangResourceModuleReference> yangResourceModuleReferenceList =
-                yangResourceRepository.findAllModuleNameAndRevision();
+    public Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName) {
+        final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
+            yangResourceRepository.findAllModuleReferences(dataspaceName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName,
+        final String anchorName) {
+        final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
+            yangResourceRepository
+                .findAllModuleReferences(dataspaceName, anchorName);
+        return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -148,15 +158,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newYangResourcesModuleNameToContentMap,
-                                          final List<ModuleReference> moduleReferenceList) {
+                                          final List<ModuleReference> moduleReferences) {
         storeSchemaSet(dataspaceName, schemaSetName, newYangResourcesModuleNameToContentMap);
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         final List<Long> listOfYangResourceIds = new ArrayList<>();
-        moduleReferenceList.forEach(moduleReference ->
+        moduleReferences.forEach(moduleReference ->
                 listOfYangResourceIds.add(yangResourceRepository.getIdByModuleNameAndRevision(
-                        moduleReference.getName(), moduleReference.getRevision())));
+                        moduleReference.getModuleName(), moduleReference.getRevision())));
         yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), listOfYangResourceIds);
     }
 
@@ -325,10 +335,11 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return checksum;
     }
 
-    private static ModuleReference toModuleReference(final YangResourceModuleReference yangResourceModuleReference) {
+    private static ModuleReference toModuleReference(
+        final YangResourceModuleReference yangResourceModuleReference) {
         return ModuleReference.builder()
-                .name(yangResourceModuleReference.getModuleName())
-                .revision(yangResourceModuleReference.getRevision())
-                .build();
+            .moduleName(yangResourceModuleReference.getModuleName())
+            .revision(yangResourceModuleReference.getRevision())
+            .build();
     }
 }

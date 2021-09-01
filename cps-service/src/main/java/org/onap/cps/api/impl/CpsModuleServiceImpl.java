@@ -21,6 +21,7 @@
 
 package org.onap.cps.api.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
@@ -53,9 +54,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                            final Map<String, String> newYangResourcesModuleNameToContentMap,
-                                           final List<ModuleReference> existingModuleReferences) {
+                                           final List<ModuleReference> moduleReferences) {
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
-                newYangResourcesModuleNameToContentMap, existingModuleReferences);
+                newYangResourcesModuleNameToContentMap, moduleReferences);
 
     }
 
@@ -64,7 +65,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
-            .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+            .extendedModuleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
     }
 
     @Override
@@ -74,8 +75,8 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
-    public List<ModuleReference> getAllYangResourcesModuleReferences() {
-        return cpsModulePersistenceService.getAllYangResourcesModuleReferences();
+    public Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName) {
+        return cpsModulePersistenceService.getAllYangResourceModuleReferences(dataspaceName);
     }
 
 }

@@ -37,8 +37,32 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
 
     List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
 
-    @Query(value = "SELECT module_name, revision FROM yang_resource", nativeQuery = true)
-    List<YangResourceModuleReference> findAllModuleNameAndRevision();
+    @Query(value = "SELECT DISTINCT\n"
+        + "yr.module_name AS module_name,\n"
+        + "yr.revision AS revision\n"
+        + "FROM\n"
+        + "dataspace d\n"
+        + "JOIN schema_set ss ON ss.dataspace_id = d.id\n"
+        + "JOIN schema_set_yang_resources ssyr ON ssyr.schema_set_id = ss.id\n"
+        + "JOIN yang_resource yr ON yr.id = ssyr.yang_resource_id\n"
+        + "WHERE\n"
+        + "d.name = :dataspaceName", nativeQuery = true)
+    Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName);
+
+    @Query(value = "SELECT DISTINCT\n"
+        + "yr.module_Name AS module_name,\n"
+        + "yr.revision AS revision\n"
+        + "FROM\n"
+        + "dataspace d\n"
+        + "JOIN anchor a ON a.dataspace_id = d.id\n"
+        + "JOIN schema_set ss ON ss.dataspace_id = a.dataspace_id\n"
+        + "JOIN schema_set_yang_resources ssyr ON ssyr.schema_set_id = ss.id\n"
+        + "JOIN yang_resource yr ON yr.id = ssyr.yang_resource_id\n"
+        + "WHERE\n"
+        + "d.name = :dataspaceName AND\n"
+        + "a.name =:anchorName", nativeQuery = true)
+    Set<YangResourceModuleReference> findAllModuleReferences(
+        @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
 
     @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
     Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);

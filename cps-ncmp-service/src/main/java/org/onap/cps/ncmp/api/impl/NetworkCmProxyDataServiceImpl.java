@@ -350,13 +350,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     protected void createAnchorAndSyncModel(final PersistenceCmHandle cmHandle) {
         final var modulesForCmHandle =
             dmiOperations.getResourceFromDmi(cmHandle.getDmiServiceName(), cmHandle.getId(), "modules");
-
-        final List<ModuleReference> moduleReferencesFromDmiForCmHandle = getModuleReferences(modulesForCmHandle);
-
-        final var knownModuleReferencesInCps = cpsModuleService.getAllYangResourcesModuleReferences();
-
+        final List<ModuleReference> moduleReferencesFromDmiForCmHandle =
+            getModuleReferences(modulesForCmHandle);
+        final var knownModuleReferencesInCps =
+            cpsModuleService.getAllYangResourceModuleReferences(NF_PROXY_DATASPACE_NAME);
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
-        for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromDmiForCmHandle) {
+        for (final ModuleReference moduleReferenceFromDmiForCmHandle :
+            moduleReferencesFromDmiForCmHandle) {
             if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
                 existingModuleReferences.add(moduleReferenceFromDmiForCmHandle);
             }
@@ -397,7 +397,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final JsonObject convertedObject = new Gson().fromJson(response.getBody(), JsonObject.class);
         final JsonArray moduleReferencesAsJson = convertedObject.getAsJsonArray("schemas");
         for (final JsonElement moduleReferenceAsJson : moduleReferencesAsJson) {
-            final ModuleReference moduleReference = toModuleReference((JsonObject) moduleReferenceAsJson);
+            final ModuleReference moduleReference =
+                toModuleReference((JsonObject) moduleReferenceAsJson);
             modulesFromDmiForCmHandle.add(moduleReference);
         }
         return modulesFromDmiForCmHandle;
@@ -405,8 +406,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
         final var moduleReference = new ModuleReference();
-        moduleReference.setName(moduleReferenceAsJson.get("moduleName").getAsString());
-        moduleReference.setNamespace(NO_NAMESPACE);
+        moduleReference.setModuleName(moduleReferenceAsJson.get("moduleName").getAsString());
         moduleReference.setRevision(moduleReferenceAsJson.get("revision").getAsString());
         return moduleReference;
     }

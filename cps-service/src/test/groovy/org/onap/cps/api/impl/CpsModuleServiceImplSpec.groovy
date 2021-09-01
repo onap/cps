@@ -25,7 +25,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.model.ExtendedModuleReference
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -63,7 +63,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Create schema set from new modules and existing modules.'() {
         given: 'a list of existing modules module reference'
-            def moduleReferenceForExistingModule = new ModuleReference("test", "test.org", "2021-10-12")
+            def moduleReferenceForExistingModule = new ExtendedModuleReference("test", "test.org", "2021-10-12")
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
@@ -90,7 +90,7 @@ class CpsModuleServiceImplSpec extends Specification {
         then: 'the correct schema set is returned'
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
-            result.getModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
+            result.getExtendedModuleReferences().contains(new ExtendedModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
     }
 
     def 'Schema set caching.'() {
@@ -117,9 +117,9 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Get all yang resources module references.'(){
         given: 'an already present module reference'
-            def moduleReferences = [new ModuleReference()]
-            mockModuleStoreService.getAllYangResourcesModuleReferences() >> moduleReferences
+            def moduleReferences = [new ExtendedModuleReference()]
+            mockModuleStoreService.getAllYangResourceModuleReferences('someDataspaceName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
-            objectUnderTest.getAllYangResourcesModuleReferences() == moduleReferences
+            objectUnderTest.getAllYangResourceModuleReferences('someDataspaceName') == moduleReferences
     }
 }

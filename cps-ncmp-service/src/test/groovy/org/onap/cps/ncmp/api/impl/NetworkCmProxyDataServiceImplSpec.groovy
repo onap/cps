@@ -357,23 +357,23 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Sync model for a (new) cm handle with #scenario'() {
         given: 'DMI PLug-in returns a list of module references'
             getModulesForCmHandle()
-            def knownModule1 = new ModuleReference('module1', NO_NAMESPACE, '1')
-            def knownOtherModule = new ModuleReference('some other module', NO_NAMESPACE, 'some revision')
+            def knownModule1 = new ModuleReference('module1', '1')
+            def knownOtherModule = new ModuleReference('some other module', 'some revision')
         and: 'CPS-Core returns list of known modules'
-            mockCpsModuleService.getAllYangResourcesModuleReferences() >> [knownModule1, knownOtherModule]
+            mockCpsModuleService.getAllYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
             mockDmiOperations.getResourceFromDmi(_, cmHandleForModelSync.getId(), 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceNameForModleSync, cmHandleForModelSync.getId(), expectedYangResourceToContentMap , [knownModule1])
+            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceNameForModleSync, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, [knownModule1])
         and: 'admin service create anchor method has been called with correct parameters'
             1 * mockCpsAdminService.createAnchor(expectedDataspaceNameForModleSync, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
         where: 'the following responses are recieved from SDNC'
-            scenario             | sdncReponseBody                                                             || expectedYangResourceToContentMap
+            scenario             | sdncReponseBody                                                                  || expectedYangResourceToContentMap
             'one unknown module' | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "someResource"}]' || [someModule: 'someResource']
-            'no unknown module'  | '[]'                                                                        || [:]
+            'no unknown module'  | '[]'                                                                             || [:]
     }
 
     def getModulesForCmHandle() {

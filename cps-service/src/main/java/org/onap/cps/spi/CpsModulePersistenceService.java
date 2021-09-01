@@ -21,6 +21,7 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -48,11 +49,11 @@ public interface CpsModulePersistenceService {
      * @param dataspaceName                          Dataspace name
      * @param schemaSetName                          Schema set name
      * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param moduleReferenceList                    List of YANG resources module references
+     * @param moduleReferences                    List of YANG resources module references
      */
     void storeSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
                                    @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
-                                   @NonNull List<ModuleReference> moduleReferenceList);
+                                   @NonNull List<ModuleReference> moduleReferences);
 
     /**
      * Deletes Schema Set.
@@ -89,9 +90,20 @@ public interface CpsModulePersistenceService {
         @NonNull String anchorName);
 
     /**
-     * Returns all YANG resources module references.
+     * Returns all YANG resources module references for the given dataspace name.
      *
-     * @return List of all YANG resources module information in the database
+     * @param dataspaceName dataspace name
+     * @return Collection of all YANG resources module information in the database
      */
-    List<ModuleReference> getAllYangResourcesModuleReferences();
+    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName);
+
+    /**
+     * Get all YANG resource module references for the given anchor name and dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a collection of module names and revisions
+     */
+    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName,
+        final String anchorName);
 }
