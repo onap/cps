@@ -21,10 +21,12 @@
 
 package org.onap.cps.spi;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.DataInUseException;
+import org.onap.cps.spi.model.ModuleNameRevision;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -89,9 +91,20 @@ public interface CpsModulePersistenceService {
         @NonNull String anchorName);
 
     /**
-     * Returns all YANG resources module references.
+     * Returns all YANG resources module references for the given dataspace name.
      *
-     * @return List of all YANG resources module information in the database
+     * @param dataspaceName dataspace name
+     * @return Collection of all YANG resources module information in the database
      */
-    List<ModuleReference> getAllYangResourcesModuleReferences();
+    Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName);
+
+    /**
+     * Get all YANG resource module references for the given anchor name and dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a collection of module names and revisions
+     */
+    Collection<ModuleNameRevision> getAllYangResourcesModuleReferences(final String dataspaceName,
+        final String anchorName);
 }

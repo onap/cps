@@ -118,8 +118,8 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get all yang resources module references.'(){
         given: 'an already present module reference'
             def moduleReferences = [new ModuleReference()]
-            mockModuleStoreService.getAllYangResourcesModuleReferences() >> moduleReferences
+            mockModuleStoreService.getAllYangResourcesModuleReferences('someDataspaceName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
-            objectUnderTest.getAllYangResourcesModuleReferences() == moduleReferences
+            objectUnderTest.getAllYangResourcesModuleReferences('someDataspaceName') == moduleReferences
     }
 }

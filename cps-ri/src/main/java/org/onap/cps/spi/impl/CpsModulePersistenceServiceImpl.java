@@ -55,6 +55,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
+import org.onap.cps.spi.model.ModuleNameRevision;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -116,11 +117,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public List<ModuleReference> getAllYangResourcesModuleReferences() {
+    public Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName) {
         final List<YangResourceModuleReference> yangResourceModuleReferenceList =
-                yangResourceRepository.findAllModuleNameAndRevision();
+            yangResourceRepository.findAllModuleNameAndRevisionReferencesDataspaceName(dataspaceName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<ModuleNameRevision> getAllYangResourcesModuleReferences(final String dataspaceName,
+        final String anchorName) {
+        final List<YangResourceModuleReference> yangResourceModuleReferenceList =
+            yangResourceRepository
+                .findAllModuleNameAndRevisionReferencesDataspaceNameAndAnchorName(dataspaceName, anchorName);
+        return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleNameAndRevision)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -330,5 +341,13 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 .name(yangResourceModuleReference.getModuleName())
                 .revision(yangResourceModuleReference.getRevision())
                 .build();
+    }
+
+    private static ModuleNameRevision toModuleNameAndRevision(
+        final YangResourceModuleReference yangResourceModuleReference) {
+        return ModuleNameRevision.builder()
+            .name(yangResourceModuleReference.getModuleName())
+            .revision(yangResourceModuleReference.getRevision())
+            .build();
     }
 }

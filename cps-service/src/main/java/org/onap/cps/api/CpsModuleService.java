@@ -21,6 +21,7 @@
 
 package org.onap.cps.api;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -82,7 +83,8 @@ public interface CpsModuleService {
     /**
      * Retrieve all modules and revisions known by CPS for all Yang Resources.
      *
+     * @param dataspaceName        dataspace name
      * @return a list of ModuleReference objects
      */
-    List<ModuleReference> getAllYangResourcesModuleReferences();
+    Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName);
 }

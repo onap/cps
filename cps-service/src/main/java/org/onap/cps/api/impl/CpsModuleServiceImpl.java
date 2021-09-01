@@ -21,6 +21,7 @@
 
 package org.onap.cps.api.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
@@ -74,8 +75,8 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
-    public List<ModuleReference> getAllYangResourcesModuleReferences() {
-        return cpsModulePersistenceService.getAllYangResourcesModuleReferences();
+    public Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName) {
+        return cpsModulePersistenceService.getAllYangResourcesModuleReferences(dataspaceName);
     }
 
 }

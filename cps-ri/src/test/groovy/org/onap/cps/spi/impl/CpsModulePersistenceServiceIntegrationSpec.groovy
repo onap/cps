@@ -20,21 +20,22 @@
  */
 package org.onap.cps.spi.impl
 
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
-
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.YangResourceEntity
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.spi.model.ModuleNameRevision
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
+
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -75,8 +76,8 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             .revision(NEW_RESOURCE_REVISION).build()
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]
-    def allYangResourcesModuleAndRevisionList = [ModuleReference.builder().build(),ModuleReference.builder().build(),
-                                                 ModuleReference.builder().build(),ModuleReference.builder().build(),
+    def allYangResourcesModuleAndRevisionList = [new ModuleReference(name: 'MODULE-NAME-002',namespace:null, revision: 'REVISION-002'),new ModuleReference(name: 'MODULE-NAME-003',namespace:null, revision: 'REVISION-003'),
+                                                 new ModuleReference(name: 'MODULE-NAME-004',namespace:null, revision: 'REVISION-004'),ModuleReference.builder().build(),
                                                  ModuleReference.builder().build(), newModuleReference]
     def dataspaceEntity
 
@@ -135,13 +136,30 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Retrieving all yang resources module references.'() {
-        given: 'a new schema set is stored'
-            objectUnderTest.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, newYangResourcesNameToContentMap)
-        when: 'all yang resources module references are retrieved'
-            def result = objectUnderTest.getAllYangResourcesModuleReferences()
+    def 'Retrieving all yang resources module references for the given dataspace.'() {
+        given: 'a dataspace name'
+            def dataspaceName = 'DATASPACE-002'
+        when: 'all yang resources module references are retrieved for the given dataspace name'
+            def result = objectUnderTest.getAllYangResourcesModuleReferences(dataspaceName)
         then: 'the correct resources are returned'
-            result.sort() == allYangResourcesModuleAndRevisionList.sort()
+            result.sort() == [new ModuleReference(name: 'MODULE-NAME-005',namespace: null, revision: 'REVISION-002'),
+                              new ModuleReference(name: 'MODULE-NAME-006',namespace: null, revision: 'REVISION-006')]
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Retrieving module names and revisions for the given anchor.'() {
+        given: 'a dataspace name and anchor name'
+            def dataspaceName = 'DATASPACE-001'
+            def anchorName = 'ANCHOR1'
+        when: 'all yang resources module references are retrieved for the given anchor'
+            def result = objectUnderTest.getAllYangResourcesModuleReferences(dataspaceName, anchorName)
+        then: 'the correct module names and revisions are returned'
+            result.sort() == [new ModuleNameRevision(name: null, revision: null), new ModuleNameRevision(name: null, revision: null), new ModuleNameRevision(name: 'MODULE-NAME-002', revision: 'REVISION-002'),
+                              new ModuleNameRevision(name: 'MODULE-NAME-003', revision: 'REVISION-002'),
+                              new ModuleNameRevision(name: 'MODULE-NAME-003', revision: 'REVISION-002'),
+                              new ModuleNameRevision(name: 'MODULE-NAME-003', revision: 'REVISION-002'),
+                              new ModuleNameRevision(name: 'MODULE-NAME-004', revision: 'REVISION-004'),
+                              new ModuleNameRevision(name: 'MODULE-NAME-004', revision: 'REVISION-004')]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

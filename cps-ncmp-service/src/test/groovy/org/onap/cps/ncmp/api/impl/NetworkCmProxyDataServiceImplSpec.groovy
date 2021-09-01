@@ -360,7 +360,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def knownModule1 = new ModuleReference('module1', NO_NAMESPACE, '1')
             def knownOtherModule = new ModuleReference('some other module', NO_NAMESPACE, 'some revision')
         and: 'CPS-Core returns list of known modules'
-            mockCpsModuleService.getAllYangResourcesModuleReferences() >> [knownModule1, knownOtherModule]
+            mockCpsModuleService.getAllYangResourcesModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
             mockDmiOperations.getResourceFromDmi(_, cmHandleForModelSync.getId(), 'moduleResources') >> moduleResources

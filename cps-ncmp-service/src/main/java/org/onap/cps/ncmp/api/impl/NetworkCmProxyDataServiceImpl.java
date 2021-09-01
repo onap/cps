@@ -353,7 +353,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
         final List<ModuleReference> moduleReferencesFromDmiForCmHandle = getModuleReferences(modulesForCmHandle);
 
-        final var knownModuleReferencesInCps = cpsModuleService.getAllYangResourcesModuleReferences();
+        final var knownModuleReferencesInCps =
+            cpsModuleService.getAllYangResourcesModuleReferences(NF_PROXY_DATASPACE_NAME);
 
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
         for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromDmiForCmHandle) {
