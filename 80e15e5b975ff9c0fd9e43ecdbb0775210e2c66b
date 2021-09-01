@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a804974_9a211d39",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-01T14:13:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb88d831_6d18386f",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbc7d972_70d74126",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d78a410e_d4c8208d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-01T14:13:17Z",
+      "side": 1,
+      "message": "Removed static to facilitate single instance ObjectMapper",
+      "parentUuid": "cbc7d972_70d74126",
+      "range": {
+        "startLine": 243,
+        "startChar": 12,
+        "endLine": 243,
+        "endChar": 18
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bbada7d5_73ad57f1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-01T14:13:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d03800a_0efcd844",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 61
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd906b45_3bb1e21f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7096e9c4_1ba43d46",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-01T14:13:17Z",
+      "side": 1,
+      "message": "Removed static to facilitate single instance ObjectMapper",
+      "parentUuid": "fd906b45_3bb1e21f",
+      "range": {
+        "startLine": 263,
+        "startChar": 12,
+        "endLine": 263,
+        "endChar": 18
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
