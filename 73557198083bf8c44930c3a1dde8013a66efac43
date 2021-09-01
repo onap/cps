@@ -46,6 +46,30 @@
       "revId": "73557198083bf8c44930c3a1dde8013a66efac43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa88a4b5_b3e46951",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-01T08:00:37Z",
+      "side": 1,
+      "message": "I suppose what confuses me is there is no difference (anymore) between the old (deprecated) paths and the new ones, so effectively we don\u0027t support te old paths anymore. I think that is fine though as we have no real client other then TBDMT and I think they are aware of the latest paths...",
+      "parentUuid": "469d60d9_c9a62121",
+      "range": {
+        "startLine": 70,
+        "startChar": 37,
+        "endLine": 70,
+        "endChar": 51
+      },
+      "revId": "73557198083bf8c44930c3a1dde8013a66efac43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c8f6ff51_04f33c3a",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-01T08:00:37Z",
+      "side": 1,
+      "message": "great, thanks!",
+      "parentUuid": "67d6803b_45b08f1d",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 17
+      },
+      "revId": "c5e9904bb0d3a9c5ced186a461053484f3c7f164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f940533_b853e3f5",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "c5e9904bb0d3a9c5ced186a461053484f3c7f164",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3297ec4e_a8a9284f",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-01T08:00:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f940533_b853e3f5",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 138,
+        "endChar": 33
+      },
+      "revId": "c5e9904bb0d3a9c5ced186a461053484f3c7f164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
