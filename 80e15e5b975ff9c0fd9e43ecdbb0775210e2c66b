@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "bb88d831_6d18386f",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-01T12:51:55Z",
+      "side": 1,
+      "message": "We can use fasterxml dependency that we have used in other modules too\n\n\u003cdependency\u003e\n       \u003cgroupId\u003ecom.fasterxml.jackson.core\u003c/groupId\u003e\n        \u003cartifactId\u003ejackson-databind\u003c/artifactId\u003e\n \u003c/dependency\u003e\n\nI think this jar is already added as a part of another dependency but it is always good to define direct dependencies",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbc7d972_70d74126",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-01T12:51:55Z",
+      "side": 1,
+      "message": "unrelated:\n\nI am not sure why these should be static. These methods are internal methods and no need to be static",
+      "range": {
+        "startLine": 243,
+        "startChar": 12,
+        "endLine": 243,
+        "endChar": 18
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d03800a_0efcd844",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-01T12:51:55Z",
+      "side": 1,
+      "message": "A single instance should be used. As far as I remember it is an expensive object to create.",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 61
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd906b45_3bb1e21f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-01T12:51:55Z",
+      "side": 1,
+      "message": "unrelated:\n\nI am not sure why these should be static. These methods are internal methods and no need to be static",
+      "range": {
+        "startLine": 263,
+        "startChar": 12,
+        "endLine": 263,
+        "endChar": 18
+      },
+      "revId": "80e15e5b975ff9c0fd9e43ecdbb0775210e2c66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c71f7351_8e1ef2f4",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 3
