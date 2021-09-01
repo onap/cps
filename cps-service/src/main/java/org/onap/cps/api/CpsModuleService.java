@@ -21,6 +21,7 @@
 
 package org.onap.cps.api;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -51,12 +52,12 @@ public interface CpsModuleService {
      * @param dataspaceName                          Dataspace name
      * @param schemaSetName                          schema set name
      * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param existingModuleReferences               List of YANG resources module references of the modules
+     * @param moduleReferences               List of YANG resources module references of the modules
      *                                               needed for this handle that are already in CPS
      */
     void createSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
                                     @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
-                                    @NonNull List<ModuleReference> existingModuleReferences);
+                                    @NonNull List<ModuleReference> moduleReferences);
 
     /**
      * Read schema set in the given dataspace.
@@ -82,7 +83,8 @@ public interface CpsModuleService {
     /**
      * Retrieve all modules and revisions known by CPS for all Yang Resources.
      *
+     * @param dataspaceName        dataspace name
      * @return a list of ModuleReference objects
      */
-    List<ModuleReference> getAllYangResourcesModuleReferences();
+    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName);
 }

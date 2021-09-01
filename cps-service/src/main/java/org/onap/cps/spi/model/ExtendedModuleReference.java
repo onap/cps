@@ -1,8 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2021 Nordix Foundation.
- * Modifications Copyright (C) 2021 Bell Canada.
- * Modifications Copyright (C) 2021 Pantheon.tech
+ * Copyright (C) 2020 Nordix Foundation.
+ * Modifications Copyright 2020-2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,25 +21,22 @@
 
 package org.onap.cps.spi.model;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Setter(AccessLevel.PROTECTED)
-@Getter
-public class DataNode {
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ExtendedModuleReference implements Serializable {
 
-    DataNode() {    }
+    private static final long serialVersionUID = 1L;
 
-    private String dataspace;
-    private String schemaSetName;
-    private String anchorName;
-    private ExtendedModuleReference extendedModuleReference;
-    private String xpath;
-    private Map<String, Object> leaves = Collections.emptyMap();
-    private Collection<String> xpathsChildren;
-    private Collection<DataNode> childDataNodes = Collections.emptySet();
+    private String name;
+    private String namespace;
+    private String revision;
+
 }
