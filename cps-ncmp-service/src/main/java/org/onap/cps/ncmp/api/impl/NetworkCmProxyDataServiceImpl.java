@@ -225,11 +225,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
-        final var dataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
+        return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
                 NCMP_DMI_REGISTRY_ANCHOR,
                 xpathForDmiRegistryToFetchCmHandle,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return dataNode;
     }
 
     private String prepareOperationBody(final GenericRequestBody requestBodyObject) {
@@ -243,7 +242,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private Map<String, String> getCmHandlePropertiesAsMap(final Collection<DataNode> cmHandlePropertiesList) {
-        if (cmHandlePropertiesList == null || cmHandlePropertiesList.size() == 0) {
+        if (cmHandlePropertiesList == null || cmHandlePropertiesList.isEmpty()) {
             return null;
         }
         final Map<String, String> cmHandlePropertiesMap = new LinkedHashMap<>();
@@ -329,7 +328,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         persistenceCmHandle.setDmiServiceName(dmiPluginService);
         persistenceCmHandle.setId(cmHandle.getCmHandleID());
         if (cmHandle.getCmHandleProperties() == null) {
-            persistenceCmHandle.setAdditionalProperties(Collections.EMPTY_MAP);
+            persistenceCmHandle.setAdditionalProperties(Collections.emptyMap());
         } else {
             persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
         }

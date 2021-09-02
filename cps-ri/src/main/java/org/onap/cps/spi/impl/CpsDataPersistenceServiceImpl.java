@@ -91,7 +91,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
-    private static final String REG_EX_FOR_LIST_NODE_KEY = "\\[(\\@([^/]*?))+( and)*\\]$";
+    private static final String REG_EX_FOR_LIST_NODE_KEY = "\\[(\\@([^/]*?)){0,99}( and)*\\]$";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -344,10 +344,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(descendantNode);
 
         final boolean xpathPointsToAValidChildNodeWithKey = parentEntity.getChildFragments().stream().anyMatch(
-            (fragment) -> fragment.getXpath().equals(listNodeXpath));
+            fragment -> fragment.getXpath().equals(listNodeXpath));
 
         final boolean xpathPointsToAValidChildNodeWithoutKey = parentEntity.getChildFragments().stream().anyMatch(
-            (fragment) -> fragment.getXpath().replaceAll(REG_EX_FOR_LIST_NODE_KEY, "").equals(listNodeXpath));
+            fragment -> fragment.getXpath().replaceAll(REG_EX_FOR_LIST_NODE_KEY, "").equals(listNodeXpath));
 
         if ((descendantNodeHasListNodeKey.find() && xpathPointsToAValidChildNodeWithKey)
             ||
