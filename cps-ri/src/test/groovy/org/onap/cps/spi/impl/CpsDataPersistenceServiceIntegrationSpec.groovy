@@ -65,10 +65,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static DataNode existingChildDataNode
 
     def expectedLeavesByXpathMap = [
-            '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
-            '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
-            '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
-            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
+        '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
+        '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
+        '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
+        '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
     ]
 
     static {
@@ -377,7 +377,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Replace list-node content of #scenario.'() {
         given: 'list node data fragment as a collection of data nodes'
-            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+            def listNodeCollection = [buildDataNode(listNodeXpaths, null, buildDataNodeCollection(["${listNodeXpaths}/child"] ))]
         when: 'list-node elements replaced within the existing parent node'
             objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
         then: 'child list elements are updated as expected, non-list element remains as is'
@@ -386,9 +386,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert allChildXpaths.size() == expectedChildXpaths.size()
             assert allChildXpaths.containsAll(expectedChildXpaths)
         where: 'following parameters were used'
-            scenario                 | listNodeXpaths                      || expectedChildXpaths
-            'existing list-node'     | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
-            'non-existing list-node' | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            scenario                                       | listNodeXpaths                      || expectedChildXpaths
+            'existing list node with non existing key'     | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
+            'non existing list node with non existing key' | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            'existing list node with 1 existing key'       | ['/parent-201/child-204[@key="X"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="X"]']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -473,7 +474,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
         flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
         dataNodeTree.getChildDataNodes()
-                .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
+            .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
         return flatMap
     }
 

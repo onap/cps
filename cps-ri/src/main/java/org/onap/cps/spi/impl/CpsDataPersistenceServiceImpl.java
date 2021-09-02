@@ -303,18 +303,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    @Transactional
     public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final Collection<DataNode> dataNodes) {
         final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
         final var listNodeXpath = firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("["));
-        removeListNodeDescendants(parentEntity, listNodeXpath);
-        final Set<FragmentEntity> childFragmentEntities = dataNodes.stream().map(
-            dataNode -> convertToFragmentWithAllDescendants(
-                parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode)
-        ).collect(Collectors.toUnmodifiableSet());
-        parentEntity.getChildFragments().addAll(childFragmentEntities);
+        final Map<String, FragmentEntity> listNodeElementFragmentEntitiesByXpath = getListNodeElements(parentEntity, listNodeXpath);
+
+        parentEntity.getChildFragments().removeAll(listNodeElementFragmentEntitiesByXpath.values());
+
+        Set<FragmentEntity> updatedChildFragments = new HashSet<>();
+        for ( var dataNode : dataNodes) {
+            final FragmentEntity childFragment;
+            if (listNodeElementFragmentEntitiesByXpath.containsKey(dataNode.getXpath())) {
+                childFragment = listNodeElementFragmentEntitiesByXpath.get(dataNode.getXpath());
+                replaceDataNodeTree(childFragment, dataNode);
+            } else {
+                childFragment = convertToFragmentWithAllDescendants(
+                    parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode);
+            }
+            updatedChildFragments.add(childFragment);
+        }
+
+        parentEntity.getChildFragments().addAll(updatedChildFragments);
+
         fragmentRepository.save(parentEntity);
     }
 
@@ -349,6 +361,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
             fragmentRepository.save(parentFragmentEntity);
         }
+    }
+
+    private Map<String, FragmentEntity> getListNodeElements(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
+        final String listNodeXpathPrefix = listNodeXpath +"[";
+        return parentFragmentEntity.getChildFragments().stream()
+            .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listNodeXpathPrefix))
+            .collect(Collectors.toMap(fragmentEntity -> fragmentEntity.getXpath(), fragmentEntity -> fragmentEntity));
     }
 
     private static boolean isRootXpath(final String xpath) {
