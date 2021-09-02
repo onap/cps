@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "284b36c4_5ad4aef5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-02T12:54:45Z",
+      "side": 1,
+      "message": "I am not sure if it will work when childNode of ListNodeElement is also updated \n\nWill add example in the jira bug.",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 320,
+        "endChar": 50
+      },
+      "revId": "69a056f1908c177a6f1897f1747153d371b6db21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
