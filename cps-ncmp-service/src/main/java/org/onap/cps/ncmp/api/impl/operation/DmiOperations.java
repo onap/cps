@@ -48,7 +48,7 @@ public class DmiOperations {
     }
 
     private DmiRestClient dmiRestClient;
-    private static final String DMI_API_PATH = "/dmi/api";
+    private static final String DMI_API_PATH = "/dmi";
     private static final String DMI_CM_HANDLE_PATH = "/v1/ch/{cmHandle}";
     private static final String DMI_CM_HANDLE_DATASTORE_PATH = DMI_CM_HANDLE_PATH + "/data/ds";
     private static final String URL_SEPARATOR = "/";
@@ -65,7 +65,7 @@ public class DmiOperations {
     /**
      * Get resources from DMI.
      *
-     * @param dmiServiceName dmi base path
+     * @param dmiServiceName dmi service name
      * @param cmHandle cmHandle
      * @param resourceName name of the resource(s)
      * @return {@code ResponseEntity} response entity
@@ -135,17 +135,17 @@ public class DmiOperations {
      * This method creates the resource data from pass-through running data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param dmiBasePath dmi base path
+     * @param dmiServiceName dmi service name
      * @param cmHandle    network resource identifier
      * @param resourceId  resource identifier
      * @param jsonBody    json body for put operation
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Void> createResourceDataPassThroughRunningFromDmi(final String dmiBasePath,
+    public ResponseEntity<Void> createResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
                                                                             final String cmHandle,
                                                                             final String resourceId,
                                                                             final String jsonBody) {
-        final var stringBuilder = getStringBuilderForPassThroughRunningUrl(dmiBasePath,
+        final var stringBuilder = getStringBuilderForPassThroughRunningUrl(dmiServiceName,
             cmHandle, resourceId, DataStoreEnum.PASSTHROUGH_RUNNING);
         return dmiRestClient.postOperationWithJsonData(stringBuilder.toString(), jsonBody, new HttpHeaders());
     }
