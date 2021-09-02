@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22afacd5_c9cf0b5e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-02T14:55:36Z",
+      "side": 1,
+      "message": "these can all be in-lined on line #88",
+      "range": {
+        "startLine": 74,
+        "startChar": 3,
+        "endLine": 77,
+        "endChar": 77
+      },
+      "revId": "2c682f58d7e0d3bdc42a19f9d3ca90977290b406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c2dd660_5e20c957",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-02T14:55:36Z",
+      "side": 1,
+      "message": "fix identation of this block",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 12
+      },
+      "revId": "2c682f58d7e0d3bdc42a19f9d3ca90977290b406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e3e437c_5e2897fa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-02T14:55:36Z",
+      "side": 1,
+      "message": "not sure if these are needed, please remove if not.\n\nYou can also explore Groovy shortcuts like so\n attributesJson \u003d \u0027{\"cellLocalId\": \u0027+dataString+\u0027}\u0027\n def fragmentEntity \u003d new FragmentEntity(xpath:\u0027demo\u0027,attributes:attributesJson)",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 68
+      },
+      "revId": "2c682f58d7e0d3bdc42a19f9d3ca90977290b406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e6573c4_c96e5cf1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-02T14:55:36Z",
+      "side": 1,
+      "message": "some attribute",
+      "range": {
+        "startLine": 84,
+        "startChar": 44,
+        "endLine": 84,
+        "endChar": 55
+      },
+      "revId": "2c682f58d7e0d3bdc42a19f9d3ca90977290b406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e595923b_acec2fbf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-02T14:55:36Z",
+      "side": 1,
+      "message": "inline string literals as mentioned above (none of these values are used anywhere else)",
+      "range": {
+        "startLine": 88,
+        "startChar": 55,
+        "endLine": 88,
+        "endChar": 109
+      },
+      "revId": "2c682f58d7e0d3bdc42a19f9d3ca90977290b406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
