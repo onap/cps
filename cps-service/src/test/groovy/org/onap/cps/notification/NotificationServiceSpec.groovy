@@ -36,7 +36,6 @@ import spock.lang.Specification
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest
-@EnableAsync
 @EnableConfigurationProperties
 @ContextConfiguration(classes = [NotificationProperties, NotificationService, NotificationErrorHandler, AsyncConfig])
 class NotificationServiceSpec extends Specification {
@@ -105,10 +104,4 @@ class NotificationServiceSpec extends Specification {
             1 * spyNotificationErrorHandler.onException(_, _, _, _)
     }
 
-    NotificationService createNotificationService(boolean notificationEnabled) {
-        spyNotificationProperties = Spy(notificationProperties)
-        spyNotificationProperties.isEnabled() >> notificationEnabled
-        return new NotificationService(spyNotificationProperties, mockNotificationPublisher,
-            mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler)
-    }
 }
