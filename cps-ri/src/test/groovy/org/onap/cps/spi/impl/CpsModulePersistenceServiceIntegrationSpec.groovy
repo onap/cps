@@ -20,6 +20,9 @@
  */
 package org.onap.cps.spi.impl
 
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.YangResourceEntity
@@ -33,9 +36,6 @@ import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 

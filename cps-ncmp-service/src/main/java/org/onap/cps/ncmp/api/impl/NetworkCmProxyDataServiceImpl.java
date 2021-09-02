@@ -56,6 +56,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleNameRevision;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -221,6 +222,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         resourceIdentifier,
                         dmiRequestBody);
         handleResponseForPost(responseEntity);
+    }
+
+    @Override
+    public Collection<ModuleNameRevision> getAllYangResourcesModuleReferences(final String cmHandle) {
+        return cpsModuleService.getAllYangResourcesModuleReferences(NF_PROXY_DATASPACE_NAME, cmHandle);
     }
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {

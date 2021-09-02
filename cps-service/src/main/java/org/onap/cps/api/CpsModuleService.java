@@ -27,6 +27,7 @@ import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.DataInUseException;
+import org.onap.cps.spi.model.ModuleNameRevision;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 
@@ -87,4 +88,14 @@ public interface CpsModuleService {
      * @return a list of ModuleReference objects
      */
     Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName);
+
+    /**
+     * Retrieve all modules and revisions known by CPS for all Yang Resources.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a list of ModuleReference objects
+     */
+    Collection<ModuleNameRevision> getAllYangResourcesModuleReferences(final String dataspaceName,
+        final String anchorName);
 }

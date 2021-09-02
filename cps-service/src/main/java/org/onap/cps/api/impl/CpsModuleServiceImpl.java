@@ -27,6 +27,7 @@ import java.util.Map;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.model.ModuleNameRevision;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
@@ -79,4 +80,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.getAllYangResourcesModuleReferences(dataspaceName);
     }
 
+    @Override
+    public Collection<ModuleNameRevision> getAllYangResourcesModuleReferences(final String dataspaceName,
+        final String anchorName) {
+        return cpsModulePersistenceService.getAllYangResourcesModuleReferences(dataspaceName, anchorName);
+    }
 }
