@@ -22,6 +22,7 @@ package org.onap.cps.config;
 
 import javax.validation.constraints.Min;
 import lombok.Setter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +33,8 @@ import org.springframework.validation.annotation.Validated;
 
 @EnableAsync
 @Configuration
-@ConfigurationProperties("notification.async-executor")
+@ConditionalOnProperty(name = "notification.async.enabled", havingValue = "true", matchIfMissing = false)
+@ConfigurationProperties("notification.async.executor")
 @Validated
 @Setter
 public class AsyncConfig {

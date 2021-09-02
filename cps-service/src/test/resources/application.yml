@@ -22,7 +22,7 @@ notification:
       enabled-dataspaces: ".*-published,.*-important"
     enabled: true
     topic: cps-event
-  async-executor:
+  async.executor:
     core-pool-size: 2
     max-pool-size: 10
     queue-capacity: 0
