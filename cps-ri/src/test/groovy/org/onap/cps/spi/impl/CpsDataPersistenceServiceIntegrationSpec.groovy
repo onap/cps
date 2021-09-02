@@ -386,9 +386,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert allChildXpaths.size() == expectedChildXpaths.size()
             assert allChildXpaths.containsAll(expectedChildXpaths)
         where: 'following parameters were used'
-            scenario                 | listNodeXpaths                      || expectedChildXpaths
-            'existing list-node'     | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
-            'non-existing list-node' | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            scenario                                | listNodeXpaths                      || expectedChildXpaths
+            'existing list-node'                    | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
+            'non-existing list-node'                | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            'existing list-node with duplicate key' | ['/parent-201/child-204[@key="X"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="X"]']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
