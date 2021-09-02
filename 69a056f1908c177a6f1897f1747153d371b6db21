@@ -22,6 +22,29 @@
       "revId": "69a056f1908c177a6f1897f1747153d371b6db21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c4b9bc2_e5853c90",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-02T13:33:51Z",
+      "side": 1,
+      "message": "Do we need error scenario for when non list node xpath is used?",
+      "range": {
+        "startLine": 404,
+        "startChar": 12,
+        "endLine": 404,
+        "endChar": 96
+      },
+      "revId": "69a056f1908c177a6f1897f1747153d371b6db21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
