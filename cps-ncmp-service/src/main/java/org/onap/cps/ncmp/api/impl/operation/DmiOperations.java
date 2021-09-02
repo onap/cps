@@ -48,7 +48,7 @@ public class DmiOperations {
     }
 
     private DmiRestClient dmiRestClient;
-    private static final String DMI_API_PATH = "/dmi/api";
+    private static final String DMI_API_PATH = "/dmi";
     private static final String DMI_CM_HANDLE_PATH = "/v1/ch/{cmHandle}";
     private static final String DMI_CM_HANDLE_DATASTORE_PATH = DMI_CM_HANDLE_PATH + "/data/ds";
     private static final String URL_SEPARATOR = "/";
