@@ -6,6 +6,8 @@
 CPS Overview
 ============
 
+.. warning:: draft
+
 The Configuration Persistence Service (CPS) is a platform component that is designed to serve as a
 data repository for runtime data that needs persistence.
 
@@ -36,3 +38,6 @@ Contact Information
 -------------------
 
 onap-discuss@lists.onap.org
+
+Meeting details `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_
+`Agenda <https://wiki.onap.org/pages/viewpage.action?pageId=111117075>`_

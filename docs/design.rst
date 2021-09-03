@@ -1,5 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
+.. Copyright (C) 2021 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _design:
@@ -7,6 +8,8 @@
 
 CPS Design
 ##########
+
+.. warning:: draft
 
 .. toctree::
    :maxdepth: 1
@@ -16,7 +19,9 @@ Offered APIs
 
 CPS supports the public APIs listed in the link below:
 
-:download:`OpenApi Specification <api/swagger/openapi.yml>`
+:download:`CPS Rest OpenApi Specification <api/swagger/cps/openapi.yaml>`
+
+:download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
 
 Exposed API
 -----------
