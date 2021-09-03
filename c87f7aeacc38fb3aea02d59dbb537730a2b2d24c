@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9bdfe37a_8bc53c66",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-03T08:45:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "063d9718_3ec5b274",
+      "range": {
+        "startLine": 254,
+        "startChar": 27,
+        "endLine": 255,
+        "endChar": 117
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe00c86c_92753bad",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e1f05594_48bc05b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-03T08:45:08Z",
+      "side": 1,
+      "message": "One of the previous comments mentioned that it didn\u0027t need to be static and I made toDataNode non static for the ObjectMapper, this calls toDataNode which means this also has to be non static",
+      "parentUuid": "fe00c86c_92753bad",
+      "range": {
+        "startLine": 265,
+        "startChar": 4,
+        "endLine": 265,
+        "endChar": 26
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41fa44bc_a2b0eb74",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ed640f2_b2668e9a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-09-03T08:45:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41fa44bc_a2b0eb74",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
