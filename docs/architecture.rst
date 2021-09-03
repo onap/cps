@@ -6,6 +6,8 @@
 CPS Architecture
 ################
 
+.. warning:: draft
+
 .. toctree::
    :maxdepth: 1
 
@@ -16,10 +18,13 @@ High Level Component Definition and Architectural Relationships
 The Configuration Persistence Service (CPS) provides storage for run-time configuration and operational
 parameters that need to be used by ONAP.
 
-In this release the CPS is a stand-alone component. Project page describing eventual scope and ambition is here:
-`Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_ 
+In this release the CPS is released with new components which both depend on CPS-Core Cps-Temporal and NCMP, which in turn
+depends on the DMI-Plugin.
 
-This page reflects the state for Honolulu-R8 release.
+Project page describing eventual scope and ambition is here:
+`Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
+
+This page reflects the state for Istanbul-R9 release.
 
 .. image:: _static/cps-r8-arch-diagram.png
 

@@ -1,10 +1,13 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (C) 2021 Pantheon.tech
+.. Modifications Copyright (C) 2021 Nordix Foundation
 .. _overview:
 
 CPS Overview
 ============
+
+.. warning:: draft
 
 The Configuration Persistence Service (CPS) is a platform component that is designed to serve as a
 data repository for runtime data that needs persistence.
@@ -36,3 +39,6 @@ Contact Information
 -------------------
 
 onap-discuss@lists.onap.org
+
+Meeting details `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_
+`Agenda <https://wiki.onap.org/pages/viewpage.action?pageId=111117075>`_
