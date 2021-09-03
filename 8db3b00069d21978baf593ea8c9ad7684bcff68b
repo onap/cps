@@ -2,6 +2,213 @@
   "comments": [
     {
       "key": {
+        "uuid": "9855e9ae_5d710457",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "remove this \u0027s\u0027",
+      "range": {
+        "startLine": 357,
+        "startChar": 47,
+        "endLine": 357,
+        "endChar": 48
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb55aa3_3d56bff6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "remove this \u0027s\u0027",
+      "range": {
+        "startLine": 120,
+        "startChar": 57,
+        "endLine": 120,
+        "endChar": 58
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8d21389_acc205cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "can this be removed since it is a parameter?",
+      "range": {
+        "startLine": 122,
+        "startChar": 73,
+        "endLine": 122,
+        "endChar": 86
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b191021_978aaed9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "remove this \u0027s\u0027",
+      "range": {
+        "startLine": 128,
+        "startChar": 60,
+        "endLine": 128,
+        "endChar": 61
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e4ebca9_e4ed8e41",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "can this be removed since it they are parameters (and make it consistent with the public method names in this class?)",
+      "range": {
+        "startLine": 132,
+        "startChar": 55,
+        "endLine": 132,
+        "endChar": 81
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c0e0fb_b9b9ce6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "SELECT DISTINCT (see comments on test)",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ef65d5_566c57b7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "SELECT DISTINCT",
+      "range": {
+        "startLine": 53,
+        "startChar": 20,
+        "endLine": 53,
+        "endChar": 26
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "506c8055_5f50cb96",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "Set",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 8
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5af2cad0_bc32c11b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:04:06Z",
+      "side": 1,
+      "message": "should NOT get duplicates !  use \u0027DISTINC@ keyword in query and java sets where possible (instead of lists)",
+      "range": {
+        "startLine": 158,
+        "startChar": 1,
+        "endLine": 159,
+        "endChar": 104
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f164061_a8502528",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleNameRevision.java",
         "patchSetId": 1
