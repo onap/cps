@@ -46,6 +46,30 @@
       "revId": "cd048075b11eef88501619da0068d5eb6dd330f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56314eaf_1902bebb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-03T12:11:57Z",
+      "side": 1,
+      "message": "@SpringBean is required to add the mocked object (used spock Mock for mocking) in the Spring context.\n\n@SpringSpy is already explained in the linked shared by Bruno",
+      "parentUuid": "143010ae_a0784a7a",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "cd048075b11eef88501619da0068d5eb6dd330f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
