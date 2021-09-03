@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b7c1a1e_f277a48f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T08:06:52Z",
+      "side": 1,
+      "message": "(legacy) I think I asked this before but can you not use Spock annotations @Mock and @Spy instead?!",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "cd048075b11eef88501619da0068d5eb6dd330f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
