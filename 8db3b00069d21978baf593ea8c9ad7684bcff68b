@@ -209,6 +209,29 @@
     },
     {
       "key": {
+        "uuid": "888e5bf9_68a2164e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-09-03T10:29:34Z",
+      "side": 1,
+      "message": "Should we make this return ModuleNameRevision object as well? since it is being done that way in the method below this.",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 30
+      },
+      "revId": "8db3b00069d21978baf593ea8c9ad7684bcff68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f164061_a8502528",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleNameRevision.java",
         "patchSetId": 1
