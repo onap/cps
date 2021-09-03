@@ -6,6 +6,8 @@
 CPS Overview
 ============
 
+.. warning:: draft
+
 The Configuration Persistence Service (CPS) is a platform component that is designed to serve as a
 data repository for runtime data that needs persistence.
 
