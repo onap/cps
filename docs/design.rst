@@ -16,7 +16,9 @@ Offered APIs
 
 CPS supports the public APIs listed in the link below:
 
-:download:`OpenApi Specification <api/swagger/openapi.yml>`
+:download:`CPS Rest OpenApi Specification <api/swagger/cps/openapi.yaml>`
+
+:download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
 
 Exposed API
 -----------
