@@ -19,7 +19,7 @@ parameters that need to be used by ONAP.
 In this release the CPS is a stand-alone component. Project page describing eventual scope and ambition is here:
 `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_ 
 
-This page reflects the state for Honolulu-R8 release.
+This page reflects the state for Istanbul-R9 release.
 
 .. image:: _static/cps-r8-arch-diagram.png
 
