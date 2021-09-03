@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "063d9718_3ec5b274",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T07:32:49Z",
+      "side": 1,
+      "message": "the two messages should be the same; extract out a common \nString message \u003d \"Parsing error occurred while converting parsing JSON for fragmentEntity attributes.\"",
+      "range": {
+        "startLine": 254,
+        "startChar": 27,
+        "endLine": 255,
+        "endChar": 117
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe00c86c_92753bad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T07:32:49Z",
+      "side": 1,
+      "message": "not blocking: static accidently removed?",
+      "range": {
+        "startLine": 265,
+        "startChar": 4,
+        "endLine": 265,
+        "endChar": 26
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41fa44bc_a2b0eb74",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-03T07:32:49Z",
+      "side": 1,
+      "message": "in the context of this class and consistency this probably should be \"attributeValue\"",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "c87f7aeacc38fb3aea02d59dbb537730a2b2d24c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
