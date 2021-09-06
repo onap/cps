@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8b3dd30_576ad501",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:34:58Z",
+      "side": 1,
+      "message": "CPS is no more a stand alone component.",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dff7566_7ccbfae2",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:34:58Z",
+      "side": 1,
+      "message": "extra space",
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7199f8_88415cc3",
+        "filename": "docs/conf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:34:58Z",
+      "side": 1,
+      "message": "Do we really need to update this file? I see all other components being added here?\nIn H release, this file was not updated but picked up from some other repo.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f54907_bd5609f2",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:34:58Z",
+      "side": 1,
+      "message": "instead of using 1, would be better to use the component  name eg: copy-resources-cps and copy-resources-ncmp",
+      "range": {
+        "startLine": 99,
+        "startChar": 28,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
