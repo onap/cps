@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7834cc8f_ef26c27e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-06T12:31:26Z",
+      "side": 1,
+      "message": "toine suggested removing the parameter name https://gerrit.onap.org/r/c/cps/+/123817/1/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java#122",
+      "parentUuid": "fd947b0d_1b490e01",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4c945a6_a18cc1eb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
         "patchSetId": 2
