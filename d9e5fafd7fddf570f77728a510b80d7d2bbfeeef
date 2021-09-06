@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef625130_2297cd52",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T09:36:05Z",
+      "side": 1,
+      "message": "Shouldn\u0027t specifications be all lower case. Also small typo on Plugin with L being upper case",
+      "range": {
+        "startLine": 358,
+        "startChar": 16,
+        "endLine": 358,
+        "endChar": 63
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a300ea_17760ef8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T09:36:05Z",
+      "side": 1,
+      "message": "Should be variable should be called \u0027DATASPACE_NAME1\u0027 if there is a \u0027DATASPACE_NAME2\u0027 to keep the naming consistent with the rest of the file.",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
