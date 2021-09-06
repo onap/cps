@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7f2cfdac_d22b09f5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-06T13:21:57Z",
+      "side": 1,
+      "message": "After a discussion with the team we have agreed to use the name \u0027findAllModuleRefByDataspace\u0027",
+      "parentUuid": "7834cc8f_ef26c27e",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4c945a6_a18cc1eb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
         "patchSetId": 2
