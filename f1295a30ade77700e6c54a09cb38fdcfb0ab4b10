@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f35594e3_40c49dcc",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T13:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8b3dd30_576ad501",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dff7566_7ccbfae2",
         "filename": "docs/architecture.rst",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "9539cc72_59c0b151",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T13:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dff7566_7ccbfae2",
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a7199f8_88415cc3",
         "filename": "docs/conf.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2021-09-06T10:34:58Z",
       "side": 1,
       "message": "Do we really need to update this file? I see all other components being added here?\nIn H release, this file was not updated but picked up from some other repo.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81be7649_739b8945",
+        "filename": "docs/conf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T13:12:33Z",
+      "side": 1,
+      "message": "I updated it here to keep it consistent with the latest file which is part of the NCMP-DMI docs too. I also noticed slight issues with CSS locally, such as new pages not appearing in the sidebar while using the older version of this file. \n\nThis file was also taken from another repo. It is mentioned in the commit comment. This is the latest version of that file.\n\nI have removed references to the other components.\n\nI think it is also to important to keep this file up to date when configuring documentation for each release.",
+      "parentUuid": "5a7199f8_88415cc3",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -85,6 +151,30 @@
       "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b02cd7fc_87f05278",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-06T13:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15f54907_bd5609f2",
+      "range": {
+        "startLine": 99,
+        "startChar": 28,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "f1295a30ade77700e6c54a09cb38fdcfb0ab4b10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
