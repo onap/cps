@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "aa56f1d5_47d3924b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-06T13:50:15Z",
+      "side": 1,
+      "message": "this test might have impact due to CPS-635 , need to check  combination both task give correct outcome.",
+      "range": {
+        "startLine": 357,
+        "startChar": 3,
+        "endLine": 357,
+        "endChar": 4
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef625130_2297cd52",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -18,6 +41,29 @@
         "startChar": 16,
         "endLine": 358,
         "endChar": 63
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "191cd96f_e06516d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-06T13:50:15Z",
+      "side": 1,
+      "message": "give dataspace name here for more restrictive mocking.",
+      "range": {
+        "startLine": 363,
+        "startChar": 68,
+        "endLine": 363,
+        "endChar": 69
       },
       "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
