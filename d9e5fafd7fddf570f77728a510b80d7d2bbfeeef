@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "fd947b0d_1b490e01",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:20:41Z",
+      "side": 1,
+      "message": "will be good to have the methodName specify the parameters as is the convention in Repository auto generated methods.\neg: findAllModuleRefByDataspace",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4c945a6_a18cc1eb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:20:41Z",
+      "side": 1,
+      "message": "same comment as  above",
+      "range": {
+        "startLine": 64,
+        "startChar": 37,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "d9e5fafd7fddf570f77728a510b80d7d2bbfeeef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21a300ea_17760ef8",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
         "patchSetId": 2

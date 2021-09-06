@@ -46,6 +46,29 @@
       "revId": "0af60de4fbb3a3e6c828e179c667b173b1539b62",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fb01adf_6dc5934a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-09-06T10:20:41Z",
+      "side": 0,
+      "message": "y is this copyright being removed?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 50
+      },
+      "revId": "0af60de4fbb3a3e6c828e179c667b173b1539b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
