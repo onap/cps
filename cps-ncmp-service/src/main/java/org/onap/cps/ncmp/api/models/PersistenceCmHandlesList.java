@@ -23,7 +23,9 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class PersistenceCmHandlesList {
 
     @JsonProperty("cm-handles")
@@ -40,5 +42,4 @@ public class PersistenceCmHandlesList {
         }
         persistenceCmHandles.add(persistenceCmHandle);
     }
-
 }

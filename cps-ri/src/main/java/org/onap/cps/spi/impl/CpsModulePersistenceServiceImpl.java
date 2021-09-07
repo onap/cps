@@ -194,8 +194,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
+                final String convertedText = escapeTxtForJson(entry.getValue());
                 final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
-                            entry.getValue());
+                    convertedText);
                 final var yangResourceEntity = new YangResourceEntity();
                 yangResourceEntity.setName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
@@ -237,6 +238,30 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             .addAll(newYangResourceEntities)
             .build();
     }
+
+    private static String escapeTxtForJson(String sourceYang) {
+        final Map<String, String> charsToConvert = new HashMap<>();
+        charsToConvert.put("\\n", "\n");
+        charsToConvert.put("\\\"", "\"");
+
+        if (sourceYang.startsWith("\"")) {
+            sourceYang = sourceYang.substring(1, sourceYang.length() - 1);
+        }
+
+        for (final Map.Entry<String, String> entry : charsToConvert.entrySet()) {
+            sourceYang = sourceYang.replace(entry.getKey(), entry.getValue());
+        }
+
+        if (sourceYang.contains("\\\"")) {
+            sourceYang = sourceYang.replace("\\\"", "'");
+        }
+
+        if (sourceYang.contains("\\'")) {
+            sourceYang = sourceYang.replace("\\'", "\\\"");
+        }
+        return sourceYang;
+    }
+
 
     private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
         final Map<String, String> metaDataMap = new HashMap<>();
