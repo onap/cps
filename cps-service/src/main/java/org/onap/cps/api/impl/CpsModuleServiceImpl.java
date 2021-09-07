@@ -79,4 +79,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.getAllYangResourceModuleReferences(dataspaceName);
     }
 
+    @Override
+    public Collection<ModuleReference> getAllYangResourcesModuleReferences(final String dataspaceName,
+        final String anchorName) {
+        return cpsModulePersistenceService.getAllYangResourceModuleReferences(dataspaceName, anchorName);
+    }
 }

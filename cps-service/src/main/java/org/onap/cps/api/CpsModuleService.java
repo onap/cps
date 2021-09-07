@@ -86,5 +86,14 @@ public interface CpsModuleService {
      * @param dataspaceName        dataspace name
      * @return a list of ModuleReference objects
      */
-    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName);
+    Collection<ModuleReference> getAllYangResourceModuleReferences(String dataspaceName);
+
+    /**
+     * Retrieve all modules and revisions known by CPS for all Yang Resources.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a list of ModuleReference objects
+     */
+    Collection<ModuleReference> getAllYangResourcesModuleReferences(String dataspaceName, String anchorName);
 }

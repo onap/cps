@@ -223,6 +223,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         handleResponseForPost(responseEntity);
     }
 
+    @Override
+    public Collection<ModuleReference> getAllYangResourcesModuleReferences(final String cmHandle) {
+        return cpsModuleService.getAllYangResourcesModuleReferences(NF_PROXY_DATASPACE_NAME, cmHandle);
+    }
+
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
