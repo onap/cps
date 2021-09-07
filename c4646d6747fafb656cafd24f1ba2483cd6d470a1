@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "39fa51b9_ae5dd17c",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmproxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "dont think the word \u0027All\u0027 is needed for the method name could even be considered misleading",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "616a3fd0_0cb21880",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "dont think the word \u0027All\u0027 is needed for the method name could even be considered misleading",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4782b264_0061e16c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -25,6 +71,76 @@
     },
     {
       "key": {
+        "uuid": "c1dc3d1f_caf59b26",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "should follow what we have done sofar ie. Object.\nWe have an improvement Jira to address this later, see https://jira.onap.org/browse/CPS-643",
+      "parentUuid": "4782b264_0061e16c",
+      "range": {
+        "startLine": 225,
+        "startChar": 26,
+        "endLine": 225,
+        "endChar": 32
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a749a988_f5ba92ee",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "dont think the word \u0027All\u0027 is needed for the method name could even be considered misleading",
+      "range": {
+        "startLine": 225,
+        "startChar": 37,
+        "endLine": 225,
+        "endChar": 40
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "451bd004_2264857f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "dont think the word \u0027All\u0027 is needed for the method name could even be considered misleading\n\n(wont repeat :-)",
+      "range": {
+        "startLine": 227,
+        "startChar": 60,
+        "endLine": 227,
+        "endChar": 63
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0fa6c17_1550e3c3",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -41,6 +157,75 @@
         "startChar": 12,
         "endLine": 258,
         "endChar": 16
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb112664_3ab931c9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "note sure if you need two sample in array...",
+      "range": {
+        "startLine": 260,
+        "startChar": 24,
+        "endLine": 260,
+        "endChar": 96
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de209cff_30f75d8e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "I think the word All was introduce originally by Shiva because there was NO filter condition. Now I think it is no loner appropriate but I can live with it if it cause major delays",
+      "range": {
+        "startLine": 78,
+        "startChar": 42,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a927bae5_8d9a3bfc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:07:37Z",
+      "side": 1,
+      "message": "the module store service service returns a list module references",
+      "range": {
+        "startLine": 129,
+        "startChar": 16,
+        "endLine": 129,
+        "endChar": 51
       },
       "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
