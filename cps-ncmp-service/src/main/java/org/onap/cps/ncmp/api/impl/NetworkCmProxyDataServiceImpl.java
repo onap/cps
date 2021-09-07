@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -215,7 +216,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 .cmHandleProperties(cmHandlePropertiesMap)
                 .build();
         final var dmiRequestBody = prepareOperationBody(dmiRequestBodyObject);
-        final ResponseEntity<Void> responseEntity = dmiOperations
+        final ResponseEntity<String> responseEntity = dmiOperations
                 .createResourceDataPassThroughRunningFromDmi(dmiServiceName,
                         cmHandle,
                         resourceIdentifier,
@@ -263,7 +264,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void handleResponseForPost(final @NotNull ResponseEntity<Void> responseEntity) {
+    private void handleResponseForPost(final @NotNull ResponseEntity<String> responseEntity) {
         if (responseEntity.getStatusCode() != HttpStatus.CREATED) {
             throw new NcmpException("Not able to create resource data.",
                     "DMI status code: " + responseEntity.getStatusCodeValue()
@@ -309,11 +310,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 final PersistenceCmHandle persistenceCmHandle =
                     toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
                 persistenceCmHandlesList.add(persistenceCmHandle);
-                createAnchorAndSyncModel(persistenceCmHandle);
             }
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+
             cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
                 cmHandleJsonData, NO_TIMESTAMP);
+            // register and then sync
+            if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
+                persistenceCmHandlesList.getPersistenceCmHandles().stream().forEach(handle -> {
+                    createAnchorAndSyncModel(handle);
+                });
+            }
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON for DMI Registry.");
             throw new DataValidationException(
@@ -354,15 +361,27 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final var knownModuleReferencesInCps =
             cpsModuleService.getAllYangResourceModuleReferences(NF_PROXY_DATASPACE_NAME);
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
-        for (final ModuleReference moduleReferenceFromDmiForCmHandle :
-            moduleReferencesFromDmiForCmHandle) {
+
+        final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
+        for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromDmiForCmHandle) {
             if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
                 existingModuleReferences.add(moduleReferenceFromDmiForCmHandle);
+            } else {
+                unknownModuleReferences.add(moduleReferenceFromDmiForCmHandle);
             }
         }
 
+        final StringBuilder jsonData = new StringBuilder();
+        jsonData.append("{\"operation\": \"read\",\"data\": {\"modules\": [\n");
+        jsonData.append(unknownModuleReferences.stream().map(module -> {
+            final String data =  " {\"name\": \"" + module.getModuleName() + "\", \"revision\": \""
+                + module.getRevision() + "\"}";
+            return data;
+        }).collect(Collectors.joining(",")));
+        jsonData.append("]}}");
+
         final Map<String, String> newYangResourcesModuleNameToContentMap =
-            getNewYangResources(cmHandle);
+            getNewYangResources(cmHandle, jsonData.toString());
 
         cpsModuleService.createSchemaSetFromModules(NCMP_DATASPACE_NAME, cmHandle.getId(),
             newYangResourcesModuleNameToContentMap, existingModuleReferences);
@@ -370,10 +389,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         cpsAdminService.createAnchor(NCMP_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
     }
 
-    private Map<String, String> getNewYangResources(final PersistenceCmHandle cmHandle) {
-        final var moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmi(
-            cmHandle.getDmiServiceName(), cmHandle.getId(), "moduleResources");
-        final JsonArray moduleResources = new Gson().fromJson(moduleResourcesAsJsonString.getBody(), JsonArray.class);
+    private Map<String, String> getNewYangResources(final PersistenceCmHandle cmHandle, final String jsonData) {
+        final var moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmiWithJsonData(
+            cmHandle.getDmiServiceName(), jsonData, cmHandle.getId(), "moduleResources");
+
+        final JsonArray moduleResources = new Gson().fromJson(moduleResourcesAsJsonString.getBody(),
+            JsonArray.class);
         final Map<String, String> newYangResourcesModuleNameToContentMap = new HashMap<>();
 
         for (final JsonElement moduleResource : moduleResources) {

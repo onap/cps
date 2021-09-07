@@ -41,4 +41,7 @@ public class PersistenceCmHandlesList {
         persistenceCmHandles.add(persistenceCmHandle);
     }
 
+    public List<PersistenceCmHandle> getPersistenceCmHandles() {
+        return persistenceCmHandles;
+    }
 }

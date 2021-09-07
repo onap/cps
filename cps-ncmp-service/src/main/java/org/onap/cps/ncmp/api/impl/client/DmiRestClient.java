@@ -46,10 +46,10 @@ public class DmiRestClient {
         return restTemplate.exchange(dmiResourceUrl, HttpMethod.PUT, httpEntity, Object.class);
     }
 
-    public ResponseEntity<Void> postOperationWithJsonData(final String dmiResourceUrl,
+    public ResponseEntity<String> postOperationWithJsonData(final String dmiResourceUrl,
                                                             final String jsonData, final HttpHeaders headers) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(headers));
-        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Void.class);
+        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, String.class);
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
@@ -58,6 +58,12 @@ public class DmiRestClient {
         return httpHeaders;
     }
 
+    /**
+     * Sends POST operation to DMI.
+     * @param dmiResourceUrl dmi resource url
+     * @param httpHeaders http headers
+     * @return response entity of type String
+     */
     public ResponseEntity<String> postOperation(final String dmiResourceUrl, final HttpHeaders httpHeaders) {
         final var httpEntity = new HttpEntity<>(configureHttpHeaders(httpHeaders));
         return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, String.class);

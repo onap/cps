@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
+import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -56,6 +57,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
+    def mockPersistenceHandleList = Mock(PersistenceCmHandlesList)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
             mockCpsDataService, mockCpsQueryService, mockCpsAdminService, new ObjectMapper())
@@ -143,6 +145,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
+            mockPersistenceHandleList.getPersistenceCmHandles() >> [persistenceCmHandle]
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
@@ -363,7 +366,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsModuleService.getAllYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
-            mockDmiOperations.getResourceFromDmi(_, cmHandleForModelSync.getId(), 'moduleResources') >> moduleResources
+            mockDmiOperations.getResourceFromDmiWithJsonData(_, _, _, 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
