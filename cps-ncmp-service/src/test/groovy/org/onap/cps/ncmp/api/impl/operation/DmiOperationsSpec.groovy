@@ -92,4 +92,18 @@ class DmiOperationsSpec extends Specification {
         then: 'the post operation is executed with the correct URL'
             1 * mockDmiRestClient.postOperation(expectedUrl, _ as HttpHeaders)
     }
+
+    def 'Call get resource from dmi with json data.'() {
+        given: 'expected url & json data'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmHandle/modules'
+            def jsonDataAsString = 'some json'
+            def expectedHttpHeaders = new HttpHeaders()
+        when: 'get resource data is called to dmi'
+            objectUnderTest.getResourceFromDmiWithJsonData('testDmiBasePath',
+                    jsonDataAsString,
+                    'testCmHandle',
+                    'modules')
+        then: 'the post operation is executed with the correct URL and json data'
+            1 * mockDmiRestClient.postOperationWithJsonData(expectedUrl, jsonDataAsString, new HttpHeaders())
+    }
 }
