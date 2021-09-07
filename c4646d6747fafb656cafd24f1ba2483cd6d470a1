@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4782b264_0061e16c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-07T12:08:21Z",
+      "side": 1,
+      "message": "Should this not be String as defined in the corresponding swagger yml file. Or vice versa, should it be defined as Object there, instead of String.",
+      "range": {
+        "startLine": 225,
+        "startChar": 26,
+        "endLine": 225,
+        "endChar": 32
+      },
+      "revId": "c4646d6747fafb656cafd24f1ba2483cd6d470a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
