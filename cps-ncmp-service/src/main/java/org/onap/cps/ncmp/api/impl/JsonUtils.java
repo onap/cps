@@ -18,25 +18,32 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.ArrayList;
-import java.util.List;
-import lombok.Getter;
+public class JsonUtils {
 
-@Getter
-public class PersistenceCmHandlesList {
+    private static final String BACK_SLASH = "\\";
+    private static final String NEW_LINE = "\n";
+    private static final String QUOTE = "\"";
 
-    @JsonProperty("cm-handles")
-    private List<PersistenceCmHandle> persistenceCmHandles = new ArrayList<>();
 
     /**
-     * Add a persistenceCmHandle.
-     *
-     * @param persistenceCmHandle the persistenceCmHandle to add
+     * Remove redundant beginning and end characters.
+     * @param input string to format
+     * @return formatted string
      */
-    public void add(final PersistenceCmHandle persistenceCmHandle) {
-        persistenceCmHandles.add(persistenceCmHandle);
+    public static String removeWrappingTokens(final String input) {
+        return input.substring(1, input.length() - 1);
+    }
+
+    /**
+     * Remove redundant escape characters.
+     * @param input string to format
+     * @return formatted string
+     */
+    public static String removeRedundantEscapeCharacters(final String input) {
+        return input.replace(BACK_SLASH + "n", NEW_LINE)
+            .replace(BACK_SLASH + QUOTE, QUOTE)
+            .replace(BACK_SLASH + BACK_SLASH + QUOTE, BACK_SLASH + QUOTE);
     }
 }
