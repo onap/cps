@@ -46,3 +46,6 @@ paths:
 
   /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running/{resourceIdentifier}:
     $ref: 'ncmproxy.yml#/resourceDataForPassthroughRunning'
+
+  /v1/ch/{cm-handle}/modules:
+    $ref: 'ncmproxy.yml#/fetchModuleReferencesByCmHandle'

@@ -26,6 +26,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.model.ExtendedModuleReference
+import org.onap.cps.spi.model.ModuleReference
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -118,8 +119,17 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get all yang resources module references.'(){
         given: 'an already present module reference'
             def moduleReferences = [new ExtendedModuleReference()]
-            mockModuleStoreService.getAllYangResourceModuleReferences('someDataspaceName') >> moduleReferences
+            mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
-            objectUnderTest.getAllYangResourceModuleReferences('someDataspaceName') == moduleReferences
+            objectUnderTest.getYangResourceModuleReferences('someDataspaceName') == moduleReferences
+    }
+
+
+    def 'Get all yang resources module references for the given dataspace name and anchor name.'(){
+        given: 'the module store service service returns a list module references'
+            def moduleReferences = [new ModuleReference()]
+            mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences
+        expect: 'the list provided by persistence service is returned as result'
+            objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName') == moduleReferences
     }
 }

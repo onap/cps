@@ -22,6 +22,8 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import org.onap.cps.spi.model.ModuleReference
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -245,6 +247,20 @@ class NetworkCmProxyControllerSpec extends Specification {
                     'testResourceIdentifier', ['some-json':'value'], 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Get module references for the given dataspace and cm handle.' () {
+        given: 'get module references url'
+            def getUrl = "$ncmpBasePathV1/ch/some-cmhandle/modules"
+        when: 'get module resource request is performed'
+            def response =mvc.perform(get(getUrl)).andReturn().response
+        then: 'ncmp service method to get yang resource module references is called'
+            mockNetworkCmProxyDataService.getYangResourcesModuleReferences('some-cmhandle')
+                    >> [new ModuleReference(moduleName: 'some-name1',revision: 'some-revision1')]
+        and: 'response contains an array with the module name and revision'
+            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"some-revision1"}]'
+        and: 'response returns an OK http code'
+            response.status == HttpStatus.OK.value()
     }
 }
 

@@ -116,7 +116,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName) {
+    public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {
         final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
             yangResourceRepository.findAllModuleReferences(dataspaceName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
@@ -124,7 +124,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
-    public Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName,
+    public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName,
         final String anchorName) {
         final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
             yangResourceRepository

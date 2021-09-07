@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.DataMapUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -218,6 +219,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, requestBody, contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Object> getModuleReferencesByCmHandle(final String cmHandle) {
+        final Collection<ModuleReference>
+            moduleReferences = networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle);
+        return new ResponseEntity<>(new Gson().toJson(moduleReferences), HttpStatus.OK);
     }
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(

@@ -140,7 +140,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         given: 'a dataspace name'
             def dataspaceName = 'DATASPACE-002'
         when: 'all yang resources module references are retrieved for the given dataspace name'
-            def result = objectUnderTest.getAllYangResourceModuleReferences(dataspaceName)
+            def result = objectUnderTest.getYangResourceModuleReferences(dataspaceName)
         then: 'the correct resources are returned'
             result.sort() == [new ModuleReference(moduleName: 'MODULE-NAME-005', revision: 'REVISION-002'),
                               new ModuleReference(moduleName: 'MODULE-NAME-006', revision: 'REVISION-006')]
@@ -152,7 +152,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             def dataspaceName = 'DATASPACE-001'
             def anchorName = 'ANCHOR1'
         when: 'all yang resources module references are retrieved for the given anchor'
-            def result = objectUnderTest.getAllYangResourceModuleReferences(dataspaceName, anchorName)
+            def result = objectUnderTest.getYangResourceModuleReferences(dataspaceName, anchorName)
         then: 'the correct module names and revisions are returned'
             result.sort() == [new ModuleReference(moduleName: null, revision: null), new ModuleReference(moduleName: 'MODULE-NAME-002', revision: 'REVISION-002'),
                               new ModuleReference(moduleName: 'MODULE-NAME-003', revision: 'REVISION-002'),

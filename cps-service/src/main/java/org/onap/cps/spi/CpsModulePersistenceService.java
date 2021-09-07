@@ -90,20 +90,19 @@ public interface CpsModulePersistenceService {
         @NonNull String anchorName);
 
     /**
-     * Returns all YANG resources module references for the given dataspace name.
+     * Returns YANG resources module references for the given dataspace name.
      *
      * @param dataspaceName dataspace name
      * @return Collection of all YANG resources module information in the database
      */
-    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName);
+    Collection<ModuleReference> getYangResourceModuleReferences(String dataspaceName);
 
     /**
-     * Get all YANG resource module references for the given anchor name and dataspace name.
+     * Get YANG resource module references for the given anchor name and dataspace name.
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @return a collection of module names and revisions
      */
-    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName,
-        final String anchorName);
+    Collection<ModuleReference> getYangResourceModuleReferences(String dataspaceName, String anchorName);
 }

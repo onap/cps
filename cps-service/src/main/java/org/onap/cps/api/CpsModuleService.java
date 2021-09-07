@@ -81,10 +81,19 @@ public interface CpsModuleService {
         @NonNull CascadeDeleteAllowed cascadeDeleteAllowed);
 
     /**
-     * Retrieve all modules and revisions known by CPS for all Yang Resources.
+     * Retrieve module references for the given dataspace name.
      *
      * @param dataspaceName        dataspace name
      * @return a list of ModuleReference objects
      */
-    Collection<ModuleReference> getAllYangResourceModuleReferences(final String dataspaceName);
+    Collection<ModuleReference> getYangResourceModuleReferences(String dataspaceName);
+
+    /**
+     * Retrieve module references for the given dataspace name and anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a list of ModuleReference objects
+     */
+    Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
 }

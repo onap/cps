@@ -28,6 +28,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 
 /*
  * Datastore interface for handling CPS data.
@@ -154,4 +155,12 @@ public interface NetworkCmProxyDataService {
                                                          @NotNull String resourceIdentifier,
                                                          @NotNull Object requestBody,
                                                          String contentType);
+
+    /**
+     * Retrieve module references for the given cm handle.
+     *
+     * @param cmHandle cm handle
+     * @return a collection of modules names and revisions
+     */
+    Collection<ModuleReference> getYangResourcesModuleReferences(@NotNull String cmHandle);
 }
