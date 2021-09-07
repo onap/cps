@@ -22,6 +22,30 @@
       "revId": "9443720babc5ff59dde12663feb2500d6a8c8fe7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "521a72cb_7babcbd3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-07T15:09:59Z",
+      "side": 1,
+      "message": "agreed this is duplicate validation add lead to additional maintenance cost of these tests",
+      "parentUuid": "44b04b89_3f876811",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 102
+      },
+      "revId": "9443720babc5ff59dde12663feb2500d6a8c8fe7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
