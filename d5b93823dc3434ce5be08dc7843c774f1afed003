@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e36b27eb_5fd42e49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-08T14:05:31Z",
+      "side": 1,
+      "message": "Would rename toJsonDataString",
+      "range": {
+        "startLine": 374,
+        "startChar": 39,
+        "endLine": 374,
+        "endChar": 66
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8351fcc_979d74e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-08T14:05:31Z",
+      "side": 1,
+      "message": "Should this path just be imported and then use the NotNull tag as opposed to specifying the full path.",
+      "range": {
+        "startLine": 385,
+        "startChar": 4,
+        "endLine": 385,
+        "endChar": 38
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
