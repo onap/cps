@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33ee05fe_38c270cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-08T13:02:29Z",
+      "side": 1,
+      "message": "I think extract this out to a new method",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 31
+      },
+      "revId": "cec99dfb4482f83ceacc8c53f4194a34211cf611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23d505a7_bd4d6b6d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-08T13:02:29Z",
+      "side": 1,
+      "message": "nb - I think we should avoid using var.",
+      "range": {
+        "startLine": 94,
+        "startChar": 14,
+        "endLine": 94,
+        "endChar": 18
+      },
+      "revId": "cec99dfb4482f83ceacc8c53f4194a34211cf611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75d1c6b_35260be4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-08T13:02:29Z",
+      "side": 1,
+      "message": "use lombok @Getter",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "cec99dfb4482f83ceacc8c53f4194a34211cf611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ebc6c69_8305ff1f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-08T13:02:29Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 242,
+        "startChar": 37,
+        "endLine": 242,
+        "endChar": 54
+      },
+      "revId": "cec99dfb4482f83ceacc8c53f4194a34211cf611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
