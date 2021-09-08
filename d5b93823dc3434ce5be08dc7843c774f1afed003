@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bee9b668_588ed53c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "87a3cc4c_07847e68",
+      "range": {
+        "startLine": 365,
+        "startChar": 66,
+        "endLine": 365,
+        "endChar": 71
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e36b27eb_5fd42e49",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -130,6 +154,30 @@
       "writtenOn": "2021-09-08T14:05:31Z",
       "side": 1,
       "message": "Would rename toJsonDataString",
+      "range": {
+        "startLine": 374,
+        "startChar": 39,
+        "endLine": 374,
+        "endChar": 66
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e03c8d_045d62df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e36b27eb_5fd42e49",
       "range": {
         "startLine": 374,
         "startChar": 39,
@@ -270,6 +318,30 @@
       "writtenOn": "2021-09-08T14:56:19Z",
       "side": 1,
       "message": "nb: add java doc here too",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 3
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3973afc1_48ba9396",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "fcd1da40_e3576ba8",
       "range": {
         "startLine": 49,
         "startChar": 2,
@@ -557,6 +629,30 @@
     },
     {
       "key": {
+        "uuid": "bb7cc50b_a4d5ac13",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "Toine will change location as part of testing",
+      "parentUuid": "91f4f254_33296420",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf140f67_ac38b30d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -580,6 +676,30 @@
     },
     {
       "key": {
+        "uuid": "a5455615_dc11600e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "Will change",
+      "parentUuid": "bf140f67_ac38b30d",
+      "range": {
+        "startLine": 243,
+        "startChar": 55,
+        "endLine": 243,
+        "endChar": 62
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5350a2d7_c9ebab8a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -591,6 +711,30 @@
       "writtenOn": "2021-09-08T14:56:19Z",
       "side": 1,
       "message": "add one more entry here \n\n\"\\\\\\\"\", \"\u0027\" and remove if at 255\n\nadd entry \n\n\"\\\\\u0027\", \"\\\\\\\"\" and remove if at 259.",
+      "range": {
+        "startLine": 245,
+        "startChar": 40,
+        "endLine": 245,
+        "endChar": 41
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f80c363_e477bcf3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-08T15:20:43Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "5350a2d7_c9ebab8a",
       "range": {
         "startLine": 245,
         "startChar": 40,
