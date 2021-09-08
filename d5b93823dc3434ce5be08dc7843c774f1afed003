@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5d3b12b5_bc168349",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "this seems a step back, is this tempory?",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5690ba62_9d8bf9a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "comment indicates that below instruction even it is only one deserves a method(name)",
+      "range": {
+        "startLine": 318,
+        "startChar": 12,
+        "endLine": 318,
+        "endChar": 37
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e36b27eb_5fd42e49",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -41,6 +87,167 @@
         "startChar": 4,
         "endLine": 385,
         "endChar": 38
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fac408d8_7535c226",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "is this really needed?\nif so why the full path?!",
+      "range": {
+        "startLine": 385,
+        "startChar": 4,
+        "endLine": 385,
+        "endChar": 38
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0aa6d87_27fa9bd3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "extract method so you can give this a meaningful name",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 393,
+        "endChar": 45
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1aa441a_086873fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "can be inlined in next statement",
+      "range": {
+        "startLine": 95,
+        "startChar": 14,
+        "endLine": 95,
+        "endChar": 49
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c733d296_f32dc4c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "return here (no need for variable)",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97911ad9_8b66c278",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "FYI we can stop using \u0027var\u0027 now. I think all prefer the original clearer/typesafe old approach\n\nbut in this case both variables will disappear anyow",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 17
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e53c4c_dfd18160",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "no need to mock a simple datholder, its a PoJo! By using it here as a PojO you get better coverage too",
+      "range": {
+        "startLine": 60,
+        "startChar": 35,
+        "endLine": 60,
+        "endChar": 66
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7418446a_03db7262",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-08T14:07:13Z",
+      "side": 1,
+      "message": "escapeTxtForJson , shoudl be in a utiltu class with its own test (can be doen in later improvemnt commit)",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 36
       },
       "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
