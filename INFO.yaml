@@ -39,7 +39,7 @@ mailing_list:
 realtime_discussion: ''
 meetings:
     - type: 'zoom'
-      agenda: 'https://wiki.onap.org/pages/viewpage.action?pageId=84644224'
+      agenda: 'https://wiki.onap.org/pages/viewpage.action?pageId=111117075'
       url: 'https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09'
       server: 'n/a'
       channel: 'n/a'
