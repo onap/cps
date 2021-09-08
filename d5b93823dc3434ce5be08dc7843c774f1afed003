@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "87a3cc4c_07847e68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "LinkedList, lets keep the order.",
+      "range": {
+        "startLine": 365,
+        "startChar": 66,
+        "endLine": 365,
+        "endChar": 71
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e36b27eb_5fd42e49",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -229,6 +252,29 @@
         "startChar": 0,
         "endLine": 393,
         "endChar": 45
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcd1da40_e3576ba8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "nb: add java doc here too",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 3
       },
       "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -424,6 +470,23 @@
     },
     {
       "key": {
+        "uuid": "558f3127_5390a57f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "I think this file should take validation code , dont bring any change on ncmp to cps. do data validation on ncmp service.",
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7418446a_03db7262",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
@@ -464,6 +527,75 @@
         "startChar": 26,
         "endLine": 242,
         "endChar": 36
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f4f254_33296420",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "this method should be in ncmp service, or util in ncmp.",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf140f67_ac38b30d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "LinkedHashMap, as we know the sequence is important here.",
+      "range": {
+        "startLine": 243,
+        "startChar": 55,
+        "endLine": 243,
+        "endChar": 62
+      },
+      "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5350a2d7_c9ebab8a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-08T14:56:19Z",
+      "side": 1,
+      "message": "add one more entry here \n\n\"\\\\\\\"\", \"\u0027\" and remove if at 255\n\nadd entry \n\n\"\\\\\u0027\", \"\\\\\\\"\" and remove if at 259.",
+      "range": {
+        "startLine": 245,
+        "startChar": 40,
+        "endLine": 245,
+        "endChar": 41
       },
       "revId": "d5b93823dc3434ce5be08dc7843c774f1afed003",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
