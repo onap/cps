@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "969fdec6_27777647",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T13:08:38Z",
+      "side": 1,
+      "message": "there is no need to keep order (I think)",
+      "range": {
+        "startLine": 369,
+        "startChar": 66,
+        "endLine": 369,
+        "endChar": 76
+      },
+      "revId": "815a6137b184086e810f534389c02ad530313839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "326edb92_8ef223f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T13:08:38Z",
+      "side": 1,
+      "message": "moduleReferences",
+      "range": {
+        "startLine": 394,
+        "startChar": 24,
+        "endLine": 394,
+        "endChar": 32
+      },
+      "revId": "815a6137b184086e810f534389c02ad530313839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f8dc40e_af53a337",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
         "patchSetId": 4
@@ -41,6 +87,52 @@
         "startChar": 0,
         "endLine": 96,
         "endChar": 5
+      },
+      "revId": "815a6137b184086e810f534389c02ad530313839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a6c4e93_4d63f610",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T13:08:38Z",
+      "side": 1,
+      "message": "its is not a Mock anymore :-)",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 12
+      },
+      "revId": "815a6137b184086e810f534389c02ad530313839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4662cc3_6b2bd404",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T13:08:38Z",
+      "side": 1,
+      "message": "not a mock anymore! need to create a real object instead\nAlso only used in this test I think so move declaration here too",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 88
       },
       "revId": "815a6137b184086e810f534389c02ad530313839",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
