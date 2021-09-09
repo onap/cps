@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbfe8f44_eb2c4b92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T15:29:13Z",
+      "side": 1,
+      "message": "still ordered?!",
+      "range": {
+        "startLine": 369,
+        "startChar": 66,
+        "endLine": 369,
+        "endChar": 75
+      },
+      "revId": "472729e8d512245f33833528f6aa58c074c13af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13e0a577_8059a541",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T15:29:13Z",
+      "side": 1,
+      "message": "non blocking this could better be named requestBodyJson (its more then juts the moduel refs)",
+      "range": {
+        "startLine": 391,
+        "startChar": 25,
+        "endLine": 391,
+        "endChar": 48
+      },
+      "revId": "472729e8d512245f33833528f6aa58c074c13af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34a7c874_246f7b3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T15:29:13Z",
+      "side": 1,
+      "message": "probably extract this out getModuleReferencesAsJson()",
+      "range": {
+        "startLine": 394,
+        "startChar": 8,
+        "endLine": 401,
+        "endChar": 9
+      },
+      "revId": "472729e8d512245f33833528f6aa58c074c13af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34f51c9f_40318a84",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T15:29:13Z",
+      "side": 1,
+      "message": "content of this json is not relevant for this test I think (change to \u0027some json\u0027)",
+      "range": {
+        "startLine": 99,
+        "startChar": 36,
+        "endLine": 101,
+        "endChar": 49
+      },
+      "revId": "472729e8d512245f33833528f6aa58c074c13af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4fec752_a1461d66",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-09T15:29:13Z",
+      "side": 1,
+      "message": "would \u0027new HttpHeaders()\u0027 work here?!\nif so you could also define expectedHttpHeaders \u003d new Httpheaders() in the given block",
+      "range": {
+        "startLine": 107,
+        "startChar": 91,
+        "endLine": 107,
+        "endChar": 107
+      },
+      "revId": "472729e8d512245f33833528f6aa58c074c13af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
