@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "37678d44_57736c03",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "Hey Niamh, this file is generated based on what is already in the components.yml file. So I think this would have to be changed as part of a separate clean up task.",
+      "parentUuid": "279a56af_0414c262",
+      "range": {
+        "startLine": 33,
+        "startChar": 14,
+        "endLine": 33,
+        "endChar": 28
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58765ad6_9da3527d",
         "filename": "docs/index.rst",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "920441d6_df3e603b",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "Kept to be in line with previous release notes.\n\nWill remove for now and add back later based on teams decision.",
+      "parentUuid": "58765ad6_9da3527d",
+      "range": {
+        "startLine": 11,
+        "startChar": 23,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d920d869_7a989395",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11065834_d32bb684",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92906c7c_8e9ea692",
         "filename": "docs/index.rst",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3acb64ba_a1e49d1c",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92906c7c_8e9ea692",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "e0f87e36_4547de1d",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04199699_4322a0eb",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4b034b1_5e5b57e3",
         "filename": "docs/overview.rst",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2021-09-08T23:14:09Z",
       "side": 1,
       "message": "Any reason for this email address here ? It seems to me a generic email address that should be at the onap root documentation page and not specific to cps.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69510650_2bac6d2f",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "This is left over from the previous release notes. Can be removed if needed.",
+      "parentUuid": "f4b034b1_5e5b57e3",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "7229b067_48e3dd3e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "The initial bug was fixed. But the current limitation is that only 3 layers of nodes and no more can be added as mentioned below, along with the workaround of making this method recursive in the future",
+      "parentUuid": "aa6c5c4b_d9524748",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec7fef6e_e2e41bc4",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "e7a71f98_0479444c",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "This is a placeholder for a future link to integration tests for Istanbul release",
+      "parentUuid": "ec7fef6e_e2e41bc4",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 25
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5763a67c_5fc0a359",
         "filename": "docs/user-guide.rst",
         "patchSetId": 4
@@ -220,6 +412,30 @@
       "writtenOn": "2021-09-09T09:30:08Z",
       "side": 1,
       "message": "Should include logging info",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f92cd7_247993cb",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T11:43:56Z",
+      "side": 1,
+      "message": "File was deleted due to there being no UI. Mentioned in Bruno\u0027s comment here\n\nhttps://gerrit.onap.org/r/c/cps/+/123874/4/docs/index.rst",
+      "parentUuid": "5763a67c_5fc0a359",
       "range": {
         "startLine": 9,
         "startChar": 0,
