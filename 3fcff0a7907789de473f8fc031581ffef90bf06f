@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bef4676_9b1740b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-09T08:18:51Z",
+      "side": 1,
+      "message": "we should investigate which groovy test case was missing so that it was not caught.",
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0ba6d5c_6c377ca3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-09T08:18:51Z",
+      "side": 1,
+      "message": "anchor should be created before schmaset.",
+      "range": {
+        "startLine": 388,
+        "startChar": 6,
+        "endLine": 388,
+        "endChar": 9
+      },
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a76467b7_8e8243e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-09T08:18:51Z",
+      "side": 1,
+      "message": "if you are not using objectmapper then i think you should use jsonobject and jsonarray to create json. same for below.",
+      "range": {
+        "startLine": 392,
+        "startChar": 3,
+        "endLine": 392,
+        "endChar": 4
+      },
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ff5b71_b257c808",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-09T08:18:51Z",
+      "side": 1,
+      "message": "follow above comment",
+      "range": {
+        "startLine": 401,
+        "startChar": 5,
+        "endLine": 401,
+        "endChar": 7
+      },
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf6cf85f_f39b72ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-09T08:18:51Z",
+      "side": 1,
+      "message": "previous comments not addressed.",
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
