@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "32532389_e9e5e325",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T17:16:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9a6c33d_68d2fc55",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 125
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2926b9fe_2fdeb31b",
         "filename": "docs/design.rst",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2021-09-09T16:50:51Z",
       "side": 1,
       "message": "Not sure about this... Is/should this done in all do/*.rst files now\n(can check with Liam Fallon)",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a2e3293_03aa34a1",
+        "filename": "docs/design.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T17:16:15Z",
+      "side": 1,
+      "message": "Ack\n\nCan remove these at a later point if needed.",
+      "parentUuid": "2926b9fe_2fdeb31b",
       "range": {
         "startLine": 3,
         "startChar": 2,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "839cd85c_37064ff6",
+        "filename": "docs/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T17:16:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "687b2bdd_75ae083f",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f33e1327_b1e8e86e",
         "filename": "docs/overview.rst",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2021-09-09T16:50:51Z",
       "side": 1,
       "message": "ok see this now, then we should had \u0027modifications by\u0027 line but I am still not sure...",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c2c6f6_8629c00a",
+        "filename": "docs/overview.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T17:16:15Z",
+      "side": 1,
+      "message": "Added in modified line for now. Can remove these later if not required.",
+      "parentUuid": "f33e1327_b1e8e86e",
       "range": {
         "startLine": 3,
         "startChar": 3,
