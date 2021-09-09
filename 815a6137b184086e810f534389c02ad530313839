@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f8dc40e_af53a337",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T13:00:28Z",
+      "side": 1,
+      "message": "Why was this changed to String. I thought the post request in the controller is expecting this to return void.",
+      "range": {
+        "startLine": 56,
+        "startChar": 26,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "815a6137b184086e810f534389c02ad530313839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f60f399f_65d9a42a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 4

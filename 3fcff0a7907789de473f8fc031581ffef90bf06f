@@ -160,6 +160,29 @@
     },
     {
       "key": {
+        "uuid": "4f058217_f4f604ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-09T13:00:28Z",
+      "side": 1,
+      "message": "NB - Line up separators.",
+      "range": {
+        "startLine": 378,
+        "startChar": 116,
+        "endLine": 378,
+        "endChar": 118
+      },
+      "revId": "3fcff0a7907789de473f8fc031581ffef90bf06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf6cf85f_f39b72ad",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
