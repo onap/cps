@@ -248,7 +248,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private Map<String, String> getCmHandlePropertiesAsMap(final Collection<DataNode> cmHandlePropertiesList) {
         if (cmHandlePropertiesList == null || cmHandlePropertiesList.isEmpty()) {
-            return null;
+            return Collections.emptyMap();
         }
         final Map<String, String> cmHandlePropertiesMap = new LinkedHashMap<>();
         for (final var node: cmHandlePropertiesList) {
