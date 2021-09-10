@@ -76,7 +76,23 @@ public class DmiOperations {
         final var dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
         final var httpHeaders = new HttpHeaders();
         return dmiRestClient.postOperation(dmiResourceDataUrl, httpHeaders);
+    }
 
+    /**
+     * Get resources from DMI for modules.
+     *
+     * @param dmiServiceName dmi service name
+     * @param jsonData module names and revisions as JSON
+     * @param cmHandle cmHandle
+     * @param resourceName name of the resource(s)
+     * @return {@code ResponseEntity} response entity
+     */
+    public ResponseEntity<String> getResourceFromDmiWithJsonData(final String dmiServiceName,
+                                                               final String jsonData,
+                                                               final String cmHandle,
+                                                               final String resourceName) {
+        final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonData, new HttpHeaders());
     }
 
     /**
@@ -141,7 +157,7 @@ public class DmiOperations {
      * @param jsonBody    json body for put operation
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Void> createResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
+    public ResponseEntity<String> createResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
                                                                             final String cmHandle,
                                                                             final String resourceId,
                                                                             final String jsonBody) {

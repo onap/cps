@@ -215,7 +215,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 .cmHandleProperties(cmHandlePropertiesMap)
                 .build();
         final var dmiRequestBody = prepareOperationBody(dmiRequestBodyObject);
-        final ResponseEntity<Void> responseEntity = dmiOperations
+        final ResponseEntity<String> responseEntity = dmiOperations
                 .createResourceDataPassThroughRunningFromDmi(dmiServiceName,
                         cmHandle,
                         resourceIdentifier,
@@ -246,7 +246,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private Map<String, String> getCmHandlePropertiesAsMap(final Collection<DataNode> cmHandlePropertiesList) {
+    private static Map<String, String> getCmHandlePropertiesAsMap(final Collection<DataNode> cmHandlePropertiesList) {
         if (cmHandlePropertiesList == null || cmHandlePropertiesList.isEmpty()) {
             return Collections.emptyMap();
         }
@@ -258,7 +258,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cmHandlePropertiesMap;
     }
 
-    private Object handleResponse(final @NotNull ResponseEntity<Object> responseEntity) {
+    private static Object handleResponse(final @NotNull ResponseEntity<Object> responseEntity) {
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             return responseEntity.getBody();
         } else {
@@ -268,8 +268,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void handleResponseForPost(final @NotNull ResponseEntity<Void> responseEntity) {
-        if (responseEntity.getStatusCode() != HttpStatus.CREATED) {
+    private static void handleResponseForPost(final @NotNull ResponseEntity<String> responseEntity) {
+        if (responseEntity.getStatusCode() != HttpStatus.OK) {
             throw new NcmpException("Not able to create resource data.",
                     "DMI status code: " + responseEntity.getStatusCodeValue()
                             + ", DMI response body: " + responseEntity.getBody());
@@ -314,11 +314,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 final PersistenceCmHandle persistenceCmHandle =
                     toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
                 persistenceCmHandlesList.add(persistenceCmHandle);
-                createAnchorAndSyncModel(persistenceCmHandle);
             }
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
-                cmHandleJsonData, NO_TIMESTAMP);
+
+            registerAndSyncNode(dmiPluginRegistration, persistenceCmHandlesList, cmHandleJsonData);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON for DMI Registry.");
             throw new DataValidationException(
@@ -327,8 +326,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private PersistenceCmHandle toPersistenceCmHandle(final String dmiPluginService,
-                                                      final CmHandle cmHandle) {
+    private void registerAndSyncNode(final DmiPluginRegistration dmiPluginRegistration,
+                                     final PersistenceCmHandlesList persistenceCmHandlesList,
+                                     final String cmHandleJsonData) {
+        cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
+            cmHandleJsonData, NO_TIMESTAMP);
+
+        for (final PersistenceCmHandle persistenceCmHandle : persistenceCmHandlesList.getPersistenceCmHandles()) {
+            createAnchorAndSyncModel(persistenceCmHandle);
+        }
+    }
+
+    private static PersistenceCmHandle toPersistenceCmHandle(final String dmiPluginService,
+                                                             final CmHandle cmHandle) {
         final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
         persistenceCmHandle.setDmiServiceName(dmiPluginService);
         persistenceCmHandle.setId(cmHandle.getCmHandleID());
@@ -359,15 +369,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final var knownModuleReferencesInCps =
             cpsModuleService.getYangResourceModuleReferences(NF_PROXY_DATASPACE_NAME);
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
-        for (final ModuleReference moduleReferenceFromDmiForCmHandle :
-            moduleReferencesFromDmiForCmHandle) {
+
+        final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
+        for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromDmiForCmHandle) {
             if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
                 existingModuleReferences.add(moduleReferenceFromDmiForCmHandle);
+            } else {
+                unknownModuleReferences.add(moduleReferenceFromDmiForCmHandle);
             }
         }
 
+        final JsonObject requestBodyAsJson = getRequestBodyAsJson(unknownModuleReferences);
+
         final Map<String, String> newYangResourcesModuleNameToContentMap =
-            getNewYangResources(cmHandle);
+            getNewYangResources(cmHandle, requestBodyAsJson.toString());
 
         cpsModuleService.createSchemaSetFromModules(NCMP_DATASPACE_NAME, cmHandle.getId(),
             newYangResourcesModuleNameToContentMap, existingModuleReferences);
@@ -375,10 +390,38 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         cpsAdminService.createAnchor(NCMP_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
     }
 
-    private Map<String, String> getNewYangResources(final PersistenceCmHandle cmHandle) {
-        final var moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmi(
-            cmHandle.getDmiServiceName(), cmHandle.getId(), "moduleResources");
-        final JsonArray moduleResources = new Gson().fromJson(moduleResourcesAsJsonString.getBody(), JsonArray.class);
+    private JsonObject getRequestBodyAsJson(final List<ModuleReference> unknownModuleReferences) {
+
+        final JsonObject requestBodyAsJson = new JsonObject();
+        requestBodyAsJson.addProperty("operation", "read");
+
+        final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
+
+        final JsonObject data = new JsonObject();
+        data.add("modules", moduleReferencesAsJson);
+        requestBodyAsJson.add("data", data);
+
+        return requestBodyAsJson;
+    }
+
+    private JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
+        final JsonArray moduleReferences = new JsonArray();
+
+        for (final ModuleReference moduleReference : unknownModuleReferences) {
+            final JsonObject moduleReferenceAsJson = new JsonObject();
+            moduleReferenceAsJson.addProperty("name", moduleReference.getModuleName());
+            moduleReferenceAsJson.addProperty("revision", moduleReference.getRevision());
+            moduleReferences.add(moduleReferenceAsJson);
+        }
+        return moduleReferences;
+    }
+
+    private Map<String, String> getNewYangResources(final PersistenceCmHandle cmHandle, final String jsonData) {
+        final var moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmiWithJsonData(
+            cmHandle.getDmiServiceName(), jsonData, cmHandle.getId(), "moduleResources");
+
+        final JsonArray moduleResources = new Gson().fromJson(moduleResourcesAsJsonString.getBody(),
+            JsonArray.class);
         final Map<String, String> newYangResourcesModuleNameToContentMap = new HashMap<>();
 
         for (final JsonElement moduleResource : moduleResources) {
@@ -388,11 +431,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return newYangResourcesModuleNameToContentMap;
     }
 
-    private YangResource toYangResource(final JsonObject yangResourceAsJson) {
+    private static YangResource toYangResource(final JsonObject yangResourceAsJson) {
         final YangResource yangResource = new YangResource();
         yangResource.setModuleName(yangResourceAsJson.get("moduleName").getAsString());
         yangResource.setRevision(yangResourceAsJson.get("revision").getAsString());
-        yangResource.setYangSource(yangResourceAsJson.get("yangSource").getAsString());
+        final String yangSourceJson = yangResourceAsJson.get("yangSource").getAsString();
+
+        String yangSource = JsonUtils.removeWrappingTokens(yangSourceJson);
+        yangSource = JsonUtils.removeRedundantEscapeCharacters(yangSource);
+        yangResource.setYangSource(yangSource);
+
         return yangResource;
     }
 
