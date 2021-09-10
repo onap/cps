@@ -22,6 +22,7 @@ import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -95,4 +96,17 @@ class CpsDataPersistenceServiceSpec extends Specification {
             'text and numbers'                    | '"String = \'1234\'"' || "String = '1234'" | String
             'number as String'                    | '"12345"'             || '12345'           | String
     }
+
+    def 'Retrieving a data node with invalid JSON'() {
+        given: 'a fragment with invalid JSON'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+                new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
+            }
+        when: 'getting the data node represented by this fragment'
+            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+                'parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+    }
+
 }

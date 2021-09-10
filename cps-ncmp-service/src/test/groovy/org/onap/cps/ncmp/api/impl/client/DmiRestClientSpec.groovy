@@ -21,24 +21,30 @@
 package org.onap.cps.ncmp.api.impl.client
 
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
+import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
-import  org.springframework.http.HttpMethod
 
+@SpringBootTest
+@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient])
 class DmiRestClientSpec extends Specification {
 
-    def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
-    def mockRestTemplate = Mock(RestTemplate)
-    def objectUnderTest = new DmiRestClient(mockRestTemplate, mockDmiProperties)
+    @SpringBean
+    RestTemplate mockRestTemplate = Mock(RestTemplate)
+
+    @Autowired
+    DmiRestClient objectUnderTest
 
     def 'DMI PUT operation.'() {
         given: 'a PUT url'
             def getResourceDataUrl = 'http://some-uri/getResourceDataUrl'
-        and: 'dmi properties'
-            setupTestConfigurationData()
         and: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
             mockRestTemplate.exchange(getResourceDataUrl, HttpMethod.PUT, _ as HttpEntity, Object.class) >> mockResponseEntity
@@ -51,8 +57,6 @@ class DmiRestClientSpec extends Specification {
     def 'DMI POST operation.'() {
         given: 'a POST url'
             def getResourceDataUrl = 'http://some-uri/createResourceDataUrl'
-        and: 'dmi properties'
-            setupTestConfigurationData()
         and: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
             mockRestTemplate.postForEntity(getResourceDataUrl, _ as HttpEntity, String.class) >> mockResponseEntity
@@ -62,8 +66,4 @@ class DmiRestClientSpec extends Specification {
             result == mockResponseEntity
     }
 
-    def setupTestConfigurationData() {
-        mockDmiProperties.authUsername >> 'some-username'
-        mockDmiProperties.authPassword >> 'some-password'
-    }
 }

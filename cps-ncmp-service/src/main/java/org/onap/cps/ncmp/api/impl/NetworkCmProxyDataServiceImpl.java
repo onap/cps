@@ -76,6 +76,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private static  final String NCMP_DMI_SERVICE_NAME = "dmi-service-name";
 
+    private  static final String REVISION = "revision";
+
     private CpsDataService cpsDataService;
 
     private ObjectMapper objectMapper;
@@ -87,8 +89,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private CpsModuleService cpsModuleService;
 
     private CpsAdminService cpsAdminService;
-
-    public static final String NO_NAMESPACE = null;
 
     /**
      * Constructor Injection for Dependencies.
@@ -279,11 +279,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private String getGenericRequestBody(final DataNode cmHandleDataNode) {
         final Collection<DataNode> cmHandlePropertiesList = cmHandleDataNode.getChildDataNodes();
         final Map<String, String> cmHandlePropertiesMap = getCmHandlePropertiesAsMap(cmHandlePropertiesList);
-        final var requetBodyObject = GenericRequestBody.builder()
+        final var requestBodyObject = GenericRequestBody.builder()
                 .operation(GenericRequestBody.OperationEnum.READ)
                 .cmHandleProperties(cmHandlePropertiesMap)
                 .build();
-        return prepareOperationBody(requetBodyObject);
+        return prepareOperationBody(requestBodyObject);
     }
 
     private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
@@ -299,10 +299,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 "/dmi-registry", cmHandlesJsonData, NO_TIMESTAMP);
         } catch (final JsonProcessingException e) {
-            log.error("Parsing error occurred while converting Object to JSON DMI Registry.");
-            throw new DataValidationException(
-                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
-                .getMessage(), e);
+            handleJsonProcessingException(dmiPluginRegistration, e);
         }
     }
 
@@ -317,17 +314,21 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
             final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
 
-            registerAndSyncNode(dmiPluginRegistration, persistenceCmHandlesList, cmHandleJsonData);
+            registerAndSyncNode(persistenceCmHandlesList, cmHandleJsonData);
         } catch (final JsonProcessingException e) {
-            log.error("Parsing error occurred while converting Object to JSON for DMI Registry.");
-            throw new DataValidationException(
-                "Parsing error occurred while processing DMI Plugin Registration" + dmiPluginRegistration, e
-                .getMessage(), e);
+            handleJsonProcessingException(dmiPluginRegistration, e);
         }
     }
 
-    private void registerAndSyncNode(final DmiPluginRegistration dmiPluginRegistration,
-                                     final PersistenceCmHandlesList persistenceCmHandlesList,
+    private static void handleJsonProcessingException(final DmiPluginRegistration dmiPluginRegistration,
+                                                      final JsonProcessingException e) {
+        final String message = "Parsing error occurred while processing DMI Plugin Registration"
+            + dmiPluginRegistration;
+        log.error(message);
+        throw new DataValidationException(message, e.getMessage(), e);
+    }
+
+    private void registerAndSyncNode(final PersistenceCmHandlesList persistenceCmHandlesList,
                                      final String cmHandleJsonData) {
         cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
             cmHandleJsonData, NO_TIMESTAMP);
@@ -390,7 +391,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         cpsAdminService.createAnchor(NF_PROXY_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
     }
 
-    private JsonObject getRequestBodyAsJson(final List<ModuleReference> unknownModuleReferences) {
+    private static JsonObject getRequestBodyAsJson(final List<ModuleReference> unknownModuleReferences) {
 
         final JsonObject requestBodyAsJson = new JsonObject();
         requestBodyAsJson.addProperty("operation", "read");
@@ -404,13 +405,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return requestBodyAsJson;
     }
 
-    private JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
+    private static JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
         final JsonArray moduleReferences = new JsonArray();
 
         for (final ModuleReference moduleReference : unknownModuleReferences) {
             final JsonObject moduleReferenceAsJson = new JsonObject();
             moduleReferenceAsJson.addProperty("name", moduleReference.getModuleName());
-            moduleReferenceAsJson.addProperty("revision", moduleReference.getRevision());
+            moduleReferenceAsJson.addProperty(REVISION, moduleReference.getRevision());
             moduleReferences.add(moduleReferenceAsJson);
         }
         return moduleReferences;
@@ -444,7 +445,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return yangResource;
     }
 
-    private List<ModuleReference> getModuleReferences(final ResponseEntity<String> response) {
+    private static List<ModuleReference> getModuleReferences(final ResponseEntity<String> response) {
         final List<ModuleReference> modulesFromDmiForCmHandle = new ArrayList<>();
         final JsonObject convertedObject = new Gson().fromJson(response.getBody(), JsonObject.class);
         final JsonArray moduleReferencesAsJson = convertedObject.getAsJsonArray("schemas");
@@ -456,7 +457,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return modulesFromDmiForCmHandle;
     }
 
-    private ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
+    private static ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
         final var moduleReference = new ModuleReference();
         moduleReference.setModuleName(moduleReferenceAsJson.get("moduleName").getAsString());
         moduleReference.setRevision(moduleReferenceAsJson.get("revision").getAsString());

@@ -21,11 +21,6 @@
  */
 package org.onap.cps.spi.impl
 
-import org.onap.cps.spi.exceptions.DataValidationException
-
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-
 import com.google.common.collect.ImmutableSet
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -41,6 +36,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -155,17 +153,25 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Add list-node fragment with multiple elements.'() {
-        given: 'list node data fragment as a collection of data nodes'
+    def 'Add list-node fragment with multiple elements including an element with a child datanode.'() {
+        given: 'two new data nodes for an existing list'
             def listNodeXpaths = ['/parent-201/child-204[@key="B"]', '/parent-201/child-204[@key="C"]']
             def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
-        when: 'list-node elements added to existing parent node'
+        and: 'a child node for one of the new data nodes'
+            def childDataNode = buildDataNode('/parent-201/child-204[@key="C"]/grand-child-204[@key2="Z"]', [leave:'value'], [])
+            listNodeCollection.iterator().next().childDataNodes = [childDataNode]
+        when: 'the data nodes (list elements) are added to existing parent node'
             objectUnderTest.addListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
         then: 'new entries successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
             def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
             assert allChildXpaths.size() == 5
             assert allChildXpaths.containsAll(listNodeXpaths)
+        and: 'the child node of the new list entry is also present'
+            def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
+            def listElementChild = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, childDataNode.xpath)
+            assert listElementChild.isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

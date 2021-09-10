@@ -19,21 +19,24 @@
  */
 package org.onap.cps.ncmp.api.models
 
-import org.onap.cps.spi.model.ExtendedModuleReference
 import spock.lang.Specification
 
-class moduleReferenceSpec extends Specification {
+class PersistenceCmHandleSpec extends Specification {
 
-    def 'lombok data annotation correctly implements toString() and hashCode() methods'() {
-        given: 'two moduleReference objects'
-            def moduleReference1 = new ExtendedModuleReference('module1', "some namespace", '1')
-            def moduleReference2 = new ExtendedModuleReference('module1', "some namespace", '1')
-        when: 'lombok generated methods are called'
-        then: 'the methods exist and behaviour is accurate'
-            assert moduleReference1.toString() == moduleReference2.toString()
-            assert moduleReference1.hashCode() == moduleReference2.hashCode()
-        and: 'therefore equals works as expected'
-            assert moduleReference1.equals(moduleReference2)
+    def objectUnderTest = new PersistenceCmHandle()
+
+    def 'Setting and getting additional properties.'() {
+        given: 'a map of one property is added'
+            objectUnderTest.setAdditionalProperties([myProperty: 'some value'])
+        when: 'the additional properties are retrieved'
+            def result = objectUnderTest.getAdditionalProperties()
+        then: 'the result has the right size'
+            assert result.size() == 1
+        and: 'the property in the result has the correct name and value'
+            def actualAdditionalProperty = result.get(0)
+            def expectedAdditionalProperty = new PersistenceCmHandle.AdditionalProperty('myProperty','some value')
+            assert actualAdditionalProperty.name == expectedAdditionalProperty.name
+            assert actualAdditionalProperty.value == expectedAdditionalProperty.value
     }
 
 }

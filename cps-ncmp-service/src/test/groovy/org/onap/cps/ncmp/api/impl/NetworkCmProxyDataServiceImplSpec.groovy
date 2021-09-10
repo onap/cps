@@ -36,6 +36,8 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleReference
 import org.springframework.http.HttpStatus
@@ -56,9 +58,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
+    def spyObjectMapper = Spy(ObjectMapper)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
-            mockCpsDataService, mockCpsQueryService, mockCpsAdminService, new ObjectMapper())
+            mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper)
 
     def cmHandle = 'some handle'
     def noTimestamp = null
@@ -154,12 +157,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
 
         where:
-            scenario                        | createdCmHandles       | updatedCmHandles       | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListDataNode
-            'create'                        | [persistenceCmHandle ] | []                     | []               || 1                         | 0                         | 0
-            'update'                        | []                     | [persistenceCmHandle ] | []               || 0                         | 1                         | 0
-            'delete'                        | []                     | []                     | cmHandlesArray   || 0                         | 0                         | 1
-            'create, update and delete'     | [persistenceCmHandle ] | [persistenceCmHandle ] | cmHandlesArray   || 1                         | 1                         | 1
-
+            scenario                        | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListDataNode
+            'create'                        | [persistenceCmHandle] | []                    | []               || 1                         | 0                         | 0
+            'update'                        | []                    | [persistenceCmHandle] | []               || 0                         | 1                         | 0
+            'delete'                        | []                    | []                    | cmHandlesArray   || 0                         | 0                         | 1
+            'create, update and delete'     | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                         | 1                         | 1
+            'no valid data'                 | null                  | null                  |  null            || 0                         | 0                         | 0
     }
 
     def 'Register a DMI Plugin for the given cmHandle without additional properties.'() {
@@ -169,13 +172,44 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.cmHandleProperties = null
-            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle ]
+            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","additional-properties":[]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
             1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', expectedJsonData, noTimestamp)
+    }
+
+    def 'Register a DMI Plugin with JSON processing errors during #scenario.'() {
+        given: 'a registration without cmHandle properties '
+            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration()
+            dmiPluginRegistration.createdCmHandles = createdCmHandles
+            dmiPluginRegistration.updatedCmHandles = updatedCmHandles
+        and: 'an JSON processing exception occurs'
+            spyObjectMapper.writeValueAsString(_) >> { throw (new JsonProcessingException('')) }
+        when: 'registration is updated'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where:
+            scenario | createdCmHandles      | updatedCmHandles
+            'create' | [persistenceCmHandle] | []
+            'update' | []                    | [persistenceCmHandle]
+    }
+
+    def 'Register a DMI Plugin with no data found during delete.'() {
+        given: 'a registration without cmHandle properties '
+            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration()
+            dmiPluginRegistration.removedCmHandles = ['some cm handle']
+        and: 'an JSON processing exception occurs'
+            mockCpsDataService.deleteListNodeData(*_) >>  { throw (new DataNodeNotFoundException('','')) }
+        when: 'registration is updated'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'no exception is thrown'
+            noExceptionThrown()
     }
 
     def 'Get resource data for pass-through operational from dmi.'() {
@@ -211,15 +245,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         and: 'objectMapper not able to parse object'
             def mockObjectMapper = Mock(ObjectMapper)
             objectUnderTest.objectMapper = mockObjectMapper
-            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException("testException") }
+            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('testException') }
         when: 'get resource data is called'
             def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
                     'testAcceptParam',
                     'testFieldQuery',
                     5)
-        then: 'exception is thrown'
-            thrown(NcmpException.class)
+        then: 'exception is thrown with the expected details'
+            def exceptionThrown = thrown(NcmpException.class)
+            exceptionThrown.details == 'testException'
     }
 
     def 'Get resource data for pass-through operational from dmi return NOK response.'() {
@@ -244,7 +279,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     'testFieldQuery',
                     5)
         then: 'exception is thrown'
-            thrown(NcmpException.class)
+            def exceptionThrown = thrown(NcmpException.class)
+        and: 'details contains the original response'
+            exceptionThrown.details.contains('NOK-json')
     }
 
     def 'Get resource data for pass-through running from dmi.'() {
@@ -280,15 +317,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         and: 'objectMapper not able to parse object'
             def mockObjectMapper = Mock(ObjectMapper)
             objectUnderTest.objectMapper = mockObjectMapper
-            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException("testException") }
+            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('testException') }
         when: 'get resource data is called'
             def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     'testResourceId',
                     'testAcceptParam',
                     'testFieldQuery',
                     5)
-        then: 'exception is thrown'
-            thrown(NcmpException.class)
+        then: 'exception is thrown with the expected details'
+            def exceptionThrown = thrown(NcmpException.class)
+            exceptionThrown.details == 'testException'
     }
 
     def 'Get resource data for pass-through running from dmi return NOK response.'() {
@@ -313,7 +351,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     'testFieldQuery',
                     5)
         then: 'exception is thrown'
-            thrown(NcmpException.class)
+            def exceptionThrown = thrown(NcmpException.class)
+        and: 'details contains the original response'
+            exceptionThrown.details.contains('NOK-json')
     }
 
     def 'Write resource data for pass-through running from dmi using POST.'() {
@@ -348,7 +388,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     'testResourceId',
                     '{some-json}', 'application/json')
         then: 'exception is thrown'
-            thrown(NcmpException.class)
+            def exceptionThrown = thrown(NcmpException.class)
+        and: 'details contains (not found) error code: 404'
+            exceptionThrown.details.contains('404')
     }
 
     def 'Sync model for a (new) cm handle with #scenario'() {
@@ -373,6 +415,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             'no unknown module'  | '[]'                                                                                   || [:]
     }
 
+    def 'Getting Yang Resources.'() {
+        when: 'yang resources is called'
+            objectUnderTest.getYangResourcesModuleReferences('some cm handle')
+        then: 'CPS module services is invoked for the correct dataspace and cm handle'
+            1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some cm handle')
+    }
+
     def getModulesForCmHandle() {
         def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
         mockDmiProperties.getAuthUsername() >> 'someUser'
@@ -384,7 +433,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
-                mockCpsDataService, mockCpsQueryService, mockCpsAdminService, new ObjectMapper()))
+                mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper))
         objectUnderTest.createAnchorAndSyncModel(_) >> null
         return objectUnderTest
     }

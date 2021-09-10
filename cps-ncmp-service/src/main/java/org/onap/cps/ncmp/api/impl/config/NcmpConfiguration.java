@@ -41,7 +41,7 @@ public class NcmpConfiguration {
     }
 
     @Bean
-    public RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
+    public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.build();
     }
 }
