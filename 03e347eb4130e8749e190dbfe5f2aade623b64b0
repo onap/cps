@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "54f494c4_1edfa9af",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-10T23:00:49Z",
+      "side": 1,
+      "message": "If we agree not to have release numbers in section headers, then it also need to be removed from lines 28 and 36.",
+      "parentUuid": "920441d6_df3e603b",
+      "range": {
+        "startLine": 11,
+        "startChar": 23,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11065834_d32bb684",
         "filename": "docs/index.rst",
         "patchSetId": 4
@@ -187,6 +211,29 @@
       "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0df8edc8_5bb87993",
+        "filename": "docs/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-10T23:00:49Z",
+      "side": 1,
+      "message": "Not used ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 12
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
@@ -354,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "25165786_a85c53e2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-10T23:00:49Z",
+      "side": 1,
+      "message": "Then, I would suggest to mention CPS-524 in line 125 where the limitation is explained and delete line 121.",
+      "parentUuid": "7229b067_48e3dd3e",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec7fef6e_e2e41bc4",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4
@@ -398,6 +469,30 @@
       "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce4ed97_1173b02a",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-10T23:00:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7a71f98_0479444c",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 25
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

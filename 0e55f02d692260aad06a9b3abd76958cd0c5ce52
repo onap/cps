@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6205ce38_f65035fe",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-10T23:00:49Z",
+      "side": 1,
+      "message": "NCMP is coming with Core (both are part of the same artifact).\n\nFrom cps components point of view, dependencies are:\n* \"DMI Plugin\" depends on \"Core and NCMP\"\n* \"Temporal\" depends on \"Core and NCMP\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 103,
+        "endLine": 21,
+        "endChar": 107
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
