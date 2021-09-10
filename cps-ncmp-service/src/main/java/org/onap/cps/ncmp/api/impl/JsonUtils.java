@@ -26,6 +26,9 @@ public class JsonUtils {
     private static final String NEW_LINE = "\n";
     private static final String QUOTE = "\"";
 
+    private JsonUtils() {
+        throw new IllegalStateException();
+    }
 
     /**
      * Remove redundant beginning and end characters.
