@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d41c7460_807e8179",
+        "filename": "docs/design.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-10T14:14:39Z",
+      "side": 1,
+      "message": "Liam Fallon is saying that they do NOT add copyright statements to files under \u0027Create Commons\u0027\nBut he says its our own call, I would like clear guidance and consistency across our docs. Need to discuss with whole tam in next stand-up will you remind me?\nIn mean time to anyone else feel free to add your view here!",
+      "parentUuid": "8a2e3293_03aa34a1",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "687b2bdd_75ae083f",
         "filename": "docs/index.rst",
         "patchSetId": 5
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "05d60470_dee05ded",
+        "filename": "docs/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-10T14:14:39Z",
+      "side": 1,
+      "message": "I Meant that CPS-Core also includes NCMP (still not sure if that should be treat as a separate module/component or not because it IS in the same repo and ages as CPS-Core",
+      "parentUuid": "839cd85c_37064ff6",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f33e1327_b1e8e86e",
         "filename": "docs/overview.rst",
         "patchSetId": 5
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "Added in modified line for now. Can remove these later if not required.",
       "parentUuid": "f33e1327_b1e8e86e",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "865e13a427b7d7ad3fef94bb0d06d177f52d7b83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d09d6aab_d963fa6f",
+        "filename": "docs/overview.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-10T14:14:39Z",
+      "side": 1,
+      "message": "looks like before with just add on same line: \", other company\"",
+      "parentUuid": "f8c2c6f6_8629c00a",
       "range": {
         "startLine": 3,
         "startChar": 3,
