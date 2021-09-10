@@ -34,7 +34,6 @@ import org.onap.cps.ncmp.api.impl.operation.DmiOperations
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
-import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -65,7 +64,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def noTimestamp = null
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
     def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
-    def expectedDataspaceNameForModleSync = 'NCMP-Admin'
 
     def expectedDataspaceName = 'NFP-Operational'
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
@@ -366,9 +364,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceNameForModleSync, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, [knownModule1])
+            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, [knownModule1])
         and: 'admin service create anchor method has been called with correct parameters'
-            1 * mockCpsAdminService.createAnchor(expectedDataspaceNameForModleSync, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
+            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
         where: 'the following responses are recieved from SDNC'
             scenario             | sdncReponseBody                                                                        || expectedYangResourceToContentMap
             'one unknown module' | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source']

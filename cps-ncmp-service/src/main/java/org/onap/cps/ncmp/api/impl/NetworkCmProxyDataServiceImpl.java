@@ -384,10 +384,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Map<String, String> newYangResourcesModuleNameToContentMap =
             getNewYangResources(cmHandle, requestBodyAsJson.toString());
 
-        cpsModuleService.createSchemaSetFromModules(NCMP_DATASPACE_NAME, cmHandle.getId(),
+        cpsModuleService.createSchemaSetFromModules(NF_PROXY_DATASPACE_NAME, cmHandle.getId(),
             newYangResourcesModuleNameToContentMap, existingModuleReferences);
 
-        cpsAdminService.createAnchor(NCMP_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
+        cpsAdminService.createAnchor(NF_PROXY_DATASPACE_NAME, cmHandle.getId(), cmHandle.getId());
     }
 
     private JsonObject getRequestBodyAsJson(final List<ModuleReference> unknownModuleReferences) {
