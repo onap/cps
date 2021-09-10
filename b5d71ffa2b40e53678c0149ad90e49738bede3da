@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f693e537_f335cd00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-10T08:45:28Z",
+      "side": 1,
+      "message": "Created bug to fix this in DMI: https://jira.onap.org/browse/CPS-659",
+      "parentUuid": "19e1a306_0a1d62c6",
+      "range": {
+        "startLine": 272,
+        "startChar": 46,
+        "endLine": 272,
+        "endChar": 59
+      },
+      "revId": "b5d71ffa2b40e53678c0149ad90e49738bede3da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "442c2da7_70c434ad",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 6
