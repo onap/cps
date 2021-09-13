@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71ef648c_47dba475",
+        "filename": "docs/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-13T16:15:12Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 30,
+        "startChar": 28,
+        "endLine": 30,
+        "endChar": 84
+      },
+      "revId": "7f6c172453635a04297ab6d55e39b2e2523b7174",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f35cd11_bc213b32",
+        "filename": "docs/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-13T16:15:12Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 30,
+        "endLine": 35,
+        "endChar": 85
+      },
+      "revId": "7f6c172453635a04297ab6d55e39b2e2523b7174",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
