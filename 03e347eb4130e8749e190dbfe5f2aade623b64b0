@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "78895a62_a8d57364",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-13T10:52:28Z",
+      "side": 1,
+      "message": "I think its OK to leave as, there is no specific mailing list for CPS and the email address mentioned is correct to contact Onap developers (including us) to ask about CPS",
+      "parentUuid": "69510650_2bac6d2f",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "03e347eb4130e8749e190dbfe5f2aade623b64b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06c755ce_df3df62d",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4

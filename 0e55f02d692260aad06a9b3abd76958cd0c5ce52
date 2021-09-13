@@ -22,6 +22,52 @@
       "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1bc88db_981e6cf1",
+        "filename": "docs/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-13T10:52:28Z",
+      "side": 1,
+      "message": "I agree with Bruno and the title of any section should NOT contain release information",
+      "range": {
+        "startLine": 27,
+        "startChar": 34,
+        "endLine": 27,
+        "endChar": 62
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a63aaec_f2fda3e0",
+        "filename": "docs/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-13T10:52:28Z",
+      "side": 1,
+      "message": "Please remove",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
