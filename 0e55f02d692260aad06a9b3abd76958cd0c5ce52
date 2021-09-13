@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9629b77d_04b0f835",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-09-13T15:14:43Z",
+      "side": 1,
+      "message": "I think this is more to do with the content of the docs and should be dealt with in the final documentation.",
+      "parentUuid": "6205ce38_f65035fe",
+      "range": {
+        "startLine": 21,
+        "startChar": 103,
+        "endLine": 21,
+        "endChar": 107
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1bc88db_981e6cf1",
         "filename": "docs/index.rst",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "62fd84ec_7f29487f",
+        "filename": "docs/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-09-13T15:14:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1bc88db_981e6cf1",
+      "range": {
+        "startLine": 27,
+        "startChar": 34,
+        "endLine": 27,
+        "endChar": 62
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a63aaec_f2fda3e0",
         "filename": "docs/index.rst",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6272d2f2_62666e5b",
+        "filename": "docs/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-09-13T15:14:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a63aaec_f2fda3e0",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "0e55f02d692260aad06a9b3abd76958cd0c5ce52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
