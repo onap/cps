@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc11a6d0_14475bc0",
+        "filename": "releases/2.0.0-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-13T20:07:38Z",
+      "side": 1,
+      "message": "This file has to be removed from this change.\n\nSteps 3 and 4 from release process need to be done in 2 different commits.",
+      "revId": "bd6c14e05529735faab073fe0d647b05566a583b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
