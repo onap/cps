@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a548bfb2_88d0a19e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-14T22:33:41Z",
+      "side": 1,
+      "message": "What are the benefits of converting this method as static? \n\nAs per spring doc, we should use it if we want to instantiate a bean before any other bean. For example, BeanfactoryPostProcessor\n\nhttps://docs.spring.io/spring-framework/docs/3.0.6.RELEASE_to_3.1.0.BUILD-SNAPSHOT/3.1.0.BUILD-SNAPSHOT/org/springframework/context/annotation/Bean.html",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "612b697f8c28f3d7c6250e6c3235fc9bd50b8366",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8598358b_9033e47f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-14T22:33:41Z",
+      "side": 1,
+      "message": "Not required. Can be Mock()",
+      "range": {
+        "startLine": 40,
+        "startChar": 41,
+        "endLine": 40,
+        "endChar": 53
+      },
+      "revId": "612b697f8c28f3d7c6250e6c3235fc9bd50b8366",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba182d7_8fe1a8b6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-14T22:33:41Z",
+      "side": 1,
+      "message": "We are testing spring functionality here and I don\u0027t think we should. The application will not even start if this bean is not in the context.\n\nIn case we want to, then it is better to test if the bean is present in the spring context rather than comparing the object.",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "612b697f8c28f3d7c6250e6c3235fc9bd50b8366",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
