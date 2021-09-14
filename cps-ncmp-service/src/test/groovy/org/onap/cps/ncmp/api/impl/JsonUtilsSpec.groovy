@@ -40,5 +40,12 @@ class JsonUtilsSpec extends Specification  {
             'a string in apostrophes'          | "'abc'"  || 'abc'
             'a string inside any other tokens' | 'abcde'  || 'bcd'
     }
+
+    def 'Cannot use constructor.'() {
+        when: 'attempt to construct object'
+            new JsonUtils()
+        then: 'an exception is thrown'
+            thrown(IllegalStateException)
+    }
 }
 
