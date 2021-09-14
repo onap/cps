@@ -153,7 +153,7 @@ public interface NetworkCmProxyDataService {
      */
     void createResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
                                                          @NotNull String resourceIdentifier,
-                                                         @NotNull Object requestBody,
+                                                         @NotNull String requestBody,
                                                          String contentType);
 
     /**

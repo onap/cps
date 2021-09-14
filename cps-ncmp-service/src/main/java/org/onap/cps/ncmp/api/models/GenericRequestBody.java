@@ -49,6 +49,6 @@ public class GenericRequestBody   {
 
     private OperationEnum operation;
     private String dataType;
-    private Object data;
+    private String data;
     private Map<String, String> cmHandleProperties;
 }

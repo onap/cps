@@ -214,7 +214,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String cmHandle,
                                                                      final String resourceIdentifier,
-                                                                     final Object requestBody,
+                                                                     final String requestBody,
                                                                      final String contentType) {
         networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, requestBody, contentType);

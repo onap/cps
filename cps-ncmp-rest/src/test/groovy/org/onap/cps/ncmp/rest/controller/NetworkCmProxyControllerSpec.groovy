@@ -244,7 +244,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'testResourceIdentifier', ['some-json':'value'], 'application/json;charset=UTF-8')
+                    'testResourceIdentifier', '{"some-json":"value"}', 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
     }
