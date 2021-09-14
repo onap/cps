@@ -1,6 +1,6 @@
 # Test suites are relative paths under csit/tests/.
 # Place the suites in run order.
-actuator
-cps-admin
-cps-data
+actuator/actuator.robot
+cps-admin/cps-admin.robot
+cps-data/cps-data.robot
 

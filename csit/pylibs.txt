@@ -1,0 +1,27 @@
+docker-py
+ipaddr
+netaddr
+netifaces
+pyhocon
+requests
+robotframework-httplibrary
+robotframework-requests
+robotframework-selenium2library
+robotframework-extendedselenium2library
+robotframework-sshlibrary
+scapy
+# Module jsonpath is needed by current AAA idmlite suite.
+jsonpath-rw
+# Modules for longevity framework robot library
+elasticsearch
+elasticsearch-dsl
+# Module for pyangbind used by lispflowmapping project
+pyangbind
+# Module for iso8601 datetime format
+isodate
+# Module for TemplatedRequests.robot library
+jmespath
+# Module for backup-restore support library
+jsonpatch
+# odltools for extra debugging
+odltools

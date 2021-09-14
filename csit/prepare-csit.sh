@@ -26,7 +26,7 @@ fi
 
 TESTPLANDIR=${WORKSPACE}/${TESTPLAN}
 
-# Assume that if ROBOT_VENV is set and virtualenv with system site packages can be activated, 
+# Assume that if ROBOT_VENV is set and virtualenv with system site packages can be activated,
 # ci-management/jjb/integration/include-raw-integration-install-robotframework.sh has already
 # been executed
 
@@ -39,9 +39,13 @@ else
     rm -rf /tmp/ci-management
     rm -f ${WORKSPACE}/env.properties
     cd /tmp
-    git clone "https://gerrit.onap.org/r/ci-management"
-    source /tmp/ci-management/jjb/integration/include-raw-integration-install-robotframework.sh
+    source ${WORKSPACE}/install-robotframework.sh
 fi
+
+# install eteutils
+mkdir -p ${ROBOT_VENV}/src/onap
+rm -rf ${ROBOT_VENV}/src/onap/testsuite
+python3 -m pip install --upgrade --extra-index-url="https://nexus3.onap.org/repository/PyPi.staging/simple" 'robotframework-onap==0.5.1.*' --pre
 
 pip freeze
 
