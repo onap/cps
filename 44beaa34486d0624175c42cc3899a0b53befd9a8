@@ -46,6 +46,30 @@
       "revId": "44beaa34486d0624175c42cc3899a0b53befd9a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa292bc_ff3b2405",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-14T14:48:54Z",
+      "side": 1,
+      "message": "The list of Jira\u0027s wil get many updates before this document is finalized. no need to worry about this for M4",
+      "parentUuid": "23d9b579_498b2ebf",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 27
+      },
+      "revId": "44beaa34486d0624175c42cc3899a0b53befd9a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
