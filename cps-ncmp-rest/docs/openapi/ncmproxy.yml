@@ -266,10 +266,10 @@ resourceDataForPassthroughRunning:
       content:
         application/json:
           schema:
-            type: object
+            type: string
         application/yang-data+json:
           schema:
-            type: object
+            type: string
     responses:
       201:
         $ref: 'components.yaml#/components/responses/Created'
