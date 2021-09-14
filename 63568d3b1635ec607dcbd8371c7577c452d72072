@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e62c66a_57be2aa9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-14T14:29:15Z",
+      "side": 1,
+      "message": "we just changed it to a string so lets test it with \u0027any string\u0027",
+      "range": {
+        "startLine": 243,
+        "startChar": 79,
+        "endLine": 243,
+        "endChar": 100
+      },
+      "revId": "63568d3b1635ec607dcbd8371c7577c452d72072",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
