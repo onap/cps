@@ -22,6 +22,30 @@
       "revId": "44beaa34486d0624175c42cc3899a0b53befd9a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23d9b579_498b2ebf",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7486
+      },
+      "writtenOn": "2021-09-14T14:41:19Z",
+      "side": 1,
+      "message": "Since this is preliminary documentation, this does not apply here right now.",
+      "parentUuid": "d376fe50_5a633838",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 27
+      },
+      "revId": "44beaa34486d0624175c42cc3899a0b53befd9a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
