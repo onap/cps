@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb010ce9_f15e0517",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-15T13:14:56Z",
+      "side": 1,
+      "message": "bit complex for one method please break down",
+      "range": {
+        "startLine": 337,
+        "startChar": 12,
+        "endLine": 354,
+        "endChar": 13
+      },
+      "revId": "81c813babad8df693d363343790676bbdeb3443d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9cbf2a9_e6db28bb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-15T13:14:56Z",
+      "side": 1,
+      "message": "did you check locally that all code-paths are covered by test now?",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 72
+      },
+      "revId": "81c813babad8df693d363343790676bbdeb3443d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3527349_b4a170c2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-15T13:14:56Z",
+      "side": 1,
+      "message": "fix indentation and introduce more \u0027and\u0027; labels to clarify",
+      "range": {
+        "startLine": 407,
+        "startChar": 8,
+        "endLine": 421,
+        "endChar": 47
+      },
+      "revId": "81c813babad8df693d363343790676bbdeb3443d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
