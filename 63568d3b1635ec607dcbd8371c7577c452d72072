@@ -22,6 +22,30 @@
       "revId": "63568d3b1635ec607dcbd8371c7577c452d72072",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22520e08_5acc6457",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-15T12:29:30Z",
+      "side": 1,
+      "message": "i want to test it with \u0027\"somestring\"\u0027 that means \u0027double quotes\u0027 as part of the string , for which it failed in previous fix.",
+      "parentUuid": "1e62c66a_57be2aa9",
+      "range": {
+        "startLine": 243,
+        "startChar": 79,
+        "endLine": 243,
+        "endChar": 100
+      },
+      "revId": "63568d3b1635ec607dcbd8371c7577c452d72072",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
