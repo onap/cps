@@ -46,6 +46,30 @@
       "revId": "63568d3b1635ec607dcbd8371c7577c452d72072",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb1324d0_891d9758",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-15T15:17:09Z",
+      "side": 1,
+      "message": "sorry my comment is not on the quotes but just the content currently it still implies json structure is required here...",
+      "parentUuid": "22520e08_5acc6457",
+      "range": {
+        "startLine": 243,
+        "startChar": 79,
+        "endLine": 243,
+        "endChar": 100
+      },
+      "revId": "63568d3b1635ec607dcbd8371c7577c452d72072",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
