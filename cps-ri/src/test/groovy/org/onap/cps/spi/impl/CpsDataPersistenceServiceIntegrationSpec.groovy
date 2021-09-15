@@ -385,17 +385,46 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'list node data fragment as a collection of data nodes'
             def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
         when: 'list-node elements replaced within the existing parent node'
-            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listNodeCollection)
+            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
         then: 'child list elements are updated as expected, non-list element remains as is'
-            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getById(listNodeFragmentID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
             assert allChildXpaths.size() == expectedChildXpaths.size()
             assert allChildXpaths.containsAll(expectedChildXpaths)
         where: 'following parameters were used'
-            scenario                 | listNodeXpaths                      || expectedChildXpaths
-            'existing list-node'     | ['/parent-201/child-204[@key="B"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
-            'non-existing list-node' | ['/parent-201/child-205[@key="1"]'] || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            scenario                                         | listNodeXpaths                                                             |parentXpath              |listNodeFragmentID                     || expectedChildXpaths
+            'existing list node with non existing key'       | ['/parent-201/child-204[@key="B"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
+            'non existing list node with non existing key'   | ['/parent-201/child-205[@key="1"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
+            'existing list node with 1 existing key'         | ['/parent-201/child-204[@key="X"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="X"]']
+            'existing list-node with combined keys'          | ['/parent-202/child-205[@key="A"]']                                        | '/parent-202'           | LIST_DATA_NODE_PARENT202_FRAGMENT_ID  || ['/parent-202/child-206[@key="A"]', '/parent-202/child-205[@key="A"]']
+            'existing grandchild list-node'                  | ['/parent-200/child-202/grand-child-202[@key="E"]']                        | '/parent-200/child-202' | LIST_DATA_NODE_CHILD202_FRAGMENT_ID   || ['/parent-200/child-202/grand-child-202[@key="E"]']
+            'replace existing list node with two list nodes' | ['/parent-201/child-204[@key="new X"]', '/parent-201/child-204[@key="Y"]'] | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="new X"]', '/parent-201/child-204[@key="Y"]']
     }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace list-node content of #scenario with grandchildren.'() {
+        given: 'list node data fragment as a collection of data nodes'
+            def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
+        when: 'list-node elements replaced within the existing parent node'
+            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
+        then: 'child list elements are updated as expected with non-list elements remaining as is'
+            def parentFragment = fragmentRepository.getById(listNodeFragmentID)
+            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            assert allChildXpaths.size() == expectedChildXpaths.size()
+            assert allChildXpaths.containsAll(expectedChildXpaths)
+        and: 'grandchild list elements are updated as expected'
+            def allGrandChildXpaths = parentFragment.getChildFragments().collect {
+                it.getChildFragments().collect {
+                    it.getXpath()}}
+            allGrandChildXpaths.removeIf(list -> list.isEmpty())
+            assert allGrandChildXpaths.size() == expectedGrandChildXpaths.size()
+            assert allGrandChildXpaths.containsAll(expectedGrandChildXpaths)
+        where: 'following parameters were used'
+            scenario                                    | listNodeXpaths                      | parentXpath   | listNodeFragmentID                   || expectedChildXpaths                                          | expectedGrandChildXpaths
+            'existing list node with existing keys'     | ['/parent-203/child-204[@key="X"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]'] | []
+            'non existing list node with existing keys' | ['/parent-203/child-204[@key="V"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="V"]'] | []
+    }
+
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Replace list-node fragment error scenario: #scenario.'() {

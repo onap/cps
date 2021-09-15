@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -316,23 +317,61 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             }
             updatedChildFragments.add(childFragment);
         }
-        existingFragmentEntity.setChildFragments(updatedChildFragments);
+        existingFragmentEntity.getChildFragments().clear();
+        existingFragmentEntity.getChildFragments().addAll(updatedChildFragments);
     }
 
     @Override
     @Transactional
     public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final Collection<DataNode> dataNodes) {
-        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
+                                     final Collection<DataNode> replacementDataNodes) {
+        final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final var firstChildNodeXpath = replacementDataNodes.iterator().next().getXpath();
         final var listNodeXpath = firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("["));
-        removeListNodeDescendants(parentEntity, listNodeXpath);
-        final Set<FragmentEntity> childFragmentEntities = dataNodes.stream().map(
-            dataNode -> convertToFragmentWithAllDescendants(
-                parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode)
-        ).collect(Collectors.toUnmodifiableSet());
-        parentEntity.getChildFragments().addAll(childFragmentEntities);
+        final Map<String, FragmentEntity> existingListNodeElementsByXpath =
+            getListNodeElements(parentEntity, listNodeXpath);
+        parentEntity.getChildFragments().removeAll(existingListNodeElementsByXpath.values());
+        final Set<FragmentEntity> updatedChildFragments = new HashSet<>();
+        for (final var replacementDataNode : replacementDataNodes) {
+            final FragmentEntity dataNodeFragmentToBeAdded = getDataNodeFragmentForReplacement(replacementDataNode,
+                existingListNodeElementsByXpath, parentEntity);
+
+            updatedChildFragments.add(dataNodeFragmentToBeAdded);
+        }
+        parentEntity.getChildFragments().addAll(updatedChildFragments);
         fragmentRepository.save(parentEntity);
+    }
+
+    private FragmentEntity getDataNodeFragmentForReplacement(final DataNode replacementDataNode,
+        final Map<String, FragmentEntity> existingListNodeElementsByXpath, final FragmentEntity parentEntity) {
+        final FragmentEntity dataNodeFragmentToBeAdded;
+        if (existingListNodeElementsByXpath.containsKey(replacementDataNode.getXpath())) {
+            if (!replacementDataNode.getChildDataNodes().isEmpty()) {
+                dataNodeFragmentToBeAdded = existingListNodeElementsByXpath.get(replacementDataNode.getXpath());
+                replaceDataNodeTree(dataNodeFragmentToBeAdded, replacementDataNode);
+            } else {
+                final FragmentEntity convertedDataNode =
+                    toFragmentEntity(parentEntity.getDataspace(),
+                        parentEntity.getAnchor(),
+                        replacementDataNode);
+                dataNodeFragmentToBeAdded = existingListNodeElementsByXpath.get(replacementDataNode.getXpath());
+                dataNodeFragmentToBeAdded.setAttributes(convertedDataNode.getAttributes());
+                dataNodeFragmentToBeAdded.setXpath(convertedDataNode.getXpath());
+                dataNodeFragmentToBeAdded.getChildFragments().clear();
+            }
+        } else {
+            dataNodeFragmentToBeAdded = convertToFragmentWithAllDescendants(
+                parentEntity.getDataspace(), parentEntity.getAnchor(), replacementDataNode);
+        }
+        return dataNodeFragmentToBeAdded;
+    }
+
+    private Map<String, FragmentEntity> getListNodeElements(final FragmentEntity parentFragmentEntity,
+                                                            final String listNodeXpath) {
+        final String listNodeXpathPrefix = listNodeXpath + "[";
+        return parentFragmentEntity.getChildFragments().stream()
+            .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listNodeXpathPrefix))
+            .collect(Collectors.toMap(fragmentEntity -> fragmentEntity.getXpath(), fragmentEntity -> fragmentEntity));
     }
 
     @Override
@@ -360,12 +399,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
+        removeListNodeDescendants(parentFragmentEntity, listNodeXpath, new ArrayList<>());
+    }
+
+    private void removeListNodeDescendants(final FragmentEntity parentEntity, final String listNodeXpath,
+                                           final ArrayList<DataNode> dataNodesToRemove) {
         final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(listNodeXpath);
         final String listNodeXpathPrefix = listNodeXpath + (descendantNodeHasListNodeKey.find() ? "" : "[");
-        if (parentFragmentEntity.getChildFragments()
-            .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
-            fragmentRepository.save(parentFragmentEntity);
+        final List<String> xpathForDataNodesToRemove =
+            dataNodesToRemove.stream().map(DataNode::getXpath).collect(Collectors.toList());
+        final ArrayList<FragmentEntity> childFragmentsToRemove = new ArrayList<>();
+        for (final FragmentEntity childFragment: parentEntity.getChildFragments()) {
+            if (childFragment.getXpath().startsWith(listNodeXpathPrefix)
+                && !(xpathForDataNodesToRemove.contains(childFragment.getXpath()))) {
+                childFragmentsToRemove.add(childFragment);
+            }
         }
+        childFragmentsToRemove.forEach(childFragment -> parentEntity.getChildFragments().remove(childFragment));
+        fragmentRepository.save(parentEntity);
     }
 
     private static boolean isRootXpath(final String xpath) {
