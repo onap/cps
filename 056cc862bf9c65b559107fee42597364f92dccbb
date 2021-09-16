@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14fa3722_8a3a5bd9",
+        "filename": "csit/install-robotframework.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-16T16:39:24Z",
+      "side": 1,
+      "message": "just a question: I see no changes anywhere else related to starting this script who/what runs this script?",
+      "revId": "056cc862bf9c65b559107fee42597364f92dccbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
