@@ -55,7 +55,7 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "FROM\n"
         + "dataspace d\n"
         + "JOIN anchor a ON a.dataspace_id = d.id\n"
-        + "JOIN schema_set ss ON ss.dataspace_id = a.dataspace_id\n"
+        + "JOIN schema_set ss ON ss.id = a.schema_set_id\n"
         + "JOIN schema_set_yang_resources ssyr ON ssyr.schema_set_id = ss.id\n"
         + "JOIN yang_resource yr ON yr.id = ssyr.yang_resource_id\n"
         + "WHERE\n"
