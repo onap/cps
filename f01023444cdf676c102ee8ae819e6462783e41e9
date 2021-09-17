@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "8f4cf39b_94bf5828",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-17T16:46:39Z",
+      "side": 1,
+      "message": "its just one big method now can you break it into several smaller methods with good names please",
+      "range": {
+        "startLine": 345,
+        "startChar": 27,
+        "endLine": 345,
+        "endChar": 60
+      },
+      "revId": "f01023444cdf676c102ee8ae819e6462783e41e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8671c40_faf0bbdf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
