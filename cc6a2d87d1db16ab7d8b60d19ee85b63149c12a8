@@ -22,6 +22,30 @@
       "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28174da1_6dc51652",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-17T15:10:00Z",
+      "side": 1,
+      "message": "sure, I think we need to make a team decision on this. I will add both examples here\n\nSELECT DISTINCT\nyr.module_Name AS ModuleName,\nyr.revision AS Revision\nFROM\ndataspace d\nJOIN anchor a ON a.dataspace_id \u003d d.id\nJOIN schema_set ss ON ss.id \u003d a.schema_set_id\nJOIN schema_set_yang_resources ssyr ON ssyr.schema_set_id \u003d ss.id\nJOIN yang_resource yr ON yr.id \u003d ssyr.yang_resource_id\nWHERE\nd.name \u003d \u0027NFP-Operational\u0027 AND\na.name \u003d\u0027ran-network-simulation\u0027;\n\t\t\nSELECT DISTINCT\nyang_resource.module_Name AS ModuleName,\nyang_resource.revision AS Revision\nFROM\ndataspace dataspace\nJOIN anchor anchor ON anchor.dataspace_id \u003d dataspace.id\nJOIN schema_set schema_set ON schema_set.id \u003d anchor.schema_set_id\nJOIN schema_set_yang_resources schema_set_yang_resources ON schema_set_yang_resources.schema_set_id \u003d schema_set.id\nJOIN yang_resource yang_resource ON yang_resource.id \u003d schema_set_yang_resources.yang_resource_id\nWHERE\ndataspace.name \u003d \u0027NFP-Operational\u0027 AND\nanchor.name \u003d\u0027ran-network-simulation\u0027;",
+      "parentUuid": "299d7f63_f59ce354",
+      "range": {
+        "startLine": 58,
+        "startChar": 41,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
