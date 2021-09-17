@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2bdb3ad_a143ce58",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-17T13:37:19Z",
+      "side": 1,
+      "message": "nb - use DataNode instead of var",
+      "range": {
+        "startLine": 335,
+        "startChar": 19,
+        "endLine": 335,
+        "endChar": 23
+      },
+      "revId": "f01023444cdf676c102ee8ae819e6462783e41e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8671c40_faf0bbdf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-17T13:37:19Z",
+      "side": 1,
+      "message": "fragmentEntity",
+      "range": {
+        "startLine": 353,
+        "startChar": 37,
+        "endLine": 353,
+        "endChar": 55
+      },
+      "revId": "f01023444cdf676c102ee8ae819e6462783e41e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1077f062_ea5265d4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-17T13:37:19Z",
+      "side": 1,
+      "message": "extract out to method",
+      "range": {
+        "startLine": 353,
+        "startChar": 0,
+        "endLine": 360,
+        "endChar": 70
+      },
+      "revId": "f01023444cdf676c102ee8ae819e6462783e41e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d16726c0_32b0f81a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-17T13:37:19Z",
+      "side": 1,
+      "message": "I think we need two more tests \n1. using a compound key e.g. /parent-202/child-205[@key\u003d\"A\" and @key2\u003d\"B\"]\n2. add a test that has a parent key value e.g. /parent-203[@key\u003d\"A\"]/child-204[@key\u003d\"X\"]",
+      "range": {
+        "startLine": 395,
+        "startChar": 7,
+        "endLine": 397,
+        "endChar": 42
+      },
+      "revId": "f01023444cdf676c102ee8ae819e6462783e41e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
