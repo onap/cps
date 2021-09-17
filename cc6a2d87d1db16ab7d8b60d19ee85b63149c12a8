@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "299d7f63_f59ce354",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-17T14:45:23Z",
+      "side": 1,
+      "message": "i don\u0027t think i like this convention of shortening table names, it makes the query harder to read. We don\u0027t do it in Java so why do we do it in Sql?! This might explain why this bug wasn\u0027t spotted in the original review....\n\nWhat do you think? Maybe change to full names and let\u0027s compare",
+      "range": {
+        "startLine": 58,
+        "startChar": 41,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
