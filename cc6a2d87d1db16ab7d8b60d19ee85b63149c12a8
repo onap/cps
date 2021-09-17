@@ -46,6 +46,30 @@
       "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "511672fe_9e105533",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-17T15:27:04Z",
+      "side": 1,
+      "message": "I definitely prefer the 2nd option with full table names!",
+      "parentUuid": "28174da1_6dc51652",
+      "range": {
+        "startLine": 58,
+        "startChar": 41,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
