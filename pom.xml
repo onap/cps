@@ -62,6 +62,7 @@
         <module>checkstyle</module>
         <module>spotbugs</module>
         <module>cps-application</module>
+        <module>jacoco-report</module>
     </modules>
 
     <build>

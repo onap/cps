@@ -38,24 +38,11 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <java.version>11</java.version>
-        <minimum-coverage>0.9</minimum-coverage>
+        <minimum-coverage>0.97</minimum-coverage>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
         <sonar.coverage.jacoco.xmlReportPaths>
-            ../cps-ri/target/site/jacoco-ut/jacoco.xml,
-            ../cps-ri/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-service/target/site/jacoco-ut/jacoco.xml,
-            ../cps-service/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-rest/target/site/jacoco-ut/jacoco.xml,
-            ../cps-rest/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-ncmp-service/target/site/jacoco-ut/jacoco.xml,
-            ../cps-ncmp-service/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-ncmp-rest/target/site/jacoco-ut/jacoco.xml,
-            ../cps-ncmp-rest/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-path-parser/target/site/jacoco-ut/jacoco.xml,
-            ../cps-path-parser/target/site/jacoco-aggregate/jacoco.xml,
-            ../cps-application/target/site/jacoco-ut/jacoco.xml,
-            ../cps-application/target/site/jacoco-aggregate/jacoco.xml
+            ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
@@ -346,10 +333,10 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>
                     <excludes>
+                        <exclude>org/onap/cps/event/model/*</exclude>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
-                        <exclude>org/onap/cps/ncmp/api/models/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -378,18 +365,6 @@
                                     </limits>
                                 </rule>
                             </rules>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <goals>
-                            <goal>report-aggregate</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <dataFileIncludes>
-                                <fileInclude>**/code-coverage/jacoco-ut.exec</fileInclude>
-                            </dataFileIncludes>
                         </configuration>
                     </execution>
                 </executions>

@@ -34,6 +34,10 @@
 
   <artifactId>cps-service</artifactId>
 
+  <properties>
+    <minimum-coverage>0.94</minimum-coverage>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.onap.cps</groupId>
