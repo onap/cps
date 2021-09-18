@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d6ad980_f0c39180",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-18T01:46:52Z",
+      "side": 1,
+      "message": "Non blocking: Indentation also needs to be fixed from line 26 to 34.",
+      "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
