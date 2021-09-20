@@ -16,6 +16,29 @@
       "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa1d36d9_efefd30e",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-09-20T08:11:51Z",
+      "side": 1,
+      "message": "non blocking: Why do we need to add a new module for jacoco?",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 38
+      },
+      "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
