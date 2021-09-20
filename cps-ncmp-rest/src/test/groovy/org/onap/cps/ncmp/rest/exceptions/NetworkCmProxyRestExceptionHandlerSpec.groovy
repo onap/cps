@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.rest.exceptions
 
 import groovy.json.JsonSlurper
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsException
 import org.spockframework.spring.SpringBean
@@ -61,20 +62,17 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         dataNodeBaseEndpoint = "$basePath/v1"
     }
 
-    def 'Get request with runtime exception returns HTTP Status Internal Server Error.'() {
-        when: 'runtime exception is thrown by the service'
-            setupTestException(new IllegalStateException(errorMessage))
-            def response = performTestRequest()
-        then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, null)
-    }
-
-    def 'Get request with generic CPS exception returns HTTP Status Internal Server Error.'() {
+    def 'Get request with generic #scenario exception returns HTTP Status Internal Server Error.'() {
         when: 'generic CPS exception is thrown by the service'
-            setupTestException(new CpsException(errorMessage, errorDetails))
+            setupTestException(exception)
             def response = performTestRequest()
         then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, errorDetails)
+            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, expectedErrorDetails)
+        where:
+            scenario | exception                                     || expectedErrorDetails
+            'CPS'    | new CpsException(errorMessage, errorDetails)  || errorDetails
+            'NCMP'   | new NcmpException(errorMessage, errorDetails) || null
+            'other'  | new IllegalStateException(errorMessage)       || null
     }
 
     def setupTestException(exception) {

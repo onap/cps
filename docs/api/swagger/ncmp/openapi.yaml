@@ -612,6 +612,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+  /v1/ch/{cm-handle}/modules:
+    get:
+      tags:
+      - network-cm-proxy
+      summary: Fetch all module references (name and revision) for a given cm handle
+      description: fetch all module references (name and revision) for a given cm
+        handle
+      operationId: getModuleReferencesByCmHandle
+      parameters:
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
+          \ or any other cm object by managed Network CM Proxy"
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        "404":
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
 components:
   schemas:
     ErrorMessage:

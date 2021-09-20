@@ -149,14 +149,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
-        if (dmiPluginRegistration.getCreatedCmHandles() != null) {
-            parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
-        }
-        if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
-            parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
-        }
-        if (dmiPluginRegistration.getRemovedCmHandles() != null) {
-            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
+        try {
+            if (dmiPluginRegistration.getCreatedCmHandles() != null) {
+                parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
+            }
+            if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
+                parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
+            }
+            if (dmiPluginRegistration.getRemovedCmHandles() != null) {
+                parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
+            }
+        } catch (final JsonProcessingException e) {
+            handleJsonProcessingException(dmiPluginRegistration, e);
         }
     }
 
@@ -286,39 +290,34 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return prepareOperationBody(requestBodyObject);
     }
 
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        try {
-            final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
-
-            for (final CmHandle cmHandle : dmiPluginRegistration.getUpdatedCmHandles()) {
-                final PersistenceCmHandle persistenceCmHandle =
-                    toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
-                persistenceCmHandlesList.add(persistenceCmHandle);
-            }
-            final String cmHandlesJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-            cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry", cmHandlesJsonData, NO_TIMESTAMP);
-        } catch (final JsonProcessingException e) {
-            handleJsonProcessingException(dmiPluginRegistration, e);
-        }
+    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration)
+        throws JsonProcessingException {
+        final PersistenceCmHandlesList updatedPersistenceCmHandlesList = toPersistenceCmHandlesList(
+            dmiPluginRegistration.getDmiPlugin(),
+            dmiPluginRegistration.getUpdatedCmHandles());
+        final String cmHandlesAsJson = objectMapper.writeValueAsString(updatedPersistenceCmHandlesList);
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
     }
 
     private void parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(
-        final DmiPluginRegistration dmiPluginRegistration) {
-        try {
-            final var persistenceCmHandlesList = new PersistenceCmHandlesList();
-            for (final CmHandle cmHandle : dmiPluginRegistration.getCreatedCmHandles()) {
-                final PersistenceCmHandle persistenceCmHandle =
-                    toPersistenceCmHandle(dmiPluginRegistration.getDmiPlugin(), cmHandle);
-                persistenceCmHandlesList.add(persistenceCmHandle);
-            }
-            final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-
-            registerAndSyncNode(persistenceCmHandlesList, cmHandleJsonData);
-        } catch (final JsonProcessingException e) {
-            handleJsonProcessingException(dmiPluginRegistration, e);
-        }
+        final DmiPluginRegistration dmiPluginRegistration) throws JsonProcessingException {
+        final PersistenceCmHandlesList createdPersistenceCmHandlesList = toPersistenceCmHandlesList(
+            dmiPluginRegistration.getDmiPlugin(),
+            dmiPluginRegistration.getCreatedCmHandles());
+        registerAndSyncNewCmHandles(createdPersistenceCmHandlesList);
     }
+
+    private static PersistenceCmHandlesList toPersistenceCmHandlesList(final String dmiPlugin,
+                                                                       final Collection<CmHandle> cmHandles) {
+        final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+        for (final CmHandle cmHandle : cmHandles) {
+            final PersistenceCmHandle persistenceCmHandle = toPersistenceCmHandle(dmiPlugin, cmHandle);
+            persistenceCmHandlesList.add(persistenceCmHandle);
+        }
+        return persistenceCmHandlesList;
+    }
+
 
     private static void handleJsonProcessingException(final DmiPluginRegistration dmiPluginRegistration,
                                                       final JsonProcessingException e) {
@@ -328,8 +327,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         throw new DataValidationException(message, e.getMessage(), e);
     }
 
-    private void registerAndSyncNode(final PersistenceCmHandlesList persistenceCmHandlesList,
-                                     final String cmHandleJsonData) {
+    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList)
+        throws JsonProcessingException  {
+        final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
         cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
             cmHandleJsonData, NO_TIMESTAMP);
 
@@ -435,7 +435,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private static YangResource toYangResource(final JsonObject yangResourceAsJson) {
         final YangResource yangResource = new YangResource();
         yangResource.setModuleName(yangResourceAsJson.get("moduleName").getAsString());
-        yangResource.setRevision(yangResourceAsJson.get("revision").getAsString());
+        yangResource.setRevision(yangResourceAsJson.get(REVISION).getAsString());
         final String yangSourceJson = yangResourceAsJson.get("yangSource").getAsString();
 
         String yangSource = JsonUtils.removeWrappingTokens(yangSourceJson);

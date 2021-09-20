@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl.config;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +31,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NcmpConfiguration {
 
     @Getter
