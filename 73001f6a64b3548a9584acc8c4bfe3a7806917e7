@@ -39,6 +39,30 @@
       "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d8ca62_353c57cd",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-20T09:11:32Z",
+      "side": 1,
+      "message": "Using parent or aggregate doesn\u0027t work for getting correct reports because or mvn execution order issues. Lengthy discussion on it here: https://stackoverflow.com/questions/50806424/reporting-and-merging-multi-module-jacoco-reports-with-report-aggregate\n\nthe recommended way is to have a separate module... I also think it makes it cleaner",
+      "parentUuid": "aa1d36d9_efefd30e",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 38
+      },
+      "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
