@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f3039e9_bf68ebdd",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-20T13:50:11Z",
+      "side": 1,
+      "message": "I presume this has been added to proof it is not included in the result?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 34
+      },
+      "revId": "052b755e28b160ed26676e720ed922e5a83c300a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
