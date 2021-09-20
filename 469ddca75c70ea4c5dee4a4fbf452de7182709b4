@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c01e981_9ab54015",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-20T12:58:37Z",
+      "side": 1,
+      "message": "This file gets updated by Build process now.\nDylan is checking if this fiel can be removed now from repo sa its gets created \u0026udpated by Mvn plugin",
+      "revId": "469ddca75c70ea4c5dee4a4fbf452de7182709b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
