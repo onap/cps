@@ -1,0 +1,11 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Niamh Core <niamh.core@est.tech>
+Code-Review+1: Luke Gleeson <luke.gleeson@est.tech>
+Code-Review+1: Morgan Richomme <morgan.richomme@orange.com>
+Code-Review+1: Joseph Keenan <joseph.keenan@est.tech>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-by: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-at: Mon, 20 Sep 2021 14:07:30 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/124181
+Project: cps
+Branch: refs/heads/master
