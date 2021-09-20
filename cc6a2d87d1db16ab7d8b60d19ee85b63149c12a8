@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "730c8e45_64f96642",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-20T09:44:45Z",
+      "side": 1,
+      "message": "by anchor and dataspace",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "299d7f63_f59ce354",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
         "patchSetId": 1
@@ -115,6 +138,23 @@
         "endLine": 58,
         "endChar": 42
       },
+      "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c47de25f_4ef0b3b7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-20T09:44:45Z",
+      "side": 1,
+      "message": "In set_data is see there are two anchors and they are attached to same schema_set, i think to test it better we should attached them with differecnt schema set and both schema set have 1 common module. That way it\u0027ll describe the real test scenario.",
       "revId": "cc6a2d87d1db16ab7d8b60d19ee85b63149c12a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
