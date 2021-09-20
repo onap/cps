@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "49c3a4bb_41d1ebf8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-20T16:02:46Z",
+      "side": 1,
+      "message": "I think a log should be added here",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 68
+      },
+      "revId": "469ddca75c70ea4c5dee4a4fbf452de7182709b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8258d5e_4dbc7380",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-20T16:02:46Z",
+      "side": 1,
+      "message": "rest",
+      "range": {
+        "startLine": 62,
+        "startChar": 72,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "469ddca75c70ea4c5dee4a4fbf452de7182709b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c01e981_9ab54015",
         "filename": "docs/api/swagger/ncmp/openapi.yaml",
         "patchSetId": 1

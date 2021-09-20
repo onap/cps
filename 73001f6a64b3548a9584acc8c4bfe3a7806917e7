@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec773fc6_6ce9cf77",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-09-20T16:02:46Z",
+      "side": 0,
+      "message": "i think this format is correct",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 0
+      },
+      "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
