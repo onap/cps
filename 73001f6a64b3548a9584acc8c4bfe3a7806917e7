@@ -22,6 +22,30 @@
       "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dead6e4_a8e09f47",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-20T16:12:57Z",
+      "side": 0,
+      "message": "Bruno commented on this in the previous commit (now merged) its all inside \u003cproject\u003e I actually forgot to indent line 26 too...",
+      "parentUuid": "ec773fc6_6ce9cf77",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 0
+      },
+      "revId": "73001f6a64b3548a9584acc8c4bfe3a7806917e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
