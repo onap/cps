@@ -40,7 +40,6 @@ chmod +x docker-compose
 
 # start CPS and PostgreSQL containers with docker compose
 ./docker-compose up -d
-
 # Validate CPS service initialization completed via periodic log checking for line like below:
 # org.onap.cps.Application ... Started Application in X.XXX seconds
 
