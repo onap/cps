@@ -23,19 +23,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
-<parent>
-    <groupId>org.onap.cps</groupId>
-    <artifactId>cps-parent</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
-    <relativePath>../cps-parent/pom.xml</relativePath>
-</parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.onap.cps</groupId>
+        <artifactId>cps-parent</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+        <relativePath>../cps-parent/pom.xml</relativePath>
+    </parent>
 
-<artifactId>cps-ncmp-rest</artifactId>
-
-    <properties>
-        <minimum-coverage>0.95</minimum-coverage>
-    </properties>
+    <artifactId>cps-ncmp-rest</artifactId>
 
     <dependencies>
         <dependency>

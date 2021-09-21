@@ -33,7 +33,7 @@
     <artifactId>cps-ncmp-service</artifactId>
 
     <properties>
-        <minimum-coverage>0.87</minimum-coverage>
+        <minimum-coverage>0.90</minimum-coverage>
     </properties>
 
     <dependencies>

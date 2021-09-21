@@ -33,6 +33,11 @@ class NcmpConfigurationSpec extends Specification{
     @Autowired
     NcmpConfiguration.DmiProperties dmiProperties
 
+    def 'NcmpConfiguration Construction.'() {
+        expect: 'the system can create an instance'
+             new NcmpConfiguration() != null
+    }
+
     def 'DMI Properties.'() {
         expect: 'properties are set to values in test configuration yaml file'
             dmiProperties.authUsername == 'some-user'

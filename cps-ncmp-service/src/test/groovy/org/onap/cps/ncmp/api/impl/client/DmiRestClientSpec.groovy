@@ -41,27 +41,34 @@ class DmiRestClientSpec extends Specification {
 
     @Autowired
     DmiRestClient objectUnderTest
+    def resourceUrl = 'some url'
 
     def 'DMI PUT operation.'() {
-        given: 'a PUT url'
-            def getResourceDataUrl = 'http://some-uri/getResourceDataUrl'
-        and: 'the rest template returns a valid response entity'
+        given: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
-            mockRestTemplate.exchange(getResourceDataUrl, HttpMethod.PUT, _ as HttpEntity, Object.class) >> mockResponseEntity
+            mockRestTemplate.exchange(resourceUrl, HttpMethod.PUT, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'PUT operation is invoked'
-            def result = objectUnderTest.putOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
+            def result = objectUnderTest.putOperationWithJsonData(resourceUrl, 'json-data', new HttpHeaders())
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
     }
 
-    def 'DMI POST operation.'() {
-        given: 'a POST url'
-            def getResourceDataUrl = 'http://some-uri/createResourceDataUrl'
-        and: 'the rest template returns a valid response entity'
+    def 'DMI POST operation'() {
+        given: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
-            mockRestTemplate.postForEntity(getResourceDataUrl, _ as HttpEntity, String.class) >> mockResponseEntity
+            mockRestTemplate.exchange(resourceUrl, HttpMethod.POST, _ as HttpEntity, String.class) >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(getResourceDataUrl, 'json-data', new HttpHeaders())
+            def result = objectUnderTest.postOperation(resourceUrl, new HttpHeaders())
+        then: 'the output of the method is equal to the output from the rest template'
+            result == mockResponseEntity
+    }
+
+    def 'DMI POST operation with JSON.'() {
+        given: 'the rest template returns a valid response entity'
+            def mockResponseEntity = Mock(ResponseEntity)
+            mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, String.class) >> mockResponseEntity
+        when: 'POST operation is invoked'
+            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', new HttpHeaders())
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
     }
