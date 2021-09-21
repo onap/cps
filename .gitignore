@@ -7,6 +7,8 @@
 cps-application/archunit_store
 target/
 log/
+docs/api/swagger/cps/openapi.yaml
+docs/api/swagger/ncmp/openapi.yaml
 
 .idea/
 .idea_modules/
