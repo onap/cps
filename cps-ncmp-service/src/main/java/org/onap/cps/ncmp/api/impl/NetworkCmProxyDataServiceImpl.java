@@ -459,7 +459,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private static ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
         final var moduleReference = new ModuleReference();
         moduleReference.setModuleName(moduleReferenceAsJson.get("moduleName").getAsString());
-        moduleReference.setRevision(moduleReferenceAsJson.get("revision").getAsString());
+        moduleReference.setRevision(moduleReferenceAsJson.get(REVISION).getAsString());
         return moduleReference;
     }
 }
