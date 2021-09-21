@@ -154,8 +154,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         when: 'all yang resources module references are retrieved for the given anchor'
             def result = objectUnderTest.getYangResourceModuleReferences(dataspaceName, anchorName)
         then: 'the correct module names and revisions are returned'
-            result.sort() == [new ModuleReference(moduleName: null, revision: null), new ModuleReference(moduleName: 'MODULE-NAME-002', revision: 'REVISION-002'),
-                              new ModuleReference(moduleName: 'MODULE-NAME-003', revision: 'REVISION-002'),
+            result.sort() == [ new ModuleReference(moduleName: 'MODULE-NAME-003', revision: 'REVISION-002'),
                               new ModuleReference(moduleName: 'MODULE-NAME-004', revision: 'REVISION-004')]
     }
 
