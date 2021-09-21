@@ -202,7 +202,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void createResourceDataPassThroughRunningForCmHandle(final @NotNull String cmHandle,
                                                                 final @NotNull String resourceIdentifier,
-                                                                final @NotNull Object requestBody,
+                                                                final @NotNull String requestBody,
                                                                 final String contentType) {
         final var cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final var dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get(NCMP_DMI_SERVICE_NAME));
