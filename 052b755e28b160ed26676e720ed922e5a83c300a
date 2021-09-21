@@ -46,6 +46,30 @@
       "revId": "052b755e28b160ed26676e720ed922e5a83c300a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401ace5c_62b9f9b4",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-21T10:51:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4ae0df17_6a26e08c",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 34
+      },
+      "revId": "052b755e28b160ed26676e720ed922e5a83c300a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
