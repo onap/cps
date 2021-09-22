@@ -46,6 +46,30 @@
       "revId": "69c896b25cbdd549ec5ece590e5593e202bab950",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74799f98_52f8d09b",
+        "filename": "docs/requirements-docs.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-22T15:39:22Z",
+      "side": 1,
+      "message": "https://gerrit.onap.org/r/c/cps/+/124413/5/docs/requirements-docs.txt",
+      "parentUuid": "75f44b8b_a0778d77",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "69c896b25cbdd549ec5ece590e5593e202bab950",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
