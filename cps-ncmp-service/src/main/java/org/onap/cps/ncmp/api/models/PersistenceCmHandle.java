@@ -58,7 +58,8 @@ public class PersistenceCmHandle {
     }
 
     @AllArgsConstructor
-    private static class AdditionalProperty {
+    @Getter
+    public static class AdditionalProperty {
 
         @JsonProperty()
         private final String name;
