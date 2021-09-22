@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "165c669b_a80e17e9",
+        "filename": "docs/requirements-docs.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T15:30:50Z",
+      "side": 1,
+      "message": "did this fix the build issue or the Addiotnal blank line on previous files?!",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "69c896b25cbdd549ec5ece590e5593e202bab950",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
