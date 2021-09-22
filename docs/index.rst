@@ -18,6 +18,7 @@ CPS-Core Documentation
 
    overview.rst
    architecture.rst
+   admin-guide.rst
    design.rst
    modeling.rst
    deployment.rst
