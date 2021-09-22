@@ -66,7 +66,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def cmHandle = 'some handle'
     def noTimestamp = null
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
-    def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
     def expectedDataspaceName = 'NFP-Operational'
 
 
@@ -145,7 +144,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
         given: 'a registration '
-            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
@@ -385,8 +384,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> { new ResponseEntity<>(HttpStatus.OK) }
         where:
             scenario  | includeCmHandleProperties || expectedJsonForCmhandleProperties
-            'with'    | true                       || '{"testName":"testValue"}'
-            'without' | false                      || '{}'
+            'with'    | true                      || '{"testName":"testValue"}'
+            'without' | false                     || '{}'
     }
 
     def 'Write resource data for pass-through running from dmi using POST "not found" response (from DMI).'() {
@@ -410,14 +409,27 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Sync model for a (new) cm handle with #scenario'() {
         given: 'DMI Plug-in returns a list of module references'
-            getModulesForCmHandle()
             def knownModule1 = new ModuleReference('module1', '1')
             def knownOtherModule = new ModuleReference('some other module', 'some revision')
+        and: 'persistence cm handle is given'
+            def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
+        and: 'additional properties are set as required'
+            if (additionalProperties!=null) {
+                cmHandleForModelSync.setAdditionalProperties(additionalProperties)
+            }
+        and: 'dmi operations returns some module references'
+            def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
+            def expectedJsonBody = '{"operation":"read","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            mockDmiProperties.getAuthUsername() >> 'someUser'
+            mockDmiProperties.getAuthPassword() >> 'somePassword'
+            def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
+            mockDmiOperations.getResourceFromDmiWithJsonData('some service name', expectedJsonBody, 'some cm handle', 'modules') >> moduleReferencesFromCmHandleAsJson
         and: 'CPS-Core returns list of known modules'
             mockCpsModuleService.getYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
-            mockDmiOperations.getResourceFromDmiWithJsonData(_, _, _, 'moduleResources') >> moduleResources
+            def jsonDataToFetchYangResource = '{"operation":"read","dataType":"application/json","data":"{\\"modules\\":[{\\"name\\":\\"module2\\",\\"revision\\":\\"1\\"}]}","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            mockDmiOperations.getResourceFromDmiWithJsonData('some service name', jsonDataToFetchYangResource, 'some cm handle', 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
@@ -425,25 +437,18 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         and: 'admin service create anchor method has been called with correct parameters'
             1 * mockCpsAdminService.createAnchor(expectedDataspaceName, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
         where: 'the following responses are received from SDNC'
-            scenario             | sdncReponseBody                                                                        || expectedYangResourceToContentMap
-            'one unknown module' | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source']
-            'no unknown module'  | '[]'                                                                                   || [:]
+            scenario                         | additionalProperties | sdncReponseBody                                                                        || expectedYangResourceToContentMap | expectedJsonForAdditionalProperties
+            'one unknown module'             | ['name1':'value1']   | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{"name1":"value1"}'
+            'no add. properties'             | [:]                  | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{}'
+            'additional properties is null'  | null                 | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{}'
+            'no unknown module'              | [:]                  | '[]'                                                                                   || [:]                              | '{}'
     }
-
 
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences('some cm handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some cm handle')
-    }
-
-    def getModulesForCmHandle() {
-        def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
-        mockDmiProperties.getAuthUsername() >> 'someUser'
-        mockDmiProperties.getAuthPassword() >> 'somePassword'
-        def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
-        mockDmiOperations.getResourceFromDmi(_, cmHandleForModelSync.getId(), 'modules') >> moduleReferencesFromCmHandleAsJson
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {
