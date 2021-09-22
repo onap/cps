@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8e2e702_ecfe24c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "PropertyList\nOR\nPropertiesAsList",
+      "range": {
+        "startLine": 267,
+        "startChar": 98,
+        "endLine": 267,
+        "endChar": 112
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb40b1f1_8e2a3d16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "I have noticed a pattern in out test(coverage) we tend to code for edge cases but not test them. First you should as yourself are both possible (null and empty) ?!\nif not remove what is not needed. \nAnd finally make sure you add a test scenario where line 269 is covered\nI did something similar recently here https://gerrit.onap.org/r/c/cps/+/124358/6/cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy\nsee lines #387-389",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 9
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "263d2b33_8628e29f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "AsMap",
+      "range": {
+        "startLine": 384,
+        "startChar": 52,
+        "endLine": 384,
+        "endChar": 55
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c459e9_ff93fb72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "maybe I would use \u0027from\u0027 instead of \u0027for\u0027  (also consistent with method name)",
+      "range": {
+        "startLine": 387,
+        "startChar": 44,
+        "endLine": 387,
+        "endChar": 47
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c486c19_1962128a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "a lot of refactoring here with some new code as well.\nI thought I had done similar refactoring already (maybe somewhere else) it looks very familiar... Anyway it is good it is broken down in smaller methods!\n hard to see what happend :-( I trust all is stil covered by tests? (please check running test with coverage yourself in IDE)",
+      "range": {
+        "startLine": 383,
+        "startChar": 4,
+        "endLine": 398,
+        "endChar": 78
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9aa9f6f_abda13a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "this is a response object see also method parameter name use below",
+      "range": {
+        "startLine": 401,
+        "startChar": 67,
+        "endLine": 401,
+        "endChar": 85
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f69362_30a696ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "I would do this outside this method and then pass in the resulting list into this method",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 52
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "303080a7_8911e5a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "as before this is still a response (json?) object. PLease name accordingly or convert maybe in this method to  the required collection/object",
+      "range": {
+        "startLine": 425,
+        "startChar": 18,
+        "endLine": 425,
+        "endChar": 37
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f586bae_cb1759ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-22T16:01:29Z",
+      "side": 1,
+      "message": "why are you (or your IDE) removing \u0027static\u0027 ?",
+      "range": {
+        "startLine": 484,
+        "startChar": 4,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
