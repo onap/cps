@@ -206,6 +206,30 @@
       "revId": "1eaec3625e9bd9807151d158192535019f59c823",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fbd5f17_0c28b154",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-22T16:26:46Z",
+      "side": 1,
+      "message": "As this is a @service in spring, there will be only one object in springcontext. And all these methods will be accessed at object level and privately. I think static methods are not needed and they give overhead to class if they are never accessed at class level.",
+      "parentUuid": "0f586bae_cb1759ca",
+      "range": {
+        "startLine": 484,
+        "startChar": 4,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "1eaec3625e9bd9807151d158192535019f59c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
