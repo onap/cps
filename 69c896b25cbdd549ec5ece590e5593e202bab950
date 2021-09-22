@@ -22,6 +22,30 @@
       "revId": "69c896b25cbdd549ec5ece590e5593e202bab950",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75f44b8b_a0778d77",
+        "filename": "docs/requirements-docs.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-22T15:34:01Z",
+      "side": 1,
+      "message": "Yes this is what fixed the build issue. I put it in both commits as the build rst build would fail for either one if it wasn\u0027t defined.",
+      "parentUuid": "165c669b_a80e17e9",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "69c896b25cbdd549ec5ece590e5593e202bab950",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
