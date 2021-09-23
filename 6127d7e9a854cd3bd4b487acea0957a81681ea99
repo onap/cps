@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23dcdd58_e3e6616d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-23T12:39:47Z",
+      "side": 1,
+      "message": "cmHandlePropertiesAsDataNodes",
+      "range": {
+        "startLine": 215,
+        "startChar": 35,
+        "endLine": 215,
+        "endChar": 58
+      },
+      "revId": "6127d7e9a854cd3bd4b487acea0957a81681ea99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c91ce5a_4e09a611",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-23T12:39:47Z",
+      "side": 1,
+      "message": "cmHandleProperties\n\nOR \n\ncmHandlePropertiesAsDataNode",
+      "range": {
+        "startLine": 255,
+        "startChar": 93,
+        "endLine": 255,
+        "endChar": 115
+      },
+      "revId": "6127d7e9a854cd3bd4b487acea0957a81681ea99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72f48b51_cdb291ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-23T12:39:47Z",
+      "side": 1,
+      "message": "AsMap",
+      "range": {
+        "startLine": 259,
+        "startChar": 52,
+        "endLine": 259,
+        "endChar": 55
+      },
+      "revId": "6127d7e9a854cd3bd4b487acea0957a81681ea99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9ef037e_0c20f1fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-23T12:39:47Z",
+      "side": 1,
+      "message": "cmHandleProperties\n\nOR\n\ncmHandlePropertiesAsList   (on hindsight I think I prefer this as this class also already has asMap and asDataNodes versions of the same data)",
+      "range": {
+        "startLine": 268,
+        "startChar": 43,
+        "endLine": 268,
+        "endChar": 65
+      },
+      "revId": "6127d7e9a854cd3bd4b487acea0957a81681ea99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30b66aef_05f3714f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-23T12:39:47Z",
+      "side": 1,
+      "message": "AsMap",
+      "range": {
+        "startLine": 300,
+        "startChar": 52,
+        "endLine": 300,
+        "endChar": 55
+      },
+      "revId": "6127d7e9a854cd3bd4b487acea0957a81681ea99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
