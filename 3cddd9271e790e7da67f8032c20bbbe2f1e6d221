@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "596fa824_081b64b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-24T08:35:21Z",
+      "side": 1,
+      "message": "No need for parent/build complete entity, you just need the attributes. Refactored code (please note namechange as well):\n\n   private static void copyAttributesFromReplacementDataNode(final FragmentEntity existingListNodeElementEntity,\n                                                              final DataNode replacementDataNode) {\n        final FragmentEntity replacementFragmentEntity \u003d\n            FragmentEntity.builder().attributes(GSON.toJson(replacementDataNode.getLeaves())).build();\n        existingListNodeElementEntity.setAttributes(replacementFragmentEntity.getAttributes());\n    }",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 5
+      },
+      "revId": "3cddd9271e790e7da67f8032c20bbbe2f1e6d221",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5877d72_5392f240",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-24T08:35:21Z",
+      "side": 1,
+      "message": "is this still needed? Tested without and seems to work fine",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 5
+      },
+      "revId": "3cddd9271e790e7da67f8032c20bbbe2f1e6d221",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
