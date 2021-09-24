@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e74857a_5e30228d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-09-24T15:14:11Z",
+      "side": 1,
+      "message": "What is the benefit of marking these internal logic methods static?",
+      "range": {
+        "startLine": 347,
+        "startChar": 12,
+        "endLine": 347,
+        "endChar": 18
+      },
+      "revId": "3cddd9271e790e7da67f8032c20bbbe2f1e6d221",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "596fa824_081b64b5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
