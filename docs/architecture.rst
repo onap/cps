@@ -25,12 +25,17 @@ Project page describing eventual scope and ambition is here:
 
 This page reflects the state for Istanbul-R9 release.
 
-.. image:: _static/cps-r8-arch-diagram.png
+.. image:: _static/star.png
+    :class: float-left
+
+**Note:** SDC and AAI interfaces have not yet been implemented.
+
+.. image:: _static/cps-r9-arch-diagram-revised.png
 
 API definitions
 ===============
 
-Configuration Persistence Service provides following interfaces.
+Configuration Persistence Service provides the following interfaces.
 
 .. list-table::
    :header-rows: 1
@@ -57,12 +62,29 @@ Configuration Persistence Service provides following interfaces.
      - REST
    * - CPS-E-04
      - Change Notification
-     - *Not available in Honolulu-R8*
-     - *N/A*
+     - - Kafka is used as the event messaging system
+       - running instance is supplied independently from ONAP DMaaP component or any Kafka instance deployed from ONAP
+       - published events contain Timestamp, Dataspace, Schema set, Anchor and JSON Data Payload
+     - DMaaP
    * - CPS-E-05
      - xNF Data Access
      - - read xNF data
        - query xNF data
+     - REST
+   * - CPS-E-06
+     - Temporal Data Access
+     - - data storage and access
+     - REST
+   * - CPS-E-07
+     - Admin
+     - - logging levels and configuration
+       - monitoring
+       - health including liveliness state and readiness state
+       - metrics through Prometheus
+     - Various
+   * - CPS-E-08
+     - xNF Data Forwarding
+     - - forward xNF licensing data
      - REST
 
 The CPS Basic Concepts are described in :doc:`modeling`.
