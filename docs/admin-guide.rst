@@ -16,3 +16,46 @@ CPS Admin Guide
 
 Logging & Diagnostics
 =====================
+
+General Guidelines
+------------------
+Within CPS, the consumer of the Java API's decide whether they want to log exceptions or not.
+In the REST API's when an exceptions is caught it is logged in detail, as information can be lost when converting in into a HTTP response code.
+This is achieved using an Slf4j dependency in the projects POM. This is an API designed to give CPS generic access to many logging frameworks.
+
+.. code-block:: XML
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+Log details can be found in the applications console once deployed.
+Logger configuration is provided as a chart resource : `logback-spring.xml <https://github.com/onap/oom/tree/master/kubernetes/cps>`_
+
+Monitoring
+==========
+Once CPS-Core is deployed, information related to the running instance of the application is available
+
+.. code::
+
+    http://cps-core:8081/manage/info/
+
+Health
+======
+
+Cps-Core health status and state can be checked using the following endpoint.
+This also includes both the liveliness state and readiness state.
+
+.. code::
+
+    http://cps-core:8081/manage/health/
+
+Metrics
+=======
+
+Prometheus Metrics can be checked at the following endpoint
+
+.. code::
+
+    http://cps-core:8081/manage/prometheus
