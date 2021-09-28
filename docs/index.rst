@@ -22,7 +22,6 @@ CPS-Core Documentation
    design.rst
    modeling.rst
    deployment.rst
-   cps-path.rst
    release-notes.rst
 
 ONAP DMI Plugin Documentation

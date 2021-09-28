@@ -50,4 +50,13 @@ Data
 
 Querying
 
-- **CPS Path** is used to query data nodes. The CPS Path is described in detail in :doc:`cps-path`.
+- **CPS Path** is used to query data nodes. The CPS Path is described in detail in the :doc:`cps-path` sub-page.
+
+CPS Path
+========
+
+.. toctree::
+   :maxdepth: 1
+
+   cps-path.rst
+
