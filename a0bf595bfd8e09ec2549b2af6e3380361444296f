@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d189d8c_b992b0ff",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-09-28T12:40:30Z",
+      "side": 1,
+      "message": "The log level table below makes perfect sense to me and I think this is the way it should be (important for operations and monitoring).\n\nI\u0027m just only not sure that it reflects current logs when for example bad request from clients are logged as errors (these bad requests are not non working functionalities and are not preventing functionalities from functioning. Should bad request be logged at lower level ? Warning ?)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "a0bf595bfd8e09ec2549b2af6e3380361444296f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
