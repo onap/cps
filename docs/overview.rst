@@ -6,8 +6,6 @@
 CPS Overview
 ============
 
-.. warning:: draft
-
 The Configuration Persistence Service (CPS) is a platform component that is designed to serve as a
 data repository for runtime data that needs persistence.
 
@@ -28,6 +26,32 @@ Types of data that is stored:
   5G PNFs may need to adjust a tower electrical antenna tilt. These operational parameters are Exo-inventory
   information, meaning it is information that doesn't belong in A&AI. In principle, some parameters might be both
   configuration and operational parameters depending on how they are used.
+
+CPS Components
+--------------
+
+CPS-Core
+########
+This is the component of CPS which encompasses the generic storage of Yang module data.
+
+**NCMP**
+
+The Network Configuration Management Proxy (NCMP) provides access to network configuration data and is a part of CPS-Core.
+NCMP accesses all network Data-Model-Inventory (DMI) information via NCMP-DMI-Plugins. The ONAP DMI Plugin described in the next section is one such plugin.
+
+ONAP NCMP-DMI-Plugin
+####################
+
+The Data-Model-Inventory (DMI) Plugin is a rest interface used to synchronize CM-Handles data between CPS and DMI through the DMI Plugin.
+This is built previously from the CPS-NF-Proxy component.
+
+CPS Temporal
+############
+
+This service is responsible to provide a time oriented perspective for
+operational network data. It provides features to store and retrieve sequences
+of configurations or states along with the associated times when they occurred
+or have been observed.
 
 CPS Project
 -----------
