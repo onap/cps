@@ -104,9 +104,9 @@ components:
       schema:
         type: string
         default: /
-    resourceIdentifierInPath:
+    resourceIdentifierInQuery:
       name: resourceIdentifier
-      in: path
+      in: query
       description: Resource identifier to get/set the resource data
       required: true
       schema:

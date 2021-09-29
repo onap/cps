@@ -193,7 +193,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
-                    "/testResourceIdentifier?fields=testFields&depth=5"
+                    "?resourceIdentifier=testResourceIdentifier&fields=testFields&depth=5"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -213,7 +213,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through running.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
-                    "/testResourceIdentifier?fields=testFields&depth=5"
+                    "?resourceIdentifier=testResourceIdentifier&fields=testFields&depth=5"
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceIdentifier',
@@ -235,7 +235,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Create Resource Data from pass-through running with #scenario.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
-                    "/testResourceIdentifier"
+                    "?resourceIdentifier=testResourceIdentifier"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
