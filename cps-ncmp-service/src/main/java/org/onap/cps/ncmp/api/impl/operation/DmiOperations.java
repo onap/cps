@@ -52,6 +52,8 @@ public class DmiOperations {
     private static final String DMI_CM_HANDLE_PATH = "/v1/ch/{cmHandle}";
     private static final String DMI_CM_HANDLE_DATASTORE_PATH = DMI_CM_HANDLE_PATH + "/data/ds";
     private static final String URL_SEPARATOR = "/";
+    private static final String RESOURCE_IDENTIFIER = "resourceIdentifier";
+
 
     /**
      * Constructor for {@code DmiOperations}. This method also manipulates url properties.
@@ -199,7 +201,7 @@ public class DmiOperations {
         stringBuilder.append(DMI_API_PATH);
         stringBuilder.append(DMI_CM_HANDLE_DATASTORE_PATH.replace("{cmHandle}", cmHandle));
         stringBuilder.append(URL_SEPARATOR + dataStoreEnum.getValue());
-        stringBuilder.append(URL_SEPARATOR + resourceId);
+        stringBuilder.append("?" + RESOURCE_IDENTIFIER + "=" + resourceId);
         return stringBuilder;
     }
 
@@ -208,15 +210,10 @@ public class DmiOperations {
                                       final Integer depthQuery) {
         final var doesFieldExists = (fieldsQuery != null && !fieldsQuery.isEmpty());
         if (doesFieldExists) {
-            stringBuilder.append("?").append("fields=").append(fieldsQuery);
+            stringBuilder.append("&").append("fields=").append(fieldsQuery);
         }
         if (depthQuery != null) {
-            if (doesFieldExists) {
-                stringBuilder.append("&");
-            } else {
-                stringBuilder.append("?");
-            }
-            stringBuilder.append("depth=").append(depthQuery);
+            stringBuilder.append("&").append("depth=").append(depthQuery);
         }
     }
 

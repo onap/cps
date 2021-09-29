@@ -104,13 +104,27 @@ components:
       schema:
         type: string
         default: /
-    resourceIdentifierInPath:
+    resourceIdentifierInQuery:
       name: resourceIdentifier
-      in: path
-      description: Resource identifier to get/set the resource data
+      in: query
+      description: The format of resource identifier depend on the associated DMI Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but it can really be anything.
       required: true
+      allowReserved: true
       schema:
         type: string
+      examples:
+        sample1:
+          value:
+            resourceIdentifier: \parent\child
+        sample2:
+          value:
+            resourceIdentifier: \parent\listElement[key=value]
+        sample3:
+          value:
+            resourceIdentifier: \parent\listElement[key=value]\grandChild
+        sample4:
+          value:
+            resourceIdentifier: parent=1,child=abc
     acceptParamInHeader:
       name: Accept
       in: header
