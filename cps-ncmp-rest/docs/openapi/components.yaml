@@ -104,13 +104,24 @@ components:
       schema:
         type: string
         default: /
-    resourceIdentifierInPath:
+    resourceIdentifierInQuery:
       name: resourceIdentifier
-      in: path
+      in: query
       description: Resource identifier to get/set the resource data
       required: true
+      allowReserved: true
       schema:
         type: string
+      examples:
+        sample1:
+          value:
+            resourceIdentifier: \parent\child
+        sample2:
+          value:
+            resourceIdentifier: \parent\listElement[key=value]
+        sample3:
+          value:
+            resourceIdentifier: \parent\listElement[key=value]\grandChild
     acceptParamInHeader:
       name: Accept
       in: header

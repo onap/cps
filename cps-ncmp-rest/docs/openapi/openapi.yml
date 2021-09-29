@@ -41,10 +41,10 @@ paths:
   /v1/ch:
     $ref: 'ncmproxy.yml#/updateDmiRegistration'
 
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational/{resourceIdentifier}:
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational:
     $ref: 'ncmproxy.yml#/getResourceDataForPassthroughOperational'
 
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running/{resourceIdentifier}:
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
     $ref: 'ncmproxy.yml#/resourceDataForPassthroughRunning'
 
   /v1/ch/{cm-handle}/modules:
