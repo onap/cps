@@ -27,7 +27,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
@@ -167,8 +166,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
                                                                         final String resourceIdentifier,
                                                                         final String accept,
-                                                                        final @Valid String fields,
-                                                                        final @Min(1) @Valid Integer depth) {
+                                                                        final String fields,
+                                                                        final Integer depth) {
         final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
                 resourceIdentifier,
                 accept,
@@ -191,8 +190,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandle,
                                                                     final String resourceIdentifier,
                                                                     final String accept,
-                                                                    final @Valid String fields,
-                                                                    final @Min(1) @Valid Integer depth) {
+                                                                    final String fields,
+                                                                    final Integer depth) {
         final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier,
                 accept,
@@ -205,15 +204,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Create resource data in datastore pass through running
      * for given cm-handle.
      *
-     * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
+     * @param cmHandle cm handle identifier
      * @param requestBody requestBody
      * @param contentType content type of body
      * @return {@code ResponseEntity} response from dmi plugi
      */
     @Override
-    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String cmHandle,
-                                                                     final String resourceIdentifier,
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                     final String cmHandle,
                                                                      final String requestBody,
                                                                      final String contentType) {
         networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,

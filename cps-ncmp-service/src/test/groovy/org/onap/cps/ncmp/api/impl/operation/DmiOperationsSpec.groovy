@@ -42,7 +42,7 @@ class DmiOperationsSpec extends Specification {
     def 'call get resource data for pass-through:operational datastore from DMI.'() {
         given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-operational/testResourceId?fields=testFieldsQuery&depth=10'
+                '/ncmp-datastore:passthrough-operational?resourceIdentifier=testResourceId&fields=testFieldsQuery&depth=10'
         when: 'get resource data is called to DMI'
         objectUnderTest.getResourceDataOperationalFromDmi('testDmiBasePath',
                 'testCmhandle',
@@ -57,7 +57,7 @@ class DmiOperationsSpec extends Specification {
     def 'call get resource data for pass-through:running datastore from DMI.'() {
         given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-running/testResourceId?fields=testFieldsQuery&depth=10'
+                '/ncmp-datastore:passthrough-running?resourceIdentifier=testResourceId&fields=testFieldsQuery&depth=10'
         when: 'get resource data is called to DMI'
         objectUnderTest.getResourceDataPassThroughRunningFromDmi('testDmiBasePath',
                 'testCmhandle',
@@ -72,7 +72,7 @@ class DmiOperationsSpec extends Specification {
     def 'call create resource data for pass-through:running datastore from DMI.'() {
         given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-running/testResourceId'
+                '/ncmp-datastore:passthrough-running?resourceIdentifier=testResourceId'
         when: 'get resource data is called to DMI'
         objectUnderTest.createResourceDataPassThroughRunningFromDmi('testDmiBasePath',
                 'testCmhandle',
@@ -84,7 +84,7 @@ class DmiOperationsSpec extends Specification {
 
     def 'Call get resource from dmi.'() {
         given: 'expected url'
-            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/modules'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle?resourceIdentifier=modules'
         when: 'get resource data is called to dmi'
             objectUnderTest.getResourceFromDmi('testDmiBasePath',
                     'testCmhandle',
@@ -96,7 +96,7 @@ class DmiOperationsSpec extends Specification {
     def 'Call get resource from dmi with json data.'() {
         given: 'expected url & json data'
             def requestBody = 'some json'
-            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmHandle/modules'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmHandle?resourceIdentifier=modules'
             def expectedHttpHeaders = new HttpHeaders()
         when: 'get resource data is called to dmi'
             objectUnderTest.getResourceFromDmiWithJsonData('testDmiBasePath',
