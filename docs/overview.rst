@@ -29,6 +29,25 @@ Types of data that is stored:
   information, meaning it is information that doesn't belong in A&AI. In principle, some parameters might be both
   configuration and operational parameters depending on how they are used.
 
+NCMP
+-----------
+
+The Network Configuration Management Proxy (NCMP) provides access to network configuration data.
+NCMP accesses all network Data-Model-Inventory (DMI) information via the NCMP-DMI-Plugin.
+
+NCMP-DMI-Plugin
+---------------
+
+The Data-Model-Inventory (DMI) Plugin is used to allow the DMI API's access to the corresponding NCMP API's.
+
+Temporal
+-----------
+
+This service is responsible to provide a time oriented perspective for
+operational network data. It provides features to store and retrieve sequences
+of configurations or states along with the associated times when they occurred
+or have been observed.
+
 CPS Project
 -----------
 
