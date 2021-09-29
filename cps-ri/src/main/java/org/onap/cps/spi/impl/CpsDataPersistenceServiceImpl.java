@@ -86,7 +86,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         this.dataspaceRepository = dataspaceRepository;
         this.anchorRepository = anchorRepository;
         this.fragmentRepository = fragmentRepository;
-        this.objectMapper = new ObjectMapper();
+        objectMapper = new ObjectMapper();
     }
 
     private static final Gson GSON = new GsonBuilder().create();
@@ -97,7 +97,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
         final DataNode dataNode) {
         final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentXpath);
-        final var fragmentEntity =
+        final FragmentEntity fragmentEntity =
             toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode);
         parentFragment.getChildFragments().add(fragmentEntity);
         try {
@@ -131,9 +131,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final var fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
             dataNode);
         try {
             fragmentRepository.save(fragmentEntity);
@@ -153,7 +153,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
      */
     private static FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
         final AnchorEntity anchorEntity, final DataNode dataNodeToBeConverted) {
-        final var parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
+        final FragmentEntity parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
         final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
         for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
             final FragmentEntity childFragment =
@@ -189,14 +189,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        final var fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
         return toDataNode(fragmentEntity, fetchDescendantsOption);
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
         final String xpath) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         if (isRootXpath(xpath)) {
             return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
         } else {
@@ -208,8 +208,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
@@ -231,11 +231,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
         final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();
-        final var pattern =
+        final Pattern pattern =
             Pattern.compile("([\\s\\S]*\\/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
                 + REG_EX_FOR_OPTIONAL_LIST_INDEX + "\\/[\\s\\S]*");
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            final var matcher = pattern.matcher(fragmentEntity.getXpath());
+            final Matcher matcher = pattern.matcher(fragmentEntity.getXpath());
             if (matcher.matches()) {
                 ancestorXpath.add(matcher.group(1));
             }
@@ -276,15 +276,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
         final Map<String, Object> leaves) {
-        final var fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
         fragmentEntity.setAttributes(GSON.toJson(leaves));
         fragmentRepository.save(fragmentEntity);
     }
 
     @Override
-    public void replaceDataNodeTree(final String dataspaceName, final String anchorName,
-        final DataNode dataNode) {
-        final var fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+    public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
         replaceDataNodeTree(fragmentEntity, dataNode);
         try {
             fragmentRepository.save(fragmentEntity);
@@ -296,51 +295,105 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    private void replaceDataNodeTree(final FragmentEntity existingFragmentEntity, final DataNode submittedDataNode) {
+    private static void replaceDataNodeTree(final FragmentEntity existingFragmentEntity,
+                                            final DataNode submittedDataNode) {
 
         existingFragmentEntity.setAttributes(GSON.toJson(submittedDataNode.getLeaves()));
 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments()
             .stream().collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
 
-        final var updatedChildFragments = new HashSet<FragmentEntity>();
+        final Collection updatedChildFragments = new HashSet<FragmentEntity>();
 
         for (final DataNode submittedChildDataNode : submittedDataNode.getChildDataNodes()) {
             final FragmentEntity childFragment;
-            if (existingChildrenByXpath.containsKey(submittedChildDataNode.getXpath())) {
-                childFragment = existingChildrenByXpath.get(submittedChildDataNode.getXpath());
-                replaceDataNodeTree(childFragment, submittedChildDataNode);
-            } else {
+            if (isNewDataNode(submittedChildDataNode, existingChildrenByXpath)) {
                 childFragment = convertToFragmentWithAllDescendants(
                     existingFragmentEntity.getDataspace(), existingFragmentEntity.getAnchor(), submittedChildDataNode);
+            } else {
+                childFragment = existingChildrenByXpath.get(submittedChildDataNode.getXpath());
+                replaceDataNodeTree(childFragment, submittedChildDataNode);
             }
             updatedChildFragments.add(childFragment);
         }
-        existingFragmentEntity.setChildFragments(updatedChildFragments);
+        existingFragmentEntity.getChildFragments().clear();
+        existingFragmentEntity.getChildFragments().addAll(updatedChildFragments);
     }
 
     @Override
     @Transactional
     public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final Collection<DataNode> dataNodes) {
-        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final var firstChildNodeXpath = dataNodes.iterator().next().getXpath();
-        final var listNodeXpath = firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("["));
-        removeListNodeDescendants(parentEntity, listNodeXpath);
-        final Set<FragmentEntity> childFragmentEntities = dataNodes.stream().map(
-            dataNode -> convertToFragmentWithAllDescendants(
-                parentEntity.getDataspace(), parentEntity.getAnchor(), dataNode)
-        ).collect(Collectors.toUnmodifiableSet());
-        parentEntity.getChildFragments().addAll(childFragmentEntities);
+                                     final Collection<DataNode> replacementDataNodes) {
+        final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final String listNodeXpathPrefix = getListNodeXpathPrefix(replacementDataNodes);
+        final Map<String, FragmentEntity> existingListElementFragmentEntitiesByXPath =
+            extractListElementFragmentEntitiesByXPath(parentEntity.getChildFragments(), listNodeXpathPrefix);
+        removeExistingListElements(parentEntity.getChildFragments(), existingListElementFragmentEntitiesByXPath);
+        final Set<FragmentEntity> updatedChildFragmentEntities = new HashSet<>();
+        for (final DataNode replacementDataNode : replacementDataNodes) {
+            final FragmentEntity existingListNodeElementEntity =
+                existingListElementFragmentEntitiesByXPath.get(replacementDataNode.getXpath());
+            final FragmentEntity entityToBeAdded = getFragmentForReplacement(parentEntity, replacementDataNode,
+                existingListNodeElementEntity);
+
+            updatedChildFragmentEntities.add(entityToBeAdded);
+        }
+        parentEntity.getChildFragments().addAll(updatedChildFragmentEntities);
         fragmentRepository.save(parentEntity);
+    }
+
+    private static void removeExistingListElements(
+        final Collection<FragmentEntity> fragmentEntities,
+        final Map<String, FragmentEntity> existingListElementFragmentEntitiesByXPath) {
+        fragmentEntities.removeAll(existingListElementFragmentEntitiesByXPath.values());
+    }
+
+    private static String getListNodeXpathPrefix(final Collection<DataNode> replacementDataNodes) {
+        final String firstChildNodeXpath = replacementDataNodes.iterator().next().getXpath();
+        return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("[") + 1);
+    }
+
+    private static FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
+                                                            final DataNode replacementDataNode,
+                                                            final FragmentEntity existingListNodeElementEntity) {
+        if (existingListNodeElementEntity == null) {
+            return convertToFragmentWithAllDescendants(
+                parentEntity.getDataspace(), parentEntity.getAnchor(), replacementDataNode);
+        }
+        if (replacementDataNode.getChildDataNodes().isEmpty()) {
+            copyAttributesFromReplacementDataNode(existingListNodeElementEntity, replacementDataNode);
+            existingListNodeElementEntity.getChildFragments().clear();
+        } else {
+            replaceDataNodeTree(existingListNodeElementEntity, replacementDataNode);
+        }
+        return existingListNodeElementEntity;
+    }
+
+    private static boolean isNewDataNode(final DataNode replacementDataNode,
+                                         final Map<String, FragmentEntity> existingListNodeElementsByXpath) {
+        return !existingListNodeElementsByXpath.containsKey(replacementDataNode.getXpath());
+    }
+
+    private static void copyAttributesFromReplacementDataNode(final FragmentEntity existingListNodeElementEntity,
+                                                              final DataNode replacementDataNode) {
+        final FragmentEntity replacementFragmentEntity =
+            FragmentEntity.builder().attributes(GSON.toJson(replacementDataNode.getLeaves())).build();
+        existingListNodeElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
+    }
+
+    private static Map<String, FragmentEntity> extractListElementFragmentEntitiesByXPath(
+        final Set<FragmentEntity> childEntities, final String listNodeXpathPrefix) {
+        return childEntities.stream()
+            .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listNodeXpathPrefix))
+            .collect(Collectors.toMap(FragmentEntity::getXpath, fragmentEntity -> fragmentEntity));
     }
 
     @Override
     @Transactional
     public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
-        final var parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
-        final var parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final var descendantNode = listNodeXpath.substring(listNodeXpath.lastIndexOf('/'));
+        final String parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
+        final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final String descendantNode = listNodeXpath.substring(listNodeXpath.lastIndexOf('/'));
         final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(descendantNode);
 
         final boolean xpathPointsToAValidChildNodeWithKey = parentEntity.getChildFragments().stream().anyMatch(
