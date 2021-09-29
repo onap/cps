@@ -211,7 +211,7 @@ getResourceDataForPassthroughOperational:
     operationId: getResourceDataOperationalForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
-      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/fieldsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/depthParamInQuery'
@@ -236,7 +236,7 @@ resourceDataForPassthroughRunning:
     operationId: getResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
-      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/fieldsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/depthParamInQuery'
@@ -259,7 +259,7 @@ resourceDataForPassthroughRunning:
     operationId: createResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
-      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
     requestBody:
       required: true
