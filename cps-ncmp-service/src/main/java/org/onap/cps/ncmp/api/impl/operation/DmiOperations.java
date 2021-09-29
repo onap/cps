@@ -173,7 +173,7 @@ public class DmiOperations {
         final var stringBuilder = new StringBuilder(dmiServiceName);
         stringBuilder.append(DMI_API_PATH);
         stringBuilder.append(DMI_CM_HANDLE_PATH.replace("{cmHandle}", cmHandle));
-        stringBuilder.append(URL_SEPARATOR + resourceName);
+        stringBuilder.append("?resourceIdentifier=" + resourceName);
         return stringBuilder.toString();
     }
 
@@ -199,7 +199,7 @@ public class DmiOperations {
         stringBuilder.append(DMI_API_PATH);
         stringBuilder.append(DMI_CM_HANDLE_DATASTORE_PATH.replace("{cmHandle}", cmHandle));
         stringBuilder.append(URL_SEPARATOR + dataStoreEnum.getValue());
-        stringBuilder.append(URL_SEPARATOR + resourceId);
+        stringBuilder.append("?resourceIdentifier=" + resourceId);
         return stringBuilder;
     }
 
@@ -208,13 +208,11 @@ public class DmiOperations {
                                       final Integer depthQuery) {
         final var doesFieldExists = (fieldsQuery != null && !fieldsQuery.isEmpty());
         if (doesFieldExists) {
-            stringBuilder.append("?").append("fields=").append(fieldsQuery);
+            stringBuilder.append("&").append("fields=").append(fieldsQuery);
         }
         if (depthQuery != null) {
             if (doesFieldExists) {
                 stringBuilder.append("&");
-            } else {
-                stringBuilder.append("?");
             }
             stringBuilder.append("depth=").append(depthQuery);
         }
