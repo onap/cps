@@ -193,7 +193,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
-                    "/testResourceIdentifier?fields=testFields&depth=5"
+                    "?resourceIdentifier=parent/child&fields=testFields&depth=5"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -202,7 +202,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
-                    'testResourceIdentifier',
+                    'parent/child',
                     'application/json',
                     'testFields',
                     5)
@@ -210,16 +210,16 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Get Resource Data from pass-through running.' () {
+    def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
-                    "/testResourceIdentifier?fields=testFields&depth=5"
+                    "?resourceIdentifier=" + resourceIdentifier + "&fields=testFields&depth=5"
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceIdentifier',
-                'application/json',
-                'testFields',
-                5) >> '{valid-json}'
+                    resourceIdentifier,
+                    'application/json',
+                    'testFields',
+                    5) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -230,12 +230,20 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'response contains valid object body'
             response.getContentAsString() == '{valid-json}'
+        where: 'tokens are used in the resource identifier parameter'
+            scenario                       | resourceIdentifier
+            '/'                            | 'id/with/slashes'
+            '?'                            | 'idWith?'
+            ','                            | 'idWith,'
+            '='                            | 'idWith='
+            '[]'                           | 'idWith[]'
+            '? needs to be encoded as %3F' | 'idWith%3F'
     }
 
     def 'Create Resource Data from pass-through running with #scenario.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
-                    "/testResourceIdentifier"
+                    "?resourceIdentifier=parent/child"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
@@ -244,7 +252,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'testResourceIdentifier', requestBody, 'application/json;charset=UTF-8')
+                    'parent/child', requestBody, 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
         where: 'given request body'
