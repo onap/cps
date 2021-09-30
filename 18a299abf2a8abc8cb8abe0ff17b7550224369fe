@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b30e4f29_d42d2b84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-09-30T14:18:16Z",
+      "side": 1,
+      "message": "blocking: i do not see dmi is being called with ?resourceIdentifer",
+      "revId": "18a299abf2a8abc8cb8abe0ff17b7550224369fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
