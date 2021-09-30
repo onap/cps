@@ -3,19 +3,22 @@
 .. Copyright (C) 2021 Pantheon.tech
 .. _modeling:
 
-CPS Modeling
-############
-
 .. warning:: draft
 
 .. toctree::
    :maxdepth: 1
 
-Basic Concepts
-==============
+CPS-Core Modeling
+#################
+
+Data Model
+==========
 
 .. image:: _static/cps-modeling-concepts.png
    :alt: Basic entities relationship
+
+Basic Concepts
+==============
 
 Administrative entities
 
@@ -30,7 +33,7 @@ Administrative entities
   and uniquely identified by its name (within its own dataspace). Same YANG resources (source files) can be
   referenced by multiple schema sets from different dataspaces.
 
-- **Anchor** identifies the unique data set (data record) within a dataspace
+- **Anchor** identifies the unique data set (data record) within a dataspace.
 
   Anchor always references a schema set within same dataspace which describes a data model of associated data.
   Multiple anchors may reference same schema set. Anchor is uniquely identified by its name (within own dataspace).
@@ -50,13 +53,27 @@ Data
 
 Querying
 
-- **CPS Path** is used to query data nodes. The CPS Path is described in detail in the :doc:`cps-path` sub-page.
+- **CPS Path** is used to query data nodes. The CPS Path is described in detail in :doc:`cps-path`.
 
-CPS Path
-========
+NCMP Modeling
+#############
 
-.. toctree::
-   :maxdepth: 1
+Data Model
+==========
 
-   cps-path.rst
+NCMP stores DMI Plugin and CM Handle relations using a data model described as per this Yang module.
 
+:download:`DMI Yang Module <api/yang/dmiYangResource.yang>`
+
+Basic Concepts
+==============
+
+-- **CM-Handle** represents an instance a modeled Network Function(node) in ONAP.
+    These are stored as Anchors within CPS-Core.
+
+-- **Datastores** represent different views of the cm data.
+
+    Datastores are defined for NCMP to access the CPS running or operational datastores. Currently supported datastores are:
+
+    1. Passthrough-operational (config-true and config-false read-only data)
+    2. Passthrough-running (config-true read-write data)
