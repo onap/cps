@@ -9,8 +9,6 @@
 CPS Design
 ##########
 
-.. warning:: draft
-
 .. toctree::
    :maxdepth: 1
 
@@ -23,8 +21,8 @@ CPS supports the public APIs listed in the link below:
 
 :download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
 
-Exposed API
------------
+Exposed APIs
+------------
 
 The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS).
 The OAS 3, which is based on the original "Swagger Specification", is being widely used in API developments.
@@ -33,7 +31,16 @@ Specification can be accessed using following URI:
 
 .. code-block:: bash
 
-  “http://<hostname>:<port>/v3/api-docs?group=cps-docket”
+  http://<hostname>:<port>/v3/api-docs?group=cps-docket
+
+Consumed APIs
+-------------
+
+CPS Core uses API's from the following ONAP components
+
+* DMI-Plugin: REST based interface which is used to provide integration
+  and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
+  More information on the DMI Plugins offered APIs can be found on the `DMI Plugin's Design Page <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html>`_.
 
 CPS Path
 ========
