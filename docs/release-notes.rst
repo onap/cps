@@ -11,8 +11,6 @@
 CPS Release Notes
 =================
 
-.. warning:: draft
-
 .. contents::
     :depth: 2
 ..
@@ -20,6 +18,60 @@ CPS Release Notes
 ..      ========================
 ..      * * *   ISTANBUL   * * *
 ..      ========================
+
+Version: 2.0.1
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:2.0.1                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 2.0.1 Istanbul                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2021-14-10                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+
+   - `CPS-594 <https://jira.onap.org/browse/CPS-594>`_ SQL ConstraintViolationException when updating the list node element using PATCH List node API
+   - `CPS-653 <https://jira.onap.org/browse/CPS-653>`_ cmHandleProperties not supported by dmi in fetch modules
+   - `CPS-673 <https://jira.onap.org/browse/CPS-673>`_ Improvement and cleanup for CPS Core charts
+   - `CPS-691 <https://jira.onap.org/browse/CPS-691>`_ NCMP no master index label on index documentation page
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+Limitations to the amount of child nodes that can be added to the fix above. The current limit is 3.
+
+*Known Vulnerabilities*
+
+None
+
+*Workarounds*
+
+Add recursive method to save list node data to loop through all corresponding child nodes.
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+   - `CPS-581 <https://jira.onap.org/browse/CPS-581>`_ Remove security vulnerabilities
+
+*Known Security Issues*
+
+None
 
 Version: 2.0.0
 ==============
@@ -42,7 +94,7 @@ Release Data
 | **Release designation**              | 2.0.0 Istanbul                                         |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | 2021-14-10                                             |
+| **Release date**                     | 2021-14-09                                             |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
@@ -52,8 +104,6 @@ Features
 * Update, Create and Remove CM Handles.
 * Add support for retrieving and writing CM Handle data through NCMP datastores.
 * Automatic retrieval and caching of model information for CM Handles within NCMP.
-
-.. _istanbul_deliverable:
 
 Deliverables
 ------------
@@ -69,22 +119,31 @@ Software Deliverables
 Bug Fixes
 ---------
 
+   - `CPS-310 <https://jira.onap.org/browse/CPS-310>`_ Data schema migration from Honolulu to Istanbul is failing
    - `CPS-316 <https://jira.onap.org/browse/CPS-316>`_ Xpath cannot be created for augmentation data node
    - `CPS-336 <https://jira.onap.org/browse/CPS-336>`_ Ends-with functionality in cpsPath does not conform with standard xPath behavior
+   - `CPS-345 <https://jira.onap.org/browse/CPS-345>`_ Leaf String value comparison matches mix of single and double quotes
+   - `CPS-357 <https://jira.onap.org/browse/CPS-357>`_ cps-review-verification-maven-master Jenkins job is failing when running csit test
    - `CPS-367 <https://jira.onap.org/browse/CPS-367>`_ Get descendent does not support xpaths that end in list values
-   - `CPS-377 <https://jira.onap.org/browse/CPS-377>`_ Init ran model validation is failing, error details are not provided
+   - `CPS-377 <https://jira.onap.org/browse/CPS-377>`_ Init ran model validation is failing error details are not provided
    - `CPS-422 <https://jira.onap.org/browse/CPS-422>`_ REST 404 response returned instead of 400 for POST/PUT/PATCH request types
    - `CPS-450 <https://jira.onap.org/browse/CPS-450>`_ Datanode query using full path to node causes NPE
+   - `CPS-451 <https://jira.onap.org/browse/CPS-451>`_ cps-ran-schema-model@2021-01-28.yang missing root container
+   - `CPS-464 <https://jira.onap.org/browse/CPS-464>`_ Request to update node leaves (patch) responds with Internal Server Error
+   - `CPS-465 <https://jira.onap.org/browse/CPS-465>`_ Request to update node leaves (patch) responds with json parsing failure
    - `CPS-466 <https://jira.onap.org/browse/CPS-466>`_ Concurrent requests to create schema sets for the same yang model are not supported
    - `CPS-479 <https://jira.onap.org/browse/CPS-479>`_ Get Nodes API does not always return the object from the root
+   - `CPS-500 <https://jira.onap.org/browse/CPS-500>`_ Special Character Limitations of cpsPath Queries
    - `CPS-501 <https://jira.onap.org/browse/CPS-501>`_ Put DataNode API has missing transaction and error handling for concurrency issues
-   - `CPS-504 <https://jira.onap.org/browse/CPS-504>`_ Checkstyle rules are not enforced for cps-ncmp-dmi-plugin
-   - `CPS-515 <https://jira.onap.org/browse/CPS-515>`_ Maven build is not failing when test containers are not able to run
-   - `CPS-520 <https://jira.onap.org/browse/CPS-520>`_ Fix docker profile in cps-temporal and cps-ncmp-dmi-plugin
    - `CPS-524 <https://jira.onap.org/browse/CPS-524>`_ Issue with CPSData API to add an item to an existing list node
    - `CPS-560 <https://jira.onap.org/browse/CPS-560>`_ Response from cps query using text() contains escape characters
    - `CPS-566 <https://jira.onap.org/browse/CPS-566>`_ Can't access grandparent node through ancestor axis
-   - `CPS-586 <https://jira.onap.org/browse/CPS-586>`_ App username and password environment variables are missing from temporal docker compose
+   - `CPS-573 <https://jira.onap.org/browse/CPS-573>`_ /v1/ch/PNFDemo1/modules returning 401 unauthorised.
+   - `CPS-587 <https://jira.onap.org/browse/CPS-587>`_ cps-ncmp-service NullpointerException when DmiPluginRegistration has no additionProperties
+   - `CPS-591 <https://jira.onap.org/browse/CPS-591>`_ CPS-Core Leaf stored as integer is being returned from DB as float
+   - `CPS-616 <https://jira.onap.org/browse/CPS-616>`_ NCMP base path does not conform to agreed API URL
+   - `CPS-630 <https://jira.onap.org/browse/CPS-630>`_ Incorrect information sent when same anchor is updated faster than notification service processes
+   - `CPS-635 <https://jira.onap.org/browse/CPS-635>`_ Module Resource call does not include body
 
 This document provides the release notes for Istanbul release.
 
@@ -118,15 +177,15 @@ Under OOM (Kubernetes) all CPS component containers are deployed as Kubernetes P
 Known Limitations, Issues and Workarounds
 -----------------------------------------
 
-   - `CPS-524 <https://jira.onap.org/browse/CPS-524>`_ Issue with CPSData API to add an item to an existing list node
-
 *System Limitations*
 
 Limitations to the amount of child nodes that can be added to the fix above. The current limit is 3.
 
 *Known Vulnerabilities*
 
-None
+   - `CPS-594 <https://jira.onap.org/browse/CPS-594>`_ SQL ConstraintViolationException when updating the list node element using PATCH List node API
+   - `CPS-653 <https://jira.onap.org/browse/CPS-653>`_ cmHandleProperties not supported by dmi in fetch modules
+   - `CPS-673 <https://jira.onap.org/browse/CPS-673>`_ Improvement and cleanup for CPS Core charts
 
 *Workarounds*
 
@@ -138,9 +197,10 @@ Security Notes
 *Fixed Security Issues*
 
    - `CPS-249 <https://jira.onap.org/browse/CPS-249>`_ Exception stack trace is exposed
-   - `CPS-581 <https://jira.onap.org/browse/CPS-581>`_ Remove security vulnerabilities
 
 *Known Security Issues*
+
+   - `CPS-581 <https://jira.onap.org/browse/CPS-581>`_ Remove security vulnerabilities
 
 Test Results
 ------------
