@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d61fb59_90272676",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-09-30T08:01:12Z",
+      "side": 1,
+      "message": "ignore these changes as Rahuls fix will remove them anyway",
+      "range": {
+        "startLine": 192,
+        "startChar": 68,
+        "endLine": 194,
+        "endChar": 87
+      },
+      "revId": "2000c3ff66a6fdf27f01fb5dcb242e730cd13491",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
