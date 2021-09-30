@@ -23,8 +23,8 @@ CPS supports the public APIs listed in the link below:
 
 :download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
 
-Exposed API
------------
+Exposed APIs
+------------
 
 The standard for API definition in the RESTful API world is the OpenAPI Specification (OAS).
 The OAS 3, which is based on the original "Swagger Specification", is being widely used in API developments.
@@ -34,6 +34,16 @@ Specification can be accessed using following URI:
 .. code-block:: bash
 
   “http://<hostname>:<port>/v3/api-docs?group=cps-docket”
+
+Consumed APIs
+-------------
+
+CPS Core uses API's from the following ONAP components
+
+* SDNC: REST based interface exposed by the SDNC client. This is used to retrieve the yang resources and modules for CPS.
+
+* DMI-Plugin: REST based interface which is used to provide integration
+  and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
 
 CPS Path
 ========
