@@ -1,15 +1,254 @@
-.. This work is licensed under a Creative Commons Attribution 4.0 International License.
+.. This work is licensed under a
+.. Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021 Nordix Foundation
 
-.. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
-.. _deployment:
-
-
+==============
 CPS Deployment
-##############
+==============
 
-.. warning:: draft
+.. contents::
+    :depth: 2
 
-.. toctree::
-   :maxdepth: 1
+Deployment
+==========
+
+CPS OOM Charts
+--------------
+The CPS K8S charts are located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
+This chart includes different components as listed below:
+
+.. container:: ulist
+
+  - `cps-core <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-core>`_
+  - cps-temporal
+  - ncmp-dmi-plugin
+
+Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/latest/oom_user_guide.html>`_ on how to install and deploy ONAP.
+
+Installing or Upgrading CPS Components
+--------------------------------------
+The assumption is you have cloned the charts from the OOM repository into a local directory.
+
+**Step 1** Go to the cps charts
+
+.. code-block:: bash
+
+  cd oom/kubernetes/cps/components/cps-core
+
+Edit properties in values.yaml files to make any changes if required.
+
+**Step 2** Build the charts
+
+.. code-block:: bash
+
+  make cps
+  make SKIP_LINT=TRUE <namespace>
+
+.. note::
+   SKIP_LINT is only to reduce the "make" time
+
+**Step 3** Undeploying cps components
+
+After undeploying cps components, keep monitoring the CPS-Core pods until they go away.
+
+.. code-block:: bash
+
+  helm del --purge <my-helm-release>-<cps-component-name>
+  kubectl get pods -n <namespace> | grep <cps-component-name>
+
+**Step 4** Delete NFS persisted data for CPS components
+
+.. code-block:: bash
+
+  rm -fr /dockerdata-nfs/<my-helm-release>/<cps-component-name>
+
+**Step 5** Make sure there is no orphan database persistent volume or claim.
+
+First, find if there is an orphan database PV or PVC with the following commands:
+
+.. note::
+   This step does not apply to ncmp-dmi-plugin.
+
+.. code-block:: bash
+
+  kubectl get pvc -n <namespace> | grep <cps-component-name>
+  kubectl get pv -n <namespace> | grep <cps-component-name>
+
+If there are any orphan resources, delete them with
+
+.. code-block:: bash
+
+    kubectl delete pvc <orphan-cps-core-pvc-name>
+    kubectl delete pv <orphan-cps-core-pv-name>
+
+**Step 6** Re-Deploy cps-core pods
+
+After deploying cps-core, keep monitoring the cps-core pods until they come up.
+
+.. code-block:: bash
+
+  helm deploy <my-helm-release> local/onap --namespace <namespace>
+  kubectl get pods -n <namespace> | grep cps-core
+
+Restarting a faulty component
+-----------------------------
+Each cps-core component can be restarted independently by issuing the following command:
+
+.. code-block:: bash
+
+    kubectl delete pod <cps-core-pod> -n <namespace>
+
+.. _credentials_retrieval:
+
+Credentials Retrieval
+---------------------
+
+Commands below can be used to retrieve application property credentials. By default, these credentials are automatically
+generated when deploying.
+
+For CPS Core REST API authentication:
+
+.. code::
+
+  kubectl get secret <my-helm-release>-cps-core-app-user-creds -n <namespace> -o json | jq '.data | map_values(@base64d)'
+
+For CSP Core database authentication:
+
+.. code::
+
+    kubectl get secret <my-helm-release>-cps-core-pg-user-creds -n <namespace> -o json | jq '.data | map_values(@base64d)'
+
+.. note::
+   base64d works only with jq version 1.6 or above.
+
+CPS-Core Pods
+=============
+To get a listing of the cps-core Pods, run the following command:
+
+.. code-block:: bash
+
+  kubectl get pods -n <namespace> | grep cps-core
+
+  dev-cps-core-ccd4cc956-r98pv                          1/1     Running            0          24h
+  dev-cps-core-postgres-primary-f7766d46c-s9d5b         1/1     Running            0          24h
+  dev-cps-core-postgres-replica-84659d68f9-6qnt4        1/1     Running            0          24h
+
+
+Additional Cps-Core Customizations
+==================================
+
+Application Properties
+----------------------
+
+The following table lists some properties that can be specified as Helm chart
+values to configure the application to be deployed. This list is not
+exhaustive.
+
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| Property                              | Description                                                                                             | Default Value                 |
++=======================================+=========================================================================================================+===============================+
+| config.appUserName                    | User name used by cps-core service to configure the authentication for REST API it exposes.             | ``cpsuser``                   |
+|                                       |                                                                                                         |                               |
+|                                       | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.appUserPassword                | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
+|                                       |                                                                                                         |                               |
+|                                       | This is the password to be used by CPS Temporal REST clients to authenticate themselves.                |                               |
+|                                       |                                                                                                         |                               |
+|                                       | If not defined, the password is generated when deploying the application.                               |                               |
+|                                       |                                                                                                         |                               |
+|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgUserName            | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgUserPassword        | Internal password used by cps-core to connect to its own database.                                      | Not defined                   |
+|                                       |                                                                                                         |                               |
+|                                       | If not defined, the password is generated when deploying the application.                               |                               |
+|                                       |                                                                                                         |                               |
+|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgDatabase            | Database name used by cps-core                                                                          | ``cpsdb``                     |
+|                                       |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                | Kafka hostname and port                                                                                 | ``message-router-kafka:9092`` |
+| spring.kafka.bootstrap-servers        |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                | Kafka consumer client id                                                                                | ``cps-core``                  |
+| spring.kafka.consumer.client-id       |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security protocol.                                                                                | ``PLAINTEXT``                 |
+| spring.kafka.security.protocol        | Some possible values are:                                                                               |                               |
+|                                       |                                                                                                         |                               |
+|                                       | * ``PLAINTEXT``                                                                                         |                               |
+|                                       | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
+|                                       | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
+| spring.kafka.properties.              | Some possible values are:                                                                               |                               |
+| sasl.mechanism                        |                                                                                                         |                               |
+|                                       | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
+|                                       | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
+| spring.kafka.properties.              | Some possible values are:                                                                               |                               |
+| sasl.jaas.config                      |                                                                                                         |                               |
+|                                       | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
+|                                       |   for PLAINTEXT                                                                                         |                               |
+|                                       | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
+|                                       |   for SSL                                                                                               |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
+| spring.kafka.ssl.trust-store-type     | Some possible values are:                                                                               |                               |
+|                                       |                                                                                                         |                               |
+|                                       | * ``JKS``                                                                                               |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
+| spring.kafka.ssl.trust-store-location |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
+| spring.kafka.ssl.trust-store-password |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.publisher.                     | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
+| spring.kafka.properties.              | Possible value is:                                                                                      |                               |
+| ssl.endpoint.identification.algorithm |                                                                                                         |                               |
+|                                       | * ``""``, empty string to disable                                                                       |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Kafka topic to publish to cps-temporal                                                                  | ``cps.data-updated-events``   |
+| notification.data-updated.topic       |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | If notification from cps-core to cps-temporal is enabled or not.                                        | ``true``                      |
+| notification.data-updated.enabled     | If this is set to false, then the config.publisher properties could be skipped.                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Dataspaces to be enabled for publishing events to cps-temporal                                          | ````                          |
+| notification.data-updated.filters.    |                                                                                                         |                               |
+| enabled-dataspaces                    |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | If notifications should be processed in synchronous or asynchronous manner                              | ``false``                     |
+| notification.async.enabled            |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
+| notification.async.executor.          |                                                                                                         |                               |
+| core-pool-size                        |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Max pool size in asynchronous execution of notification.                                                | ``1``                         |
+| notification.async.executor.          |                                                                                                         |                               |
+| max-pool-size                         |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Queue Capacity in asynchronous execution of notification.                                               | ``500``                       |
+| notification.async.executor.          |                                                                                                         |                               |
+| queue-capacity                        |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | If the executor should wait for the tasks to be completed on shutdown                                   | ``true``                      |
+| notification.async.executor.          |                                                                                                         |                               |
+| wait-for-tasks-to-complete-on-shutdown|                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``async_``                    |
+| notification.async.executor.          |                                                                                                         |                               |
+| thread-name-prefix                    |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+
+CPS-Core Docker Installation
+============================
+
+CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
+The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
