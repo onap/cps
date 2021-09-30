@@ -22,6 +22,30 @@
       "revId": "8bf710c85d26ddd4586554868473b070ca68a70c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94d0c344_1bdea334",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-09-30T13:04:18Z",
+      "side": 1,
+      "message": "I don\u0027t think this will work as it causes this issue\nBad return type in method reference: cannot convert java.lang.String to boolean",
+      "parentUuid": "02b30726_b6b1e805",
+      "range": {
+        "startLine": 419,
+        "startChar": 22,
+        "endLine": 419,
+        "endChar": 53
+      },
+      "revId": "8bf710c85d26ddd4586554868473b070ca68a70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
