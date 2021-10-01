@@ -22,4 +22,17 @@
 #
 
 cd $WORKSPACE/archives/docker-compose
+
+./docker-compose logs ncmp-dmi-plugin
+
+./docker-compose logs cps-and-ncmp
+
+./docker-compose logs sdnc
+
+./docker-compose logs netconf-pnp-simulator
+
+ls -l certs
+
+ls -l sim6512
+
 ./docker-compose down -v
