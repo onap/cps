@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29dc2834_420a3440",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-01T15:46:16Z",
+      "side": 1,
+      "message": "blocking: getModules and getYangResource is using this and they should not be treated as resourceIdentifer.",
+      "range": {
+        "startLine": 178,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 77
+      },
+      "revId": "384b8f0c56433712063894124933522c37e6b908",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
