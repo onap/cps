@@ -18,6 +18,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
+# Modifications Copyright (C) 2021 Nordix Foundation.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -39,7 +40,60 @@ curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compos
 chmod +x docker-compose
 
 # start CPS and PostgreSQL containers with docker compose
+docker network create test_network
 ./docker-compose up -d
+
+# Get local IP address of running docker. If using this locally on non native linux e.g. WSL replace LOCAL_IP with localhost
+LOCAL_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+
+# Allow time for netconf-pnp-simulator & SDNC to come up fully
+
+sleep 2m 30s
+
+SDNC_TIME_OUT=250
+SDNC_INTERVAL=10
+SDNC_TIME=0
+
+while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
+
+	# Mount netconf node
+
+	curl --location --request PUT 'http://'"$LOCAL_IP"':8282/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
+	--header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+	--header 'Content-Type: application/json' \
+	--data-raw '{
+	  "node": [
+		{
+		  "node-id": "PNFDemo",
+		  "netconf-node-topology:protocol": {
+			"name": "TLS"
+		  },
+		  "netconf-node-topology:host": "172.17.0.1",
+		  "netconf-node-topology:key-based": {
+			"username": "netconf",
+			"key-id": "ODL_private_key_0"
+		  },
+		  "netconf-node-topology:port": 6512,
+		  "netconf-node-topology:tcp-only": false,
+		  "netconf-node-topology:max-connection-attempts": 5
+		}
+	  ]
+	 }'
+
+	# Verify node has been mounted
+
+	RESPONSE=$( curl --location --request GET 'http://'"$LOCAL_IP"':8282/restconf/config/network-topology:network-topology/topology/topology-netconf' --header 'Authorization: basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==')
+
+	  if [[ "$RESPONSE" == *"PNFDemo"* ]]; then
+	    echo "Node mounted in $SDNC_TIME"
+		  break;
+	  fi
+
+	 sleep $SDNC_INTERVAL
+	 SDNC_TIME=$((SDNC_TIME + SDNC_INTERVAL))
+
+done
+
 # Validate CPS service initialization completed via periodic log checking for line like below:
 # org.onap.cps.Application ... Started Application in X.XXX seconds
 
@@ -66,11 +120,13 @@ if [ "$TIME" -gt "$TIME_OUT" ]; then
 fi
 
 # The CPS host according to docker-compose.yml
-CPS_HOST="localhost"
+CPS_HOST=$LOCAL_IP
 CPS_PORT="8883"
+
+DMI_HOST=$LOCAL_IP
+DMI_PORT="8783"
 
 MANAGEMENT_PORT="8887"
 
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v CPS_PORT:$CPS_PORT -v MANAGEMENT_PORT:$MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data"
-
+ROBOT_VARIABLES="-v CPS_HOST:$CPS_HOST -v CPS_PORT:$CPS_PORT -v DMI_HOST:$DMI_HOST -v DMI_PORT:$DMI_PORT -v MANAGEMENT_PORT:$MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data"
