@@ -22,4 +22,9 @@
 #
 
 cd $WORKSPACE/archives/docker-compose
+
+./docker-compose logs ncmp-dmi-plugin
+
+./docker-compose logs cps-and-ncmp
+
 ./docker-compose down -v
