@@ -17,9 +17,22 @@
 # Modifications copyright (c) 2017 AT&T Intellectual Property
 # Modifications copyright (c) 2020 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
-#
+# Modifications Copyright (C) 2021 Pantheon.tech
+# Modifications Copyright (C) 2021 Nordix Foundation
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 
-cd $WORKSPACE/archives/docker-compose
-./docker-compose down -v
+docker logs cps-and-ncmp
+docker logs ncmp-dmi-plugin
+docker logs sdnc
+docker logs netconf-pnp-simulator
+
+echo 'Stop, Removing all running containers...'
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+
+echo 'Removing Volumes...'
+echo y | docker volume prune
+
+echo 'Removing Networks...'
+echo y | docker network prune
+
