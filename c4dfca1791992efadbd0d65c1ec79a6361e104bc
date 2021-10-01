@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed541fa9_19a5f0b5",
+        "filename": "csit/data/bookstore.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "maybe rename to bookstoreUpdate.json or bookstoreAddEntry.json",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "558ca193_22922151",
+        "filename": "csit/data/cmHandles.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "similar as previous comment maybe new json file to indicate puposed\n\ncmHandleRegistration.json",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c6936ea_725d4ec6",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "should the whole bit below be part of a (new) robot test?\nI know it is executing against SDN-C but it might be easier to manage as a robot (setup) test",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7999b12_6780b332",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "Coudl this be using (new) env. variables instead?",
+      "range": {
+        "startLine": 54,
+        "startChar": 39,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b161630d_ef2de6a0",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "add comment to indicate main action(s)\n\ne.g. Mount node using ODL/SDNC-C (whatever term is best)",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 30
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "881379d4_8a5005b4",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "you working for Pantheon now?",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed621170_00e513d7",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "this might be too strict, lead to brittle test. I think testing \u003e 0 might be sufficent",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 62
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "969c14ef_8144a0a4",
+        "filename": "csit/tests/ncmp/ncmp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-01T14:32:45Z",
+      "side": 1,
+      "message": "is it possible to check the new (\u0027good book\u0027?) is present",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 73
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
