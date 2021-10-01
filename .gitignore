@@ -1,7 +1,6 @@
 *.class
 *.jar
 *.war
-*.zip
 *.log
 
 cps-application/archunit_store
