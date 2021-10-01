@@ -22,4 +22,5 @@
 #
 
 cd $WORKSPACE/archives/docker-compose
+
 ./docker-compose down -v
