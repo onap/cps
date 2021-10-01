@@ -1,0 +1,11 @@
+{
+    "operation": "read",
+    "data": {
+        "modules": [
+            {
+                "name": "nc-notifications",
+                "revision": "2008-07-14"
+            }
+        ]
+    }
+}
