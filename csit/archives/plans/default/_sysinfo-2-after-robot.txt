@@ -1,0 +1,5 @@
+> top -bn1 | head -3
+
+> free -h
+
+> docker ps
