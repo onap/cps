@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  netconf-pnp-simulator:
+    image: nexus3.onap.org:10001/onap/integration/simulators/netconf-pnp-simulator:2.8.6
+    container_name: netconf-simulator
+    restart: always
+    ports:
+      - "831:830"
+      - "6512:6513"
+    volumes:
+            - ./netconf-config:/config/modules/stores
