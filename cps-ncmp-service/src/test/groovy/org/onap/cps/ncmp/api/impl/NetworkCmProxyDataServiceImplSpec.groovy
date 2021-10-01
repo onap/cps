@@ -429,7 +429,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
             def jsonDataToFetchYangResource = '{"operation":"read","dataType":"application/json","data":"{\\"modules\\":[{\\"name\\":\\"module2\\",\\"revision\\":\\"1\\"}]}","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
-            mockDmiOperations.getResourceFromDmiWithJsonData('some service name', jsonDataToFetchYangResource, 'some cm handle', 'moduleResources') >> moduleResources
+            mockDmiOperations.getResourceFromDmiWithJsonData('some service name', _, 'some cm handle', 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'

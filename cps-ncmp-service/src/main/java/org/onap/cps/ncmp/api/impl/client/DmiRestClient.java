@@ -57,7 +57,7 @@ public class DmiRestClient {
                                                             final String jsonData,
                                                             final HttpHeaders httpHeaders) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(httpHeaders));
-        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, String.class);
+        return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, String.class);
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {

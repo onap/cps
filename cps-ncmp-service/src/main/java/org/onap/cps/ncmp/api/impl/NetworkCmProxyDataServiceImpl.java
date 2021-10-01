@@ -289,7 +289,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private static void handleResponseForPost(final @NotNull ResponseEntity<String> responseEntity) {
-        if (responseEntity.getStatusCode() != HttpStatus.OK) {
+        if (responseEntity.getStatusCode() != HttpStatus.CREATED && responseEntity.getStatusCode() != HttpStatus.OK) {
             throw new NcmpException("Not able to create resource data.",
                     "DMI status code: " + responseEntity.getStatusCodeValue()
                             + ", DMI response body: " + responseEntity.getBody());
@@ -354,8 +354,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     protected void createAnchorAndSyncModel(final PersistenceCmHandle persistenceCmHandle) {
-        createAnchor(persistenceCmHandle);
+
         fetchAndSyncModules(persistenceCmHandle);
+        createAnchor(persistenceCmHandle);
     }
 
     private static PersistenceCmHandle toPersistenceCmHandle(final String dmiPluginService,
@@ -437,13 +438,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
-        final GenericRequestBody dmiRequestBodyObject = GenericRequestBody.builder()
-                .operation(GenericRequestBody.OperationEnum.READ)
-                .dataType(MediaType.APPLICATION_JSON_VALUE)
-                .data(data.toString())
-                .cmHandleProperties(cmHandlePropertiesAsMap)
-                .build();
-        return prepareOperationBody(dmiRequestBodyObject);
+        final JsonObject jsonRequestObject = new JsonObject();
+        jsonRequestObject.add("data", data);
+        jsonRequestObject.addProperty("operation", "read");
+        jsonRequestObject.addProperty("dataType", MediaType.APPLICATION_JSON_VALUE);
+        final Gson gson = new Gson();
+        jsonRequestObject.add("cmHandleProperties", gson.toJsonTree(cmHandlePropertiesAsMap));
+        return jsonRequestObject.toString();
     }
 
     private static JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
