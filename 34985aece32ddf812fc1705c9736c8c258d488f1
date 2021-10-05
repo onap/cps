@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d78aaf19_936f3fbf",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T13:39:15Z",
+      "side": 1,
+      "message": "inventory",
+      "range": {
+        "startLine": 96,
+        "startChar": 29,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "34985aece32ddf812fc1705c9736c8c258d488f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e179cd3_37b2b6b9",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi-northbound.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T13:39:15Z",
+      "side": 1,
+      "message": "keep existing name just \u0027ncmproxy\u0027 or \u0027ncmp\u0027",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "34985aece32ddf812fc1705c9736c8c258d488f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b061e802_dcb65a94",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T13:39:15Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 115,
+        "startChar": 36,
+        "endLine": 115,
+        "endChar": 47
+      },
+      "revId": "34985aece32ddf812fc1705c9736c8c258d488f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de6ddc33_1998c17a",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T13:39:15Z",
+      "side": 1,
+      "message": "inventory",
+      "range": {
+        "startLine": 109,
+        "startChar": 60,
+        "endLine": 109,
+        "endChar": 67
+      },
+      "revId": "34985aece32ddf812fc1705c9736c8c258d488f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
