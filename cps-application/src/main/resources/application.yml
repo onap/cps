@@ -25,6 +25,7 @@ rest:
     api:
         cps-base-path: /cps/api
         ncmp-base-path: /ncmp
+        ncmp-inventory-base-path: /ncmpInventory
 
 spring:
     main:
@@ -93,10 +94,13 @@ springdoc:
               url: /api-docs/cps-core/openapi.yaml
             - name: cps-ncmp
               url: /api-docs/cps-ncmp/openapi.yaml
+            - name: cps-ncmp-inventory
+              url: /api-docs/cps-ncmp/openapi-inventory.yaml
+
 
 security:
     # comma-separated uri patterns which do not require authorization
-    permit-uri: /manage/**,/swagger-ui/**,/swagger-resources/**,/api-docs
+    permit-uri: /manage/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**
     auth:
         username: ${CPS_USERNAME}
         password: ${CPS_PASSWORD}
