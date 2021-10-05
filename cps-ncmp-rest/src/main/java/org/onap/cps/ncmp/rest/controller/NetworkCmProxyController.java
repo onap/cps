@@ -32,6 +32,7 @@ import javax.validation.constraints.NotNull;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.api.NetworkCmProxyInternalApi;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -44,7 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.api.ncmp-base-path}")
-public class NetworkCmProxyController implements NetworkCmProxyApi {
+public class NetworkCmProxyController implements NetworkCmProxyApi, NetworkCmProxyInternalApi {
 
     private static final Gson GSON = new GsonBuilder().create();
 

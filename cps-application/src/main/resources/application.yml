@@ -93,6 +93,9 @@ springdoc:
               url: /api-docs/cps-core/openapi.yaml
             - name: cps-ncmp
               url: /api-docs/cps-ncmp/openapi.yaml
+            - name: cps-ncmp-internal
+              url: /api-docs/cps-ncmp/openapi-internal.yaml
+
 
 security:
     # comma-separated uri patterns which do not require authorization
