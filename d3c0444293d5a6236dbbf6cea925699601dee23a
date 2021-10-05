@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae067f84_8664bfbe",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T14:50:12Z",
+      "side": 1,
+      "message": "ass little tabel for each component with the relevant gerrit link",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 175
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
