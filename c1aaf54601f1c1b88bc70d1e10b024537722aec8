@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f0d5dca_5c9327d3",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Bell ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c5faeb7_a4495d0b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "If this is the only title having this level in the document structure, I think it can be removed (it does not seem to bring additional value and seems to be a duplicate of the page title).",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1158910a_a6562161",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "For official documentation, I\u0027m suggesting to use full Kubernetes name.",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75ec8f6_be2c1c75",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "If line 20 is plural, this one should be: \"These charts include ...\"\nOr line 20 can be changed to singular to keep line 21 as is.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "894a0dc3_fd79b5b9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Users are not expected to modify values.yaml files.",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fd5e17a_d9759006",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Still, I\u0027m a bit confused about the steps we are providing here.\n\nIf target audience are cps users and administrators, it is not expected that they have to to build the charts. They should only be pointed to Nexus repo where official released ONAP charts has already been built and ready for them to be used for deployment.\n\nFor me, the steps here are more documentation for developers who need to change the charts and rebuild them.\n\nWhy not providing this information for devs in readme files in the code source repo? Then, we can keep the documentation here for users and admin only. We can still have a link to the readme for dev who need to do more (as we are doing for docker compose). Also devs often expect documentation in readme files along with the code. It would fit for everybody.\n\nONAP is sometimes seen as complex to use or deploy, I think it has a lot of value to hide some kind of complexity from users who does not need to be exposed to it.\n\nWhat are your thoughts ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0f3e304_c66e1fe7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "I think that make\u0027s parameter is the chart to build, not namespace.",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e7bea74_0077d166",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "A note mentioning \"if already deployed\" could help to understand the flow. Someone following these steps for the first time can go directly to step 6.",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1de53015_1368d7c4",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Is this section for all cps components or for cps core ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f33c8eb_cc4758f5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Should step 4 be done after step 5 ? Isn\u0027t it safer to delete the folder after pvc and pv has been deleted ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beab33ba_5bffa903",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "This only works if the file system is on the machine the user is connected to.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 25
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d861256_94d669ae",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "When Krzysztof reviewed cps temporal creditentials, he was interested in having some documentation related to external secrets then I added the following in cps temporal. Do we want to have it here now ?\n\n---\nApplication and database credentials are kept in Kubernetes secrets. They are\ndefined as external secrets in\n`values.yaml \u003chttps://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/values.yaml#L28\u003e`_\nfile.\n\nThen, credential values from these secrets are configured in running container\nas environment variables. This is done in\n`deployment.yaml \u003chttps://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/templates/deployment.yaml#L47\u003e`_\nfile.\n\nIf no specific passwords are provided to the chart as override values for\ndeployment, then passwords are automatically generated when deploying and\ncreating Helm release.\n---",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae91aae_55bea0ab",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Suggestion: Is the doucumentation can be simplified by removing -n \u003cnamespace\u003e option for all commands and assuming that user config is set to the namespace the user wants to interact with ?",
+      "range": {
+        "startLine": 130,
+        "startChar": 53,
+        "endLine": 130,
+        "endChar": 67
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c04b21c9_87f079cb",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Why additional ? Aren\u0027t they simply CPS Core Configuration ?",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff8cec7e_861a80e0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "For consistency, it would be good to keep the same \"CPS Core\" notation in all verbose text and avoid \"CPS-Core\", Cps-Core\" variations. (this comment does not apply to code, pod or services resources names, ...)",
+      "range": {
+        "startLine": 148,
+        "startChar": 11,
+        "endLine": 148,
+        "endChar": 19
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd658fc8_f26d5f85",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "If this is the only title having this level in the document structure, is it needed ?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 22
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f68c2d9_57799133",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Istanbul documentation will provide the link to istanbul docker compose and not latest master, right ?",
+      "range": {
+        "startLine": 275,
+        "startChar": 56,
+        "endLine": 275,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df35a3cf_e99edb02",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-05T12:56:22Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "range": {
+        "startLine": 276,
+        "startChar": 4,
+        "endLine": 276,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
