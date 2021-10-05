@@ -106,6 +106,7 @@ Swagger UI and Open API specifications are available to discover service endpoin
 * `http://localhost:<port-number>/swagger-ui.html`
 * `http://localhost:<port-number>/api-docs/cps-core/openapi.yaml`
 * `http://localhost:<port-number>/api-docs/cps-ncmp/openapi.yaml`
+* `http://localhost:<port-number>/api-docs/cps-ncmp/openapi-inventory.yaml`
 
 with <port-number> being either `8080` if running the plain Java build or retrieved using following command
 if running from `docker-compose`:

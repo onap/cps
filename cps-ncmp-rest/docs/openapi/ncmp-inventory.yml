@@ -1,6 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
-#  Modifications Copyright (C) 2021 Bell Canada.
+#  Copyright (C) 2021 Bell Canada
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -17,7 +16,25 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-rest:
-    api:
-        ncmp-base-path: /ncmp
-        ncmp-inventory-base-path: /ncmpInventory
+updateDmiRegistration:
+  post:
+    description: Register a DMI Plugin with any new, updated or removed CM Handles.
+    tags:
+      - network-cm-proxy-inventory
+    summary: DMI notifies NCMP of new CM Handles
+    operationId: updateDmiPluginRegistration
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/RestDmiPluginRegistration'
+    responses:
+      201:
+        $ref: 'components.yaml#/components/responses/Created'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
