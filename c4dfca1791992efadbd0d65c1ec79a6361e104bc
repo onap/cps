@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "6c3f563d_9e30aa5b",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "I agree, the below part should not be here in setup.sh",
+      "parentUuid": "3c6936ea_725d4ec6",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7999b12_6780b332",
         "filename": "csit/plans/default/setup.sh",
         "patchSetId": 1
@@ -128,6 +152,75 @@
     },
     {
       "key": {
+        "uuid": "34538027_943376d3",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3d9abd1_dca8edf7",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 1
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddae4276_14b75c1a",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "alignment out of sync",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 75
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed621170_00e513d7",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 1
@@ -144,6 +237,53 @@
         "startChar": 0,
         "endLine": 49,
         "endChar": 62
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24485da0_e9aeb684",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "I agree",
+      "parentUuid": "ed621170_00e513d7",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 62
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04a6335_d4a31fa2",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-05T09:51:13Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 1
       },
       "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
