@@ -20,4 +20,4 @@
 rest:
     api:
         ncmp-base-path: /ncmp
-spring:
+        ncmp-inventory-base-path: /ncmpInventory
