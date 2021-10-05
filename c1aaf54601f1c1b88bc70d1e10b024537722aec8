@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e3ac91dc_19d23ee0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T14:39:16Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "1c5faeb7_a4495d0b",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1158910a_a6562161",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2021-10-05T12:56:22Z",
       "side": 1,
       "message": "For official documentation, I\u0027m suggesting to use full Kubernetes name.",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "755e1de7_718ba0bc",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T14:39:16Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "1158910a_a6562161",
       "range": {
         "startLine": 20,
         "startChar": 8,
@@ -128,6 +176,30 @@
       "writtenOn": "2021-10-05T12:56:22Z",
       "side": 1,
       "message": "Still, I\u0027m a bit confused about the steps we are providing here.\n\nIf target audience are cps users and administrators, it is not expected that they have to to build the charts. They should only be pointed to Nexus repo where official released ONAP charts has already been built and ready for them to be used for deployment.\n\nFor me, the steps here are more documentation for developers who need to change the charts and rebuild them.\n\nWhy not providing this information for devs in readme files in the code source repo? Then, we can keep the documentation here for users and admin only. We can still have a link to the readme for dev who need to do more (as we are doing for docker compose). Also devs often expect documentation in readme files along with the code. It would fit for everybody.\n\nONAP is sometimes seen as complex to use or deploy, I think it has a lot of value to hide some kind of complexity from users who does not need to be exposed to it.\n\nWhat are your thoughts ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eac16d3_a2e1cdc1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T14:39:16Z",
+      "side": 1,
+      "message": "I am not sure what to advise here. Just from my PTL point-of-view I just wan the team to be unite on this and possible go for the \u0027easiest\u0027 approach possible to mainly depend on ONAP (OOM) guidelines and exclude/move a \u0027developers\u0027 level documentation as Bruno suggested on a Wiki but I am not surer where to draw the lien exactly",
+      "parentUuid": "5fd5e17a_d9759006",
       "range": {
         "startLine": 41,
         "startChar": 11,
@@ -381,6 +453,30 @@
       "writtenOn": "2021-10-05T12:56:22Z",
       "side": 1,
       "message": "Istanbul documentation will provide the link to istanbul docker compose and not latest master, right ?",
+      "range": {
+        "startLine": 275,
+        "startChar": 56,
+        "endLine": 275,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb639808_fad2c28f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-05T14:39:16Z",
+      "side": 1,
+      "message": "we deliberately agreed that the Docker installation section would link to LATEST (not Istanbul specific)",
+      "parentUuid": "7f68c2d9_57799133",
       "range": {
         "startLine": 275,
         "startChar": 56,
