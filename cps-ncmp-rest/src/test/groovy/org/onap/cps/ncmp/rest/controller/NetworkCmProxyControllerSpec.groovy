@@ -31,9 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
-import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -53,9 +51,6 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
-
-    @SpringBean
-    ObjectMapper objectMapper = new ObjectMapper()
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -173,21 +168,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
-    }
-
-    def 'Register CM Handle Event' () {
-        given: 'jsonData'
-            def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
-        when: 'post request is performed'
-            def response = mvc.perform(
-                post("$ncmpBasePathV1/ch")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonData)
-            ).andReturn().response
-        then: 'the cm handles are registered with the service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
-        and: 'response status is created'
-            response.status == HttpStatus.CREATED.value()
     }
 
     def 'Get Resource Data from pass-through operational.' () {
