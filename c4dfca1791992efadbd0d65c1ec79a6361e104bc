@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "e12608ac_b5086840",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T17:22:34Z",
+      "side": 1,
+      "message": "is it not possible to use a while-lop in robot test?",
+      "parentUuid": "056d8954_e1a6a4f1",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7999b12_6780b332",
         "filename": "csit/plans/default/setup.sh",
         "patchSetId": 1
@@ -201,6 +225,30 @@
       "side": 1,
       "message": "I don\u0027t think these will change so would making them configurable add anything?",
       "parentUuid": "f7999b12_6780b332",
+      "range": {
+        "startLine": 54,
+        "startChar": 39,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff94c96e_f5365d92",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T17:22:34Z",
+      "side": 1,
+      "message": "it wil help with readability, see also lines 141-120 can we use similar here?",
+      "parentUuid": "f4481b48_af1ceee4",
       "range": {
         "startLine": 54,
         "startChar": 39,
