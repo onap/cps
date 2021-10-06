@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d185bd7d_c0786545",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f0d5dca_5c9327d3",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c5faeb7_a4495d0b",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -69,6 +93,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dd42056_e9c14ce8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e3ac91dc_19d23ee0",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -119,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "30016034_4594bd46",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "755e1de7_718ba0bc",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c75ec8f6_be2c1c75",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -142,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "9694c53b_3912baf7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c75ec8f6_be2c1c75",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "894a0dc3_fd79b5b9",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -153,6 +249,30 @@
       "writtenOn": "2021-10-05T12:56:22Z",
       "side": 1,
       "message": "Users are not expected to modify values.yaml files.",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4621fd75_767c697a",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "I am not very sure if this page is only meant for external users. In case someone new in CPS/other team wants to explore the OOM deployment of cps, this could help.\nI remember while Shiva was trying to install AAI, he faced some serious issues because most of these detailed steps were not included anywhere.",
+      "parentUuid": "894a0dc3_fd79b5b9",
       "range": {
         "startLine": 35,
         "startChar": 36,
@@ -235,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "4cc446a2_7ebfeac4",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b0f3e304_c66e1fe7",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e7bea74_0077d166",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -255,6 +399,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "819beb92_e6db450d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e7bea74_0077d166",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -281,6 +449,30 @@
     },
     {
       "key": {
+        "uuid": "c38200a6_7bdf7c66",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1de53015_1368d7c4",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f33c8eb_cc4758f5",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -301,6 +493,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28baa8b6_520cc14e",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f33c8eb_cc4758f5",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -327,6 +543,30 @@
     },
     {
       "key": {
+        "uuid": "e477184d_ffffc12b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Added a comment to connect to the machine where the file system is persisted and then execute the step",
+      "parentUuid": "beab33ba_5bffa903",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 25
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d861256_94d669ae",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -347,6 +587,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad67c90c_637275ee",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d861256_94d669ae",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -419,6 +683,54 @@
     },
     {
       "key": {
+        "uuid": "ed138c90_8ca66a01",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff8cec7e_861a80e0",
+      "range": {
+        "startLine": 148,
+        "startChar": 11,
+        "endLine": 148,
+        "endChar": 19
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7961c729_0e7e4df4",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c04b21c9_87f079cb",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd658fc8_f26d5f85",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -439,6 +751,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "298f537d_81bb7cf6",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd658fc8_f26d5f85",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 22
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -489,6 +825,30 @@
     },
     {
       "key": {
+        "uuid": "bd9a20f9_18e22cb7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "As per the team discussion this was changed to Latest so that it is not release specific.",
+      "parentUuid": "cb639808_fad2c28f",
+      "range": {
+        "startLine": 275,
+        "startChar": 56,
+        "endLine": 275,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df35a3cf_e99edb02",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -509,6 +869,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e9486d6_99922d31",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-06T10:32:47Z",
+      "side": 1,
+      "message": "As per the team discussion this was changed to Latest.",
+      "parentUuid": "df35a3cf_e99edb02",
+      "range": {
+        "startLine": 276,
+        "startChar": 4,
+        "endLine": 276,
+        "endChar": 10
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
