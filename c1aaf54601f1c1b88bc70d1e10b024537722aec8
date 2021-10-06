@@ -309,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "133df3e5_0eb39024",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-06T14:00:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0426e2b3_0f1b41ee",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fd5e17a_d9759006",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -377,6 +401,30 @@
       "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "509e7738_2cf899a1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-06T14:00:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "86a981fb_33b0f8d5",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -884,6 +932,30 @@
       "writtenOn": "2021-10-06T10:32:47Z",
       "side": 1,
       "message": "As per the team discussion this was changed to Latest so that it is not release specific.",
+      "parentUuid": "cb639808_fad2c28f",
+      "range": {
+        "startLine": 275,
+        "startChar": 56,
+        "endLine": 275,
+        "endChar": 62
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4da0e026_92f330d8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-06T14:00:17Z",
+      "side": 1,
+      "message": "Then I presume we leave to the reader the responsibility to go to any corresponding release branch he might be interested in. Latest docker compose file can be out of sync from previous release docker compose.\n\nThis is ok to me for developer documentation. I\u0027m good with that.",
       "parentUuid": "cb639808_fad2c28f",
       "range": {
         "startLine": 275,
