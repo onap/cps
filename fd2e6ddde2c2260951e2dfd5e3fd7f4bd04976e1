@@ -22,6 +22,30 @@
       "revId": "fd2e6ddde2c2260951e2dfd5e3fd7f4bd04976e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7bc138a_b669a37b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-06T13:26:37Z",
+      "side": 1,
+      "message": "Created this task to investigate encoding https://jira.onap.org/browse/CPS-720",
+      "parentUuid": "6eb8f80b_2817ebf5",
+      "range": {
+        "startLine": 204,
+        "startChar": 63,
+        "endLine": 204,
+        "endChar": 73
+      },
+      "revId": "fd2e6ddde2c2260951e2dfd5e3fd7f4bd04976e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
