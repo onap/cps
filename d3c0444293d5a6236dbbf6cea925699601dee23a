@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ed80c637_e372a2b9",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-06T08:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae067f84_8664bfbe",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 175
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37632f12_2e83809e",
         "filename": "docs/admin-guide.rst",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "72baa6a5_eae577dc",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-06T08:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37632f12_2e83809e",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 6
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4eab02e_41fad276",
         "filename": "docs/admin-guide.rst",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7b993f7_4f414765",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-06T08:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4eab02e_41fad276",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 7
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
