@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22603179_a4cdbef9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T09:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "037a939d_ce19a63b",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 67
+      },
+      "revId": "ff2986e6c70aee45f4d7b58542958fbc6ed36198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e27dec6f_b0f27ea0",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "ff2986e6c70aee45f4d7b58542958fbc6ed36198",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e013a3df_a7099fd6",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T09:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e27dec6f_b0f27ea0",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 73
+      },
+      "revId": "ff2986e6c70aee45f4d7b58542958fbc6ed36198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
