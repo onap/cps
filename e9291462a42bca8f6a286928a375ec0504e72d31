@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72cf71d5_248e4ab0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-06T13:53:08Z",
+      "side": 1,
+      "message": "When I built this document I got \ndeployment.rst:118: WARNING: Malformed table.\nand the table does not appear in the document\nI think it is missing 1 \u003d",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
