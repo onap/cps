@@ -285,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "0426e2b3_0f1b41ee",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T12:12:49Z",
+      "side": 1,
+      "message": "I think this documentation is also aimed at developer taht want to try put CPS possibly in their own environment (e.g. lab). Fact is we document all the parameters below too so indicating how to change them is OK for me.",
+      "parentUuid": "894a0dc3_fd79b5b9",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fd5e17a_d9759006",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -320,6 +344,30 @@
       "side": 1,
       "message": "I am not sure what to advise here. Just from my PTL point-of-view I just wan the team to be unite on this and possible go for the \u0027easiest\u0027 approach possible to mainly depend on ONAP (OOM) guidelines and exclude/move a \u0027developers\u0027 level documentation as Bruno suggested on a Wiki but I am not surer where to draw the lien exactly",
       "parentUuid": "5fd5e17a_d9759006",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "c1aaf54601f1c1b88bc70d1e10b024537722aec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a981fb_33b0f8d5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T12:12:49Z",
+      "side": 1,
+      "message": "After further discussion we agreed the proposed document was shared and approved (on content and structure) by each Team last Thursday, it was unfortunate you could attend because of your holiday. \nWe think this content is need maybe not for your typically end user but definitely for potential clients etc. Also Policy have similar documentation.  So my decision is to let Aditya continue as is...",
+      "parentUuid": "5eac16d3_a2e1cdc1",
       "range": {
         "startLine": 41,
         "startChar": 11,
