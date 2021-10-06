@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "52943f92_89225839",
+        "filename": "csit/data/bookstore.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed541fa9_19a5f0b5",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "558ca193_22922151",
         "filename": "csit/data/cmHandles.json",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b0382d7_7c9670a7",
+        "filename": "csit/data/cmHandles.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "558ca193_22922151",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +107,30 @@
       "side": 1,
       "message": "I agree, the below part should not be here in setup.sh",
       "parentUuid": "3c6936ea_725d4ec6",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "056d8954_e1a6a4f1",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "I don\u0027t know it this can be shifted to a test as we need to wait for SDNC and other components to come up. I wouldn\u0027t be sure how to achieve this.",
+      "parentUuid": "6c3f563d_9e30aa5b",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -129,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "f4481b48_af1ceee4",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "I don\u0027t think these will change so would making them configurable add anything?",
+      "parentUuid": "f7999b12_6780b332",
+      "range": {
+        "startLine": 54,
+        "startChar": 39,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "881379d4_8a5005b4",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 1
@@ -140,6 +224,30 @@
       "writtenOn": "2021-10-01T14:32:45Z",
       "side": 1,
       "message": "you working for Pantheon now?",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ff3c1b0_822942d4",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will change",
+      "parentUuid": "881379d4_8a5005b4",
       "range": {
         "startLine": 2,
         "startChar": 16,
@@ -175,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "07ab3852_5eed1318",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "34538027_943376d3",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b3d9abd1_dca8edf7",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 1
@@ -186,6 +318,30 @@
       "writtenOn": "2021-10-05T09:51:13Z",
       "side": 1,
       "message": "remove extra space",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 1
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67fb21cc_2892e985",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "b3d9abd1_dca8edf7",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -291,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "e65f7a1e_91ef03c9",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "d04a6335_d4a31fa2",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 1
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "969c14ef_8144a0a4",
         "filename": "csit/tests/ncmp/ncmp.robot",
         "patchSetId": 1
@@ -302,6 +482,30 @@
       "writtenOn": "2021-10-01T14:32:45Z",
       "side": 1,
       "message": "is it possible to check the new (\u0027good book\u0027?) is present",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 73
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52133bf0_fd92fa43",
+        "filename": "csit/tests/ncmp/ncmp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will look into this",
+      "parentUuid": "969c14ef_8144a0a4",
       "range": {
         "startLine": 73,
         "startChar": 4,
@@ -331,6 +535,24 @@
     },
     {
       "key": {
+        "uuid": "be854361_2b2013ec",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "f1d13916_aac90ebe",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4573a087_873e3863",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
@@ -342,6 +564,24 @@
       "writtenOn": "2021-10-06T10:47:19Z",
       "side": 1,
       "message": "remove extra space",
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "632d19f0_aab0c946",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "4573a087_873e3863",
       "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -371,6 +611,30 @@
     },
     {
       "key": {
+        "uuid": "ae004b6f_941747da",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "3cbeb536_74e46034",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 6
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1391e68c_a92cd062",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
@@ -382,6 +646,30 @@
       "writtenOn": "2021-10-06T10:47:19Z",
       "side": 1,
       "message": "do we need all these commented services? I would prefer not having them as the kafka and zookeeper is not used in the cps and dmi-plugin integration.",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 13
+      },
+      "revId": "c4dfca1791992efadbd0d65c1ec79a6361e104bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0338951_e0a006da",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-06T13:33:18Z",
+      "side": 1,
+      "message": "Will Remove",
+      "parentUuid": "1391e68c_a92cd062",
       "range": {
         "startLine": 185,
         "startChar": 0,
