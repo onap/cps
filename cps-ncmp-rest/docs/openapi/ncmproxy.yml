@@ -213,8 +213,7 @@ getResourceDataForPassthroughOperational:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
-      - $ref: 'components.yaml#/components/parameters/fieldsParamInQuery'
-      - $ref: 'components.yaml#/components/parameters/depthParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -238,8 +237,7 @@ resourceDataForPassthroughRunning:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
-      - $ref: 'components.yaml#/components/parameters/fieldsParamInQuery'
-      - $ref: 'components.yaml#/components/parameters/depthParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'

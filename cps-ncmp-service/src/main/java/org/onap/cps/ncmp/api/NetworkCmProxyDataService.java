@@ -114,16 +114,14 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandle cm handle
      * @param resourceIdentifier resource identifier
-     * @param accept accept param
-     * @param fields fields query
-     * @param depth depth query
+     * @param acceptParamInHeader accept param
+     * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
     Object getResourceDataOperationalForCmHandle(@NotNull String cmHandle,
                                                  @NotNull String resourceIdentifier,
-                                                 String accept,
-                                                 String fields,
-                                                 Integer depth);
+                                                 String acceptParamInHeader,
+                                                 String optionsParamInQuery);
 
     /**
      * Get resource data for data store pass-through running
@@ -131,16 +129,14 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandle cm handle
      * @param resourceIdentifier resource identifier
-     * @param acceptParam accept param
-     * @param fields fields query
-     * @param depth depth query
+     * @param acceptParamInHeader accept param
+     * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
     Object getResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
                                                         @NotNull String resourceIdentifier,
-                                                        String acceptParam,
-                                                        String fields,
-                                                        Integer depth);
+                                                        String acceptParamInHeader,
+                                                        String optionsParamInQuery);
 
     /**
      * Create resource data for data store pass-through running

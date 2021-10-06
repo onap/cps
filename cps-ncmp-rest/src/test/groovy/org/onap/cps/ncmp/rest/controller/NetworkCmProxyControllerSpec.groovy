@@ -193,7 +193,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
-                    "?resourceIdentifier=parent/child&fields=testFields&depth=5"
+                    "?resourceIdentifier=parent/child&options=(a=x,b=x/y,c=10)"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -204,8 +204,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
                     'application/json',
-                    'testFields',
-                    5)
+                    '(a=x,b=x/y,c=10)')
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
     }
@@ -213,13 +212,12 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
-                    "?resourceIdentifier=" + resourceIdentifier + "&fields=testFields&depth=5"
+                    "?resourceIdentifier=" + resourceIdentifier + "&options=(a=x,b=x/y,c=10)"
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     resourceIdentifier,
                     'application/json',
-                    'testFields',
-                    5) >> '{valid-json}'
+                    '(a=x,b=x/y,c=10)') >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)

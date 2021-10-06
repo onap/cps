@@ -133,21 +133,24 @@ components:
       schema:
         type: string
         enum: [ application/json, application/yang-data+json ]
-    fieldsParamInQuery:
-      name: fields
+    optionsParamInQuery:
+      name: options
       in: query
-      description: Fields parameter to filter resource
+      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'.
       required: false
       schema:
         type: string
-    depthParamInQuery:
-      name: depth
-      in: query
-      description: Depth parameter for response
-      required: false
-      schema:
-        type: integer
-        minimum: 1
+      allowReserved: true
+      examples:
+        sample1:
+          value:
+            options: (key1=value1,key2=value2)
+        sample2:
+          value:
+            options: (key1=value1,key2=value1/value2)
+        sample3:
+          value:
+            options: (key1=10,key2=value2,key3=[val31,val32])
     contentParamInHeader:
       name: Content-Type
       in: header
