@@ -22,6 +22,52 @@
       "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37632f12_2e83809e",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-06T05:16:22Z",
+      "side": 1,
+      "message": "Health checking is part (sub section) of monitoring",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 6
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4eab02e_41fad276",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-06T05:16:22Z",
+      "side": 1,
+      "message": "Metrics scraping is part (sub section) of monitoring",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 7
+      },
+      "revId": "d3c0444293d5a6236dbbf6cea925699601dee23a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
