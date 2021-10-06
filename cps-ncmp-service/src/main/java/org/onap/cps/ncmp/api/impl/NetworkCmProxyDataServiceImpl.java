@@ -169,9 +169,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Object getResourceDataOperationalForCmHandle(final @NotNull String cmHandle,
                                                         final @NotNull String resourceIdentifier,
-                                                        final String acceptParam,
-                                                        final String fieldsQueryParam,
-                                                        final Integer depthQueryParam) {
+                                                        final String acceptParamInHeader,
+                                                        final String optionsParamInQuery) {
 
         final DataNode cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final String dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get(NCMP_DMI_SERVICE_NAME));
@@ -179,9 +178,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final ResponseEntity<Object> response = dmiOperations.getResourceDataOperationalFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
-                fieldsQueryParam,
-                depthQueryParam,
-                acceptParam,
+                optionsParamInQuery,
+                acceptParamInHeader,
                 dmiRequestBody);
         return handleResponse(response);
     }
@@ -189,18 +187,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final @NotNull String cmHandle,
                                                                final @NotNull String resourceIdentifier,
-                                                               final String acceptParam,
-                                                               final String fields,
-                                                               final Integer depth) {
+                                                               final String acceptParamInHeader,
+                                                               final String optionsParamInQuery) {
         final DataNode cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
         final String dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get(NCMP_DMI_SERVICE_NAME));
         final String dmiRequestBody = getGenericRequestBody(cmHandleDataNode);
         final ResponseEntity<Object> response = dmiOperations.getResourceDataPassThroughRunningFromDmi(dmiServiceName,
                 cmHandle,
                 resourceIdentifier,
-                fields,
-                depth,
-                acceptParam,
+                optionsParamInQuery,
+                acceptParamInHeader,
                 dmiRequestBody);
         return handleResponse(response);
     }

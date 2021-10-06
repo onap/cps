@@ -42,13 +42,12 @@ class DmiOperationsSpec extends Specification {
     def 'call get resource data for pass-through:operational datastore from DMI.'() {
         given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&fields=testFieldsQuery&depth=10'
+                '/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&options=(a=1,b=2)'
         when: 'get resource data is called to DMI'
         objectUnderTest.getResourceDataOperationalFromDmi('testDmiBasePath',
                 'testCmhandle',
                 'parent/child',
-                'testFieldsQuery',
-                10,
+                '(a=1,b=2)',
                 'testAcceptJson',
                 'testJsonbody')
         then: 'the put operation is executed with the correct URL'
@@ -57,13 +56,12 @@ class DmiOperationsSpec extends Specification {
     def 'call get resource data for pass-through:running datastore from DMI.'() {
         given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child&fields=testFieldsQuery&depth=10'
+                '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child&options=(a=1,b=2)'
         when: 'get resource data is called to DMI'
         objectUnderTest.getResourceDataPassThroughRunningFromDmi('testDmiBasePath',
                 'testCmhandle',
                 'parent/child',
-                'testFieldsQuery',
-                10,
+                '(a=1,b=2)',
                 'testAcceptJson',
                 'testJsonbody')
         then: 'the put operation is executed with the correct URL'

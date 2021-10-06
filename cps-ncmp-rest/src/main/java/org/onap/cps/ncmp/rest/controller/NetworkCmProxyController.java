@@ -157,22 +157,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      *
      * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param accept accept header parameter
-     * @param fields fields query parameter
-     * @param depth depth query parameter
+     * @param acceptParamInHeader accept header parameter
+     * @param optionsParamInQuery options query parameter
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
     public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
-                                                                        final String resourceIdentifier,
-                                                                        final String accept,
-                                                                        final String fields,
-                                                                        final Integer depth) {
+                                                                        final @NotNull @Valid String resourceIdentifier,
+                                                                        final String acceptParamInHeader,
+                                                                        final @Valid String optionsParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
                 resourceIdentifier,
-                accept,
-                fields,
-                depth);
+                acceptParamInHeader,
+                optionsParamInQuery);
         return ResponseEntity.ok(responseObject);
     }
 
@@ -181,22 +178,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      *
      * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param accept accept header parameter
-     * @param fields fields query parameter
-     * @param depth depth query parameter
+     * @param acceptParamInHeader accept header parameter
+     * @param optionsParamInQuery options query parameter
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
     public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandle,
-                                                                    final String resourceIdentifier,
-                                                                    final String accept,
-                                                                    final String fields,
-                                                                    final Integer depth) {
+                                                                    final @NotNull @Valid String resourceIdentifier,
+                                                                    final String acceptParamInHeader,
+                                                                    final @Valid String optionsParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier,
-                accept,
-                fields,
-                depth);
+                acceptParamInHeader,
+                optionsParamInQuery);
         return ResponseEntity.ok(responseObject);
     }
 
