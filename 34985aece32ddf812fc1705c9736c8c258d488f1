@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "808bdc13_afc91063",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T16:58:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d78aaf19_936f3fbf",
+      "range": {
+        "startLine": 96,
+        "startChar": 29,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "34985aece32ddf812fc1705c9736c8c258d488f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e179cd3_37b2b6b9",
         "filename": "cps-ncmp-rest/docs/openapi/openapi-northbound.yml",
         "patchSetId": 1

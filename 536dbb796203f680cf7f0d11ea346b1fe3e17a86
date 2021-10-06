@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef6cad6_aa3a1123",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T16:58:20Z",
+      "side": 1,
+      "message": "prefix with ncmp- for clarification",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 36
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e430b16_2b6114b8",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T16:58:20Z",
+      "side": 1,
+      "message": "prefix with ncmp- for clarification",
+      "range": {
+        "startLine": 155,
+        "startChar": 28,
+        "endLine": 155,
+        "endChar": 44
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4024129_2df73417",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T16:58:20Z",
+      "side": 1,
+      "message": "are all of these really used?!\n(checkstyle does not check groovy files)",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 85
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e595c726_fa5cae8b",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-06T16:58:20Z",
+      "side": 1,
+      "message": "Did I not see this in cps-ncmp-rest/pom.xml already ?!",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
