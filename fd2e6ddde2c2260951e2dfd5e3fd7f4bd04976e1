@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eb8f80b_2817ebf5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-06T13:01:00Z",
+      "side": 1,
+      "message": "Q: Do we need to encode it explicitly or rest template takes care it? I think restTemplate does it for sure when we add queryParam but here we are creating url so wanted to check once.",
+      "range": {
+        "startLine": 204,
+        "startChar": 63,
+        "endLine": 204,
+        "endChar": 73
+      },
+      "revId": "fd2e6ddde2c2260951e2dfd5e3fd7f4bd04976e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
