@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "895986d7_cfc1889f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T16:00:48Z",
+      "side": 1,
+      "message": "as the order is important the name of method should reflect this\n(or maybe get rid of the methods at all sicne it just calls 2 other methods....",
+      "range": {
+        "startLine": 355,
+        "startChar": 19,
+        "endLine": 355,
+        "endChar": 43
+      },
+      "revId": "4d8550272e2ecc0ce8df804afde0420467eff06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
