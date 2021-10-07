@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ebf1181c_8a1969db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-07T14:44:21Z",
+      "side": 1,
+      "message": "We(I and Joe) spotted it during csit testing 2 weeks ago. I think it was introduced during refactoring of this file.",
+      "parentUuid": "c8729003_2ac22da3",
+      "range": {
+        "startLine": 356,
+        "startChar": 6,
+        "endLine": 356,
+        "endChar": 8
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b840a354_e321bade",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
