@@ -1,0 +1,365 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f0fbcab_e7a5b57b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "This seems a very significant change, can we really sync without have created (or persisted maybe) the anchor?!",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 42
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fa2f3de_ab6c74c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "I suppose this is a duplicate of what Rahul is working on?",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 0
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "507b30bd_206d1774",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "less strict, why?!",
+      "range": {
+        "startLine": 432,
+        "startChar": 82,
+        "endLine": 432,
+        "endChar": 83
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3d1514_bf116d16",
+        "filename": "csit/.gitignore",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": ".gitgnore should only exist at top level",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c446bff_7bcef2fa",
+        "filename": "csit/archives/docker-compose/sim6512/netconf-config/data.json.bakk",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "backup file, that should be removed?!",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09a7f333_be765cee",
+        "filename": "csit/archives/docker-compose/sim6512/netconf-config/subscriber.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "probably need a walkthrough with team e.g. to explain what this file is for\n(I also have question re. the cert stuff)",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f57ce8_9f614b34",
+        "filename": "csit/data/postMduleRequestBody.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "typo in filename",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2cfb8ee_579c36a2",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "duplicate lines (merge issue?)",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af31667a_f7ada69d",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "add some comment e.g. \u0027Mount Netconf Node\u0027",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 31
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b45e4339_0ecb0aed",
+        "filename": "csit/plans/default/teardown.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "I possible remove any files from the commit that haven really changed! Use git to checkout the original file from master or you IDEA history function",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6534540b_50f04e8a",
+        "filename": "csit/plans/default/testplan.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "suggestion: ncmp-read-write",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 4
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc32d4f0_553aa24d",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19de5562_0f369dc2",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "do check for redundant whitespace, in Gerrit they are highlighted in pink (for me)",
+      "range": {
+        "startLine": 49,
+        "startChar": 67,
+        "endLine": 49,
+        "endChar": 75
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97eeb7f0_af7837d3",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "see previous comment in patch 1",
+      "range": {
+        "startLine": 50,
+        "startChar": 60,
+        "endLine": 50,
+        "endChar": 62
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be23d383_bb804f2c",
+        "filename": "csit/tests/ncmp/ncmp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "always check all you copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e6b0ec9_cea6b4eb",
+        "filename": "csit/tests/ncmp/ncmp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "remove all the \u0027pink\u0027 :-)",
+      "range": {
+        "startLine": 42,
+        "startChar": 108,
+        "endLine": 42,
+        "endChar": 116
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14bbb32c_55804aa9",
+        "filename": "csit/tests/ncmp/ncmp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T11:00:27Z",
+      "side": 1,
+      "message": "as per previous comment (#1) can we test/read content? Maybe this is what you are stil working on",
+      "range": {
+        "startLine": 73,
+        "startChar": 44,
+        "endLine": 73,
+        "endChar": 73
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
