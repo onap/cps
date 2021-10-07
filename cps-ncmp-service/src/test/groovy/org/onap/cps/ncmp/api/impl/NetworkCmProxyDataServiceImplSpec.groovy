@@ -419,7 +419,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             }
         and: 'dmi operations returns some module references'
             def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
-            def expectedJsonBody = '{"operation":"read","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            def expectedJsonBody = '{"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
             mockDmiProperties.getAuthUsername() >> 'someUser'
             mockDmiProperties.getAuthPassword() >> 'somePassword'
             def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
@@ -428,7 +428,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
-            def jsonDataToFetchYangResource = '{"operation":"read","dataType":"application/json","data":"{\\"modules\\":[{\\"name\\":\\"module2\\",\\"revision\\":\\"1\\"}]}","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            def jsonDataToFetchYangResource = '{"data":{"modules":[{"name":"module2","revision":"1"}]},"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
             mockDmiOperations.getResourceFromDmiWithJsonData('some service name', jsonDataToFetchYangResource, 'some cm handle', 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
