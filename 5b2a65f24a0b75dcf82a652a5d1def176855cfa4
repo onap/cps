@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "16f7fe95_9b22c8a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will revert and see if there are any adverse affects",
+      "parentUuid": "9f0fbcab_e7a5b57b",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 42
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4fa2f3de_ab6c74c6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -41,6 +65,53 @@
         "startChar": 0,
         "endLine": 449,
         "endChar": 0
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20be3b63_a8c6126c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "Confirmed Rahul will cover this",
+      "parentUuid": "4fa2f3de_ab6c74c6",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 0
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3484222_50875fa7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will reinstate this as I believe it is not required",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 96
       },
       "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -71,6 +142,53 @@
     },
     {
       "key": {
+        "uuid": "99d4fc17_40520375",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will double check jsondata and see if this can be fixed.",
+      "parentUuid": "507b30bd_206d1774",
+      "range": {
+        "startLine": 432,
+        "startChar": 82,
+        "endLine": 432,
+        "endChar": 83
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d472a3c2_289b8b0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "Revert to previous and test again",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 120
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc3d1514_bf116d16",
         "filename": "csit/.gitignore",
         "patchSetId": 3
@@ -82,6 +200,23 @@
       "writtenOn": "2021-10-07T11:00:27Z",
       "side": 1,
       "message": ".gitgnore should only exist at top level",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e826314a_43f4cc8a",
+        "filename": "csit/archives/docker-compose/certs/certs.properties",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will explanation of certs in commit message",
       "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -105,6 +240,24 @@
     },
     {
       "key": {
+        "uuid": "2828b370_27f33eed",
+        "filename": "csit/archives/docker-compose/sim6512/netconf-config/data.json.bakk",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will remove this",
+      "parentUuid": "0c446bff_7bcef2fa",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09a7f333_be765cee",
         "filename": "csit/archives/docker-compose/sim6512/netconf-config/subscriber.py",
         "patchSetId": 3
@@ -116,6 +269,41 @@
       "writtenOn": "2021-10-07T11:00:27Z",
       "side": 1,
       "message": "probably need a walkthrough with team e.g. to explain what this file is for\n(I also have question re. the cert stuff)",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6cddbe8_caadd866",
+        "filename": "csit/archives/docker-compose/sim6512/netconf-config/subscriber.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "I will attempt to remove this and rerun",
+      "parentUuid": "09a7f333_be765cee",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "068b48a3_697e3457",
+        "filename": "csit/archives/plans/default/_sysinfo-2-after-robot.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "This file might not be required",
       "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -150,6 +338,30 @@
       "writtenOn": "2021-10-07T11:00:27Z",
       "side": 1,
       "message": "duplicate lines (merge issue?)",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f10bd2fc_650a06d3",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "Will remove duplicate",
+      "parentUuid": "b2cfb8ee_579c36a2",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -213,6 +425,30 @@
       "writtenOn": "2021-10-07T11:00:27Z",
       "side": 1,
       "message": "suggestion: ncmp-read-write",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 4
+      },
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "893014ee_dd745b08",
+        "filename": "csit/plans/default/testplan.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-07T11:17:11Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "6534540b_50f04e8a",
       "range": {
         "startLine": 5,
         "startChar": 0,
