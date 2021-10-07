@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "26f2aa80_4e08aa0d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-07T18:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef6cad6_aa3a1123",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 36
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e430b16_2b6114b8",
         "filename": "cps-ncmp-rest/pom.xml",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2021-10-06T16:58:20Z",
       "side": 1,
       "message": "prefix with ncmp- for clarification",
+      "range": {
+        "startLine": 155,
+        "startChar": 28,
+        "endLine": 155,
+        "endChar": 44
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dcaf5cb_84da619e",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-07T18:16:11Z",
+      "side": 1,
+      "message": "moved it in the parent pom. It is common for both cps-rest and ncmp-rest",
+      "parentUuid": "0e430b16_2b6114b8",
       "range": {
         "startLine": 155,
         "startChar": 28,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "83b47e15_079b029f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-07T18:16:11Z",
+      "side": 1,
+      "message": "cleaned the imports.",
+      "parentUuid": "b4024129_2df73417",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 85
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e595c726_fa5cae8b",
         "filename": "cps-rest/pom.xml",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2021-10-06T16:58:20Z",
       "side": 1,
       "message": "Did I not see this in cps-ncmp-rest/pom.xml already ?!",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "356c42db_5e5e59bb",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-07T18:16:11Z",
+      "side": 1,
+      "message": "Moved it to cps-parent as it was before.",
+      "parentUuid": "e595c726_fa5cae8b",
       "range": {
         "startLine": 150,
         "startChar": 0,
