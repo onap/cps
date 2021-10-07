@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "06dc413e_704feafe",
+        "filename": "docs/design.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-07T15:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb41bb01_71dd9100",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 121
+      },
+      "revId": "0666d2bed6fe7a33b555548fcc31c1ff661b2593",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "943211d9_5959cdb4",
         "filename": "docs/modeling.rst",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "0666d2bed6fe7a33b555548fcc31c1ff661b2593",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e175b1fd_299193f6",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-07T15:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "943211d9_5959cdb4",
+      "range": {
+        "startLine": 83,
+        "startChar": 50,
+        "endLine": 83,
+        "endChar": 55
+      },
+      "revId": "0666d2bed6fe7a33b555548fcc31c1ff661b2593",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
