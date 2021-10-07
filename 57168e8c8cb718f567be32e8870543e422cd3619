@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "f975b307_afb27ab3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T09:28:55Z",
+      "side": 1,
+      "message": "ok, I stil would stil prefer if stringBuilder are not passed around but their scope is just one private method. In this case I would just use a new string builder in the AppendOptionsQuery method, it is not that much overhead. But I\u0027\u0027 accept this is just a personal preference",
+      "parentUuid": "5733bd7d_b9bccb14",
+      "range": {
+        "startLine": 192,
+        "startChar": 29,
+        "endLine": 192,
+        "endChar": 42
+      },
+      "revId": "57168e8c8cb718f567be32e8870543e422cd3619",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22a9c73d_484aab44",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 1
