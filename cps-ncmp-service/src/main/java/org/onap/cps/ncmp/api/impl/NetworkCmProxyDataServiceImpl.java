@@ -59,7 +59,6 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -354,8 +353,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     protected void createAnchorAndSyncModel(final PersistenceCmHandle persistenceCmHandle) {
-        createAnchor(persistenceCmHandle);
         fetchAndSyncModules(persistenceCmHandle);
+        createAnchor(persistenceCmHandle);
     }
 
     private static PersistenceCmHandle toPersistenceCmHandle(final String dmiPluginService,
@@ -417,14 +416,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private List<ModuleReference> fetchModuleReferencesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                                final Map<String, String> cmHandlePropertiesAsMap) {
-        final GenericRequestBody requestBodyObject = GenericRequestBody.builder()
-                .operation(GenericRequestBody.OperationEnum.READ)
+        final GenericRequestBody genericRequestBody = GenericRequestBody.builder()
                 .cmHandleProperties(cmHandlePropertiesAsMap)
                 .build();
-        final String jsonBody = prepareOperationBody(requestBodyObject);
+        final String jsonBodyWithOnlyCmHandleProperties = prepareOperationBody(genericRequestBody);
         final ResponseEntity<String> dmiFetchModulesResponseEntity =
             dmiOperations.getResourceFromDmiWithJsonData(persistenceCmHandle.getDmiServiceName(),
-                    jsonBody, persistenceCmHandle.getId(), "modules");
+                    jsonBodyWithOnlyCmHandleProperties, persistenceCmHandle.getId(), "modules");
         return toModuleReferences(dmiFetchModulesResponseEntity);
     }
 
@@ -437,13 +435,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
-        final GenericRequestBody dmiRequestBodyObject = GenericRequestBody.builder()
-                .operation(GenericRequestBody.OperationEnum.READ)
-                .dataType(MediaType.APPLICATION_JSON_VALUE)
-                .data(data.toString())
-                .cmHandleProperties(cmHandlePropertiesAsMap)
-                .build();
-        return prepareOperationBody(dmiRequestBodyObject);
+        final JsonObject jsonRequestObject = new JsonObject();
+        jsonRequestObject.add("data", data);
+        final Gson gson = new Gson();
+        jsonRequestObject.add("cmHandleProperties", gson.toJsonTree(cmHandlePropertiesAsMap));
+        return jsonRequestObject.toString();
     }
 
     private static JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
@@ -461,12 +457,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                            final List<ModuleReference> unknownModuleReferences,
                                                            final Map<String, String> cmHandlePropertiesAsMap) {
-        final String jsonData = getRequestBodyToFetchYangResourceFromDmi(
+        final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResourceFromDmi(
                 unknownModuleReferences, cmHandlePropertiesAsMap);
 
         final ResponseEntity<String> moduleResourcesAsJsonString =  dmiOperations.getResourceFromDmiWithJsonData(
                 persistenceCmHandle.getDmiServiceName(),
-                jsonData,
+                jsonDataWithDataAndCmHandleProperties,
                 persistenceCmHandle.getId(),
                 "moduleResources");
 
