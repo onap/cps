@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c8729003_2ac22da3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "I noticed something similar in CSIT updates, if thsi really was an issue how come we didn\u0027t spot it before, why was there never a bug on that?!",
+      "parentUuid": "c6884596_49de89c7",
+      "range": {
+        "startLine": 356,
+        "startChar": 6,
+        "endLine": 356,
+        "endChar": 8
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b840a354_e321bade",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-10-07T13:25:40Z",
       "side": 1,
       "message": "requestObjectWithOnlyCmHandleProperties",
+      "range": {
+        "startLine": 419,
+        "startChar": 33,
+        "endLine": 419,
+        "endChar": 50
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a05cac50_cbdd2ea0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "that names is based on the history/bug around this it is not relevant for the current code\nif anything this name should just be \u0027genericRequestBody\u0027  (unless there where multiple such object in this method)",
+      "parentUuid": "b840a354_e321bade",
       "range": {
         "startLine": 419,
         "startChar": 33,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "e9ef698a_b2edfe6c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "maybe to be consistent although I stil think it is overkill and even SonarQube is incorrect on enforcing constants when 3 or more occurrences of the same string It simple does not improve readability and there is no maintenance issue...",
+      "parentUuid": "6e8d0767_9c8b0fb7",
+      "range": {
+        "startLine": 425,
+        "startChar": 59,
+        "endLine": 425,
+        "endChar": 68
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0b62364_9ee4e3fe",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -105,6 +177,30 @@
       "writtenOn": "2021-10-07T13:25:40Z",
       "side": 1,
       "message": "please write a standalone test for this method",
+      "range": {
+        "startLine": 433,
+        "startChar": 2,
+        "endLine": 433,
+        "endChar": 4
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7daf71c3_8c89c7b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "good idea. you can tets private methods in Groovy, see last test here for similar case: https://gerrit.onap.org/r/c/cps/ncmp-dmi-plugin/+/124671/6/src/test/groovy/org/onap/cps/ncmp/dmi/service/operation/SdncOperationsSpec.groovy",
+      "parentUuid": "f0b62364_9ee4e3fe",
       "range": {
         "startLine": 433,
         "startChar": 2,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "f0677083_cdabfb01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "See prev replies",
+      "parentUuid": "62cd8c78_61acefc1",
+      "range": {
+        "startLine": 460,
+        "startChar": 21,
+        "endLine": 460,
+        "endChar": 29
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ebcf1668_9994874f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -151,6 +271,30 @@
       "writtenOn": "2021-10-07T13:25:40Z",
       "side": 1,
       "message": "crate a constant for this.",
+      "range": {
+        "startLine": 467,
+        "startChar": 16,
+        "endLine": 467,
+        "endChar": 33
+      },
+      "revId": "9ac44983ab5bb07078cbfbf516af4d9d47fe6c62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f840ee53_653a4963",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:06:53Z",
+      "side": 1,
+      "message": "See prev replies",
+      "parentUuid": "ebcf1668_9994874f",
       "range": {
         "startLine": 467,
         "startChar": 16,
