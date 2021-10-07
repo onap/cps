@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87764ea5_c3b82229",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-07T14:51:39Z",
+      "side": 1,
+      "message": "Maybe insert a note here that: \"This documentation often will refer to \"CPS-NCM\"P with is the component (container image) that contains both CPS-Core and NCMP since NCMP is not a stand-alone component event tough CPS-Core could be deployed without the NCMP extension.\"\n\n(fee free to improve wording grammar of my statement)",
+      "revId": "f69565a89b3d4d3eb3b2b8b8e677bc2d8270c338",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
