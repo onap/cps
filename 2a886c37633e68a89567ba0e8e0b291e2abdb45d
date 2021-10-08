@@ -22,6 +22,30 @@
       "revId": "2a886c37633e68a89567ba0e8e0b291e2abdb45d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3839fcd2_314a1b3c",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-08T13:48:27Z",
+      "side": 1,
+      "message": "no that file doesn\u0027t seem to be there for me either. The link works as far as the config folder which currently only contains application-helm.yml ?!",
+      "parentUuid": "a73da124_4b943853",
+      "range": {
+        "startLine": 44,
+        "startChar": 53,
+        "endLine": 44,
+        "endChar": 163
+      },
+      "revId": "2a886c37633e68a89567ba0e8e0b291e2abdb45d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
