@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a73da124_4b943853",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-08T08:48:24Z",
+      "side": 1,
+      "message": "The logback file for ncmp doesn\u0027t appear to be on Github. Am I using the wrong link?",
+      "range": {
+        "startLine": 44,
+        "startChar": 53,
+        "endLine": 44,
+        "endChar": 163
+      },
+      "revId": "2a886c37633e68a89567ba0e8e0b291e2abdb45d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
