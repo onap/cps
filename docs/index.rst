@@ -8,10 +8,8 @@
 .. THIS IS USED INTERNALLY IN CPS ONLY
 .. _cps-framework-doc:
 
-CPS-Core Documentation
+CPS Documentation
 ----------------------
-
-.. warning:: draft
 
 .. toctree::
    :maxdepth: 1
@@ -27,9 +25,9 @@ CPS-Core Documentation
 ONAP DMI Plugin Documentation
 -----------------------------
 
-* `DMI Plugin(placeholder)  `_
+* `DMI Plugin <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html>`_
 
 CPS-Temporal Documentation
 --------------------------
 
-* `CPS Temporal(placeholder)  `_
+* `CPS Temporal <https://docs.onap.org/projects/onap-cps-cps-temporal/en/latest/index.html>`_
