@@ -409,7 +409,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             }
         and: 'dmi operations returns some module references'
             def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
-            def expectedJsonBody = '{"operation":"read","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            def expectedJsonBody = '{"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
             mockDmiProperties.getAuthUsername() >> 'someUser'
             mockDmiProperties.getAuthPassword() >> 'somePassword'
             def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
@@ -418,10 +418,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
-            def jsonDataToFetchYangResource = '{"operation":"read","dataType":"application/json","data":"{\\"modules\\":[{\\"name\\":\\"module2\\",\\"revision\\":\\"1\\"}]}","cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            def jsonDataToFetchYangResource = '{"data":{"modules":[{"name":"module2","revision":"1"}]},"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
             mockDmiOperations.getResourceFromDmiWithJsonData('some service name', jsonDataToFetchYangResource, 'some cm handle', 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
-            objectUnderTest.createAnchorAndSyncModel(cmHandleForModelSync)
+            objectUnderTest.syncModulesAndCreateAnchor(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
             1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, [knownModule1])
         and: 'admin service create anchor method has been called with correct parameters'
@@ -441,10 +441,22 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some cm handle')
     }
 
+    def 'Create the request body to get yang resources from DMI.'() {
+        given: 'the expected json request'
+            def expectedRequestBody = '{"data":{"modules":[{"name":"module1","revision":"1"},{"name":"module2","revision":"2"}]},"cmHandleProperties":{"name1":"value1"}}'
+        and: 'module references and cm handle properties'
+            def moduleReferences = [new ModuleReference('module1', '1'),new ModuleReference('module2', '2')]
+            def cmHandleProperties = ['name1':'value1']
+        when: 'get request body to fetch yang resources from DMI is called'
+            def result = objectUnderTest.getRequestBodyToFetchYangResourceFromDmi(moduleReferences, cmHandleProperties)
+        then: 'the result is the same as the expected request body'
+            result == expectedRequestBody
+    }
+
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
                 mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper))
-        objectUnderTest.createAnchorAndSyncModel(_) >> null
+        objectUnderTest.syncModulesAndCreateAnchor(_) >> null
         return objectUnderTest
     }
 
