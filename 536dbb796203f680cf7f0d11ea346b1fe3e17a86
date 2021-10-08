@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8e1c0700_f3826620",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-08T13:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1dcaf5cb_84da619e",
+      "range": {
+        "startLine": 155,
+        "startChar": 28,
+        "endLine": 155,
+        "endChar": 44
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4024129_2df73417",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
         "patchSetId": 7
@@ -187,6 +211,30 @@
       "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f476130a_7c0865c5",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-08T13:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "356c42db_5e5e59bb",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "536dbb796203f680cf7f0d11ea346b1fe3e17a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
