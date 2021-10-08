@@ -22,6 +22,29 @@
       "revId": "4d8550272e2ecc0ce8df804afde0420467eff06f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0115bd70_a620cad1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-08T03:32:43Z",
+      "side": 1,
+      "message": "Suggestion: I think if we keep this structure as a Java class, it will be more readable.",
+      "range": {
+        "startLine": 435,
+        "startChar": 8,
+        "endLine": 442,
+        "endChar": 44
+      },
+      "revId": "4d8550272e2ecc0ce8df804afde0420467eff06f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
