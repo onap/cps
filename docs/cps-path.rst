@@ -9,8 +9,6 @@
 CPS Path
 ########
 
-.. warning:: draft
-
 .. toctree::
    :maxdepth: 1
 
