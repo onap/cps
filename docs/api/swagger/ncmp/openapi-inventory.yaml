@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: NCMP Inventory API
+  description: NCMP Inventory API
+  version: "1.0"
+servers:
+- url: /ncmpInventory
+paths:
+  /v1/ch:
+    post:
+      tags:
+      - network-cm-proxy-inventory
+      summary: DMI notifies NCMP of new CM Handles
+      description: "Register a DMI Plugin with any new, updated or removed CM Handles."
+      operationId: updateDmiPluginRegistration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestDmiPluginRegistration'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+components:
+  schemas:
+    RestDmiPluginRegistration:
+      type: object
+      properties:
+        dmiPlugin:
+          type: string
+          example: onap-dmi-plugin
+        createdCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestCmHandle'
+        updatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestCmHandle'
+        removedCmHandles:
+          type: array
+          items:
+            type: string
+    RestCmHandle:
+      required:
+      - cmHandle
+      type: object
+      properties:
+        cmHandle:
+          type: string
+          example: cmHandle123
+        cmHandleProperties:
+          $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
+    RestCmHandleAdditionalProperties:
+      type: object
+      additionalProperties:
+        type: string
+        example: system-001
+    ErrorMessage:
+      title: Error
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string

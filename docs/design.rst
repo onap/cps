@@ -15,11 +15,28 @@ CPS Design
 Offered APIs
 ============
 
-CPS supports the public APIs listed in the link below:
+CPS supports the public APIs listed in the following sections.
+
+CPS-Core
+--------
+
+CPS-Core functionality.
 
 :download:`CPS Rest OpenApi Specification <api/swagger/cps/openapi.yaml>`
 
+CPS-NCMP
+--------
+
+XNF data access and module information.
+
 :download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
+
+CPS-NCMP-Inventory
+------------------
+
+DMI-Plugin Inventory.
+
+:download:`CPS NCMP RestOpenApi Inventory Specification <api/swagger/ncmp/openapi-inventory.yaml>`
 
 View Offered APIs
 -----------------
@@ -33,15 +50,15 @@ Specification can be accessed using following URI:
 
   http://<hostname>:<port>/v3/api-docs?group=cps-docket
 
-Additionally, the Swagger User Interface can be found at the following URI. The component may be changed between CPS-Core
-and CPS-NCMP using the drop down table in the top right:
+Additionally, the Swagger User Interface can be found at the following URI. The component may be changed between CPS-Core, CPS-NCMP
+and CPS-NCMP-Inventory using the drop down table in the top right:
 
 .. code-block:: bash
 
   http://<hostname>:<port>/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 Consumed APIs
--------------
+=============
 
 CPS Core uses API's from the following ONAP components
 
