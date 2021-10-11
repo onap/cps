@@ -41,7 +41,7 @@ Logger configuration is provided as a chart resource :
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
     | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`_    |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | ncmp-dmi-plugin                | Not yet applicable to DMI Plugin                                                                                                |
+    | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Monitoring

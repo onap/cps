@@ -62,7 +62,7 @@ NCMP Modeling
 Data Model
 ----------
 
-NCMP stores DMI Plugin and CM Handle relations using a data model described as per this Yang module.
+NCMP stores DMI-Plugin and CM Handle relations using a data model described as per this Yang module.
 
 :download:`DMI Yang Module <api/yang/dmiYangResource.yang>`
 
