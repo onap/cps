@@ -203,7 +203,9 @@ public class DmiOperations {
 
     private void appendOptionsQuery(final StringBuilder stringBuilder,
                                     final String optionsParamInQuery) {
-        stringBuilder.append("&").append(OPTIONS_QUERY_KEY).append("=").append(optionsParamInQuery);
+        if (optionsParamInQuery != null) {
+            stringBuilder.append("&").append(OPTIONS_QUERY_KEY).append("=").append(optionsParamInQuery);
+        }
     }
 
     private HttpHeaders prepareHeader(final String acceptParam) {
