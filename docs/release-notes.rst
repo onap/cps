@@ -100,7 +100,7 @@ Release Data
 
 Features
 --------
-* Register DMI Plugins with NCMP for CM Handle registrations.
+* Register DMI-Plugins with NCMP for CM Handle registrations.
 * Update, Create and Remove CM Handles.
 * Add support for retrieving and writing CM Handle data through NCMP datastores.
 * Automatic retrieval and caching of model information for CM Handles within NCMP.
@@ -160,9 +160,9 @@ Following CPS components are available with default ONAP/CPS installation.
 
     * Service components
 
-        - CPS Core and NCMP
-        - CPS Temporal
-        - DMI Plugin
+        - CPS-NCMP
+        - CPS-Temporal
+        - DMI-Plugin
 
     * Additional resources that CPS utilizes deployed using ONAP common charts
 

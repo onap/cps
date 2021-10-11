@@ -9,7 +9,7 @@
 .. _cps-framework-doc:
 
 CPS Documentation
-----------------------
+-----------------
 
 .. toctree::
    :maxdepth: 1
@@ -22,12 +22,12 @@ CPS Documentation
    deployment.rst
    release-notes.rst
 
-ONAP DMI Plugin Documentation
+DMI-Plugin Documentation
 -----------------------------
 
-* `DMI Plugin <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html>`_
+* `DMI-Plugin <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html>`_
 
 CPS-Temporal Documentation
 --------------------------
 
-* `CPS Temporal <https://docs.onap.org/projects/onap-cps-cps-temporal/en/latest/index.html>`_
+* `CPS-Temporal <https://docs.onap.org/projects/onap-cps-cps-temporal/en/latest/index.html>`_
