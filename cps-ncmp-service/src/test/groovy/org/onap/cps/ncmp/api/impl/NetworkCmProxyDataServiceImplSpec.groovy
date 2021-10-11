@@ -371,7 +371,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId',
                 '{"operation":"create","dataType":"application/json","data":"{some-json}","cmHandleProperties":'
                 + expectedJsonForCmhandleProperties+ '}')
-                >> { new ResponseEntity<>(HttpStatus.OK) }
+                >> { new ResponseEntity<>(HttpStatus.CREATED) }
         where:
             scenario  | includeCmHandleProperties || expectedJsonForCmhandleProperties
             'with'    | true                      || '{"testName":"testValue"}'
@@ -398,10 +398,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
 
     def 'Sync model for a (new) cm handle with #scenario'() {
-        given: 'DMI Plug-in returns a list of module references'
-            def knownModule1 = new ModuleReference('module1', '1')
-            def knownOtherModule = new ModuleReference('some other module', 'some revision')
-        and: 'persistence cm handle is given'
+        given: 'persistence cm handle is given'
             def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
         and: 'additional properties are set as required'
             if (additionalProperties!=null) {
@@ -415,23 +412,26 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
             mockDmiOperations.getResourceFromDmiWithJsonData('some service name', expectedJsonBody, 'some cm handle', 'modules') >> moduleReferencesFromCmHandleAsJson
         and: 'CPS-Core returns list of known modules'
-            mockCpsModuleService.getYangResourceModuleReferences(_) >> [knownModule1, knownOtherModule]
+            def knownModule1 = ['module1', 1]
+            def knownModule2 = ['module2', 2]
+            def knownOtherModule = ['module3', 3]
+            mockCpsModuleService.getYangResourceModuleReferences(_) >> existingModuleResourcesInCps
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             def moduleResources = new ResponseEntity<String>(sdncReponseBody, HttpStatus.OK)
-            def jsonDataToFetchYangResource = '{"data":{"modules":[{"name":"module2","revision":"1"}]},"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
+            def jsonDataToFetchYangResource = '{"data":{"modules":[{"name":"module1","revision":"1"}]},"cmHandleProperties":' + expectedJsonForAdditionalProperties + '}'
             mockDmiOperations.getResourceFromDmiWithJsonData('some service name', jsonDataToFetchYangResource, 'some cm handle', 'moduleResources') >> moduleResources
         when: 'module Sync is triggered'
             objectUnderTest.syncModulesAndCreateAnchor(cmHandleForModelSync)
         then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, [knownModule1])
+            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, cmHandleForModelSync.getId(), expectedYangResourceToContentMap, expectedKnownModules)
         and: 'admin service create anchor method has been called with correct parameters'
             1 * mockCpsAdminService.createAnchor(expectedDataspaceName, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
         where: 'the following responses are received from SDNC'
-            scenario                         | additionalProperties | sdncReponseBody                                                                        || expectedYangResourceToContentMap | expectedJsonForAdditionalProperties
-            'one unknown module'             | ['name1':'value1']   | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{"name1":"value1"}'
-            'no add. properties'             | [:]                  | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{}'
-            'additional properties is null'  | null                 | '[{"moduleName" : "someModule", "revision" : "1","yangSource": "[some yang source]"}]' || [someModule: 'some yang source'] | '{}'
-            'no unknown module'              | [:]                  | '[]'                                                                                   || [:]                              | '{}'
+            scenario                         | additionalProperties | existingModuleResourcesInCps                                                  | sdncReponseBody                                                                     || expectedYangResourceToContentMap | expectedKnownModules                                                       | expectedJsonForAdditionalProperties
+            'one unknown module'             | ['name1':'value1']   | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')]    | '[{"moduleName" : "module1", "revision" : "1","yangSource": "[some yang source]"}]' || [module1: 'some yang source']    | [new ModuleReference('module2', '2')]                                      |'{"name1":"value1"}'
+            'no add. properties'             | [:]                  | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')]    | '[{"moduleName" : "module1", "revision" : "1","yangSource": "[some yang source]"}]' || [module1: 'some yang source']    | [new ModuleReference('module2', '2')]                                      |'{}'
+            'additional properties is null'  | null                 | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')]    | '[{"moduleName" : "module1", "revision" : "1","yangSource": "[some yang source]"}]' || [module1: 'some yang source']    | [new ModuleReference('module2', '2')]                                      |'{}'
+            'no unknown module'              | [:]                  | [new ModuleReference('module1', '1'),    new ModuleReference('module2', '2')] | '[]'                                                                                || [:]                              | [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')] |'{}'
     }
 
     def 'Getting Yang Resources.'() {
