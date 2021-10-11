@@ -284,7 +284,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private static void handleResponseForPost(final @NotNull ResponseEntity<String> responseEntity) {
-        if (responseEntity.getStatusCode() != HttpStatus.OK) {
+        if (!HttpStatus.valueOf(responseEntity.getStatusCodeValue()).is2xxSuccessful()) {
             throw new NcmpException("Not able to create resource data.",
                     "DMI status code: " + responseEntity.getStatusCodeValue()
                             + ", DMI response body: " + responseEntity.getBody());
@@ -387,9 +387,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
         prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
 
-        final Map<String, String> newYangResourcesModuleNameToContentMap =
-            getNewYangResourcesFromDmi(persistenceCmHandle, unknownModuleReferences, cmHandlePropertiesAsMap);
-
+        final Map<String, String> newYangResourcesModuleNameToContentMap;
+        if(unknownModuleReferences.size() > 0) {
+            newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle, unknownModuleReferences, cmHandlePropertiesAsMap);
+        }else{
+            newYangResourcesModuleNameToContentMap = new HashMap<>();
+        }
         cpsModuleService.createSchemaSetFromModules(NF_PROXY_DATASPACE_NAME, persistenceCmHandle.getId(),
             newYangResourcesModuleNameToContentMap, existingModuleReferences);
     }
