@@ -41,27 +41,41 @@ class DmiOperationsSpec extends Specification {
 
     def 'call get resource data for pass-through:operational datastore from DMI.'() {
         given: 'expected url'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
+                    '/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&options=(a=1,b=2)'
+        when: 'get resource data is called to DMI'
+            objectUnderTest.getResourceDataOperationalFromDmi('testDmiBasePath',
+                    'testCmhandle',
+                    'parent/child',
+                    '(a=1,b=2)',
+                    'testAcceptJson',
+                    'testJsonbody')
+        then: 'the put operation is executed with the correct URL'
+            1 * mockDmiRestClient.putOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
+    }
+    def 'call get resource data for pass-through:running datastore from DMI.'() {
+        given: 'expected url'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
+                    '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child&options=(a=1,b=2)'
+        when: 'get resource data is called to DMI'
+            objectUnderTest.getResourceDataPassThroughRunningFromDmi('testDmiBasePath',
+                    'testCmhandle',
+                    'parent/child',
+                    '(a=1,b=2)',
+                    'testAcceptJson',
+                    'testJsonbody')
+        then: 'the put operation is executed with the correct URL'
+            1 * mockDmiRestClient.putOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
+    }
+    def 'call get resource data for pass-through:operational datastore from DMI when options is null.'() {
+        given: 'expected url'
         def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&options=(a=1,b=2)'
+                '/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child'
         when: 'get resource data is called to DMI'
         objectUnderTest.getResourceDataOperationalFromDmi('testDmiBasePath',
                 'testCmhandle',
                 'parent/child',
-                '(a=1,b=2)',
-                'testAcceptJson',
-                'testJsonbody')
-        then: 'the put operation is executed with the correct URL'
-        1 * mockDmiRestClient.putOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
-    }
-    def 'call get resource data for pass-through:running datastore from DMI.'() {
-        given: 'expected url'
-        def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child&options=(a=1,b=2)'
-        when: 'get resource data is called to DMI'
-        objectUnderTest.getResourceDataPassThroughRunningFromDmi('testDmiBasePath',
-                'testCmhandle',
-                'parent/child',
-                '(a=1,b=2)',
+                null,
                 'testAcceptJson',
                 'testJsonbody')
         then: 'the put operation is executed with the correct URL'
@@ -69,15 +83,15 @@ class DmiOperationsSpec extends Specification {
     }
     def 'call create resource data for pass-through:running datastore from DMI.'() {
         given: 'expected url'
-        def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
-                '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child'
+            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/data/ds' +
+                    '/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child'
         when: 'get resource data is called to DMI'
-        objectUnderTest.createResourceDataPassThroughRunningFromDmi('testDmiBasePath',
-                'testCmhandle',
-                'parent/child',
-                'testJsonbody')
+            objectUnderTest.createResourceDataPassThroughRunningFromDmi('testDmiBasePath',
+                    'testCmhandle',
+                    'parent/child',
+                    'testJsonbody')
         then: 'the put operation is executed with the correct URL'
-        1 * mockDmiRestClient.postOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
+            1 * mockDmiRestClient.postOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
     }
 
     def 'Call get resource from dmi.'() {
