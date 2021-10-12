@@ -22,6 +22,30 @@
       "revId": "6d8b09e052baeeb82a29613c894179248e4ce982",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48dcdcc9_674cb35f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T09:55:17Z",
+      "side": 1,
+      "message": "checkstyle violation, will block build. JOe is fxing it now",
+      "parentUuid": "55df3964_24e0fd9f",
+      "range": {
+        "startLine": 393,
+        "startChar": 7,
+        "endLine": 393,
+        "endChar": 14
+      },
+      "revId": "6d8b09e052baeeb82a29613c894179248e4ce982",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
