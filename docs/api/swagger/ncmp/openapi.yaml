@@ -4,38 +4,38 @@ info:
   description: NCMP to CPS Proxy API
   version: "1.0"
 servers:
-- url: /ncmp
+  - url: /ncmp
 paths:
   /v1/cm-handles/{cm-handle}/node:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Get a node given a cm Handle and xpath
       description: Get a node with an option to retrieve all the children for a given
         cm Handle
       operationId: getNodeByCmHandleAndXpath
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          default: false
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: OK
@@ -71,25 +71,25 @@ paths:
   /v1/cm-handles/{cm-handle}/list-node:
     post:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Add list-node child element(s)
       description: Add one or more list-node child elements under existing node for
         the given CM Handle
       operationId: addListNodeElements
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: true
-        schema:
-          type: string
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -128,32 +128,32 @@ paths:
   /v1/cm-handles/{cm-handle}/nodes/query:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Query data nodes
       description: Query nodes for the given cps path and cm Handle
       operationId: queryNodesByCmHandleAndCpsPath
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: cps-path
-        in: query
-        description: cps-path
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          default: false
+          required: true
+          schema:
+            type: string
+        - name: cps-path
+          in: query
+          description: cps-path
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: OK
@@ -189,25 +189,25 @@ paths:
   /v1/cm-handles/{cm-handle}/nodes:
     put:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Replace a node with descendants
       description: Replace a node with descendants for the given cps path and cm Handle
       operationId: replaceNode
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
       requestBody:
         content:
           application/json:
@@ -248,26 +248,26 @@ paths:
       deprecated: true
     post:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Create a node with descendants
       description: Create a node with descendants for the given CM Handle; top level
         or under existing node (requires xpath)
       operationId: createNode
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
       requestBody:
         content:
           application/json:
@@ -305,25 +305,25 @@ paths:
       deprecated: true
     patch:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Update node leaves
       description: Update node leaves for the given cps path and cm Handle
       operationId: updateNodeLeaves
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
       requestBody:
         content:
           application/json:
@@ -362,85 +362,71 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
       deprecated: true
-  /v1/ch:
-    post:
-      tags:
-      - network-cm-proxy
-      summary: DMI notifies NCMP of new CM Handles
-      description: "Register a DMI Plugin with any new, updated or removed CM Handles."
-      operationId: updateDmiPluginRegistration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RestDmiPluginRegistration'
-        required: true
-      responses:
-        "201":
-          description: Created
-          content: {}
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational/{resourceIdentifier}:
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Get resource data from pass-through operational for cm handle
       description: Get resource data from pass-through operational for given cm handle
       operationId: getResourceDataOperationalForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: resourceIdentifier
-        in: path
-        description: Resource identifier to get/set the resource data
-        required: true
-        schema:
-          type: string
-      - name: Accept
-        in: header
-        description: "Accept parameter for response, if accept parameter is null,\
+          required: true
+          schema:
+            type: string
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample1:
+              value:
+                resourceIdentifier: \parent\child
+            sample2:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]"
+            sample3:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]\\grandChild"
+            sample4:
+              value:
+                resourceIdentifier: "parent=1,child=abc"
+        - name: Accept
+          in: header
+          description: "Accept parameter for response, if accept parameter is null,\
           \ that means client can accept any format."
-        required: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - application/yang-data+json
-      - name: fields
-        in: query
-        description: Fields parameter to filter resource
-        required: false
-        schema:
-          type: string
-      - name: depth
-        in: query
-        description: Depth parameter for response
-        required: false
-        schema:
-          minimum: 1
-          type: integer
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - application/yang-data+json
+        - name: options
+          in: query
+          description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+          \ in parenthesis'()'."
+          required: false
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample1:
+              value:
+                options: "(key1=value1,key2=value2)"
+            sample2:
+              value:
+                options: "(key1=value1,key2=value1/value2)"
+            sample3:
+              value:
+                options: "(key1=10,key2=value2,key3=[val31;val32])"
       responses:
         "200":
           description: OK
@@ -472,50 +458,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running/{resourceIdentifier}:
+  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Get resource data from pass-through running for cm handle
       description: Get resource data from pass-through running for given cm handle
       operationId: getResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: resourceIdentifier
-        in: path
-        description: Resource identifier to get/set the resource data
-        required: true
-        schema:
-          type: string
-      - name: Accept
-        in: header
-        description: "Accept parameter for response, if accept parameter is null,\
+          required: true
+          schema:
+            type: string
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample1:
+              value:
+                resourceIdentifier: \parent\child
+            sample2:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]"
+            sample3:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]\\grandChild"
+            sample4:
+              value:
+                resourceIdentifier: "parent=1,child=abc"
+        - name: Accept
+          in: header
+          description: "Accept parameter for response, if accept parameter is null,\
           \ that means client can accept any format."
-        required: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - application/yang-data+json
-      - name: fields
-        in: query
-        description: Fields parameter to filter resource
-        required: false
-        schema:
-          type: string
-      - name: depth
-        in: query
-        description: Depth parameter for response
-        required: false
-        schema:
-          minimum: 1
-          type: integer
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - application/yang-data+json
+        - name: options
+          in: query
+          description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+          \ in parenthesis'()'."
+          required: false
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample1:
+              value:
+                options: "(key1=value1,key2=value2)"
+            sample2:
+              value:
+                options: "(key1=value1,key2=value1/value2)"
+            sample3:
+              value:
+                options: "(key1=10,key2=value2,key3=[val31;val32])"
       responses:
         "200":
           description: OK
@@ -549,32 +556,48 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     post:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: create resource data from pass-through running for cm handle
       description: create resource data from pass-through running for given cm handle
       operationId: createResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-      - name: resourceIdentifier
-        in: path
-        description: Resource identifier to get/set the resource data
-        required: true
-        schema:
-          type: string
-      - name: Content-Type
-        in: header
-        description: "Content parameter for request, if content parameter is null,\
+          required: true
+          schema:
+            type: string
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample1:
+              value:
+                resourceIdentifier: \parent\child
+            sample2:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]"
+            sample3:
+              value:
+                resourceIdentifier: "\\parent\\listElement[key=value]\\grandChild"
+            sample4:
+              value:
+                resourceIdentifier: "parent=1,child=abc"
+        - name: Content-Type
+          in: header
+          description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-        required: false
-        schema:
-          type: string
-          default: application/json
+          required: false
+          schema:
+            type: string
+            default: application/json
       requestBody:
         content:
           application/json:
@@ -615,19 +638,19 @@ paths:
   /v1/ch/{cm-handle}/modules:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Fetch all module references (name and revision) for a given cm handle
       description: fetch all module references (name and revision) for a given cm
         handle
       operationId: getModuleReferencesByCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -671,36 +694,3 @@ components:
           type: string
         details:
           type: string
-    RestDmiPluginRegistration:
-      type: object
-      properties:
-        dmiPlugin:
-          type: string
-          example: onap-dmi-plugin
-        createdCmHandles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RestCmHandle'
-        updatedCmHandles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RestCmHandle'
-        removedCmHandles:
-          type: array
-          items:
-            type: string
-    RestCmHandle:
-      required:
-      - cmHandle
-      type: object
-      properties:
-        cmHandle:
-          type: string
-          example: cmHandle123
-        cmHandleProperties:
-          $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
-    RestCmHandleAdditionalProperties:
-      type: object
-      additionalProperties:
-        type: string
-        example: system-001

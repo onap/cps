@@ -4,12 +4,12 @@ info:
   description: NCMP Inventory API
   version: "1.0"
 servers:
-- url: /ncmpInventory
+  - url: /ncmpInventory
 paths:
   /v1/ch:
     post:
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
       summary: DMI notifies NCMP of new CM Handles
       description: "Register a DMI Plugin with any new, updated or removed CM Handles."
       operationId: updateDmiPluginRegistration
@@ -63,7 +63,7 @@ components:
             type: string
     RestCmHandle:
       required:
-      - cmHandle
+        - cmHandle
       type: object
       properties:
         cmHandle:
