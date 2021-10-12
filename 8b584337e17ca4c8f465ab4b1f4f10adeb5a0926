@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c55344c0_defc98ac",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-12T16:07:21Z",
+      "side": 1,
+      "message": "Other issues are in descending order of issue number, should be below",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 104
+      },
+      "revId": "8b584337e17ca4c8f465ab4b1f4f10adeb5a0926",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
