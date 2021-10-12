@@ -234,6 +234,7 @@ Release Data
 Bug Fixes
 ---------
 
+   - `CPS-706 <https://jira.onap.org/browse/CPS-706>`_ Get moduleschema/yangresouce endpoint not working
    - `CPS-276 <https://jira.onap.org/browse/CPS-276>`_ Improve error reporting for invalid cpsPath on Queries
    - `CPS-288 <https://jira.onap.org/browse/CPS-288>`_ Move security configuration to the application module
    - `CPS-290 <https://jira.onap.org/browse/CPS-290>`_ Internal Server Error when creating the same data node twice

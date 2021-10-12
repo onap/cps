@@ -15,27 +15,27 @@ info:
   x-logo:
     url: cps_logo.png
 servers:
-- url: /cps/api
+  - url: /cps/api
 tags:
-- name: cps-admin
-  description: cps Admin
-- name: cps-data
-  description: cps Data
+  - name: cps-admin
+    description: cps Admin
+  - name: cps-data
+    description: cps Data
 paths:
   /v1/dataspaces:
     post:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Create a dataspace
       description: Create a new dataspace
       operationId: createDataspace
       parameters:
-      - name: dataspace-name
-        in: query
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: query
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
       responses:
         "201":
           description: Created
@@ -64,17 +64,17 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Get anchors
       description: "Read all anchors, given a dataspace"
       operationId: getAnchors
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -110,29 +110,29 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     post:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Create an anchor
       description: Create a new anchor in the given dataspace
       operationId: createAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: query
-        description: anchor-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: query
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: query
+          description: anchor-name
+          required: true
+          schema:
+            type: string
       responses:
         "201":
           description: Created
@@ -161,23 +161,23 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
     get:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Get an anchor
       description: Read an anchor given an anchor name and a dataspace
       operationId: getAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -211,23 +211,23 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     delete:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Delete an anchor
       description: Delete an anchor given an anchor name and a dataspace
       operationId: deleteAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -253,23 +253,23 @@ paths:
   /v1/dataspaces/{dataspace-name}/schema-sets:
     post:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Create a schema set
       description: Create a new schema set in the given dataspace
       operationId: createSchemaSet
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: query
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           multipart/form-data:
@@ -304,23 +304,23 @@ paths:
   /v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     get:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Get a schema set
       description: Read a schema set given a schema set name and a dataspace
       operationId: getSchemaSet
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: schema-set-name
-        in: path
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: path
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -354,23 +354,23 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     delete:
       tags:
-      - cps-admin
+        - cps-admin
       summary: Delete a schema set
       description: Delete a schema set given a schema set name and a dataspace
       operationId: deleteSchemaSet
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: schema-set-name
-        in: path
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: schema-set-name
+          in: path
+          description: schema-set-name
+          required: true
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -402,38 +402,38 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
       tags:
-      - cps-data
+        - cps-data
       summary: Get a node
       description: Get a node with an option to retrieve all the children for a given
         anchor and dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          default: false
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: OK
@@ -473,38 +473,38 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     put:
       tags:
-      - cps-data
+        - cps-data
       summary: Replace a node with descendants
       description: "Replace a node with descendants for a given dataspace, anchor\
         \ and a parent node xpath"
       operationId: replaceNode
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       requestBody:
         content:
           application/json:
@@ -540,37 +540,37 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     post:
       tags:
-      - cps-data
+        - cps-data
       summary: Create a node
       description: Create a node for a given anchor and dataspace
       operationId: createNode
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       requestBody:
         content:
           application/json:
@@ -604,38 +604,38 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     patch:
       tags:
-      - cps-data
+        - cps-data
       summary: Update node leaves
       description: Update a data node leaves for a given dataspace and anchor and
         a parent node xpath
       operationId: updateNodeLeaves
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       requestBody:
         content:
           application/json:
@@ -672,37 +672,37 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     put:
       tags:
-      - cps-data
+        - cps-data
       summary: Replace list-node child element(s) under existing parent node
       description: Replace list-node child elements under existing node for a given
         anchor and dataspace
       operationId: replaceListNodeElements
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: true
-        schema:
-          type: string
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: true
+          schema:
+            type: string
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       requestBody:
         content:
           application/json:
@@ -736,37 +736,37 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     post:
       tags:
-      - cps-data
+        - cps-data
       summary: Add list-node child element(s) under existing parent node
       description: Add list-node child elements to existing node for a given anchor
         and dataspace
       operationId: addListNodeElements
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: true
-        schema:
-          type: string
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: true
+          schema:
+            type: string
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       requestBody:
         content:
           application/json:
@@ -800,37 +800,37 @@ paths:
                 $ref: '#/components/schemas/ErrorMessage'
     delete:
       tags:
-      - cps-data
+        - cps-data
       summary: Delete list-node child element(s) under existing parent node
       description: Delete list-node child elements under existing node for a given
         anchor and dataspace
       operationId: deleteListNodeElements
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: xpath
-        in: query
-        description: xpath
-        required: true
-        schema:
-          type: string
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: xpath
+          in: query
+          description: xpath
+          required: true
+          schema:
+            type: string
+        - name: observed-timestamp
+          in: query
+          description: observed-timestamp
+          required: false
+          schema:
+            type: string
+            example: 2021-03-21T00:10:34.030-0100
       responses:
         "204":
           description: No Content
@@ -856,37 +856,37 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       tags:
-      - cps-query
+        - cps-query
       summary: Query data nodes
       description: Query data nodes for the given dataspace and anchor using CPS path
       operationId: getNodesByDataspaceAndAnchorAndCpsPath
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-      - name: cps-path
-        in: query
-        description: cps-path
-        required: false
-        schema:
-          type: string
-          default: /
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          default: false
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+        - name: anchor-name
+          in: path
+          description: anchor-name
+          required: true
+          schema:
+            type: string
+        - name: cps-path
+          in: query
+          description: cps-path
+          required: false
+          schema:
+            type: string
+            default: /
+        - name: include-descendants
+          in: query
+          description: include-descendants
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: OK
@@ -951,7 +951,7 @@ components:
           example: my_schema_set
     MultipartFile:
       required:
-      - file
+        - file
       type: object
       properties:
         file:
