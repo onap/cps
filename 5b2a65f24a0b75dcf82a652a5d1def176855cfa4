@@ -310,6 +310,24 @@
     },
     {
       "key": {
+        "uuid": "d209064f_28224fbb",
+        "filename": "csit/archives/plans/default/_sysinfo-2-after-robot.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-12T13:42:07Z",
+      "side": 1,
+      "message": "it is required for output after tests have run",
+      "parentUuid": "068b48a3_697e3457",
+      "revId": "5b2a65f24a0b75dcf82a652a5d1def176855cfa4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8f57ce8_9f614b34",
         "filename": "csit/data/postMduleRequestBody.json",
         "patchSetId": 3

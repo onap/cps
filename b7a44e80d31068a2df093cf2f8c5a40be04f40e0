@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d023905_4a8e9e1b",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-12T13:42:07Z",
+      "side": 1,
+      "message": "There may be further changes to this file if we split them out",
+      "revId": "b7a44e80d31068a2df093cf2f8c5a40be04f40e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
