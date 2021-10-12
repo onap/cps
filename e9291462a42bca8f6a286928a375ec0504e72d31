@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "709d1ba0_fa6a91db",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T11:48:40Z",
+      "side": 1,
+      "message": "Not sure but this works for me .. if someone else from the team could confirm on this.",
+      "parentUuid": "bab9583e_d28eebbb",
+      "range": {
+        "startLine": 25,
+        "startChar": 22,
+        "endLine": 25,
+        "endChar": 103
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "020b1edd_26d4e87d",
         "filename": "docs/deployment.rst",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d12d5675_febffa2e",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T11:48:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "020b1edd_26d4e87d",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 55
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "e2701dcc_dbe96148",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T11:48:40Z",
+      "side": 1,
+      "message": "in oom charts and also going forward, cps compoenent would be referred to cps-core.\nAll kubernetes resources are prefixed with cps-core starting I release.",
+      "parentUuid": "f5ef7cd4_a6f824da",
+      "range": {
+        "startLine": 112,
+        "startChar": 5,
+        "endLine": 112,
+        "endChar": 12
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72cf71d5_248e4ab0",
         "filename": "docs/deployment.rst",
         "patchSetId": 2
@@ -108,6 +180,30 @@
       "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acb64c8f_9998f2e0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T11:48:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "72cf71d5_248e4ab0",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
