@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "514b25ce_d5e5fd60",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T15:38:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ca015b7_79c60ade",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d66273ef_be28b501",
         "filename": "docs/deployment.rst",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb43af5c_48b7f67b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T15:38:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d66273ef_be28b501",
+      "range": {
+        "startLine": 25,
+        "startChar": 92,
+        "endLine": 25,
+        "endChar": 97
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -92,6 +140,30 @@
       "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70233881_b6306687",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-12T15:38:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "584923da_6004a5f1",
+      "range": {
+        "startLine": 112,
+        "startChar": 1,
+        "endLine": 113,
+        "endChar": 112
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
