@@ -22,6 +22,30 @@
       "revId": "8b584337e17ca4c8f465ab4b1f4f10adeb5a0926",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b42bf34_441b7b35",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T16:09:54Z",
+      "side": 1,
+      "message": "not blocking for me :-)",
+      "parentUuid": "c55344c0_defc98ac",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 104
+      },
+      "revId": "8b584337e17ca4c8f465ab4b1f4f10adeb5a0926",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
