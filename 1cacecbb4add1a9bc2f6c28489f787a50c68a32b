@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c02e43ac_3970d523",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:40:47Z",
+      "side": 1,
+      "message": "Maybe change to \"rebased after fixes for CPS-30\u0027",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "1cacecbb4add1a9bc2f6c28489f787a50c68a32b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec790dfd_c72a23bb",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:40:47Z",
+      "side": 1,
+      "message": "use options",
+      "range": {
+        "startLine": 40,
+        "startChar": 177,
+        "endLine": 40,
+        "endChar": 208
+      },
+      "revId": "1cacecbb4add1a9bc2f6c28489f787a50c68a32b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
