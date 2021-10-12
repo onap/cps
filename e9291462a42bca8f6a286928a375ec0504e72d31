@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "518c50fd_1e7bdae7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-12T13:08:17Z",
+      "side": 1,
+      "message": "It also leads to a 404 for me. Replacing \u0027_\u0027 with \u0027-\u0027 fixed this.",
+      "parentUuid": "709d1ba0_fa6a91db",
+      "range": {
+        "startLine": 25,
+        "startChar": 22,
+        "endLine": 25,
+        "endChar": 103
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "020b1edd_26d4e87d",
         "filename": "docs/deployment.rst",
         "patchSetId": 2
