@@ -184,6 +184,30 @@
     },
     {
       "key": {
+        "uuid": "067f2b86_2be57424",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:47:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e2701dcc_dbe96148",
+      "range": {
+        "startLine": 112,
+        "startChar": 5,
+        "endLine": 112,
+        "endChar": 12
+      },
+      "revId": "e9291462a42bca8f6a286928a375ec0504e72d31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72cf71d5_248e4ab0",
         "filename": "docs/deployment.rst",
         "patchSetId": 2

@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5ca015b7_79c60ade",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:47:26Z",
+      "side": 1,
+      "message": "will this affect rendered HTML\nIf not please remove",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d66273ef_be28b501",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:47:26Z",
+      "side": 1,
+      "message": "should be -dmi-",
+      "range": {
+        "startLine": 25,
+        "startChar": 92,
+        "endLine": 25,
+        "endChar": 97
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "677549b1_ccb0fd2b",
         "filename": "docs/deployment.rst",
         "patchSetId": 3
@@ -13,6 +59,30 @@
       "writtenOn": "2021-10-12T13:16:19Z",
       "side": 1,
       "message": "Sorry didn\u0027t notice last time but I think these links should be swapped?\ncps-core is leading to \u0027/cps-temporal\u0027 and cps-temporal is leading to \u0027/cps-core\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 1,
+        "endLine": 113,
+        "endChar": 112
+      },
+      "revId": "749723a595485a84eec2ea0d6fdfbc3c92a0838a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "584923da_6004a5f1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-12T13:47:26Z",
+      "side": 1,
+      "message": "yes, just swap the 2 links on line 112/113",
+      "parentUuid": "677549b1_ccb0fd2b",
       "range": {
         "startLine": 112,
         "startChar": 1,
