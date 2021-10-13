@@ -46,6 +46,30 @@
       "revId": "11927dae5ec302586d58e68644f117567f0a5e6e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c8e0f6_c2b689f8",
+        "filename": "releases/2.0.1-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-13T16:40:12Z",
+      "side": 1,
+      "message": "I agree. Also both the log_dir and container versions are also derived from the stage-release commit.",
+      "parentUuid": "911bf52e_4457576e",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "11927dae5ec302586d58e68644f117567f0a5e6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
