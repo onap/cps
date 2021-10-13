@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63b18931_e9138a10",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-13T08:55:38Z",
+      "side": 0,
+      "message": "We need to have these properties defined instead of using them directly. For example while integration of these tests with CI, these env variables need to be overriden.\nAlso it would be good to have all these env variables defined in a properties file as done in cps-temporal\nhttps://github.com/onap/cps-cps-temporal/blob/master/csit/plans/default/setup.properties",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "4691481d530c46b67a7c65ee8942245e02ef6d49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
