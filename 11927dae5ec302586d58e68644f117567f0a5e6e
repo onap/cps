@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d58a2776_dc2682b7",
+        "filename": "releases/2.0.1-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-13T16:24:09Z",
+      "side": 1,
+      "message": "I am still not sure if this should be the LAST merged commit (ie. from step 4) OR the commit with the \"stage-release\" ie., from step 3....",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "11927dae5ec302586d58e68644f117567f0a5e6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
