@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "45961b5a_05de2427",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-13T09:02:56Z",
+      "side": 1,
+      "message": "Is there no other way to test the readiness of sdnc ? I think the step to mount and verify the netconf node could be moved to a test plan",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "7b4cba036bc110a7284a70bb1953305754890591",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "673c0ad1_ee8ffc67",
         "filename": "csit/plans/default/testplan.txt",
         "patchSetId": 8
