@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a37f3c0_615ff00c",
+        "filename": "releases/2.0.1-container.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-13T16:50:31Z",
+      "side": 1,
+      "message": "as discussed lets try. I might actually not make any difference. It seem to have worked in DMI-PLugin using the LAST sha instead of the Sha for the stage-commit....",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "79456d8d3dd7390bb91f1a3ad107c8720c1e7def",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
