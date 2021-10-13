@@ -22,6 +22,30 @@
       "revId": "4691481d530c46b67a7c65ee8942245e02ef6d49",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc9103b_f196655e",
+        "filename": "csit/plans/default/setup.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-13T09:35:50Z",
+      "side": 0,
+      "message": "I will add these back in. As far as properties are concerned it was discussed to to do this as an improvement after I release closes",
+      "parentUuid": "63b18931_e9138a10",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "4691481d530c46b67a7c65ee8942245e02ef6d49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
