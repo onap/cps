@@ -94,6 +94,30 @@
       "revId": "11927dae5ec302586d58e68644f117567f0a5e6e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3473a47_fe256021",
+        "filename": "releases/2.0.1-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-14T11:44:56Z",
+      "side": 1,
+      "message": "\"The git commit reference (SHA-1 code) to tag with the version string.\" what does the actually mean? In Policy they use a script to get the LAST commit, according to Liam it is for \u0027future reference\u0027 only to indicate when the image was created. whether its the last or 2nd last commit really doesn\u0027t mater that much. we waster too much time on it already. I hope for next release this is A) automated or B) we stop fussing about it and accept wither ref...",
+      "parentUuid": "66cbcd9c_8cfb8b23",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "11927dae5ec302586d58e68644f117567f0a5e6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
