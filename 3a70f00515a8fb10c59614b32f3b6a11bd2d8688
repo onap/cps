@@ -45,6 +45,29 @@
       "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35de291c_6f99dcc4",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:16:05Z",
+      "side": 1,
+      "message": "As discussed previously, could these comments be hardcoded below",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
