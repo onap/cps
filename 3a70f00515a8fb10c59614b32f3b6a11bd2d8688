@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83470b40_5ccb28f7",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:05:31Z",
+      "side": 1,
+      "message": "Should these be commented out? If they are not needed does it not make sense to just remove these commands.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 115
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d182e143_d0474b0c",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:05:31Z",
+      "side": 1,
+      "message": "Can we change this comment to more accurately reflect the code?\nThe interval here says 5 seconds, but it is set to 30, and it says the timeout is 10 minutes, but it\u0027s 1000 seconds.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 86
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
