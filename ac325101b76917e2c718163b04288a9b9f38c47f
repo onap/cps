@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6356f09_ca93408f",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:19:49Z",
+      "side": 1,
+      "message": "See comments left here\n\nhttps://gerrit.onap.org/r/c/cps/+/124643",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 115
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb23c6d7_23bef874",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:19:49Z",
+      "side": 1,
+      "message": "See comments above",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04eb076b_93c2e287",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-14T15:19:49Z",
+      "side": 1,
+      "message": "See comments here\n\nhttps://gerrit.onap.org/r/c/cps/+/124643",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
