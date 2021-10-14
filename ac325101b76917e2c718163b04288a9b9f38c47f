@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "3ae2f5e8_acd006f4",
+        "filename": "csit/data/bookstoreAddEntry.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 1,
+      "message": "sub-folder for both cps-core and ncmp will make it easier to maintain.",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ca341da_89f7b350",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 1,
+      "message": "Why did we choose to keep the folder and file name start with \u0027sdn\u0027 instead of \u0027sdnc\u0027?",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a6356f09_ca93408f",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
         "patchSetId": 2
@@ -64,6 +98,63 @@
         "startChar": 0,
         "endLine": 135,
         "endChar": 22
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8bf878_c60ceda7",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 1,
+      "message": "I think it would be better to have two separate test plans and two separate set-up instructions\n1. One for cps-core\n2. One for ncmp and onap-dmi-plugin\n\nCurrently, we are testing completely different things in the same testplan.\n\nFor later : We can also have filters to run only relevant test-cases (defined by the which project has been updates) based on maven modules changes, but run all test cases when merge.",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d9c9d73_16397bf8",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 1,
+      "message": "I think we are testing ncmp-inventory-model-sync and it is not reflected in the folder and the robot file name.",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1683aab_ae79ce21",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 1,
+      "message": "If we are already defining docker-compose inside the csit folder why did we choose to leave ncmp-dmi-plugin (onap-dmi-plugin) part here ? I think sdnc and onap-dmi-plugin goes hand in hand and should be kept in the same file docker file or in the same folder.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 114,
+        "endChar": 112
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

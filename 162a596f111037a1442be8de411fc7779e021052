@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae4c1c5_68fc1498",
+        "filename": "csit/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 0,
+      "message": "Do we want push the archives in the git repo? I thought they gets created when we execute the csit and we should not move them to source code.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "162a596f111037a1442be8de411fc7779e021052",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d99f73ef_0a84b364",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-14T19:49:00Z",
+      "side": 0,
+      "message": "The intention leaving these commented out was that user can follow the instructions defined in readme and enable it if required. \n\nWhy did me remove it?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 48
+      },
+      "revId": "162a596f111037a1442be8de411fc7779e021052",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
