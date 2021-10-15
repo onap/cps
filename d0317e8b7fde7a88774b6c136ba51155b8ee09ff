@@ -68,6 +68,29 @@
       "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "376fe716_aec722a1",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 32
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-15T11:45:15Z",
+      "side": 1,
+      "message": "restore respective commented block for this. see comment on previous patch.",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
