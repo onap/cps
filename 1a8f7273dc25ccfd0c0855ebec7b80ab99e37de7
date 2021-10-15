@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7a9506ce_89b5a47b",
+        "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
+        "patchSetId": 33
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-15T13:23:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39c93478_c2c225a6",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 42
+      },
+      "revId": "1a8f7273dc25ccfd0c0855ebec7b80ab99e37de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37523227_c24e2650",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 33
@@ -69,6 +93,30 @@
       "revId": "1a8f7273dc25ccfd0c0855ebec7b80ab99e37de7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2c82e25_7b074143",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 33
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-15T13:23:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37523227_c24e2650",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "1a8f7273dc25ccfd0c0855ebec7b80ab99e37de7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
