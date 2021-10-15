@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6433acbf_0a94101f",
+        "filename": "csit/plans/cps/pnfsim/docker-compose.yml",
+        "patchSetId": 32
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T14:42:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b32045b9_f56bf137",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 12
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f618b4a_e78f1f69",
         "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
         "patchSetId": 32
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "1b9e29dd_16d64adf",
+        "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T14:42:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ee7c2421_d67713a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "376fe716_aec722a1",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 32
@@ -130,6 +178,30 @@
       "writtenOn": "2021-10-15T11:45:15Z",
       "side": 1,
       "message": "restore respective commented block for this. see comment on previous patch.",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0afb8b1_0d3bb9fa",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 32
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T14:42:14Z",
+      "side": 1,
+      "message": "These I believe have always been commented out unless they are required for a local build",
+      "parentUuid": "376fe716_aec722a1",
       "range": {
         "startLine": 87,
         "startChar": 6,
