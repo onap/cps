@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5615dbf7_d32b7f27",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T09:29:38Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "83470b40_5ccb28f7",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 115
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d182e143_d0474b0c",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
         "patchSetId": 29
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5c320f62_3b20ca8e",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T09:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d182e143_d0474b0c",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 86
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35de291c_6f99dcc4",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 29
@@ -59,6 +107,30 @@
       "writtenOn": "2021-10-14T15:16:05Z",
       "side": 1,
       "message": "As discussed previously, could these comments be hardcoded below",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "3a70f00515a8fb10c59614b32f3b6a11bd2d8688",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f516f30b_463e438f",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-10-15T09:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35de291c_6f99dcc4",
       "range": {
         "startLine": 128,
         "startChar": 0,
