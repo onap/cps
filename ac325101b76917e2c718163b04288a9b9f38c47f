@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4fad8081_e8565ad6",
+        "filename": "csit/data/bookstoreAddEntry.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "future improvement, see https://jira.onap.org/browse/CPS-734",
+      "parentUuid": "3ae2f5e8_acd006f4",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3ca341da_89f7b350",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "35aa4d35_d29d7ef6",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "agreed, will change",
+      "parentUuid": "3ca341da_89f7b350",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a6356f09_ca93408f",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
         "patchSetId": 2
@@ -47,6 +83,30 @@
       "writtenOn": "2021-10-14T15:19:49Z",
       "side": 1,
       "message": "See comments left here\n\nhttps://gerrit.onap.org/r/c/cps/+/124643",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 115
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "321d1272_14b5eba7",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "should be removed",
+      "parentUuid": "a6356f09_ca93408f",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -82,6 +142,29 @@
     },
     {
       "key": {
+        "uuid": "f8daa97c_0d3e7668",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "alling comment with constants",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "04eb076b_93c2e287",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 2
@@ -98,6 +181,52 @@
         "startChar": 0,
         "endLine": 135,
         "endChar": 22
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc9b673f_a480e72a",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "can be inlined (again)",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 168
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e97e8090_e4b91c60",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "duplicate line",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -122,6 +251,24 @@
     },
     {
       "key": {
+        "uuid": "6b0ba08d_3fa71e67",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "agreed but for future improvement, already created task for this: https://jira.onap.org/browse/CPS-734",
+      "parentUuid": "6d8bf878_c60ceda7",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d9c9d73_16397bf8",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 2
@@ -139,6 +286,24 @@
     },
     {
       "key": {
+        "uuid": "60d229c4_44d44897",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "not sure if interface name needs to be reflected in robot file name\ndid add as possible point in https://jira.onap.org/browse/CPS-734",
+      "parentUuid": "7d9c9d73_16397bf8",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1683aab_ae79ce21",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 2
@@ -150,6 +315,30 @@
       "writtenOn": "2021-10-14T19:49:00Z",
       "side": 1,
       "message": "If we are already defining docker-compose inside the csit folder why did we choose to leave ncmp-dmi-plugin (onap-dmi-plugin) part here ? I think sdnc and onap-dmi-plugin goes hand in hand and should be kept in the same file docker file or in the same folder.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 114,
+        "endChar": 112
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49e42db8_d34bb9a3",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T09:06:59Z",
+      "side": 1,
+      "message": "part of https://jira.onap.org/browse/CPS-734",
+      "parentUuid": "d1683aab_ae79ce21",
       "range": {
         "startLine": 94,
         "startChar": 2,
