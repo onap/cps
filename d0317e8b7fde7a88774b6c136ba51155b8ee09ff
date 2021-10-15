@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5c79bb30_9ffcc31d",
+        "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T14:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f618b4a_e78f1f69",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 10
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee7c2421_d67713a4",
         "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
         "patchSetId": 32
@@ -68,6 +92,30 @@
       "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6cf19f0_87505d4c",
+        "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-15T14:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee7c2421_d67713a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
