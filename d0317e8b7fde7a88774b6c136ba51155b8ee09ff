@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "b32045b9_f56bf137",
+        "filename": "csit/plans/cps/pnfsim/docker-compose.yml",
+        "patchSetId": 32
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-15T11:38:13Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 12
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f618b4a_e78f1f69",
+        "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-15T11:38:13Z",
+      "side": 1,
+      "message": "originally Deutsche tel hv copyrights on this  file. this should be modification",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 10
+      },
+      "revId": "d0317e8b7fde7a88774b6c136ba51155b8ee09ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee7c2421_d67713a4",
         "filename": "csit/plans/cps/pnfsim/netconf-config/subscriber.py",
         "patchSetId": 32
