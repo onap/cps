@@ -388,7 +388,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
 
         final Map<String, String> newYangResourcesModuleNameToContentMap;
-        if (unknownModuleReferences.size() > 0) {
+        if (!unknownModuleReferences.isEmpty()) {
             newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle,
                     unknownModuleReferences, cmHandlePropertiesAsMap);
         } else {
