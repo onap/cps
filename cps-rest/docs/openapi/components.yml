@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
+# Modifications Copyright (C) 2021 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -89,44 +90,44 @@ components:
 
   parameters:
     dataspaceNameInQuery:
-      name: dataspace-name
+      name: dataspaceName
       in: query
-      description: dataspace-name
+      description: name of the dataspace
       required: true
       schema:
         type: string
     dataspaceNameInPath:
-      name: dataspace-name
+      name: dataspaceName
       in: path
-      description: dataspace-name
+      description: name of the dataspace
       required: true
       schema:
         type: string
     anchorNameInPath:
-      name: anchor-name
+      name: anchorName
       in: path
-      description: anchor-name
+      description: name of the anchor
       required: true
       schema:
         type: string
     schemaSetNameInQuery:
-      name: schema-set-name
+      name: schemaSetName
       in: query
-      description: schema-set-name
+      description: name of the schema set
       required: true
       schema:
         type: string
     schemaSetNameInPath:
-      name: schema-set-name
+      name: schemaSetName
       in: path
-      description: schema-set-name
+      description: name of the schema set
       required: true
       schema:
         type: string
     anchorNameInQuery:
-      name: anchor-name
+      name: anchorName
       in: query
-      description: anchor-name
+      description: name of the anchor
       required: true
       schema:
         type: string
@@ -146,25 +147,25 @@ components:
       schema:
         type: string
     cpsPathInQuery:
-      name: cps-path
+      name: cpsPath
       in: query
-      description: cps-path
+      description: the cps path
       required: false
       schema:
         type: string
         default: /
     includeDescendantsOptionInQuery:
-      name: include-descendants
+      name: includeDescendants
       in: query
-      description: include-descendants
+      description: indicates if descendants shoudl be included
       required: false
       schema:
         type: boolean
         default: false
     observedTimestampInQuery:
-      name: observed-timestamp
+      name: observedTimestamp
       in: query
-      description: observed-timestamp
+      description: observed timestamp
       required: false
       schema:
         type: string
