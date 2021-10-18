@@ -388,11 +388,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
 
         final Map<String, String> newYangResourcesModuleNameToContentMap;
-        if (unknownModuleReferences.size() > 0) {
-            newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle,
-                    unknownModuleReferences, cmHandlePropertiesAsMap);
-        } else {
+        if (unknownModuleReferences.isEmpty()) {
             newYangResourcesModuleNameToContentMap = new HashMap<>();
+        } else {
+            newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle,
+                unknownModuleReferences, cmHandlePropertiesAsMap);
         }
         cpsModuleService.createSchemaSetFromModules(NF_PROXY_DATASPACE_NAME, persistenceCmHandle.getId(),
             newYangResourcesModuleNameToContentMap, existingModuleReferences);

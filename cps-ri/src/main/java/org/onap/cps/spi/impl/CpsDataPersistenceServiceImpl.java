@@ -303,7 +303,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments()
             .stream().collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
 
-        final Collection updatedChildFragments = new HashSet<FragmentEntity>();
+        final Collection<FragmentEntity> updatedChildFragments = new HashSet<>();
 
         for (final DataNode submittedChildDataNode : submittedDataNode.getChildDataNodes()) {
             final FragmentEntity childFragment;
