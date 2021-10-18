@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b072ada0_d7f15216",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-18T12:58:43Z",
+      "side": 1,
+      "message": "remove ! and swap blocks",
+      "range": {
+        "startLine": 391,
+        "startChar": 12,
+        "endLine": 391,
+        "endChar": 13
+      },
+      "revId": "de735a104d0202f97189b40fde75483cff06aa8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
