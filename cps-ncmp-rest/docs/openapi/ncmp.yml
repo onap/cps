@@ -284,3 +284,30 @@ fetchModuleReferencesByCmHandle:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
+
+getCmHandlesByModules:
+  post:
+    description: Get all cm handles that support all module names in a given list of modules
+    tags:
+      - network-cm-proxy
+    summary: Get all cm handles for the given list of modules
+    operationId: getCmHandlesByModules
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/Conditions'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/CmHandles'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'

@@ -65,6 +65,38 @@ components:
             type: string
             example: system-001
 
+    Conditions:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: hasAllModules
+              conditionParameters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    moduleName:
+                      type: string
+                      example: someModuleName
+
+    CmHandles:
+      type: object
+      properties:
+        cmHandles:
+          type: array
+          items:
+            type: object
+            properties:
+              cmHandleId:
+                type: string
+                example: someCmHandleId
+
   parameters:
     cmHandleInPath:
       name: cm-handle
