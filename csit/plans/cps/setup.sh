@@ -108,6 +108,9 @@ INTERVAL=5
 TIME=0
 
 while [ "$TIME" -le "$TIME_OUT" ]; do
+  echo "--- Application Logs Start ---"
+  ./docker-compose logs
+  echo "--- Application Logs End ---"
   LOG_FOUND=$( ./docker-compose logs --tail="all" | grep "org.onap.cps.Application" | egrep -c "Started Application in" )
 
   if [ "$LOG_FOUND" -gt 0 ]; then
