@@ -194,6 +194,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<String> getCmHandlesByModules() {
+        return null;
+    }
+
+    @Override
     public ResponseEntity<Object> getModuleReferencesByCmHandle(final String cmHandle) {
         final Collection<ModuleReference>
             moduleReferences = networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle);
