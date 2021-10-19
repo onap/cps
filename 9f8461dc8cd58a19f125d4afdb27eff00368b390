@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "165351a0_398a21f6",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-19T13:33:07Z",
+      "side": 1,
+      "message": "is this deprecated?",
+      "range": {
+        "startLine": 291,
+        "startChar": 16,
+        "endLine": 291,
+        "endChar": 20
+      },
+      "revId": "9f8461dc8cd58a19f125d4afdb27eff00368b390",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fc18a5b_2c7c82a0",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-19T13:33:07Z",
+      "side": 1,
+      "message": "as discussed this should be object",
+      "range": {
+        "startLine": 308,
+        "startChar": 20,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "9f8461dc8cd58a19f125d4afdb27eff00368b390",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2502b7b_c06b6ba1",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-19T13:33:07Z",
+      "side": 1,
+      "message": "move to next line",
+      "range": {
+        "startLine": 309,
+        "startChar": 23,
+        "endLine": 309,
+        "endChar": 24
+      },
+      "revId": "9f8461dc8cd58a19f125d4afdb27eff00368b390",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
