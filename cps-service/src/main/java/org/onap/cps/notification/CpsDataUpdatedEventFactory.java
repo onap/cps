@@ -34,6 +34,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -58,7 +59,8 @@ public class CpsDataUpdatedEventFactory {
     private final CpsDataService cpsDataService;
     private final CpsAdminService cpsAdminService;
 
-    public CpsDataUpdatedEventFactory(final CpsDataService cpsDataService, final CpsAdminService cpsAdminService) {
+    public CpsDataUpdatedEventFactory(@Lazy final CpsDataService cpsDataService,
+        final CpsAdminService cpsAdminService) {
         this.cpsDataService = cpsDataService;
         this.cpsAdminService = cpsAdminService;
     }
