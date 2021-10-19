@@ -30,3 +30,4 @@ echo y | docker volume prune
 echo 'Removing Networks...'
 echo y | docker network prune
 
+rm -rf $WORKSPACE/archives
