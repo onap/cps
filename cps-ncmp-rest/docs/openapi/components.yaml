@@ -19,6 +19,7 @@
 
 components:
   schemas:
+    # Common
     ErrorMessage:
       type: object
       title: Error
@@ -30,6 +31,7 @@ components:
         details:
           type: string
 
+    # Requests
     RestDmiPluginRegistration:
       type: object
       properties:
@@ -64,6 +66,51 @@ components:
         additionalProperties:
             type: string
             example: system-001
+
+    Conditions:
+      type: object
+      properties:
+        conditions:
+          $ref: '#/components/schemas/ConditionsData'
+    ConditionsData:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/ConditionProperties'
+    ConditionProperties:
+      properties:
+        name:
+          type: string
+          example: hasAllModules
+        conditionParameters:
+          $ref: '#/components/schemas/ConditionParameters'
+    ConditionParameters:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/ConditionParameter'
+    ConditionParameter:
+        properties:
+          moduleName:
+            type: string
+            example: someModuleName
+
+    #Responses
+    CmHandles:
+      type: object
+      properties:
+        cmHandles:
+          $ref: '#/components/schemas/CmHandleProperties'
+    CmHandleProperties:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/CmHandleProperty'
+    CmHandleProperty:
+      properties:
+        cmHandleId:
+          type: string
+          example: someCmHandleId
 
   parameters:
     cmHandleInPath:

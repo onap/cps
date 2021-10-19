@@ -46,3 +46,6 @@ paths:
 
   /v1/ch/{cm-handle}/modules:
     $ref: 'ncmp.yml#/fetchModuleReferencesByCmHandle'
+
+  /v1/ch/searches:
+    $ref: 'ncmp.yml#/executeCmHandleSearches'
