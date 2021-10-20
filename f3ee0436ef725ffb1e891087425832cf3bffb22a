@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9f186df2_2f68db60",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "yep, sounds like a good idea and will achieve what I would like to achieve!",
+      "parentUuid": "6cd93782_bc315f46",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 14
+      },
+      "revId": "f3ee0436ef725ffb1e891087425832cf3bffb22a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "23d6f7fe_a5b4ea75",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 2

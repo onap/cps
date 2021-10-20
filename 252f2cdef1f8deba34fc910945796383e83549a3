@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "a97475fc_504186c2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "maybe change to \u0027Common Schemas\u0027",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc079604_99897177",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "Request Schemas",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee4c7591_3bd9fdab",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "Response Schemas",
+      "range": {
+        "startLine": 98,
+        "startChar": 5,
+        "endLine": 98,
+        "endChar": 14
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e20a917_fb8f64dc",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "just realizing now it probably should be singular, what do you think?",
+      "range": {
+        "startLine": 288,
+        "startChar": 21,
+        "endLine": 288,
+        "endChar": 22
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db97e41_aebe5b0e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "singular?",
+      "range": {
+        "startLine": 290,
+        "startChar": 41,
+        "endLine": 290,
+        "endChar": 43
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8494665a_02fa1600",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 4
@@ -17,6 +132,29 @@
         "startLine": 293,
         "startChar": 50,
         "endLine": 293,
+        "endChar": 60
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7b13543_0be70665",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T09:51:02Z",
+      "side": 1,
+      "message": "singular?",
+      "range": {
+        "startLine": 199,
+        "startChar": 58,
+        "endLine": 199,
         "endChar": 60
       },
       "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
