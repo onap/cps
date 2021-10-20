@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a4826a4_7036e9f6",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T09:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba40ac54_eb913607",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 1
+      },
+      "revId": "516260a3354dc5dc8dd7b164fbdf653ab5776c58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "371ac704_a2570496",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-10-19T16:15:38Z",
       "side": 1,
       "message": "just curious: is the order of the quotes (\u0027 inside \" instead of \" inside \u0027) significant or just a convention?",
+      "range": {
+        "startLine": 86,
+        "startChar": 34,
+        "endLine": 86,
+        "endChar": 36
+      },
+      "revId": "516260a3354dc5dc8dd7b164fbdf653ab5776c58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "713e47b5_1aeb8cde",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T09:35:40Z",
+      "side": 1,
+      "message": "now it will look like\n\n\"netconf-node-topology:host\": \"172.17.0.1\"\n\npreviously \n\nit was \n\n\"netconf-node-topology:host\": 172.17.0.1\n\nwhich might fail on some systems in terms of json",
+      "parentUuid": "371ac704_a2570496",
       "range": {
         "startLine": 86,
         "startChar": 34,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2afb6b3d_b0367a77",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T09:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69009baf_5f089acc",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 39
+      },
+      "revId": "516260a3354dc5dc8dd7b164fbdf653ab5776c58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8b3ef43_7a5d821f",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2a7d93ba_5d278f1b",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T09:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8b3ef43_7a5d821f",
+      "range": {
+        "startLine": 154,
+        "startChar": 113,
+        "endLine": 154,
+        "endChar": 128
+      },
+      "revId": "516260a3354dc5dc8dd7b164fbdf653ab5776c58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c99225d_a3464a9b",
         "filename": "csit/plans/cps/test.properties",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2021-10-19T16:15:38Z",
       "side": 1,
       "message": "why 2 of each?!\nIF one is for NCMP or CLient the name should reflect taht",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "516260a3354dc5dc8dd7b164fbdf653ab5776c58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "165d8dde_a5e64daa",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T09:35:40Z",
+      "side": 1,
+      "message": "these are env variables which are used in docker-compose of dmi-plugin and cps-ncmp\n\nservices:\n  ncmp-dmi-plugin:\n    container_name: ncmp-dmi-plugin\n    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-latest}\n    ports:\n      - ${DMI_PORT:-8783}:8080\n      - ${DMI_MANAGEMENT_PORT:-8787}:8081\n    environment:\n      CPS_USERNAME: ${CPS_USERNAME:-cpsuser}\n      CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}\n      CPS_CORE_HOST: ${CPS_CORE_HOST:-cps}\n      CPS_CORE_PORT: ${CPS_CORE_PORT:-8080}\n      CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}\n      CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}\n\n\nif i change the names of these, container will fail, more investigation needed on application.yaml side(i.e. dev code).",
+      "parentUuid": "6c99225d_a3464a9b",
       "range": {
         "startLine": 13,
         "startChar": 0,
