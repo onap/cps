@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "979985f0_8782d563",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-20T13:33:51Z",
+      "side": 1,
+      "message": "as discussed remove these please. Its is more important to have no duplication here than matching environment variable names...",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 22
+      },
+      "revId": "fb1e50b4e4bcc715458070684aeb482568444074",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
