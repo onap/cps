@@ -183,6 +183,29 @@
       "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40281ced_f24ce80e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-20T10:01:41Z",
+      "side": 1,
+      "message": "ResponseEntity.NOT_IMPLEMENTED",
+      "range": {
+        "startLine": 200,
+        "startChar": 15,
+        "endLine": 200,
+        "endChar": 19
+      },
+      "revId": "252f2cdef1f8deba34fc910945796383e83549a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
