@@ -98,7 +98,8 @@ Each cps component can be restarted independently by issuing the following comma
 
     kubectl delete pod <cps-component-pod-name> -n <namespace>
 
-.. _credentials_retrieval:
+.. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
+.. _cps_common_credentials_retrieval:
 
 Credentials Retrieval
 ---------------------
