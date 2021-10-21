@@ -23,6 +23,7 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
+import java.util.List;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
@@ -57,6 +58,14 @@ public interface CpsAdminPersistenceService {
      */
     @NonNull
     Collection<Anchor> getAnchors(@NonNull String dataspaceName);
+
+    /**
+     * Get anchors for the given module names.
+     *
+     * @param moduleNames a list of module names
+     * @return a list of anchor identifiers
+     */
+    List<Integer> getAnchors(List<String> moduleNames);
 
     /**
      * Get an anchor in the given dataspace using the anchor name.

@@ -37,6 +37,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
 
     static final String SET_DATA = '/data/anchor.sql'
+    static final String ANCHORS_SCHEMASET_MODULES = '/data/anchos-schemaset-modules.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
@@ -139,5 +140,23 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                   | dataspaceName  | anchorName     || expectedException
             'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
             'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, ANCHORS_SCHEMASET_MODULES])
+    def 'Get anchor identifiers for #scenario.'() {
+        given: 'a list of module names'
+            def modules = moduleNames
+        when: 'get anchors is performed'
+            def anchors = objectUnderTest.getAnchors(modules)
+        then: 'the expected anchor identifiers are returned'
+            anchors.toString() == expectedAnchorIdentifiers
+        where: 'the following data is used'
+            scenario                               | moduleNames                            || expectedAnchorIdentifiers
+            'one module'                           | ['MODULE-NAME-001']                    || '[6001]'
+            'two modules'                          | ['MODULE-NAME-001', 'MODULE-NAME-002'] || '[6001, 6002, 6003]'
+            'module attached to multiple anchors'  | ['MODULE-NAME-003']                    || '[6001, 6002]'
+            'same module with different revisions' | ['MODULE-NAME-002']                    || '[6002, 6003]'
+            'not attached to an anchor'            | ['MODULE-NAME-004']                    || '[]'
+            'module does not exist'                | ['MODULE-NAME-001', 'test']            || '[6001]'
     }
 }
