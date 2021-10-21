@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "375db43a_2bb8a94d",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-21T12:01:20Z",
+      "side": 1,
+      "message": "If the intend is to verify if the service is ready to accept traffic requests the probe to check should be the readiness one.\n\nLiveness probe indicates if the container is running.\nReadiness probe indicates if the container is ready to respond to requests.",
+      "range": {
+        "startLine": 34,
+        "startChar": 70,
+        "endLine": 34,
+        "endChar": 78
+      },
+      "revId": "1e03c8daa9d7a64f9ad3519d0c4360651826d315",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
