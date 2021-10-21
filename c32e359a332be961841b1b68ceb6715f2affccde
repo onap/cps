@@ -213,6 +213,52 @@
     },
     {
       "key": {
+        "uuid": "359a54a6_13601269",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-21T16:23:27Z",
+      "side": 1,
+      "message": "I\u0027m not too sure but I think this may only delete that datanode and retain the datanodes descendants.",
+      "range": {
+        "startLine": 430,
+        "startChar": 8,
+        "endLine": 430,
+        "endChar": 49
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3deed17e_d4622e45",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-21T16:23:27Z",
+      "side": 1,
+      "message": "Continuing from above, this implementation cycles through all known datanodes and remove depending on if they start with the the deleted list node.",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 9
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "337e3946_5c63c9d7",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -275,6 +321,29 @@
         "startChar": 77,
         "endLine": 513,
         "endChar": 95
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "561f6ddf_6d6ad0dd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2021-10-21T16:23:27Z",
+      "side": 1,
+      "message": "I think we need tests to ensure that descendant nodes of deleted node are also deleted, like delete list node we need to request children which still exist from the database, In this case datanode may be null but its children may still exist. test case would be /parent-203 and ensure /parent-203/child-203 is also deleted",
+      "range": {
+        "startLine": 514,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 151
       },
       "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
