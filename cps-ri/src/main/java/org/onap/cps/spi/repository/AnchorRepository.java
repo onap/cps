@@ -20,6 +20,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -27,6 +28,8 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
@@ -41,4 +44,17 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
     Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
     Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
+
+    @Query(value = "SELECT DISTINCT\n"
+        + "anchor.*\n"
+        + "FROM\n"
+        + "yang_resource yang_resource\n"
+        + "JOIN schema_set_yang_resources schema_set_yang_resources ON "
+        + "schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
+        + "JOIN schema_set schema_set ON schema_set.id = schema_set_yang_resources.schema_set_id\n"
+        + "JOIN anchor anchor ON anchor.schema_set_id = schema_set.id\n"
+        + "JOIN dataspace dataspace ON dataspace.id = anchor.dataspace_id AND dataspace.name = :dataspaceName\n"
+        + "WHERE yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
+    Collection<AnchorEntity> getAnchorsByDataspaceNameAndModuleNames(@Param("dataspaceName") String dataspaceName,
+        @Param("moduleNames") List<String> moduleNames);
 }
