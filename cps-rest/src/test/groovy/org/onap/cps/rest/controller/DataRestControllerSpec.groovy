@@ -347,4 +347,27 @@ class DataRestControllerSpec extends Specification {
             'without observed-timestamp'      | null                           || 1                | HttpStatus.NO_CONTENT
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
+
+    def 'Delete data node #scenario.'() {
+        given: 'data node xpath'
+            def dataNodeXpath = '/dataNodeXpath'
+        when: 'delete data node endpoint is invoked'
+            def deleteDataNodeRequest = delete( "$dataNodeBaseEndpoint/anchors/$anchorName/nodes")
+                .param('xpath', dataNodeXpath)
+        and: 'observed timestamp is added to the parameters'
+            if (observedTimestamp != null)
+                deleteDataNodeRequest.param('observed-timestamp', observedTimestamp)
+            def response = mvc.perform(deleteDataNodeRequest).andReturn().response
+        then: 'a successful response is returned'
+            response.status == expectedHttpStatus.value()
+        and: 'the api is called with the correct parameters'
+            expectedApiCount * mockCpsDataService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath,
+                    { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+        where:
+            scenario                            | observedTimestamp                 || expectedApiCount | expectedHttpStatus
+            'with observed timestamp'           | '2021-03-03T23:59:59.999-0400'    || 1                | HttpStatus.NO_CONTENT
+            'without observed timestamp'        | null                              || 1                | HttpStatus.NO_CONTENT
+            'with invalid observed timestamp'   | 'invalid'                         || 0                | HttpStatus.BAD_REQUEST
+    }
+
 }

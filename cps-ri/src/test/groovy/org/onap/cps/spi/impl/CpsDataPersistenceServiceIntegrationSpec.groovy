@@ -32,7 +32,6 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.spockframework.util.CollectionUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -495,6 +494,43 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Confirm deletion of highest level data node and that anchor still exists.'(){
+        given: 'a valid target xpath'
+            def xpath = '/parent-206'
+        when: 'the highest level data node is deleted'
+            def dataNode = objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpath)
+        then: 'verify the datanode is removed'
+            assert dataNode == null
+        and: 'anchor still exists'
+            def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
+            assert anchorEntity != null
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Confirm deletion of #scenario.'() {
+        given: 'a valid data node'
+            def dataNode
+            def dataNodeXpath
+        when: 'data nodes are deleted'
+            objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, dataNodesforDeletionXpaths)
+        then: 'verify data nodes are removed'
+            try {
+                dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, getDataNodesXpaths, INCLUDE_ALL_DESCENDANTS)
+                dataNodeXpath = dataNode.getXpath()
+                assert dataNodeXpath == expectedXpaths
+            } catch (DataNodeNotFoundException) {
+                assert dataNodeXpath == expectedXpaths
+            }
+        where: 'following parameters were used'
+            scenario                                                | dataNodesforDeletionXpaths                         | getDataNodesXpaths                                || expectedXpaths
+            'child of target'                                       | '/parent-206/child-206'                            | '/parent-206/child-206/grand-child-206'           || null
+            'child data node parent still exists'                   | '/parent-206/child-206'                            | '/parent-206'                                     || '/parent-206'
+            'data node with child list node'                        | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="A"]' || null
+            'data node with child list node, sibling still exists'  | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="X"]' || '/parent-206/child-206/grand-child-206[@key="X"]'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete list-node fragment error scenario: #scenario.'() {
         given: 'list node data fragments are present in database'
         when: 'list-node elements are deleted under existing parent node'
@@ -513,6 +549,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'child list node without key'                       | '/parent-200/child-204/grand-child-204'           || DataNodeNotFoundException
             'valid list node with invalid key'                  | '/parent-203/child-204[@key="C"]'                 || DataNodeNotFoundException
 
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete data node fragment error with #scenario.'() {
+        given: 'an invalid data node'
+        when: 'data node is deleted'
+            objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, datanodeXpath)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following parameters were used'
+            scenario                                        | datanodeXpath                     | expectedException
+            'non-existing data node'                        | '/non-existent-node'              | DataNodeNotFoundException
+            'valid data node, non existent child node'      | '/parent-203/child-non-existent'  | DataNodeNotFoundException
     }
 
     static Collection<DataNode> buildDataNodeCollection(xpaths) {
