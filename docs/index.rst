@@ -23,7 +23,7 @@ CPS Documentation
    release-notes.rst
 
 DMI-Plugin Documentation
------------------------------
+------------------------
 
 * :ref:`DMI-Plugin<onap-cps-ncmp-dmi-plugin:master_index>`
 
