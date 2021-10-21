@@ -390,6 +390,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
+    public void deleteDataNode(final String dataspaceName, final String anchorName,
+                               final String dataNodeXpath) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNodeXpath);
+        final boolean isListNode = dataNodeXpath.endsWith("]");
+        if (isListNode) {
+            deleteListDataNodes(dataspaceName, anchorName, dataNodeXpath);
+        } else {
+            removeDataNode(fragmentEntity);
+        }
+    }
+
+    @Override
+    @Transactional
     public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
         final String parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
         final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
@@ -410,6 +423,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             throw new DataNodeNotFoundException(parentEntity.getDataspace().getName(),
                 parentEntity.getAnchor().getName(), listNodeXpath);
         }
+    }
+
+    private void removeDataNode(final FragmentEntity fragmentEntity) {
+        fragmentRepository.delete(fragmentEntity);
     }
 
     private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
