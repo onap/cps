@@ -177,6 +177,27 @@ nodesByDataspaceAndAnchor:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
+  delete:
+    description: Delete a datanode for a given dataspace and anchor given a parent node xpath.
+    tags:
+      - cps-data
+    summary: Delete a data node
+    operationId: deleteDataNode
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+
   put:
     description: Replace a node with descendants for a given dataspace, anchor and a parent node xpath
     tags:
