@@ -12,6 +12,9 @@ CPS Admin Guide
 .. toctree::
    :maxdepth: 1
 
+.. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
+.. _cps_common_logging:
+
 Logging & Diagnostics
 =====================
 
@@ -43,6 +46,9 @@ Logger configuration is provided as a chart resource :
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
     | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+.. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
+.. _cps_common_monitoring:
 
 Monitoring
 ==========

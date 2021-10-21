@@ -20,14 +20,15 @@
 from docutils.parsers.rst import directives
 from docs_conf.conf import *
 
+#change 'latest' to relevant branch-name once branch has been created
 branch = 'latest'
 doc_url = 'https://docs.onap.org/projects'
 master_doc = 'index'
 
 intersphinx_mapping = {}
 
-# Latest (change to branch)
-intersphinx_mapping['onap-cps'] = ('{}/onap-cps/en/%s'.format(doc_url) % branch, None)
+intersphinx_mapping['onap-cps-ncmp-dmi-plugin'] = ('{}/onap-cps-ncmp-dmi-plugin/en/%s'.format(doc_url) % branch, None)
+intersphinx_mapping['onap-cps-cps-temporal'] = ('{}/onap-cps-cps-temporal/en/%s'.format(doc_url) % branch, None)
 
 linkcheck_ignore = [
     'http://localhost',
