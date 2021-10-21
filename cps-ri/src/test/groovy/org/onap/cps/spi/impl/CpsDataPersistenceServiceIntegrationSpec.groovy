@@ -30,9 +30,9 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.spockframework.util.CollectionUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -495,6 +495,30 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete #scenario.'() {
+        given: 'a valid data node'
+            def dataNode
+            def dataNodeLeaves
+        when: 'data nodes are deleted'
+            objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, dataNodesforDeletionXpaths)
+        then: 'verify data nodes are removed'
+            try {
+                dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, getDataNodesXpaths, INCLUDE_ALL_DESCENDANTS)
+                dataNodeLeaves = dataNode.getLeaves()
+                assert dataNodeLeaves == expectedLeaves
+            } catch (DataNodeNotFoundException) {
+                assert dataNodeLeaves == expectedLeaves
+            }
+        where: 'following parameters were used'
+            scenario                             | dataNodesforDeletionXpaths         | getDataNodesXpaths                || expectedLeaves
+            'single data node'                   | '/parent-203'                      | '/parent-203'                     || null
+            'data node child'                    | '/parent-203/child-203'            | '/parent-203'                     || ['leaf-value': 'original']
+            'single data node parent with child' | '/parent-203'                      | '/parent-203/child-203'           || null
+            'list node'                          | '/parent-206/child-206[@key="A"]'  | '/parent-206/child-206[@key="A"]' || null
+            'list node with relative'            | '/parent-206/child-206[@key="A"]'  | '/parent-206/child-206[@key="X"]' || ['key': 'X']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete list-node fragment error scenario: #scenario.'() {
         given: 'list node data fragments are present in database'
         when: 'list-node elements are deleted under existing parent node'
@@ -513,6 +537,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'child list node without key'                       | '/parent-200/child-204/grand-child-204'           || DataNodeNotFoundException
             'valid list node with invalid key'                  | '/parent-203/child-204[@key="C"]'                 || DataNodeNotFoundException
 
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete data node fragment error with #scenario.'() {
+        given: 'an invalid data node'
+        when: 'data node is deleted'
+            objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, datanodeXpath)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following parameters were used'
+            scenario                                        | datanodeXpath                     | expectedException
+            'non-existing data node'                        | '/non-existent-node'              | DataNodeNotFoundException
+            'valid data node, non existent child node'      | '/parent-203/child-non-existent'  | DataNodeNotFoundException
     }
 
     static Collection<DataNode> buildDataNodeCollection(xpaths) {
