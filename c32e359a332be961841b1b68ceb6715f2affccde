@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cde73e0_f7b020bd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-21T15:18:09Z",
+      "side": 1,
+      "message": "nb put the full stop after scenario",
+      "range": {
+        "startLine": 351,
+        "startChar": 25,
+        "endLine": 351,
+        "endChar": 27
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57e4308d_6fe0d86f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-21T15:18:09Z",
+      "side": 1,
+      "message": "maybe specify its the parent xpath",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 31
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2a21b50_4746e862",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-21T15:18:09Z",
+      "side": 1,
+      "message": "nb - remove",
+      "range": {
+        "startLine": 352,
+        "startChar": 31,
+        "endLine": 352,
+        "endChar": 44
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8e9046_ada0eff7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-21T15:18:09Z",
+      "side": 1,
+      "message": "nb - I think use \u0027and\u0027 here to break up this block",
+      "range": {
+        "startLine": 356,
+        "startChar": 42,
+        "endLine": 357,
+        "endChar": 10
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb2a765_0134bc2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-21T15:18:09Z",
+      "side": 1,
+      "message": "nb add a line break here to be consistent",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 123,
+        "endChar": 42
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
