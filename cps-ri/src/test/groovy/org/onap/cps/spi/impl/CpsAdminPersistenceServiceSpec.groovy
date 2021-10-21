@@ -37,6 +37,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
 
     static final String SET_DATA = '/data/anchor.sql'
+    static final String ANCHORS_SCHEMASET_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
@@ -139,5 +140,26 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                   | dataspaceName  | anchorName     || expectedException
             'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
             'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, ANCHORS_SCHEMASET_MODULES])
+    def 'Get anchor identifiers for #scenario.'() {
+        when: 'get anchors is performed'
+            def anchors = objectUnderTest.getAnchors('DATASPACE-001', inputModuleNames)
+        then: 'the expected anchor identifiers are returned'
+            anchors.size() == expectedAnchors.size()
+            anchors.containsAll(expectedAnchors)
+        where: 'the following data is used'
+            scenario                               | inputModuleNames                       || expectedAnchors
+            'one module'                           | ['MODULE-NAME-001']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001')]
+            'two modules'                          | ['MODULE-NAME-001', 'MODULE-NAME-002'] || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
+            'module attached to multiple anchors'  | ['MODULE-NAME-003']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002')]
+            'same module with different revisions' | ['MODULE-NAME-002']                    || [buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
+            'not attached to an anchor'            | ['MODULE-NAME-004']                    || []
+            'module does not exist'                | ['MODULE-NAME-001', 'test']            || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001')]
+    }
+
+    def buildAnchor(def anchorName, def dataspaceName, def SchemaSetName) {
+        return Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(SchemaSetName).build()
     }
 }

@@ -23,6 +23,7 @@
 package org.onap.cps.spi.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -84,6 +85,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
+        return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Anchor> getAnchors(final String dataspaceName, final List<String> moduleNames) {
+        final Collection<AnchorEntity> anchorEntities =
+            anchorRepository.getAnchorsByDataspaceNameAndModuleNames(dataspaceName, moduleNames);
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
     }
 
