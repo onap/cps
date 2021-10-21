@@ -163,4 +163,11 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception has the provided details'
             exception.details == providedDetails
     }
+
+    def 'Creating an exception if a list-node is provided instead of a data-node.'() {
+        expect: 'the exception details contains the correct message with dataspace name, anchor and xpath.'
+        (new ListNodeGivenException(dataspaceName, anchorName, xpath)).details
+                == "Item under xpath ${xpath} for anchor ${anchorName} and dataspace ${dataspaceName} " +
+                "is a list node."
+    }
 }
