@@ -23,107 +23,124 @@
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 
-# Copy docker-compose.yml and application.yml to archives
-mkdir -p $WORKSPACE/archives/docker-compose
-cp $WORKSPACE/../docker-compose/*.yml $WORKSPACE/archives/docker-compose
-cd $WORKSPACE/archives/docker-compose
+check_health()
+{
+TIME_OUT=120
+INTERVAL=5
+TICKER=0
 
+while [ "$TICKER" -le "$TIME_OUT" ]; do
+
+  RESPONSE=$(curl --location --request GET 'http://'$1'/manage/health/readiness')
+
+  if [[ "$RESPONSE" == *"UP"* ]]; then
+    echo "$2 started in $TICKER"
+    break;
+  fi
+
+  sleep $INTERVAL
+  TICKER=$((TICKER + INTERVAL))
+
+done
+
+if [ "$TICKER" -ge "$TIME_OUT" ]; then
+  echo TIME OUT: $2 session not started in $TIME_OUT seconds... Could cause problems for testing activities...
+fi
+
+}
+
+###################### setup env ############################
 # Set env variables for docker compose
 export LOCAL_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
-export DMI_SERVICE_URL=http://$LOCAL_IP:8783
-export DB_HOST=$LOCAL_IP
-export SDNC_HOST=$LOCAL_IP
-export CPS_CORE_HOST=$LOCAL_IP
-export DB_USERNAME=cps
-export DB_PASSWORD=cps
-# Use latest image version
-export VERSION=latest
+
+source $WORKSPACE/plans/cps/test.properties
+export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
+
+###################### setup cps-ncmp ############################
+mkdir -p $WORKSPACE/archives/dc-cps
+cp $WORKSPACE/../docker-compose/*.yml $WORKSPACE/archives/dc-cps
+cd $WORKSPACE/archives/dc-cps
 
 # download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
 curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
 chmod +x docker-compose
 
 # start CPS and PostgreSQL containers with docker compose
-docker network create test_network
 ./docker-compose up -d
 
-###################### setup sdnc ############################
+###################### setup onap-dmi-plugin ############################
+
+cd $WORKSPACE/archives
+git clone "https://gerrit.onap.org/r/cps/ncmp-dmi-plugin"
+mkdir -p $WORKSPACE/archives/dc-dmi
+cp $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/*.yml $WORKSPACE/archives/dc-dmi
+cd $WORKSPACE/archives/dc-dmi
+# download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
+curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+chmod +x docker-compose
+./docker-compose up -d
+
+###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
 
-###################### setup pnfsim ##########################
+###################### setup pnfsim #####################################
 docker-compose -f $WORKSPACE/plans/cps/pnfsim/docker-compose.yml up -d
 
 # Allow time for netconf-pnp-simulator & SDNC to come up fully
 sleep 30s
 
+###################### mount pnf-sim as PNFDemo ##########################
 SDNC_TIME_OUT=250
 SDNC_INTERVAL=10
 SDNC_TIME=0
 
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
-	# Mount netconf node
+  # Mount netconf node
+  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
+  --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "node": [
+    {
+      "node-id": "PNFDemo",
+      "netconf-node-topology:protocol": {
+      "name": "TLS"
+      },
+      "netconf-node-topology:host": "'$LOCAL_IP'",
+      "netconf-node-topology:key-based": {
+      "username": "netconf",
+      "key-id": "ODL_private_key_0"
+      },
+      "netconf-node-topology:port": 6512,
+      "netconf-node-topology:tcp-only": false,
+      "netconf-node-topology:max-connection-attempts": 5
+    }
+    ]
+  }'
 
-	curl --location --request PUT 'http://'"$LOCAL_IP"':8282/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
-	--header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
-	--header 'Content-Type: application/json' \
-	--data-raw '{
-	  "node": [
-		{
-		  "node-id": "PNFDemo",
-		  "netconf-node-topology:protocol": {
-			"name": "TLS"
-		  },
-		  "netconf-node-topology:host": '"$LOCAL_IP"',
-		  "netconf-node-topology:key-based": {
-			"username": "netconf",
-			"key-id": "ODL_private_key_0"
-		  },
-		  "netconf-node-topology:port": 6512,
-		  "netconf-node-topology:tcp-only": false,
-		  "netconf-node-topology:max-connection-attempts": 5
-		}
-	  ]
-	 }'
+   # Verify node has been mounted
 
-	# Verify node has been mounted
+  RESPONSE=$( curl --location --request GET 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf' --header 'Authorization: basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==')
 
-	RESPONSE=$( curl --location --request GET 'http://'"$LOCAL_IP"':8282/restconf/config/network-topology:network-topology/topology/topology-netconf' --header 'Authorization: basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==')
-
-	  if [[ "$RESPONSE" == *"PNFDemo"* ]]; then
-	    echo "Node mounted in $SDNC_TIME"
-		  break;
-	  fi
-
-	 sleep $SDNC_INTERVAL
-	 SDNC_TIME=$((SDNC_TIME + SDNC_INTERVAL))
-
-done
-
-# Validate CPS service initialization completed via periodic log checking for line like below:
-# org.onap.cps.Application ... Started Application in X.XXX seconds
-
-TIME_OUT=300
-INTERVAL=5
-TIME=0
-
-while [ "$TIME" -le "$TIME_OUT" ]; do
-  LOG_FOUND=$( ./docker-compose logs --tail="all" | grep "org.onap.cps.Application" | egrep -c "Started Application in" )
-
-  if [ "$LOG_FOUND" -gt 0 ]; then
-    echo "CPS Service started"
+  if [[ "$RESPONSE" == *"PNFDemo"* ]]; then
+    echo "Node mounted in $SDNC_TIME"
     break;
   fi
 
-  echo "Sleep $INTERVAL seconds before next check for CPS initialization (waiting $TIME seconds; timeout is $TIME_OUT seconds)"
-  sleep $INTERVAL
-  TIME=$((TIME + INTERVAL))
+  sleep $SDNC_INTERVAL
+  SDNC_TIME=$((SDNC_TIME + SDNC_INTERVAL))
+
 done
 
-if [ "$TIME" -gt "$TIME_OUT" ]; then
-   echo "TIME OUT: CPS Service wasn't able to start in $TIME_OUT seconds, setup failed."
-   exit 1;
-fi
+###################### verify ncmp-cps health ##########################
 
+check_health $CPS_CORE_HOST:$CPS_CORE_MANAGEMENT_PORT 'cps-ncmp'
+
+###################### verify dmi health ##########################
+
+check_health $DMI_HOST:$DMI_MANAGEMENT_PORT 'dmi-plugin'
+
+###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_HOST:$LOCAL_IP -v CPS_PORT:8883 -v DMI_HOST:$LOCAL_IP -v DMI_PORT:8783 -v MANAGEMENT_PORT:8887 -v DATADIR:$WORKSPACE/data"
+ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data"
