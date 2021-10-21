@@ -26,6 +26,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.spi.exceptions.YangResourceNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -37,6 +38,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
 
     static final String SET_DATA = '/data/anchor.sql'
+    static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
@@ -139,5 +141,37 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                   | dataspaceName  | anchorName     || expectedException
             'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
             'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
+    def 'Get anchors that have #scenario.'() {
+        when: 'all anchor are retrieved for the given dataspace name and module names'
+            def anchors = objectUnderTest.getAnchors('DATASPACE-001', inputModuleNames)
+        then: 'the expected anchors are returned'
+            anchors.size() == expectedAnchors.size()
+            anchors.containsAll(expectedAnchors)
+        where: 'the following data is used'
+            scenario                                | inputModuleNames                       || expectedAnchors
+            'one module'                            | ['MODULE-NAME-001']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001')]
+            'two modules'                           | ['MODULE-NAME-001', 'MODULE-NAME-002'] || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
+            'a module attached to multiple anchors' | ['MODULE-NAME-003']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002')]
+            'same module with different revisions'  | ['MODULE-NAME-002']                    || [buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
+    }
+
+    @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
+    def 'Get all anchors for an #scenario.'() {
+        when: 'attempt to get anchors'
+            objectUnderTest.getAnchors('DATASPACE-123', ['MODULE-NAME-001'])
+        then: 'an YangResourceNotFoundException is thrown'
+            thrown(YangResourceNotFoundException)
+        where: 'the following data is used'
+            scenario                                                   | ModuleNames                           | dataspaceName
+            'existing module in an unknown dataspace'                  | ['MODULE-NAME-001']                   | 'does-not-exist'
+            'unknown module in an existing dataspace'                  | ['does-not-exist']                    | 'DATASPACE-123'
+            'unknown module and known module in an existing dataspace' | ['MODULE-NAME-001', 'does-not-exist'] | 'DATASPACE-123'
+    }
+
+    def buildAnchor(def anchorName, def dataspaceName, def SchemaSetName) {
+        return Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(SchemaSetName).build()
     }
 }

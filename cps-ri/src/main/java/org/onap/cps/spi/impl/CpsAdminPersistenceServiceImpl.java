@@ -30,11 +30,13 @@ import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.YangResourceNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -53,6 +55,9 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Autowired
     private FragmentRepository fragmentRepository;
+
+    @Autowired
+    private YangResourceRepository yangResourceRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -85,6 +90,25 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> inputModuleNames) {
+        final Collection<String> retrievedModuleNames =
+            yangResourceRepository.findAllModuleReferences(dataspaceName, inputModuleNames)
+                .stream().map(module -> module.getModuleName())
+                .collect(Collectors.toList());
+        if (inputModuleNames.size() != retrievedModuleNames.size()) {
+            inputModuleNames.removeIf(moduleName -> retrievedModuleNames.contains(moduleName));
+            if (!inputModuleNames.isEmpty()) {
+                throw new YangResourceNotFoundException(dataspaceName, inputModuleNames);
+            }
+        }
+        final Collection<AnchorEntity> anchorEntities =
+            anchorRepository.getAnchorsByDataspaceNameAndModuleNames(dataspaceName, retrievedModuleNames);
+        final Collection<Anchor> anchors =
+            anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
+        return anchors;
     }
 
     @Override
