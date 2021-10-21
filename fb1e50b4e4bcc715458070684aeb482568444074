@@ -22,6 +22,30 @@
       "revId": "fb1e50b4e4bcc715458070684aeb482568444074",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b6f2f2_d1adddc4",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-21T09:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "979985f0_8782d563",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 22
+      },
+      "revId": "fb1e50b4e4bcc715458070684aeb482568444074",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
