@@ -22,6 +22,29 @@
       "revId": "1e03c8daa9d7a64f9ad3519d0c4360651826d315",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b97c276a_91108854",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-21T12:08:55Z",
+      "side": 1,
+      "message": "Are we only only echo a message if service is not ready for testing ?\nIs the test is also going to stop and fail here ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 6
+      },
+      "revId": "1e03c8daa9d7a64f9ad3519d0c4360651826d315",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
