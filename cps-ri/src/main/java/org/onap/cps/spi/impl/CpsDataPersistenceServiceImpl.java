@@ -54,6 +54,7 @@ import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.ListNodeGivenException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -389,6 +390,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    public void deleteDataNode(final String dataspaceName, final String anchorName,
+                               final String dataNodeXpath) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNodeXpath);
+        final boolean isListNode = dataNodeXpath.endsWith("]");
+        if (isListNode) {
+            throw new ListNodeGivenException(fragmentEntity.getDataspace().getName(),
+                fragmentEntity.getAnchor().getName(), dataNodeXpath);
+        } else {
+            removeDataNode(fragmentEntity);
+        }
+    }
+
+    @Override
     @Transactional
     public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
         final String parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
@@ -410,6 +424,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             throw new DataNodeNotFoundException(parentEntity.getDataspace().getName(),
                 parentEntity.getAnchor().getName(), listNodeXpath);
         }
+    }
+
+    private void removeDataNode(final FragmentEntity fragmentEntity) {
+        fragmentRepository.delete(fragmentEntity);
     }
 
     private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
