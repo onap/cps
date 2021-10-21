@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e9081f31_db90e573",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5006
+      },
+      "writtenOn": "2021-10-21T09:49:52Z",
+      "side": 1,
+      "message": "In the jira, please put implementation proposal page link.",
+      "revId": "66017b4b6f910579d13f0a45ef7c587e86f325fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc740199_8eb77b08",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 5
