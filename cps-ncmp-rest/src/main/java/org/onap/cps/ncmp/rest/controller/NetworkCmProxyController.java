@@ -29,6 +29,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.model.CmHandles;
+import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
@@ -191,6 +193,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, requestBody, contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<CmHandles> executeCmHandleSearch(final Conditions conditions) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
