@@ -25,9 +25,9 @@ CPS Documentation
 DMI-Plugin Documentation
 -----------------------------
 
-* `DMI-Plugin <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html>`_
+* :ref:`DMI-Plugin<onap-cps-ncmp-dmi-plugin:master_index>`
 
 CPS-Temporal Documentation
 --------------------------
 
-* `CPS-Temporal <https://docs.onap.org/projects/onap-cps-cps-temporal/en/latest/index.html>`_
+* :ref:`CPS-Temporal<onap-cps-cps-temporal:master_index>`
