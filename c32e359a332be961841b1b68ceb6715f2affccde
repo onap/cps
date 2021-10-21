@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f47b750d_c5d2e368",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-21T15:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cde73e0_f7b020bd",
+      "range": {
+        "startLine": 351,
+        "startChar": 25,
+        "endLine": 351,
+        "endChar": 27
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57e4308d_6fe0d86f",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "e90ab32f_f0592b6d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-21T15:48:32Z",
+      "side": 1,
+      "message": "I didn\u0027t specify this as the parent xpath, because it doesn\u0027t necessarily have to be the parent xpath.\nIt can be /dataNodeXpath/xpathChild which is possible.",
+      "parentUuid": "57e4308d_6fe0d86f",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 31
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d0a8acf_ffbada47",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-21T15:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2a21b50_4746e862",
+      "range": {
+        "startLine": 352,
+        "startChar": 31,
+        "endLine": 352,
+        "endChar": 44
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f8e9046_ada0eff7",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "733fb9c9_77f0d440",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-21T15:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f8e9046_ada0eff7",
+      "range": {
+        "startLine": 356,
+        "startChar": 42,
+        "endLine": 357,
+        "endChar": 10
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbb2a765_0134bc2f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "929debee_2e71c1f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-21T15:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbb2a765_0134bc2f",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 123,
+        "endChar": 42
+      },
+      "revId": "c32e359a332be961841b1b68ceb6715f2affccde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
