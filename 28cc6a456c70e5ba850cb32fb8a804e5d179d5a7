@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0adbd7eb_68b41ea2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-22T11:11:35Z",
+      "side": 1,
+      "message": "NB - Is this definition necessary. Could moduleNames not just be passed directly in the method underneath?",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
