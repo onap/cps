@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "043d1121_6093d329",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T02:22:23Z",
+      "side": 1,
+      "message": "I don\u0027t think we should return Integer here. It should be Anchor identifier ( name amd dataspace name)",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 23
+      },
+      "revId": "4b037cefca232ed7eb3b5c391f8970cb69c2f467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43fd367f_3f82b8ce",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T02:22:23Z",
+      "side": 1,
+      "message": "I think we should mention getAnchorIds to make it explicit that it is an identifier but not anchor",
+      "range": {
+        "startLine": 92,
+        "startChar": 25,
+        "endLine": 92,
+        "endChar": 35
+      },
+      "revId": "4b037cefca232ed7eb3b5c391f8970cb69c2f467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a952b50f_5b2c3863",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T02:22:23Z",
+      "side": 1,
+      "message": "I don\u0027t think we expose the anchor ids. We should return anchorName and dataspace as that is  unique identifier for an anchor.",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "4b037cefca232ed7eb3b5c391f8970cb69c2f467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "238d17f6_c1f08ad2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T02:22:23Z",
+      "side": 1,
+      "message": "suggestion - Should use Collection as used in other method to be consistent.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 8
+      },
+      "revId": "4b037cefca232ed7eb3b5c391f8970cb69c2f467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
