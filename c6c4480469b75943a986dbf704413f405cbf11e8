@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "359221a1_f8087fb3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T19:05:46Z",
+      "side": 1,
+      "message": "I thought that we are also keeping the identifier in the xpath. Sorry for the confusion.\n\nIf this is the case I think we can still delete any data-node by xpath which is available in our DB except logical dataNode (list-node). And, we should not require any specific check for list-node as it does not exist in our DB. \n\nFor example, list node is \u0027categories\u0027 which does not exist in our DB.\nand list-node-element is a datanode \u0027categories[@code\u003d1]\u0027 which we should be able to support with existing logic.\n\nBut, if we do not find any fragment by xpath, then the issue can be \n1. wrong xpath or \n2. trying to delete list-node. \nIn this case of list node, we can use existing cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath) and provide a functionality which works for all data-node type.",
+      "parentUuid": "46cfecb6_ecb117a4",
+      "range": {
+        "startLine": 396,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 8
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f51030c4_6a1f66f1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
