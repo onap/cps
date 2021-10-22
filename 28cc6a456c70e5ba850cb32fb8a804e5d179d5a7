@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3968f697_98952911",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "insert dataspace name parameter \nNCMP (or other clients) will want to look for anchors in its dataspace only",
+      "range": {
+        "startLine": 92,
+        "startChar": 51,
+        "endLine": 92,
+        "endChar": 56
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e987eb1_ebad64d3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "should return Anchor objects",
+      "range": {
+        "startLine": 92,
+        "startChar": 22,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fff918d_6f847020",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "need to filter on given dataspacename (or id you found for that)",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0adbd7eb_68b41ea2",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -66,6 +135,121 @@
         "startChar": 12,
         "endLine": 148,
         "endChar": 37
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b45b2a1b_a578e453",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "I agree with Dylan this is applying two names to the same name. The reason for this is probably the lack of a good name for the entry in the tabel, see my comment below",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47e59d85_0966f51a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "this need some updating as the return type wil change",
+      "range": {
+        "startLine": 151,
+        "startChar": 5,
+        "endLine": 152,
+        "endChar": 59
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a6dadcc_b81ede17",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "name need some clarification e.g. \u0027moduleNamesInFilter\u0027 or \u0027inputModuleNames\u0027 cant think of a good name right now but something taht clarifies taht this is input to teh query",
+      "range": {
+        "startLine": 154,
+        "startChar": 53,
+        "endLine": 154,
+        "endChar": 92
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12dc967a_9ed07eaf",
+        "filename": "cps-ri/src/test/resources/data/anchos-schemaset-modules.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "you made these up yes?, so if they are made up do we just need unique strings here?! checksum1, cheksum2 etc.",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 118
+      },
+      "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f209bb33_25acb975",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-22T16:08:21Z",
+      "side": 1,
+      "message": "same comments as before",
+      "range": {
+        "startLine": 68,
+        "startChar": 1,
+        "endLine": 68,
+        "endChar": 70
       },
       "revId": "28cc6a456c70e5ba850cb32fb8a804e5d179d5a7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
