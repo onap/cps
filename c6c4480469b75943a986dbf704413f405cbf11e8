@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3f37406_64a3bfd1",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T03:32:03Z",
+      "side": 1,
+      "message": "I think we would be providing the xpath of the data node to be deleted.",
+      "range": {
+        "startLine": 181,
+        "startChar": 76,
+        "endLine": 181,
+        "endChar": 93
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55af8d43_ba0e6afc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T03:32:03Z",
+      "side": 1,
+      "message": "is it the xpath to be deleted or parentNode xpath?",
+      "range": {
+        "startLine": 65,
+        "startChar": 65,
+        "endLine": 65,
+        "endChar": 80
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cab0df21_c8c3b36a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T03:32:03Z",
+      "side": 1,
+      "message": "We also store unique key in xpath DB using \u0027]\u0027. I am not sure it is a good enough check.\n\nPlease refer cps-path-query.sql file in the test/data folder",
+      "range": {
+        "startLine": 396,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 8
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51030c4_6a1f66f1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-22T03:32:03Z",
+      "side": 1,
+      "message": "Should add test where xpath has key property too. \nShould also add a test for list-node.",
+      "range": {
+        "startLine": 512,
+        "startChar": 8,
+        "endLine": 515,
+        "endChar": 151
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
