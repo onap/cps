@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "46cfecb6_ecb117a4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-22T10:44:52Z",
+      "side": 1,
+      "message": "I understand what you mean now Renu! If we were to do a search for a path such as /categories[@code\u003d1]/books/book[@title\u003d\u0027Dune\u0027 and @price\u003d5] where it doesn\u0027t have to specifically be part of a list.\n\nBut within CPS when we define xpath, this means that it is an \u0027absolute\u0027 path, with no extra conditions. Which is currently only what this api will accept. For paths with conditions, we define the parameter as cps-path",
+      "parentUuid": "dbe2746a_647a5bc9",
+      "range": {
+        "startLine": 396,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 8
+      },
+      "revId": "c6c4480469b75943a986dbf704413f405cbf11e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f51030c4_6a1f66f1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
