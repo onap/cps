@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5de97ed2_e2a2fa86",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-25T12:44:38Z",
+      "side": 1,
+      "message": "Indentation ?",
+      "revId": "4962c289c1165c8bda12ec9e8249f42e8b2651bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
