@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -150,6 +151,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
+        dmiPluginRegistration.validateDmiPluginRegistration();
         try {
             if (dmiPluginRegistration.getCreatedCmHandles() != null) {
                 parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
@@ -311,7 +313,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
     }
 
-    private void parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(
+    protected void parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) throws JsonProcessingException {
         final PersistenceCmHandlesList createdPersistenceCmHandlesList = toPersistenceCmHandlesList(
             dmiPluginRegistration.getDmiPlugin(),

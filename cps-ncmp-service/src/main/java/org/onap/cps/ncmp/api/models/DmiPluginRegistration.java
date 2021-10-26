@@ -18,7 +18,6 @@
  *  ============LICENSE_END=========================================================
  */
 
-
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
 /**
  * Dmi Registry request object.
@@ -36,11 +36,27 @@ import lombok.Setter;
 public class DmiPluginRegistration {
 
     private String dmiPlugin;
-
+    private String dmiDataPlugin;
+    private String dmiModelPlugin;
     private List<CmHandle> createdCmHandles;
-
     private List<CmHandle> updatedCmHandles;
-
     private List<String> removedCmHandles;
+    public static final String PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION = "Please supply correct plugin information.";
 
+    public void validateDmiPluginRegistration() throws NcmpException {
+        final String combinedServiceName = dmiPlugin;
+        final String dataServiceName = dmiDataPlugin;
+        final String modelsServiceName = dmiModelPlugin;
+
+
+        if (combinedServiceName.isEmpty() && dataServiceName.isEmpty() && modelsServiceName.isEmpty()) {
+            throw new NcmpException("No DMI plugin service names supplied.",
+                PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+        }
+
+        if (!combinedServiceName.isEmpty() && (!dataServiceName.isEmpty() || !modelsServiceName.isEmpty())) {
+            throw new NcmpException("Too many plugin details supplied.",
+                PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+        }
+    }
 }

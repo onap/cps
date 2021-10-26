@@ -112,3 +112,22 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: delete from anchor where name = 'ncmp-dmi-registry'
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.5
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dmi/schema_set_yang_resources_v2.csv'
+        quotchar: '"'
+        primaryKey: 'schema_set_id,yang_resource_id'
+        separator: '|'
+        tableName: 'schema_set_yang_resources'
+        usePreparedStatements:  true
+      rollback:
+        - sql:
+            sql: >
+              delete from schema_set_yang_resources
+              where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
+              and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-10-20.yang')
