@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3d8863_8cf68873",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-26T16:45:35Z",
+      "side": 1,
+      "message": "I just hope doesn\u0027t effect the way the reports are aggregated as that was the reason for creating this module in the first place (did you try comparing jacoco statte before and after this change?)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 58
+      },
+      "revId": "717215a36dde7bedb4257e693650c8728056b9d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
