@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3105b70_3991de06",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-26T15:22:12Z",
+      "side": 1,
+      "message": "Is this validation good enough? What if an invalid xpath is passed as \u0027/parent/child]\u0027",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 63
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b2c89c9_ebca0547",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-10-26T15:22:12Z",
+      "side": 1,
+      "message": "Question : Even in case of delete, do we want to send the entire data to temporal ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 83
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
