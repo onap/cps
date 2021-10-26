@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "502fddb0_482634bd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-26T16:41:00Z",
+      "side": 1,
+      "message": "no need to test leave. test xpath of\n1) Parent should still exist\n2) sibling shoudl still exist \n3) Target is deleted\n4) child of target is deleted",
+      "range": {
+        "startLine": 513,
+        "startChar": 125,
+        "endLine": 513,
+        "endChar": 139
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b2c89c9_ebca0547",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
