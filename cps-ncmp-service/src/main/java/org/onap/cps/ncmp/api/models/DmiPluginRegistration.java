@@ -37,6 +37,10 @@ public class DmiPluginRegistration {
 
     private String dmiPlugin;
 
+    private String dmiDataPlugin;
+
+    private String dmiModelPlugin;
+
     private List<CmHandle> createdCmHandles;
 
     private List<CmHandle> updatedCmHandles;

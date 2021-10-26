@@ -150,19 +150,28 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
-        try {
-            if (dmiPluginRegistration.getCreatedCmHandles() != null) {
-                parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
+
+        if (dmiPluginRegistration.getDmiPlugin() != null) {
+
+            try {
+                if (dmiPluginRegistration.getCreatedCmHandles() != null) {
+                    parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration);
+                }
+                if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
+                    parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
+                }
+                if (dmiPluginRegistration.getRemovedCmHandles() != null) {
+                    parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
+                }
+            } catch (final JsonProcessingException e) {
+                handleJsonProcessingException(dmiPluginRegistration, e);
             }
-            if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
-                parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
-            }
-            if (dmiPluginRegistration.getRemovedCmHandles() != null) {
-                parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
-            }
-        } catch (final JsonProcessingException e) {
-            handleJsonProcessingException(dmiPluginRegistration, e);
         }
+
+        //if (dmiPluginRegistration.getDmiDataPlugin() != null && dmiPluginRegistration.getDmiModelPlugin() != null) {
+        // do stuff
+        //}
+
     }
 
     @Override

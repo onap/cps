@@ -1,5 +1,5 @@
 name|content|checksum
-dmi-registry@2021-05-20.yang|"module dmi-registry {
+dmi-registry@2021-10-20.yang|"module dmi-registry {
 
   yang-version 1.1;
 
@@ -10,6 +10,11 @@ dmi-registry@2021-05-20.yang|"module dmi-registry {
   organization \"Nordix Foundation\";
 
   contact \"rahul.tyagi@est.tech\";
+
+  revision \"2021-10-20\" {
+   description
+   \"Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility\";
+  }
 
   revision \"2021-05-20\" {
     description
@@ -30,6 +35,14 @@ dmi-registry@2021-05-20.yang|"module dmi-registry {
         type string;
       }
 
+      leaf dmi-data-service-name {
+        type string;
+      }
+
+      leaf dmi-model-service-name {
+        type string;
+      }
+
       list additional-properties {
 
         key \"name\";
@@ -45,4 +58,4 @@ dmi-registry@2021-05-20.yang|"module dmi-registry {
     }
   }
 }
-"|257b264cd091436f74f9c92512b507459615391f7006fc40b74b6866dbe1b379
+"|f9145662dfc97363297dc1c06b8bde3a8621c658abefd56946faaab240714181

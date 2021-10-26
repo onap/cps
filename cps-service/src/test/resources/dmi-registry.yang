@@ -6,6 +6,11 @@ module dmi-registry {
 
   prefix dmi-reg;
 
+  revision "2021-10-20" {
+    description
+    "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
+   }
+
   revision "2021-05-20" {
     description
     "Initial Version";
@@ -22,6 +27,14 @@ module dmi-registry {
       }
 
       leaf dmi-service-name {
+        type string;
+      }
+
+      leaf dmi-data-service-name {
+        type string;
+      }
+
+      leaf dmi-model-service-name {
         type string;
       }
 
