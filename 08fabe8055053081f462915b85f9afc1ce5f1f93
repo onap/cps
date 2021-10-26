@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5538983_90d74fe1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-26T16:07:36Z",
+      "side": 1,
+      "message": "I don\u0027t think we can validate the list-node like this. \n\nA node is a list node if its parent has children which starts with \u0027\u003clistnode\u003e[\u0027\n\nFor example\n/bookstore/categories[@key\u003d10] -\u003e this xpath points to a data-node, which is a listnode element ( not a list node)\n/bookstore/categories -\u003e is a list node (logical) and the way to find it out is to check the children of parent(\u0027/bookstore\u0027) fragment which starts with \u0027\u003clistnodexpath\u003e[\u0027 ( /bookstore/categories[ ) \n\nI think as a team we need to agree on the terminology of list-node and list-node-element. I am not sure if we all mean the same thing when we say list node.",
+      "parentUuid": "c3105b70_3991de06",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 63
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b2c89c9_ebca0547",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2021-10-26T15:22:12Z",
       "side": 1,
       "message": "Question : Even in case of delete, do we want to send the entire data to temporal ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 83
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e66ce876_e312367f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-26T16:07:36Z",
+      "side": 1,
+      "message": "Yes. The data for the anchor has changed hence it is required to send the updated information.",
+      "parentUuid": "6b2c89c9_ebca0547",
       "range": {
         "startLine": 138,
         "startChar": 0,
