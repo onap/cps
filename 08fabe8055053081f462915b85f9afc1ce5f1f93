@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "67c4e9d4_18b9f503",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-27T11:41:11Z",
+      "side": 1,
+      "message": "Hey Aditya, if you pass in an invalid xpath, a DataNodeNotFoundException will be thrown. I have added another test case to test for this.\n\nI think we may need to discuss further on the definition of a list node Renu. I was under the assumption that a list node, is any data node confined within a list.\nSuch as in the bookstore example\n/bookstore/categories[@code\u003d\u002702\u0027]/books[@title\u003d\u0027The Golden Compass\u0027]\nThat both the category code and the book title are both list nodes, as they are contained within the the lists of categories and books, as per the yang  resource.",
+      "parentUuid": "f5538983_90d74fe1",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 63
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "502fddb0_482634bd",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 7
@@ -69,6 +93,30 @@
       "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9f8ebe7_b882e948",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-27T11:41:11Z",
+      "side": 1,
+      "message": "Have also added a separate test for deleting the top level data node and verifying that the anchor still exists.",
+      "parentUuid": "502fddb0_482634bd",
+      "range": {
+        "startLine": 513,
+        "startChar": 125,
+        "endLine": 513,
+        "endChar": 139
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
