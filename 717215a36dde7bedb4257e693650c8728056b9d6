@@ -22,6 +22,30 @@
       "revId": "717215a36dde7bedb4257e693650c8728056b9d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ef78481_c242823e",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-10-27T10:12:56Z",
+      "side": 1,
+      "message": "Yes Toine, when I was testing this change I compared Code Coverage results before and after the change in my local environment. Both results were the same.",
+      "parentUuid": "0e3d8863_8cf68873",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 58
+      },
+      "revId": "717215a36dde7bedb4257e693650c8728056b9d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
