@@ -450,6 +450,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result == expectedRequestBody
     }
 
+    def 'Get cm handle identifiers for the given module names.'() {
+        when: 'execute a cm handle search for the given module names'
+            objectUnderTest.executeCmHandleSearches(['some-module-name'])
+        then: 'get anchor identifiers is invoked  with the expected parameters'
+            1 * mockCpsAdminService.getAnchorIdentifiers('NCMP-Admin', ['some-module-name'])
+    }
+
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
                 mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper))

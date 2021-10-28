@@ -159,4 +159,12 @@ public interface NetworkCmProxyDataService {
      * @return a collection of modules names and revisions
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(@NotNull String cmHandle);
+
+    /**
+     * Retrieve cm handle identifiers for the given collection of module names.
+     *
+     * @param moduleNames module names.
+     * @return a collection of anchor identifiers
+     */
+    Collection<String> executeCmHandleSearches(Collection<String> moduleNames);
 }

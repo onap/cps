@@ -229,6 +229,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cpsModuleService.getYangResourcesModuleReferences(NF_PROXY_DATASPACE_NAME, cmHandle);
     }
 
+    /**
+     * Retrieve cm handle identifiers for the given list of module names.
+     *
+     * @param moduleNames module names.
+     * @return a collection of anchor identifiers
+     */
+    @Override
+    public Collection<String> executeCmHandleSearches(final Collection<String> moduleNames) {
+        return cpsAdminService.getAnchorIdentifiers(NCMP_DATASPACE_NAME, moduleNames);
+    }
+
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,

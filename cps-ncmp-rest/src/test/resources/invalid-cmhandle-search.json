@@ -1,0 +1,15 @@
+{
+  "conditions": [
+    {
+      "name": "does-not-exist",
+      "conditionParameters": [
+        {
+          "moduleName": "module1"
+        },
+        {
+          "moduleName": "module2"
+        }
+      ]
+    }
+  ]
+}
