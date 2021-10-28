@@ -1,0 +1,15 @@
+{
+  "conditions": [
+    {
+      "name": "hasAllModules",
+      "conditionParameters": [
+        {
+          "moduleName": "module1"
+        },
+        {
+          "moduleName": "module2"
+        }
+      ]
+    }
+  ]
+}
