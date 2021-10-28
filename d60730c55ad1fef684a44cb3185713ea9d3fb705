@@ -304,6 +304,30 @@
       "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d10c0d5b_c12f674e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/ModuleNamesNotFoundException.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T15:24:55Z",
+      "side": 1,
+      "message": "ok, is good enough",
+      "parentUuid": "aed08f1d_07d846fb",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

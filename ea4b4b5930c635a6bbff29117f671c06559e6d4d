@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98d7e010_63132c7c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T15:24:55Z",
+      "side": 1,
+      "message": "DATASPACE-123 exist?!",
+      "range": {
+        "startLine": 169,
+        "startChar": 114,
+        "endLine": 169,
+        "endChar": 127
+      },
+      "revId": "ea4b4b5930c635a6bbff29117f671c06559e6d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
