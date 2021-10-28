@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "32dd4a8b_3a58300f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-28T16:31:36Z",
+      "side": 1,
+      "message": "-1: We added this DB cal to check if dataspace exists or not. It would be more performant if we call it only if no modules are found ( retrievedModuleNames is empty ) .",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 8
+      },
+      "revId": "ea4b4b5930c635a6bbff29117f671c06559e6d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98d7e010_63132c7c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 9
