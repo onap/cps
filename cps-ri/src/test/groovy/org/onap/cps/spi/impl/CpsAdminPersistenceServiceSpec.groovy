@@ -144,9 +144,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
-    def 'Get anchors that have #scenario.'() {
+    def 'Query anchors that have #scenario.'() {
         when: 'all anchor are retrieved for the given dataspace name and module names'
-            def anchors = objectUnderTest.getAnchors('DATASPACE-001', inputModuleNames)
+            def anchors = objectUnderTest.queryAnchors('DATASPACE-001', inputModuleNames)
         then: 'the expected anchors are returned'
             anchors.size() == expectedAnchors.size()
             anchors.containsAll(expectedAnchors)
@@ -159,9 +159,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
-    def 'Get all anchors for an #scenario.'() {
-        when: 'attempt to get anchors'
-            objectUnderTest.getAnchors(dataspaceName, moduleNames)
+    def 'Query all anchors for an #scenario.'() {
+        when: 'attempt to query anchors'
+            objectUnderTest.queryAnchors(dataspaceName, moduleNames)
         then: 'the correct exception is thrown with the relevant details'
             def thrownException = thrown(expectedException)
             thrownException.details.contains(expectedMessageDetails)

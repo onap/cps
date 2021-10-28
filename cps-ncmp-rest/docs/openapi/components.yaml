@@ -83,13 +83,13 @@ components:
           type: string
           example: hasAllModules
         conditionParameters:
-          $ref: '#/components/schemas/ConditionParameters'
-    ConditionParameters:
+          $ref: '#/components/schemas/ModuleNamesAsJsonArray'
+    ModuleNamesAsJsonArray:
       type: array
       items:
         type: object
-        $ref: '#/components/schemas/ConditionParameter'
-    ConditionParameter:
+        $ref: '#/components/schemas/ModuleNameAsJsonObject'
+    ModuleNameAsJsonObject:
         properties:
           moduleName:
             type: string
