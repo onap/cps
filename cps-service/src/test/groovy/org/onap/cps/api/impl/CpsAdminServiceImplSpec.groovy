@@ -70,4 +70,12 @@ class CpsAdminServiceImplSpec extends Specification {
         then: 'associated persistence service method is invoked with same parameters'
              1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
     }
+
+    def 'Retrieve all anchor identifiers for a dataspace and module names.'() {
+        given: 'the persistence service is invoked with the expected parameters and returns a list of anchors'
+            mockCpsAdminPersistenceService.getAnchors('some-dataspace-name', ['some-module-name']) >> [new Anchor(name:'some-anchor-identifier')]
+        expect: 'get anchor identifiers returns the same anchor identifier returned by the persistence layer'
+            objectUnderTest.getAnchorNames('some-dataspace-name', ['some-module-name']) == ['some-anchor-identifier']
+
+    }
 }

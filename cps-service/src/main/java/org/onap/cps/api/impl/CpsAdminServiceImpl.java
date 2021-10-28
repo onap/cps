@@ -23,6 +23,7 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
@@ -58,5 +59,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
+    }
+
+    @Override
+    public Collection<String> getAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
+        final Collection<Anchor> anchors = cpsAdminPersistenceService.getAnchors(dataspaceName, moduleNames);
+        return anchors.stream().map(anchor -> anchor.getName()).collect(Collectors.toList());
     }
 }

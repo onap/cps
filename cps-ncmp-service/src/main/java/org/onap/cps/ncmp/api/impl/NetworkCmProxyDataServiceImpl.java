@@ -67,7 +67,7 @@ import org.springframework.util.StringUtils;
 @Service
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
-    private static final String NF_PROXY_DATASPACE_NAME = "NFP-Operational";
+    private static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
 
@@ -115,37 +115,44 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public DataNode getDataNode(final String cmHandle, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNode(NF_PROXY_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
+        return cpsDataService
+            .getDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
     }
 
     @Override
     public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsQueryService.queryDataNodes(NF_PROXY_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
+        return cpsQueryService
+            .queryDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
     }
 
     @Override
     public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
         if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
-            cpsDataService.saveData(NF_PROXY_DATASPACE_NAME, cmHandle, jsonData, NO_TIMESTAMP);
+            cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, jsonData, NO_TIMESTAMP);
         } else {
-            cpsDataService.saveData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+            cpsDataService
+                .saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
         }
     }
 
     @Override
     public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListNodeData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.saveListNodeData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
+            NO_TIMESTAMP);
     }
 
     @Override
     public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.updateNodeLeaves(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService
+            .updateNodeLeaves(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
+                NO_TIMESTAMP);
     }
 
     @Override
     public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.replaceNodeTree(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
+            NO_TIMESTAMP);
     }
 
     @Override
@@ -226,7 +233,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandle) {
-        return cpsModuleService.getYangResourcesModuleReferences(NF_PROXY_DATASPACE_NAME, cmHandle);
+        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle);
+    }
+
+    /**
+     * Retrieve cm handle identifiers for the given list of module names.
+     *
+     * @param moduleNames module names.
+     * @return a collection of anchor identifiers
+     */
+    @Override
+    public Collection<String> executeCmHandleSearches(final Collection<String> moduleNames) {
+        return cpsAdminService.getAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
     }
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
@@ -379,7 +397,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void fetchAndSyncModules(final PersistenceCmHandle persistenceCmHandle) {
         final Map<String, String> cmHandlePropertiesAsMap = getCmHandlePropertiesAsMap(
-                persistenceCmHandle.getAdditionalProperties());
+            persistenceCmHandle.getAdditionalProperties());
 
         final List<ModuleReference> moduleReferencesFromCmHandle =
             fetchModuleReferencesFromDmi(persistenceCmHandle, cmHandlePropertiesAsMap);
@@ -394,8 +412,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle,
                 unknownModuleReferences, cmHandlePropertiesAsMap);
         }
-        cpsModuleService.createSchemaSetFromModules(NF_PROXY_DATASPACE_NAME, persistenceCmHandle.getId(),
-            newYangResourcesModuleNameToContentMap, existingModuleReferences);
+        cpsModuleService
+            .createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
+                newYangResourcesModuleNameToContentMap, existingModuleReferences);
     }
 
     private void prepareModuleSubsets(final List<ModuleReference> moduleReferencesFromCmHandle,
@@ -403,7 +422,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                       final List<ModuleReference> unknownModuleReferences) {
 
         final Collection<ModuleReference> knownModuleReferencesInCps =
-            cpsModuleService.getYangResourceModuleReferences(NF_PROXY_DATASPACE_NAME);
+            cpsModuleService.getYangResourceModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
 
         for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromCmHandle) {
             if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
@@ -427,7 +446,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void createAnchor(final PersistenceCmHandle persistenceCmHandle) {
-        cpsAdminService.createAnchor(NF_PROXY_DATASPACE_NAME, persistenceCmHandle.getId(), persistenceCmHandle.getId());
+        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
+            persistenceCmHandle.getId());
     }
 
     private String getRequestBodyToFetchYangResourceFromDmi(final List<ModuleReference> unknownModuleReferences,

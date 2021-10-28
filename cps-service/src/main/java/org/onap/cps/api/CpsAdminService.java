@@ -77,4 +77,14 @@ public interface CpsAdminService {
      * @param anchorName    anchor name
      */
     void deleteAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
+
+    /**
+     * Get anchor names for the given module names.
+     *
+     *
+     * @param dataspaceName dataspace name
+     * @param moduleNames a collection of module names
+     * @return a collection of anchor names
+     */
+    Collection<String> getAnchorNames(String dataspaceName, Collection<String> moduleNames);
 }
