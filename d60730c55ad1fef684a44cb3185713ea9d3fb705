@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90438a98_0d27c827",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "NB: \u003e  is realy the only possible option her (woudld be good enough) but maybe !\u003d is more redable...",
+      "range": {
+        "startLine": 103,
+        "startChar": 36,
+        "endLine": 103,
+        "endChar": 38
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "526d67a5_bf0a4c9f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "should this not be moduleNamesNotFound !",
+      "range": {
+        "startLine": 107,
+        "startChar": 17,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c162a35c_e3c30d76",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "extract out in private method",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23c00cf_1a96c47d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "could have return here (no need for additional variable unless you prefer it for readability)",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 40
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f333ff7e_676b14e1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "you are the good girl-scout :-)  (see Uncle Bob\u0027s book) Well done",
+      "range": {
+        "startLine": 47,
+        "startChar": 45,
+        "endLine": 47,
+        "endChar": 70
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6375b0cd_e466f1b0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "same module not found exception in this case? Might be good to validate namespace first using existing code to get the correct error message, (can discus if needed)",
+      "range": {
+        "startLine": 169,
+        "startChar": 113,
+        "endLine": 169,
+        "endChar": 129
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31924498_ca0350c5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/ModuleNamesNotFoundException.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-10-28T14:18:35Z",
+      "side": 1,
+      "message": "be aware that moduleNames is plural\nsuggestion: \"No Yang resources found for %s in dataspace %s.\"\n\n(did you check how the Collection is inserted using %s especially if there are more the one not found?",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "d60730c55ad1fef684a44cb3185713ea9d3fb705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
