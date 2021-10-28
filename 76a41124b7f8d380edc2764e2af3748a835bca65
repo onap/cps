@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffa80c86_232a2b02",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-28T12:37:07Z",
+      "side": 1,
+      "message": "It represents the missing module names but name does not represent that.",
+      "range": {
+        "startLine": 104,
+        "startChar": 71,
+        "endLine": 104,
+        "endChar": 87
+      },
+      "revId": "76a41124b7f8d380edc2764e2af3748a835bca65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "759c08ad_6cebbff7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-28T12:37:07Z",
+      "side": 1,
+      "message": "-1 - I think we should not edit the input parameters (inputModuleNames) because caller might not be expecting it as it passed it only as input. Good practice would be to pass unmodifiable list to avoid any surprises from called method.",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "76a41124b7f8d380edc2764e2af3748a835bca65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dabde1af_214aaecc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-10-28T12:37:07Z",
+      "side": 1,
+      "message": "This can be same as input name (inputModuleNames) to make the intention clear that we are searching for inputModuleNames only.",
+      "range": {
+        "startLine": 108,
+        "startChar": 84,
+        "endLine": 108,
+        "endChar": 104
+      },
+      "revId": "76a41124b7f8d380edc2764e2af3748a835bca65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
