@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -251,6 +252,34 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.getContentAsString() == '[{"moduleName":"some-name1","revision":"some-revision1"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
+    }
+
+    def 'Retrieve cm handles.'() {
+        given: 'an endpoint and json data'
+            def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
+            String jsonData = TestUtils.getResourceFileContent('cmhandle-search.json')
+        and: 'the service method is invoked with module names and returns a cm handle id'
+            mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id']
+        when: 'the searches api is invoked'
+            def response = mvc.perform(post(searchesEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)).andReturn().response
+        then: 'response status returns OK'
+            response.status == HttpStatus.OK.value()
+        and: 'the expected response content is returned'
+            response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id"}]}'
+    }
+
+    def 'Call execute cm handle searches with unrecognized condition name.'() {
+        given: 'an endpoint and json data'
+            def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
+            String jsonData = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
+        when: 'the searches api is invoked'
+            def response = mvc.perform(post(searchesEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)).andReturn().response
+        then: 'an empty cm handle identifier is returned'
+            response.contentAsString == '{"cmHandles":null}'
     }
 }
 

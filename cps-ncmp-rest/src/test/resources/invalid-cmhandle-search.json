@@ -1,0 +1,7 @@
+{
+  "conditions": [
+    {
+      "name": "does-not-exist"
+    }
+  ]
+}
