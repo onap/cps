@@ -94,19 +94,19 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> replaceListNodeElements(final String parentNodeXpath,
+    public ResponseEntity<String> replaceListElement(final String parentNodeXpath,
         final String dataspaceName, final String anchorName, final String jsonData,
         final String observedTimestamp) {
-        cpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        cpsDataService.replaceListElement(dataspaceName, anchorName, parentNodeXpath, jsonData,
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> deleteListNodeElements(final String dataspaceName, final String anchorName,
-        final String listNodeXpath, final String observedTimestamp) {
+    public ResponseEntity<Void> deleteListElement(final String dataspaceName, final String anchorName,
+        final String listElementXpath, final String observedTimestamp) {
         cpsDataService
-            .deleteListNodeData(dataspaceName, anchorName, listNodeXpath, toOffsetDateTime(observedTimestamp));
+            .deleteListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

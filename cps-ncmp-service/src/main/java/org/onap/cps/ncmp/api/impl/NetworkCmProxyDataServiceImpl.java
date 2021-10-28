@@ -369,7 +369,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
-                cpsDataService.deleteListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsDataService.deleteListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
             } catch (final DataNodeNotFoundException e) {
                 log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());

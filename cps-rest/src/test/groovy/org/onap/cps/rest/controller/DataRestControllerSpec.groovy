@@ -318,7 +318,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            expectedApiCount * mockCpsDataService.replaceListElement(dataspaceName, anchorName, parentNodeXpath, jsonData,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -339,7 +339,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.deleteListNodeData(dataspaceName, anchorName, listNodeXpath,
+            expectedApiCount * mockCpsDataService.deleteListElement(dataspaceName, anchorName, listNodeXpath,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
