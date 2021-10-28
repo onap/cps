@@ -100,10 +100,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-        </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>

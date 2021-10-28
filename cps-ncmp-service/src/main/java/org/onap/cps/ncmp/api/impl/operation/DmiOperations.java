@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.operation;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -165,7 +164,6 @@ public class DmiOperations {
         return dmiRestClient.postOperationWithJsonData(stringBuilder.toString(), jsonBody, new HttpHeaders());
     }
 
-    @NotNull
     private String getDmiResourceUrl(final String dmiServiceName,
                                      final String cmHandle,
                                      final String resourceName) {
@@ -176,7 +174,6 @@ public class DmiOperations {
         return stringBuilder.toString();
     }
 
-    @NotNull
     private String getDmiDatastoreUrl(final String dmiServiceName,
                                       final String cmHandle,
                                       final String resourceId,
@@ -188,7 +185,6 @@ public class DmiOperations {
         return stringBuilder.toString();
     }
 
-    @NotNull
     private StringBuilder getStringBuilderForPassThroughUrl(final String dmiServiceName,
                                                             final String cmHandle,
                                                             final String resourceId,
