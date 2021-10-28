@@ -190,9 +190,9 @@ class CpsDataServiceImplSpec extends Specification {
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace list data method is invoked with list-node json data'
             def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
-            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListElement(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, '/test-tree',
+            1 * mockCpsDataPersistenceService.replaceListElement(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
                     {
                         assert dataNodeCollection.size() == 2
@@ -210,7 +210,7 @@ class CpsDataServiceImplSpec extends Specification {
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace list data method is invoked with empty list-node data fragment'
             def jsonData = '{"branch": []}'
-            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListElement(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'invalid data exception is thrown'
             thrown(DataValidationException)
     }
@@ -219,9 +219,9 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'delete list data method is invoked with list-node json data'
-            objectUnderTest.deleteListNodeData(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
+            objectUnderTest.deleteListElement(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, '/test-tree/branch')
+            1 * mockCpsDataPersistenceService.deleteListElement(dataspaceName, anchorName, '/test-tree/branch')
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }

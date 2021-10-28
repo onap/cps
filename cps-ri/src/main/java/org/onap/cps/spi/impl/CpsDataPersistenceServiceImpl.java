@@ -322,7 +322,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
-    public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+    public void replaceListElement(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                      final Collection<DataNode> replacementDataNodes) {
         final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final String listNodeXpathPrefix = getListNodeXpathPrefix(replacementDataNodes);
@@ -390,7 +390,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
-    public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
+    public void deleteListElement(final String dataspaceName, final String anchorName, final String listNodeXpath) {
         final String parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
         final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final String descendantNode = listNodeXpath.substring(listNodeXpath.lastIndexOf('/'));

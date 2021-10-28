@@ -389,7 +389,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'list node data fragment as a collection of data nodes'
             def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
         when: 'list-node elements replaced within the existing parent node'
-            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
+            objectUnderTest.replaceListElement(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
         then: 'child list elements are updated as expected, non-list element remains as is'
             def parentFragment = fragmentRepository.getById(listNodeFragmentID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
@@ -413,7 +413,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def grandChildDataNodes = buildDataNodeCollection(grandChildXpaths)
             def listNode = new DataNodeBuilder().withXpath(childXpath).withChildDataNodes(grandChildDataNodes).build()
         when: 'list-node elements replaced within the existing parent node'
-            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, [ listNode ])
+            objectUnderTest.replaceListElement(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, [ listNode ])
         then: 'child list elements are updated as expected with non-list elements remaining as is'
             def parentFragment = fragmentRepository.getById(listNodeFragmentId)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
@@ -441,7 +441,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'list node data fragment as a collection of data nodes'
             def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
         when: 'list-node elements replaced within the existing parent node'
-            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
+            objectUnderTest.replaceListElement(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listNodeCollection)
         then: 'child list elements are updated as expected with non-list elements remaining as is'
             def parentFragment = fragmentRepository.getById(listNodeFragmentID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
@@ -466,7 +466,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'list node data fragment as a collection of data nodes'
             def listNodeCollection = buildDataNodeCollection(listNodeXpaths)
         when: 'list-node elements were replaced under existing parent node'
-            objectUnderTest.replaceListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listNodeCollection)
+            objectUnderTest.replaceListElement(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listNodeCollection)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'following parameters were used'
@@ -478,7 +478,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Delete list-node content of #scenario.'() {
         given: 'list node data fragments are present in database'
         when: 'list-node elements deleted within the existing parent node'
-            objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+            objectUnderTest.deleteListElement(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
         then: 'child list elements are removed as expected, non-list element remains as is'
             def parentFragment = fragmentRepository.getById(listNodeFragmentID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
@@ -498,7 +498,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Delete list-node fragment error scenario: #scenario.'() {
         given: 'list node data fragments are present in database'
         when: 'list-node elements are deleted under existing parent node'
-            objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
+            objectUnderTest.deleteListElement(DATASPACE_NAME, ANCHOR_NAME3, listNodeXpaths)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'following parameters were used'
