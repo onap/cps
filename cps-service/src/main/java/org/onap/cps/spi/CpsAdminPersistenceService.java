@@ -65,7 +65,7 @@ public interface CpsAdminPersistenceService {
      * @param moduleNames a collection of module names
      * @return a collection of anchors
      */
-    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> moduleNames);
+    Collection<Anchor> queryAnchors(String dataspaceName, Collection<String> moduleNames);
 
     /**
      * Get an anchor in the given dataspace using the anchor name.

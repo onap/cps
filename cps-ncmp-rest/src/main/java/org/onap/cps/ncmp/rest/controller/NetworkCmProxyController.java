@@ -24,13 +24,23 @@ package org.onap.cps.ncmp.rest.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.model.CmHandleProperties;
+import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandles;
+import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
+import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
+import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
@@ -40,6 +50,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("${rest.api.ncmp-base-path}")
 public class NetworkCmProxyController implements NetworkCmProxyApi {
@@ -197,7 +208,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<CmHandles> executeCmHandleSearch(final Conditions conditions) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        final List<ConditionProperties> conditionProperties =
+            conditions.getConditions().stream().collect(Collectors.toList());
+        final CmHandles cmHandles = new CmHandles();
+        final Collection<String> cmHandleIdentifiers = processConditions(conditionProperties);
+        cmHandleIdentifiers.forEach(cmHandle -> cmHandles.setCmHandles(toCmHandleProperties(cmHandle)));
+        return ResponseEntity.ok(cmHandles);
     }
 
     @Override
@@ -206,5 +222,39 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             moduleReferences = networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle);
         return new ResponseEntity<>(new Gson().toJson(moduleReferences), HttpStatus.OK);
     }
+
+    private Collection<String> processConditions(final List<ConditionProperties> conditionProperties) {
+        for (final ConditionProperties conditionProperty : conditionProperties) {
+            if (conditionProperty.getName().equals("hasAllModules")) {
+                return executeCmHandleSearchesForModuleNames(conditionProperty);
+            } else {
+                log.warn("Unrecognized condition name {}.", conditionProperty.getName());
+            }
+        }
+        log.warn("No valid conditions found {}.", conditionProperties);
+        return Collections.emptyList();
+    }
+
+    private Collection<String> executeCmHandleSearchesForModuleNames(final ConditionProperties conditionProperties) {
+        return networkCmProxyDataService
+            .executeCmHandleHasAllModulesSearch(getModuleNames(conditionProperties.getConditionParameters()));
+    }
+
+    private Collection<String> getModuleNames(final ModuleNamesAsJsonArray moduleNamesAsJsonArray) {
+        final Collection<String> moduleNames = new ArrayList<>(moduleNamesAsJsonArray.size());
+        for (final ModuleNameAsJsonObject moduleNameAsJsonObject : moduleNamesAsJsonArray) {
+            moduleNames.add(moduleNameAsJsonObject.getModuleName());
+        }
+        return moduleNames;
+    }
+
+    private CmHandleProperties toCmHandleProperties(final String cmHandleId) {
+        final CmHandleProperties cmHandleProperties = new CmHandleProperties();
+        final CmHandleProperty cmHandleProperty = new CmHandleProperty();
+        cmHandleProperty.setCmHandleId(cmHandleId);
+        cmHandleProperties.add(cmHandleProperty);
+        return cmHandleProperties;
+    }
+
 
 }
