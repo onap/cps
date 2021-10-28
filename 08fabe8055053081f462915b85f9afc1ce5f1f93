@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4f947d56_33cf4e70",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "5f2d562c_d54dadd5",
+      "range": {
+        "startLine": 108,
+        "startChar": 47,
+        "endLine": 108,
+        "endChar": 73
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95f4554f_12c0d1de",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12fda975_f2d649d5",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "95f4554f_12c0d1de",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 39
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e2243038_e9c39698",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "65d8fcb2_f6c0ee69",
+      "range": {
+        "startLine": 105,
+        "startChar": 56,
+        "endLine": 105,
+        "endChar": 57
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e47ea4d_1e54e2aa",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ad7a7b3c_1ce57c51",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "6e47ea4d_1e54e2aa",
+      "range": {
+        "startLine": 114,
+        "startChar": 53,
+        "endLine": 114,
+        "endChar": 54
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8e7cd92_b6dbb2bd",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 7
@@ -114,6 +210,30 @@
       "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67e8df03_7fd1a389",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "a8e7cd92_b6dbb2bd",
+      "range": {
+        "startLine": 115,
+        "startChar": 21,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +375,54 @@
       "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f76ac51_55d25f98",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc7da2c1_6084781b",
+      "range": {
+        "startLine": 406,
+        "startChar": 102,
+        "endLine": 406,
+        "endChar": 110
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "838c12c5_cb3d56fe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-10-28T13:57:54Z",
+      "side": 1,
+      "message": "Done as part of commit\nhttps://gerrit.onap.org/r/c/cps/+/125441",
+      "parentUuid": "b856b0b0_14ae172a",
+      "range": {
+        "startLine": 406,
+        "startChar": 16,
+        "endLine": 406,
+        "endChar": 35
+      },
+      "revId": "08fabe8055053081f462915b85f9afc1ce5f1f93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
