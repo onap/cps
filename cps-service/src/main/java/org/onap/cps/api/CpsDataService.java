@@ -56,17 +56,18 @@ public interface CpsDataService {
         @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Persists child data fragment representing list-node (with one or more elements) under existing data node for the
+     * Persists child data fragment representing one or more list elements under existing data node for the
      * given anchor and dataspace.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath parent node xpath
-     * @param jsonData        json data representing list element
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param jsonData          json data representing list element(s)
      * @param observedTimestamp observedTimestamp
      */
-    void saveListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void saveListElements(@NonNull String dataspaceName, @NonNull String anchorName,
+                              @NonNull String parentNodeXpath,
+                              @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -106,29 +107,28 @@ public interface CpsDataService {
         @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Replaces (if exists) child data fragment representing list-node (with one or more elements) under existing data
-     * node for the given anchor and dataspace.
+     * Replaces list content by removing all existing elements and inserting the given new elements as json
+     * under given parent, anchor and dataspace.
      *
      * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
      * @param parentNodeXpath   parent node xpath
-     * @param jsonData          json data representing list element
+     * @param jsonData          json data representing the new list elements
      * @param observedTimestamp observedTimestamp
      */
-    void replaceListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void replaceListContent(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+                            @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
-     * Deletes (if exists) child data fragment representing list-node (with one or more elements) under existing data
-     * node for the given anchor and dataspace.
+     * Deletes a list or a list-element under given anchor and dataspace.
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
-     * @param listNodeXpath list node xpath
+     * @param listElementXpath list element xpath
      * @param observedTimestamp observedTimestamp
      */
-    void deleteListNodeData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String listNodeXpath,
-        OffsetDateTime observedTimestamp);
+    void deleteListOrListElement(@NonNull String dataspaceName, @NonNull String anchorName,
+                             @NonNull String listElementXpath, OffsetDateTime observedTimestamp);
 
     /**
      * Updates leaves of DataNode for given dataspace and anchor using xpath, along with the leaves of each Child Data
