@@ -28,8 +28,6 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -63,7 +61,6 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         return query.getResultList();
     }
 
-    @NotNull
     private static String getSimilarToXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
         final var xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
@@ -76,13 +73,11 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         return xpathRegexBuilder.toString();
     }
 
-    @NotNull
     private static String escapeXpath(final String xpath) {
         // See https://jira.onap.org/browse/CPS-500 for limitations of this basic escape mechanism
         return xpath.replace("[@", "\\[@");
     }
 
-    @Nullable
     private static Integer getTextValueAsInt(final CpsPathQuery cpsPathQuery) {
         try {
             return Integer.parseInt(cpsPathQuery.getTextFunctionConditionValue());
