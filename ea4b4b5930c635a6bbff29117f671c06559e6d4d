@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f530154c_9f73c36f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-10-29T08:27:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32dd4a8b_3a58300f",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 8
+      },
+      "revId": "ea4b4b5930c635a6bbff29117f671c06559e6d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98d7e010_63132c7c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 9
