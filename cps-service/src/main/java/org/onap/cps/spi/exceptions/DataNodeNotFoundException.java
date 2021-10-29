@@ -31,6 +31,21 @@ public class DataNodeNotFoundException extends DataValidationException {
     /**
      * Constructor.
      *
+     * @param dataspaceName         the name of the dataspace
+     * @param anchorName            the anchor name
+     * @param xpath                 datanode xpath
+     * @param additionalInformation additional information
+     */
+    public DataNodeNotFoundException(final String dataspaceName, final String anchorName, final String xpath,
+                                     final String additionalInformation) {
+        super("DataNode not found", String
+            .format("DataNode with xpath %s was not found for anchor %s and dataspace %s, %s.", xpath,
+                anchorName, dataspaceName, additionalInformation));
+    }
+
+    /**
+     * Constructor.
+     *
      * @param dataspaceName the name of the dataspace
      * @param anchorName    the anchor name
      * @param xpath         datanode xpath

@@ -22,14 +22,6 @@
 
 package org.onap.cps.rest.controller
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
-
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -43,6 +35,14 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @WebMvcTest(DataRestController)
 class DataRestControllerSpec extends Specification {
@@ -145,11 +145,11 @@ class DataRestControllerSpec extends Specification {
             'without observed-timestamp' | null
     }
 
-    def 'Create list node child elements #scenario.'() {
+    def 'Save list elements #scenario.'() {
         given: 'parent node xpath and json data inputs'
             def parentNodeXpath = 'parent node xpath'
             def jsonData = 'json data'
-        when: 'post is invoked list-node endpoint'
+        when: 'list-node endpoint is invoked with post (create) operation'
             def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
@@ -160,7 +160,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonData,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -303,22 +303,19 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 
-    def 'Replace list node child elements.'() {
-        given: 'parent node xpath and json data inputs'
-            def parentNodeXpath = 'parent node xpath'
-            def jsonData = 'json data'
-        when: 'put is invoked list-node endpoint'
+    def 'Replace list content #scenario.'() {
+        when: 'list-nodes endpoint is invoked with put (update) operation'
             def putRequestBuilder = put("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
-                .param('xpath', parentNodeXpath)
-                .content(jsonData)
+                .param('xpath', 'parent xpath')
+                .content('json data')
             if (observedTimestamp != null)
                 putRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(putRequestBuilder).andReturn().response
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', 'json data',
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -327,19 +324,17 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 
-    def 'Delete list node child elements. #scenario'() {
-        given: 'list node xpath'
-            def listNodeXpath = 'list node xpath'
-        when: 'delete is invoked list-node endpoint'
+    def 'Delete list element #scenario.'() {
+        when: 'list-nodes endpoint is invoked with delete operation'
             def deleteRequestBuilder = delete("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
-                .param('xpath', listNodeXpath)
+                .param('xpath', 'list element xpath')
             if (observedTimestamp != null)
                 deleteRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(deleteRequestBuilder).andReturn().response
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.deleteListNodeData(dataspaceName, anchorName, listNodeXpath,
+            expectedApiCount * mockCpsDataService.deleteListOrListElement(dataspaceName, anchorName, 'list element xpath',
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus

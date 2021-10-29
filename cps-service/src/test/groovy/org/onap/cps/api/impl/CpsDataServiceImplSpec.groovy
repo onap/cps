@@ -22,7 +22,6 @@
 
 package org.onap.cps.api.impl
 
-import java.time.OffsetDateTime
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
@@ -35,6 +34,8 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
+
+import java.time.OffsetDateTime
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -84,14 +85,14 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }
 
-    def 'Saving list-node data fragment under existing node.'() {
+    def 'Saving list element data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with list-node json data'
+        when: 'save data method is invoked with list element json data'
             def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
-            objectUnderTest.saveListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, '/test-tree',
+            1 * mockCpsDataPersistenceService.addListElements(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
                     {
                         assert dataNodeCollection.size() == 2
@@ -104,12 +105,12 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }
 
-    def 'Saving empty list-node data fragment.'() {
+    def 'Saving empty list element data fragment.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with empty list-node data fragment'
+        when: 'save data method is invoked with an empty list'
             def jsonData = '{"branch": []}'
-            objectUnderTest.saveListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'invalid data exception is thrown'
             thrown(DataValidationException)
     }
@@ -185,14 +186,14 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
     }
 
-    def 'Replace list-node data fragment under existing node.'() {
+    def 'Replace list content data fragment under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'replace list data method is invoked with list-node json data'
+        when: 'replace list data method is invoked with list element json data'
             def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
-            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, '/test-tree',
+            1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
                     {
                         assert dataNodeCollection.size() == 2
@@ -205,23 +206,23 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }
 
-    def 'Replace with empty list-node data fragment.'() {
+    def 'Replace whole list content with empty list element.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'replace list data method is invoked with empty list-node data fragment'
+        when: 'replace list data method is invoked with empty list'
             def jsonData = '{"branch": []}'
-            objectUnderTest.replaceListNodeData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'invalid data exception is thrown'
             thrown(DataValidationException)
     }
 
-    def 'Delete list-node data fragment under existing node.'() {
+    def 'Delete list element under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'delete list data method is invoked with list-node json data'
-            objectUnderTest.deleteListNodeData(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
+        when: 'delete list data method is invoked with list element json data'
+            objectUnderTest.deleteListOrListElement(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, '/test-tree/branch')
+            1 * mockCpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, '/test-tree/branch')
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }

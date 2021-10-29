@@ -140,9 +140,9 @@ class DataNodeBuilderSpec extends Specification {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
-        and: 'parent node xpath referencing parent of list-node element'
+        and: 'parent node xpath referencing parent of list element'
             def parentNodeXpath = "/test-tree"
-        and: 'the json data fragment (list-node element) parsed into normalized node object'
+        and: 'the json data fragment (list element) parsed into normalized node object'
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the normalized node is converted to a data node collection'
             def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)

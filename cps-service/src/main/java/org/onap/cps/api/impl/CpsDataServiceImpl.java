@@ -64,7 +64,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
         final OffsetDateTime observedTimestamp) {
-        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
+        final var dataNode = buildDataNode(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
@@ -72,17 +72,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
-    public void saveListNodeData(final String dataspaceName, final String anchorName,
+    public void saveListElements(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
-        final Collection<DataNode> dataNodesCollection =
-            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
+        final Collection<DataNode> listElementDataNodeCollection =
+            buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
+            listElementDataNodeCollection);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
@@ -95,7 +96,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
@@ -107,7 +108,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String dataNodeUpdatesAsJson,
         final OffsetDateTime observedTimestamp) {
         final Collection<DataNode> dataNodeUpdates =
-            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, dataNodeUpdatesAsJson);
+            buildDataNodes(dataspaceName, anchorName,
+                parentNodeXpath, dataNodeUpdatesAsJson);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(dataspaceName, anchorName, dataNodeUpdate);
         }
@@ -117,30 +119,29 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        final var dataNode = buildDataNodeFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        final var dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
-    public void replaceListNodeData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
-        final Collection<DataNode> dataNodes =
-            buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+    public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                                   final String jsonData, final OffsetDateTime observedTimestamp) {
+        final Collection<DataNode> newListElements =
+            buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
-    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath,
+    public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
-        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
+        cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
-
-    private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
-        final String parentNodeXpath, final String jsonData) {
+    private DataNode buildDataNode(final String dataspaceName, final String anchorName,
+                                   final String parentNodeXpath, final String jsonData) {
 
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final var schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
@@ -157,8 +158,10 @@ public class CpsDataServiceImpl implements CpsDataService {
             .build();
     }
 
-    private Collection<DataNode> buildDataNodeCollectionFromJson(final String dataspaceName, final String anchorName,
-        final String parentNodeXpath, final String jsonData) {
+    private Collection<DataNode> buildDataNodes(final String dataspaceName,
+                                                final String anchorName,
+                                                final String parentNodeXpath,
+                                                final String jsonData) {
 
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final var schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
@@ -169,7 +172,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             .withNormalizedNodeTree(normalizedNode)
             .buildCollection();
         if (dataNodes.isEmpty()) {
-            throw new DataValidationException("Invalid list data.", "List node is empty.");
+            throw new DataValidationException("Invalid data.", "No data nodes provided");
         }
         return dataNodes;
 
