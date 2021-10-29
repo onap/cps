@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
@@ -41,11 +42,11 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "yang_resource.module_name AS module_name,\n"
         + "yang_resource.revision AS revision\n"
         + "FROM\n"
-        + "dataspace dataspace\n"
-        + "JOIN schema_set schema_set ON schema_set.dataspace_id = dataspace.id\n"
-        + "JOIN schema_set_yang_resources schema_set_yang_resource ON schema_set_yang_resource.schema_set_id = "
+        + "dataspace\n"
+        + "JOIN schema_set ON schema_set.dataspace_id = dataspace.id\n"
+        + "JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = "
         + "schema_set.id\n"
-        + "JOIN yang_resource yang_resource ON yang_resource.id = schema_set_yang_resource.yang_resource_id\n"
+        + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
         + "WHERE\n"
         + "dataspace.name = :dataspaceName", nativeQuery = true)
     Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName);
@@ -54,17 +55,31 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "yang_resource.module_Name AS module_name,\n"
         + "yang_resource.revision AS revision\n"
         + "FROM\n"
-        + "dataspace dataspace\n"
-        + "JOIN anchor anchor ON anchor.dataspace_id = dataspace.id\n"
-        + "JOIN schema_set schema_set ON schema_set.id = anchor.schema_set_id\n"
-        + "JOIN schema_set_yang_resources schema_set_yang_resource ON schema_set_yang_resource.schema_set_id = "
+        + "dataspace\n"
+        + "JOIN anchor ON anchor.dataspace_id = dataspace.id\n"
+        + "JOIN schema_set ON schema_set.id = anchor.schema_set_id\n"
+        + "JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = "
         + "schema_set.id\n"
-        + "JOIN yang_resource yang_resource ON yang_resource.id = schema_set_yang_resource.yang_resource_id\n"
+        + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
         + "WHERE\n"
         + "dataspace.name = :dataspaceName AND\n"
         + "anchor.name =:anchorName", nativeQuery = true)
     Set<YangResourceModuleReference> findAllModuleReferences(
         @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
+
+    @Query(value = "SELECT DISTINCT\n"
+        + "yang_resource.*\n"
+        + "FROM\n"
+        + "dataspace\n"
+        + "JOIN schema_set ON schema_set.dataspace_id = dataspace.id\n"
+        + "JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = "
+        + "schema_set.id\n"
+        + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
+        + "WHERE\n"
+        + "dataspace.name = :dataspaceName and yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
+    Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName,
+        @Param("moduleNames") Collection<String> moduleNames);
+
 
     @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
     Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);
