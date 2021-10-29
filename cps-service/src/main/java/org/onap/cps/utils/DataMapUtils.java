@@ -58,7 +58,7 @@ public class DataMapUtils {
         return ImmutableMap.<String, Object>builder()
             .putAll(
                 dataNodes.stream()
-                    .filter(dataNode -> isListNode(dataNode.getXpath()))
+                    .filter(dataNode -> isListElement(dataNode.getXpath()))
                     .collect(groupingBy(
                         dataNode -> getNodeIdentifier(dataNode.getXpath()),
                         mapping(DataMapUtils::toDataMap, toUnmodifiableList())
@@ -86,10 +86,10 @@ public class DataMapUtils {
     }
 
     private static boolean isContainerNode(final String xpath) {
-        return !isListNode(xpath);
+        return !isListElement(xpath);
     }
 
-    private static boolean isListNode(final String xpath) {
+    private static boolean isListElement(final String xpath) {
         return xpath.endsWith("]");
     }
 }

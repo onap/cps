@@ -119,7 +119,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'addListNodeElements is invoked'
             objectUnderTest.addListNodeElements(cmHandle, xpath, jsonData)
         then: 'the CPS service method is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveListNodeData(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
+            1 * mockCpsDataService.saveListElementsData(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
     }
 
     def 'Update data node leaves.'() {
@@ -156,17 +156,17 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
-            expectedCallsToSaveNode * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry',
+            expectedCallsToSaveNode * mockCpsDataService.saveListElementsData('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', expectedJsonData, noTimestamp)
         and: 'update Node and Child Data Nodes is invoked with correct parameters'
             expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin',
                 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, noTimestamp)
         and : 'delete list data node is invoked with the correct parameters'
-            expectedCallsToDeleteListDataNode * mockCpsDataService.deleteListNodeData('NCMP-Admin',
+            expectedCallsToDeleteListElement * mockCpsDataService.deleteListOrElement('NCMP-Admin',
                 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
 
         where:
-            scenario                        | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListDataNode
+            scenario                        | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListElement
             'create'                        | [persistenceCmHandle] | []                    | []               || 1                         | 0                         | 0
             'update'                        | []                    | [persistenceCmHandle] | []               || 0                         | 1                         | 0
             'delete'                        | []                    | []                    | cmHandlesArray   || 0                         | 0                         | 1
@@ -186,7 +186,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the CPS save list node data is invoked with the expected parameters'
-            1 * mockCpsDataService.saveListNodeData('NCMP-Admin', 'ncmp-dmi-registry',
+            1 * mockCpsDataService.saveListElementsData('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', expectedJsonData, noTimestamp)
     }
 
@@ -214,7 +214,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration()
             dmiPluginRegistration.removedCmHandles = ['some cm handle']
         and: 'an JSON processing exception occurs'
-            mockCpsDataService.deleteListNodeData(*_) >>  { throw (new DataNodeNotFoundException('','')) }
+            mockCpsDataService.deleteListElement(*_) >>  { throw (new DataNodeNotFoundException('','')) }
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'no exception is thrown'

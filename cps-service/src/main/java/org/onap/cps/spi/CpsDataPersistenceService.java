@@ -63,7 +63,7 @@ public interface CpsDataPersistenceService {
      * @param dataNodes       collection of data nodes representing list node elements
      */
 
-    void addListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
+    void addListElements(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
         @NonNull Collection<DataNode> dataNodes);
 
     /**
@@ -101,25 +101,36 @@ public interface CpsDataPersistenceService {
     void replaceDataNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull DataNode dataNode);
 
     /**
-     * Replaces existing list data node content including descendants.
+     * Replaces list content by removing all existing elements and inserting the given new elements
+     * under given parent, anchor and dataspace.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
-     * @param dataNodes       collection of data nodes representing list node elements
+     * @param newListElements collection of data nodes representing the new list content
      */
-    void replaceListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull String parentNodeXpath, @NonNull Collection<DataNode> dataNodes);
+    void replaceListContent(@NonNull String dataspaceName, @NonNull String anchorName,
+                            @NonNull String parentNodeXpath, @NonNull Collection<DataNode> newListElements);
 
     /**
-     * Deletes existing list data node content including descendants.
+     * Deletes any dataNode, yang container or yang list or yang list element.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
-     * @param listNodeXpath   list node xpath
+     * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
      */
-    void deleteListDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-                              @NonNull String listNodeXpath);
+    void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
+                        @NonNull String targetXpath);
+
+    /**
+     * Deletes existing a single list element or the whole list.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
+     */
+    void deleteListDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
+                                 @NonNull String targetXpath);
 
     /**
      * Get a datanode by cps path.

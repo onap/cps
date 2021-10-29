@@ -135,7 +135,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListNodeData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
+        cpsDataService.saveListElementsData(NF_PROXY_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
     }
 
     @Override
@@ -340,7 +340,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList)
         throws JsonProcessingException  {
         final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
-        cpsDataService.saveListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
+        cpsDataService.saveListElementsData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
             cmHandleJsonData, NO_TIMESTAMP);
 
         for (final PersistenceCmHandle persistenceCmHandle : persistenceCmHandlesList.getPersistenceCmHandles()) {
@@ -369,7 +369,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
-                cpsDataService.deleteListNodeData(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsDataService.deleteListOrElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
             } catch (final DataNodeNotFoundException e) {
                 log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());

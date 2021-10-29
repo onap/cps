@@ -60,9 +60,9 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> addListNodeElements(final String parentNodeXpath,
+    public ResponseEntity<String> addListElements(final String parentNodeXpath,
         final String dataspaceName, final String anchorName, final String jsonData, final String observedTimestamp) {
-        cpsDataService.saveListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        cpsDataService.saveListElementsData(dataspaceName, anchorName, parentNodeXpath, jsonData,
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -94,19 +94,19 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> replaceListNodeElements(final String parentNodeXpath,
+    public ResponseEntity<String> replaceListContent(final String parentNodeXpath,
         final String dataspaceName, final String anchorName, final String jsonData,
         final String observedTimestamp) {
-        cpsDataService.replaceListNodeData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, jsonData,
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> deleteListNodeElements(final String dataspaceName, final String anchorName,
-        final String listNodeXpath, final String observedTimestamp) {
+    public ResponseEntity<Void> deleteListOrListElement(final String dataspaceName, final String anchorName,
+        final String listElementXpath, final String observedTimestamp) {
         cpsDataService
-            .deleteListNodeData(dataspaceName, anchorName, listNodeXpath, toOffsetDateTime(observedTimestamp));
+            .deleteListOrElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -114,7 +114,7 @@ public class DataRestController implements CpsDataApi {
         return ROOT_XPATH.equals(xpath);
     }
 
-    private OffsetDateTime toOffsetDateTime(final String datetTimestamp) {
+    private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {
         try {
             return StringUtils.isEmpty(datetTimestamp)
                 ? null : OffsetDateTime.parse(datetTimestamp, ISO_TIMESTAMP_FORMATTER);
