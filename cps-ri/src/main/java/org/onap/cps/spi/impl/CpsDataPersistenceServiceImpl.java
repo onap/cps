@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.hibernate.StaleStateException;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.CpsDataPersistenceService;
@@ -91,7 +92,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
-    private static final String REG_EX_FOR_LIST_NODE_KEY = "\\[(\\@([^/]*?)){0,99}( and)*\\]$";
+    private static final String REG_EX_FOR_LIST_ELEMENT = "\\[(\\@([^/]*?)){0,99}( and)*\\]$";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -108,7 +109,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void addListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+    public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final Collection<DataNode> dataNodes) {
         final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final List<FragmentEntity> newFragmentEntities =
@@ -296,23 +297,23 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static void replaceDataNodeTree(final FragmentEntity existingFragmentEntity,
-                                            final DataNode submittedDataNode) {
+                                            final DataNode newDataNode) {
 
-        existingFragmentEntity.setAttributes(GSON.toJson(submittedDataNode.getLeaves()));
+        existingFragmentEntity.setAttributes(GSON.toJson(newDataNode.getLeaves()));
 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments()
             .stream().collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
 
         final Collection<FragmentEntity> updatedChildFragments = new HashSet<>();
 
-        for (final DataNode submittedChildDataNode : submittedDataNode.getChildDataNodes()) {
+        for (final DataNode newDataNodeChild : newDataNode.getChildDataNodes()) {
             final FragmentEntity childFragment;
-            if (isNewDataNode(submittedChildDataNode, existingChildrenByXpath)) {
+            if (isNewDataNode(newDataNodeChild, existingChildrenByXpath)) {
                 childFragment = convertToFragmentWithAllDescendants(
-                    existingFragmentEntity.getDataspace(), existingFragmentEntity.getAnchor(), submittedChildDataNode);
+                    existingFragmentEntity.getDataspace(), existingFragmentEntity.getAnchor(), newDataNodeChild);
             } else {
-                childFragment = existingChildrenByXpath.get(submittedChildDataNode.getXpath());
-                replaceDataNodeTree(childFragment, submittedChildDataNode);
+                childFragment = existingChildrenByXpath.get(newDataNodeChild.getXpath());
+                replaceDataNodeTree(childFragment, newDataNodeChild);
             }
             updatedChildFragments.add(childFragment);
         }
@@ -322,19 +323,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
-    public void replaceListDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                     final Collection<DataNode> replacementDataNodes) {
+    public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                                   final Collection<DataNode> newListElements) {
         final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final String listNodeXpathPrefix = getListNodeXpathPrefix(replacementDataNodes);
+        final String listElementXpathPrefix = getListElementXpathPrefix(newListElements);
         final Map<String, FragmentEntity> existingListElementFragmentEntitiesByXPath =
-            extractListElementFragmentEntitiesByXPath(parentEntity.getChildFragments(), listNodeXpathPrefix);
+            extractListElementFragmentEntitiesByXPath(parentEntity.getChildFragments(), listElementXpathPrefix);
         removeExistingListElements(parentEntity.getChildFragments(), existingListElementFragmentEntitiesByXPath);
         final Set<FragmentEntity> updatedChildFragmentEntities = new HashSet<>();
-        for (final DataNode replacementDataNode : replacementDataNodes) {
-            final FragmentEntity existingListNodeElementEntity =
-                existingListElementFragmentEntitiesByXPath.get(replacementDataNode.getXpath());
-            final FragmentEntity entityToBeAdded = getFragmentForReplacement(parentEntity, replacementDataNode,
-                existingListNodeElementEntity);
+        for (final DataNode newListElement : newListElements) {
+            final FragmentEntity existingListElementEntity =
+                existingListElementFragmentEntitiesByXPath.get(newListElement.getXpath());
+            final FragmentEntity entityToBeAdded = getFragmentForReplacement(parentEntity, newListElement,
+                existingListElementEntity);
 
             updatedChildFragmentEntities.add(entityToBeAdded);
         }
@@ -348,77 +349,110 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentEntities.removeAll(existingListElementFragmentEntitiesByXPath.values());
     }
 
-    private static String getListNodeXpathPrefix(final Collection<DataNode> replacementDataNodes) {
-        final String firstChildNodeXpath = replacementDataNodes.iterator().next().getXpath();
+    private static String getListElementXpathPrefix(final Collection<DataNode> newListElements) {
+        final String firstChildNodeXpath = newListElements.iterator().next().getXpath();
         return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("[") + 1);
     }
 
     private static FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
-                                                            final DataNode replacementDataNode,
-                                                            final FragmentEntity existingListNodeElementEntity) {
-        if (existingListNodeElementEntity == null) {
+                                                            final DataNode newListElement,
+                                                            final FragmentEntity existingListElementEntity) {
+        if (existingListElementEntity == null) {
             return convertToFragmentWithAllDescendants(
-                parentEntity.getDataspace(), parentEntity.getAnchor(), replacementDataNode);
+                parentEntity.getDataspace(), parentEntity.getAnchor(), newListElement);
         }
-        if (replacementDataNode.getChildDataNodes().isEmpty()) {
-            copyAttributesFromReplacementDataNode(existingListNodeElementEntity, replacementDataNode);
-            existingListNodeElementEntity.getChildFragments().clear();
+        if (newListElement.getChildDataNodes().isEmpty()) {
+            copyAttributesFromNewListElement(existingListElementEntity, newListElement);
+            existingListElementEntity.getChildFragments().clear();
         } else {
-            replaceDataNodeTree(existingListNodeElementEntity, replacementDataNode);
+            replaceDataNodeTree(existingListElementEntity, newListElement);
         }
-        return existingListNodeElementEntity;
+        return existingListElementEntity;
     }
 
     private static boolean isNewDataNode(final DataNode replacementDataNode,
-                                         final Map<String, FragmentEntity> existingListNodeElementsByXpath) {
-        return !existingListNodeElementsByXpath.containsKey(replacementDataNode.getXpath());
+                                         final Map<String, FragmentEntity> existingListElementsByXpath) {
+        return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private static void copyAttributesFromReplacementDataNode(final FragmentEntity existingListNodeElementEntity,
-                                                              final DataNode replacementDataNode) {
+    private static void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
+                                                         final DataNode newListElement) {
         final FragmentEntity replacementFragmentEntity =
-            FragmentEntity.builder().attributes(GSON.toJson(replacementDataNode.getLeaves())).build();
-        existingListNodeElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
+            FragmentEntity.builder().attributes(GSON.toJson(newListElement.getLeaves())).build();
+        existingListElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
     }
 
     private static Map<String, FragmentEntity> extractListElementFragmentEntitiesByXPath(
-        final Set<FragmentEntity> childEntities, final String listNodeXpathPrefix) {
+        final Set<FragmentEntity> childEntities, final String listElementXpathPrefix) {
         return childEntities.stream()
-            .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listNodeXpathPrefix))
+            .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listElementXpathPrefix))
             .collect(Collectors.toMap(FragmentEntity::getXpath, fragmentEntity -> fragmentEntity));
     }
 
     @Override
     @Transactional
-    public void deleteListDataNodes(final String dataspaceName, final String anchorName, final String listNodeXpath) {
-        final String parentNodeXpath = listNodeXpath.substring(0, listNodeXpath.lastIndexOf('/'));
-        final FragmentEntity parentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final String descendantNode = listNodeXpath.substring(listNodeXpath.lastIndexOf('/'));
-        final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(descendantNode);
+    public void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String targetXpath) {
+        deleteDataNode(dataspaceName, anchorName, targetXpath, false);
+    }
 
-        final boolean xpathPointsToAValidChildNodeWithKey = parentEntity.getChildFragments().stream().anyMatch(
-            fragment -> fragment.getXpath().equals(listNodeXpath));
+    @Override
+    @Transactional
+    public void deleteListDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
+                                   @NonNull String targetXpath) {
+        deleteDataNode(dataspaceName, anchorName, targetXpath, true);
+    }
 
-        final boolean xpathPointsToAValidChildNodeWithoutKey = parentEntity.getChildFragments().stream().anyMatch(
-            fragment -> fragment.getXpath().replaceAll(REG_EX_FOR_LIST_NODE_KEY, "").equals(listNodeXpath));
-
-        if ((descendantNodeHasListNodeKey.find() && xpathPointsToAValidChildNodeWithKey)
-            ||
-            (!descendantNodeHasListNodeKey.find() && xpathPointsToAValidChildNodeWithoutKey)) {
-            removeListNodeDescendants(parentEntity, listNodeXpath);
+    private void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath,
+                               boolean onlySupportListNodeDeletion) {
+        final String parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
+        final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
+        final boolean isListElement = Pattern.compile(REG_EX_FOR_LIST_ELEMENT).matcher(lastXpathElement).find();
+        boolean targetExist;
+        if (isListElement) {
+            targetExist = deleteListElement(parentFragmentEntity, targetXpath);
         } else {
-            throw new DataNodeNotFoundException(parentEntity.getDataspace().getName(),
-                parentEntity.getAnchor().getName(), listNodeXpath);
+            targetExist = deleteAllListElements(parentFragmentEntity, targetXpath);
+            boolean tryToDeleteDataNode = !targetExist && !onlySupportListNodeDeletion;
+            if (tryToDeleteDataNode) {
+                targetExist = deleteDataNode(parentFragmentEntity, targetXpath);
+            }
+        }
+        if (!targetExist) {
+            final String additionalInformation = onlySupportListNodeDeletion ? "The target is probably not a List." : "";
+            throw new DataNodeNotFoundException(parentFragmentEntity.getDataspace().getName(),
+                parentFragmentEntity.getAnchor().getName(), targetXpath, additionalInformation);
         }
     }
 
-    private void removeListNodeDescendants(final FragmentEntity parentFragmentEntity, final String listNodeXpath) {
-        final Matcher descendantNodeHasListNodeKey = Pattern.compile(REG_EX_FOR_LIST_NODE_KEY).matcher(listNodeXpath);
-        final String listNodeXpathPrefix = listNodeXpath + (descendantNodeHasListNodeKey.find() ? "" : "[");
+    private boolean deleteListElement(final FragmentEntity parentFragmentEntity, final String listElementXpath) {
         if (parentFragmentEntity.getChildFragments()
-            .removeIf(fragment -> fragment.getXpath().startsWith(listNodeXpathPrefix))) {
+            .removeIf(fragment -> fragment.getXpath().equals(listElementXpath))) {
             fragmentRepository.save(parentFragmentEntity);
+            return true;
         }
+        return false;
+    }
+
+    private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
+        final String deleteTargetXpathPrefix = listXpath + "[";
+        boolean deletedSomething = false;
+        if (parentFragmentEntity.getChildFragments()
+            .removeIf(fragment -> fragment.getXpath().startsWith(deleteTargetXpathPrefix))) {
+            fragmentRepository.save(parentFragmentEntity);
+            deletedSomething = true;
+        }
+        return deletedSomething;
+    }
+
+
+    private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
+        if (parentFragmentEntity.getChildFragments()
+            .removeIf(fragment -> fragment.getXpath().equals(targetXpath))) {
+            fragmentRepository.save(parentFragmentEntity);
+            return true;
+        }
+        return false;
     }
 
     private static boolean isRootXpath(final String xpath) {

@@ -78,11 +78,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    public void saveListNodeData(final String dataspaceName, final String anchorName,
+    public void saveListElementsData(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
         final Collection<DataNode> dataNodesCollection =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService.addListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
+        cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath, dataNodesCollection);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
@@ -123,21 +123,20 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    public void replaceListNodeData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
-        final Collection<DataNode> dataNodes =
+    public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                                   final String jsonData, final OffsetDateTime observedTimestamp) {
+        final Collection<DataNode> newListElements =
             buildDataNodeCollectionFromJson(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService.replaceListDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
 
     @Override
-    public void deleteListNodeData(final String dataspaceName, final String anchorName, final String listNodeXpath,
+    public void deleteListOrElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
-        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpath);
+        cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
     }
-
 
     private DataNode buildDataNodeFromJson(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData) {
