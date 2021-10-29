@@ -66,7 +66,7 @@ paths:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
-    $ref: 'cpsData.yml#/listNodeByDataspaceAndAnchor'
+    $ref: 'cpsData.yml#/listElementByDataspaceAndAnchor'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
