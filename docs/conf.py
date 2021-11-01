@@ -21,7 +21,7 @@ from docutils.parsers.rst import directives
 from docs_conf.conf import *
 
 #change 'latest' to relevant branch-name once branch has been created
-branch = 'latest'
+branch = 'istanbul'
 doc_url = 'https://docs.onap.org/projects'
 master_doc = 'index'
 

@@ -14,16 +14,16 @@ CPS Deployment
 
 CPS OOM Charts
 --------------
-The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
+The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/istanbul/kubernetes/cps>`_.
 This chart includes different cps components referred as <cps-component-name> further in the document are listed below:
 
 .. container:: ulist
 
-  - `cps-core <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-core>`_
-  - `cps-temporal <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-temporal>`_
-  - `ncmp-dmi-plugin <https://github.com/onap/oom/tree/master/kubernetes/cps/components/ncmp-dmi-plugin>`_
+  - `cps-core <https://github.com/onap/oom/tree/istanbul/kubernetes/cps/components/cps-core>`_
+  - `cps-temporal <https://github.com/onap/oom/tree/istanbul/kubernetes/cps/components/cps-temporal>`_
+  - `ncmp-dmi-plugin <https://github.com/onap/oom/tree/istanbul/kubernetes/cps/components/ncmp-dmi-plugin>`_
 
-Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/latest/oom_user_guide.html>`_ on how to install and deploy ONAP.
+Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/istanbul/oom_user_guide.html>`_ on how to install and deploy ONAP.
 
 Installing or Upgrading CPS Components
 --------------------------------------
@@ -109,9 +109,9 @@ values.yaml file to be used across different components as :
 
 .. container:: ulist
 
-  - `cps-core <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/values.yaml#L18>`_
-  - `cps-temporal <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/values.yaml#L28>`_
-  - `ncmp-dmi-plugin <https://github.com/onap/oom/blob/master/kubernetes/cps/components/ncmp-dmi-plugin/values.yaml#L22>`_
+  - `cps-core <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/cps-core/values.yaml#L18>`_
+  - `cps-temporal <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/cps-temporal/values.yaml#L28>`_
+  - `ncmp-dmi-plugin <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/ncmp-dmi-plugin/values.yaml#L22>`_
 
 Below are the list of secrets for different cps components.
 
@@ -132,7 +132,7 @@ Below are the list of secrets for different cps components.
 +--------------------------+---------------------------------+---------------------------------------------------+
 
 The credential values from these secrets are configured in running container as environment variables. Eg:
-`cps core deployment.yaml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/templates/deployment.yaml#L46>`_
+`cps core deployment.yaml <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/cps-core/templates/deployment.yaml#L46>`_
 
 If no specific passwords are provided to the chart as override values for deployment, then passwords are automatically
 generated when deploying the Helm release. Below command can be used to retrieve application property credentials
@@ -177,7 +177,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.dmiPluginUserName              | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -185,7 +185,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgUserName            | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -193,7 +193,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgDatabase            | Database name used by cps-core                                                                          | ``cpsdb``                     |
 |                                       |                                                                                                         |                               |
@@ -281,5 +281,5 @@ exhaustive.
 CPS-Core Docker Installation
 ============================
 
-CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
-The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
+CPS-Core can also be installed in a docker environment. Istanbul `docker-compose <https://github.com/onap/cps/blob/istanbul/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
+The Istanbul instructions are covered in the `README <https://github.com/onap/cps/blob/istanbul/docker-compose/README.md>`_.

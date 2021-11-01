@@ -40,9 +40,9 @@ Logger configuration is provided as a chart resource :
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
     | cps-component-service-name     | logback.xml location                                                                                                            |
     +================================+=================================================================================================================================+
-    | cps-core                       | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback.xml>`_        |
+    | cps-core                       | `logback.xml <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/cps-core/resources/config/logback.xml>`_      |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`_    |
+    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/istanbul/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`_  |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
     | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                |
     +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+

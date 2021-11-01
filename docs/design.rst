@@ -64,7 +64,7 @@ CPS Core uses API's from the following ONAP components
 
 * DMI-Plugin: REST based interface which is used to provide integration
   and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
-  More information on the DMI-Plugins offered APIs can be found on the `DMI-Plugin's Design Page <https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html>`_.
+  More information on the DMI-Plugins offered APIs can be found on the :ref:`DMI-Plugin's Design Page <onap-cps-ncmp-dmi-plugin:design>`.
 
 CPS Path
 ========
