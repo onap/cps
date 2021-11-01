@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e60dc23c_888a87bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "not sure if the word \u0027data\u0027 is needed anymore and it is inconsistent with the delete method(s)",
+      "range": {
+        "startLine": 138,
+        "startChar": 39,
+        "endLine": 138,
+        "endChar": 43
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f683d82_44eae241",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 4
@@ -36,6 +59,29 @@
       "writtenOn": "2021-11-01T15:45:54Z",
       "side": 1,
       "message": "element",
+      "range": {
+        "startLine": 164,
+        "startChar": 27,
+        "endLine": 164,
+        "endChar": 36
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09f8c12e_a5181a1b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "update teh wording to be in line as well!",
       "range": {
         "startLine": 164,
         "startChar": 27,
@@ -140,6 +186,76 @@
     },
     {
       "key": {
+        "uuid": "2252978a_e7210237",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "agreed (legacy issue)",
+      "parentUuid": "3efb05f3_6904f601",
+      "range": {
+        "startLine": 306,
+        "startChar": 29,
+        "endLine": 306,
+        "endChar": 30
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fa0749f_0fdc7a23",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "full stop should come after #scenario",
+      "range": {
+        "startLine": 330,
+        "startChar": 28,
+        "endLine": 330,
+        "endChar": 29
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c403021_09e546b8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "invoked on (with ?)",
+      "range": {
+        "startLine": 333,
+        "startChar": 25,
+        "endLine": 333,
+        "endChar": 33
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f901da0_a0d5014d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -156,6 +272,53 @@
         "startChar": 17,
         "endLine": 368,
         "endChar": 31
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cdc4642_d6eb70f9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "tricky to split but maybe could be renamed to\ndeleteDataNodeOrDeleteCompleteListOfDataNodes",
+      "parentUuid": "7f901da0_a0d5014d",
+      "range": {
+        "startLine": 368,
+        "startChar": 17,
+        "endLine": 368,
+        "endChar": 31
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39a13919_697932aa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "delete (to serach and ensure term \u0027delete\u0027 is used consistently for all such methods)",
+      "range": {
+        "startLine": 392,
+        "startChar": 24,
+        "endLine": 392,
+        "endChar": 30
       },
       "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -232,6 +395,145 @@
     },
     {
       "key": {
+        "uuid": "85426b5e_916b3d3f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "ok there are some doubts and misunderstandings about this boolean so I am suggesting this improved name : deletedAtLeastOneListElement",
+      "parentUuid": "047f8f54_a6fefc93",
+      "range": {
+        "startLine": 446,
+        "startChar": 15,
+        "endLine": 446,
+        "endChar": 31
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43de9d74_f5903414",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "legacy issue: error scenarios should use wording like \u0027attempt to\u0027\ne.g. \u0027attempt is made to add list elements\u0027",
+      "range": {
+        "startLine": 184,
+        "startChar": 15,
+        "endLine": 184,
+        "endChar": 58
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03e0ef5f_e9d5b3a1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "remove word \u0027child\u0027 here.",
+      "range": {
+        "startLine": 392,
+        "startChar": 15,
+        "endLine": 392,
+        "endChar": 21
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7582c8fb_641a420e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 416,
+        "startChar": 15,
+        "endLine": 416,
+        "endChar": 21
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e30e99cb_bc1752c1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "legacy: please rephrase, I dont understand what is being tested here",
+      "range": {
+        "startLine": 457,
+        "startChar": 13,
+        "endLine": 457,
+        "endChar": 53
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bedadfc_8dca1f04",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "legacy: try to rephrase this scenario description is confusing",
+      "range": {
+        "startLine": 458,
+        "startChar": 13,
+        "endLine": 458,
+        "endChar": 57
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38ad1823_a688e783",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 4
@@ -248,6 +550,214 @@
         "startChar": 28,
         "endLine": 467,
         "endChar": 46
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1485d54_769d2c62",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "the idea is it replaces the whole contant (any old element(s)) with a given set of new elements",
+      "parentUuid": "38ad1823_a688e783",
+      "range": {
+        "startLine": 467,
+        "startChar": 28,
+        "endLine": 467,
+        "endChar": 46
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b8d259_bb70084d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "fix indentation",
+      "range": {
+        "startLine": 508,
+        "startChar": 4,
+        "endLine": 528,
+        "endChar": 5
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aa235df_36e9d04a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "fix indentation",
+      "range": {
+        "startLine": 532,
+        "startChar": 0,
+        "endLine": 538,
+        "endChar": 17
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "832321cb_2da478a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "remove \u0027Data\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 25,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c562db27_57e192ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "deleteListOrListElement might be clearer or even\ndeleteCompleteListOrListElement",
+      "range": {
+        "startLine": 130,
+        "startChar": 9,
+        "endLine": 130,
+        "endChar": 28
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e692c375_dce29327",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "an element cannot be empty.\nIs this method only used for collections of list elements (if so rename accordingly!)\n\nMabe a more generic message is better (future proof) \"No data nodes provided\"",
+      "range": {
+        "startLine": 171,
+        "startChar": 69,
+        "endLine": 171,
+        "endChar": 91
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b78f02c_e9fe467a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "please rephrase\n\nI think \u0027data fragment\u0027 should not be mention in the high level description of any of these tests (its a reference to what happens under the hood)",
+      "range": {
+        "startLine": 209,
+        "startChar": 22,
+        "endLine": 209,
+        "endChar": 45
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a9827a0_1932c06b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 219,
+        "startChar": 29,
+        "endLine": 219,
+        "endChar": 42
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de8c524b_b0a01637",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:11:11Z",
+      "side": 1,
+      "message": "with additional information",
+      "range": {
+        "startLine": 137,
+        "startChar": 69,
+        "endLine": 137,
+        "endChar": 80
       },
       "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
