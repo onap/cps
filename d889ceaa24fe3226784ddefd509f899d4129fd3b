@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41442411_133cf1ac",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "is this what you need to do to prevent null in response?!, see also my comment on the test\n\nI prefer null over an array with 1 element without a name :-(",
+      "range": {
+        "startLine": 216,
+        "startChar": 12,
+        "endLine": 216,
+        "endChar": 61
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aeec596_d076a72f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "you probably get question about this. It is OK as this is currently the only supported condition so its OK to return (and exit the loop)\nIt just looks a bit strange... (and an invalid condition AFTER the hasAllModules will silently be ignored)",
+      "range": {
+        "startLine": 231,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 20
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd810a46_64d34ef5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "its is a very specific (single) search that this method is executing which is OK, just needs to be named accordingly e.g. execureCmHandleHasAllModulesSearch()",
+      "range": {
+        "startLine": 243,
+        "startChar": 20,
+        "endLine": 243,
+        "endChar": 36
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fc3b106_9b29b1cb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "not sure about this name now, see what others think but could consider ModuleNameAsJsonObject  (and ModuleNamesAsJsonArray for the plural version)",
+      "range": {
+        "startLine": 246,
+        "startChar": 52,
+        "endLine": 246,
+        "endChar": 72
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efd52ee2_a33e3df7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "in the context of NCMP this should be called cmHandleId",
+      "range": {
+        "startLine": 254,
+        "startChar": 65,
+        "endLine": 254,
+        "endChar": 75
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e343d5fc_b410e55a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "I think it should be an empty array if possible (otherwise null was better)\n\ne.g. response.contentAsString \u003d\u003d \u0027{\"cmHandles\":[]}\u0027",
+      "range": {
+        "startLine": 282,
+        "startChar": 55,
+        "endLine": 282,
+        "endChar": 72
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c3ead14_c1bcc0ec",
+        "filename": "cps-ncmp-rest/src/test/resources/invalid-cmhandle-search.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "this is mislead and I dont think necessary... an empoty array or NOT having conditionParameters at all might be better",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3cd76c3_def652c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "like prev. this is a specific search!",
+      "range": {
+        "startLine": 169,
+        "startChar": 23,
+        "endLine": 169,
+        "endChar": 46
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cddc1a9_05ae074f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "see prev comment, this name should no be generic",
+      "range": {
+        "startLine": 246,
+        "startChar": 30,
+        "endLine": 246,
+        "endChar": 53
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ef6366a_9b4777ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "as more details escpecially that it will only return anchors that have ALL given module names",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aa6e047_b694c2f8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "I think the name should convey it is a query or search",
+      "range": {
+        "startLine": 89,
+        "startChar": 23,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16a8136c_a149057f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "indicate it is a query/search by name",
+      "range": {
+        "startLine": 66,
+        "startChar": 70,
+        "endLine": 66,
+        "endChar": 80
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a10451ae_f48111d2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T12:01:01Z",
+      "side": 1,
+      "message": "Query or search (or find?)",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 17
+      },
+      "revId": "d889ceaa24fe3226784ddefd509f899d4129fd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
