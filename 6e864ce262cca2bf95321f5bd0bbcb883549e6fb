@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "974dedca_ea90cf03",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-11-01T04:54:56Z",
+      "side": 1,
+      "message": "name suggestion - deleteOnlyIfListNode",
+      "range": {
+        "startLine": 406,
+        "startChar": 39,
+        "endLine": 406,
+        "endChar": 66
+      },
+      "revId": "6e864ce262cca2bf95321f5bd0bbcb883549e6fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5ceed2b_aac856cc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-11-01T04:54:56Z",
+      "side": 1,
+      "message": "listElement will be a DataNode, so I am wondering why do we have two separate methods with same implementation.? \nIf the intention is to make the explicit, then we should call deleteDataNode from the deleteListElement method.",
+      "range": {
+        "startLine": 428,
+        "startChar": 20,
+        "endLine": 428,
+        "endChar": 37
+      },
+      "revId": "6e864ce262cca2bf95321f5bd0bbcb883549e6fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
