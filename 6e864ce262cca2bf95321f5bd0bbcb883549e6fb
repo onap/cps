@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cf64061f_2be8020a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-01T13:50:31Z",
+      "side": 1,
+      "message": "I personally prefer \u0027onlySupportListNodeDeletion\u0027 as I feel it is clearer in terms of the overloaded method what the parameter actually is, and that only list node deletion is supported within this path.",
+      "parentUuid": "974dedca_ea90cf03",
+      "range": {
+        "startLine": 406,
+        "startChar": 39,
+        "endLine": 406,
+        "endChar": 66
+      },
+      "revId": "6e864ce262cca2bf95321f5bd0bbcb883549e6fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5ceed2b_aac856cc",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "6e864ce262cca2bf95321f5bd0bbcb883549e6fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18374d68_b7d7c44f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-01T13:50:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5ceed2b_aac856cc",
+      "range": {
+        "startLine": 428,
+        "startChar": 20,
+        "endLine": 428,
+        "endChar": 37
+      },
+      "revId": "6e864ce262cca2bf95321f5bd0bbcb883549e6fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
