@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd147646_13396bef",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "Should this be plural?",
+      "range": {
+        "startLine": 189,
+        "startChar": 35,
+        "endLine": 189,
+        "endChar": 55
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3da32563_affff1a2",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "Should we mention list here... the underlying collection may change e.g. from list to set and this could be missed... not sure perhaps it is ok as we are using list elements? What do others think?",
+      "range": {
+        "startLine": 51,
+        "startChar": 42,
+        "endLine": 51,
+        "endChar": 47
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3efb05f3_6904f601",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "Should this include #scenario?",
+      "range": {
+        "startLine": 306,
+        "startChar": 29,
+        "endLine": 306,
+        "endChar": 30
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9377a21_b0d6bd4f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "Should this be inside the if statement?",
+      "range": {
+        "startLine": 444,
+        "startChar": 12,
+        "endLine": 444,
+        "endChar": 36
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "047f8f54_a6fefc93",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "This should be more descriptive, perhaps deletedAllListElements",
+      "range": {
+        "startLine": 446,
+        "startChar": 15,
+        "endLine": 446,
+        "endChar": 31
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38ad1823_a688e783",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-01T15:41:29Z",
+      "side": 1,
+      "message": "Perhaps this could be replaceLiestElementContent?",
+      "range": {
+        "startLine": 467,
+        "startChar": 28,
+        "endLine": 467,
+        "endChar": 46
+      },
+      "revId": "c8b49d3f9d3f6db8e442a6b8077ca05e9c79029f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
