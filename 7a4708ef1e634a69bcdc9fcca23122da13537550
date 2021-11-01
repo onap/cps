@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "408b24b0_56bd524f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:21:29Z",
+      "side": 1,
+      "message": "nb: query",
+      "range": {
+        "startLine": 163,
+        "startChar": 26,
+        "endLine": 163,
+        "endChar": 29
+      },
+      "revId": "7a4708ef1e634a69bcdc9fcca23122da13537550",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff37e9a_46a436d2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:21:29Z",
+      "side": 1,
+      "message": "don\u0027t think \u0027support\u0027 is the right word. \nSuggestion: \n\"a collection of anchor names in the given dataspace. The schema set for each anchor must include all the given module names\"",
+      "range": {
+        "startLine": 87,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 57
+      },
+      "revId": "7a4708ef1e634a69bcdc9fcca23122da13537550",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "294e2ab5_f6aeb4eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-01T16:21:29Z",
+      "side": 1,
+      "message": "use the same wording as in the CPSADminService",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "7a4708ef1e634a69bcdc9fcca23122da13537550",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
