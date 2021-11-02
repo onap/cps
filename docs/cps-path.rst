@@ -113,7 +113,7 @@ leaf-conditions
   - ``/shops/bookstore/categories[@numberOfBooks=1]``
   - ``//categories[@name="Kids"]``
   - ``//categories[@name='Kids']``
-  - ``//categories[@code=1]/book[@title='Dune' and price=5]``
+  - ``//categories[@code=1]/books/book[@title='Dune' and @price=5]``
 
 **Limitations**
   - Only the last list or container can be queried leaf values. Any ancestor list will have to be referenced by its key name-value pair(s).
