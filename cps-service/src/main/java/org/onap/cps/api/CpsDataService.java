@@ -120,6 +120,17 @@ public interface CpsDataService {
                             @NonNull String jsonData, OffsetDateTime observedTimestamp);
 
     /**
+     * Deletes data node for given anchor and dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param dataNodeXpath data node xpath
+     * @param observedTimestamp observed timestamp
+     */
+    void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String dataNodeXpath,
+                        OffsetDateTime observedTimestamp);
+
+    /**
      * Deletes a list or a list-element under given anchor and dataspace.
      *
      * @param dataspaceName dataspace name

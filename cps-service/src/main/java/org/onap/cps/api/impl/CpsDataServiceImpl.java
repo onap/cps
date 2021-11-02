@@ -134,6 +134,13 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
+                               final OffsetDateTime observedTimestamp) {
+        cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp);
+    }
+
+    @Override
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
