@@ -132,6 +132,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Object> replaceResourceDataRunningForCmHandle(final String cmHandle,
+        final String resourceIdentifier, final String requestBody, final String contentType) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
     /**
      * Update Node Leaves.
      * @deprecated This Method is no longer used as part of NCMP.
