@@ -46,13 +46,13 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
-listNodeByDataspaceAndAnchor:
+listElementByDataspaceAndAnchor:
   post:
-    description: Add list-node child elements to existing node for a given anchor and dataspace
+    description: Add list element(s) to a list for a given anchor and dataspace
     tags:
       - cps-data
-    summary: Add list-node child element(s) under existing parent node
-    operationId: addListNodeElements
+    summary: Add list element(s)
+    operationId: addListElements
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
@@ -75,11 +75,11 @@ listNodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Forbidden'
 
   put:
-    description: Replace list-node child elements under existing node for a given anchor and dataspace
+    description: Replace list content under a given parent, anchor and dataspace
     tags:
       - cps-data
-    summary: Replace list-node child element(s) under existing parent node
-    operationId: replaceListNodeElements
+    summary: Replace list content
+    operationId: replaceListContent
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
@@ -102,11 +102,11 @@ listNodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Forbidden'
 
   delete:
-    description: Delete list-node child elements under existing node for a given anchor and dataspace
+    description: Delete one or all list element(s) for a given anchor and dataspace
     tags:
       - cps-data
-    summary: Delete list-node child element(s) under existing parent node
-    operationId: deleteListNodeElements
+    summary: Delete one or all list element(s)
+    operationId: deleteListOrListElement
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
