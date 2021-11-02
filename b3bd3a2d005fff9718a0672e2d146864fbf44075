@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b363c73e_33c35885",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-02T10:49:01Z",
+      "side": 1,
+      "message": "string literals not needed",
+      "range": {
+        "startLine": 308,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 38
+      },
+      "revId": "b3bd3a2d005fff9718a0672e2d146864fbf44075",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
