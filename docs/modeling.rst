@@ -57,7 +57,7 @@ Querying
 - **CPS Path** is used to query data nodes. The CPS Path is described in detail in :doc:`cps-path`.
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
-.. _cps_ncmp_modelling:
+.. _cps_ncmp_modeling:
 
 NCMP Modeling
 =============
