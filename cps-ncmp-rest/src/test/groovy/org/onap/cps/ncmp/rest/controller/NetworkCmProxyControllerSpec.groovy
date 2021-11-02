@@ -281,5 +281,19 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'an empty cm handle identifier is returned'
             response.contentAsString == '{"cmHandles":null}'
     }
+
+    def 'Replace resource data from pass-through running.' () {
+        given: 'replace resource data url'
+            def replaceUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+                    "?resourceIdentifier=parent/child"
+        when: 'replace data resource request is performed'
+            def response = mvc.perform(
+                    put(replaceUrl)
+                            .contentType(MediaType.APPLICATION_JSON_VALUE)
+                            .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
+            ).andReturn().response
+        then: 'the response status is not implemented'
+            response.status == HttpStatus.NOT_IMPLEMENTED.value()
+    }
 }
 
