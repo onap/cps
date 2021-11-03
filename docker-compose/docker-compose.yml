@@ -30,8 +30,8 @@ services:
   #    - "8881:8080"
   #    - "8887:8081"
   #  environment:
-  #    CPS_USERNAME: ${CPS_USERNAME:-cpsuser}
-  #    CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}
+  #    CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+  #    CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
   #    DB_HOST: dbpostgresql
   #    DB_USERNAME: ${DB_USERNAME:-cps}
   #    DB_PASSWORD: ${DB_PASSWORD:-cps}
@@ -49,8 +49,8 @@ services:
   #    - "8882:8080"
   #    - "8887:8081"
   #  environment:
-  #    CPS_USERNAME: ${CPS_USERNAME:-cpsuser}
-  #    CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}
+  #    CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+  #    CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
   #    DB_HOST: dbpostgresql
   #    DB_USERNAME: ${DB_USERNAME:-cps}
   #    DB_PASSWORD: ${DB_PASSWORD:-cps}
