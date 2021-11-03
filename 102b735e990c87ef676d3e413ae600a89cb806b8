@@ -22,6 +22,30 @@
       "revId": "102b735e990c87ef676d3e413ae600a89cb806b8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69dc3174_e00fbf7a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-03T12:38:12Z",
+      "side": 1,
+      "message": "No, this was changed as part of the cherry pick from the master branch. Will I revert these, or do we want to keep the name changes across both branches?",
+      "parentUuid": "ec606162_7d475f1e",
+      "range": {
+        "startLine": 105,
+        "startChar": 26,
+        "endLine": 105,
+        "endChar": 30
+      },
+      "revId": "102b735e990c87ef676d3e413ae600a89cb806b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
