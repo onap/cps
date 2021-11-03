@@ -104,7 +104,7 @@ services:
     environment:
       CPS_USERNAME: ${CPS_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}
-      DB_HOST: ${DB_HOST}
+      DB_HOST: ${DB_HOST:-dbpostgresql}
       DB_USERNAME: ${DB_USERNAME:-cps}
       DB_PASSWORD: ${DB_PASSWORD:-cps}
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
