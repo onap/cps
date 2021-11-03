@@ -227,6 +227,17 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
     }
 
+    def 'Delete data node under anchor and dataspace.'() {
+        given: 'schema set for given anchor and dataspace references test tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'delete data node method is invoked with correct parameters'
+            objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
+        then: 'the persistence service method is invoked with the correct parameters'
+            1 * mockCpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, '/data-node')
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp)
+    }
+
     def setupSchemaSetMocks(String... yangResources) {
         def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
