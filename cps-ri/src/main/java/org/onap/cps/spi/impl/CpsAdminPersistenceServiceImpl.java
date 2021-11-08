@@ -30,6 +30,7 @@ import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
@@ -131,7 +132,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final Collection<String> inputModuleNames) {
         final Collection<String> retrievedModuleNames =
             yangResourceRepository.findAllModuleReferences(dataspaceName, inputModuleNames)
-                .stream().map(module -> module.getModuleName())
+                .stream().map(YangResourceModuleReference::getModuleName)
                 .collect(Collectors.toList());
         if (retrievedModuleNames.isEmpty()) {
             dataspaceRepository.getByName(dataspaceName);
