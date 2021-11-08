@@ -27,7 +27,7 @@ package org.onap.cps.spi.exceptions;
 public class DataNodeNotFoundException extends DataValidationException {
 
     private static final long serialVersionUID = 7786740001662205407L;
-
+    private static final String DATANODE_NOT_FOUND = "DataNode not found";
     /**
      * Constructor.
      *
@@ -36,9 +36,10 @@ public class DataNodeNotFoundException extends DataValidationException {
      * @param xpath                 datanode xpath
      * @param additionalInformation additional information
      */
+    
     public DataNodeNotFoundException(final String dataspaceName, final String anchorName, final String xpath,
                                      final String additionalInformation) {
-        super("DataNode not found", String
+        super(DATANODE_NOT_FOUND, String
             .format("DataNode with xpath %s was not found for anchor %s and dataspace %s, %s.", xpath,
                 anchorName, dataspaceName, additionalInformation));
     }
@@ -51,7 +52,7 @@ public class DataNodeNotFoundException extends DataValidationException {
      * @param xpath         datanode xpath
      */
     public DataNodeNotFoundException(final String dataspaceName, final String anchorName, final String xpath) {
-        super("DataNode not found", String
+        super(DATANODE_NOT_FOUND, String
             .format("DataNode with xpath %s was not found for anchor %s and dataspace %s.", xpath,
                 anchorName, dataspaceName));
     }
@@ -63,7 +64,7 @@ public class DataNodeNotFoundException extends DataValidationException {
      * @param anchorName the anchor name
      */
     public DataNodeNotFoundException(final String dataspaceName, final String anchorName) {
-        super("DataNode not found", String.format(
+        super(DATANODE_NOT_FOUND, String.format(
             "DataNode not found for anchor %s and dataspace %s.", anchorName, dataspaceName));
     }
 }
