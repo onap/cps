@@ -49,6 +49,7 @@ import org.onap.cps.ncmp.api.impl.operation.DmiOperations;
 import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.GenericRequestBody;
+import org.onap.cps.ncmp.api.models.GenericRequestBody.OperationEnum;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle.AdditionalProperty;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
@@ -228,7 +229,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         cmHandle,
                         resourceIdentifier,
                         dmiRequestBody);
-        handleResponseForPost(responseEntity);
+        handleResponseFromDmi(responseEntity, "Not able to create resource data.");
     }
 
     @Override
@@ -245,6 +246,36 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
         return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+    }
+
+    /**
+     * Replace resource data for data store pass-through running using dmi for given cm-handle.
+     *
+     * @param cmHandle           cm handle
+     * @param resourceIdentifier resource identifier
+     * @param requestBody        request body to create resource
+     * @param contentType        content type in body
+     */
+    @Override
+    public void updateResourceDataPassThroughRunningForCmHandle(final String cmHandle, final String resourceIdentifier,
+        final String requestBody, final String contentType) {
+        final DataNode cmHandleDataNode = fetchDataNodeFromDmiRegistryForCmHandle(cmHandle);
+        final String dmiServiceName = String.valueOf(cmHandleDataNode.getLeaves().get(NCMP_DMI_SERVICE_NAME));
+        final Collection<DataNode> cmHandlePropertiesAsDataNodes = cmHandleDataNode.getChildDataNodes();
+        final Map<String, String> cmHandlePropertiesAsMap = getCmHandlePropertiesAsMap(cmHandlePropertiesAsDataNodes);
+        final GenericRequestBody dmiRequestBodyObject = GenericRequestBody.builder()
+            .operation(OperationEnum.UPDATE)
+            .dataType(contentType)
+            .data(requestBody)
+            .cmHandleProperties(cmHandlePropertiesAsMap)
+            .build();
+        final String dmiRequestBody = prepareOperationBody(dmiRequestBodyObject);
+        final ResponseEntity<String> responseEntity = dmiOperations
+            .updateResourceDataPassThroughRunningFromDmi(dmiServiceName,
+                cmHandle,
+                resourceIdentifier,
+                dmiRequestBody);
+        handleResponseFromDmi(responseEntity, "Unable to replace resource data.");
     }
 
     private DataNode fetchDataNodeFromDmiRegistryForCmHandle(final String cmHandle) {
@@ -301,11 +332,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private static void handleResponseForPost(final @NotNull ResponseEntity<String> responseEntity) {
+    private static void handleResponseFromDmi(final @NotNull ResponseEntity<String> responseEntity,
+        final String exceptionMessage) {
         if (!HttpStatus.valueOf(responseEntity.getStatusCodeValue()).is2xxSuccessful()) {
-            throw new NcmpException("Not able to create resource data.",
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
+            throw new NcmpException(exceptionMessage,
+                "DMI status code: " + responseEntity.getStatusCodeValue()
+                    + ", DMI response body: " + responseEntity.getBody());
         }
     }
 

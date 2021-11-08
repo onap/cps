@@ -168,4 +168,15 @@ public interface NetworkCmProxyDataService {
      *         given module names
      */
     Collection<String> executeCmHandleHasAllModulesSearch(Collection<String> moduleNames);
+
+    /**
+     * Update resource data for data store pass-through running using dmi for the given cm-handle.
+     *
+     * @param cmHandle cm handle
+     * @param resourceIdentifier resource identifier
+     * @param requestBody request body to create resource
+     * @param contentType content type in body
+     */
+    void updateResourceDataPassThroughRunningForCmHandle(String cmHandle, String resourceIdentifier,
+        String requestBody, String contentType);
 }

@@ -33,7 +33,8 @@ import lombok.Getter;
 public class GenericRequestBody   {
     public enum OperationEnum {
         READ("read"),
-        CREATE("create");
+        CREATE("create"),
+        UPDATE("update");
         private String value;
 
         OperationEnum(final String value) {

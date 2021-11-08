@@ -282,7 +282,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString == '{"cmHandles":null}'
     }
 
-    def 'Update resource data in passthrough-running datastore.' () {
+    def 'Update resource data from pass-through running.' () {
         given: 'update resource data url'
             def updateUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=parent/child"
@@ -292,8 +292,11 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
             ).andReturn().response
-        then: 'the response status is not implemented'
-            response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'ncmp service method to update resource is called'
+            1 * mockNetworkCmProxyDataService.updateResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'parent/child', 'some-request-body', 'application/json;charset=UTF-8')
+        and: 'the response status is OK'
+            response.status == HttpStatus.OK.value()
     }
 }
 
