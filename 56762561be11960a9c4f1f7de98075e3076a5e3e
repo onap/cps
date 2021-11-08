@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65602841_04237dee",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T15:03:50Z",
+      "side": 1,
+      "message": "Update ?",
+      "range": {
+        "startLine": 264,
+        "startChar": 13,
+        "endLine": 264,
+        "endChar": 20
+      },
+      "revId": "56762561be11960a9c4f1f7de98075e3076a5e3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
