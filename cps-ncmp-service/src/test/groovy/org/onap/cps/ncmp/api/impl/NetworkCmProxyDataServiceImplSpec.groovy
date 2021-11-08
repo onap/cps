@@ -457,6 +457,29 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
     }
 
+    def 'Update resource data for pass-through running from dmi using POST #scenario cm handle properties.'() {
+        given: 'data node representing cmHandle #scenario cm handle properties'
+            def cmHandleDataNode = getCmHandleDataNodeForTest(includeCmHandleProperties)
+        and: 'cpsDataService returns valid cm-handle datanode'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
+        when: 'update resource data is called'
+            objectUnderTest.updateResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'testResourceId',
+                    '{some-json}', 'application/json')
+        then: 'dmi called with correct data'
+            1 * mockDmiOperations.updateResourceDataPassThroughRunningFromDmi('testDmiService',
+                    'testCmHandle',
+                    'testResourceId',
+                    '{"operation":"update","dataType":"application/json","data":"{some-json}","cmHandleProperties":'
+                            + expectedJsonForCmhandleProperties + '}')
+                    >> new ResponseEntity<>(HttpStatus.OK)
+        where:
+            scenario  | includeCmHandleProperties || expectedJsonForCmhandleProperties
+            'with'    | true                      || '{"testName":"testValue"}'
+            'without' | false                     || '{}'
+    }
+
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
                 mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper))
