@@ -64,6 +64,6 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public Collection<String> queryAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
         final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
-        return anchors.stream().map(anchor -> anchor.getName()).collect(Collectors.toList());
+        return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
     }
 }
