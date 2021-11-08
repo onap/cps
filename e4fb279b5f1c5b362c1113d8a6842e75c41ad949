@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "273035f1_250bbae1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/DataNodeNotFoundException.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-08T13:00:41Z",
+      "side": 1,
+      "message": "remove this extra space",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "e4fb279b5f1c5b362c1113d8a6842e75c41ad949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
