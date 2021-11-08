@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12d49559_50274e7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T15:08:45Z",
+      "side": 1,
+      "message": "Code is good but the commit message should be updated to reflect this is NOT a code coverage fix but addressing SQ violations\nUse to https://jira.onap.org/browse/CPS-475 instead (i have assigned that to you now too)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "975ab3bd2fea26bcfc26ed50cd2441305c05c68c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
