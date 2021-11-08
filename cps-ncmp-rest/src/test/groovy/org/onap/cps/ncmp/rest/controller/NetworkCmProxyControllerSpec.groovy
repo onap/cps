@@ -171,7 +171,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString.contains('"leaf":"value"')
     }
 
-    def 'Get Resource Data from pass-through operational.' () {
+    def 'Get Resource Data from passthrough operational.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)"
@@ -190,7 +190,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.' () {
+    def 'Get Resource Data from passthrough running with #scenario value in resource identifier param.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=" + resourceIdentifier + "&options=(a=1,b=2)"
@@ -219,7 +219,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             '? needs to be encoded as %3F' | 'idWith%3F'
     }
 
-    def 'Create Resource Data from pass-through running with #scenario.' () {
+    def 'Create Resource Data from passthrough running with #scenario.' () {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=parent/child"
@@ -282,7 +282,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString == '{"cmHandles":null}'
     }
 
-    def 'Update resource data in passthrough-running datastore.' () {
+    def 'Update resource data from passthrough running.' () {
         given: 'update resource data url'
             def updateUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=parent/child"
@@ -292,8 +292,11 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
             ).andReturn().response
-        then: 'the response status is not implemented'
-            response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'ncmp service method to update resource is called'
+            1 * mockNetworkCmProxyDataService.updateResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'parent/child', 'some-request-body', 'application/json;charset=UTF-8')
+        and: 'the response status is OK'
+            response.status == HttpStatus.OK.value()
     }
 }
 
