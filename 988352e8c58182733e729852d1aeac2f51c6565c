@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4b93320_38b362d8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "restore imports",
+      "range": {
+        "startLine": 25,
+        "startChar": 33,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68d5df6a_fd6d5d15",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "cool, you though of that!",
+      "range": {
+        "startLine": 165,
+        "startChar": 34,
+        "endLine": 165,
+        "endChar": 52
+      },
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7190a71e_3d422622",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "contradicts the column moduleNames entry. But you simply don\u0027t need this \u0027does-not-matter\u0027 is correct!\nso scenario can just  be \u0027unknown dataspace\u0027",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44bb5589_98c1915a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 121
+      },
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8408eafd_90b5edac",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "for completeness you could add a column messageDoesNotContain with values\n1) does-not-matter\n2) module-name-1 (see comemnt above)\n3) module-name-1",
+      "range": {
+        "startLine": 167,
+        "startChar": 114,
+        "endLine": 167,
+        "endChar": 134
+      },
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "322195e6_5cba6a5d",
+        "filename": "cps-ri/src/test/resources/data/anchors-schemaset-modules.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-08T17:31:37Z",
+      "side": 1,
+      "message": "Just to confirm I prefer the lower case content names! and short number for content to avoid confusion with DB Field names and IDs\n(this should be done for other DB integration tests too but possibly later)",
+      "revId": "988352e8c58182733e729852d1aeac2f51c6565c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
