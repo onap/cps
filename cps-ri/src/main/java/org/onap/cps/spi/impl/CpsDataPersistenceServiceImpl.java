@@ -91,7 +91,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
-    private static final String REG_EX_FOR_LIST_ELEMENT_KEY_PREDICATE = "\\[(\\@([^/]*?)){0,99}( and)*\\]$";
+    private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
+            Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
@@ -361,8 +362,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final String parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
-        final boolean isListElement = Pattern.compile(REG_EX_FOR_LIST_ELEMENT_KEY_PREDICATE)
-            .matcher(lastXpathElement).find();
+        final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE.matcher(lastXpathElement).find();
         boolean targetExist;
         if (isListElement) {
             targetExist = deleteDataNode(parentFragmentEntity, targetXpath);
