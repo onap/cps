@@ -146,16 +146,15 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
     def 'Query anchors that have #scenario.'() {
         when: 'all anchor are retrieved for the given dataspace name and module names'
-            def anchors = objectUnderTest.queryAnchors('DATASPACE-001', inputModuleNames)
+            def anchors = objectUnderTest.queryAnchors('dataspace-1', inputModuleNames)
         then: 'the expected anchors are returned'
             anchors.size() == expectedAnchors.size()
             anchors.containsAll(expectedAnchors)
         where: 'the following data is used'
-            scenario                                | inputModuleNames                       || expectedAnchors
-            'one module'                            | ['MODULE-NAME-001']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001')]
-            'two modules'                           | ['MODULE-NAME-001', 'MODULE-NAME-002'] || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
-            'a module attached to multiple anchors' | ['MODULE-NAME-003']                    || [buildAnchor('ANCHOR1', 'DATASPACE-001', 'SCHEMA-SET-001'), buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002')]
-            'same module with different revisions'  | ['MODULE-NAME-002']                    || [buildAnchor('ANCHOR2', 'DATASPACE-001', 'SCHEMA-SET-002'), buildAnchor('ANCHOR3', 'DATASPACE-001', 'SCHEMA-SET-004')]
+            scenario                           | inputModuleNames                                    || expectedAnchors
+            'one module'                       | ['module-name-1']                                   || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
+            'two modules'                      | ['module-name-1', 'module-name-2']                  || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
+            'no anchors for all three modules' | ['module-name-1', 'module-name-2', 'module-name-3'] || []
     }
 
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
@@ -166,10 +165,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def thrownException = thrown(expectedException)
             thrownException.details.contains(expectedMessageDetails)
         where: 'the following data is used'
-            scenario                                                   | dataspaceName       | moduleNames                                  || expectedException            | expectedMessageDetails
-            'existing module in an unknown dataspace'                  | 'db-does-not-exist' | ['does-not-matter']                          || DataspaceNotFoundException   | 'db-does-not-exist'
-            'unknown module in an existing dataspace'                  | 'DATASPACE-001'     | ['module-does-not-exist']                    || ModuleNamesNotFoundException | 'module-does-not-exist'
-            'unknown module and known module in an existing dataspace' | 'DATASPACE-001'     | ['MODULE-NAME-001', 'module-does-not-exist'] || ModuleNamesNotFoundException | 'module-does-not-exist'
+            scenario                                                   | dataspaceName       | moduleNames                                || expectedException            | expectedMessageDetails  | messageDoesNotContain
+            'unknown dataspace'                                        | 'db-does-not-exist' | ['does-not-matter']                        || DataspaceNotFoundException   | 'db-does-not-exist'     | 'does-not-matter'
+            'unknown module and known module' | 'dataspace-1'       | ['module-name-1', 'module-does-not-exist'] || ModuleNamesNotFoundException | 'module-does-not-exist' | 'module-name-1'
     }
 
     def buildAnchor(def anchorName, def dataspaceName, def SchemaSetName) {
