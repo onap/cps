@@ -177,7 +177,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.dmiPluginUserName              | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -185,7 +185,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgUserName            | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -193,7 +193,7 @@ exhaustive.
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
-|                                       | See also :ref:`credentials_retrieval`.                                                                  |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgDatabase            | Database name used by cps-core                                                                          | ``cpsdb``                     |
 |                                       |                                                                                                         |                               |
