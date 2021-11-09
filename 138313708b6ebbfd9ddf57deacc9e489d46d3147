@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "f931a8a0_e59c613b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "still no control over the order ?!\nits really awkward as the order on the service method is different(but correct) We possibly have to live with this :-(",
+      "range": {
+        "startLine": 136,
+        "startChar": 84,
+        "endLine": 137,
+        "endChar": 29
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b513ba6_7f74cd7e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "it is actually one word, please revert and update the old tests accordingly",
+      "range": {
+        "startLine": 285,
+        "startChar": 35,
+        "endLine": 285,
+        "endChar": 47
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7698f730_979d254f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "Update",
+      "range": {
+        "startLine": 252,
+        "startChar": 7,
+        "endLine": 252,
+        "endChar": 15
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddfbd606_61b5c23b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "Joe had very similar code to \u0027generate a request body\u0027 which I asked him to refactor into a new class, you might be able to use/build upon that\nMaybe the best way forward is a coding session between the 3 of....",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 82
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db997274_5ad831b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 2
@@ -18,6 +110,53 @@
         "startChar": 29,
         "endLine": 191,
         "endChar": 54
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76c58006_56f9e9f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "it wil be Post to DMI see issue decision #5 here: https://wiki.onap.org/display/DW/CPS-390+Spike%3A+Define+and+Agree+DMI+Plugin+REST+Interface\n\n(does dmiRestClient still have a \u0027put\u0027 version of this method, it should be removed even \u0027read\u0027 should you the post-method",
+      "parentUuid": "db997274_5ad831b1",
+      "range": {
+        "startLine": 191,
+        "startChar": 29,
+        "endLine": 191,
+        "endChar": 54
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc346c9d_0b8d1ceb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operation/DmiOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T17:12:33Z",
+      "side": 1,
+      "message": "extract out cmHandle and resourceIdentifier strings to re-use here and on lines 128/129 so it more clear that the url is build using these parameters...\n\n(it gets a bit lost now in teh long string literal)\n\nsomething like\ndef cmHandle \u003d \u0027some handle\u0027\ndef resourceIdentifier \u003d \u0027parent/child\"\ndef expectedUrl \u003d \"some-dmi-service-name/dmi/v1/ch/{$cmHandle}/data/ds\" +\n\"/ncmp-datastore:passthrough-running?resourceIdentifier\u003d{$resourceIdentifier}\"",
+      "range": {
+        "startLine": 124,
+        "startChar": 63,
+        "endLine": 124,
+        "endChar": 75
       },
       "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
