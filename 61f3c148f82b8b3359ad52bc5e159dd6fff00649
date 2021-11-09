@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a540502e_216b8290",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-09T09:52:43Z",
+      "side": 1,
+      "message": "NB - Would remove the the term \u0027existing\u0027. I think dataspace is just fine.",
+      "range": {
+        "startLine": 166,
+        "startChar": 51,
+        "endLine": 166,
+        "endChar": 59
+      },
+      "revId": "61f3c148f82b8b3359ad52bc5e159dd6fff00649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
