@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b9cde135_666a971f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T10:20:50Z",
+      "side": 1,
+      "message": "fix imports",
+      "range": {
+        "startLine": 25,
+        "startChar": 34,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "61f3c148f82b8b3359ad52bc5e159dd6fff00649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a540502e_216b8290",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -18,6 +41,29 @@
         "startChar": 51,
         "endLine": 166,
         "endChar": 59
+      },
+      "revId": "61f3c148f82b8b3359ad52bc5e159dd6fff00649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e96a7889_e63a83e5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-09T10:20:50Z",
+      "side": 1,
+      "message": "NB: teh whole \u0027 in an existing dataspace\u0027 is not needed really (just to make teh tabel shorter)",
+      "range": {
+        "startLine": 166,
+        "startChar": 45,
+        "endLine": 166,
+        "endChar": 69
       },
       "revId": "61f3c148f82b8b3359ad52bc5e159dd6fff00649",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
