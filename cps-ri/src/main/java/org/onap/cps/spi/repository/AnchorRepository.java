@@ -45,16 +45,13 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
 
-    @Query(value = "SELECT DISTINCT\n"
-        + "anchor.*\n"
-        + "FROM\n"
-        + "yang_resource\n"
-        + "JOIN schema_set_yang_resources ON "
-        + "schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
+    @Query(value = "SELECT anchor.* FROM yang_resource\n"
+        + "JOIN schema_set_yang_resources ON schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
         + "JOIN schema_set ON schema_set.id = schema_set_yang_resources.schema_set_id\n"
         + "JOIN anchor ON anchor.schema_set_id = schema_set.id\n"
-        + "JOIN dataspace ON dataspace.id = anchor.dataspace_id AND dataspace.name = :dataspaceName\n"
-        + "WHERE yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
-    Collection<AnchorEntity> getAnchorsByDataspaceNameAndModuleNames(@Param("dataspaceName") String dataspaceName,
-        @Param("moduleNames") Collection<String> moduleNames);
+        + "WHERE schema_set.dataspace_id = :dataspaceId AND module_name IN (:moduleNames)\n"
+        + "GROUP BY anchor.id, anchor.name, anchor.dataspace_id, anchor.schema_set_id\n"
+        + "HAVING COUNT(DISTINCT module_name) = :sizeOfModuleNames", nativeQuery = true)
+    Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
+        @Param("moduleNames") Collection<String> moduleNames, @Param("sizeOfModuleNames") int sizeOfModuleNames);
 }

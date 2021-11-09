@@ -97,8 +97,9 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public Collection<Anchor> queryAnchors(final String dataspaceName, final Collection<String> inputModuleNames) {
         validateDataspaceAndModuleNames(dataspaceName, inputModuleNames);
-        final Collection<AnchorEntity> anchorEntities =
-            anchorRepository.getAnchorsByDataspaceNameAndModuleNames(dataspaceName, inputModuleNames);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Collection<AnchorEntity> anchorEntities = anchorRepository
+            .getAnchorsByDataspaceIdAndModuleNames(dataspaceEntity.getId(), inputModuleNames, inputModuleNames.size());
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
     }
 
