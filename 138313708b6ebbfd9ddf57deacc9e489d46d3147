@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db997274_5ad831b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-11-09T16:25:29Z",
+      "side": 1,
+      "message": "for update are we invoking POST? This should be PUT I guess...",
+      "range": {
+        "startLine": 191,
+        "startChar": 29,
+        "endLine": 191,
+        "endChar": 54
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
