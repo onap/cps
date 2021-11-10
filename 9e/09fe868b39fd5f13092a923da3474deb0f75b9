@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Luke Gleeson <luke.gleeson@est.tech>
+Code-Review+1: Renu Kumari <renu.kumari@bell.ca>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-by: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-at: Wed, 10 Nov 2021 16:28:57 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/125676
+Project: cps
+Branch: refs/heads/master
