@@ -217,8 +217,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final List<ConditionProperties> conditionProperties =
             conditions.getConditions().stream().collect(Collectors.toList());
         final CmHandles cmHandles = new CmHandles();
-        final Collection<String> cmHandleIdentifiers = processConditions(conditionProperties);
-        cmHandleIdentifiers.forEach(cmHandle -> cmHandles.setCmHandles(toCmHandleProperties(cmHandle)));
+        cmHandles.setCmHandles(toCmHandleProperties(processConditions(conditionProperties)));
         return ResponseEntity.ok(cmHandles);
     }
 
@@ -254,11 +253,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return moduleNames;
     }
 
-    private CmHandleProperties toCmHandleProperties(final String cmHandleId) {
+    private CmHandleProperties toCmHandleProperties(final Collection<String> cmHandleIdentifiers) {
         final CmHandleProperties cmHandleProperties = new CmHandleProperties();
-        final CmHandleProperty cmHandleProperty = new CmHandleProperty();
-        cmHandleProperty.setCmHandleId(cmHandleId);
-        cmHandleProperties.add(cmHandleProperty);
+        for (final String cmHandleIdentifier : cmHandleIdentifiers) {
+            final CmHandleProperty cmHandleProperty = new CmHandleProperty();
+            cmHandleProperty.setCmHandleId(cmHandleIdentifier);
+            cmHandleProperties.add(cmHandleProperty);
+        }
         return cmHandleProperties;
     }
 
