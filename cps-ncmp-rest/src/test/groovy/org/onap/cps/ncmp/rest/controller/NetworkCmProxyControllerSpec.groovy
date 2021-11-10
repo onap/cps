@@ -258,8 +258,8 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonData = TestUtils.getResourceFileContent('cmhandle-search.json')
-        and: 'the service method is invoked with module names and returns a cm handle id'
-            mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id']
+        and: 'the service method is invoked with module names and returns two cm handle ids'
+            mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -267,7 +267,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'response status returns OK'
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
-            response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id"}]}'
+            response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
     }
 
     def 'Call execute cm handle searches with unrecognized condition name.'() {
@@ -279,7 +279,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonData)).andReturn().response
         then: 'an empty cm handle identifier is returned'
-            response.contentAsString == '{"cmHandles":null}'
+            response.contentAsString == '{"cmHandles":[]}'
     }
 
     def 'Update resource data in passthrough-running datastore.' () {
