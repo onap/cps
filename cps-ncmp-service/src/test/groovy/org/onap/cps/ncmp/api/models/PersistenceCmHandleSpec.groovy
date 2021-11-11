@@ -27,7 +27,7 @@ class PersistenceCmHandleSpec extends Specification {
 
     def 'Setting and getting additional properties.'() {
         given: 'a map of one property is added'
-            objectUnderTest.setAdditionalProperties([myProperty: 'some value'])
+            objectUnderTest.asAdditionalProperties([myProperty: 'some value'])
         when: 'the additional properties are retrieved'
             def result = objectUnderTest.getAdditionalProperties()
         then: 'the result has the right size'
