@@ -31,6 +31,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
 import com.google.gson.Gson
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
@@ -221,17 +223,17 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Create Resource Data from passthrough running with #scenario.' () {
         given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+            def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=parent/child"
-        when: 'get data resource request is performed'
+        when: 'create resource request is performed'
             def response = mvc.perform(
-                    post(getUrl)
+                    post(url)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .accept(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
             ).andReturn().response
         then: 'ncmp service method to create resource called'
-            1 * mockNetworkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', requestBody, 'application/json;charset=UTF-8')
+            1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
         where: 'given request body'
@@ -293,8 +295,8 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
-            1 * mockNetworkCmProxyDataService.updateResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', 'some-request-body', 'application/json;charset=UTF-8')
+            1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'parent/child', UPDATE,'some-request-body', 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }

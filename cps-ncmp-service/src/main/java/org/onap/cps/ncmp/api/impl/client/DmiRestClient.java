@@ -42,6 +42,7 @@ public class DmiRestClient {
 
     public ResponseEntity<Object> putOperationWithJsonData(final String dmiResourceUrl,
                                                             final String jsonData, final HttpHeaders headers) {
+        //TODO Toine Siebelink, should we use POST operation below instead (and return a String-Entity!
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(headers));
         return restTemplate.exchange(dmiResourceUrl, HttpMethod.PUT, httpEntity, Object.class);
     }

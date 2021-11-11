@@ -22,6 +22,10 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl
+import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -61,5 +65,29 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
     }
 
+    def 'Dmi plugin registration with #scenario' () {
+        given: 'jsonData, cmHandle, & DmiPluginRegistration'
+            def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
+            def cmHandle = new CmHandle(cmHandleID : 'example-name')
+            def expectedDmiPluginRegistration = new DmiPluginRegistration(
+                dmiPlugin: 'service1',
+                dmiDataPlugin: '',
+                dmiModelPlugin: '',
+                createdCmHandles: [cmHandle])
+        when: 'post request is performed & registration is called with correct DMI plugin information'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)
+            ).andReturn().response
+        print("*** " + response.getStatus())
+        then: 'no NcmpException is thrown & updateDmiRegistrationAndSyncModule is called with correct parameters'
+            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule({
+                it.getDmiPlugin() == expectedDmiPluginRegistration.getDmiPlugin()
+                it.getDmiDataPlugin() == expectedDmiPluginRegistration.getDmiDataPlugin()
+                it.getDmiModelPlugin() == expectedDmiPluginRegistration.getDmiModelPlugin()
+                it.getCreatedCmHandles().get(0).getCmHandleID() == expectedDmiPluginRegistration.getCreatedCmHandles().get(0).getCmHandleID()
+            })
+    }
 }
 
