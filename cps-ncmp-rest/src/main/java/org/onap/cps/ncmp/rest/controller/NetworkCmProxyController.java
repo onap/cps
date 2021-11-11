@@ -22,6 +22,9 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import static org.onap.cps.ncmp.api.models.DmiRequestBody.OperationEnum.CREATE;
+import static org.onap.cps.ncmp.api.models.DmiRequestBody.OperationEnum.UPDATE;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
@@ -132,14 +135,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
-        final String cmHandle, final String requestBody, final String contentType) {
-        networkCmProxyDataService.updateResourceDataPassThroughRunningForCmHandle(cmHandle,
-            resourceIdentifier, requestBody, contentType);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     /**
      * Update Node Leaves.
      * @deprecated This Method is no longer used as part of NCMP.
@@ -195,25 +190,49 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Create resource data in datastore pass through running
-     * for given cm-handle.
+     * Create resource data in datastore pass through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier
      * @param cmHandle cm handle identifier
-     * @param requestBody requestBody
+     * @param requestBody the request body
      * @param contentType content type of body
-     * @return {@code ResponseEntity} response from dmi plugi
+     * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
                                                                      final String cmHandle,
                                                                      final String requestBody,
                                                                      final String contentType) {
-        networkCmProxyDataService.createResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, requestBody, contentType);
+        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+                resourceIdentifier, CREATE, requestBody, contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Update resource data in datastore pass through running for given cm-handle.
+     *
+     * @param resourceIdentifier resource identifier
+     * @param cmHandle cm handle identifier
+     * @param requestBody the request body
+     * @param contentType content type of the body
+     * @return response entity
+     */
+    @Override
+    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                       final String cmHandle,
+                                                                       final String requestBody,
+                                                                       final String contentType) {
+        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+            resourceIdentifier, UPDATE, requestBody, contentType);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Execute cm handle search.
+     *
+     * @param conditions the conditions
+     * @return cm handles returned from search.
+     */
     @Override
     public ResponseEntity<CmHandles> executeCmHandleSearch(final Conditions conditions) {
         final List<ConditionProperties> conditionProperties =
@@ -223,6 +242,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return ResponseEntity.ok(cmHandles);
     }
 
+    /**
+     * Return module references for a cm handle.
+     *
+     * @param cmHandle the cm handle
+     * @return module references for cm handle
+     */
     @Override
     public ResponseEntity<Object> getModuleReferencesByCmHandle(final String cmHandle) {
         final Collection<ModuleReference>
@@ -264,6 +289,4 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         }
         return cmHandleProperties;
     }
-
-
 }

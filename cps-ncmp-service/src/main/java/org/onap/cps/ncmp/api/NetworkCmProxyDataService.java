@@ -22,8 +22,9 @@
 
 package org.onap.cps.ncmp.api;
 
+import static org.onap.cps.ncmp.api.models.DmiRequestBody.OperationEnum;
+
 import java.util.Collection;
-import javax.validation.constraints.NotNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -118,8 +119,8 @@ public interface NetworkCmProxyDataService {
      * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
-    Object getResourceDataOperationalForCmHandle(@NotNull String cmHandle,
-                                                 @NotNull String resourceIdentifier,
+    Object getResourceDataOperationalForCmHandle(String cmHandle,
+                                                 String resourceIdentifier,
                                                  String acceptParamInHeader,
                                                  String optionsParamInQuery);
 
@@ -133,24 +134,25 @@ public interface NetworkCmProxyDataService {
      * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
-    Object getResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
-                                                        @NotNull String resourceIdentifier,
+    Object getResourceDataPassThroughRunningForCmHandle(String cmHandle,
+                                                        String resourceIdentifier,
                                                         String acceptParamInHeader,
                                                         String optionsParamInQuery);
 
     /**
-     * Create resource data for data store pass-through running
+     * Write resource data for data store pass-through running
      * using dmi for given cm-handle.
-     *
-     * @param cmHandle cm handle
+     *  @param cmHandle cm handle
      * @param resourceIdentifier resource identifier
+     * @param operation required operation
      * @param requestBody request body to create resource
      * @param contentType content type in body
      */
-    void createResourceDataPassThroughRunningForCmHandle(@NotNull String cmHandle,
-                                                         @NotNull String resourceIdentifier,
-                                                         @NotNull String requestBody,
-                                                         String contentType);
+    void writeResourceDataPassThroughRunningForCmHandle(String cmHandle,
+                                                        String resourceIdentifier,
+                                                        OperationEnum operation,
+                                                        String requestBody,
+                                                        String contentType);
 
     /**
      * Retrieve module references for the given cm handle.
@@ -158,7 +160,7 @@ public interface NetworkCmProxyDataService {
      * @param cmHandle cm handle
      * @return a collection of modules names and revisions
      */
-    Collection<ModuleReference> getYangResourcesModuleReferences(@NotNull String cmHandle);
+    Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandle);
 
     /**
      * Query cm handle identifiers for the given collection of module names.
@@ -169,14 +171,4 @@ public interface NetworkCmProxyDataService {
      */
     Collection<String> executeCmHandleHasAllModulesSearch(Collection<String> moduleNames);
 
-    /**
-     * Update resource data for data store pass-through running using dmi for the given cm-handle.
-     *
-     * @param cmHandle cm handle
-     * @param resourceIdentifier resource identifier
-     * @param requestBody request body to create resource
-     * @param contentType content type in body
-     */
-    void updateResourceDataPassThroughRunningForCmHandle(String cmHandle, String resourceIdentifier,
-        String requestBody, String contentType);
 }
