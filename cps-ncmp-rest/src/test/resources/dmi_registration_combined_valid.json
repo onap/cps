@@ -1,0 +1,8 @@
+{
+  "dmiPlugin": "service1",
+  "dmiDataPlugin": "",
+  "dmiModelPlugin": "",
+  "createdCmHandles": [{
+    "cmHandle": "example-name"
+  }]
+}

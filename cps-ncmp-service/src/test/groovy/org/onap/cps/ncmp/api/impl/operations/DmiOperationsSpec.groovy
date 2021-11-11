@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operation
+package org.onap.cps.ncmp.api.impl.operations
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
@@ -92,17 +92,6 @@ class DmiOperationsSpec extends Specification {
                     'testJsonbody')
         then: 'the put operation is executed with the correct URL'
             1 * mockDmiRestClient.postOperationWithJsonData(expectedUrl, 'testJsonbody', _ as HttpHeaders)
-    }
-
-    def 'Call get resource from dmi.'() {
-        given: 'expected url'
-            def expectedUrl = 'testDmiBasePath/dmi/v1/ch/testCmhandle/modules'
-        when: 'get resource data is called to dmi'
-            objectUnderTest.getResourceFromDmi('testDmiBasePath',
-                    'testCmhandle',
-                    'modules')
-        then: 'the post operation is executed with the correct URL'
-            1 * mockDmiRestClient.postOperation(expectedUrl, _ as HttpHeaders)
     }
 
     def 'Call get resource from dmi with json data.'() {
