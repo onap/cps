@@ -20,13 +20,29 @@
 
 package org.onap.cps.ncmp.api.impl.operation;
 
+import static org.onap.cps.ncmp.api.impl.operation.RequiredDmiService.DATA;
+import static org.onap.cps.ncmp.api.impl.operation.RequiredDmiService.MODEL;
+import static org.onap.cps.ncmp.api.models.GenericRequestBody.OperationEnum.READ;
+
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import java.util.List;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.ncmp.api.models.GenericRequestBody;
+import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class DmiOperations {
     @Getter
@@ -46,7 +62,10 @@ public class DmiOperations {
         }
     }
 
+    private PersistenceCmHandleRetriever cmHandlePropertiesRetriever;
+    private ObjectMapper objectMapper;
     private DmiRestClient dmiRestClient;
+
     private static final String DMI_API_PATH = "/dmi";
     private static final String DMI_CM_HANDLE_PATH = "/v1/ch/{cmHandle}";
     private static final String DMI_CM_HANDLE_DATASTORE_PATH = DMI_CM_HANDLE_PATH + "/data/ds";
@@ -60,7 +79,11 @@ public class DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiOperations(final DmiRestClient dmiRestClient) {
+    public DmiOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
+                         final ObjectMapper objectMapper,
+                         final DmiRestClient dmiRestClient) {
+        this.cmHandlePropertiesRetriever = cmHandlePropertiesRetriever;
+        this.objectMapper = objectMapper;
         this.dmiRestClient = dmiRestClient;
     }
 
@@ -80,6 +103,8 @@ public class DmiOperations {
         return dmiRestClient.postOperation(dmiResourceDataUrl, httpHeaders);
     }
 
+
+
     /**
      * Get resources from DMI for modules.
      *
@@ -89,7 +114,7 @@ public class DmiOperations {
      * @param resourceName name of the resource(s)
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<String> getResourceFromDmiWithJsonData(final String dmiServiceName,
+    private ResponseEntity<String> getResourceFromDmiWithJsonData(final String dmiServiceName,
                                                                final String jsonData,
                                                                final String cmHandle,
                                                                final String resourceName) {
@@ -101,72 +126,67 @@ public class DmiOperations {
      * This method fetches the resource data from operational data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param dmiServiceName dmi service name
      * @param cmHandle    network resource identifier
      * @param resourceId  resource identifier
      * @param optionsParamInQuery options query
      * @param acceptParamInHeader accept parameter
-     * @param jsonBody    json body for put operation
+     * @param  dataStore
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> getResourceDataOperationalFromDmi(final String dmiServiceName,
-                                                                    final String cmHandle,
-                                                                    final String resourceId,
-                                                                    final String optionsParamInQuery,
-                                                                    final String acceptParamInHeader,
-                                                                    final String jsonBody) {
-        final var dmiResourceDataUrl = getDmiDatastoreUrl(dmiServiceName, cmHandle, resourceId,
-            optionsParamInQuery, DataStoreEnum.PASSTHROUGH_OPERATIONAL);
+
+    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandle,
+                                                          final String resourceId,
+                                                          final String optionsParamInQuery,
+                                                          final String acceptParamInHeader,
+                                                          final DataStoreEnum dataStore) {
+        PersistenceCmHandle persistenceCmHandle =
+            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndProperties(cmHandle);
+        GenericRequestBody genericRequestBody = GenericRequestBody.builder()
+            .operation(READ)
+            .build();
+        genericRequestBody.toCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        final String jsonBody = toBodyAsString(genericRequestBody);
+
+        final var dmiResourceDataUrl = getDmiDatastoreUrl(
+            persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
+            optionsParamInQuery, dataStore);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
         return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
 
-    /**
-     * This method fetches the resource data from pass-through running data store for given cm handle
-     * identifier on given resource using dmi client.
-     *
-     * @param dmiServiceName dmi service name
-     * @param cmHandle    network resource identifier
-     * @param resourceId  resource identifier
-     * @param optionsParamInQuery fields query
-     * @param acceptParamInHeader accept parameter
-     * @param jsonBody    json body for put operation
-     * @return {@code ResponseEntity} response entity
-     */
-    public ResponseEntity<Object> getResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
-                                                                           final String cmHandle,
-                                                                           final String resourceId,
-                                                                           final String optionsParamInQuery,
-                                                                           final String acceptParamInHeader,
-                                                                           final String jsonBody) {
-        final var dmiResourceDataUrl = getDmiDatastoreUrl(dmiServiceName, cmHandle, resourceId,
-            optionsParamInQuery, DataStoreEnum.PASSTHROUGH_RUNNING);
-        final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
-    }
 
     /**
      * This method creates the resource data from pass-through running data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param dmiServiceName dmi service name
      * @param cmHandle    network resource identifier
      * @param resourceId  resource identifier
-     * @param jsonBody    json body for put operation
+     * @param requestData
+     * @param dataType
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<String> createResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
-                                                                            final String cmHandle,
-                                                                            final String resourceId,
-                                                                            final String jsonBody) {
-        final var stringBuilder = getStringBuilderForPassThroughUrl(dmiServiceName,
+    public ResponseEntity<String> createResourceDataPassThroughRunningFromDmi(final String cmHandle,
+                                                                              final String resourceId,
+                                                                              final String requestData,
+                                                                              final String dataType) {
+        PersistenceCmHandle persistenceCmHandle =
+            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndProperties(cmHandle);
+        GenericRequestBody genericRequestBody = GenericRequestBody.builder()
+            .operation(READ)
+            .data(requestData)
+            .dataType(dataType)
+            .build();
+        genericRequestBody.toCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        final String jsonBody = toBodyAsString(genericRequestBody);
+        final StringBuilder stringBuilder =
+            getStringBuilderForPassThroughUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
             cmHandle, resourceId, DataStoreEnum.PASSTHROUGH_RUNNING);
         return dmiRestClient.postOperationWithJsonData(stringBuilder.toString(), jsonBody, new HttpHeaders());
     }
 
-    private String getDmiResourceUrl(final String dmiServiceName,
-                                     final String cmHandle,
-                                     final String resourceName) {
+    private static String getDmiResourceUrl(final String dmiServiceName,
+                                            final String cmHandle,
+                                            final String resourceName) {
         final var stringBuilder = new StringBuilder(dmiServiceName);
         stringBuilder.append(DMI_API_PATH);
         stringBuilder.append(DMI_CM_HANDLE_PATH.replace("{cmHandle}", cmHandle));
@@ -174,21 +194,22 @@ public class DmiOperations {
         return stringBuilder.toString();
     }
 
-    private String getDmiDatastoreUrl(final String dmiServiceName,
-                                      final String cmHandle,
-                                      final String resourceId,
-                                      final String optionsParamInQuery,
-                                      final DataStoreEnum dataStoreEnum) {
+
+    private static String getDmiDatastoreUrl(final String dmiServiceName,
+                                             final String cmHandle,
+                                             final String resourceId,
+                                             final String optionsParamInQuery,
+                                             final DataStoreEnum dataStoreEnum) {
         final var stringBuilder = getStringBuilderForPassThroughUrl(dmiServiceName,
             cmHandle, resourceId, dataStoreEnum);
         appendOptionsQuery(stringBuilder, optionsParamInQuery);
         return stringBuilder.toString();
     }
 
-    private StringBuilder getStringBuilderForPassThroughUrl(final String dmiServiceName,
-                                                            final String cmHandle,
-                                                            final String resourceId,
-                                                            final DataStoreEnum dataStoreEnum) {
+    private static StringBuilder getStringBuilderForPassThroughUrl(final String dmiServiceName,
+                                                                   final String cmHandle,
+                                                                   final String resourceId,
+                                                                   final DataStoreEnum dataStoreEnum) {
         final var stringBuilder = new StringBuilder(dmiServiceName);
         stringBuilder.append(DMI_API_PATH);
         stringBuilder.append(DMI_CM_HANDLE_DATASTORE_PATH.replace("{cmHandle}", cmHandle));
@@ -197,16 +218,82 @@ public class DmiOperations {
         return stringBuilder;
     }
 
-    private void appendOptionsQuery(final StringBuilder stringBuilder,
-                                    final String optionsParamInQuery) {
+    private static void appendOptionsQuery(final StringBuilder stringBuilder,
+                                           final String optionsParamInQuery) {
         if (optionsParamInQuery != null) {
             stringBuilder.append("&").append(OPTIONS_QUERY_KEY).append("=").append(optionsParamInQuery);
         }
     }
 
-    private HttpHeaders prepareHeader(final String acceptParam) {
+    private static HttpHeaders prepareHeader(final String acceptParam) {
         final var httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.ACCEPT, acceptParam);
         return httpHeaders;
     }
+
+    private String toBodyAsString(GenericRequestBody genericRequestBody) {
+        try {
+            return objectMapper.writeValueAsString(genericRequestBody);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON.");
+            throw new NcmpException("Parsing error occurred while converting given object to JSON.",
+                e.getMessage());
+        }
+    }
+
+    /**********************************************************************************************************
+     *    M O D E L - O P E R A T I O N S
+     **********************************************************************************************************/
+    public ResponseEntity<String> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
+        final GenericRequestBody genericRequestBody = GenericRequestBody.builder()
+            .build();
+        genericRequestBody.toCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        return getResourceFromDmiWithJsonData(persistenceCmHandle.resolveDmiServiceName(MODEL),
+            toBodyAsString(genericRequestBody), persistenceCmHandle.getId(), "modules");
+    }
+
+    public ResponseEntity<String>  getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
+                                                              final List<ModuleReference> unknownModuleReferences) {
+        final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResources(
+            unknownModuleReferences, persistenceCmHandle.getAdditionalProperties());
+        return getResourceFromDmiWithJsonData(
+            persistenceCmHandle.resolveDmiServiceName(MODEL),
+            jsonDataWithDataAndCmHandleProperties,
+            persistenceCmHandle.getId(),
+            "moduleResources");
+    }
+
+    private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
+                                                             final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
+        final JsonObject data = new JsonObject();
+        data.add("modules", moduleReferencesAsJson);
+        final JsonObject jsonRequestObject = new JsonObject();
+        jsonRequestObject.add("data", data);
+        final Gson gson = new Gson();
+        jsonRequestObject.add("cmHandleProperties", toJson(cmHandleProperties));
+        return jsonRequestObject.toString();
+    }
+
+    private static JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
+        final JsonArray moduleReferences = new JsonArray();
+
+        for (final ModuleReference moduleReference : unknownModuleReferences) {
+            final JsonObject moduleReferenceAsJson = new JsonObject();
+            moduleReferenceAsJson.addProperty("name", moduleReference.getModuleName());
+            moduleReferenceAsJson.addProperty("revision", moduleReference.getRevision());
+            moduleReferences.add(moduleReferenceAsJson);
+        }
+        return moduleReferences;
+    }
+
+    private static JsonObject toJson(final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final JsonObject asJsonObject = new JsonObject();
+        for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandleProperties) {
+            asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
+        }
+        return asJsonObject;
+    }
+
+
 }

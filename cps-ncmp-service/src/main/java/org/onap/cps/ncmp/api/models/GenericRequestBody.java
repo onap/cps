@@ -23,6 +23,9 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,7 +33,7 @@ import lombok.Getter;
 @JsonInclude(Include.NON_NULL)
 @Getter
 @Builder
-public class GenericRequestBody   {
+public class GenericRequestBody {
     public enum OperationEnum {
         READ("read"),
         CREATE("create");
@@ -50,5 +53,19 @@ public class GenericRequestBody   {
     private OperationEnum operation;
     private String dataType;
     private String data;
-    private Map<String, String> cmHandleProperties;
+    private Map<String,String> cmHandleProperties;
+
+    public void toCmHandleProperties(
+        final List<PersistenceCmHandle.AdditionalProperty> cmHandlePropertiesAsList) {
+        if (cmHandlePropertiesAsList == null || cmHandlePropertiesAsList.isEmpty()) {
+            cmHandleProperties = Collections.emptyMap();
+        } else {
+            cmHandleProperties = new LinkedHashMap<>();
+            for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandlePropertiesAsList) {
+                cmHandleProperties.put(additionalProperty.getName(),
+                    additionalProperty.getValue());
+            }
+        }
+    }
+
 }

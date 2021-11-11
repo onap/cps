@@ -18,14 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.google.common.base.Strings;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
 /**
  * Dmi Registry request object.
@@ -37,10 +38,44 @@ public class DmiPluginRegistration {
 
     private String dmiPlugin;
 
+    private String dmiDataPlugin;
+
+    private String dmiModelPlugin;
+
     private List<CmHandle> createdCmHandles;
 
     private List<CmHandle> updatedCmHandles;
 
     private List<String> removedCmHandles;
+
+    public static final String PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION = "Please supply correct plugin information.";
+
+    /**
+     * Validates plugin service names.
+     *
+     * @throws NcmpException if validation fails.
+     */
+    public void validateDmiPluginRegistration() throws NcmpException {
+        final String combinedServiceName = dmiPlugin;
+        final String dataServiceName = dmiDataPlugin;
+        final String modelsServiceName = dmiModelPlugin;
+
+        if (isNullEmptyOrBlank(combinedServiceName)
+            && isNullEmptyOrBlank(dataServiceName)
+            && isNullEmptyOrBlank(modelsServiceName)) {
+            throw new NcmpException("No DMI plugin service names",
+                PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+        }
+
+        if (!isNullEmptyOrBlank(combinedServiceName)
+            && (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName))) {
+            throw new NcmpException("Invalid combination of plugin service names",
+                PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+        }
+    }
+
+    private static boolean isNullEmptyOrBlank(final String string) {
+        return Strings.isNullOrEmpty(string) || string.isBlank();
+    }
 
 }

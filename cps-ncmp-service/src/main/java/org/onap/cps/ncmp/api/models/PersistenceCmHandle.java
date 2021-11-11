@@ -22,13 +22,16 @@
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Strings;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.operation.RequiredDmiService;
 
 /**
  * DmiRegistry.
@@ -43,8 +46,31 @@ public class PersistenceCmHandle {
     @JsonProperty("dmi-service-name")
     private String dmiServiceName;
 
+    @JsonProperty("dmi-data-service-name")
+    private String dmiDataServiceName;
+
+    @JsonProperty("dmi-model-service-name")
+    private String dmiModelServiceName;
+
     @JsonProperty("additional-properties")
     private List<AdditionalProperty> additionalProperties;
+
+    public static PersistenceCmHandle toPersistenceCmHandle(final String dmiServiceName,
+                                                            final String dmiDataServiceName,
+                                                            final String dmiModelServiceName,
+                                                            final CmHandle cmHandle) {
+        final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
+        persistenceCmHandle.setId(cmHandle.getCmHandleID());
+        persistenceCmHandle.setDmiServiceName(dmiServiceName);
+        persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
+        persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        if (cmHandle.getCmHandleProperties() == null) {
+            persistenceCmHandle.setAdditionalProperties(Collections.emptyMap());
+        } else {
+            persistenceCmHandle.setAdditionalProperties(cmHandle.getCmHandleProperties());
+        }
+        return persistenceCmHandle;
+    }
 
     /**
      * Set Additional Properties map, key and value pair.
@@ -55,6 +81,20 @@ public class PersistenceCmHandle {
         for (final Map.Entry<String, String> entry : additionalPropertiesAsMap.entrySet()) {
             additionalProperties.add(new AdditionalProperty(entry.getKey(), entry.getValue()));
         }
+    }
+
+    public String resolveDmiServiceName(final RequiredDmiService requiredService) {
+        if (isNullEmptyOrBlank(dmiServiceName)) {
+            if (RequiredDmiService.DATA.equals(requiredService)) {
+                return dmiDataServiceName;
+            }
+            return dmiModelServiceName;
+        }
+        return dmiServiceName;
+    }
+
+    private static boolean isNullEmptyOrBlank(final String string) {
+        return Strings.isNullOrEmpty(string) || string.isBlank();
     }
 
     @AllArgsConstructor

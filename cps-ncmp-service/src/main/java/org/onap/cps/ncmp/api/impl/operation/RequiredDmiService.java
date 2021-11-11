@@ -18,27 +18,6 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl.operation;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
-
-/**
- * CmHandle.
- */
-@Validated
-@Getter
-@Setter
-@AllArgsConstructor
-public class CmHandle {
-
-    @JsonProperty("cmHandle")
-    private String cmHandleID;
-
-    private Map<String, String> cmHandleProperties;
-
-}
+public enum RequiredDmiService { DATA, MODEL}

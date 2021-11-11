@@ -59,6 +59,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiProperties = Mock(NcmpConfiguration.DmiProperties)
     def spyObjectMapper = Spy(ObjectMapper)
+    def mockRequestDetails = Mock(DmiRequestBodyBuilder)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiOperations, mockCpsModuleService,
             mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper)
@@ -145,7 +146,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Register or re-register a DMI Plugin with #scenario cm handles.'() {
         given: 'a registration '
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.cmHandleProperties = [name1: 'value1', name2: 'value2']
@@ -177,7 +178,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Register a DMI Plugin for the given cmHandle without additional properties.'() {
         given: 'a registration without cmHandle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
             dmiPluginRegistration.dmiPlugin = 'my-server'
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.cmHandleProperties = null
@@ -193,7 +194,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Register a DMI Plugin with JSON processing errors during #scenario.'() {
         given: 'a registration without cmHandle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
         and: 'an JSON processing exception occurs'
@@ -211,7 +212,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Register a DMI Plugin with no data found during delete.'() {
         given: 'a registration without cmHandle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
             dmiPluginRegistration.removedCmHandles = ['some cm handle']
         and: 'an JSON processing exception occurs'
             mockCpsDataService.deleteListOrListElement(*_) >>  { throw (new DataNodeNotFoundException('','')) }
@@ -455,6 +456,44 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
         then: 'get anchor identifiers is invoked  with the expected parameters'
             1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
+    }
+
+    def 'Dmi plugin registration with #scenario'() {
+        given: 'a registration '
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:dmiPlugin, dmiModelPlugin:dmiModelPlugin,
+                dmiDataPlugin:dmiDataPlugin)
+            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
+        when: 'registration is called with correct DMI plugin information'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'no NcmpException is thrown and registration is called'
+            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        where:
+            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin
+            'combined DMI plugin'             | 'service1' | ''             | ''
+            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'
+            'data & model using same service' | ''         | 'service1'     | 'service1'
+    }
+
+    def 'Invalid dmi plugin registration with #scenario'() {
+        given: 'a registration '
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:dmiPlugin, dmiModelPlugin:dmiModelPlugin,
+                dmiDataPlugin:dmiDataPlugin)
+            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
+        when: 'registration is called with incorrect DMI plugin information'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'an NcmpException is thrown with correct message details'
+            def exceptionThrown = thrown(NcmpException)
+            assert exceptionThrown.getMessage().contains(expectedMessageDetails)
+        and: 'registration is not called'
+            0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        where:
+            scenario              | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
+            'no DMI plugin'       | ''         | ''             | ''            || 'No DMI plugin service names'
+            'all DMI plugins'     | 'service1' | 'service2'     | 'service3'    || 'Invalid combination of plugin service names'
+            'no model DMI plugin' | 'service1' | ''             | 'service2'    || 'Invalid combination of plugin service names'
+            'no data DMI plugin'  | 'service1' | 'service2'     | ''            || 'Invalid combination of plugin service names'
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {
