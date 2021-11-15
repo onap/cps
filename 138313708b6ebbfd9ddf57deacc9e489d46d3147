@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "91c37f13_fc562c0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-15T14:19:46Z",
+      "side": 1,
+      "message": "as agreed this wil be addressed in Joe\u0027s commit later. Leave this as is and we try to merge this commit first.",
+      "parentUuid": "ddfbd606_61b5c23b",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 82
+      },
+      "revId": "138313708b6ebbfd9ddf57deacc9e489d46d3147",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db997274_5ad831b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operation/DmiOperations.java",
         "patchSetId": 2
