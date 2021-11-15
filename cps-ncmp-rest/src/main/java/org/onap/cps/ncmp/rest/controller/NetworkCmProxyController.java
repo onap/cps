@@ -133,9 +133,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String cmHandle,
-        final String resourceIdentifier, final String requestBody, final String contentType) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
+        final String cmHandle, final String requestBody, final String contentType) {
+        networkCmProxyDataService.updateResourceDataPassThroughRunningForCmHandle(cmHandle,
+            resourceIdentifier, requestBody, contentType);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

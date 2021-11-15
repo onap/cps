@@ -174,6 +174,23 @@ public class DmiOperations {
         return stringBuilder.toString();
     }
 
+    /**
+     * This method updates the resource data from pass-through running data store for the cm handle identifier on given
+     * resource using dmi client.
+     *
+     * @param dmiServiceName dmi service name
+     * @param cmHandle    network resource identifier
+     * @param resourceId  resource identifier
+     * @param jsonBody    json body for put operation
+     * @return {@code ResponseEntity} response entity
+     */
+    public ResponseEntity<String> updateResourceDataPassThroughRunningFromDmi(final String dmiServiceName,
+        final String cmHandle, final String resourceId, final String jsonBody) {
+        final StringBuilder stringBuilder =
+            getStringBuilderForPassThroughUrl(dmiServiceName, cmHandle, resourceId, DataStoreEnum.PASSTHROUGH_RUNNING);
+        return dmiRestClient.postOperationWithJsonData(stringBuilder.toString(), jsonBody, new HttpHeaders());
+    }
+
     private String getDmiDatastoreUrl(final String dmiServiceName,
                                       final String cmHandle,
                                       final String resourceId,
