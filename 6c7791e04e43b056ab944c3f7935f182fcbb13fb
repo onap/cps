@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04f57df5_c6fde67f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/GenericRequestBody.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-15T16:48:06Z",
+      "side": 1,
+      "message": "I don\u0027t know if I like this file just being called Generic Request Body.\nI think it should be given a more informative name. What does the team think? It\u0027s called DataAcessRequest in the DMIPlugin. Which I think could also suit here.",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "6c7791e04e43b056ab944c3f7935f182fcbb13fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
