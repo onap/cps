@@ -16,6 +16,66 @@ CPS Release Notes
 ..
 
 ..      ========================
+..      * * *   JAKARTA   * * *
+..      ========================
+
+Version: 2.1.0-SNAPSHOT
+=======================
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:2.1.0-SNAPSHOT                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+   - `CPS-636 <https://jira.onap.org/browse/CPS-636>`_  Update operation for datastore pass through running
+   - `CPS-638 <https://jira.onap.org/browse/CPS-638>`_  Delete operation for datastore pass through running
+
+Bug Fixes
+---------
+
+   - `CPS-762 <https://jira.onap.org/browse/CPS-762>`_ Query cm handles for module names returns incorrect cm handle identifiers
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+Limitations to the amount of child nodes that can be added to the fix above. The current limit is 3.
+
+*Known Vulnerabilities*
+
+None
+
+*Workarounds*
+
+None
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+None
+
+*Known Security Issues*
+
+None
+
+..      ========================
 ..      * * *   ISTANBUL   * * *
 ..      ========================
 
