@@ -16,6 +16,51 @@ CPS Release Notes
 ..
 
 ..      ========================
+..      * * *   JAKARTA   * * *
+..      ========================
+
+Version: 2.1.0-SNAPSHOT
+=======================
+
+This section lists the main changes & fixes merged into master (snapshot) version of CPS-NCMP. This information is here to assist developers that want experiment/test using our latest code bases directly. Stability of this is not guaranteed.
+
+Features
+--------
+   - `CPS-636 <https://jira.onap.org/browse/CPS-636>`_  Update operation for datastore pass through running
+   - `CPS-638 <https://jira.onap.org/browse/CPS-638>`_  Delete operation for datastore pass through running
+
+Bug Fixes
+---------
+
+   - `CPS-762 <https://jira.onap.org/browse/CPS-762>`_ Query cm handles for module names returns incorrect cm handle identifiers
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+None
+
+*Known Vulnerabilities*
+
+None
+
+*Workarounds*
+
+None
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+None
+
+*Known Security Issues*
+
+None
+
+..      ========================
 ..      * * *   ISTANBUL   * * *
 ..      ========================
 
