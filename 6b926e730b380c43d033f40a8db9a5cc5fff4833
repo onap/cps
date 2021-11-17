@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7c6634b_0aedc5ef",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-17T12:18:27Z",
+      "side": 1,
+      "message": "I don\u0027t think we should include this as it is a snapshot we are not \u0027releasing\u0027 any images (yet)\n\nInstead add a note saying  something like \"This section list the main changes \u0026 fixes merged into master (snapshot) version of CPS-NCMP. This information is here to assist developers that want experiment/test using our latest code bases directly. Stability of this is not guaranteed of course.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 97
+      },
+      "revId": "6b926e730b380c43d033f40a8db9a5cc5fff4833",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "322b3e5c_cc60e2a4",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-17T12:18:27Z",
+      "side": 1,
+      "message": "only add NEW limitations",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 100
+      },
+      "revId": "6b926e730b380c43d033f40a8db9a5cc5fff4833",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
