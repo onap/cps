@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ca4d728_a66f50d2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-11-18T14:15:17Z",
+      "side": 1,
+      "message": "Should we provide Jira ticket number for features? I have seen it for bugs but not sure of features.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 89
+      },
+      "revId": "f7b414e85fe4bd4a227e24cc4bbccd9568b188fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
