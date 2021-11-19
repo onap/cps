@@ -71,6 +71,18 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Delete a dataspace.
+     *
+     * @param dataspaceName name of dataspace to be deleted
+     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     */
+    @Override
+    public ResponseEntity<Void> deleteDataspace(final String dataspaceName) {
+        cpsAdminService.deleteDataspace(dataspaceName);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
      * Create a {@link SchemaSet}.
      *
      * @param multipartFile multipart file

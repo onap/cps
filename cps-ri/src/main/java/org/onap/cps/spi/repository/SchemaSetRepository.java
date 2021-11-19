@@ -19,7 +19,6 @@
 
 package org.onap.cps.spi.repository;
 
-import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -31,10 +30,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Integer> {
 
-    List<SchemaSetEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
-
     Optional<SchemaSetEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity,
         @NotNull String schemaSetName);
+
+    Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
     /**
      * Gets a schema set by dataspace and schema set name.

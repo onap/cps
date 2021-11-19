@@ -32,6 +32,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -68,6 +69,22 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         } catch (final DataIntegrityViolationException e) {
             throw AlreadyDefinedException.forDataspace(dataspaceName, e);
         }
+    }
+
+    @Override
+    public void deleteDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Integer anchorEntities = anchorRepository.countByDataspace(dataspaceEntity);
+        if (anchorEntities != 0) {
+            throw new DataspaceInUseException(dataspaceName,
+                    String.format("Dataspace contains %d anchor(s)", anchorEntities));
+        }
+        final Integer schemaSetEntities = schemaSetRepository.countByDataspace(dataspaceEntity);
+        if (schemaSetEntities != 0) {
+            throw new DataspaceInUseException(dataspaceName,
+                    String.format("Dataspace contains %d schemaset(s)", schemaSetEntities));
+        }
+        dataspaceRepository.delete(dataspaceEntity);
     }
 
     @Override
