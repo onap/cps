@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98d15308_be7e3d82",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-19T10:59:48Z",
+      "side": 1,
+      "message": "nb url",
+      "range": {
+        "startLine": 226,
+        "startChar": 16,
+        "endLine": 226,
+        "endChar": 26
+      },
+      "revId": "b09efcc1966a637f575dbc3659a4df24811bea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "005858c4_43871e26",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-19T10:59:48Z",
+      "side": 1,
+      "message": "nb I would remove this",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 41
+      },
+      "revId": "b09efcc1966a637f575dbc3659a4df24811bea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaf501fb_57c88973",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-19T10:59:48Z",
+      "side": 1,
+      "message": "nb typo",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 78
+      },
+      "revId": "b09efcc1966a637f575dbc3659a4df24811bea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bf67569_6f31f2f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/PersistenceCmHandleSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-19T10:59:48Z",
+      "side": 1,
+      "message": "nb would probably define the label here",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "b09efcc1966a637f575dbc3659a4df24811bea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
