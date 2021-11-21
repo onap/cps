@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "d1218e34_b1f12d67",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-11-21T22:18:49Z",
+      "side": 1,
+      "message": "It seems that the problem is coming from this constructor. There is no beans defined for DmiDataOperations and DmiModelOperations types, then the application is unable to start:\n\n  Description:\n  Parameter 0 of constructor in org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl required a bean of type \u0027org.onap.cps.ncmp.api.impl.operations.DmiDataOperations\u0027 that could not be found.\n\n\n  Action:\n  Consider defining a bean of type \u0027org.onap.cps.ncmp.api.impl.operations.DmiDataOperations\u0027 in your configuration.",
+      "range": {
+        "startLine": 97,
+        "startChar": 11,
+        "endLine": 97,
+        "endChar": 40
+      },
+      "revId": "b09efcc1966a637f575dbc3659a4df24811bea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eaf501fb_57c88973",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
         "patchSetId": 6
