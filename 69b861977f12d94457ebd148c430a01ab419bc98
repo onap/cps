@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da4309af_fef13176",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T11:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a43f78d7_c7b6ca70",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 37
+      },
+      "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3246de79_dc370b97",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "94e4bbc8_6b650c08",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T11:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fee1114d_0d12f9ca",
+      "range": {
+        "startLine": 82,
+        "startChar": 22,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ed9f955_a7f0c872",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T11:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3246de79_dc370b97",
+      "range": {
+        "startLine": 82,
+        "startChar": 14,
+        "endLine": 82,
+        "endChar": 22
+      },
+      "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3414639_6d36682d",
         "filename": "cps-ri/src/test/resources/data/anchor.sql",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "e8d81029_d76c2d49",
+        "filename": "cps-ri/src/test/resources/data/anchor.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T11:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3414639_6d36682d",
+      "range": {
+        "startLine": 24,
+        "startChar": 29,
+        "endLine": 24,
+        "endChar": 77
+      },
+      "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21f49ca5_92f70138",
         "filename": "cps-ri/src/test/resources/data/anchor.sql",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9726f1e2_e7dd677a",
+        "filename": "cps-ri/src/test/resources/data/anchor.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T11:49:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21f49ca5_92f70138",
+      "range": {
+        "startLine": 27,
+        "startChar": 36,
+        "endLine": 27,
+        "endChar": 67
+      },
+      "revId": "69b861977f12d94457ebd148c430a01ab419bc98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
