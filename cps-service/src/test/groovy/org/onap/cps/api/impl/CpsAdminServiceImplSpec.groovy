@@ -78,4 +78,12 @@ class CpsAdminServiceImplSpec extends Specification {
             objectUnderTest.queryAnchorNames('some-dataspace-name', ['some-module-name']) == ['some-anchor-identifier']
 
     }
+
+    def 'Delete dataspace.'() {
+        when: 'delete dataspace is invoked'
+            objectUnderTest.deleteDataspace('someDataspace')
+        then: 'associated persistence service method is invoked with correct parameter'
+            1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
+    }
+
 }

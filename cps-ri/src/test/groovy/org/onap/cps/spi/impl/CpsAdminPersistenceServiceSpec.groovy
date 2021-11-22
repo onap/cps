@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
@@ -36,10 +37,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
-
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
-    static final String EMPTY_DATASPACE_NAME = 'DATASPACE-002'
+    static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
 
@@ -111,7 +111,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             dataspaceName        || expectedAnchors
             DATASPACE_NAME       || [Anchor.builder().name(ANCHOR_NAME1).schemaSetName(SCHEMA_SET_NAME1).dataspaceName(DATASPACE_NAME).build(),
                                      Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()]
-            EMPTY_DATASPACE_NAME || []
+            DATASPACE_WITH_NO_DATA || []
     }
 
     @Sql(CLEAR_DATA)
@@ -173,4 +173,26 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     def buildAnchor(def anchorName, def dataspaceName, def SchemaSetName) {
         return Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(SchemaSetName).build()
     }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete dataspace.'() {
+        when: 'delete dataspace action is invoked'
+            objectUnderTest.deleteDataspace(DATASPACE_WITH_NO_DATA)
+        then: 'dataspace is deleted'
+            assert dataspaceRepository.findByName(DATASPACE_WITH_NO_DATA).isEmpty();
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete dataspace when #scenario.'() {
+        when: 'delete dataspace action is invoked'
+            objectUnderTest.deleteDataspace(dataspaceName)
+        then: 'the correct exception is thrown with the relevant details'
+            def thrownException = thrown(expectedException)
+            thrownException.details.contains(expectedMessageDetails)
+        where: 'the following data is used'
+            scenario                          | dataspaceName       || expectedException            | expectedMessageDetails
+            'dataspace name does not exist'   | 'unknown'           || DataspaceNotFoundException   | 'unknown does not exist'
+            'dataspace contains schemasets'   | 'DATASPACE-001'     || DataspaceInUseException      | 'contains 2 schemaset(s)'
+    }
+
 }

@@ -37,6 +37,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -145,7 +146,8 @@ class CpsRestExceptionHandlerSpec extends Specification {
             assertTestResponse(response, CONFLICT, exceptionThrown.getMessage(), exceptionThrown.getDetails())
         where: 'the following exceptions are thrown'
             exceptionThrown << [new DataInUseException(dataspaceName, existingObjectName),
-                                new SchemaSetInUseException(dataspaceName, existingObjectName)]
+                                new SchemaSetInUseException(dataspaceName, existingObjectName),
+                                new DataspaceInUseException(dataspaceName, errorDetails)]
     }
 
     /*

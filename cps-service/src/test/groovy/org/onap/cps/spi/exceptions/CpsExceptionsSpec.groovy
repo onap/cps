@@ -170,4 +170,12 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception has the provided details'
             exception.details == providedDetails
     }
+
+    def 'Creating an exception that the dataspace is being used and cannot be deleted.'() {
+        given: 'a dataspace in use exception is created'
+            def exception = new DataspaceInUseException(dataspaceName,providedDetails)
+        expect: 'the exception has the correct message with dataspace name and provided details'
+            exception.message == "Dataspace with name ${dataspaceName} is being used."
+            exception.details == providedDetails
+    }
 }

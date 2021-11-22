@@ -42,6 +42,13 @@ public interface CpsAdminService {
     void createDataspace(@NonNull String dataspaceName);
 
     /**
+     * Delete dataspace.
+     *
+     * @param dataspaceName the name of the dataspace to delete
+     */
+    void deleteDataspace(@NonNull String dataspaceName);
+
+    /**
      * Create an Anchor.
      *
      * @param dataspaceName dataspace name
