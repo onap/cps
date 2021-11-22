@@ -22,6 +22,30 @@
       "revId": "33d79adc1222f8ca0e321d3651fb9b1c98a40156",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ec26b96_8c935967",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-11-22T15:41:47Z",
+      "side": 1,
+      "message": "yes, that makes sense and was overlooked.",
+      "parentUuid": "dfe64396_9fc361fd",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 9
+      },
+      "revId": "33d79adc1222f8ca0e321d3651fb9b1c98a40156",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
