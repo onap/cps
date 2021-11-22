@@ -38,6 +38,12 @@ components:
         dmiPlugin:
           type: string
           example: onap-dmi-plugin
+        dmiDataPlugin:
+          type: string
+          example: onap-dmi-data-plugin
+        dmiModelPlugin:
+          type: string
+          example: onap-dmi-model-plugin
         createdCmHandles:
           type: array
           items:
