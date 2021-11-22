@@ -45,6 +45,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
 
+    Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+
     @Query(value = "SELECT anchor.* FROM yang_resource\n"
         + "JOIN schema_set_yang_resources ON schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
         + "JOIN schema_set ON schema_set.id = schema_set_yang_resources.schema_set_id\n"

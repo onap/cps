@@ -311,6 +311,18 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.NO_CONTENT.value()
     }
 
+    def 'Delete dataspace.'() {
+        given: 'an endpoint'
+            def dataspaceEndpoint = "$basePath/v1/dataspaces"
+        when: 'delete dataspace endpoint is invoked'
+            def response = mvc.perform(delete(dataspaceEndpoint)
+                .param('dataspace-name', dataspaceName))
+                .andReturn().response
+        then: 'associated service method is invoked with expected parameter'
+            1 * mockCpsAdminService.deleteDataspace(dataspaceName)
+        and: 'response code indicates success'
+            response.status == HttpStatus.NO_CONTENT.value()
+    }
 
     def createMultipartFile(filename, content) {
         return new MockMultipartFile("file", filename, "text/plain", content.getBytes())
@@ -333,4 +345,5 @@ class AdminRestControllerSpec extends Specification {
         multipartFile.getInputStream() >> { throw new IOException() }
         return multipartFile
     }
+
 }
