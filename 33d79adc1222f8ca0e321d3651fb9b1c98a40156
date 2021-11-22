@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfe64396_9fc361fd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-11-22T14:44:34Z",
+      "side": 1,
+      "message": "Is this check really required? As per the design, schemaset cannot be deleted if it has an anchor associated with it. So if a schemaset exists, would also mean that it has an anchor associated as well. Hence the below check alone would suffice.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 9
+      },
+      "revId": "33d79adc1222f8ca0e321d3651fb9b1c98a40156",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
