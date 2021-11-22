@@ -35,6 +35,26 @@ dataspaces:
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
 
+  delete:
+    description: Delete a dataspace
+    tags:
+      - cps-admin
+    summary: Delete a dataspace
+    operationId: deleteDataspace
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInQuery'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+
 schemaSet:
   post:
     description: Create a new schema set in the given dataspace
