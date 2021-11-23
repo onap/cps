@@ -1,17 +1,32 @@
 {
-  "stores:categories": [
+  "categories": [
     {
-      "stores:code": "ISBN200123",
-      "stores:name": "library",
-      "stores:books": [
+      "code": "01",
+      "name": "Sci-Fi",
+      "books": [
         {
-          "stores:title": "A good book",
-          "stores:lang": "English",
-          "stores:authors": [
+          "title": "A Sci-Fi book",
+          "lang": "English",
+          "authors": [
             "Joe & Rahul"
           ],
-          "stores:pub_year": "2001",
-          "stores:price": "1000"
+          "pub_year": "2001",
+          "price": "1000"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "name": "Horror",
+      "books": [
+        {
+          "title": "A Horror book",
+          "lang": "English",
+          "authors": [
+            "Joe & Rahul"
+          ],
+          "pub_year": "2003",
+          "price": "2000"
         }
       ]
     }

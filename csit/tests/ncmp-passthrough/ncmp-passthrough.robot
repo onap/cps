@@ -59,7 +59,41 @@ Verify write to bookstore using passthrough-running
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{responseJson['stores:bookstore']['categories']}
-        IF   "${item['code']}" == "ISBN200123"
-            Should Be Equal As Strings              "${item['books']}[0][title]"  "A good book"
+        IF   "${item['code']}" == "01"
+            Should Be Equal As Strings              "${item['books']}[0][title]"  "A Sci-Fi book"
+        END
+        IF   "${item['code']}" == "02"
+            Should Be Equal As Strings              "${item['books']}[0][title]"  "A Horror book"
+        END
+    END
+
+Update Bookstore using passthrough running for Category 01
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
+    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreUpdateEntry.json
+    ${response}=         PUT On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
+    Should Be Equal As Strings              ${response.status_code}   200
+
+Verify update to bookstore using passthrough running updated category 01
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${response.status_code}   200
+    FOR   ${item}   IN  @{responseJson['stores:categories']}
+        IF   "${item['code']}" == "01"
+            Should Be Equal As Strings              "${item['name']}"  "Updated Sci-Fi Category"
+        END
+    END
+
+Verify update to bookstore using passthrough running did not update category 02
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=02
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${response.status_code}   200
+    FOR   ${item}   IN  @{responseJson['stores:categories']}
+        IF   "${item['code']}" == "02"
+            Should Be Equal As Strings              "${item['name']}"  "Horror"
         END
     END
