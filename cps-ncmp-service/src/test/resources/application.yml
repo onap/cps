@@ -20,4 +20,6 @@ dmi:
     auth:
         username: some-user
         password: some-password
+    api:
+        base-path: /dmi
 

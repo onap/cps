@@ -25,28 +25,27 @@
 
 check_health()
 {
-TIME_OUT=120
-INTERVAL=5
-TICKER=0
+  TIME_OUT=120
+  INTERVAL=5
+  TICKER=0
 
-while [ "$TICKER" -le "$TIME_OUT" ]; do
+  while [ "$TICKER" -le "$TIME_OUT" ]; do
 
-  RESPONSE=$(curl --location --request GET 'http://'$1'/manage/health/readiness')
+    RESPONSE=$(curl --location --request GET 'http://'$1'/manage/health/readiness')
 
-  if [[ "$RESPONSE" == *"UP"* ]]; then
-    echo "$2 started in $TICKER"
-    break;
+    if [[ "$RESPONSE" == *"UP"* ]]; then
+      echo "$2 started in $TICKER"
+      break;
+    fi
+
+    sleep $INTERVAL
+    TICKER=$((TICKER + INTERVAL))
+
+  done
+
+  if [ "$TICKER" -ge "$TIME_OUT" ]; then
+    echo TIME OUT: $2 session not started in $TIME_OUT seconds... Could cause problems for testing activities...
   fi
-
-  sleep $INTERVAL
-  TICKER=$((TICKER + INTERVAL))
-
-done
-
-if [ "$TICKER" -ge "$TIME_OUT" ]; then
-  echo TIME OUT: $2 session not started in $TIME_OUT seconds... Could cause problems for testing activities...
-fi
-
 }
 
 ###################### setup env ############################
@@ -143,4 +142,4 @@ check_health $DMI_HOST:$DMI_MANAGEMENT_PORT 'dmi-plugin'
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data"
+ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data --exitonfailure"

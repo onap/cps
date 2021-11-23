@@ -19,7 +19,7 @@
  */
 
 *** Settings ***
-Documentation         NCMP-DMI - Model Sync
+Documentation         NCMP-DMI - Registration & Model Sync
 
 Library               Collections
 Library               OperatingSystem
@@ -32,7 +32,6 @@ Suite Setup           Create Session     DMI_URL    http://${DMI_HOST}:${DMI_POR
 
 ${auth}            Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${basePath}        /dmi
-
 
 *** Test Cases ***
 Register node & sync models
@@ -48,11 +47,10 @@ Verify Sync
     ${jsonData}=         Get Binary File    ${DATADIR}${/}postModuleRequestBody.json
     ${response}=         POST On Session    DMI_URL   ${uri}   headers=${headers}   data=${jsonData}
     ${responseJson}=     Set Variable       ${response.json()}
-    ${moduleCount}=      Get length         ${responseJson['schemas']}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{responseJson['schemas']}
-        IF   "${item}.get('moduleName')" == "stores"
-            Should Be Equal As Strings              "${item}.get('revision')"   2020-09-15
-            Should Be Equal As Strings              "${item}.get('namespace')"   org:onap:ccsdk:sample
+            IF   "${item['moduleName']}" == "stores"
+                Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
+                Should Be Equal As Strings              "${item['namespace']}"  "org:onap:ccsdk:sample"
+            END
         END
-    END
