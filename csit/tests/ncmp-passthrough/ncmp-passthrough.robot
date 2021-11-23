@@ -45,21 +45,54 @@ Get for Passthough Operational (CF, RO) with fields
     Should Be True                          ${schemaCount} >0
     Should Contain                          ${responseJson['ietf-netconf-monitoring:netconf-state']['schemas']['schema'][0]['location']}   ${netconf}
 
-Write to bookstore using passthrough-running
+Create to bookstore using passthrough-running
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
-    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreAddEntry.json
+    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreCreateExample.json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   201
 
-Verify write to bookstore using passthrough-running
+Verify create to bookstore using passthrough-running
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{responseJson['stores:bookstore']['categories']}
-        IF   "${item['code']}" == "ISBN200123"
-            Should Be Equal As Strings              "${item['books']}[0][title]"  "A good book"
+        IF   "${item['code']}" == "01"
+            Should Be Equal As Strings              "${item['name']}"  "Sci-Fi"
+            Should Be Equal As Strings              "${item['books']}[0][title]"  "A Sci-Fi book"
+        END
+        IF   "${item['code']}" == "02"
+            Should Be Equal As Strings              "${item['name']}"  "Horror"
+            Should Be Equal As Strings              "${item['books']}[0][title]"  "A Horror book"
         END
     END
+
+Update Bookstore using passthrough-running for Category 01
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
+    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreUpdateExample.json
+    ${response}=         PUT On Session     CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
+    Should Be Equal As Strings              ${response.status_code}   200
+
+Verify update to bookstore using passthrough-running updated category 01
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${response.status_code}   200
+    FOR   ${item}   IN  @{responseJson['stores:categories']}
+        IF   "${item['code']}" == "01"
+            Should Be Equal As Strings              "${item['name']}"  "Updated Sci-Fi Category Name"
+        END
+    END
+
+Verify update to bookstore using passthrough-running did not remove category 02
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${response.status_code}   200
+    ${schemaCount}=      Get length         ${responseJson['stores:bookstore']['categories']}
+    Should Be Equal As Numbers              ${schemaCount}  2
