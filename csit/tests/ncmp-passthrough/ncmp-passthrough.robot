@@ -63,3 +63,22 @@ Verify write to bookstore using passthrough-running
             Should Be Equal As Strings              "${item['books']}[0][title]"  "A good book"
         END
     END
+
+Update Bookstore using passthrough running
+        ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
+        ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+        ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreUpdateEntry.json
+        ${response}=         PUT On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
+        Should Be Equal As Strings              ${response.status_code}   200
+
+Verify update to bookstore using passthrough running
+        ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
+        ${headers}=          Create Dictionary  Authorization=${auth}
+        ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+        ${responseJson}=     Set Variable       ${response.json()}
+        Should Be Equal As Strings              ${response.status_code}   200
+        FOR   ${item}   IN  @{responseJson['stores:bookstore']['categories']}
+            IF   "${item['code']}" == "Updated-ISBN200123"
+                Should Be Equal As Strings              "${item['name']}"  "updated-library"
+            END
+        END
