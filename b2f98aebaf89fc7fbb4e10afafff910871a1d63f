@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0705f65_1157a0fb",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-23T17:09:58Z",
+      "side": 1,
+      "message": "it might be good to show this as a Demo to the team first. I have some question (on this test) taht might be easier (resolved) during a Demo than discusing as gerrit commits...\n\nand Demo was part of original A/C I think anyway....",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 11
+      },
+      "revId": "b2f98aebaf89fc7fbb4e10afafff910871a1d63f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
