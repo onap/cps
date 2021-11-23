@@ -42,6 +42,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     }
 
     @Override
+    public void deleteDataspace(final String dataspaceName) {
+        cpsAdminPersistenceService.deleteDataspace(dataspaceName);
+    }
+
+    @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
     }
