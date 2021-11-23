@@ -18,19 +18,22 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
+import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
-public class GenericRequestBody   {
+public class DmiRequestBody {
     public enum OperationEnum {
         READ("read"),
         CREATE("create"),
@@ -52,4 +55,25 @@ public class GenericRequestBody   {
     private String dataType;
     private String data;
     private Map<String, String> cmHandleProperties;
+
+    /**
+     * Set CmHandleProperties by converting a list of PersistenceCmHandle.AdditionalProperty objects.
+     *
+     * @param cmHandlePropertiesAsList the cm handle additional properties
+     */
+    public void asCmHandleProperties(
+        final List<PersistenceCmHandle.AdditionalProperty> cmHandlePropertiesAsList) {
+        final boolean isCmHandlePropertiesNullOrEmpty =
+            cmHandlePropertiesAsList == null || cmHandlePropertiesAsList.isEmpty();
+        if (isCmHandlePropertiesNullOrEmpty) {
+            cmHandleProperties = Collections.emptyMap();
+        } else {
+            cmHandleProperties = new LinkedHashMap<>();
+            for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandlePropertiesAsList) {
+                cmHandleProperties.put(additionalProperty.getName(),
+                    additionalProperty.getValue());
+            }
+        }
+    }
+
 }

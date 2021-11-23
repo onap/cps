@@ -18,14 +18,17 @@
  *  ============LICENSE_END=========================================================
  */
 
-
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
+import com.google.common.base.Strings;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
 /**
  * Dmi Registry request object.
@@ -37,10 +40,50 @@ public class DmiPluginRegistration {
 
     private String dmiPlugin;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String dmiDataPlugin;
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String dmiModelPlugin;
+
     private List<CmHandle> createdCmHandles;
 
     private List<CmHandle> updatedCmHandles;
 
     private List<String> removedCmHandles;
+
+    public static final String PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION = "Please supply correct plugin information.";
+
+    /**
+     * Validates plugin service names.
+     *
+     * @throws NcmpException if validation fails.
+     */
+    public void validateDmiPluginRegistration() throws NcmpException {
+        final String combinedServiceName = dmiPlugin;
+        final String dataServiceName = dmiDataPlugin;
+        final String modelsServiceName = dmiModelPlugin;
+
+        String errorMessage = null;
+
+        if (isNullEmptyOrBlank(combinedServiceName)
+            && isNullEmptyOrBlank(dataServiceName)
+            && isNullEmptyOrBlank(modelsServiceName)) {
+            errorMessage = "No DMI plugin service names";
+        }
+
+        if (!isNullEmptyOrBlank(combinedServiceName)
+            && (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName))) {
+            errorMessage = "Invalid combination of plugin service names";
+        }
+
+        if (errorMessage != null) {
+            throw new NcmpException(errorMessage, PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+        }
+    }
+
+    private static boolean isNullEmptyOrBlank(final String serviceName) {
+        return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
+    }
 
 }

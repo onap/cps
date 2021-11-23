@@ -21,13 +21,15 @@ package org.onap.cps.ncmp.api.models
 
 import spock.lang.Specification
 
-class PersistenceCmHandleSpec extends Specification {
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
 
-    def objectUnderTest = new PersistenceCmHandle()
+class PersistenceCmHandleSpec extends Specification {
 
     def 'Setting and getting additional properties.'() {
         given: 'a map of one property is added'
-            objectUnderTest.setAdditionalProperties([myProperty: 'some value'])
+            def objectUnderTest = new PersistenceCmHandle()
+            objectUnderTest.asAdditionalProperties([myProperty: 'some value'])
         when: 'the additional properties are retrieved'
             def result = objectUnderTest.getAdditionalProperties()
         then: 'the result has the right size'
@@ -37,6 +39,25 @@ class PersistenceCmHandleSpec extends Specification {
             def expectedAdditionalProperty = new PersistenceCmHandle.AdditionalProperty('myProperty','some value')
             assert actualAdditionalProperty.name == expectedAdditionalProperty.name
             assert actualAdditionalProperty.value == expectedAdditionalProperty.value
+    }
+
+    def 'Resolve dmi service name: #scenario and #requiredService service require.'() {
+        given: 'a Persistence CM Handle'
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle('some id', null))
+        expect:
+            assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
+        where:
+            scenario                        | dmiServiceName     | dmiDataServiceName | dmiModelServiceName | requiredService || expectedService
+            'common service registered'     | 'common service'   | 'does not matter'  | 'does not matter'   | DATA            || 'common service'
+            'common service registered'     | 'common service'   | 'does not matter'  | 'does not matter'   | MODEL           || 'common service'
+            'common service empty'          | ''                 | 'data service'     | 'does not matter'   | DATA            || 'data service'
+            'common service empty'          | ''                 | 'does not matter'  | 'model service'     | MODEL           || 'model service'
+            'common service blank'          | '   '              | 'data service'     | 'does not matter'   | DATA            || 'data service'
+            'common service blank'          | '   '              | 'does not matter'  | 'model service'     | MODEL           || 'model service'
+            'common service null '          | null               | 'data service'     | 'does not matter'   | DATA            || 'data service'
+            'common service null'           | null               | 'does not matter'  | 'model service'     | MODEL           || 'model service'
+            'only model service registered' | null               | null               | 'does not matter'   | DATA            || null
+            'only data service registered'  | null               | 'does not matter'  | null                | MODEL           || null
     }
 
 }

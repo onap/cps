@@ -35,13 +35,28 @@ public class DmiRestClient {
     private RestTemplate restTemplate;
     private DmiProperties dmiProperties;
 
+    /**
+     * Constructor injection for DmiRestClient objects.
+     *
+     * @param restTemplate the rest template
+     * @param dmiProperties the DMI properties
+     */
     public DmiRestClient(final RestTemplate restTemplate, final DmiProperties dmiProperties) {
         this.restTemplate = restTemplate;
         this.dmiProperties = dmiProperties;
     }
 
+    /**
+     * Sends a PUT operation to DMI with JSON payload.
+     *
+     * @param dmiResourceUrl the DMI resource URL
+     * @param jsonData the JSON payload
+     * @param headers the HTTP headers
+     * @return response entity of type Object
+     */
     public ResponseEntity<Object> putOperationWithJsonData(final String dmiResourceUrl,
                                                             final String jsonData, final HttpHeaders headers) {
+        //TODO Toine Siebelink, should we use POST operation below instead (and return a String-Entity!)
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(headers));
         return restTemplate.exchange(dmiResourceUrl, HttpMethod.PUT, httpEntity, Object.class);
     }
