@@ -130,3 +130,6 @@ dmi:
     auth:
         username: ${DMI_USERNAME}
         password: ${DMI_PASSWORD}
+    api:
+        path: /dmi
+        cm-handle-path: /v1/ch/{cmHandle}

@@ -1,0 +1,53 @@
+name|content|checksum
+dmi-registry@2021-10-20.yang|"module dmi-registry {
+
+  yang-version 1.1;
+
+  namespace \"org:onap:cps:ncmp\";
+
+  prefix dmi-reg;
+
+  organization \"Nordix Foundation\";
+
+  contact \"rahul.tyagi@est.tech\";
+
+  revision \"2021-10-20\" {
+   description
+   \"Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility\";
+  }
+
+  container dmi-registry {
+
+    list cm-handles {
+
+      key \"id\";
+
+      leaf id {
+        type string;
+      }
+
+      leaf dmi-service-name {
+        type string;
+      }
+
+      leaf dmi-data-service-name {
+        type string;
+      }
+
+      leaf dmi-model-service-name {
+        type string;
+      }
+
+      list additional-properties {
+        key \"name\";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+    }
+  }
+}
+"|f9145662dfc97363297dc1c06b8bde3a8621c658abefd56946faaab240714181

@@ -38,6 +38,10 @@ public class NcmpConfiguration {
         private String authUsername;
         @Value("${dmi.auth.password}")
         private String authPassword;
+        @Value("${dmi.api.path}")
+        private String dmiApiPath;
+        @Value("${dmi.api.cm-handle-path}")
+        private String dmiCmHandlePath;
     }
 
     @Bean
