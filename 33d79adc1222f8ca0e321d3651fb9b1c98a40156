@@ -46,6 +46,30 @@
       "revId": "33d79adc1222f8ca0e321d3651fb9b1c98a40156",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3494b6e_7d9a85d3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-23T08:32:49Z",
+      "side": 1,
+      "message": "not 100% sure about that: I think it might be possible to create an anchor (in a datataspace) and never associate a schemaset to it.\n\nIn any case I think it is safer to do this check!",
+      "parentUuid": "8ec26b96_8c935967",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 9
+      },
+      "revId": "33d79adc1222f8ca0e321d3651fb9b1c98a40156",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
