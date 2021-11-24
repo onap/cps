@@ -30,12 +30,7 @@ nodeByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       '200':
-        description: OK
-        content:
-          application/json:
-            schema:
-              type: object
-            example: { "child": my_child,"leafList": "leafListElement1, leafListElement2", "leaf": my_leaf }
+        $ref: 'components.yml#/components/responses/Ok'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -63,7 +58,10 @@ listElementByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yml#/components/examples/dataSampleRequest'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
@@ -90,10 +88,13 @@ listElementByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yml#/components/examples/dataSampleRequest'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Created'
+        $ref: 'components.yml#/components/responses/Ok'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -140,7 +141,10 @@ nodesByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yml#/components/examples/dataSampleRequest'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
@@ -167,7 +171,10 @@ nodesByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yml#/components/examples/dataSampleRequest'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
@@ -216,7 +223,10 @@ nodesByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yml#/components/examples/dataSampleRequest'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
