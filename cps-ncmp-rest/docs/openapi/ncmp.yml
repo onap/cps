@@ -289,6 +289,37 @@ resourceDataForPassthroughRunning:
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
 
+  patch:
+    tags:
+      - network-cm-proxy
+    summary: Patch resource data from pass-through running
+    description: Patch resource data from pass-through running for the given cm handle
+    operationId: patchResourceDataRunningForCmHandle
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+        application/yang-data+json:
+          schema:
+            type: string
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+
 fetchModuleReferencesByCmHandle:
   get:
     description: fetch all module references (name and revision) for a given cm handle

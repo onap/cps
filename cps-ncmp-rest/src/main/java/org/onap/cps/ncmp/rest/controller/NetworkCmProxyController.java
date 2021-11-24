@@ -23,6 +23,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE;
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
 
 import com.google.gson.Gson;
@@ -187,6 +188,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 acceptParamInHeader,
                 optionsParamInQuery);
         return ResponseEntity.ok(responseObject);
+    }
+
+    @Override
+    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
+        final String cmHandle,
+        final String requestBody, final String contentType) {
+        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+            resourceIdentifier, PATCH, requestBody, contentType);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
