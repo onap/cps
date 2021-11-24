@@ -30,7 +30,14 @@ nodesByDataspaceAndAnchorAndCpsPath:
       - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
