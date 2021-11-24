@@ -49,11 +49,12 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
-        final String jsonData, final String parentNodeXpath, final String observedTimestamp) {
+        final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         if (isRootXpath(parentNodeXpath)) {
-            cpsDataService.saveData(dataspaceName, anchorName, jsonData, toOffsetDateTime(observedTimestamp));
+            cpsDataService.saveData(dataspaceName, anchorName, jsonData.toString(),
+                toOffsetDateTime(observedTimestamp));
         } else {
-            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
                 toOffsetDateTime(observedTimestamp));
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -61,7 +62,7 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Void> deleteDataNode(final String dataspaceName, final String anchorName,
-                                               final String xpath, final String observedTimestamp) {
+        final String xpath, final String observedTimestamp) {
         cpsDataService.deleteDataNode(dataspaceName, anchorName, xpath,
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -69,8 +70,8 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<String> addListElements(final String parentNodeXpath,
-        final String dataspaceName, final String anchorName, final String jsonData, final String observedTimestamp) {
-        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        final String dataspaceName, final String anchorName, final Object jsonData, final String observedTimestamp) {
+        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -87,25 +88,26 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
-        final String anchorName, final String jsonData, final String parentNodeXpath, final String observedTimestamp) {
-        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
+        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Object> replaceNode(final String dataspaceName, final String anchorName,
-        final String jsonData, final String parentNodeXpath, final String observedTimestamp) {
+        final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService
-            .replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData, toOffsetDateTime(observedTimestamp));
+            .replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+                toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<String> replaceListContent(final String parentNodeXpath,
-        final String dataspaceName, final String anchorName, final String jsonData,
+        final String dataspaceName, final String anchorName, final Object jsonData,
         final String observedTimestamp) {
-        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, jsonData,
+        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
