@@ -163,7 +163,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
                 post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
                     .contentType(MediaType.APPLICATION_JSON)
                     .param('xpath', 'parent node xpath')
-                    .content('json data')
+                    .content(groovy.json.JsonOutput.toJson('{"some-key" : "some-value"}'))
             ).andReturn().response
         then: 'response code indicates bad input parameters'
             response.status == BAD_REQUEST.value()

@@ -60,6 +60,8 @@ class DataRestControllerSpec extends Specification {
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
+    def jsonString = '{"some-key" : "some-value"}'
+    def jsonObject
 
     @Shared
     static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
@@ -71,24 +73,24 @@ class DataRestControllerSpec extends Specification {
 
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
+        jsonObject = groovy.json.JsonOutput.toJson(jsonString);
     }
 
     def 'Create a node: #scenario.'() {
-        given: 'some json to create a data node'
+        given: 'endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
-            def json = 'some json (this is not validated)'
         when: 'post is invoked with datanode endpoint and json'
             def response =
                 mvc.perform(
                     post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', parentNodeXpath)
-                        .content(json)
+                        .content(jsonObject)
                 ).andReturn().response
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, json, noTimestamp)
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, jsonString, noTimestamp)
         where: 'following xpath parameters are are used'
             scenario                     | parentNodeXpath
             'no xpath parameter'         | ''
@@ -96,9 +98,8 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Create a node with observed-timestamp'() {
-        given: 'some json to create a data node'
+        given: 'endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
-            def json = 'some json (this is not validated)'
         when: 'post is invoked with datanode endpoint and json'
             def response =
                 mvc.perform(
@@ -106,12 +107,12 @@ class DataRestControllerSpec extends Specification {
                         .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', '')
                         .param('observed-timestamp', observedTimestamp)
-                        .content(json)
+                        .content(jsonObject)
                 ).andReturn().response
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, json,
+            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, jsonString,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -120,16 +121,15 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Create a child node'() {
-        given: 'some json to create a data node'
+        given: 'endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
-            def json = 'some json (this is not validated)'
         and: 'parent node xpath'
             def parentNodeXpath = 'some xpath'
         when: 'post is invoked with datanode endpoint and json'
             def postRequestBuilder = post(endpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
-                .content(json)
+                .content(jsonObject)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response =
@@ -137,7 +137,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, json,
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonString,
                 DateTimeUtility.toOffsetDateTime(observedTimestamp))
         where:
             scenario                     | observedTimestamp
@@ -146,21 +146,20 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Save list elements #scenario.'() {
-        given: 'parent node xpath and json data inputs'
+        given: 'parent node xpath '
             def parentNodeXpath = 'parent node xpath'
-            def jsonData = 'json data'
         when: 'list-node endpoint is invoked with post (create) operation'
             def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
-                .content(jsonData)
+                .content(jsonObject)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(postRequestBuilder).andReturn().response
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonData,
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonString,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -210,19 +209,18 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Update data node leaves: #scenario.'() {
-        given: 'json data'
-            def jsonData = 'json data'
+        given: 'endpoint to update a node '
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'patch request is performed'
             def response =
                 mvc.perform(
                     patch(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonData)
+                        .content(jsonObject)
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonData, null)
+            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonString, null)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -233,20 +231,19 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Update data node leaves with observedTimestamp'() {
-        given: 'json data'
-            def jsonData = 'json data'
+        given: 'endpoint to update a node leaves '
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'patch request is performed'
             def response =
                 mvc.perform(
                     patch(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonData)
+                        .content(jsonObject)
                         .param('xpath', '/')
                         .param('observed-timestamp', observedTimestamp)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', jsonData,
+            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', jsonString,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
@@ -257,19 +254,18 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Replace data node tree: #scenario.'() {
-        given: 'json data'
-            def jsonData = 'json data'
+        given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'put request is performed'
             def response =
                 mvc.perform(
                     put(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonData)
+                        .content(jsonObject)
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonData, noTimestamp)
+            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonString, noTimestamp)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -280,20 +276,19 @@ class DataRestControllerSpec extends Specification {
     }
 
     def 'Replace data node tree with observedTimestamp.'() {
-        given: 'json data'
-            def jsonData = 'json data'
+        given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'put request is performed'
             def response =
                 mvc.perform(
                     put(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonData)
+                        .content(jsonObject)
                         .param('xpath', '')
                         .param('observed-timestamp', observedTimestamp))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, '/', jsonData,
+            expectedApiCount * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, '/', jsonString,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
@@ -308,14 +303,14 @@ class DataRestControllerSpec extends Specification {
             def putRequestBuilder = put("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', 'parent xpath')
-                .content('json data')
+                .content(jsonObject)
             if (observedTimestamp != null)
                 putRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(putRequestBuilder).andReturn().response
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', 'json data',
+            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', jsonString,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
