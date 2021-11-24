@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.rest.controller
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -301,5 +302,21 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString == '{"cmHandles":[]}'
     }
 
+    def 'Patch resource data in passthrough-running datastore.' () {
+        given: 'patch resource data url'
+            def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+                    "?resourceIdentifier=parent/child"
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(
+                    patch(url)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON).content('{"some-key" : "some-value"}')
+            ).andReturn().response
+        then: 'ncmp service method to update resource is called'
+            1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                    'parent/child', PATCH, '{some-key=some-value}', 'application/json;charset=UTF-8')
+        and: 'the response status is OK'
+            response.status == HttpStatus.OK.value()
+    }
 }
 
