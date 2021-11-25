@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fda88637_39730d68",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-11-25T09:34:25Z",
+      "side": 1,
+      "message": "as discussed in CPS-643, lets define all application/json as object instead of string",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 307,
+        "endChar": 24
+      },
+      "revId": "af2fed330c204f71165258a2f17d3dd0ade6470f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43e25ec7_44409cb9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-11-25T09:34:25Z",
+      "side": 1,
+      "message": "Why not just APPLICATION_JSON as used in line 299?",
+      "range": {
+        "startLine": 312,
+        "startChar": 51,
+        "endLine": 312,
+        "endChar": 73
+      },
+      "revId": "af2fed330c204f71165258a2f17d3dd0ade6470f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
