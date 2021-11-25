@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99370869_625ddcda",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-25T08:32:39Z",
+      "side": 1,
+      "message": "use bookstore example of \u0027absolute path\u0027 as described in https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-path",
+      "range": {
+        "startLine": 147,
+        "startChar": 17,
+        "endLine": 147,
+        "endChar": 30
+      },
+      "revId": "25d10ea516d124c9b170c5b4b9a54691cd6678bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fe4c229_34de1b61",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-25T08:32:39Z",
+      "side": 1,
+      "message": "use bookstore example of \u0027absolute path\u0027 as described in https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-path",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 30
+      },
+      "revId": "25d10ea516d124c9b170c5b4b9a54691cd6678bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f07d0cb_ecd6e267",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-25T08:32:39Z",
+      "side": 1,
+      "message": "use bookstore example of \u0027absolute path\u0027 as described in https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-path",
+      "range": {
+        "startLine": 164,
+        "startChar": 17,
+        "endLine": 164,
+        "endChar": 30
+      },
+      "revId": "25d10ea516d124c9b170c5b4b9a54691cd6678bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
