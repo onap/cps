@@ -16,6 +16,24 @@
       "revId": "4314e7b8ffc0641b0907cf18ca57d329c11f87ed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de83d827_4425a6e6",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-11-26T13:29:42Z",
+      "side": 1,
+      "message": "This will be covered as part of https://jira.onap.org/browse/CPS-782",
+      "parentUuid": "0b77b16b_583d1c42",
+      "revId": "4314e7b8ffc0641b0907cf18ca57d329c11f87ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
