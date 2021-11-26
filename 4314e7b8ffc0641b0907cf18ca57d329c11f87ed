@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b77b16b_583d1c42",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2021-11-26T12:00:29Z",
+      "side": 1,
+      "message": "Are all response codes added below in sync with the implementation ?\nRelated to coming https://jira.onap.org/browse/CPS-782",
+      "revId": "4314e7b8ffc0641b0907cf18ca57d329c11f87ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
