@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
 
@@ -30,6 +31,31 @@ public class PersistenceCmHandlesList {
 
     @JsonProperty("cm-handles")
     private List<PersistenceCmHandle> persistenceCmHandles = new ArrayList<>();
+
+    /**
+     * Create a PersistenceCmHandleList given all service names and a collection of cmHandles.
+     * @param dmiServiceName the dmi service name
+     * @param dmiDataServiceName the dmi data service name
+     * @param dmiModelServiceName the dmi model service name
+     * @param cmHandles cm handles
+     * @return instance of PersistenceCmHandleList
+     */
+    public static PersistenceCmHandlesList toPersistenceCmHandlesList(final String dmiServiceName,
+                                                                      final String dmiDataServiceName,
+                                                                      final String dmiModelServiceName,
+                                                                      final Collection<CmHandle> cmHandles) {
+        final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
+        for (final CmHandle cmHandle : cmHandles) {
+            final PersistenceCmHandle persistenceCmHandle =
+                PersistenceCmHandle.toPersistenceCmHandle(
+                    dmiServiceName,
+                    dmiDataServiceName,
+                    dmiModelServiceName,
+                    cmHandle);
+            persistenceCmHandlesList.add(persistenceCmHandle);
+        }
+        return persistenceCmHandlesList;
+    }
 
     /**
      * Add a persistenceCmHandle.
