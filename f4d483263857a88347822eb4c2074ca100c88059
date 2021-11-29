@@ -45,6 +45,30 @@
       "revId": "f4d483263857a88347822eb4c2074ca100c88059",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cae24fd_4a095714",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-29T15:24:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "127536a9_ed1cb8fd",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "f4d483263857a88347822eb4c2074ca100c88059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
