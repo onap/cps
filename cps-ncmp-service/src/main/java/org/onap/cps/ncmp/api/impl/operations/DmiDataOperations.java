@@ -62,7 +62,7 @@ public class DmiDataOperations extends DmiOperations {
      * @param dataStore  data store enum
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandle,
+    public ResponseEntity<String> getResourceDataFromDmi(final String cmHandle,
                                                           final String resourceId,
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
@@ -79,7 +79,7 @@ public class DmiDataOperations extends DmiOperations {
             persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
             optionsParamInQuery, dataStore);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
 
     /**
