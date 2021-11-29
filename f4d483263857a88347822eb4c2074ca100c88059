@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "418e7fa4_1e1c09fc",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-29T15:15:46Z",
+      "side": 1,
+      "message": "Perhaps rename to bookstoreUpdateEntryForCategory01? Although from context we can see this test is for category 01 - what do others think?",
+      "range": {
+        "startLine": 73,
+        "startChar": 58,
+        "endLine": 73,
+        "endChar": 83
+      },
+      "revId": "f4d483263857a88347822eb4c2074ca100c88059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "127536a9_ed1cb8fd",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-29T15:15:46Z",
+      "side": 1,
+      "message": "Fix indentation here",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "f4d483263857a88347822eb4c2074ca100c88059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
