@@ -79,7 +79,7 @@ public class DmiDataOperations extends DmiOperations {
             persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
             optionsParamInQuery, dataStore);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.putOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
 
     /**
