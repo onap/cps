@@ -43,16 +43,6 @@ class DmiRestClientSpec extends Specification {
     DmiRestClient objectUnderTest
     def resourceUrl = 'some url'
 
-    def 'DMI PUT operation.'() {
-        given: 'the rest template returns a valid response entity'
-            def mockResponseEntity = Mock(ResponseEntity)
-            mockRestTemplate.exchange(resourceUrl, HttpMethod.PUT, _ as HttpEntity, Object.class) >> mockResponseEntity
-        when: 'PUT operation is invoked'
-            def result = objectUnderTest.putOperationWithJsonData(resourceUrl, 'json-data', new HttpHeaders())
-        then: 'the output of the method is equal to the output from the test template'
-            result == mockResponseEntity
-    }
-
     def 'DMI POST operation'() {
         given: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
