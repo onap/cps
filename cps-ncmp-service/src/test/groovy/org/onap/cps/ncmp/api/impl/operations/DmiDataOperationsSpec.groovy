@@ -45,7 +45,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockPersistenceCmHandleRetrieval(additionalProperties)
         and: 'a positive response from dmi service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            mockDmiRestClient.putOperationWithJsonData(
+            mockDmiRestClient.postOperationWithJsonData(
                 "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
                 expectedJson, [Accept:['sample accept header']]) >> responseFromDmi
         when: 'get resource data is invoked'
