@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7359f3f3_9290bd84",
+        "filename": "csit/data/bookstoreAddEntry.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "use \u0027create\u0027 in name instead of \u0027add\u0027 e.g. bookStoreCreateExample.json",
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a62ca7f4_c177e98c",
+        "filename": "csit/data/bookstoreUpdateEntry.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "NB: legacy issue (maybe fix for all files) maybe use \u0027example\u0027 instead of \u0027entry\u0027\nbookstoreUpdateExample.json",
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf8174e6_10ec3e85",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "Create",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ac7f379_015a0a0a",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "create",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 13
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aae3b19_531fca2a",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "check category name too",
+      "range": {
+        "startLine": 62,
+        "startChar": 13,
+        "endLine": 62,
+        "endChar": 38
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d7e751_462960d1",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "check category name too",
+      "range": {
+        "startLine": 65,
+        "startChar": 10,
+        "endLine": 65,
+        "endChar": 38
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c886caca_51e8ea7e",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "use name consistently, see line 55 it should have a dash",
+      "range": {
+        "startLine": 70,
+        "startChar": 23,
+        "endLine": 70,
+        "endChar": 42
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc860820_d0139744",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "Category Name",
+      "range": {
+        "startLine": 85,
+        "startChar": 87,
+        "endLine": 85,
+        "endChar": 95
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "143ce87e_096d4d50",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "good verification!",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f904978_d369ce25",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-11-29T16:42:50Z",
+      "side": 1,
+      "message": "can you count entries instead?",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 7
+      },
+      "revId": "7eba814075cef1a6f35019496fe3c69e83775cec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
