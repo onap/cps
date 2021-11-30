@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8089cd0a_9e2b5bd0",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-11-30T11:39:07Z",
+      "side": 1,
+      "message": "Can this now be removed? All references to this seem to have been removed, so is this still necessary?",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 24
+      },
+      "revId": "efccbb8bcdf85c18b1f34bc935b2fd9c9313dda8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
