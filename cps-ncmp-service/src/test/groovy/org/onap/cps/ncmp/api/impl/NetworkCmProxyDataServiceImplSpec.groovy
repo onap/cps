@@ -97,7 +97,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsDataService.saveListElements(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
     }
 
-    def 'Write resource data for passthrough running from dmi using POST #scenario cm handle properties.'() {
+    def 'Write resource data for pass-through running from dmi using POST #scenario cm handle properties.'() {
         given: 'a data node'
             def dataNode = getDataNode(includeCmHandleProperties)
         and: 'cpsDataService returns valid datanode'
@@ -117,7 +117,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             'without' | false                     || '{}'
     }
 
-    def 'Write resource data for passthrough running from dmi using POST "not found" response (from DMI).'() {
+    def 'Write resource data for pass-through running from dmi using POST "not found" response (from DMI).'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'cpsDataService returns valid dataNode'
@@ -147,7 +147,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
-    def 'Get resource data for passthrough operational from dmi.'() {
+    def 'Get resource data for pass-through operational from dmi.'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'get data node is called'
@@ -169,7 +169,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             response == 'result-json'
     }
 
-    def 'Get resource data for passthrough operational from dmi with Json Processing Exception.'() {
+    def 'Get resource data for pass-through operational from dmi with Json Processing Exception.'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'cps data service returns valid data node'
@@ -192,7 +192,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             exceptionThrown.details == 'DMI status code: 404, DMI response body: NOK-json'
     }
 
-    def 'Get resource data for passthrough operational from dmi return NOK response.'() {
+    def 'Get resource data for pass-through operational from dmi return NOK response.'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'cps data service returns valid data node'
@@ -216,7 +216,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             exceptionThrown.details.contains('NOK-json')
     }
 
-    def 'Get resource data for passthrough running from dmi.'() {
+    def 'Get resource data for pass-through running from dmi.'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'cpsDataService returns valid data node'
@@ -237,7 +237,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             response == '{result-json}'
     }
 
-    def 'Get resource data for passthrough running from dmi return NOK response.'() {
+    def 'Get resource data for pass-through running from dmi return NOK response.'() {
         given: 'a data node'
             def dataNode = getDataNode(true)
         and: 'cpsDataService returns valid dataNode'
@@ -295,7 +295,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
     }
 
-    def 'Update resource data for passthrough running from dmi using POST #scenario cm handle properties.'() {
+    def 'Update resource data for pass-through running from dmi using POST #scenario cm handle properties.'() {
         given: 'a data node'
             def dataNode = getDataNode(includeCmHandleProperties)
         and: 'cpsDataService returns valid datanode'
