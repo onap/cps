@@ -23,6 +23,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE;
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
 
@@ -200,7 +201,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Create resource data in datastore pass through running for given cm-handle.
+     * Create resource data in datastore pass-through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier
      * @param cmHandle cm handle identifier
@@ -219,7 +220,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Update resource data in datastore pass through running for given cm-handle.
+     * Update resource data in datastore pass-through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier
      * @param cmHandle cm handle identifier
@@ -235,6 +236,27 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
             resourceIdentifier, UPDATE, requestBody, contentType);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    /**
+     *  Delete resource data in datastore pass-through running for a given cm-handle.
+     *
+     * @param resourceIdentifier resource identifier
+     * @param cmHandle cm handle identifier
+     * @param requestBody the request body
+     * @param contentType content type of the body
+     * @return response entity no content if request is successful
+     */
+    @Override
+    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                     final String cmHandle,
+                                                                     final String requestBody,
+                                                                     final String contentType) {
+
+        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+            resourceIdentifier, DELETE, requestBody, contentType);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /**
