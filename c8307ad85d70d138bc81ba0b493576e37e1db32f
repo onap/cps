@@ -22,6 +22,30 @@
       "revId": "c8307ad85d70d138bc81ba0b493576e37e1db32f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f2f3c7_dc48b434",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-11-30T10:58:00Z",
+      "side": 1,
+      "message": "Reverted to Object",
+      "parentUuid": "cbedd2f2_4c79a143",
+      "range": {
+        "startLine": 65,
+        "startChar": 26,
+        "endLine": 65,
+        "endChar": 32
+      },
+      "revId": "c8307ad85d70d138bc81ba0b493576e37e1db32f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
