@@ -96,3 +96,24 @@ Verify update to bookstore using passthrough-running did not remove category 02
     Should Be Equal As Strings              ${response.status_code}   200
     ${schemaCount}=      Get length         ${responseJson['stores:bookstore']['categories']}
     Should Be Equal As Numbers              ${schemaCount}  2
+
+Delete Bookstore using passthrough-running for Category 01
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
+    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstoreDeleteExample.json
+    ${response}=         DELETE On Session     CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
+    Should Be Equal As Strings              ${response.status_code}   204
+
+Verify delete to bookstore using passthrough-running did remove category 01 not remove category 02
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${responseJson}=     Set Variable       ${response.json()}
+    Should Be Equal As Strings              ${response.status_code}   200
+    ${schemaCount}=      Get length         ${responseJson['stores:bookstore']['categories']}
+    Should Be Equal As Numbers              ${schemaCount}  1
+    FOR   ${item}   IN  @{responseJson['stores:bookstore']['categories']}
+        IF   "${item['code']}" == "02"
+            Should Be Equal As Strings              "${item['name']}"  "Horror"
+        END
+    END
