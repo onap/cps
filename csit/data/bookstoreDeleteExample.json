@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "code": "01",
+      "name": "Sci-Fi",
+      "books": [
+        {
+          "title": "A Sci-Fi book",
+          "lang": "English",
+          "authors": [
+            "Joe & Rahul"
+          ],
+          "pub_year": "2001",
+          "price": "1000"
+        }
+      ]
+    }
+  ]
+}
