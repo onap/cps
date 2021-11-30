@@ -38,7 +38,8 @@ public class DmiRequestBody {
         READ("read"),
         CREATE("create"),
         UPDATE("update"),
-        PATCH("patch");
+        PATCH("patch"),
+        DELETE("delete");
         private String value;
 
         OperationEnum(final String value) {

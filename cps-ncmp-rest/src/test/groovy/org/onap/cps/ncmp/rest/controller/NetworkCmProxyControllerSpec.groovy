@@ -28,12 +28,14 @@ import org.onap.cps.spi.model.ModuleReference
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
 import com.google.gson.Gson
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
@@ -317,6 +319,21 @@ class NetworkCmProxyControllerSpec extends Specification {
                     'parent/child', PATCH, '{some-key=some-value}', 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
+    }
+
+    def 'Delete resource data in passthrough-running datastore.' () {
+        given: 'delete resource data url'
+            def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
+                     "?resourceIdentifier=parent/child"
+        when: 'delete data resource request is performed'
+            def response = mvc.perform(
+                delete(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content('{"some-key" : "some-value"}')).andReturn().response
+        then: 'the ncmp service method to delete resource is called'
+            1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
+                'parent/child', DELETE, '{"some-key" : "some-value"}', 'application/json;charset=UTF-8')
+        and: 'the response is No Content'
+            response.status == HttpStatus.NO_CONTENT.value()
     }
 }
 
