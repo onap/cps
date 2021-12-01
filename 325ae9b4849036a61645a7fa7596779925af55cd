@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b2db09be_30b73e91",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T18:13:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ce4071e7_45f48120",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 24
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c69d1e90_30ccb3e1",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 5
@@ -93,6 +117,30 @@
       "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03577ecc_56be9719",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T18:13:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2504a0f8_61426c21",
+      "range": {
+        "startLine": 156,
+        "startChar": 7,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "68b95985_980d70ab",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T18:13:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec86cd3c_df6905d9",
+      "range": {
+        "startLine": 262,
+        "startChar": 21,
+        "endLine": 262,
+        "endChar": 54
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8fcc402_0acc8d6d",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 5
@@ -190,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "478af250_4562f20f",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T18:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d69e7343_8d549c6f",
+      "range": {
+        "startLine": 64,
+        "startChar": 57,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13bbed69_6f293ed0",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 5
@@ -234,6 +330,30 @@
       "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11a368ce_070ccecd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T18:13:19Z",
+      "side": 1,
+      "message": "agreed: its OK to include here for CPS Core (only)",
+      "parentUuid": "3941f330_5cb4e7fc",
+      "range": {
+        "startLine": 107,
+        "startChar": 26,
+        "endLine": 107,
+        "endChar": 32
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
