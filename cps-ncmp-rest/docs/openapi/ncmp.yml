@@ -194,7 +194,14 @@ getResourceDataForPassthroughOperational:
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
     responses:
       200:
-        $ref: 'components.yaml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
@@ -218,7 +225,14 @@ resourceDataForPassthroughRunning:
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
     responses:
       200:
-        $ref: 'components.yaml#/components/responses/Ok'
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
@@ -243,6 +257,9 @@ resourceDataForPassthroughRunning:
         application/json:
           schema:
             type: string
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
         application/yang-data+json:
           schema:
             type: string
@@ -274,6 +291,9 @@ resourceDataForPassthroughRunning:
         application/json:
           schema:
             type: string
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
         application/yang-data+json:
           schema:
             type: string
@@ -304,9 +324,15 @@ fetchModuleReferencesByCmHandle:
         content:
           application/json:
             schema:
-              type: string
-            example: [{"moduleName": "nc-notifications", "revision": "2008-07-14"}]
-        $ref: 'components.yaml#/components/responses/Ok'
+              type: object
+            examples:
+              dataSampleResponse:
+                summary: Sample response
+                value:
+                  - moduleName: my-module-name
+                    revision: 'yyyy-mm-dd'
+                  - moduleName: my-module-name-2
+                    revision: 'yyyy-mm-dd'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
