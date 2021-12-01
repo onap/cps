@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83b59992_dbbe8e42",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "is this indented correctly? what exactly is this an example off?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 24
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c69d1e90_30ccb3e1",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "how/where is this name used?",
+      "range": {
+        "startLine": 156,
+        "startChar": 7,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44a2be07_e8a4c32a",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "is this the one I asked about earlier (maybe it should be moved close to this ?)",
+      "range": {
+        "startLine": 262,
+        "startChar": 21,
+        "endLine": 262,
+        "endChar": 54
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fcc402_0acc8d6d",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "same sample for input and output?",
+      "range": {
+        "startLine": 64,
+        "startChar": 57,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13bbed69_6f293ed0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "do we need to mention something in our release notes to say this has changed?\nMaybe this should NOT be done in this commit?!",
+      "range": {
+        "startLine": 107,
+        "startChar": 26,
+        "endLine": 107,
+        "endChar": 32
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada30d33_24a0b141",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-01T10:44:32Z",
+      "side": 1,
+      "message": "jsonObject ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "325ae9b4849036a61645a7fa7596779925af55cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
