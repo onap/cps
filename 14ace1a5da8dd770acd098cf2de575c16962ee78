@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c9ce8f4_8078b177",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-02T14:04:14Z",
+      "side": 1,
+      "message": "This \u0027cat\u0027 can probably be removed now. But is a non-blocking issue 😊",
+      "revId": "14ace1a5da8dd770acd098cf2de575c16962ee78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
