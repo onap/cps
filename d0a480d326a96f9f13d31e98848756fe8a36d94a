@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a490e13_1fc96888",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-02T17:34:44Z",
+      "side": 1,
+      "message": "this has to remain \u0027hasAllmodules\u0027 as that is the only (currently) supported value",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c2644f_3a2cf790",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-02T17:34:44Z",
+      "side": 1,
+      "message": "remove this part",
+      "range": {
+        "startLine": 147,
+        "startChar": 61,
+        "endLine": 147,
+        "endChar": 83
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b66c11_99067070",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-02T17:34:44Z",
+      "side": 1,
+      "message": "I think I prefer actual dates, just make sure month and date are unambiguous ie. a day \u003e 12!",
+      "range": {
+        "startLine": 333,
+        "startChar": 31,
+        "endLine": 333,
+        "endChar": 41
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
