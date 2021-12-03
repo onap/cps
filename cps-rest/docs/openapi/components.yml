@@ -25,13 +25,13 @@ components:
       properties:
         name:
           type: string
-          example: my_anchor
+          example: my-anchor
         dataspaceName:
           type: string
-          example: my_dataspace
+          example: my-dataspace
         schemaSetName:
           type: string
-          example: my_schema_set
+          example: my-schema-set
 
     ErrorMessage:
       type: object
@@ -39,13 +39,10 @@ components:
       properties:
         status:
           type: string
-          example: 400
         message:
           type: string
-          example: Dataspace not found
         details:
           type: string
-          example: Dataspace with name D1 does not exist.
 
     MultipartFile:
       type: object
@@ -56,7 +53,7 @@ components:
           type: string
           description: multipartFile
           format: binary
-          example: http://example.com/examples/example.yang
+          example:  'https://github.com/onap/cps/blob/master/cps-service/src/test/resources/bookstore.yang'
 
     ModuleReferences:
       type: object
@@ -64,13 +61,13 @@ components:
       properties:
         name:
           type: string
-          example: module_reference_name
+          example: my-module-reference-name
         namespace:
           type: string
-          example: module_reference_namespace
+          example: my-module-reference-namespace
         revision:
           type: string
-          example: module_reference_revision
+          example: my-module-reference-revision
 
     SchemaSetDetails:
       type: object
@@ -78,14 +75,35 @@ components:
       properties:
         dataspaceName:
           type: string
-          example: my_dataspace
+          example: my-dataspace
         moduleReferences:
           type: array
           items:
             $ref: '#/components/schemas/ModuleReferences'
         name:
           type: string
-          example: my_schema_set
+          example: my-schema-set
+
+  examples:
+    dataSampleRequest:
+      value:
+        test:bookstore:
+          bookstore-name: Chapters
+          categories:
+            - code: 01
+              name: SciFi
+            - code: 02
+              name: kids
+
+    dataSampleResponse:
+      summary: The data node returned does not include the root node. This is being investigated as a part of CPS-461
+      value:
+          bookstore-name: Chapters
+          categories:
+            - code: 01
+              name: SciFi
+            - code: 02
+              name: kids
 
   parameters:
     dataspaceNameInQuery:
@@ -95,6 +113,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-dataspace
     dataspaceNameInPath:
       name: dataspace-name
       in: path
@@ -102,6 +121,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-dataspace
     anchorNameInPath:
       name: anchor-name
       in: path
@@ -109,6 +129,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-anchor
     schemaSetNameInQuery:
       name: schema-set-name
       in: query
@@ -116,6 +137,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-schema-set
     schemaSetNameInPath:
       name: schema-set-name
       in: path
@@ -123,6 +145,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-schema-set
     anchorNameInQuery:
       name: anchor-name
       in: query
@@ -130,29 +153,45 @@ components:
       required: true
       schema:
         type: string
+        example: my-anchor
     xpathInQuery:
       name: xpath
       in: query
-      description: xpath
+      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
       required: false
       schema:
         type: string
         default: /
+      examples:
+        container xpath:
+          value: /shops/bookstore
+        list attributes xpath:
+          value: /shops/bookstore/categories[@code=1]
     requiredXpathInQuery:
       name: xpath
       in: query
-      description: xpath
+      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
       required: true
       schema:
         type: string
+      examples:
+        container xpath:
+          value: /shops/bookstore
+        list attributes xpath:
+          value: /shops/bookstore/categories[@code=1]
     cpsPathInQuery:
       name: cps-path
       in: query
-      description: cps-path
+      description: For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
       required: false
       schema:
         type: string
         default: /
+      examples:
+        container cps path:
+          value: //bookstore
+        list attributes cps path:
+          value: //categories[@code=1]
     includeDescendantsOptionInQuery:
       name: include-descendants
       in: query
@@ -161,6 +200,7 @@ components:
       schema:
         type: boolean
         default: false
+        example: false
     observedTimestampInQuery:
       name: observed-timestamp
       in: query
@@ -177,43 +217,66 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 404
+            message: Resource Not Found
+            details: The requested resource is not found
     Unauthorized:
       description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 401
+            message: Unauthorized request
+            details: This request is unauthorized
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 403
+            message: Request Forbidden
+            details: This request is forbidden
     BadRequest:
       description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
     Conflict:
       description: Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 409
+            message: Conflicting request
+            details: The request cannot be processed as the resource is in use.
     Ok:
       description: OK
       content:
         application/json:
           schema:
             type: object
-          example: { "key": "value" }
+          examples:
+            dataSampleResponse:
+              value: ""
     Created:
       description: Created
       content:
         text/plain:
           schema:
             type: string
+            example: my-resource
     NoContent:
       description: No Content
       content: {}
