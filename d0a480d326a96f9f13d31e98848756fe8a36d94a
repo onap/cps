@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "be76300e_f31e4af3",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-12-03T11:09:50Z",
+      "side": 1,
+      "message": "can we add an example other than null?",
+      "range": {
+        "startLine": 254,
+        "startChar": 17,
+        "endLine": 254,
+        "endChar": 21
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "451a4792_f819bc44",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-12-03T11:09:50Z",
+      "side": 1,
+      "message": "this is not data sample. Should be renamed to ModuleReferences",
+      "range": {
+        "startLine": 329,
+        "startChar": 14,
+        "endLine": 329,
+        "endChar": 32
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3b66c11_99067070",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 1
