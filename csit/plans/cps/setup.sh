@@ -72,6 +72,7 @@ chmod +x docker-compose
 cd $WORKSPACE/archives
 git clone "https://gerrit.onap.org/r/cps/ncmp-dmi-plugin"
 mkdir -p $WORKSPACE/archives/dc-dmi
+cat $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/docker-compose.yml
 cp $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/*.yml $WORKSPACE/archives/dc-dmi
 cd $WORKSPACE/archives/dc-dmi
 # download docker-compose of a required version (1.25.0 supports configuration of version 3.7)

@@ -47,21 +47,6 @@ public class DmiRestClient {
     }
 
     /**
-     * Sends a PUT operation to DMI with JSON payload.
-     *
-     * @param dmiResourceUrl the DMI resource URL
-     * @param jsonData the JSON payload
-     * @param headers the HTTP headers
-     * @return response entity of type Object
-     */
-    public ResponseEntity<Object> putOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData, final HttpHeaders headers) {
-        //TODO Toine Siebelink, should we use POST operation below instead (and return a String-Entity!)
-        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(headers));
-        return restTemplate.exchange(dmiResourceUrl, HttpMethod.PUT, httpEntity, Object.class);
-    }
-
-    /**
      * Sends POST operation to DMI with json body containing module references.
      * @param dmiResourceUrl dmi resource url
      * @param jsonData json data body
