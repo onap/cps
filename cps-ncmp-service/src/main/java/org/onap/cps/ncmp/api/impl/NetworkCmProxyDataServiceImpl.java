@@ -347,14 +347,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                            final List<ModuleReference> unknownModuleReferences) {
-        final ResponseEntity<String> responseEntity =
+        final ResponseEntity<Object> responseEntity =
             dmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle, unknownModuleReferences);
 
-        final JsonArray moduleResources = new Gson().fromJson(responseEntity.getBody(),
-            JsonArray.class);
+        final String bodyAsString = new Gson().toJson(responseEntity.getBody());
+        final JsonArray bodyAsJsonObject = new Gson().fromJson(bodyAsString, JsonArray.class);
         final Map<String, String> newYangResourcesModuleNameToContentMap = new HashMap<>();
 
-        for (final JsonElement moduleResource : moduleResources) {
+        for (final JsonElement moduleResource : bodyAsJsonObject) {
             final YangResource yangResource = toYangResource((JsonObject) moduleResource);
             newYangResourcesModuleNameToContentMap.put(yangResource.getModuleName(), yangResource.getYangSource());
         }
@@ -375,10 +375,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private static List<ModuleReference> toModuleReferences(
-            final ResponseEntity<String> dmiFetchModulesResponseEntity) {
+            final ResponseEntity<Object> dmiFetchModulesResponseEntity) {
         final List<ModuleReference> moduleReferences = new ArrayList<>();
-        final JsonObject bodyAsJsonObject = new Gson().fromJson(dmiFetchModulesResponseEntity.getBody(),
-            JsonObject.class);
+        final String bodyAsString = new Gson().toJson(dmiFetchModulesResponseEntity.getBody());
+        final JsonObject bodyAsJsonObject = new Gson().fromJson(bodyAsString, JsonObject.class);
         final JsonArray moduleReferencesAsJson = bodyAsJsonObject.getAsJsonArray("schemas");
         for (final JsonElement moduleReferenceAsJson : moduleReferencesAsJson) {
             final ModuleReference moduleReference = toModuleReference((JsonObject) moduleReferenceAsJson);

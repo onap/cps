@@ -20,11 +20,17 @@
 
 package org.onap.cps.ncmp.api.impl.config;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,6 +50,16 @@ public class NcmpConfiguration {
 
     @Bean
     public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
-        return restTemplateBuilder.build();
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+        //Add the Jackson Message converter
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+
+        // Note: here we are making this converter to process any kind of response,
+        // not only application/*json, which is the default behaviour
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+        messageConverters.add(converter);
+        final RestTemplate restTemplate = restTemplateBuilder.build();
+        restTemplate.setMessageConverters(messageConverters);
+        return restTemplate;
     }
 }
