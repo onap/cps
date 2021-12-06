@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import org.onap.cps.event.model.Content
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.onap.cps.event.model.Data
+import spock.lang.Shared
 import spock.lang.Specification
 
 /**
@@ -39,8 +40,10 @@ class CpsDataUpdatedEventSpec extends Specification {
     final EVENT_ID = '77b8f114-4562-4069-8234-6d059ff742ac'
     final EVENT_SOURCE = new URI('urn:cps:org.onap.cps')
     final EVENT_TYPE = 'org.onap.cps.data-updated-event'
-    final EVENT_SCHEMA = new URI('urn:cps:org.onap.cps:data-updated-event-schema:v1')
+    final EVENT_SCHEMA_V1 = new URI('urn:cps:org.onap.cps:data-updated-event-schema:v1')
+    final EVENT_SCHEMA_V2 = new URI('urn:cps:org.onap.cps:data-updated-event-schema:v2')
 
+    @Shared
     final DATA = [
             'test:bookstore': [
                     'bookstore-name': 'Chapters',
@@ -60,14 +63,14 @@ class CpsDataUpdatedEventSpec extends Specification {
             ]
     ]
 
-    def 'Conversion from JSON String to CpsDataUpdatedEvent POJO.'() {
-        when: 'event JSON String is converted to CpsDataUpdatedEvent'
-            def notificationMessage = getEventAsJsonStringFromFile()
+    def 'Conversion from Event V1 JSON String to CpsDataUpdatedEvent POJO.'() {
+        when: 'event V1 JSON String is converted to CpsDataUpdatedEvent'
+            def notificationMessage = getEventAsJsonStringFromFile('/event-v1.json')
             def cpsDataUpdatedEvent = objectMapper.readValue(notificationMessage, CpsDataUpdatedEvent.class)
         then: 'CpsDataUpdatedEvent POJO has the excepted values'
             cpsDataUpdatedEvent.id == EVENT_ID
             cpsDataUpdatedEvent.source == EVENT_SOURCE
-            cpsDataUpdatedEvent.schema == EVENT_SCHEMA
+            cpsDataUpdatedEvent.schema == EVENT_SCHEMA_V1
             cpsDataUpdatedEvent.type == EVENT_TYPE
             def content = cpsDataUpdatedEvent.content
             content.observedTimestamp == EVENT_TIMESTAMP
@@ -77,8 +80,37 @@ class CpsDataUpdatedEventSpec extends Specification {
             content.data.getAdditionalProperties() == DATA
     }
 
-    def 'Conversion CpsDataUpdatedEvent POJO to JSON String.'() {
-        given: 'Event content with the Data'
+    def 'Conversion from Event V2 JSON String to CpsDataUpdatedEvent POJO'() {
+        when: 'event V1 JSON String is converted to CpsDataUpdatedEvent'
+            def notificationMessage = getEventAsJsonStringFromFile(inputEventJson)
+            def cpsDataUpdatedEvent = objectMapper.readValue(notificationMessage, CpsDataUpdatedEvent.class)
+        then: 'CpsDataUpdatedEvent POJO has the excepted values'
+            with(cpsDataUpdatedEvent) {
+                id == EVENT_ID
+                source == EVENT_SOURCE
+                schema == EVENT_SCHEMA_V2
+                type == EVENT_TYPE
+            }
+            with(cpsDataUpdatedEvent.content) {
+                observedTimestamp == EVENT_TIMESTAMP
+                dataspaceName == DATASPACE_NAME
+                schemaSetName == BOOKSTORE_SCHEMA_SET
+                anchorName == ANCHOR_NAME
+                operation == expectedOperation
+                if (expectedData != null)
+                    data.getAdditionalProperties() == expectedData
+                else
+                    data == null
+            }
+        where:
+            scenario                        | inputEventJson                              || expectedData | expectedOperation
+            'create operation'              | '/event-v2-create-operation.json'           || DATA         | Content.Operation.CREATE
+            'delete operation'              | '/event-v2-delete-operation.json'           || null         | Content.Operation.DELETE
+            'create with additional fields' | '/event-v2-with-additional-properties.json' || DATA         | Content.Operation.CREATE
+    }
+
+    def 'Conversion from CpsDataUpdatedEvent POJO to Event V2 JSON String.'() {
+        given: 'Event V2 content with the Data'
             def data = new Data()
             data.withAdditionalProperty('test:bookstore', DATA.'test:bookstore')
             def content = new Content()
@@ -86,28 +118,28 @@ class CpsDataUpdatedEventSpec extends Specification {
                     .withDataspaceName(DATASPACE_NAME)
                     .withSchemaSetName(BOOKSTORE_SCHEMA_SET)
                     .withObservedTimestamp(EVENT_TIMESTAMP)
+                    .withOperation(Content.Operation.CREATE)
                     .withData(data)
         and: 'CpsDataUpdatedEvent with the content'
             def cpsDataUpdateEvent = new CpsDataUpdatedEvent()
             cpsDataUpdateEvent
-                    .withSchema(EVENT_SCHEMA)
+                    .withSchema(EVENT_SCHEMA_V2)
                     .withId(EVENT_ID)
                     .withSource(EVENT_SOURCE)
                     .withType(EVENT_TYPE)
                     .withContent(content)
-        when: 'CpsDataUpdatedEvent is converted to JSON string'
+        when: 'CpsDataUpdatedEvent is converted to Event V2 JSON string'
             def actualMessage = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(cpsDataUpdateEvent)
         then: 'the created JSON String is same as the expected JSON String'
-            def expectedMessage = getEventAsJsonStringFromFile()
+            def expectedMessage = getEventAsJsonStringFromFile('/event-v2-create-operation.json')
             assert actualMessage == expectedMessage
     }
 
-    def getEventAsJsonStringFromFile() {
+    def getEventAsJsonStringFromFile(String fileName) {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(
                 objectMapper.readValue(
-                        this.class.getResource('/bookstore-chapters.json').getText('UTF-8'),
+                        this.class.getResource(fileName).getText('UTF-8'),
                         ObjectNode.class)
         )
     }
-
 }
