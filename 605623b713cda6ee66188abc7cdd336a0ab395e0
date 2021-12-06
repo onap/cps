@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76e9ad6b_26602a22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-06T11:06:30Z",
+      "side": 1,
+      "message": "This is a test for a failing CSIT test. Will most likely be removed",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "605623b713cda6ee66188abc7cdd336a0ab395e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "087a965f_04b09036",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-06T11:06:30Z",
+      "side": 1,
+      "message": "Will be removed",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 110
+      },
+      "revId": "605623b713cda6ee66188abc7cdd336a0ab395e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
