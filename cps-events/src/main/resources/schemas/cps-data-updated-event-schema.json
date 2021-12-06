@@ -1,7 +1,7 @@
 {
 
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps:data-updated-event-schema:v1",
+  "$id": "urn:cps:org.onap.cps:data-updated-event-schema:v2",
 
   "$ref": "#/definitions/CpsDataUpdatedEvent",
 
@@ -40,7 +40,7 @@
         "type",
         "content"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
 
     "Content": {
@@ -63,6 +63,11 @@
           "description": "The name of CPS Core anchor the data is attached to.",
           "type": "string"
         },
+        "operation": {
+          "description": "The operation on the data",
+          "type": "string",
+          "enum": ["CREATE", "UPDATE", "DELETE"]
+        },
         "data": {
           "$ref": "#/definitions/Data"
         }
@@ -71,10 +76,9 @@
         "observedTimestamp",
         "dataspaceName",
         "schemaSetName",
-        "anchorName",
-        "data"
+        "anchorName"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
 
     "Data": {
