@@ -50,7 +50,16 @@ check_health()
 
 ###################### setup env ############################
 # Set env variables for docker compose
-export LOCAL_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+
+retVal=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+if [ $retVal -eq 0 ];
+then
+    # Linux/Ubuntu VM
+    export LOCAL_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+else
+    # Windows/WSL
+    export LOCAL_IP=$(ip addr show eth0 | grep -Po '(?<=inet\s)\d+(\.\d+){3}')
+fi
 
 source $WORKSPACE/plans/cps/test.properties
 export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)

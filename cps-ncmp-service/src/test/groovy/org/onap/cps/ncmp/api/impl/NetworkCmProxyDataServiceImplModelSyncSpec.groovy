@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
-
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
@@ -51,7 +53,9 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
             }
         and: 'dmi operations returns some module references'
             def jsonData = TestUtils.getResourceFileContent('cmHandleModules.json')
-            def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(jsonData, HttpStatus.OK)
+            def bodyAsJsonObject = new Gson().fromJson(jsonData, JsonObject.class);
+            //            final JsonArray moduleReferencesAsJson = bodyAsJsonObject.getAsJsonArray("schemas");
+            def moduleReferencesFromCmHandleAsJson = new ResponseEntity<String>(bodyAsJsonObject, HttpStatus.OK)
             mockDmiModelOperations.getModuleReferences(cmHandleForModelSync) >> moduleReferencesFromCmHandleAsJson
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> existingModuleResourcesInCps
