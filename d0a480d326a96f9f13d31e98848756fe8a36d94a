@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9b45bdee_9a04a3f1",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a490e13_1fc96888",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95c2644f_3a2cf790",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -81,6 +105,30 @@
         "id": 6639
       },
       "writtenOn": "2021-12-03T16:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95c2644f_3a2cf790",
+      "range": {
+        "startLine": 147,
+        "startChar": 61,
+        "endLine": 147,
+        "endChar": 83
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef19eb39_828fe096",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "95c2644f_3a2cf790",
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "1152f97e_e746ad1b",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be76300e_f31e4af3",
+      "range": {
+        "startLine": 254,
+        "startChar": 17,
+        "endLine": 254,
+        "endChar": 21
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "451a4792_f819bc44",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 1
@@ -175,6 +247,30 @@
         "id": 6639
       },
       "writtenOn": "2021-12-03T16:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "451a4792_f819bc44",
+      "range": {
+        "startLine": 329,
+        "startChar": 14,
+        "endLine": 329,
+        "endChar": 32
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0555e51_9be20605",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "451a4792_f819bc44",
@@ -224,6 +320,30 @@
       "writtenOn": "2021-12-03T16:24:16Z",
       "side": 1,
       "message": "as testing showed, only \u0027American\u0027 format is accepted here (mm-dd-yyyy) but this is not the correct format for Yang revisions so for now (until we have a schema for this output we have to put it in as a a string)",
+      "parentUuid": "d3b66c11_99067070",
+      "range": {
+        "startLine": 333,
+        "startChar": 31,
+        "endLine": 333,
+        "endChar": 41
+      },
+      "revId": "d0a480d326a96f9f13d31e98848756fe8a36d94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e275bf96_063cecb0",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "d3b66c11_99067070",
       "range": {
         "startLine": 333,

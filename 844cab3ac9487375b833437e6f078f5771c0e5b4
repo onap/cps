@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23ca06ab_d1e69b4c",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
+      "side": 1,
+      "message": "I purposely added this so the sample response will match, should I just remove it?",
+      "parentUuid": "ef127fc7_9d9669e2",
+      "range": {
+        "startLine": 137,
+        "startChar": 16,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "844cab3ac9487375b833437e6f078f5771c0e5b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ab262d5_c8752741",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-12-03T16:13:47Z",
       "side": 1,
       "message": "If we define all the examples for error messages here, we can probably remove the error message tag from components?",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 52
+      },
+      "revId": "844cab3ac9487375b833437e6f078f5771c0e5b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9754b018_8dcd5579",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2021-12-06T09:25:23Z",
+      "side": 1,
+      "message": "the schema? it\u0027s a repeating schema so I think it is better that it is there.",
+      "parentUuid": "1ab262d5_c8752741",
       "range": {
         "startLine": 262,
         "startChar": 12,
