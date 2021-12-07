@@ -365,12 +365,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final YangResource yangResource = new YangResource();
         yangResource.setModuleName(yangResourceAsJson.get("moduleName").getAsString());
         yangResource.setRevision(yangResourceAsJson.get("revision").getAsString());
-        final String yangSourceJson = yangResourceAsJson.get("yangSource").getAsString();
-
-        String yangSource = JsonUtils.removeWrappingTokens(yangSourceJson);
-        yangSource = JsonUtils.removeRedundantEscapeCharacters(yangSource);
-        yangResource.setYangSource(yangSource);
-
+        yangResource.setYangSource(yangResourceAsJson.get("yangSource").getAsString());
         return yangResource;
     }
 
