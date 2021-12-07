@@ -37,17 +37,18 @@ components:
       properties:
         dmiPlugin:
           type: string
-          example: onap-dmi-plugin
+          example: my-dmi-plugin
         dmiDataPlugin:
           type: string
-          example: onap-dmi-data-plugin
+          example: my-dmi-data-plugin
         dmiModelPlugin:
           type: string
-          example: onap-dmi-model-plugin
+          example: my-dmi-model-plugin
         createdCmHandles:
           type: array
           items:
             $ref: '#/components/schemas/RestCmHandle'
+          example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
         updatedCmHandles:
           type: array
           items:
@@ -56,6 +57,7 @@ components:
           type: array
           items:
             type: string
+            example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
 
     RestCmHandle:
       required:
@@ -64,14 +66,14 @@ components:
       properties:
         cmHandle:
           type: string
-          example: cmHandle123
+          example: my-cm-handle
         cmHandleProperties:
             $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
     RestCmHandleAdditionalProperties:
         type: object
         additionalProperties:
             type: string
-            example: system-001
+            example: my-additional-property
 
     Conditions:
       type: object
@@ -95,11 +97,12 @@ components:
       items:
         type: object
         $ref: '#/components/schemas/ModuleNameAsJsonObject'
+        example: [my-module-1, my-module-2, my-module-3]
     ModuleNameAsJsonObject:
         properties:
           moduleName:
             type: string
-            example: someModuleName
+            example: my-module
 
     #Response Schemas
     CmHandles:
@@ -116,7 +119,45 @@ components:
       properties:
         cmHandleId:
           type: string
-          example: someCmHandleId
+          example: my-cm-handle-id
+
+  examples:
+    dataSampleRequest:
+        summary: Sample request
+        description: Sample request body
+        value:
+          test:bookstore:
+            bookstore-name: Chapters
+            categories:
+              - code: '01'
+                name: SciFi
+                books:
+                - authors:
+                    - Iain M. Banks
+                - authors:
+                    - Ursula K. Le Guin
+              - code: '02'
+                name: kids
+                books:
+                - authors:
+                    - Philip Pullman
+
+    dataSampleResponse:
+        summary: Sample response
+        description: Sample response for selecting 'sample 1'.
+        value:
+          bookstore:
+            categories:
+              - code: '01'
+                books:
+                  - {}
+                  - {}
+                name: SciFi
+              - code: '02'
+                books:
+                  - {}
+                name: kids
+            bookstore-name: Chapters
 
   parameters:
     cmHandleInPath:
@@ -126,6 +167,7 @@ components:
       required: true
       schema:
         type: string
+        example: my-cm-handle
     xpathInQuery:
       name: xpath
       in: query
@@ -166,18 +208,15 @@ components:
       schema:
         type: string
       examples:
-        sample1:
+        sample 1:
           value:
-            resourceIdentifier: \parent\child
-        sample2:
+            resourceIdentifier: \shops\bookstore
+        sample 2:
           value:
-            resourceIdentifier: \parent\listElement[key=value]
-        sample3:
+            resourceIdentifier: \shops\bookstore\categories[@code=1]
+        sample 3:
           value:
-            resourceIdentifier: \parent\listElement[key=value]\grandChild
-        sample4:
-          value:
-            resourceIdentifier: parent=1,child=abc
+            resourceIdentifier: parent=shops,child=bookstore
     acceptParamInHeader:
       name: Accept
       in: header
@@ -189,21 +228,21 @@ components:
     optionsParamInQuery:
       name: options
       in: query
-      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'.
+      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'. The format of options parameter depend on the associated DMI Plugin implementation.
       required: false
       schema:
         type: string
       allowReserved: true
       examples:
-        sample1:
+        sample 1:
           value:
-            options: (key1=value1,key2=value2)
-        sample2:
+            options: (depth=3)
+        sample 2:
           value:
-            options: (key1=value1,key2=value1/value2)
-        sample3:
+            options: (fields=book)
+        sample 3:
           value:
-            options: (key1=10,key2=value2,key3=[val31;val32])
+            options: (depth=2,fields=book/authors)
     contentParamInHeader:
       name: Content-Type
       in: header
@@ -212,7 +251,7 @@ components:
       schema:
         type: string
         default: application/json
-
+        example: application/yang-data+json
 
   responses:
     NotFound:
@@ -221,36 +260,60 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Not found error message
+            details: Not found error details
     Unauthorized:
       description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 401
+            message: Unauthorized error message
+            details: Unauthorized error details
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+           status: 403
+           message: Forbidden error message
+           details: Forbidden error details
     BadRequest:
       description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+           status: 400 BAD_REQUEST
+           message: Bad request error message
+           details: Bad request error details
     Conflict:
       description: Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+           status: 409 CONFLICT
+           message: Conflict error message
+           details: Conflict error details
     NotImplemented:
       description: The given path has not been implemented
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
+          example:
+           status: 501
+           message: Not implemented error message
+           details: Not implemented error details
     Ok:
       description: OK
       content:
