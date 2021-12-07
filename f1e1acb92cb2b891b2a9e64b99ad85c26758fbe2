@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1bb1659_47a804ad",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-07T11:14:16Z",
+      "side": 0,
+      "message": "need to remove the use of this in dmi-plugin docker file (use same topic, new commit, try to use project version if possible)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 11
+      },
+      "revId": "f1e1acb92cb2b891b2a9e64b99ad85c26758fbe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
