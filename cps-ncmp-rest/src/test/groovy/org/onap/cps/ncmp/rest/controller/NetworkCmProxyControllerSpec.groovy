@@ -22,8 +22,11 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+
 import org.onap.cps.TestUtils
+import org.onap.cps.ncmp.config.TestConfig
 import org.onap.cps.spi.model.ModuleReference
+import org.springframework.context.annotation.Import
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -48,11 +51,13 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
 @WebMvcTest(NetworkCmProxyController)
+@Import(TestConfig.class)
 class NetworkCmProxyControllerSpec extends Specification {
 
     @Autowired
     MockMvc mvc
 
+   
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
@@ -226,15 +231,16 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'update resource data url'
             def updateUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                 "?resourceIdentifier=parent/child"
+            def jsonString = '{"some-key" : "some-value"}'
         when: 'update data resource request is performed'
             def response = mvc.perform(
                 put(updateUrl)
                     .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
+                    .accept(MediaType.APPLICATION_JSON_VALUE).content(groovy.json.JsonOutput.toJson(jsonString))
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', UPDATE,'some-request-body', 'application/json;charset=UTF-8')
+                'parent/child', UPDATE,jsonString, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -243,15 +249,16 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=parent/child"
+            def jsonString = '{"some-key" : "some-value"}'
         when: 'create resource request is performed'
             def response = mvc.perform(
                     post(url)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
-                            .accept(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+                            .accept(MediaType.APPLICATION_JSON_VALUE).content(groovy.json.JsonOutput.toJson(jsonString))
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8')
+                'parent/child', CREATE, jsonString, 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
         where: 'given request body'
@@ -267,9 +274,9 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response =mvc.perform(get(getUrl)).andReturn().response
         then: 'ncmp service method to get yang resource module references is called'
             mockNetworkCmProxyDataService.getYangResourcesModuleReferences('some-cmhandle')
-                    >> [new ModuleReference(moduleName: 'some-name1',revision: 'some-revision1')]
+                    >> [new ModuleReference(moduleName: 'some-name1',revision: '2021-10-03')]
         and: 'response contains an array with the module name and revision'
-            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"some-revision1"}]'
+            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"2021-10-03"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
     }
@@ -319,4 +326,3 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 }
-
