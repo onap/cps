@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5e1f558_373afa2c",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-08T08:45:07Z",
+      "side": 1,
+      "message": "suggestion: use static imports so you can just use \u0027CREATE\u0027 and \u0027DELETE\u0027 here",
+      "range": {
+        "startLine": 107,
+        "startChar": 108,
+        "endLine": 107,
+        "endChar": 126
+      },
+      "revId": "a51102bd77465a85e41069d9c0f067adbe51f379",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcbd94c9_c0a09e73",
+        "filename": "cps-events/src/test/groovy/org/onap/cps/event/CpsDataUpdatedEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-08T08:45:07Z",
+      "side": 1,
+      "message": "not necessary in Groovy",
+      "range": {
+        "startLine": 138,
+        "startChar": 37,
+        "endLine": 138,
+        "endChar": 43
+      },
+      "revId": "a51102bd77465a85e41069d9c0f067adbe51f379",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
