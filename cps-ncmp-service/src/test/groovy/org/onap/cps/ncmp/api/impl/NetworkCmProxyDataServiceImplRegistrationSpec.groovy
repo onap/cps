@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
@@ -30,6 +31,8 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Shared
 import spock.lang.Specification
+
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
@@ -40,6 +43,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def cmHandlesArray = ['cmHandle001']
 
     def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsModuleService = Mock(CpsModuleService)
     def spyObjectMapper = Spy(ObjectMapper)
 
     def noTimestamp = null
@@ -62,16 +66,18 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'update node and child data nodes is invoked with correct parameters'
             expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin',
                     'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, noTimestamp)
-        and : 'delete list or list element is invoked with the correct parameters'
-            expectedCallsToDeleteListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
+        and: 'delete schema set is invoked with the correct parameters'
+            expectedCallsToDeleteSchemaSetAndListElement * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'cmHandle001', CASCADE_DELETE_ALLOWED)
+        and: 'delete list or list element is invoked with the correct parameters'
+            expectedCallsToDeleteSchemaSetAndListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
                     'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
-            scenario                        | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode   | expectedCallsToUpdateNode | expectedCallsToDeleteListElement
-            'create'                        | [persistenceCmHandle] | []                    | []               || 1                         | 0                         | 0
-            'update'                        | []                    | [persistenceCmHandle] | []               || 0                         | 1                         | 0
-            'delete'                        | []                    | []                    | cmHandlesArray   || 0                         | 0                         | 1
-            'create, update and delete'     | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                         | 1                         | 1
-            'no valid data'                 | null                  | null                  |  null            || 0                         | 0                         | 0
+            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToUpdateNode | expectedCallsToDeleteSchemaSetAndListElement
+            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                         | 0
+            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 1                         | 0
+            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 0                         | 1
+            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                         | 1
+            'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) without additional properties.'() {
@@ -159,7 +165,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {
-        def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(null, null, null,
+        def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(null, null, mockCpsModuleService,
                 mockCpsDataService, null, null, spyObjectMapper))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest

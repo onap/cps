@@ -35,6 +35,7 @@ Bug Fixes
 
    - `CPS-762 <https://jira.onap.org/browse/CPS-762>`_ Query cm handles for module names returns incorrect cm handle identifiers
    - `CPS-788 <https://jira.onap.org/browse/CPS-788>`_ Yang Resource formatting is incorrect
+   - `CPS-783 <https://jira.onap.org/browse/CPS-783>`_ Remove cm handle does not completely remove all cm handle information
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
