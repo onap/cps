@@ -62,7 +62,7 @@ public class DmiDataOperations extends DmiOperations {
      * @param dataStore  data store enum
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<String> getResourceDataFromDmi(final String cmHandle,
+    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandle,
                                                           final String resourceId,
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
@@ -93,7 +93,7 @@ public class DmiDataOperations extends DmiOperations {
      * @param dataType    data type
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<String> writeResourceDataPassThroughRunningFromDmi(final String cmHandle,
+    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandle,
                                                                              final String resourceId,
                                                                              final OperationEnum operation,
                                                                              final String requestData,
