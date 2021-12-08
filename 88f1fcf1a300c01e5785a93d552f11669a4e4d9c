@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f4395f6_01d5eb2b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-08T08:41:57Z",
+      "side": 1,
+      "message": "I don\u0027t think your are \u0027spying\u0027 or \u0027mocking\u0027 anything?!\nprobably best to insert a real instance of it. Shouldn\u0027t affect your tests...",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "88f1fcf1a300c01e5785a93d552f11669a4e4d9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d899bb58_e9a875ab",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-08T08:41:57Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 274,
+        "startChar": 8,
+        "endLine": 274,
+        "endChar": 48
+      },
+      "revId": "88f1fcf1a300c01e5785a93d552f11669a4e4d9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
