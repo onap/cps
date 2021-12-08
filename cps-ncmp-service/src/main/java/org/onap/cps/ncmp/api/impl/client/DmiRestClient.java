@@ -53,11 +53,11 @@ public class DmiRestClient {
      * @param httpHeaders http headers
      * @return response entity of type String
      */
-    public ResponseEntity<String> postOperationWithJsonData(final String dmiResourceUrl,
+    public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
                                                             final String jsonData,
                                                             final HttpHeaders httpHeaders) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(httpHeaders));
-        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, String.class);
+        return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
@@ -72,8 +72,8 @@ public class DmiRestClient {
      * @param httpHeaders http headers
      * @return response entity of type String
      */
-    public ResponseEntity<String> postOperation(final String dmiResourceUrl, final HttpHeaders httpHeaders) {
+    public ResponseEntity<Object> postOperation(final String dmiResourceUrl, final HttpHeaders httpHeaders) {
         final var httpEntity = new HttpEntity<>(configureHttpHeaders(httpHeaders));
-        return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, String.class);
+        return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, Object.class);
     }
 }

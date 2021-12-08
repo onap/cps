@@ -29,6 +29,7 @@ Features
    - `CPS-636 <https://jira.onap.org/browse/CPS-636>`_  Update operation for datastore pass through running
    - `CPS-638 <https://jira.onap.org/browse/CPS-638>`_  Delete operation for datastore pass through running
    - `CPS-741 <https://jira.onap.org/browse/CPS-741>`_  Re sync after removing cm handles
+   - `CPS-741 <https://jira.onap.org/browse/CPS-777>`_  Ensure all DMI operations use POST method
 
 Bug Fixes
 ---------

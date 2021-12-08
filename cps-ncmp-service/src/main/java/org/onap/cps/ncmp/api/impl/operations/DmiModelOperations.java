@@ -55,7 +55,7 @@ public class DmiModelOperations extends DmiOperations {
      * @param persistenceCmHandle the persistence cm handle
      * @return module references
      */
-    public ResponseEntity<String> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
+    public ResponseEntity<Object> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .build();
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
@@ -70,7 +70,7 @@ public class DmiModelOperations extends DmiOperations {
      * @param unknownModuleReferences the unknown module references
      * @return yang resources
      */
-    public ResponseEntity<String>  getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
+    public ResponseEntity<Object>  getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                               final List<ModuleReference> unknownModuleReferences) {
         final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResources(
             unknownModuleReferences, persistenceCmHandle.getAdditionalProperties());
@@ -90,7 +90,7 @@ public class DmiModelOperations extends DmiOperations {
      * @param resourceName name of the resource(s)
      * @return {@code ResponseEntity} response entity
      */
-    private ResponseEntity<String> getResourceFromDmiWithJsonData(final String dmiServiceName,
+    private ResponseEntity<Object> getResourceFromDmiWithJsonData(final String dmiServiceName,
                                                                   final String jsonData,
                                                                   final String cmHandle,
                                                                   final String resourceName) {

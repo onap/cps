@@ -22,6 +22,9 @@ package org.onap.cps.ncmp.api.impl.config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.http.MediaType
+import org.springframework.http.converter.HttpMessageConverter
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
@@ -48,10 +51,12 @@ class NcmpConfigurationSpec extends Specification{
         given: 'a rest template builder'
             def mockRestTemplateBuilder = Mock(RestTemplateBuilder)
             def expectedRestTemplate = Mock(RestTemplate)
+            expectedRestTemplate.getMessageConverters() >> []
             mockRestTemplateBuilder.build() >> expectedRestTemplate
         when: 'a rest template is created'
             def result = NcmpConfiguration.restTemplate(mockRestTemplateBuilder)
         then: 'the rest template from the builder is returned'
-            assert result == expectedRestTemplate
+            result.getMessageConverters().get(0).getSupportedMediaTypes().get(0) == MediaType.APPLICATION_JSON
+            result.getMessageConverters().get(0).getSupportedMediaTypes().get(1) == MediaType.TEXT_PLAIN
     }
 }
