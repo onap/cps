@@ -82,7 +82,10 @@ nodesByCmHandleAndXpath:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       201:
         $ref: 'components.yaml#/components/responses/Created'
@@ -110,7 +113,10 @@ nodesByCmHandleAndXpath:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -138,7 +144,10 @@ nodesByCmHandleAndXpath:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -167,7 +176,10 @@ listNodeByCmHandleAndXpath:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       201:
         $ref: 'components.yaml#/components/responses/Created'
@@ -256,13 +268,16 @@ resourceDataForPassthroughRunning:
       content:
         application/json:
           schema:
-            type: string
+            type: object
           examples:
             dataSampleRequest:
               $ref: 'components.yaml#/components/examples/dataSampleRequest'
         application/yang-data+json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       201:
         $ref: 'components.yaml#/components/responses/Created'
@@ -290,13 +305,16 @@ resourceDataForPassthroughRunning:
       content:
         application/json:
           schema:
-            type: string
+            type: object
           examples:
             dataSampleRequest:
               $ref: 'components.yaml#/components/examples/dataSampleRequest'
         application/yang-data+json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -325,6 +343,9 @@ resourceDataForPassthroughRunning:
         application/json:
           schema:
             type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'
@@ -352,7 +373,10 @@ resourceDataForPassthroughRunning:
       content:
         application/json:
           schema:
-            type: string
+            type: object
+          examples:
+            dataSampleRequest:
+              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       204:
         $ref: 'components.yaml#/components/responses/NoContent'
@@ -381,15 +405,9 @@ fetchModuleReferencesByCmHandle:
         content:
           application/json:
             schema:
-              type: object
-            examples:
-              moduleReferencesResponse:
-                summary: Sample response
-                value:
-                  - moduleName: my-module-name
-                    revision: yyyy-mm-dd
-                  - moduleName: my-module-name-2
-                    revision: yyyy-mm-dd
+              type: array
+              items:
+                $ref: 'components.yaml#/components/schemas/ModuleReferences'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
