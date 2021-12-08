@@ -63,6 +63,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def cmHandle = 'some handle'
     def xpath = 'some xpath'
+    def jsonString = '{"some-key":"some-value"}'
 
     def 'Query data node by cps path for the given cm handle with #scenario.'() {
         given: 'service method returns a list containing a data node'
@@ -88,17 +89,15 @@ class NetworkCmProxyControllerSpec extends Specification {
     }
 
     def 'Create data node: #scenario.'() {
-        given: 'json data'
-            def jsonData = 'json data'
         when: 'post request is performed'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/cm-handles/$cmHandle/nodes")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
+                            .content(jsonString)
                             .param('xpath', reqXpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.createDataNode(cmHandle, usedXpath, jsonData)
+            1 * mockNetworkCmProxyDataService.createDataNode(cmHandle, usedXpath, jsonString)
         and: 'response status indicates success'
             response.status == HttpStatus.CREATED.value()
         where: 'following parameters were used'
@@ -109,54 +108,49 @@ class NetworkCmProxyControllerSpec extends Specification {
     }
 
     def 'Add list-node elements.'() {
-        given: 'json data and parent node xpath'
-            def jsonData = 'json data'
+        given: ' parent node xpath'
             def parentNodeXpath = 'parent node xpath'
         when: 'post request is performed'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/cm-handles/$cmHandle/list-node")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
+                            .content(jsonString)
                             .param('xpath', parentNodeXpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonData)
+            1 * mockNetworkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonString)
         and: 'response status indicates success'
             response.status == HttpStatus.CREATED.value()
     }
 
     def 'Update data node leaves.'() {
-        given: 'json data'
-            def jsonData = 'json data'
-        and: 'the query endpoint'
+        given: 'the query endpoint'
             def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
         when: 'patch request is performed'
             def response = mvc.perform(
                     patch(endpoint)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
+                            .content(jsonString)
                             .param('xpath', xpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.updateNodeLeaves(cmHandle, xpath, jsonData)
+            1 * mockNetworkCmProxyDataService.updateNodeLeaves(cmHandle, xpath, jsonString)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
     }
 
     def 'Replace data node tree.'() {
-        given: 'json data'
-            def jsonData = 'json data'
-        and: 'the query endpoint'
+        given: 'the query endpoint'
             def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
         when: 'put request is performed'
             def response = mvc.perform(
                     put(endpoint)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonData)
+                            .content(jsonString)
                             .param('xpath', xpath)
             ).andReturn().response
         then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.replaceNodeTree(cmHandle, xpath, jsonData)
+            1 * mockNetworkCmProxyDataService.replaceNodeTree(cmHandle, xpath, jsonString)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
     }
@@ -232,11 +226,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                 put(updateUrl)
                     .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .accept(MediaType.APPLICATION_JSON_VALUE).content('some-request-body')
+                    .accept(MediaType.APPLICATION_JSON_VALUE).content(jsonString)
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', UPDATE,'some-request-body', 'application/json;charset=UTF-8')
+                'parent/child', UPDATE, jsonString, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -258,8 +252,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
         where: 'given request body'
             scenario                        |  requestBody
-            'body contains " and new line'  |  'body with " quote and \n new line'
-            'body contains normal string'   |  'normal request body'
+            'body contains normal string'   |  '{"some-key":"some-value"}'
     }
 
     def 'Get module references for the given dataspace and cm handle.' () {
@@ -269,9 +262,9 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response =mvc.perform(get(getUrl)).andReturn().response
         then: 'ncmp service method to get yang resource module references is called'
             mockNetworkCmProxyDataService.getYangResourcesModuleReferences('some-cmhandle')
-                    >> [new ModuleReference(moduleName: 'some-name1',revision: 'some-revision1')]
+                    >> [new ModuleReference(moduleName: 'some-name1',revision: '2021-10-03')]
         and: 'response contains an array with the module name and revision'
-            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"some-revision1"}]'
+            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"2021-10-03"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
     }
@@ -279,13 +272,13 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Retrieve cm handles.'() {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
-            String jsonData = TestUtils.getResourceFileContent('cmhandle-search.json')
+            String jsonString = TestUtils.getResourceFileContent('cmhandle-search.json')
         and: 'the service method is invoked with module names and returns two cm handle ids'
             mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(jsonData)).andReturn().response
+                    .content(jsonString)).andReturn().response
         then: 'response status returns OK'
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
@@ -295,11 +288,11 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Call execute cm handle searches with unrecognized condition name.'() {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
-            String jsonData = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
+            String jsonString = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(jsonData)).andReturn().response
+                    .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
             response.contentAsString == '{"cmHandles":[]}'
     }
@@ -312,11 +305,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                     patch(url)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON).content('{"some-key" : "some-value"}')
+                            .accept(MediaType.APPLICATION_JSON).content(jsonString)
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', PATCH, '{some-key=some-value}', 'application/json;charset=UTF-8')
+                    'parent/child', PATCH, jsonString, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -328,10 +321,10 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'delete data resource request is performed'
             def response = mvc.perform(
                 delete(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                .content('{"some-key" : "some-value"}')).andReturn().response
+                .content(jsonString)).andReturn().response
         then: 'the ncmp service method to delete resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', DELETE, '{"some-key" : "some-value"}', 'application/json;charset=UTF-8')
+                'parent/child', DELETE, jsonString, 'application/json;charset=UTF-8')
         and: 'the response is No Content'
             response.status == HttpStatus.NO_CONTENT.value()
     }
