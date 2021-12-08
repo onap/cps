@@ -20,11 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.config;
 
+import java.util.Arrays;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,8 +45,24 @@ public class NcmpConfiguration {
         private String dmiBasePath;
     }
 
+    /**
+     * Rest template bean.
+     *
+     * @param restTemplateBuilder the rest template builder
+     * @return rest template instance
+     */
     @Bean
     public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
-        return restTemplateBuilder.build();
+        final RestTemplate restTemplate = restTemplateBuilder.build();
+        setRestTemplateMessageConverters(restTemplate);
+        return restTemplate;
+    }
+
+    private static void setRestTemplateMessageConverters(final RestTemplate restTemplate) {
+        final MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter =
+            new MappingJackson2HttpMessageConverter();
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(
+            Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
     }
 }
