@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.impl.config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.http.MediaType
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
@@ -32,6 +34,8 @@ class NcmpConfigurationSpec extends Specification{
 
     @Autowired
     NcmpConfiguration.DmiProperties dmiProperties
+
+    def mockRestTemplateBuilder = new RestTemplateBuilder()
 
     def 'NcmpConfiguration Construction.'() {
         expect: 'the system can create an instance'
@@ -45,13 +49,14 @@ class NcmpConfigurationSpec extends Specification{
     }
 
     def 'Rest Template creation.'() {
-        given: 'a rest template builder'
-            def mockRestTemplateBuilder = Mock(RestTemplateBuilder)
-            def expectedRestTemplate = Mock(RestTemplate)
-            mockRestTemplateBuilder.build() >> expectedRestTemplate
         when: 'a rest template is created'
             def result = NcmpConfiguration.restTemplate(mockRestTemplateBuilder)
-        then: 'the rest template from the builder is returned'
-            assert result == expectedRestTemplate
+        then: 'the rest template is returned'
+            assert result instanceof RestTemplate
+        and: 'a jackson media converter has been added'
+            def lastMessageConverter = result.getMessageConverters().get(result.getMessageConverters().size()-1)
+            lastMessageConverter instanceof MappingJackson2HttpMessageConverter
+        and: 'the jackson media converters supports the expected media types'
+            lastMessageConverter.getSupportedMediaTypes() == [MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN];
     }
 }
