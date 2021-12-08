@@ -22,10 +22,6 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.impl.operations.DmiRequestBody
-import org.springframework.http.HttpHeaders
-
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
@@ -40,7 +36,6 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
