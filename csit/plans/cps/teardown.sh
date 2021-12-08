@@ -21,6 +21,12 @@
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 
+echo '================================== CPS-NCMP Logs ========================'
+docker logs cps-and-ncmp
+
+echo '================================== DMI Logs ============================='
+docker logs ncmp-dmi-plugin
+
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
