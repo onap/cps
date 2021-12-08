@@ -46,7 +46,7 @@ class DmiRestClientSpec extends Specification {
     def 'DMI POST operation'() {
         given: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
-            mockRestTemplate.exchange(resourceUrl, HttpMethod.POST, _ as HttpEntity, String.class) >> mockResponseEntity
+            mockRestTemplate.exchange(resourceUrl, HttpMethod.POST, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'POST operation is invoked'
             def result = objectUnderTest.postOperation(resourceUrl, new HttpHeaders())
         then: 'the output of the method is equal to the output from the rest template'
@@ -56,7 +56,7 @@ class DmiRestClientSpec extends Specification {
     def 'DMI POST operation with JSON.'() {
         given: 'the rest template returns a valid response entity'
             def mockResponseEntity = Mock(ResponseEntity)
-            mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, String.class) >> mockResponseEntity
+            mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'POST operation is invoked'
             def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', new HttpHeaders())
         then: 'the output of the method is equal to the output from the test template'
