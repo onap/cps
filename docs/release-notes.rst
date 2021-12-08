@@ -26,10 +26,10 @@ This section lists the main changes & fixes merged into master (snapshot) versio
 
 Features
 --------
-
    - `CPS-559 <https://jira.onap.org/browse/CPS-559>`_  Define response objects (schemas) in cps-ncmp
    - `CPS-636 <https://jira.onap.org/browse/CPS-636>`_  Update operation for datastore pass through running
    - `CPS-638 <https://jira.onap.org/browse/CPS-638>`_  Delete operation for datastore pass through running
+   - `CPS-741 <https://jira.onap.org/browse/CPS-736>`_  Ensure all DMI operations use POST method
    - `CPS-741 <https://jira.onap.org/browse/CPS-741>`_  Re sync after removing cm handles
    - `CPS-780 <https://jira.onap.org/browse/CPS-780>`_  Add examples for parameters, request and response in openapi yaml for cps-core
 
