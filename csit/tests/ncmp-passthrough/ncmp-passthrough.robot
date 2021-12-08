@@ -100,7 +100,7 @@ Verify update to bookstore using passthrough-running did not remove category 02
 Delete Bookstore using passthrough-running for Category 01
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
-    ${response}=         DELETE On Session     CPS_URL   ${uri}   headers=${headers}   data=''
+    ${response}=         DELETE On Session  CPS_URL   ${uri}   headers=${headers}   data={}
     Should Be Equal As Strings              ${response.status_code}   204
 
 Verify delete to bookstore using passthrough-running removed only category 01
