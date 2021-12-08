@@ -24,6 +24,7 @@
 package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -289,13 +290,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     protected void syncModulesAndCreateAnchor(final PersistenceCmHandle persistenceCmHandle) {
-        fetchAndSyncModules(persistenceCmHandle);
+        syncAndCreateSchemaSet(persistenceCmHandle);
         createAnchor(persistenceCmHandle);
     }
 
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
+                cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle,
+                    CASCADE_DELETE_ALLOWED);
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
             } catch (final DataNodeNotFoundException e) {
@@ -304,7 +307,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void fetchAndSyncModules(final PersistenceCmHandle persistenceCmHandle) {
+    private void syncAndCreateSchemaSet(final PersistenceCmHandle persistenceCmHandle) {
 
         final List<ModuleReference> moduleReferencesFromCmHandle =
             toModuleReferences(dmiModelOperations.getModuleReferences(persistenceCmHandle));
