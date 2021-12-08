@@ -121,6 +121,17 @@ components:
           type: string
           example: my-cm-handle-id
 
+    ModuleReference:
+      type: object
+      title: Module reference details
+      properties:
+        moduleName:
+          type: string
+          example: my-module-name
+        revision:
+          type: string
+          example: my-module-revision
+
   examples:
     dataSampleRequest:
         summary: Sample request
@@ -134,7 +145,6 @@ components:
                 books:
                 - authors:
                     - Iain M. Banks
-                - authors:
                     - Ursula K. Le Guin
               - code: '02'
                 name: kids
@@ -150,14 +160,15 @@ components:
             categories:
               - code: '01'
                 books:
-                  - {}
-                  - {}
+                  - authors:
+                      - Iain M. Banks
+                      - Ursula K. Le Guin
                 name: SciFi
               - code: '02'
                 books:
-                  - {}
+                  - authors:
+                      - Philip Pullman
                 name: kids
-            bookstore-name: Chapters
 
   parameters:
     cmHandleInPath:
