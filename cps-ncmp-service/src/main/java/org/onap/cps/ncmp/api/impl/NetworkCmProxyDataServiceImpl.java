@@ -28,10 +28,6 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,7 +48,6 @@ import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
-import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -308,9 +303,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void syncAndCreateSchemaSet(final PersistenceCmHandle persistenceCmHandle) {
-
         final List<ModuleReference> moduleReferencesFromCmHandle =
-            toModuleReferences(dmiModelOperations.getModuleReferences(persistenceCmHandle));
+            dmiModelOperations.getModuleReferences(persistenceCmHandle);
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
         final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
         prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
@@ -319,7 +313,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (unknownModuleReferences.isEmpty()) {
             newYangResourcesModuleNameToContentMap = new HashMap<>();
         } else {
-            newYangResourcesModuleNameToContentMap = getNewYangResourcesFromDmi(persistenceCmHandle,
+            newYangResourcesModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle,
                 unknownModuleReferences);
         }
         cpsModuleService
@@ -348,47 +342,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             persistenceCmHandle.getId());
     }
 
-    private Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
-                                                           final List<ModuleReference> unknownModuleReferences) {
-        final ResponseEntity<String> responseEntity =
-            dmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle, unknownModuleReferences);
 
-        final JsonArray moduleResources = new Gson().fromJson(responseEntity.getBody(),
-            JsonArray.class);
-        final Map<String, String> newYangResourcesModuleNameToContentMap = new HashMap<>();
 
-        for (final JsonElement moduleResource : moduleResources) {
-            final YangResource yangResource = toYangResource((JsonObject) moduleResource);
-            newYangResourcesModuleNameToContentMap.put(yangResource.getModuleName(), yangResource.getYangSource());
-        }
-        return newYangResourcesModuleNameToContentMap;
-    }
-
-    private static YangResource toYangResource(final JsonObject yangResourceAsJson) {
-        final YangResource yangResource = new YangResource();
-        yangResource.setModuleName(yangResourceAsJson.get("moduleName").getAsString());
-        yangResource.setRevision(yangResourceAsJson.get("revision").getAsString());
-        yangResource.setYangSource(yangResourceAsJson.get("yangSource").getAsString());
-        return yangResource;
-    }
-
-    private static List<ModuleReference> toModuleReferences(
-            final ResponseEntity<String> dmiFetchModulesResponseEntity) {
-        final List<ModuleReference> moduleReferences = new ArrayList<>();
-        final JsonObject bodyAsJsonObject = new Gson().fromJson(dmiFetchModulesResponseEntity.getBody(),
-            JsonObject.class);
-        final JsonArray moduleReferencesAsJson = bodyAsJsonObject.getAsJsonArray("schemas");
-        for (final JsonElement moduleReferenceAsJson : moduleReferencesAsJson) {
-            final ModuleReference moduleReference = toModuleReference((JsonObject) moduleReferenceAsJson);
-            moduleReferences.add(moduleReference);
-        }
-        return moduleReferences;
-    }
-
-    private static ModuleReference toModuleReference(final JsonObject moduleReferenceAsJson) {
-        final ModuleReference moduleReference = new ModuleReference();
-        moduleReference.setModuleName(moduleReferenceAsJson.get("moduleName").getAsString());
-        moduleReference.setRevision(moduleReferenceAsJson.get("revision").getAsString());
-        return moduleReference;
-    }
 }
