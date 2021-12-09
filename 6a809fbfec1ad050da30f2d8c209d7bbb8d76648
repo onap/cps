@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d162a8ed_2f945827",
+        "filename": "csit/data/bookstoreDeleteExample.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-09T16:50:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fde541e4_9c249432",
+      "revId": "6a809fbfec1ad050da30f2d8c209d7bbb8d76648",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f5f37c5_80e27a72",
         "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
         "patchSetId": 7
@@ -39,6 +57,30 @@
       "revId": "6a809fbfec1ad050da30f2d8c209d7bbb8d76648",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "802d2c37_9913486c",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-09T16:50:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f5f37c5_80e27a72",
+      "range": {
+        "startLine": 103,
+        "startChar": 25,
+        "endLine": 103,
+        "endChar": 85
+      },
+      "revId": "6a809fbfec1ad050da30f2d8c209d7bbb8d76648",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
