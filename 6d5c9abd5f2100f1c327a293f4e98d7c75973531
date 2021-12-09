@@ -22,6 +22,30 @@
       "revId": "6d5c9abd5f2100f1c327a293f4e98d7c75973531",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66595eba_56509ace",
+        "filename": "csit/data/bookstoreDeleteExample.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-09T15:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d23cf2b4_b3d9c179",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "6d5c9abd5f2100f1c327a293f4e98d7c75973531",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
