@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d23cf2b4_b3d9c179",
+        "filename": "csit/data/bookstoreDeleteExample.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T13:39:42Z",
+      "side": 1,
+      "message": "is the name needed to delete it?!  \ncan you test please, if not needed remove\ntest the following and let me know teh result:\n1) with name tag\n2) with name tag but different value",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "6d5c9abd5f2100f1c327a293f4e98d7c75973531",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
