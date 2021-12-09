@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fde541e4_9c249432",
+        "filename": "csit/data/bookstoreDeleteExample.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T16:12:15Z",
+      "side": 1,
+      "message": "please remove this file and just hardcode empty body",
+      "revId": "6a809fbfec1ad050da30f2d8c209d7bbb8d76648",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f5f37c5_80e27a72",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T16:12:15Z",
+      "side": 1,
+      "message": "no need for a file anymore, please just defined empty json here...",
+      "range": {
+        "startLine": 103,
+        "startChar": 25,
+        "endLine": 103,
+        "endChar": 85
+      },
+      "revId": "6a809fbfec1ad050da30f2d8c209d7bbb8d76648",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
