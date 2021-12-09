@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9144288d_f267f77a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T13:37:02Z",
+      "side": 1,
+      "message": "why do we have a list inside a list?!",
+      "range": {
+        "startLine": 284,
+        "startChar": 14,
+        "endLine": 284,
+        "endChar": 37
+      },
+      "revId": "a41b79379092cb8eadfcd83e9a0a7e17f358db13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184bab0e_539c3ab6",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T13:37:02Z",
+      "side": 1,
+      "message": "id there is only one row left the where block should be removed",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 74
+      },
+      "revId": "a41b79379092cb8eadfcd83e9a0a7e17f358db13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edd7a3e8_14a2b86b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-09T13:37:02Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 33,
+        "startChar": 97,
+        "endLine": 33,
+        "endChar": 103
+      },
+      "revId": "a41b79379092cb8eadfcd83e9a0a7e17f358db13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
