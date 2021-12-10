@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52285a4e_d76444f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-10T15:34:23Z",
+      "side": 1,
+      "message": "stil worried are we creating many instances of these convertors?!\nMaybe te converter should be defined once in a static block instead!",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 77
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "735eff29_f41659bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-10T15:34:23Z",
+      "side": 1,
+      "message": "split into 2 checks:\n  then: \u0027the rest template from the builder is returned\u0027\n            assert result \u003d\u003d expectedRestTemplate\n  and: \u0027the template has converters for the expected mediatypes\u0027\nresult.getMessageConverters().get(0).getSupportedMediaTypes() \u003d\u003d [MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN]",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 66
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
