@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f66a1329_2e111a45",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T13:12:09Z",
+      "side": 1,
+      "message": "great but this should come after the when: block",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 62
+      },
+      "revId": "f11f8ed43c1cc4163b1b9a6f19b893fa36da01d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5082b28_c174ece0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T13:12:09Z",
+      "side": 1,
+      "message": "I dont if this is needed if we assert the call to deleteListElement but whatever you perfer",
+      "range": {
+        "startLine": 140,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "f11f8ed43c1cc4163b1b9a6f19b893fa36da01d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
