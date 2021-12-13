@@ -297,13 +297,21 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
-                cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle,
-                    CASCADE_DELETE_ALLOWED);
+                deleteSchemaSetWithCascade(cmHandle);
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
             } catch (final DataNodeNotFoundException e) {
                 log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
             }
+        }
+    }
+
+    private void deleteSchemaSetWithCascade(final String schemaSetName) {
+        try {
+            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
+                CASCADE_DELETE_ALLOWED);
+        } catch (final Exception e) {
+            log.warn("Schema set {} delete failed, reason {}", schemaSetName, e.getMessage());
         }
     }
 
