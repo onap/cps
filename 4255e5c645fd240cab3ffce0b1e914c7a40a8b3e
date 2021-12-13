@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a53bc892_5a8891b8",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2021-12-13T13:06:53Z",
+      "side": 1,
+      "message": "Yes the example was already defined in RestCmHandle. By redefining the example here, it was overriden",
+      "parentUuid": "24c6c1a4_0226c8e7",
+      "range": {
+        "startLine": 51,
+        "startChar": 10,
+        "endLine": 51,
+        "endChar": 64
+      },
+      "revId": "4255e5c645fd240cab3ffce0b1e914c7a40a8b3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d59392ee_c772f8d7",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 5
