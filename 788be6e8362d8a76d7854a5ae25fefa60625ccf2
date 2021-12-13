@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4bf906e_8b75bb40",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T12:51:52Z",
+      "side": 1,
+      "message": "NB: in the context of this method it would be schemaSetName",
+      "range": {
+        "startLine": 309,
+        "startChar": 57,
+        "endLine": 309,
+        "endChar": 65
+      },
+      "revId": "788be6e8362d8a76d7854a5ae25fefa60625ccf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b6ff1fc_0cb93abe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T12:51:52Z",
+      "side": 1,
+      "message": "NB: maybe re-phrase somewhat:\n\n{} delete failed, reason {}",
+      "range": {
+        "startLine": 314,
+        "startChar": 36,
+        "endLine": 314,
+        "endChar": 55
+      },
+      "revId": "788be6e8362d8a76d7854a5ae25fefa60625ccf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1683895f_a78e96c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T12:51:52Z",
+      "side": 1,
+      "message": "NB: I don\u0027t think you need 2 arguments here",
+      "range": {
+        "startLine": 135,
+        "startChar": 80,
+        "endLine": 135,
+        "endChar": 85
+      },
+      "revId": "788be6e8362d8a76d7854a5ae25fefa60625ccf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a59388_6b5a5360",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T12:51:52Z",
+      "side": 1,
+      "message": "can you assert cpsDataService.deleteListOrListElement is still called (use Spy if needed)",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 38
+      },
+      "revId": "788be6e8362d8a76d7854a5ae25fefa60625ccf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
