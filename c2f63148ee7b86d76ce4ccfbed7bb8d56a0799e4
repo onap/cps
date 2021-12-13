@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "de0cb911_bffc400a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T09:15:28Z",
+      "side": 1,
+      "message": "if anything it is clear that this (service) class does way too much!\nIt does seem to make sense to move some of this to the operation class",
+      "parentUuid": "2ded849e_633d2bb8",
+      "range": {
+        "startLine": 354,
+        "startChar": 12,
+        "endLine": 354,
+        "endChar": 98
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52285a4e_d76444f6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
         "patchSetId": 5
@@ -87,6 +111,29 @@
         "startChar": 0,
         "endLine": 60,
         "endChar": 66
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f83de61_a763d82e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T09:15:28Z",
+      "side": 1,
+      "message": "don\u0027t always have to use a literal copy of the Slogan here. Sometimes and definitely in this case we might need something more end--user facing (instead we could also update the slogan of the Jira)\ne.g. \u0027Ensure all DMI operations us Post method\u0027",
+      "range": {
+        "startLine": 32,
+        "startChar": 56,
+        "endLine": 32,
+        "endChar": 110
       },
       "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
