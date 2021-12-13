@@ -126,6 +126,21 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             noExceptionThrown()
     }
 
+    def 'Register a DMI Plugin for the given cm-handle(s) with no schema set found during delete process.'() {
+        given: 'a registration without cm-handle properties '
+            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
+            dmiPluginRegistration.removedCmHandles = ['some cm handle']
+        and: 'an exception occurs during delete schema set process'
+            mockCpsModuleService.deleteSchemaSet(*_) >>  { throw (new Exception('')) }
+        and: 'delete list or list element is still called'
+            1 * mockCpsDataService.deleteListOrListElement(*_)
+        when: 'registration is updated and modules are synced'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
     def 'Dmi plugin registration with #scenario'() {
         given: 'a registration '
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
