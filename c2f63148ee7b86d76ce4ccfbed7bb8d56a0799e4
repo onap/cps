@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "30b94727_7d79d166",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-13T09:49:48Z",
+      "side": 1,
+      "message": "I agree this class is too big and perhaps we should investigate and agree on responsibilities,  If the team agrees however, the changes can be made but this review will remain until an agreement is made...",
+      "parentUuid": "de0cb911_bffc400a",
+      "range": {
+        "startLine": 354,
+        "startChar": 12,
+        "endLine": 354,
+        "endChar": 98
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52285a4e_d76444f6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
         "patchSetId": 5
@@ -83,6 +107,30 @@
       "writtenOn": "2021-12-10T15:34:23Z",
       "side": 1,
       "message": "stil worried are we creating many instances of these convertors?!\nMaybe te converter should be defined once in a static block instead!",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 77
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c485ba_1655fd92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-13T09:49:48Z",
+      "side": 1,
+      "message": "As the static bean above is only called once (i believe) during initialization then by proxy this method should only be called once.",
+      "parentUuid": "52285a4e_d76444f6",
       "range": {
         "startLine": 62,
         "startChar": 0,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "29dbf61c_83396088",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-13T09:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "735eff29_f41659bf",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 66
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f83de61_a763d82e",
         "filename": "docs/release-notes.rst",
         "patchSetId": 5
@@ -138,6 +210,30 @@
       "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3d59f50_f6b69f58",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-13T09:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f83de61_a763d82e",
+      "range": {
+        "startLine": 32,
+        "startChar": 56,
+        "endLine": 32,
+        "endChar": 110
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
