@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "709d0d8b_8f1bb204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-12-13T04:12:44Z",
+      "side": 1,
+      "message": "I think this logic belongs to DMI\u003cModel/Data\u003eOperations class. Any data conversion from  ResponseEntity to Domain object should happen in the Integration classes rather than service.",
+      "range": {
+        "startLine": 307,
+        "startChar": 8,
+        "endLine": 310,
+        "endChar": 118
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ded849e_633d2bb8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2021-12-13T04:12:44Z",
+      "side": 1,
+      "message": "Same comment as above. I think we should discuss with the team about the responsibility of each class. \nWe have created similar set of layers ( Service, Operation , Client ) in both ncmp-dmi-plugin and ncmp. It would be good if we agree on the responsibility of each layer which can be followed in both the projects.",
+      "range": {
+        "startLine": 354,
+        "startChar": 12,
+        "endLine": 354,
+        "endChar": 98
+      },
+      "revId": "c2f63148ee7b86d76ce4ccfbed7bb8d56a0799e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52285a4e_d76444f6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
         "patchSetId": 5
