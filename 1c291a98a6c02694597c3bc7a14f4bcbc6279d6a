@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b21dac1_4d1dda31",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T16:52:50Z",
+      "side": 1,
+      "message": "NB: \u0027new\u0027 is a remnant from the larger usecase, not relevant for this method",
+      "range": {
+        "startLine": 156,
+        "startChar": 34,
+        "endLine": 156,
+        "endChar": 37
+      },
+      "revId": "1c291a98a6c02694597c3bc7a14f4bcbc6279d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f943c171_fe2d7613",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T16:52:50Z",
+      "side": 1,
+      "message": "I dont think we spy on it anymore (my bad)",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 59
+      },
+      "revId": "1c291a98a6c02694597c3bc7a14f4bcbc6279d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a66034f_ef552389",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T16:52:50Z",
+      "side": 1,
+      "message": "Stil wondering if ewe should write Jira\u0027s for this, maybe not til someone report this as a problem\n(we could spent a lot of time adding code to handle unlikely error scenarios I prefer to focus on adding functionality until these ssemarios become reality)",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 111
+      },
+      "revId": "1c291a98a6c02694597c3bc7a14f4bcbc6279d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bc14ba3_f283b2a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-13T16:52:50Z",
+      "side": 1,
+      "message": "great tests :-D (I\u0027ll let other comment on them)",
+      "range": {
+        "startLine": 69,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 33
+      },
+      "revId": "1c291a98a6c02694597c3bc7a14f4bcbc6279d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
