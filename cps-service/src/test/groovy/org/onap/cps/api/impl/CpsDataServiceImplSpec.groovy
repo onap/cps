@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
@@ -155,7 +155,7 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Update cm-handle properties' () {
-        given: 'a dmi registry model'
+        given: 'a DMI registry model'
             setupSchemaSetMocks('dmi-registry.yang')
         and: 'the expected json string'
             def jsonData = '{"cm-handles":[{"id":"cmHandle001", "additional-properties":[{"name":"P1"}]}]}'
