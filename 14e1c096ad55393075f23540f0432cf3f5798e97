@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8de3a8a9_15f1c60b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-14T15:18:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7263a86_4f8ed792",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "14e1c096ad55393075f23540f0432cf3f5798e97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d349d9d9_8ecd770a",
         "filename": "docs/release-notes.rst",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "14e1c096ad55393075f23540f0432cf3f5798e97",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b4dc8ce_38e109bf",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2021-12-14T15:18:45Z",
+      "side": 1,
+      "message": "Is this ordering recorded anywhere? I wasn\u0027t aware of this.",
+      "parentUuid": "d349d9d9_8ecd770a",
+      "range": {
+        "startLine": 34,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 97
+      },
+      "revId": "14e1c096ad55393075f23540f0432cf3f5798e97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
