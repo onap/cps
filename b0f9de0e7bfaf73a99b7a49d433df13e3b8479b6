@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "d22832e7_79ef1a53",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-14T15:39:51Z",
+      "side": 1,
+      "message": "I think Joe misinterpreted the comment, the null scenario was valid (and important for coverage) just the description was incorrect",
+      "parentUuid": "e6023a4a_ef7bf0b7",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a70cbc28_a56219d8",
         "filename": "docs/release-notes.rst",
         "patchSetId": 12
@@ -110,6 +134,29 @@
         "startChar": 1,
         "endLine": 33,
         "endChar": 89
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0610644b_17c8b9f1",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-14T15:39:51Z",
+      "side": 1,
+      "message": "yes this should be CPS-777",
+      "range": {
+        "startLine": 33,
+        "startChar": 48,
+        "endLine": 33,
+        "endChar": 51
       },
       "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
