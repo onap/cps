@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,12 +67,14 @@ components:
           type: string
           example: my-cm-handle
         cmHandleProperties:
-            $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
-    RestCmHandleAdditionalProperties:
+            $ref: '#/components/schemas/RestCmHandleProperties'
+        publicCmHandleProperties:
+            $ref: '#/components/schemas/RestCmHandleProperties'
+    RestCmHandleProperties:
         type: object
         additionalProperties:
             type: string
-            example: my-additional-property
+            example: my-property
 
     Conditions:
       type: object

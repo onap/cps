@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,10 +23,8 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

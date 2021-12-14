@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,11 +68,11 @@ public class DmiDataOperations extends DmiOperations {
                                                           final String acceptParamInHeader,
                                                           final DataStoreEnum dataStore) {
         final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndProperties(cmHandle);
+            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
@@ -99,13 +99,13 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final String requestData,
                                                                              final String dataType) {
         final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndProperties(cmHandle);
+            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
             .dataType(dataType)
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
         final String dmiUrl =
             getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
