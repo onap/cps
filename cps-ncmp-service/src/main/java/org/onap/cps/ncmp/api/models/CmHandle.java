@@ -43,4 +43,6 @@ public class CmHandle {
 
     private Map<String, String> cmHandleProperties;
 
+    private Map<String, String> publicCmHandleProperties;
+
 }

@@ -37,6 +37,15 @@ module dmi-registry {
           type string;
         }
       }
+      list public-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
     }
   }
 }
