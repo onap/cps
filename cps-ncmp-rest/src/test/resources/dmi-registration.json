@@ -4,7 +4,10 @@
     {
       "cmHandle": "example-name",
       "cmHandleProperties": {
-          "subSystemId" : "system-001"
+        "subSystemId" : "system-001"
+      },
+      "publicCmHandleProperties": {
+          "area" : "south"
         }
     }
   ]

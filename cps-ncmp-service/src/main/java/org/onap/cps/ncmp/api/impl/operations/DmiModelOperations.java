@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,11 +46,11 @@ public class DmiModelOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiModelOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
+    public DmiModelOperations(final PersistenceCmHandleRetriever dmiPropertiesRetriever,
                               final ObjectMapper objectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, objectMapper, dmiProperties, dmiRestClient);
+        super(dmiPropertiesRetriever, objectMapper, dmiProperties, dmiRestClient);
     }
 
     /**
@@ -62,7 +62,7 @@ public class DmiModelOperations extends DmiOperations {
     public List<ModuleReference> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
             getDmiRequestBodyAsString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
@@ -78,11 +78,11 @@ public class DmiModelOperations extends DmiOperations {
      */
     public Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                           final List<ModuleReference> unknownModuleReferences) {
-        final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResources(
-            unknownModuleReferences, persistenceCmHandle.getAdditionalProperties());
+        final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
+            unknownModuleReferences, persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
-            jsonDataWithDataAndCmHandleProperties,
+            jsonWithDataAndDmiProperties,
             persistenceCmHandle.getId(),
             "moduleResources");
         return asModuleNameToYangResourceMap(responseEntity);
@@ -106,13 +106,13 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final List<PersistenceCmHandle.Property> dmiProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
         final JsonObject jsonRequestObject = new JsonObject();
         jsonRequestObject.add("data", data);
-        jsonRequestObject.add("cmHandleProperties", toJsonObject(cmHandleProperties));
+        jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));
         return jsonRequestObject.toString();
     }
 
@@ -128,9 +128,10 @@ public class DmiModelOperations extends DmiOperations {
         return moduleReferences;
     }
 
-    private static JsonObject toJsonObject(final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+    private static JsonObject toJsonObject(final List<PersistenceCmHandle.Property>
+                                               dmiProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandleProperties) {
+        for (final PersistenceCmHandle.Property additionalProperty : dmiProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

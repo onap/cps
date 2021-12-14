@@ -5,6 +5,7 @@
 *.log.zip
 
 cps-application/archunit_store
+cps-ri/src/main/resources/changelog/db/changes/data/dmi/generated-csv/*
 target/
 log/
 
