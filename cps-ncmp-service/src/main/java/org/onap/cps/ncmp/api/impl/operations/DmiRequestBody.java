@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,25 +56,19 @@ public class DmiRequestBody {
     private OperationEnum operation;
     private String dataType;
     private String data;
-    private Map<String, String> cmHandleProperties;
+    @JsonProperty("cmHandleProperties")
+    private Map<String, String> dmiProperties;
 
     /**
-     * Set CmHandleProperties by converting a list of PersistenceCmHandle.AdditionalProperty objects.
+     * Set CmHandleProperties by converting a list of PersistenceCmHandle.Property objects.
      *
-     * @param cmHandlePropertiesAsList the cm handle additional properties
+     * @param dmiPropertiesAsList list of cm handle dmi properties
      */
-    public void asCmHandleProperties(
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandlePropertiesAsList) {
-        final boolean isCmHandlePropertiesNullOrEmpty =
-            cmHandlePropertiesAsList == null || cmHandlePropertiesAsList.isEmpty();
-        if (isCmHandlePropertiesNullOrEmpty) {
-            cmHandleProperties = Collections.emptyMap();
-        } else {
-            cmHandleProperties = new LinkedHashMap<>();
-            for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandlePropertiesAsList) {
-                cmHandleProperties.put(additionalProperty.getName(),
-                    additionalProperty.getValue());
-            }
+    public void asDmiProperties(
+        final List<PersistenceCmHandle.Property> dmiPropertiesAsList) {
+        dmiProperties = new LinkedHashMap<>();
+        for (final PersistenceCmHandle.Property dmiProperty : dmiPropertiesAsList) {
+            dmiProperties.put(dmiProperty.getName(), dmiProperty.getValue());
         }
     }
 
