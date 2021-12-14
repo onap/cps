@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,10 @@
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
+import java.util.Collections;
 import java.util.Map;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,13 +36,18 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class CmHandle {
 
     @JsonProperty("cmHandle")
     private String cmHandleID;
 
-    private Map<String, String> cmHandleProperties;
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    @JsonProperty("cmHandleProperties")
+    private Map<String, String> dmiProperties = Collections.emptyMap();
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    @JsonProperty("publicCmHandleProperties")
+    private Map<String, String> publicProperties = Collections.emptyMap();
 
 }
