@@ -49,11 +49,11 @@ public class DmiModelOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiModelOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
+    public DmiModelOperations(final PersistenceCmHandleRetriever dmiPropertiesRetriever,
                               final JsonObjectMapper jsonObjectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient);
+        super(dmiPropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient);
     }
 
     /**
@@ -65,7 +65,7 @@ public class DmiModelOperations extends DmiOperations {
     public List<ModuleReference> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
                 jsonObjectMapper.asJsonString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
@@ -81,11 +81,11 @@ public class DmiModelOperations extends DmiOperations {
      */
     public Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                           final List<ModuleReference> unknownModuleReferences) {
-        final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResources(
-            unknownModuleReferences, persistenceCmHandle.getAdditionalProperties());
+        final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
+            unknownModuleReferences, persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
-            jsonDataWithDataAndCmHandleProperties,
+            jsonWithDataAndDmiProperties,
             persistenceCmHandle.getId(),
             "moduleResources");
         return asModuleNameToYangResourceMap(responseEntity);
@@ -109,13 +109,13 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final List<PersistenceCmHandle.Property> dmiProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
         final JsonObject jsonRequestObject = new JsonObject();
         jsonRequestObject.add("data", data);
-        jsonRequestObject.add("cmHandleProperties", toJsonObject(cmHandleProperties));
+        jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));
         return jsonRequestObject.toString();
     }
 
@@ -131,9 +131,10 @@ public class DmiModelOperations extends DmiOperations {
         return moduleReferences;
     }
 
-    private static JsonObject toJsonObject(final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+    private static JsonObject toJsonObject(final List<PersistenceCmHandle.Property>
+                                               dmiProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandleProperties) {
+        for (final PersistenceCmHandle.Property additionalProperty : dmiProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

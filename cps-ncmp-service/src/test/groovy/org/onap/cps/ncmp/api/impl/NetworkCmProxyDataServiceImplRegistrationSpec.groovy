@@ -60,11 +60,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
             persistenceCmHandle.cmHandleID = '123'
-            persistenceCmHandle.cmHandleProperties = [name1: 'value1', name2: 'value2']
+            persistenceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
+            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
-            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,"additional-properties":[{"name":"name1","value":"value1"},{"name":"name2","value":"value2"}]}]}'
+            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,' +
+                '"additional-properties":[{"name":"dmiProp1","value":"dmiValue1"},{"name":"dmiProp2","value":"dmiValue2"}],' +
+                '"public-properties":[{"name":"publicProp1","value":"publicValue1"},{"name":"publicProp2","value":"publicValue2"}]' +
+                '}]}'
         when: 'registration is updated and modules are synced'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'save list elements is invoked with the expected parameters'
@@ -87,14 +91,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0
     }
 
-    def 'Register a DMI Plugin for the given cm-handle(s) without additional properties.'() {
+    def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
         given: 'a registration without cm-handle properties'
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
             persistenceCmHandle.cmHandleID = '123'
-            persistenceCmHandle.cmHandleProperties = null
+            persistenceCmHandle.dmiProperties = Collections.emptyMap()
+            persistenceCmHandle.publicProperties = Collections.emptyMap()
             dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
-            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,"additional-properties":[]}]}'
+            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,"additional-properties":[],"public-properties":[]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'save list elements is invoked with the expected parameters'
@@ -163,7 +168,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'data & model using same service' | ''         | 'service1'     | 'service1'
     }
 
-    def 'Invalid dmi plugin registration with #scenario'() {
+    def 'Invalid DMI plugin registration with #scenario'() {
         given: 'a registration '
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:dmiPlugin, dmiModelPlugin:dmiModelPlugin,
