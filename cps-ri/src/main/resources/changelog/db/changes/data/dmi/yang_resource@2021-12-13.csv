@@ -1,32 +1,29 @@
-module dmi-registry {
+name|content|checksum
+dmi-registry@2021-12-13.yang|"module dmi-registry {
 
   yang-version 1.1;
 
-  namespace "org:onap:cps:ncmp";
+  namespace \"org:onap:cps:ncmp\";
 
   prefix dmi-reg;
 
-  contact "dylan.byrne@est.tech";
+  organization \"Nordix Foundation\";
+
+  contact \"dylan.byrne@est.tech\";
 
   revision "2021-05-20" {
     description
     "Initial Version";
   }
 
-  revision "2021-10-20" {
-    description
-    "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
-  }
-
-
-  revision "2021-12-13" {
-    description
-    "Added new list of public additonal properties for a Cm-Handle which are exposed to clients of the NCMP interface";
+  revision \"2021-12-13\" {
+   description
+   \"Added new list of public additonal properties for a Cm-Handle which are exposed to clients of the NCMP interface. \";
   }
 
   container dmi-registry {
     list cm-handles {
-      key "id";
+      key \"id\";
       leaf id {
         type string;
       }
@@ -41,7 +38,7 @@ module dmi-registry {
       }
 
       list additional-properties {
-        key "name";
+        key \"name\";
         leaf name {
           type string;
         }
@@ -51,7 +48,7 @@ module dmi-registry {
       }
 
       list public-properties {
-        key "name";
+        key \"name\";
         leaf name {
           type string;
         }
@@ -62,3 +59,4 @@ module dmi-registry {
     }
   }
 }
+"|4899c384835ec48194ab5e3837549d32b844e02cfc81e9205234fa36354f3fe4
