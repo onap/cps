@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving module references.'() {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval([])
-        and: 'a positive response from dmi service when it is called with the expected parameters'
+        and: 'a positive response from DMI service when it is called with the expected parameters'
             def moduleReferencesAsLisOfMaps = [[moduleName:'mod1',revision:'A'],[moduleName:'mod2',revision:'X']]
             def responseFromDmi = new ResponseEntity([schemas:moduleReferencesAsLisOfMaps], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
@@ -58,7 +58,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving module references edge case: #scenario.'() {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval([])
-        and: 'any response from dmi service when it is called with the expected parameters'
+        and: 'any response from DMI service when it is called with the expected parameters'
             // TODO (toine): production code ignores any error code from DMI, this should be improved in future
             def responseFromDmi = new ResponseEntity(bodyAsMap, HttpStatus.NO_CONTENT)
             mockDmiRestClient.postOperationWithJsonData(*_) >> responseFromDmi
@@ -66,7 +66,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def result = objectUnderTest.getModuleReferences(persistenceCmHandle)
         then: 'the result is empty'
             assert result == []
-        where: 'the dmi response body has the following content'
+        where: 'the DMI response body has the following content'
             scenario       | bodyAsMap
             'no modules'   | [schemas:[]]
             'modules null' | [schemas:null]
@@ -74,34 +74,33 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             'no body'      | null
     }
 
-    def 'Retrieving module references, additional property handling:  #scenario.'() {
+    def 'Retrieving module references, DMI property handling:  #scenario.'() {
         given: 'a persistence cm handle'
-            mockPersistenceCmHandleRetrieval(additionalPropertiesObject)
-        and: 'a positive response from dmi service when it is called with tha expected parameters'
+            mockPersistenceCmHandleRetrieval(dmiProperties)
+        and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
                 '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}', [:]) >> responseFromDmi
         when: 'a get module references is called'
             def result = objectUnderTest.getModuleReferences(persistenceCmHandle)
-        then: 'the result is the response from dmi service'
+        then: 'the result is the response from DMI service'
             assert result == []
-        where: 'the following additional properties are used'
-            scenario               | additionalPropertiesObject || expectedAdditionalPropertiesInRequest
-            'with properties'      | [sampleAdditionalProperty] || '{"prop1":"val1"}'
-            'with null properties' | null                       || '{}'
-            'without properties'   | []                         || '{}'
+        where: 'the following DMI properties are used'
+            scenario               | dmiProperties       || expectedAdditionalPropertiesInRequest
+            'with properties'      | [dmiSampleProperty] || '{"prop1":"val1"}'
+            'without properties'   | []                  || '{}'
     }
 
     def 'Retrieving yang resources.'() {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval([])
-        and: 'a positive response from dmi service when it is called with tha expected parameters'
+        and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source'],
                                                       [moduleName: 'mod2', revision: 'C', yangSource: 'other yang source']], HttpStatus.OK)
             def expectedModuleReferencesInRequest = '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
                 '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', [:]) >> responseFromDmi
-        when: 'get new yang resources from dmi service'
+        when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(persistenceCmHandle, newModuleReferences)
         then: 'the result has the 2 expected yang (re)sources (order is not guaranteed)'
             assert result.size() == 2
@@ -112,43 +111,43 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving yang resources, edge case: scenario.'() {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval([])
-        and: 'a positive response from dmi service when it is called with tha expected parameters'
+        and: 'a positive response from DMI service when it is called with tha expected parameters'
             // TODO (toine): production code ignores any error code from DMI, this should be improved in future
             def responseFromDmi = new ResponseEntity(responseFromDmiBody, HttpStatus.NO_CONTENT)
             mockDmiRestClient.postOperationWithJsonData(*_) >> responseFromDmi
-        when: 'get new yang resources from dmi service'
+        when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(persistenceCmHandle, newModuleReferences)
         then: 'the result is empty'
             assert result == [:]
-        where: 'the dmi response body has the following content'
+        where: 'the DMI response body has the following content'
             scenario      | responseFromDmiBody
             'empty array' | []
             'null array'  | null
     }
 
-    def 'Retrieving yang resources, additional property handling #scenario.'() {
+    def 'Retrieving yang resources, DMI property handling #scenario.'() {
         given: 'a persistence cm handle'
-            mockPersistenceCmHandleRetrieval(additionalPropertiesObject)
-        and: 'a positive response from dmi service when it is called with the expected parameters'
+            mockPersistenceCmHandleRetrieval(dmiProperties)
+        and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
             '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":'+expectedAdditionalPropertiesInRequest+'}',
             [:]) >> responseFromDmi
-        when: 'get new yang resources from dmi service'
+        when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(persistenceCmHandle, unknownModuleReferences)
-        then: 'the result is the response from dmi service'
+        then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
-        where: 'the following additional properties are used'
-            scenario                                | additionalPropertiesObject | unknownModuleReferences || expectedAdditionalPropertiesInRequest | expectedModuleReferencesInRequest
-            'with module references and properties' | [sampleAdditionalProperty] | newModuleReferences     || '{"prop1":"val1"}'                    | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
-            'without module references'             | [sampleAdditionalProperty] | []                      || '{"prop1":"val1"}'                    | ''
-            'without properties'                    | []                         | newModuleReferences     || '{}'                                  | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
+        where: 'the following DMI properties are used'
+            scenario                                | dmiProperties       | unknownModuleReferences || expectedAdditionalPropertiesInRequest | expectedModuleReferencesInRequest
+            'with module references and properties' | [dmiSampleProperty] | newModuleReferences     || '{"prop1":"val1"}'                    | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
+            'without module references'             | [dmiSampleProperty] | []                      || '{"prop1":"val1"}'                    | ''
+            'without properties'                    | []                  | newModuleReferences     || '{}'                                  | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
     }
 
-    def 'Retrieving yang resources from dmi with additional properties null.'() {
+    def 'Retrieving yang resources from DMI with null DMI properties.'() {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval(null)
-        when: 'a get new yang resources from dmi is called'
+        when: 'a get new yang resources from DMI is called'
             objectUnderTest.getNewYangResourcesFromDmi(persistenceCmHandle, [])
         then: 'a null pointer is thrown (we might need to address this later)'
             thrown(NullPointerException)
@@ -159,7 +158,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockPersistenceCmHandleRetrieval([])
         and: 'a Json processing exception occurs'
             spyObjectMapper.writeValueAsString(_) >> {throw (new JsonProcessingException(''))}
-        when: 'a dmi operation is executed'
+        when: 'a DMI operation is executed'
             objectUnderTest.getModuleReferences(persistenceCmHandle)
         then: 'an ncmp exception is thrown'
             def exceptionThrown = thrown(NcmpException)
