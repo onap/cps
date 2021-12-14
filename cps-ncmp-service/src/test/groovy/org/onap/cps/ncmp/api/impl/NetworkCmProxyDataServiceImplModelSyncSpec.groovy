@@ -44,7 +44,7 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
             def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
         and: 'additional properties are set as required'
             if (additionalProperties!=null) {
-                cmHandleForModelSync.asAdditionalProperties(additionalProperties)
+                cmHandleForModelSync.asPublicProperties(additionalProperties)
             }
         and: 'dmi operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),

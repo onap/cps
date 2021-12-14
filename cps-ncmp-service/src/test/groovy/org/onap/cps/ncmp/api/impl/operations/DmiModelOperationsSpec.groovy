@@ -88,7 +88,6 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         where: 'the following additional properties are used'
             scenario               | additionalPropertiesObject || expectedAdditionalPropertiesInRequest
             'with properties'      | [sampleAdditionalProperty] || '{"prop1":"val1"}'
-            'with null properties' | null                       || '{}'
             'without properties'   | []                         || '{}'
     }
 

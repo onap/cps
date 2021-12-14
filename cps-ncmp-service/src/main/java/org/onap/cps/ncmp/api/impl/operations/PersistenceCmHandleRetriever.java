@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.onap.cps.api.CpsDataService;
@@ -57,7 +56,9 @@ public class PersistenceCmHandleRetriever {
      */
     public PersistenceCmHandle retrieveCmHandleDmiServiceNameAndProperties(final String cmHandleId) {
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
-        final CmHandle cmHandle = new CmHandle(cmHandleId, getCmHandleProperties(cmHandleDataNode));
+        final CmHandle cmHandle = new CmHandle();
+        cmHandle.setCmHandleID(cmHandleId);
+        populateCmHandleProperties(cmHandleDataNode, cmHandle);
         return PersistenceCmHandle.toPersistenceCmHandle(
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
@@ -74,16 +75,24 @@ public class PersistenceCmHandleRetriever {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
-    private static Map<String, String> getCmHandleProperties(final DataNode cmHandleDataNode) {
-        if (cmHandleDataNode.getChildDataNodes().isEmpty()) {
-            return Collections.emptyMap();
-        }
-        final Map<String, String> cmHandlePropertiesAsMap = new LinkedHashMap<>();
+    private static void populateCmHandleProperties(final DataNode cmHandleDataNode, final CmHandle cmHandle) {
+        final Map<String, String> dmiProperties = new LinkedHashMap<>();
+        final Map<String, String> publicProperties = new LinkedHashMap<>();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
-            cmHandlePropertiesAsMap.put(String.valueOf(childDataNode.getLeaves().get("name")),
-                String.valueOf(childDataNode.getLeaves().get("value")));
+            if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
+                addProperty(childDataNode, dmiProperties);
+            }
+            if (childDataNode.getXpath().contains("/public-properties[name@=")) {
+                addProperty(childDataNode, publicProperties);
+            }
         }
-        return cmHandlePropertiesAsMap;
+        cmHandle.setDmiProperties(dmiProperties);
+        cmHandle.setPublicProperties(publicProperties);
+    }
+
+    private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {
+        propertiesAsMap.put(String.valueOf(propertyDataNode.getLeaves().get("name")),
+            String.valueOf(propertyDataNode.getLeaves().get("value")));
     }
 
 }

@@ -24,7 +24,6 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -54,7 +53,10 @@ public class PersistenceCmHandle {
     private String dmiModelServiceName;
 
     @JsonProperty("additional-properties")
-    private List<AdditionalProperty> additionalProperties;
+    private List<PropertyConstructor> dmiProperties;
+
+    @JsonProperty("public-properties")
+    private List<PropertyConstructor> publicProperties;
 
     /**
      * Create a persistenceCmHandle.
@@ -73,22 +75,30 @@ public class PersistenceCmHandle {
         persistenceCmHandle.setDmiServiceName(dmiServiceName);
         persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
         persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        if (cmHandle.getCmHandleProperties() == null) {
-            persistenceCmHandle.asAdditionalProperties(Collections.emptyMap());
-        } else {
-            persistenceCmHandle.asAdditionalProperties(cmHandle.getCmHandleProperties());
-        }
+        setDmiProperties(cmHandle, persistenceCmHandle);
+        setPublicProperties(cmHandle, persistenceCmHandle);
         return persistenceCmHandle;
     }
 
     /**
      * Set Additional Properties map, key and value pair.
-     * @param additionalPropertiesAsMap Map of Additional Properties
+     * @param dmiPropertiesAsMap Map of Additional Properties
      */
-    public void asAdditionalProperties(final Map<String, String> additionalPropertiesAsMap) {
-        additionalProperties = new ArrayList<>(additionalPropertiesAsMap.size());
-        for (final Map.Entry<String, String> entry : additionalPropertiesAsMap.entrySet()) {
-            additionalProperties.add(new AdditionalProperty(entry.getKey(), entry.getValue()));
+    public void asDmiProperties(final Map<String, String> dmiPropertiesAsMap) {
+        dmiProperties = new ArrayList<>(dmiPropertiesAsMap.size());
+        for (final Map.Entry<String, String> entry : dmiPropertiesAsMap.entrySet()) {
+            dmiProperties.add(new PropertyConstructor(entry.getKey(), entry.getValue()));
+        }
+    }
+
+    /**
+     * Set Public Properties map, key and value pair.
+     * @param publicPropertiesAsMap Map of Additional Properties
+     */
+    public void asPublicProperties(final Map<String, String> publicPropertiesAsMap) {
+        publicProperties = new ArrayList<>(publicPropertiesAsMap.size());
+        for (final Map.Entry<String, String> entry : publicPropertiesAsMap.entrySet()) {
+            publicProperties.add(new PropertyConstructor(entry.getKey(), entry.getValue()));
         }
     }
 
@@ -111,9 +121,17 @@ public class PersistenceCmHandle {
         return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
+    private static void setDmiProperties(final CmHandle cmHandle, final PersistenceCmHandle persistenceCmHandle) {
+        persistenceCmHandle.asDmiProperties(cmHandle.getDmiProperties());
+    }
+
+    private static void setPublicProperties(final CmHandle cmHandle, final PersistenceCmHandle persistenceCmHandle) {
+        persistenceCmHandle.asPublicProperties(cmHandle.getPublicProperties());
+    }
+
     @AllArgsConstructor
     @Data
-    public static class AdditionalProperty {
+    public static class PropertyConstructor {
 
         @JsonProperty()
         private final String name;

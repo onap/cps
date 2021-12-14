@@ -19,8 +19,8 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
     def xpath = "/dmi-registry/cm-handles[@id='some cm handle']"
 
     @Shared
-    def childDataNodesForCmHandleProperties = [new DataNode(leaves: ["name":"name1","value":"value1"]),
-                                               new DataNode(leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1","value":"value1"]),
+                                               new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
 
     def "Retrieve CmHandle using datanode #scenario."() {
         given: 'the cps data service returns a data node from the dmi registry'
@@ -34,11 +34,10 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
             result.dmiDataServiceName == 'data service name'
             result.dmiModelServiceName == 'model service name'
         and: 'the expected additional properties'
-            result.additionalProperties == expectedCmHandleProperties
+            result.dmiProperties == expectedCmHandleProperties
         where: 'the following parameters are used'
             scenario                        | childDataNodes                      || expectedCmHandleProperties
             'without additional properties' | []                                  || []
-            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.AdditionalProperty("name1", "value1"),
-                                                                                      new PersistenceCmHandle.AdditionalProperty("name2", "value2")]
+            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.PropertyConstructor("name1", "value1")]
     }
 }
