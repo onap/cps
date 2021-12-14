@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5d3e3805_45840754",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-12-14T15:34:41Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 55
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfad9eaf_d3125383",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6841
+      },
+      "writtenOn": "2021-12-14T15:34:41Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 96,
+        "startChar": 45,
+        "endLine": 96,
+        "endChar": 55
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30d17c3b_26fe1c3a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
         "patchSetId": 12
