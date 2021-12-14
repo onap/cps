@@ -46,6 +46,31 @@
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>Windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <script.executor>python</script.executor>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <script.executor>python3</script.executor>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -376,6 +401,28 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-csv</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>${script.executor}</executable>
+                    <workingDirectory>../cps-ri/src/main/resources/</workingDirectory>
+                    <arguments>
+                        <argument>yangResourceCsvGenerator.py</argument>
+                        <argument>dmi-registry@2021-12-13</argument>
+                    </arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

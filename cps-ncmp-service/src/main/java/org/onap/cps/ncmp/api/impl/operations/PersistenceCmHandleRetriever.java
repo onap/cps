@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
@@ -34,30 +34,24 @@ import org.springframework.stereotype.Component;
  * Retrieves PersistenceCmHandles & properties.
  */
 @Component
+@AllArgsConstructor
 public class PersistenceCmHandleRetriever {
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
-    private CpsDataService cpsDataService;
+    private final CpsDataService cpsDataService;
 
     /**
-     * Constructor for PersistenceCmHandleRetriever.
-     * 
-     * @param cpsDataService the cps data service.
-     */
-    public PersistenceCmHandleRetriever(final CpsDataService cpsDataService) {
-        this.cpsDataService = cpsDataService;
-    }
-
-    /**
-     * This method retieves dmi service name and properties for a given cm handle.
+     * This method retrieves DMI service name and DMI properties for a given cm handle.
      * @param cmHandleId the id of the cm handle
      * @return persistence cm handle
      */
-    public PersistenceCmHandle retrieveCmHandleDmiServiceNameAndProperties(final String cmHandleId) {
+    public PersistenceCmHandle retrieveCmHandleDmiServiceNameAndDmiProperties(final String cmHandleId) {
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
-        final CmHandle cmHandle = new CmHandle(cmHandleId, getCmHandleProperties(cmHandleDataNode));
+        final CmHandle cmHandle = new CmHandle();
+        cmHandle.setCmHandleID(cmHandleId);
+        populateCmHandleDmiProperties(cmHandleDataNode, cmHandle);
         return PersistenceCmHandle.toPersistenceCmHandle(
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
@@ -74,16 +68,19 @@ public class PersistenceCmHandleRetriever {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
-    private static Map<String, String> getCmHandleProperties(final DataNode cmHandleDataNode) {
-        if (cmHandleDataNode.getChildDataNodes().isEmpty()) {
-            return Collections.emptyMap();
-        }
-        final Map<String, String> cmHandlePropertiesAsMap = new LinkedHashMap<>();
+    private static void populateCmHandleDmiProperties(final DataNode cmHandleDataNode, final CmHandle cmHandle) {
+        final Map<String, String> dmiProperties = new LinkedHashMap<>();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
-            cmHandlePropertiesAsMap.put(String.valueOf(childDataNode.getLeaves().get("name")),
-                String.valueOf(childDataNode.getLeaves().get("value")));
+            if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
+                addProperty(childDataNode, dmiProperties);
+            }
         }
-        return cmHandlePropertiesAsMap;
+        cmHandle.setDmiProperties(dmiProperties);
+    }
+
+    private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {
+        propertiesAsMap.put(String.valueOf(propertyDataNode.getLeaves().get("name")),
+            String.valueOf(propertyDataNode.getLeaves().get("value")));
     }
 
 }

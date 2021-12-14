@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -54,7 +53,10 @@ public class PersistenceCmHandle {
     private String dmiModelServiceName;
 
     @JsonProperty("additional-properties")
-    private List<AdditionalProperty> additionalProperties;
+    private List<Property> dmiProperties;
+
+    @JsonProperty("public-properties")
+    private List<Property> publicProperties;
 
     /**
      * Create a persistenceCmHandle.
@@ -73,23 +75,9 @@ public class PersistenceCmHandle {
         persistenceCmHandle.setDmiServiceName(dmiServiceName);
         persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
         persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        if (cmHandle.getCmHandleProperties() == null) {
-            persistenceCmHandle.asAdditionalProperties(Collections.emptyMap());
-        } else {
-            persistenceCmHandle.asAdditionalProperties(cmHandle.getCmHandleProperties());
-        }
+        persistenceCmHandle.setDmiProperties(asPersistenceCmHandleProperties(cmHandle.getDmiProperties()));
+        persistenceCmHandle.setPublicProperties(asPersistenceCmHandleProperties(cmHandle.getPublicProperties()));
         return persistenceCmHandle;
-    }
-
-    /**
-     * Set Additional Properties map, key and value pair.
-     * @param additionalPropertiesAsMap Map of Additional Properties
-     */
-    public void asAdditionalProperties(final Map<String, String> additionalPropertiesAsMap) {
-        additionalProperties = new ArrayList<>(additionalPropertiesAsMap.size());
-        for (final Map.Entry<String, String> entry : additionalPropertiesAsMap.entrySet()) {
-            additionalProperties.add(new AdditionalProperty(entry.getKey(), entry.getValue()));
-        }
     }
 
     /**
@@ -107,13 +95,21 @@ public class PersistenceCmHandle {
         return dmiServiceName;
     }
 
+    private static List<Property> asPersistenceCmHandleProperties(final Map<String, String> propertiesAsMap) {
+        final List<Property> persistenceCmHandleProperties = new ArrayList<>(propertiesAsMap.size());
+        for (final Map.Entry<String, String> entry : propertiesAsMap.entrySet()) {
+            persistenceCmHandleProperties.add(new PersistenceCmHandle.Property(entry.getKey(), entry.getValue()));
+        }
+        return persistenceCmHandleProperties;
+    }
+
     private static boolean isNullEmptyOrBlank(final String serviceName) {
         return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
     @AllArgsConstructor
     @Data
-    public static class AdditionalProperty {
+    public static class Property {
 
         @JsonProperty()
         private final String name;
