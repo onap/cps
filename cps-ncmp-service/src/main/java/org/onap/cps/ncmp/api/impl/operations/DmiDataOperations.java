@@ -72,7 +72,7 @@ public class DmiDataOperations extends DmiOperations {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
@@ -105,7 +105,7 @@ public class DmiDataOperations extends DmiOperations {
             .data(requestData)
             .dataType(dataType)
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
         final String dmiUrl =
             getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),

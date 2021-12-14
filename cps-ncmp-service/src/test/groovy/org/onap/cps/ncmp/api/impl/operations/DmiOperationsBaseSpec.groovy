@@ -10,7 +10,7 @@ import spock.lang.Specification
 abstract class DmiOperationsBaseSpec extends Specification {
 
     @Shared
-    def sampleAdditionalProperty = new PersistenceCmHandle.AdditionalProperty('prop1', 'val1')
+    def sampleAdditionalProperty = new PersistenceCmHandle.Property('prop1', 'val1')
 
     @SpringBean
     DmiRestClient mockDmiRestClient = Mock()
@@ -26,10 +26,10 @@ abstract class DmiOperationsBaseSpec extends Specification {
     def static cmHandleId = 'some cm handle'
     def static resourceIdentifier = 'parent/child'
 
-    def mockPersistenceCmHandleRetrieval(additionalProperties) {
+    def mockPersistenceCmHandleRetrieval(dmiProperties) {
         persistenceCmHandle.dmiDataServiceName = dmiServiceName
         persistenceCmHandle.dmiServiceName = dmiServiceName
-        persistenceCmHandle.additionalProperties = additionalProperties
+        persistenceCmHandle.dmiProperties = dmiProperties
         persistenceCmHandle.id = cmHandleId
         mockCmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndProperties(cmHandleId) >> persistenceCmHandle
     }
