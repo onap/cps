@@ -54,7 +54,10 @@ public class PersistenceCmHandle {
     private String dmiModelServiceName;
 
     @JsonProperty("additional-properties")
-    private List<AdditionalProperty> additionalProperties;
+    private List<AdditionalOrPublicProperty> additionalProperties;
+
+    @JsonProperty("public-properties")
+    private List<AdditionalOrPublicProperty> publicProperties;
 
     /**
      * Create a persistenceCmHandle.
@@ -73,11 +76,8 @@ public class PersistenceCmHandle {
         persistenceCmHandle.setDmiServiceName(dmiServiceName);
         persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
         persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        if (cmHandle.getCmHandleProperties() == null) {
-            persistenceCmHandle.asAdditionalProperties(Collections.emptyMap());
-        } else {
-            persistenceCmHandle.asAdditionalProperties(cmHandle.getCmHandleProperties());
-        }
+        setAdditionalProperty(cmHandle, persistenceCmHandle);
+        setPublicProperty(cmHandle, persistenceCmHandle);
         return persistenceCmHandle;
     }
 
@@ -88,7 +88,18 @@ public class PersistenceCmHandle {
     public void asAdditionalProperties(final Map<String, String> additionalPropertiesAsMap) {
         additionalProperties = new ArrayList<>(additionalPropertiesAsMap.size());
         for (final Map.Entry<String, String> entry : additionalPropertiesAsMap.entrySet()) {
-            additionalProperties.add(new AdditionalProperty(entry.getKey(), entry.getValue()));
+            additionalProperties.add(new AdditionalOrPublicProperty(entry.getKey(), entry.getValue()));
+        }
+    }
+
+    /**
+     * Set Additional Properties map, key and value pair.
+     * @param additionalPropertiesAsMap Map of Additional Properties
+     */
+    public void asPublicProperties(final Map<String, String> additionalPropertiesAsMap) {
+        publicProperties = new ArrayList<>(additionalPropertiesAsMap.size());
+        for (final Map.Entry<String, String> entry : additionalPropertiesAsMap.entrySet()) {
+            publicProperties.add(new AdditionalOrPublicProperty(entry.getKey(), entry.getValue()));
         }
     }
 
@@ -111,9 +122,25 @@ public class PersistenceCmHandle {
         return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
+    private static void setAdditionalProperty(final CmHandle cmHandle, final PersistenceCmHandle persistenceCmHandle) {
+        if (cmHandle.getCmHandleProperties() == null) {
+            persistenceCmHandle.asAdditionalProperties(Collections.emptyMap());
+        } else {
+            persistenceCmHandle.asAdditionalProperties(cmHandle.getCmHandleProperties());
+        }
+    }
+
+    private static void setPublicProperty(final CmHandle cmHandle, final PersistenceCmHandle persistenceCmHandle) {
+        if (cmHandle.getPublicCmHandleProperties() == null) {
+            persistenceCmHandle.asPublicProperties(Collections.emptyMap());
+        } else {
+            persistenceCmHandle.asPublicProperties(cmHandle.getPublicCmHandleProperties());
+        }
+    }
+
     @AllArgsConstructor
     @Data
-    public static class AdditionalProperty {
+    public static class AdditionalOrPublicProperty {
 
         @JsonProperty()
         private final String name;

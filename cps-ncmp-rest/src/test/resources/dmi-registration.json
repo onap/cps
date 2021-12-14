@@ -5,6 +5,9 @@
       "cmHandle": "example-name",
       "cmHandleProperties": {
           "subSystemId" : "system-001"
+        },
+      "publicCmHandleProperties": {
+          "subSystemId" : "system-001"
         }
     }
   ]
