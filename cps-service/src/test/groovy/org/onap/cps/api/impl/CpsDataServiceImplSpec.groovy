@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
@@ -154,19 +154,19 @@ class CpsDataServiceImplSpec extends Specification {
             'one leaf'        | '{"name": "some-name"}'
     }
 
-    def 'Update cm-handle properties' () {
-        given: 'a dmi registry model'
-            setupSchemaSetMocks('dmi-registry.yang')
+    def 'Update Bookstore node leaves' () {
+        given: 'a DMI registry model'
+            setupSchemaSetMocks('bookstore.yang')
         and: 'the expected json string'
-            def jsonData = '{"cm-handles":[{"id":"cmHandle001", "additional-properties":[{"name":"P1"}]}]}'
+            def jsonData = '{"categories":[{"code":01,"name":"Romance"}]}'
         when: 'update data method is invoked with json data and parent node xpath'
             objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
-                '/dmi-registry', jsonData, observedTimestamp)
+                '/bookstore', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
-                "/dmi-registry/cm-handles[@id='cmHandle001']", ['id': 'cmHandle001'])
+                "/bookstore/categories[@code='01']", ['name':'Romance', 'code': '01'])
         and: 'the data updated event is sent to the notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/dmi-registry', Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/bookstore', Operation.UPDATE)
     }
 
     def 'Replace data node: #scenario.'() {
