@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d17c3b_26fe1c3a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-14T15:25:59Z",
+      "side": 1,
+      "message": "Is this being variable definition placeholder being used?",
+      "range": {
+        "startLine": 113,
+        "startChar": 44,
+        "endLine": 113,
+        "endChar": 55
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6023a4a_ef7bf0b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-14T15:25:59Z",
+      "side": 1,
+      "message": "If we\u0027re just using one scenario here, is the where clause necessary.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a70cbc28_a56219d8",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-14T15:25:59Z",
+      "side": 1,
+      "message": "Two CPS 741\u0027s. And url redirects to wrong user story. It is CPS-Story 777 right?",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 89
+      },
+      "revId": "b0f9de0e7bfaf73a99b7a49d433df13e3b8479b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
