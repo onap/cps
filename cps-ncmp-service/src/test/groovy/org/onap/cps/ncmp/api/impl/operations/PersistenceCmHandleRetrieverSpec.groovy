@@ -1,3 +1,23 @@
+/*
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2022 Nordix Foundation
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
 package org.onap.cps.ncmp.api.impl.operations
 
 import org.onap.cps.api.CpsDataService
@@ -19,8 +39,8 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
     def xpath = "/dmi-registry/cm-handles[@id='some cm handle']"
 
     @Shared
-    def childDataNodesForCmHandleProperties = [new DataNode(leaves: ["name":"name1","value":"value1"]),
-                                               new DataNode(leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1","value":"value1"]),
+                                               new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
 
     def "Retrieve CmHandle using datanode #scenario."() {
         given: 'the cps data service returns a data node from the dmi registry'
@@ -34,11 +54,10 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
             result.dmiDataServiceName == 'data service name'
             result.dmiModelServiceName == 'model service name'
         and: 'the expected additional properties'
-            result.additionalProperties == expectedCmHandleProperties
+            result.dmiProperties == expectedCmHandleProperties
         where: 'the following parameters are used'
             scenario                        | childDataNodes                      || expectedCmHandleProperties
             'without additional properties' | []                                  || []
-            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.AdditionalProperty("name1", "value1"),
-                                                                                      new PersistenceCmHandle.AdditionalProperty("name2", "value2")]
+            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.Property("name1", "value1")]
     }
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.ncmp.api.models
 
 import spock.lang.Specification
@@ -26,24 +27,26 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
 
 class PersistenceCmHandleSpec extends Specification {
 
-    def 'Setting and getting additional properties.'() {
-        given: 'a map of one property is added'
-            def objectUnderTest = new PersistenceCmHandle()
-            objectUnderTest.asAdditionalProperties([myProperty: 'some value'])
-        when: 'the additional properties are retrieved'
-            def result = objectUnderTest.getAdditionalProperties()
+    def 'Creating persistence cm handle from a cm handle.'() {
+        given: 'a cm handle with properties'
+            def cmHandle = new CmHandle()
+            cmHandle.dmiProperties = [myDmiProperty:'value1']
+            cmHandle.publicProperties = [myPublicProperty:'value2']
+        when: 'it is converted to a persistence cm handle'
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle('','','', cmHandle)
         then: 'the result has the right size'
-            assert result.size() == 1
-        and: 'the property in the result has the correct name and value'
-            def actualAdditionalProperty = result.get(0)
-            def expectedAdditionalProperty = new PersistenceCmHandle.AdditionalProperty('myProperty','some value')
-            assert actualAdditionalProperty.name == expectedAdditionalProperty.name
-            assert actualAdditionalProperty.value == expectedAdditionalProperty.value
+            assert objectUnderTest.dmiProperties.size() == 1
+        and: 'the dmi property in the result has the correct name and value'
+            assert objectUnderTest.dmiProperties[0].name == 'myDmiProperty'
+            assert objectUnderTest.dmiProperties[0].value == 'value1'
+        and: 'the public property in the result has the correct name and value'
+            assert objectUnderTest.publicProperties[0].name == 'myPublicProperty'
+            assert objectUnderTest.publicProperties[0].value == 'value2'
     }
 
     def 'Resolve dmi service name: #scenario and #requiredService service require.'() {
         given: 'a Persistence CM Handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle('some id', null))
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle())
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
