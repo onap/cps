@@ -53,8 +53,6 @@ public class DmiPluginRegistration {
 
     private List<String> removedCmHandles;
 
-    public static final String PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION = "Please supply correct plugin information.";
-
     /**
      * Validates plugin service names.
      *
@@ -67,19 +65,22 @@ public class DmiPluginRegistration {
 
         String errorMessage = null;
 
-        if (isNullEmptyOrBlank(combinedServiceName)
-            && isNullEmptyOrBlank(dataServiceName)
-            && isNullEmptyOrBlank(modelsServiceName)) {
-            errorMessage = "No DMI plugin service names";
-        }
-
-        if (!isNullEmptyOrBlank(combinedServiceName)
-            && (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName))) {
-            errorMessage = "Invalid combination of plugin service names";
+        if (isNullEmptyOrBlank(combinedServiceName)) {
+            if ((isNullEmptyOrBlank(dataServiceName) && isNullEmptyOrBlank(modelsServiceName))) {
+                errorMessage = "No DMI plugin service names";
+            } else {
+                if (isNullEmptyOrBlank(dataServiceName) || isNullEmptyOrBlank(modelsServiceName)) {
+                    errorMessage = "Cannot register just a Data or Model plugin service name";
+                }
+            }
+        } else {
+            if (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName)) {
+                errorMessage = "Cannot register combined plugin service name and other service names";
+            }
         }
 
         if (errorMessage != null) {
-            throw new NcmpException(errorMessage, PLEASE_SUPPLY_CORRECT_PLUGIN_INFORMATION);
+            throw new NcmpException(errorMessage, "Please supply correct plugin information.");
         }
     }
 
