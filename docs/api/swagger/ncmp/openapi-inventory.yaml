@@ -29,18 +29,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400 BAD_REQUEST
+                message: Bad request error message
+                details: Bad request error details
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
 components:
   schemas:
     RestDmiPluginRegistration:
@@ -48,7 +60,13 @@ components:
       properties:
         dmiPlugin:
           type: string
-          example: onap-dmi-plugin
+          example: my-dmi-plugin
+        dmiDataPlugin:
+          type: string
+          example: my-dmi-data-plugin
+        dmiModelPlugin:
+          type: string
+          example: my-dmi-model-plugin
         createdCmHandles:
           type: array
           items:
@@ -61,21 +79,24 @@ components:
           type: array
           items:
             type: string
+            example: "[\"my-cm-handle1\",\"my-cm-handle2\",\"my-cm-handle3\"]"
     RestCmHandle:
       required:
-        - cmHandle
+      - cmHandle
       type: object
       properties:
         cmHandle:
           type: string
-          example: cmHandle123
+          example: my-cm-handle
         cmHandleProperties:
+          $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
+        publicCmHandleProperties:
           $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
     RestCmHandleAdditionalProperties:
       type: object
       additionalProperties:
         type: string
-        example: system-001
+        example: my-additional-property
     ErrorMessage:
       title: Error
       type: object

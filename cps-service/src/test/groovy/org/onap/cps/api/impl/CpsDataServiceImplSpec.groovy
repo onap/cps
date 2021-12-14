@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
@@ -154,9 +154,10 @@ class CpsDataServiceImplSpec extends Specification {
             'one leaf'        | '{"name": "some-name"}'
     }
 
+    //TODO Remove this and replace with generic test using bookstore model
     def 'Update cm-handle properties' () {
-        given: 'a dmi registry model'
-            setupSchemaSetMocks('dmi-registry.yang')
+        given: 'a DMI registry model'
+            setupSchemaSetMocks('dmi-registry@2021-12-13.yang')
         and: 'the expected json string'
             def jsonData = '{"cm-handles":[{"id":"cmHandle001", "additional-properties":[{"name":"P1"}]}]}'
         when: 'update data method is invoked with json data and parent node xpath'

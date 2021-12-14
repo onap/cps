@@ -18,7 +18,6 @@ module dmi-registry {
     "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
   }
 
-
   revision "2021-12-13" {
     description
     "Added new list of public additonal properties for a Cm-Handle which are exposed to clients of the NCMP interface";
