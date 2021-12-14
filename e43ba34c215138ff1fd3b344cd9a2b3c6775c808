@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2508d254_7d6707d4",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-14T16:10:56Z",
+      "side": 1,
+      "message": "Url here is different to CPS story outlined",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "e43ba34c215138ff1fd3b344cd9a2b3c6775c808",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
