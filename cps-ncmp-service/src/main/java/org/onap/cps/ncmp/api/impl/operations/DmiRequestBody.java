@@ -64,14 +64,14 @@ public class DmiRequestBody {
      * @param cmHandlePropertiesAsList the cm handle additional properties
      */
     public void asCmHandleProperties(
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandlePropertiesAsList) {
+        final List<PersistenceCmHandle.AdditionalOrPublicProperty> cmHandlePropertiesAsList) {
         final boolean isCmHandlePropertiesNullOrEmpty =
             cmHandlePropertiesAsList == null || cmHandlePropertiesAsList.isEmpty();
         if (isCmHandlePropertiesNullOrEmpty) {
             cmHandleProperties = Collections.emptyMap();
         } else {
             cmHandleProperties = new LinkedHashMap<>();
-            for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandlePropertiesAsList) {
+            for (final PersistenceCmHandle.AdditionalOrPublicProperty additionalProperty : cmHandlePropertiesAsList) {
                 cmHandleProperties.put(additionalProperty.getName(),
                     additionalProperty.getValue());
             }

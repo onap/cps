@@ -1,0 +1,38 @@
+{
+  "dmiPlugin": "my-dmi-plugin",
+  "dmiDataPlugin": "my-dmi-data-plugin",
+  "dmiModelPlugin": "my-dmi-model-plugin",
+  "createdCmHandles": [
+    {
+      "cmHandle": "BookStore",
+      "cmHandleProperties": {
+        "Book1": "Sci-Fi Book",
+        "Book2": "Horror Book",
+        "Book3": "Crime Book"
+      },
+      "publicCmHandleProperties": {
+        "Public-Book1": "Public Sci-Fi Book",
+        "Public-Book2": "Public Horror Book",
+        "Public-Book3": "Public Crime Book"
+      }
+    }
+  ],
+  "updatedCmHandles": [
+    {
+      "cmHandle": "BookStore",
+      "cmHandleProperties": {
+        "Book1": "Romance Book",
+        "Book2": "Thriller Book",
+        "Book3": "Comedy Book"
+      },
+      "publicCmHandleProperties": {
+        "Public-Book1": "Public Romance Book",
+        "Public-Book2": "Public Thriller Book",
+        "Public-Book3": "Public Comedy Book"
+      }
+    }
+  ],
+  "removedCmHandles": [
+    "BookStore"
+  ]
+}

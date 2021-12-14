@@ -26,24 +26,31 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
 
 class PersistenceCmHandleSpec extends Specification {
 
-    def 'Setting and getting additional properties.'() {
+    def 'Setting and getting additional & public properties.'() {
         given: 'a map of one property is added'
             def objectUnderTest = new PersistenceCmHandle()
-            objectUnderTest.asAdditionalProperties([myProperty: 'some value'])
+            objectUnderTest.asAdditionalProperties([myAdditionalProperty: 'some value'])
+            objectUnderTest.asPublicProperties([myPublicProperty: 'some value'])
         when: 'the additional properties are retrieved'
-            def result = objectUnderTest.getAdditionalProperties()
+            def additionalProperties = objectUnderTest.getAdditionalProperties()
+            def publicProperties = objectUnderTest.getPublicProperties()
         then: 'the result has the right size'
-            assert result.size() == 1
+            assert additionalProperties.size() == 1
+            assert publicProperties.size() == 1
         and: 'the property in the result has the correct name and value'
-            def actualAdditionalProperty = result.get(0)
-            def expectedAdditionalProperty = new PersistenceCmHandle.AdditionalProperty('myProperty','some value')
+            def actualAdditionalProperty = additionalProperties.get(0)
+            def actualPublicProperty = publicProperties.get(0)
+            def expectedAdditionalProperty = new PersistenceCmHandle.AdditionalOrPublicProperty('myAdditionalProperty','some value')
+            def expectedPublicProperty = new PersistenceCmHandle.AdditionalOrPublicProperty('myPublicProperty','some value')
             assert actualAdditionalProperty.name == expectedAdditionalProperty.name
             assert actualAdditionalProperty.value == expectedAdditionalProperty.value
+            assert actualPublicProperty.name == expectedPublicProperty.name
+            assert actualPublicProperty.value == expectedPublicProperty.value
     }
 
     def 'Resolve dmi service name: #scenario and #requiredService service require.'() {
         given: 'a Persistence CM Handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle('some id', null))
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle('some id', null, null))
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:

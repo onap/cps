@@ -57,7 +57,8 @@ public class PersistenceCmHandleRetriever {
      */
     public PersistenceCmHandle retrieveCmHandleDmiServiceNameAndProperties(final String cmHandleId) {
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
-        final CmHandle cmHandle = new CmHandle(cmHandleId, getCmHandleProperties(cmHandleDataNode));
+        final CmHandle cmHandle = new CmHandle(cmHandleId, getCmHandleProperties(cmHandleDataNode),
+            getCmHandleProperties(cmHandleDataNode));
         return PersistenceCmHandle.toPersistenceCmHandle(
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),

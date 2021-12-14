@@ -68,6 +68,8 @@ components:
           example: my-cm-handle
         cmHandleProperties:
             $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
+        publicCmHandleProperties:
+            $ref: '#/components/schemas/RestCmHandleAdditionalProperties'
     RestCmHandleAdditionalProperties:
         type: object
         additionalProperties:

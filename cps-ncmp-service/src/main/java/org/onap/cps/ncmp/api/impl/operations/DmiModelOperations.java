@@ -106,7 +106,7 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final List<PersistenceCmHandle.AdditionalOrPublicProperty> cmHandleProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
@@ -128,9 +128,10 @@ public class DmiModelOperations extends DmiOperations {
         return moduleReferences;
     }
 
-    private static JsonObject toJsonObject(final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+    private static JsonObject toJsonObject(final List<PersistenceCmHandle.AdditionalOrPublicProperty>
+                                               cmHandleProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandleProperties) {
+        for (final PersistenceCmHandle.AdditionalOrPublicProperty additionalProperty : cmHandleProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

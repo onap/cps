@@ -38,7 +38,7 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
         where: 'the following parameters are used'
             scenario                        | childDataNodes                      || expectedCmHandleProperties
             'without additional properties' | []                                  || []
-            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.AdditionalProperty("name1", "value1"),
-                                                                                      new PersistenceCmHandle.AdditionalProperty("name2", "value2")]
+            'with additional properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.AdditionalOrPublicProperty("name1", "value1"),
+                                                                                      new PersistenceCmHandle.AdditionalOrPublicProperty("name2", "value2")]
     }
 }
