@@ -67,15 +67,18 @@ public class DmiPluginRegistration {
 
         String errorMessage = null;
 
-        if (isNullEmptyOrBlank(combinedServiceName)
-            && isNullEmptyOrBlank(dataServiceName)
-            && isNullEmptyOrBlank(modelsServiceName)) {
-            errorMessage = "No DMI plugin service names";
-        }
-
-        if (!isNullEmptyOrBlank(combinedServiceName)
-            && (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName))) {
-            errorMessage = "Invalid combination of plugin service names";
+        if (isNullEmptyOrBlank(combinedServiceName)) {
+            if ((isNullEmptyOrBlank(dataServiceName) && isNullEmptyOrBlank(modelsServiceName))) {
+                errorMessage = "No DMI plugin service names";
+            } else {
+                if (isNullEmptyOrBlank(dataServiceName) || isNullEmptyOrBlank(modelsServiceName)) {
+                    errorMessage = "Cannot register just a Data or Model plugin service name";
+                }
+            }
+        } else {
+            if (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName)) {
+                errorMessage = "Cannot register combined plugin service name and other service names";
+            }
         }
 
         if (errorMessage != null) {
