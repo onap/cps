@@ -170,11 +170,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'registration is not called'
             0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
         where:
-            scenario              | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
-            'no DMI plugin'       | ''         | ''             | ''            || 'No DMI plugin service names'
-            'all DMI plugins'     | 'service1' | 'service2'     | 'service3'    || 'Invalid combination of plugin service names'
-            'no model DMI plugin' | 'service1' | ''             | 'service2'    || 'Invalid combination of plugin service names'
-            'no data DMI plugin'  | 'service1' | 'service2'     | ''            || 'Invalid combination of plugin service names'
+            scenario                | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
+            'empty DMI plugins'     | ''         | ''             | ''            || 'No DMI plugin service names'
+            'blank DMI plugins'     | ' '        | ' '            | ' '           || 'No DMI plugin service names'
+            'null DMI plugins'      | null       | null           | null          || 'No DMI plugin service names'
+            'all DMI plugins'       | 'service1' | 'service2'     | 'service3'    || 'Cannot register combined plugin service name and other service names'
+            'no model DMI plugin'   | 'service1' | ''             | 'service2'    || 'Cannot register combined plugin service name and other service names'
+            'no data DMI plugin'    | 'service1' | 'service2'     | ''            || 'Cannot register combined plugin service name and other service names'
+            'only model DMI plugin' | ''         | 'service1'     | ''            || 'Cannot register just a Data or Model plugin service name'
+            'only data DMI plugin'  | ''         | ''             | 'service1'    || 'Cannot register just a Data or Model plugin service name'
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {
