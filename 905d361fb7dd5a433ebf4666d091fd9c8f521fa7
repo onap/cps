@@ -22,6 +22,30 @@
       "revId": "905d361fb7dd5a433ebf4666d091fd9c8f521fa7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8219483_0094d780",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-15T10:58:27Z",
+      "side": 1,
+      "message": "I think the word \u0027only\u0027 is good to include... It all is a bit ambiguous but combine with the values in the table I think it should be clear enough...",
+      "parentUuid": "3d630602_f5fd0dbf",
+      "range": {
+        "startLine": 181,
+        "startChar": 13,
+        "endLine": 181,
+        "endChar": 33
+      },
+      "revId": "905d361fb7dd5a433ebf4666d091fd9c8f521fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
