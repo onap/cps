@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6be31ed2_2a618d78",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-15T13:21:37Z",
+      "side": 1,
+      "message": "legacy issue; should we sort all these dependencies",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 25
+      },
+      "revId": "cf6c2e8ac2076439fd5d3bd64587658e123c0428",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
