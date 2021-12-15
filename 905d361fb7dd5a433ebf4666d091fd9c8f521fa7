@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d630602_f5fd0dbf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2021-12-15T10:43:39Z",
+      "side": 1,
+      "message": "NB - Nitpicky comment, but I don\u0027t think the \u0027only\u0027 in the label is necessary. Same with \u0027(combined)\u0027 above, as I think we can see based on the labels already that it only includes the data/model plugins.\n\nEspecially if read with the definition label above\n\u0027Invalid dmi plugin registration with data DMI Plugin\u0027 etc.",
+      "range": {
+        "startLine": 181,
+        "startChar": 13,
+        "endLine": 181,
+        "endChar": 33
+      },
+      "revId": "905d361fb7dd5a433ebf4666d091fd9c8f521fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
