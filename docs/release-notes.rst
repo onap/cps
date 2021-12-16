@@ -39,6 +39,7 @@ Bug Fixes
    - `CPS-762 <https://jira.onap.org/browse/CPS-762>`_ Query cm handles for module names returns incorrect cm handle identifiers
    - `CPS-788 <https://jira.onap.org/browse/CPS-788>`_ Yang Resource formatting is incorrect
    - `CPS-783 <https://jira.onap.org/browse/CPS-783>`_ Remove cm handle does not completely remove all cm handle information
+   - `CPS-820 <https://jira.onap.org/browse/CPS-820>`_  Update log4j version due to security vulnerability
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
@@ -97,6 +98,7 @@ Bug Fixes
    - `CPS-653 <https://jira.onap.org/browse/CPS-653>`_ cmHandleProperties not supported by dmi in fetch modules
    - `CPS-673 <https://jira.onap.org/browse/CPS-673>`_ Improvement and cleanup for CPS Core charts
    - `CPS-691 <https://jira.onap.org/browse/CPS-691>`_ NCMP no master index label on index documentation page
+   - `CPS-820 <https://jira.onap.org/browse/CPS-820>`_  Update log4j version due to security vulnerability
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
