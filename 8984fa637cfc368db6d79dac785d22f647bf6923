@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d04fe32_61da4cfa",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-16T10:15:24Z",
+      "side": 1,
+      "message": "do we need a n new drop ins istanbul 2.0.2 first and tehn add  this buf in the new section for that release?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 106
+      },
+      "revId": "8984fa637cfc368db6d79dac785d22f647bf6923",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
