@@ -78,6 +78,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Create Node.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Void> createNode(final String cmHandle, @Valid final Object jsonData,
@@ -90,6 +91,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Add List-node Child Element.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Void> addListNodeElements(@NotNull @Valid final String parentNodeXpath,
@@ -102,6 +104,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Get Node By CM Handle and X-Path.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
@@ -116,6 +119,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Query Data Nodes.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
@@ -131,6 +135,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Replace Node With Descendants.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> replaceNode(final String cmHandle, @Valid final Object jsonData,
@@ -143,6 +148,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Update Node Leaves.
      * @deprecated This Method is no longer used as part of NCMP.
      */
+    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
     @Override
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> updateNodeLeaves(final String cmHandle, @Valid final Object jsonData,

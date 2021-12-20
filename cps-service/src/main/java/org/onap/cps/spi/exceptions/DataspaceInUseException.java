@@ -23,7 +23,7 @@ package org.onap.cps.spi.exceptions;
  * Runtime exception.
  * Thrown when given dataspace name is rejected to be deleted because it has anchor or schemasets associated.
  */
-
+@SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataspaceInUseException extends DataInUseException {
 
     private static final long serialVersionUID = 4531370947720760347L;

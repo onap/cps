@@ -136,11 +136,11 @@ public class DmiModelOperations extends DmiOperations {
         return asJsonObject;
     }
 
-    private List<ModuleReference> toModuleReferences(final Map dmiFetchModulesResponseAsMap) {
+    private List<ModuleReference> toModuleReferences(final Map<String, Object> dmiFetchModulesResponseAsMap) {
         final List<ModuleReference> moduleReferences = new ArrayList<>();
 
         if (dmiFetchModulesResponseAsMap != null) {
-            final List moduleReferencesAsList = (List) dmiFetchModulesResponseAsMap.get("schemas");
+            final List<Object> moduleReferencesAsList = (List) dmiFetchModulesResponseAsMap.get("schemas");
             if (moduleReferencesAsList != null) {
                 moduleReferencesAsList.forEach(moduleReferenceAsMap -> {
                     final ModuleReference moduleReference =
