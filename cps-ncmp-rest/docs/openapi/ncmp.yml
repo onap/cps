@@ -368,15 +368,6 @@ resourceDataForPassthroughRunning:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-          examples:
-            dataSampleRequest:
-              $ref: 'components.yaml#/components/examples/dataSampleRequest'
     responses:
       204:
         $ref: 'components.yaml#/components/responses/NoContent'

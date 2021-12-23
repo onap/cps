@@ -62,6 +62,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final Gson GSON = new GsonBuilder().create();
+    private static final String NO_BODY = null;
 
     private final ModelMapper modelMapper = new ModelMapper();
     private final NetworkCmProxyDataService networkCmProxyDataService;
@@ -250,18 +251,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      *
      * @param resourceIdentifier resource identifier
      * @param cmHandle cm handle identifier
-     * @param requestBody the request body
      * @param contentType content type of the body
      * @return response entity no content if request is successful
      */
     @Override
     public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String resourceIdentifier,
                                                                      final String cmHandle,
-                                                                     final Object requestBody,
                                                                      final String contentType) {
-
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-            resourceIdentifier, DELETE, GSON.toJson(requestBody), contentType);
+            resourceIdentifier, DELETE, NO_BODY, contentType);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

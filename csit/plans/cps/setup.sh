@@ -75,8 +75,8 @@ mkdir -p $WORKSPACE/archives/dc-dmi
 cat $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/docker-compose.yml
 cp $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/*.yml $WORKSPACE/archives/dc-dmi
 cd $WORKSPACE/archives/dc-dmi
-# download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
-curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+# copy docker-compose (dowload for cps)
+cp $WORKSPACE/archives/dc-cps/docker-compose .
 chmod +x docker-compose
 ./docker-compose up -d
 
