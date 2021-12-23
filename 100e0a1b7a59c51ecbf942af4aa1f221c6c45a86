@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5379ba7_9f55a96a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2021-12-23T16:02:48Z",
+      "side": 1,
+      "message": "Yaml generated code decic to change the order :-( we cannot control\n(took me some time to find out why the test where failing!!!)",
+      "range": {
+        "startLine": 258,
+        "startChar": 82,
+        "endLine": 259,
+        "endChar": 100
+      },
+      "revId": "100e0a1b7a59c51ecbf942af4aa1f221c6c45a86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
