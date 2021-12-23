@@ -318,11 +318,10 @@ class NetworkCmProxyControllerSpec extends Specification {
                      "?resourceIdentifier=parent/child"
         when: 'delete data resource request is performed'
             def response = mvc.perform(
-                delete(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                .content(jsonString)).andReturn().response
-        then: 'the ncmp service method to delete resource is called'
+                delete(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn().response
+        then: 'the ncmp service method to delete resource is called (with null as body)'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', DELETE, jsonString, 'application/json;charset=UTF-8')
+                'parent/child', DELETE, null, 'application/json;charset=UTF-8')
         and: 'the response is No Content'
             response.status == HttpStatus.NO_CONTENT.value()
     }
