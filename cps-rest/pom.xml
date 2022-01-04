@@ -147,6 +147,17 @@
                             </configOptions>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>openapi-yaml-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
+                            <language>openapi-yaml</language>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
