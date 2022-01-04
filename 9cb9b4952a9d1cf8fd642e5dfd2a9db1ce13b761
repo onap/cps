@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a5452d8_91253dd9",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-04T18:29:24Z",
+      "side": 1,
+      "message": "I think it is already coming from cps-parent https://gerrit.onap.org/r/gitweb?p\u003dcps.git;a\u003dblob;f\u003dcps-parent/pom.xml;h\u003da51d6943a3357b661057230fa04c373b963d2eec;hb\u003drefs/heads/master\n\nCan you verify it in the effective pom without the new change.",
+      "range": {
+        "startLine": 150,
+        "startChar": 20,
+        "endLine": 160,
+        "endChar": 32
+      },
+      "revId": "9cb9b4952a9d1cf8fd642e5dfd2a9db1ce13b761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
