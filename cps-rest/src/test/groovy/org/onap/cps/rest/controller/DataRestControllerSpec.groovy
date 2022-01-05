@@ -22,7 +22,9 @@
 
 package org.onap.cps.rest.controller
 
+import com.google.gson.Gson
 import org.onap.cps.api.CpsDataService
+
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.DateTimeUtility
@@ -52,6 +54,9 @@ class DataRestControllerSpec extends Specification {
 
     @Autowired
     MockMvc mvc
+
+    @Autowired
+    private Gson gson;
 
     @Value('${rest.api.cps-base-path}')
     def basePath
@@ -90,7 +95,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, jsonString, noTimestamp)
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, gson.toJson(jsonString), noTimestamp)
         where: 'following xpath parameters are are used'
             scenario                     | parentNodeXpath
             'no xpath parameter'         | ''
@@ -112,7 +117,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, jsonString,
+            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, gson.toJson(jsonString),
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -137,7 +142,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonString,
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonString),
                 DateTimeUtility.toOffsetDateTime(observedTimestamp))
         where:
             scenario                     | observedTimestamp
@@ -159,7 +164,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonString,
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonString),
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
@@ -220,7 +225,7 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, jsonString, null)
+            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, gson.toJson(jsonString), null)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -243,7 +248,7 @@ class DataRestControllerSpec extends Specification {
                         .param('observed-timestamp', observedTimestamp)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', jsonString,
+            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', gson.toJson(jsonString),
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
@@ -265,7 +270,7 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, jsonString, noTimestamp)
+            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, gson.toJson(jsonString), noTimestamp)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -288,7 +293,7 @@ class DataRestControllerSpec extends Specification {
                         .param('observed-timestamp', observedTimestamp))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, '/', jsonString,
+            expectedApiCount * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, '/', gson.toJson(jsonString),
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
@@ -310,7 +315,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', jsonString,
+            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', gson.toJson(jsonString),
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus

@@ -88,4 +88,20 @@ class YangUtilsSpec extends Specification {
             'another invalid parent path'        | '/test-tree/branch[@name=\'Branch\']/nest/name/last-name'
             'fragment does not belong to parent' | '/test-tree/'
     }
+
+    def 'Parsing json data with invalid json string: #description.'() {
+        given: 'schema context'
+        def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'invalid data is parsed'
+        YangUtils.parseJsonData("{bookstore={bookstore-name=Easons, categories=[{code=01, name=SciFi, books=[{authors=[Iain M. Banks], lang=en, price=895, pub_year=1994, title=Feersum Endjinn}]}, {name=kids, code=02, books=[{authors=[Philip Pullman], lang=en, price=699, pub_year=1995, title=The Golden Compass}]}]}}", schemaContext)
+        then: 'expected exception is thrown'
+        thrown(DataValidationException)
+        where: 'the following invalid json is provided'
+        invalidJson                                       | description
+        '{incomplete json'                                | 'incomplete json'
+        '[{code=01, name=SciFi, books=[{authors=[Iain M. Banks]' | 'json with un-modelled data'
+        '{" }'                                            | 'json with syntax exception'
+    }
+
 }
