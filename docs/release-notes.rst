@@ -49,7 +49,7 @@ None
 
 *Known Vulnerabilities*
 
-None
+   - `CPS-841 <https://jira.onap.org/browse/CPS-841>`_  Upgrade log4j to 2.17.1 as recommended by ONAP SECCOM
 
 *Workarounds*
 
