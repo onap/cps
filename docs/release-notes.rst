@@ -32,6 +32,7 @@ Features
    - `CPS-741 <https://jira.onap.org/browse/CPS-741>`_  Re sync after removing cm handles
    - `CPS-777 <https://jira.onap.org/browse/CPS-777>`_  Ensure all DMI operations use POST method
    - `CPS-780 <https://jira.onap.org/browse/CPS-780>`_  Add examples for parameters, request and response in openapi yaml for cps-core
+   - `CPS-841 <https://jira.onap.org/browse/CPS-841>`_  Upgrade log4j to 2.17.1 as recommended by ONAP SECCOM
 
 Bug Fixes
 ---------
