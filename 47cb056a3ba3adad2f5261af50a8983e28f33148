@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed915318_2739fed1",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-05T17:07:35Z",
+      "side": 1,
+      "message": "remove space for proper alignment 😊 (might actually not affect HTML view, i\u0027m not sure)",
+      "range": {
+        "startLine": 42,
+        "startChar": 55,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "47cb056a3ba3adad2f5261af50a8983e28f33148",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
