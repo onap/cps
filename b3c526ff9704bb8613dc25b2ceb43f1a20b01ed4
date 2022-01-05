@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd894f47_17e17bf7",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-05T12:10:37Z",
+      "side": 1,
+      "message": "Q: What I understand that the vulnerability exists only if we log the information using log4j and for that we do need log4j-core.jar. So, I am wondering why are we upgrading the versions if we don\u0027t use it ( we use log-back).",
+      "range": {
+        "startLine": 176,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 0
+      },
+      "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
