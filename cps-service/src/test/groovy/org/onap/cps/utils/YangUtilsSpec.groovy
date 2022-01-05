@@ -88,4 +88,30 @@ class YangUtilsSpec extends Specification {
             'another invalid parent path'        | '/test-tree/branch[@name=\'Branch\']/nest/name/last-name'
             'fragment does not belong to parent' | '/test-tree/'
     }
+
+    def 'Parsing json data with invalid json string: #description.'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'malformed json string is parsed'
+            YangUtils.parseJsonData(invalidJson, schemaContext)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following malformed json is provided'
+            description                                          | invalidJson
+            'malformed json string with unterminated array data' | '{bookstore={categories=[{books=[{authors=[Iain M. Banks]}]}]}}'
+            'incorrect json'                                     | '{" }'
+    }
+
+    def 'Parsing json data with space.'() {
+        given: 'schema context'
+            def jsonData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.json')
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'json array element having space is parsed'
+            def result = YangUtils.parseJsonData(jsonData, schemaContext)
+        then: 'the result is a normalized node of the correct type'
+            result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
+    }
+
 }
