@@ -22,6 +22,30 @@
       "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ded0d2d_ba6a46d2",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-05T13:19:37Z",
+      "side": 1,
+      "message": "this was discussed during you annual leave. There are indirect dependencies. This solution will upgrade any indirect dependencies too",
+      "parentUuid": "cd894f47_17e17bf7",
+      "range": {
+        "startLine": 176,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 0
+      },
+      "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
