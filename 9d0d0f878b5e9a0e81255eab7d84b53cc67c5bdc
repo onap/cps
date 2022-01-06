@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6c610241_202de6ef",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-06T13:33:41Z",
+      "side": 1,
+      "message": "We planned to fix/replace into https://jira.onap.org/browse/CPS-751 so that code change can be tracked into related JIRA Id. I am picking this task only and started code change that you suggested above.",
+      "parentUuid": "735ed56b_4174f8ac",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 56,
+        "endChar": 75
+      },
+      "revId": "9d0d0f878b5e9a0e81255eab7d84b53cc67c5bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c23a772d_8feded5b",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
