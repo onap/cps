@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a87cba56_568c2dcf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-06T04:56:58Z",
+      "side": 0,
+      "message": "Nice refactoring to replace field autowiring with constructor injection :)",
+      "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
