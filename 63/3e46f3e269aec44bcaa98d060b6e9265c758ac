@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Luke Gleeson <luke.gleeson@est.tech>
+Code-Review+1: Bruno Sakoto <bruno.sakoto@bell.ca>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-by: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-at: Thu, 06 Jan 2022 09:57:08 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/126442
+Project: cps
+Branch: refs/heads/istanbul
