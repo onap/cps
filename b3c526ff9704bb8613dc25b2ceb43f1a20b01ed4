@@ -16,6 +16,24 @@
       "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f34ce7ee_256ec8b6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-06T13:07:47Z",
+      "side": 0,
+      "message": "Thanks Bruno 😊 👍",
+      "parentUuid": "a87cba56_568c2dcf",
+      "revId": "b3c526ff9704bb8613dc25b2ceb43f1a20b01ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
