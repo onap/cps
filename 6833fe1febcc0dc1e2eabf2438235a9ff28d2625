@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fabea984_00260a2b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-06T16:37:22Z",
+      "side": 1,
+      "message": "There is a change in the parameter being sent to the Service layer. Initially it was same as jsonString but now it is different. \nDoes it not cause any issues as service layer input has changed ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 139
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9c942b6_f608355d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 2
