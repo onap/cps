@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4129bce4_0a45591f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-06T17:14:42Z",
+      "side": 1,
+      "message": "actually I think you might have a point (but I don\u0027t understand why our intergration test are still passing if this really would be different)\n\nLooking closely and removing any java wrapping characters\n\nthe old string starts with: {\"some-key\"\nthe new string starts with: \"{\"some-key\"\n\nso there is Addiotnal wrapping!\nbut why do the CSIT test still pass?! am I missing something?!",
+      "parentUuid": "fabea984_00260a2b",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 139
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9c942b6_f608355d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 2
