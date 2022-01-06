@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9c942b6_f608355d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-06T14:48:33Z",
+      "side": 1,
+      "message": "org.onap.cps prefix not needed",
+      "range": {
+        "startLine": 108,
+        "startChar": 27,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e97220a_c67c2207",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-06T14:48:33Z",
+      "side": 1,
+      "message": "rename to \u0027jsonDataWithSpacesInArrayElement\u0027 for clarity\nand move this into the the \u0027when\u0027 block ie. just before line 122\n\nactually there are 2 alterantives whatever you prefer:\n\nA)\ngiven: \u0027schema context\u0027\n\n            def yangResourcesMap \u003d TestUtils.getYangResourcesAsMap(\u0027bookstore.yang\u0027)\n            def schemaContext \u003d YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()\n        when: \u0027json array element having space is parsed\u0027\n            def jsonDataWithSpacesInArrayElement \u003d org.onap.cps.TestUtils.getResourceFileContent(\u0027bookstore.json\u0027)\n            def result \u003d YangUtils.parseJsonData(jsonDataWithSpacesInArrayElement, schemaContext)\nB)\ngiven: \u0027schema context\u0027\n\n            def yangResourcesMap \u003d TestUtils.getYangResourcesAsMap(\u0027bookstore.yang\u0027)\n            def schemaContext \u003d YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()\n        and : \u0027some json data with space in teh array elements\u0027\n            def jsonDataWithSpacesInArrayElement \u003d TestUtils.getResourceFileContent(\u0027bookstore.json\u0027)\n        when: \u0027that json data is parsed\u0027\n            def result \u003d YangUtils.parseJsonData(jsonDataWithSpacesInArrayElement, schemaContext)\nB is probably better",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f8fde67_451406cb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-06T14:48:33Z",
+      "side": 1,
+      "message": "since we are not realy interested in teh result here (we are not looking at the data with teh space anyway) for the scope of this test and the original bug it is good enough to do this:\n\n        when: \u0027that json data is parsed\u0027\n            YangUtils.parseJsonData(jsonDataWithSpacesInArrayElement, schemaContext)\n        then: \u0027no exception thrown\u0027\n            noExceptionThrown()",
+      "range": {
+        "startLine": 112,
+        "startChar": 1,
+        "endLine": 114,
+        "endChar": 95
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
