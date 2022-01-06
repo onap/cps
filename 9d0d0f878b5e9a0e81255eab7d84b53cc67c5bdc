@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "735ed56b_4174f8ac",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-06T09:14:28Z",
+      "side": 1,
+      "message": "If Jackson\u0027s objectMapper.writeValueAsString() works the same I think we should use it instead as we will be switching to it anyway in an upcoming task",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 56,
+        "endChar": 75
+      },
+      "revId": "9d0d0f878b5e9a0e81255eab7d84b53cc67c5bdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c23a772d_8feded5b",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 1
