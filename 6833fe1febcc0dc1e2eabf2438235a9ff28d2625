@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4b147f35_e67f90a5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-07T10:41:00Z",
+      "side": 1,
+      "message": "Yes I also agree with Renu it\u0027s valid point. I investigated further and found there was problem with jsonObject \u003d groovy.json.JsonOutput.toJson(jsonString); that produces output with \"{\"some-key\". I modified unit test to except  jsonString into content body of request using .content(jsonString) and removed groovy.json.JsonOutput.toJson(jsonString) as it\u0027s not required any more.",
+      "parentUuid": "fabea984_00260a2b",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 139
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9c942b6_f608355d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 2
@@ -95,6 +119,54 @@
     },
     {
       "key": {
+        "uuid": "4927d803_467294af",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-07T10:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9c942b6_f608355d",
+      "range": {
+        "startLine": 108,
+        "startChar": 27,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b4a9234_d4a92b08",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-07T10:41:00Z",
+      "side": 1,
+      "message": "Applied code change as suggested into \"B\"",
+      "parentUuid": "6e97220a_c67c2207",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f8fde67_451406cb",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 2
@@ -115,6 +187,30 @@
       "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e1918d_9b853c57",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-07T10:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f8fde67_451406cb",
+      "range": {
+        "startLine": 112,
+        "startChar": 1,
+        "endLine": 114,
+        "endChar": 95
+      },
+      "revId": "6833fe1febcc0dc1e2eabf2438235a9ff28d2625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
