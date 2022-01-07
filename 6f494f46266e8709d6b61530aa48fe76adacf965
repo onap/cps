@@ -22,6 +22,30 @@
       "revId": "6f494f46266e8709d6b61530aa48fe76adacf965",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "850bb113_a2f428f8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-07T14:29:32Z",
+      "side": 1,
+      "message": "i thought it way good to see a difference but I don\u0027t mind either way.\nit does show that the \u0027expectedJsondata\u0027 is a a \u0027cleaned-up\u0027 version of the request body\n\nThe more I think about it I think it is better 2 have 2 variaables...",
+      "parentUuid": "816e07ed_3dab4d2d",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 111
+      },
+      "revId": "6f494f46266e8709d6b61530aa48fe76adacf965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
