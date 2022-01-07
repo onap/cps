@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "816e07ed_3dab4d2d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-07T13:35:43Z",
+      "side": 1,
+      "message": "I think it would be good to have the same variables as the value is same. Using the same variable also highlights in the test cases that there is no change in the input and the same value is passed to the Service layer.\n\nIn the current implementation, I had to check the variable to compare the values and find out that these two are logically same. The only difference which I see is spaces but logically there is no difference. \n\nIf there is a way to avoid these duplicate variables, it would make the test case clearer.",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 111
+      },
+      "revId": "6f494f46266e8709d6b61530aa48fe76adacf965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
