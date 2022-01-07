@@ -22,15 +22,16 @@
 
 package org.onap.cps.rest.controller;
 
+import com.google.gson.Gson;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.validation.ValidationException;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.utils.DataMapUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,23 +39,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
+@RequiredArgsConstructor
 public class DataRestController implements CpsDataApi {
 
     private static final String ROOT_XPATH = "/";
     private static final String ISO_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
 
-    @Autowired
-    private CpsDataService cpsDataService;
+    private final CpsDataService cpsDataService;
+    private final Gson gson;
 
     @Override
     public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
         final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         if (isRootXpath(parentNodeXpath)) {
-            cpsDataService.saveData(dataspaceName, anchorName, jsonData.toString(),
+            cpsDataService.saveData(dataspaceName, anchorName, gson.toJson(jsonData),
                 toOffsetDateTime(observedTimestamp));
         } else {
-            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonData),
                 toOffsetDateTime(observedTimestamp));
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -71,7 +73,7 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<String> addListElements(final String parentNodeXpath,
         final String dataspaceName, final String anchorName, final Object jsonData, final String observedTimestamp) {
-        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonData),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -89,7 +91,7 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
         final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
-        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonData),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -98,7 +100,7 @@ public class DataRestController implements CpsDataApi {
     public ResponseEntity<Object> replaceNode(final String dataspaceName, final String anchorName,
         final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService
-            .replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+            .replaceNodeTree(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonData),
                 toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -107,7 +109,7 @@ public class DataRestController implements CpsDataApi {
     public ResponseEntity<Object> replaceListContent(final String parentNodeXpath,
         final String dataspaceName, final String anchorName, final Object jsonData,
         final String observedTimestamp) {
-        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, jsonData.toString(),
+        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, gson.toJson(jsonData),
             toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
