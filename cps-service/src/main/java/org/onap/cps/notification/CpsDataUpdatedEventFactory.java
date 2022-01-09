@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2021 Bell Canada.
+ * Copyright (c) 2021-2022 Bell Canada.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,17 +74,17 @@ public class CpsDataUpdatedEventFactory {
      * @return CpsDataUpdatedEvent
      */
     public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName,
-        final OffsetDateTime observedTimestamp) {
+        final OffsetDateTime observedTimestamp, final Operation operation) {
         final var dataNode = cpsDataService
             .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp);
+        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 
     private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
-        final OffsetDateTime observedTimestamp) {
+        final OffsetDateTime observedTimestamp, final Operation operation) {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
-        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp));
+        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp, operation));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
         cpsDataUpdatedEvent.withSchema(EVENT_SCHEMA);
         cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
@@ -99,12 +99,13 @@ public class CpsDataUpdatedEventFactory {
     }
 
     private Content createContent(final Anchor anchor, final DataNode dataNode,
-        final OffsetDateTime observedTimestamp) {
+        final OffsetDateTime observedTimestamp, final Operation operation) {
         final var content = new Content();
         content.withAnchorName(anchor.getName());
         content.withDataspaceName(anchor.getDataspaceName());
         content.withSchemaSetName(anchor.getSchemaSetName());
         content.withData(createData(dataNode));
+        content.withOperation(Content.Operation.fromValue(operation.name()));
         content.withObservedTimestamp(
             DATE_TIME_FORMATTER.format(observedTimestamp == null ? OffsetDateTime.now() : observedTimestamp));
         return content;
