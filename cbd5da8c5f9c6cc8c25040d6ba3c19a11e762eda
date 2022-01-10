@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5131f79_2ee744bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-10T09:19:03Z",
+      "side": 1,
+      "message": "Is this supposed to be an UPDATE or DELETE?\nIf Update, then when will the DELETE operation be sent?",
+      "range": {
+        "startLine": 141,
+        "startChar": 93,
+        "endLine": 141,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30e0983b_d3333ccd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-10T09:19:03Z",
+      "side": 1,
+      "message": "When list element is deleted, are we still planning to send the operation as UPDATE?",
+      "range": {
+        "startLine": 228,
+        "startChar": 120,
+        "endLine": 228,
+        "endChar": 126
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53851e92_9710eca4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-10T09:19:03Z",
+      "side": 1,
+      "message": "DELETE?",
+      "range": {
+        "startLine": 239,
+        "startChar": 120,
+        "endLine": 239,
+        "endChar": 126
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
