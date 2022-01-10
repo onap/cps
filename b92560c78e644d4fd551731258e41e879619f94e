@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fce63bd_3f2d39e2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 9
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09ca838c_a73f5fff",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 9
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e80ddeee_0eea2e1d",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "NB: I never felt the need to use this. There are no special charters in any of the enums are there?!",
+      "range": {
+        "startLine": 111,
+        "startChar": 57,
+        "endLine": 111,
+        "endChar": 72
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a38b96_94e8bac8",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "Do I understand correct that for a CHILD_NODE operations the rootNodeOperation is still \u0027update\u0027 ?!\n(I\u0027m still a bit puzzled to why this is needed and if theis is the best way to capture a asperate \u0027root\u0027 operation)\n\nI probably would prefer to see it more clearly using NO default constructor like so:\n\n\n    ROOT_NODE_CREATE(\"create\"),\n    ROOT_NODE_UPDATE(\"update\"),\n    ROOT_NODE_DELETE(\"delete\"),\n    CHILD_NODE_CREATE(\"update\"),\n    CHILD_NODE_UPDATE(\"update\"),\n    CHILD_NODE_DELETE(\"update\");\n\nand maybe expand all te string to include \"root\":  \n\n    ROOT_NODE_CREATE(\"root_create\"),\n    ROOT_NODE_UPDATE(\"root_update\"),\n    ROOT_NODE_DELETE(\"root_delete\"),\n    CHILD_NODE_CREATE(\"root_update\"),\n    CHILD_NODE_UPDATE(\"root_update\"),\n    CHILD_NODE_DELETE(\"root_update\");",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c34e70_2fddf45d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "ecpetedLeaves for consistency",
+      "range": {
+        "startLine": 138,
+        "startChar": 122,
+        "endLine": 138,
+        "endChar": 128
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f59197ed_763a6898",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "child",
+      "range": {
+        "startLine": 185,
+        "startChar": 13,
+        "endLine": 185,
+        "endChar": 25
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eea14cc_cfed5123",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-10T15:03:24Z",
+      "side": 1,
+      "message": "NB: for exception handling I usually use less strict parameter matching mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(*_)  \u003e\u003e { throw new Exception(\"Could not create event\") }\n\n(if you had doen that earlier you would not have to had update this test this time)",
+      "range": {
+        "startLine": 96,
+        "startChar": 69,
+        "endLine": 97,
+        "endChar": 67
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
