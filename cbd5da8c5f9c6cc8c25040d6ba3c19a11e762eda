@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "df04ec8a_98a503a0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-10T09:44:56Z",
+      "side": 1,
+      "message": "Should this not be create as a new child data node is being added?",
+      "range": {
+        "startLine": 78,
+        "startChar": 83,
+        "endLine": 78,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a6ce767_82eac865",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-10T09:44:56Z",
+      "side": 1,
+      "message": "Same here, if this is adding a new list element should it not be create?",
+      "range": {
+        "startLine": 88,
+        "startChar": 83,
+        "endLine": 88,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b5131f79_2ee744bb",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
