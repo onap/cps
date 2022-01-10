@@ -18,7 +18,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021 Nordix Foundation.
+# Modifications Copyright (C) 2022 Nordix Foundation.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -97,6 +97,7 @@ SDNC_TIME=0
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
   # Mount netconf node
+
   curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
   --header 'Content-Type: application/json' \

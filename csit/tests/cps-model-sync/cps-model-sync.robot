@@ -19,38 +19,38 @@
  */
 
 *** Settings ***
-Documentation         NCMP-DMI - Registration & Model Sync
+Documentation         NCMP
 
 Library               Collections
 Library               OperatingSystem
 Library               RequestsLibrary
 Library               BuiltIn
 
-Suite Setup           Create Session     DMI_URL    http://${DMI_HOST}:${DMI_PORT}
+Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
 *** Variables ***
 
-${auth}            Basic Y3BzdXNlcjpjcHNyMGNrcyE=
-${basePath}        /dmi
+${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
+${ncmpInventoryBasePath}  /ncmpInventory
+${ncmpBasePath}           /ncmp
+${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
+${jsonData}               {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":null,"dmiModelPlugin":null,"createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book","Book2":"Horror Book","Book3":"Crime Book"},"publicCmHandleProperties":{"Public-Book1":"Public Sci-Fi Book","Public-Book2":"Public Horror Book","Public-Book3":"Public Crime Book"}}],"updatedCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Romance Book","Book2":"Thriller Book","Book3":"Comedy Book"},"publicCmHandleProperties":{"Public-Book1":"Public Romance Book","Public-Book2":"Public Thriller Book","Public-Book3":"Public Comedy Book"}}]}
 
 *** Test Cases ***
-Register node & sync models
-    ${uri}=              Set Variable       ${basePath}/v1/inventory/cmHandles
+Register node, update data node and sync modules.
+    ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
-    ${jsonData}=         Get Binary File    ${DATADIR}${/}cmHandleRegistration.json
-    ${response}=         POST On Session    DMI_URL   ${uri}   headers=${headers}   data=${jsonData}
+    ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   201
 
-Verify Sync
-    ${uri}=              Set Variable       ${basePath}/v1/ch/PNFDemo/modules
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
-    ${jsonData}=         Get Binary File    ${DATADIR}${/}postModuleRequestBody.json
-    ${response}=         POST On Session    DMI_URL   ${uri}   headers=${headers}   data=${jsonData}
+Get modules for registered data node
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/modules
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
-    FOR   ${item}   IN  @{responseJson['schemas']}
+    FOR   ${item}   IN  @{responseJson}
             IF   "${item['moduleName']}" == "stores"
                 Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
-                Should Be Equal As Strings              "${item['namespace']}"  "org:onap:ccsdk:sample"
             END
         END
