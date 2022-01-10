@@ -19,6 +19,7 @@
 actuator
 cps-model-sync
 ncmp-passthrough
+ncmp-inventory
 cps-admin
 cps-data
 

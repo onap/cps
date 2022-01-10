@@ -18,7 +18,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021 Nordix Foundation.
+# Modifications Copyright (C) 2022 Nordix Foundation.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -97,6 +97,7 @@ SDNC_TIME=0
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
   # Mount netconf node
+
   curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
   --header 'Content-Type: application/json' \
@@ -104,6 +105,28 @@ while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
     "node": [
     {
       "node-id": "PNFDemo",
+      "netconf-node-topology:protocol": {
+      "name": "TLS"
+      },
+      "netconf-node-topology:host": "'$LOCAL_IP'",
+      "netconf-node-topology:key-based": {
+      "username": "netconf",
+      "key-id": "ODL_private_key_0"
+      },
+      "netconf-node-topology:port": 6512,
+      "netconf-node-topology:tcp-only": false,
+      "netconf-node-topology:max-connection-attempts": 5
+    }
+    ]
+  }'
+
+  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/BookStore' \
+  --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "node": [
+    {
+      "node-id": "BookStore",
       "netconf-node-topology:protocol": {
       "name": "TLS"
       },
