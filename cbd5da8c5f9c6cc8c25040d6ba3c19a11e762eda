@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "212018c0_a3e07f0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-10T12:51:55Z",
+      "side": 1,
+      "message": "CREATE operation is added only when root data-node is created. In this method, child-data node is created so the operation should be \u0027UPDATE\u0027.\nMore details are provided here https://wiki.onap.org/display/DW/CPS-470%3A+Spike+-+Add+support+for+data+deletion+events#CPS470:SpikeAddsupportfordatadeletionevents-Operation",
+      "parentUuid": "df04ec8a_98a503a0",
+      "range": {
+        "startLine": 78,
+        "startChar": 83,
+        "endLine": 78,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a6ce767_82eac865",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2022-01-10T09:44:56Z",
       "side": 1,
       "message": "Same here, if this is adding a new list element should it not be create?",
+      "range": {
+        "startLine": 88,
+        "startChar": 83,
+        "endLine": 88,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf3ee474_71724428",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-10T12:51:55Z",
+      "side": 1,
+      "message": "List Elements are not supported at the root node. All operations at the \u0027non-root\u0027 level are considered as \u0027UPDATE\u0027. \n\nMore details are provided here https://wiki.onap.org/display/DW/CPS-470%3A+Spike+-+Add+support+for+data+deletion+events#CPS470:SpikeAddsupportfordatadeletionevents-Operation",
+      "parentUuid": "3a6ce767_82eac865",
       "range": {
         "startLine": 88,
         "startChar": 83,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a0113aba_b1a3182e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-10T12:51:55Z",
+      "side": 1,
+      "message": "The story has been divided into two parts to make it easier to code and review.\nThis change is to add operation to already existing events. \nIn the next change, the condition will be added to identify which data node is deleted ( root or non-root) and the correct operation will be sent.\n\nIn the case of non-root data-node deletion, the operation would be \u0027UPDATE\u0027. If a root data-node is deleted, the operation would be \u0027DELETE\u0027. \n\nIt will be handled as part of \u0027https://jira.onap.org/browse/CPS-849\u0027 sub task.",
+      "parentUuid": "b5131f79_2ee744bb",
+      "range": {
+        "startLine": 141,
+        "startChar": 93,
+        "endLine": 141,
+        "endChar": 99
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30e0983b_d3333ccd",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "559267af_604344c1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-10T12:51:55Z",
+      "side": 1,
+      "message": "The List elements are not supported at the root node, so all the operations on list element will be \u0027UPDATE\u0027. \nhttps://wiki.onap.org/display/DW/CPS-470%3A+Spike+-+Add+support+for+data+deletion+events#CPS470:SpikeAddsupportfordatadeletionevents-Operation",
+      "parentUuid": "30e0983b_d3333ccd",
+      "range": {
+        "startLine": 228,
+        "startChar": 120,
+        "endLine": 228,
+        "endChar": 126
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53851e92_9710eca4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2022-01-10T09:19:03Z",
       "side": 1,
       "message": "DELETE?",
+      "range": {
+        "startLine": 239,
+        "startChar": 120,
+        "endLine": 239,
+        "endChar": 126
+      },
+      "revId": "cbd5da8c5f9c6cc8c25040d6ba3c19a11e762eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c80fb4ef_6dd2ce08",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-10T12:51:55Z",
+      "side": 1,
+      "message": "It is to delete a non-root data node, so it will be \u0027UPDATE\u0027 too. But, I need to check if \u0027deleteDataNode\u0027 can support root data node too and a test case will be added or updated as per that. This complexity will be handled as a part of \u0027https://jira.onap.org/browse/CPS-849\u0027 sub-task.",
+      "parentUuid": "53851e92_9710eca4",
       "range": {
         "startLine": 239,
         "startChar": 120,
