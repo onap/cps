@@ -69,6 +69,30 @@
       "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbbee81c_149782c6",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-11T10:52:54Z",
+      "side": 1,
+      "message": "This is legacy code of the swagger documentation from the generated yaml files in the target-\u003egenerated sources directory done as part of the following commit.\n\nhttps://gerrit.onap.org/r/c/cps/+/126042",
+      "parentUuid": "754e0267_227ccf85",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 39
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
