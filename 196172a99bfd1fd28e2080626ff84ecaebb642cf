@@ -22,6 +22,30 @@
       "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61cd8183_cb83c5a8",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-11T09:30:50Z",
+      "side": 1,
+      "message": "Also, this would need to be changed in all our yang files.... we could create a ticket or could it be done as part of this? Thoughts from the team?",
+      "parentUuid": "0b7cedb3_c3b0d11d",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
