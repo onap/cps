@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b7cedb3_c3b0d11d",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-11T09:28:10Z",
+      "side": 1,
+      "message": "I recommend adding Toine (or CPS team email if one exists) as Rahul will be leaving the team soon.\nAlso, checksum would need to be recomputed if it is changed.",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
