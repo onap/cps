@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "328d01d5_7ff40dbb",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-11T09:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e80ddeee_0eea2e1d",
+      "range": {
+        "startLine": 111,
+        "startChar": 57,
+        "endLine": 111,
+        "endChar": 72
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13a38b96_94e8bac8",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
         "patchSetId": 5
@@ -91,6 +115,30 @@
       "revId": "b92560c78e644d4fd551731258e41e879619f94e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "445e6e88_beac9ffd",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-11T09:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a38b96_94e8bac8",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "b92560c78e644d4fd551731258e41e879619f94e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

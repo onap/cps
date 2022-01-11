@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eceeb8e_c3444997",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-11T09:03:57Z",
+      "side": 1,
+      "message": "\u0027...is always #operation\u0027\n\n\nI thing the word always is important here because and I and as I was reading the production code I noticed this would be the case so it is good to see a test confirming it. \nSo no even id we delete a root element it will be recorded as an \u0027update\u0027 events is that what you want and if so can you explain to me why... (maybe during standup today)",
+      "range": {
+        "startLine": 115,
+        "startChar": 55,
+        "endLine": 115,
+        "endChar": 64
+      },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
