@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "beae8fab_7fe098c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-11T11:46:42Z",
+      "side": 1,
+      "message": "different alignment here and line 187",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 46
+      },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "368ca529_88ef6695",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-11T11:46:42Z",
+      "side": 1,
+      "message": "alignment not in sync",
+      "range": {
+        "startLine": 92,
+        "startChar": 1,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "632c63e2_489a66a7",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
         "patchSetId": 6
@@ -19,6 +65,23 @@
         "endLine": 10,
         "endChar": 71
       },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43ba689c_10456e4b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-11T11:46:42Z",
+      "side": 1,
+      "message": "As per the comments at https://gerrit.onap.org/r/c/cps/+/126521/2/cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy#228 , it was mentioned that deleting list node would be considered as Operation UPDATE as the deletion doesnt happen at root level. \nIs there any specific reason for this change then?",
       "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
