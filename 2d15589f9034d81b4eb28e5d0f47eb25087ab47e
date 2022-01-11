@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "632c63e2_489a66a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-11T10:11:01Z",
+      "side": 1,
+      "message": "Should have a line in between, non blocking",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1eceeb8e_c3444997",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 6
