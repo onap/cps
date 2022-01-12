@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bf82f456_9ba8806b",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/Operation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-12T11:30:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29d39cb7_c3d233eb",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "2d15589f9034d81b4eb28e5d0f47eb25087ab47e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43ba689c_10456e4b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 6
