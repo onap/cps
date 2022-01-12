@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "89163165_1cc1ef5d",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi-registration.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "use a different example i.e. \"area\" : \"south\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ef00c82_8211adab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "These SHOULD be just the old additional properties\nwhich are these now? I think we need a clearer name, possibly \u0027dmiCmHandleProperties\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 67,
+        "endLine": 109,
+        "endChar": 85
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8967479_a01c9eb6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "cmHandleDmiProperties  (as opposed to cmHandlePublicProperties and definitely NOT both)",
+      "range": {
+        "startLine": 67,
+        "startChar": 67,
+        "endLine": 67,
+        "endChar": 91
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b337a59_137f9338",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "cmHandleDmiProperty",
+      "range": {
+        "startLine": 74,
+        "startChar": 70,
+        "endLine": 74,
+        "endChar": 89
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e86ded62_c36c77c4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
         "patchSetId": 3
@@ -25,6 +117,191 @@
     },
     {
       "key": {
+        "uuid": "229dd2d2_3982dd59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "i\u0027m confused! see comment below how to get specific properties",
+      "parentUuid": "e86ded62_c36c77c4",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 61,
+        "endChar": 52
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b560c13_7a226334",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "add parameter String childName pass in either \u0027additional-properties\u0027 OR \u0027public-properties\u0027",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 92
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ea2b8f_7d1ba6ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "check child-node name against new parameter",
+      "range": {
+        "startLine": 84,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 72
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83978a6c_c4864404",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "dmiProperties",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 50
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e383bb_fcf21518",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "publicProperties",
+      "range": {
+        "startLine": 46,
+        "startChar": 32,
+        "endLine": 46,
+        "endChar": 56
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b91fce11_913e5bd1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "dmiProperties",
+      "range": {
+        "startLine": 57,
+        "startChar": 45,
+        "endLine": 57,
+        "endChar": 65
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e731916e_140ebaa3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "DmiProperties",
+      "range": {
+        "startLine": 125,
+        "startChar": 27,
+        "endLine": 125,
+        "endChar": 45
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8786ad9_3e00e9b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "..properties",
+      "range": {
+        "startLine": 133,
+        "startChar": 24,
+        "endLine": 133,
+        "endChar": 41
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a7f2e45_b720e3dd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 3
@@ -36,6 +313,30 @@
       "writtenOn": "2022-01-12T10:32:53Z",
       "side": 1,
       "message": "Wondering if this would be better off as just \"Property\" now and then add the additional/public context through naming convention when used?",
+      "range": {
+        "startLine": 143,
+        "startChar": 24,
+        "endLine": 143,
+        "endChar": 51
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "492fe21a_9b67c2d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "9a7f2e45_b720e3dd",
       "range": {
         "startLine": 143,
         "startChar": 24,
@@ -88,6 +389,161 @@
         "startChar": 2,
         "endLine": 12,
         "endChar": 35
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6185e6_48d2e119",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "sinde Dylan owns this copy we can use Dylans email, don\u0027t worry it is for internal only",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "896b5970_a85a2d70",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "empty line between children NOT betwreen leafs as discuss in actual yang file",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee70f32d_3545030e",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "add (new!)revision to filename",
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da82a5f1_08f22b2d",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "update revision",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6287cac_4d567f2d",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "remove empty lines between key and leaves",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc4ca775_8e4ede40",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "remove empty lines between key and leaves",
+      "range": {
+        "startLine": 28,
+        "startChar": 34,
+        "endLine": 38,
+        "endChar": 9
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc5d1bc4_a594de2c",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-12T11:59:30Z",
+      "side": 1,
+      "message": "insert empty line",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 28
       },
       "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
