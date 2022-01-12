@@ -27,8 +27,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,6 +34,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
@@ -51,6 +50,7 @@ import org.onap.cps.ncmp.rest.model.ModuleReference;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,21 +59,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("${rest.api.ncmp-base-path}")
+@RequiredArgsConstructor
 public class NetworkCmProxyController implements NetworkCmProxyApi {
 
-    private static final Gson GSON = new GsonBuilder().create();
     private static final String NO_BODY = null;
 
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper;
     private final NetworkCmProxyDataService networkCmProxyDataService;
-
-    /**
-     * Constructor Injection for Dependencies.
-     * @param networkCmProxyDataService Data Service Interface
-     */
-    public NetworkCmProxyController(final NetworkCmProxyDataService networkCmProxyDataService) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-    }
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create Node.
@@ -84,7 +77,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Deprecated(forRemoval = false)
     public ResponseEntity<Void> createNode(final String cmHandle, @Valid final Object jsonData,
         @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
+        networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath,
+                jsonObjectMapper.parseObjectAsJsonString(jsonData));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -97,7 +91,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Deprecated(forRemoval = false)
     public ResponseEntity<Void> addListNodeElements(@NotNull @Valid final String parentNodeXpath,
         final String cmHandle, @Valid final Object jsonData) {
-        networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
+        networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath,
+                jsonObjectMapper.parseObjectAsJsonString(jsonData));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -129,7 +124,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
             networkCmProxyDataService.queryDataNodes(cmHandle, cpsPath, fetchDescendantsOption);
-        return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
+        return new ResponseEntity<>(jsonObjectMapper.parseObjectAsJsonString(dataNodes), HttpStatus.OK);
     }
 
     /**
@@ -141,7 +136,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> replaceNode(final String cmHandle, @Valid final Object jsonData,
         @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
+        networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath,
+                jsonObjectMapper.parseObjectAsJsonString(jsonData));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -154,7 +150,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Deprecated(forRemoval = false)
     public ResponseEntity<Object> updateNodeLeaves(final String cmHandle, @Valid final Object jsonData,
         @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
+        networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath,
+                jsonObjectMapper.parseObjectAsJsonString(jsonData));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -205,7 +202,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final String cmHandle,
         final Object requestBody, final String contentType) {
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-            resourceIdentifier, PATCH, GSON.toJson(requestBody), contentType);
+            resourceIdentifier, PATCH, jsonObjectMapper.parseObjectAsJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -222,7 +219,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
         final String cmHandle, final Object requestBody, final String contentType) {
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, CREATE, GSON.toJson(requestBody), contentType);
+                resourceIdentifier, CREATE, jsonObjectMapper.parseObjectAsJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -241,7 +238,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final Object requestBody,
                                                                        final String contentType) {
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-            resourceIdentifier, UPDATE, GSON.toJson(requestBody), contentType);
+            resourceIdentifier, UPDATE, jsonObjectMapper.parseObjectAsJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

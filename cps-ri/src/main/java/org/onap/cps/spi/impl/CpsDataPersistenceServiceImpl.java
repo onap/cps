@@ -24,12 +24,8 @@ package org.onap.cps.spi.impl;
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
@@ -51,6 +48,7 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -59,37 +57,24 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
-    private DataspaceRepository dataspaceRepository;
+    private final DataspaceRepository dataspaceRepository;
 
-    private AnchorRepository anchorRepository;
+    private final AnchorRepository anchorRepository;
 
-    private FragmentRepository fragmentRepository;
+    private final FragmentRepository fragmentRepository;
 
-    private final ObjectMapper objectMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
-    /**
-     * Constructor.
-     *
-     * @param dataspaceRepository dataspaceRepository
-     * @param anchorRepository    anchorRepository
-     * @param fragmentRepository  fragmentRepository
-     */
-    public CpsDataPersistenceServiceImpl(final DataspaceRepository dataspaceRepository,
-        final AnchorRepository anchorRepository, final FragmentRepository fragmentRepository) {
-        this.dataspaceRepository = dataspaceRepository;
-        this.anchorRepository = anchorRepository;
-        this.fragmentRepository = fragmentRepository;
-        objectMapper = new ObjectMapper();
-    }
 
-    private static final Gson GSON = new GsonBuilder().create();
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
@@ -152,7 +137,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
      * @param dataNodeToBeConverted dataNode
      * @return a Fragment built from current DataNode
      */
-    private static FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
+    private FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
         final AnchorEntity anchorEntity, final DataNode dataNodeToBeConverted) {
         final FragmentEntity parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
         final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
@@ -177,13 +162,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    private static FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
+    private FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
         final AnchorEntity anchorEntity, final DataNode dataNode) {
         return FragmentEntity.builder()
             .dataspace(dataspaceEntity)
             .anchor(anchorEntity)
             .xpath(dataNode.getXpath())
-            .attributes(GSON.toJson(dataNode.getLeaves()))
+            .attributes(jsonObjectMapper.parseObjectAsJsonString(dataNode.getLeaves()))
             .build();
     }
 
@@ -250,12 +235,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         Map<String, Object> leaves = new HashMap<>();
         if (fragmentEntity.getAttributes() != null) {
             try {
-                leaves = objectMapper.readValue(fragmentEntity.getAttributes(), Map.class);
-            } catch (final JsonProcessingException jsonProcessingException) {
+                leaves = jsonObjectMapper.convertStringContentToValueType(fragmentEntity.getAttributes(), Map.class);
+            } catch (final CpsException cpsException) {
                 final String message = "Parsing error occurred while processing fragmentEntity attributes.";
                 log.error(message);
                 throw new DataValidationException(message,
-                    jsonProcessingException.getMessage(), jsonProcessingException);
+                        cpsException.getMessage(), cpsException);
             }
         }
         return new DataNodeBuilder()
@@ -278,7 +263,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
         final Map<String, Object> leaves) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        fragmentEntity.setAttributes(GSON.toJson(leaves));
+        fragmentEntity.setAttributes(jsonObjectMapper.parseObjectAsJsonString(leaves));
         fragmentRepository.save(fragmentEntity);
     }
 
@@ -296,10 +281,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    private static void replaceDataNodeTree(final FragmentEntity existingFragmentEntity,
+    private void replaceDataNodeTree(final FragmentEntity existingFragmentEntity,
                                             final DataNode newDataNode) {
 
-        existingFragmentEntity.setAttributes(GSON.toJson(newDataNode.getLeaves()));
+        existingFragmentEntity.setAttributes(jsonObjectMapper.parseObjectAsJsonString(newDataNode.getLeaves()));
 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments()
             .stream().collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
@@ -412,7 +397,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("[") + 1);
     }
 
-    private static FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
+    private FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
                                                             final DataNode newListElement,
                                                             final FragmentEntity existingListElementEntity) {
         if (existingListElementEntity == null) {
@@ -433,10 +418,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private static void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
+    private void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
                                                          final DataNode newListElement) {
         final FragmentEntity replacementFragmentEntity =
-            FragmentEntity.builder().attributes(GSON.toJson(newListElement.getLeaves())).build();
+            FragmentEntity.builder().attributes(jsonObjectMapper.parseObjectAsJsonString(
+                    newListElement.getLeaves())).build();
         existingListElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
     }
 

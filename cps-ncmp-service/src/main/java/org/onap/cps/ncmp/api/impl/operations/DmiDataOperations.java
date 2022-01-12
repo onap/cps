@@ -25,31 +25,16 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import lombok.experimental.SuperBuilder;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
 /**
  * Operations class for DMI data.
  */
-@Component
+@SuperBuilder
 public class DmiDataOperations extends DmiOperations {
-
-    /**
-     * Constructor for {@code DmiOperations}. This method also manipulates url properties.
-     *
-     * @param dmiRestClient {@code DmiRestClient}
-     */
-    public DmiDataOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
-                             final ObjectMapper objectMapper,
-                             final NcmpConfiguration.DmiProperties dmiProperties,
-                             final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, objectMapper, dmiProperties, dmiRestClient);
-    }
 
     /**
      * This method fetches the resource data from operational data store for given cm handle
@@ -73,7 +58,7 @@ public class DmiDataOperations extends DmiOperations {
             .operation(READ)
             .build();
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
-        final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
+        final String jsonBody = jsonObjectMapper.parseObjectAsJsonString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
             persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
@@ -106,7 +91,7 @@ public class DmiDataOperations extends DmiOperations {
             .dataType(dataType)
             .build();
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
-        final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
+        final String jsonBody = jsonObjectMapper.parseObjectAsJsonString(dmiRequestBody);
         final String dmiUrl =
             getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
             cmHandle, resourceId, PASSTHROUGH_RUNNING);

@@ -22,36 +22,21 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import lombok.experimental.SuperBuilder;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
-@Component
+@SuperBuilder
 public class DmiModelOperations extends DmiOperations {
-
-    /**
-     * Constructor for {@code DmiOperations}. This method also manipulates url properties.
-     *
-     * @param dmiRestClient {@code DmiRestClient}
-     */
-    public DmiModelOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
-                              final ObjectMapper objectMapper,
-                              final NcmpConfiguration.DmiProperties dmiProperties,
-                              final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, objectMapper, dmiProperties, dmiRestClient);
-    }
 
     /**
      * Retrieves module references.
@@ -65,7 +50,7 @@ public class DmiModelOperations extends DmiOperations {
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
-            getDmiRequestBodyAsString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
+                jsonObjectMapper.parseObjectAsJsonString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
         return toModuleReferences((Map) dmiFetchModulesResponseEntity.getBody());
     }
 
@@ -144,7 +129,7 @@ public class DmiModelOperations extends DmiOperations {
             if (moduleReferencesAsList != null) {
                 moduleReferencesAsList.forEach(moduleReferenceAsMap -> {
                     final ModuleReference moduleReference =
-                        objectMapper.convertValue(moduleReferenceAsMap, ModuleReference.class);
+                        jsonObjectMapper.convertFromValueToValueType(moduleReferenceAsMap, ModuleReference.class);
                     moduleReferences.add(moduleReference);
                 });
             }
@@ -159,7 +144,7 @@ public class DmiModelOperations extends DmiOperations {
         if (yangResourcesAsList != null) {
             yangResourcesAsList.forEach(yangResourceAsMap -> {
                 final YangResource yangResource =
-                    objectMapper.convertValue(yangResourceAsMap, YangResource.class);
+                        jsonObjectMapper.convertFromValueToValueType(yangResourceAsMap, YangResource.class);
                 yangResourcesModuleNameToContentMap.put(yangResource.getModuleName(),
                     yangResource.getYangSource());
             });
