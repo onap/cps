@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97382ee7_cf5252bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-12T11:04:21Z",
+      "side": 1,
+      "message": "NB: Do we need to create a constant if it only used once.. although the name does give some indication as to what it is referring to so pros and cons :)",
+      "range": {
+        "startLine": 124,
+        "startChar": 15,
+        "endLine": 124,
+        "endChar": 30
+      },
+      "revId": "4bee6edd2dcf1b2ada3a808ae19b003c684025cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "463afe57_953f00b2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-12T11:04:21Z",
+      "side": 1,
+      "message": "NB: Here the argument could be made for a constant as a change will result in modifying \"/test-tree\" multiple times. This for example could be refactored to TEST_TREE + \"/branch\"",
+      "range": {
+        "startLine": 226,
+        "startChar": 111,
+        "endLine": 226,
+        "endChar": 129
+      },
+      "revId": "4bee6edd2dcf1b2ada3a808ae19b003c684025cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
