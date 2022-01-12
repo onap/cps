@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2021 Bell Canada.
+ * Copyright (c) 2021-2022 Bell Canada.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class NotificationService {
+
+    private static final String ROOT_NODE_XPATH = "/";
 
     private NotificationProperties notificationProperties;
     private NotificationPublisher notificationPublisher;
@@ -78,19 +80,23 @@ public class NotificationService {
     /**
      * Process Data Updated Event and publishes the notification.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
      * @param observedTimestamp observedTimestamp
+     * @param xpath             xpath of changed data node
+     * @param operation         operation
      * @return future
      */
     @Async("notificationExecutor")
     public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
-        final OffsetDateTime observedTimestamp) {
+                                                final OffsetDateTime observedTimestamp,
+                                                final String xpath, final Operation operation) {
         log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
         try {
             if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp);
+                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName,
+                        observedTimestamp, getRootNodeOperation(xpath, operation));
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }
@@ -112,6 +118,10 @@ public class NotificationService {
         return notificationProperties.isEnabled()
             && dataspacePatterns.stream()
             .anyMatch(pattern -> pattern.matcher(dataspaceName).find());
+    }
+
+    private Operation getRootNodeOperation(final String xpath, final Operation operation) {
+        return ROOT_NODE_XPATH.equals(xpath) ? operation : Operation.UPDATE;
     }
 
 }
