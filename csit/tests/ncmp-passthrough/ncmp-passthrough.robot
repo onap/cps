@@ -116,3 +116,29 @@ Verify delete to bookstore using passthrough-running removed only category 01
             Should Be Equal As Strings              "${item['name']}"  "Horror"
         END
     END
+
+Patch and verify Bookstore using passthrough-running for Category 100 and Category 101
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
+    ${headers}=          Create Dictionary  Content-Type=application/yang.patch+json   Authorization=${auth}
+    ${jsonData}=         Get Binary File    ${DATADIR}${/}bookstorePatchExample.json
+    ${response}=         PATCH On Session   CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
+    Should Be Equal As Strings              ${response.status_code}   200
+    ${verifyUri}=       Set Variable        ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=100
+    ${verifyHeaders}=    Create Dictionary  Authorization=${auth}
+    ${verifyResponse}=   Get On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
+    ${responseJson}=    Set Variable        ${verifyResponse.json()}
+    Should Be Equal As Strings              ${verifyResponse.status_code}   200
+    FOR   ${item}   IN  @{responseJson['stores:categories']}
+        IF   "${item['code']}" == "100"
+            Should Be Equal As Strings              "${item['name']}"  "Horror"
+        END
+    END
+    ${verifyUri}=       Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=101
+    ${verifyResponse}=  Get On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
+    ${responseJson}=    Set Variable       ${verifyResponse.json()}
+    Should Be Equal As Strings             ${verifyResponse.status_code}   200
+    FOR   ${item}   IN  @{responseJson['stores:categories']}
+        IF   "${item['code']}" == "101"
+            Should Be Equal As Strings              "${item['name']}"  "Lucky"
+        END
+    END

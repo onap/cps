@@ -151,6 +151,50 @@ components:
                 - authors:
                     - Philip Pullman
 
+    dataSamplePatchRequest:
+      summary: Sample patch request
+      description: Sample patch request body
+      value:
+        ietf-restconf:yang-patch:
+          patch-id: patch-1
+          edit:
+            - edit-id: edit1
+              operation: merge
+              target: /
+              value:
+                test:bookstore:
+                  bookstore-name: Chapters
+                  categories:
+                    - code: '01'
+                      name: SciFi
+                      books:
+                        - authors:
+                            - Iain M. Banks
+                            - Ursula K. Le Guin
+                    - code: '02'
+                      name: kids
+                      books:
+                        - authors:
+                            - Philip Pullman
+            - edit-id: edit2
+              operation: merge
+              target: /
+              value:
+                test:bookstore:
+                  bookstore-name: Novels
+                  categories:
+                    - code: '03'
+                      name: History
+                      books:
+                        - authors:
+                            - Iain M. Banks
+                            - Ursula K. Le Guin
+                    - code: '04'
+                      name: Fiction
+                      books:
+                        - authors:
+                            - Philip Pullman
+
     dataSampleResponse:
         summary: Sample response
         description: Sample response for selecting 'sample 1'.

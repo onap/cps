@@ -1,0 +1,59 @@
+{
+  "ietf-restconf:yang-patch":{
+    "patch-id":"patch-1",
+    "edit":[
+      {
+        "edit-id":"edit1",
+        "operation":"merge",
+        "target":"/",
+        "value":{
+          "bookstore": {
+            "categories": [
+              {
+                "code": "100",
+                "books": [
+                  {
+                    "title": "A Horror book",
+                    "pub_year": "2019",
+                    "authors": [
+                      "Rahul"
+                    ],
+                    "lang": "Englsh",
+                    "price": "2011"
+                  }
+                ],
+                "name": "Horror"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "edit-id":"edit2",
+        "operation":"merge",
+        "target":"/",
+        "value":{
+          "bookstore": {
+            "categories": [
+              {
+                "code": "101",
+                "books": [
+                  {
+                    "title": "A Lucky book",
+                    "pub_year": "2014",
+                    "authors": [
+                      "Rahul"
+                    ],
+                    "lang": "French",
+                    "price": "2000"
+                  }
+                ],
+                "name": "Lucky"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
