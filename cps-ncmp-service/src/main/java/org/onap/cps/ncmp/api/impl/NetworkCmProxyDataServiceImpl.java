@@ -194,12 +194,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public void writeResourceDataPassThroughRunningForCmHandle(final String cmHandle,
+    public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandle,
                                                                final String resourceIdentifier,
                                                                final OperationEnum operation,
                                                                final String requestData,
                                                                final String dataType) {
-        handleResponse(
+        return handleResponse(
             dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(
                 cmHandle, resourceIdentifier, operation, requestData, dataType),
             "Not able to " + operation + " resource data.");
