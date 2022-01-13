@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "872ddf1e_ddfb7a9d",
+        "filename": "csit/data/registerCmHandles.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-13T14:25:40Z",
+      "side": 1,
+      "message": "what are these for?!",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 83
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1c01669b_a5776fd2",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -60,6 +83,30 @@
       "writtenOn": "2022-01-12T11:24:37Z",
       "side": 1,
       "message": "Annoying but probably need to extend the copyright to 2022 now",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 53
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1edf1200_1974bdcc",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-13T14:25:40Z",
+      "side": 1,
+      "message": "well spotted!",
+      "parentUuid": "1c01669b_a5776fd2",
       "range": {
         "startLine": 21,
         "startChar": 2,
@@ -175,6 +222,30 @@
       "writtenOn": "2022-01-12T11:57:38Z",
       "side": 1,
       "message": "Can this not be added to other tests were we do model sync? It seems pretty similar except for the JSON data.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 66
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d7918d3_5e6863e6",
+        "filename": "csit/tests/ncmp-inventory/ncmp-inventory.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-13T14:25:40Z",
+      "side": 1,
+      "message": "agreed if this test is not verify anything specific to additional or public properties (and I don\u0027t think you can, theer is no need for a NEW test but is its good to add some properties to the existing user TEST just to proof this doesn\u0027t break any existing functionality.\n\nWhen the query for public property is implemented it wil make more sense to add a test and get a cm handle with a  certain property...",
+      "parentUuid": "e18ee129_7326f783",
       "range": {
         "startLine": 40,
         "startChar": 0,
