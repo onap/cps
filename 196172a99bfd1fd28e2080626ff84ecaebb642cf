@@ -543,6 +543,29 @@
     },
     {
       "key": {
+        "uuid": "964f0d3d_af4524e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-13T15:59:18Z",
+      "side": 1,
+      "message": "Where the null check was being done previously.",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 79
+      },
+      "revId": "196172a99bfd1fd28e2080626ff84ecaebb642cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8786ad9_3e00e9b4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 3
