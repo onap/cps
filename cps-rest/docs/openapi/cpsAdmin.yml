@@ -28,12 +28,12 @@ dataspaces:
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
       '401':
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
 
   delete:
     description: Delete a dataspace
@@ -81,6 +81,8 @@ schemaSet:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
 
 schemaSetBySchemaSetName:
   get:
@@ -105,8 +107,6 @@ schemaSetBySchemaSetName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
 
   delete:
     description: Delete a schema set given a schema set name and a dataspace
@@ -153,8 +153,6 @@ anchorsByDataspace:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
 
   post:
     description: Create a new anchor in the given dataspace
@@ -175,6 +173,8 @@ anchorsByDataspace:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
 
 anchorByDataspaceAndAnchorName:
   get:
@@ -199,8 +199,6 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
 
   delete:
     description: Delete an anchor given an anchor name and a dataspace
