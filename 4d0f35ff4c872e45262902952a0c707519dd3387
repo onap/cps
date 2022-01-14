@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a9110d46_12b9f5f2",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi-registration.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T17:38:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b93b5001_75e4e221",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "4d0f35ff4c872e45262902952a0c707519dd3387",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a718aa0_9685306b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
         "patchSetId": 4
