@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
+# Modifications Copyright (C) 2021-2022 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,8 +45,8 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
 
 listElementByDataspaceAndAnchor:
@@ -78,7 +79,8 @@ listElementByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   put:
     description: Replace list content under a given parent, anchor and dataspace
     tags:
@@ -108,7 +110,8 @@ listElementByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete one or all list element(s) for a given anchor and dataspace
     deprecated: true
@@ -161,7 +164,10 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   patch:
     description: Update a data node leaves for a given dataspace and anchor and a parent node xpath
     tags:
@@ -191,7 +197,8 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete a datanode for a given dataspace and anchor given a node xpath.
     tags:
@@ -212,8 +219,8 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   put:
     description: Replace a node with descendants for a given dataspace, anchor and a parent node xpath
     tags:
@@ -243,3 +250,5 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
