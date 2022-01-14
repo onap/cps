@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3ce6d9c_de1a798d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-14T10:32:59Z",
+      "side": 1,
+      "message": "Needs Nordix Modifications copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 4
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f80f1b0c_70c81b64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-14T10:32:59Z",
+      "side": 1,
+      "message": "Needs to be 2021-2022 for all files",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e34e0d02_f970375c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-14T10:32:59Z",
+      "side": 1,
+      "message": "Does this need to be removed here too?",
+      "range": {
+        "startLine": 65,
+        "startChar": 48,
+        "endLine": 65,
+        "endChar": 59
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dc4829f_3dd21097",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-14T10:32:59Z",
+      "side": 1,
+      "message": "Wondering if these should be methods in the cmHandle class instead. Seem out of scope for the class and also may be used in another use case? Thoughts from team",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
