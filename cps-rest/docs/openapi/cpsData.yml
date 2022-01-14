@@ -44,8 +44,6 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
     x-codegen-request-body-name: xpath
 
 listElementByDataspaceAndAnchor:
@@ -161,6 +159,8 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
 
   patch:
     description: Update a data node leaves for a given dataspace and anchor and a parent node xpath
