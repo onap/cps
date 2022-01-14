@@ -72,6 +72,54 @@
     },
     {
       "key": {
+        "uuid": "0b892189_d967f135",
+        "filename": "csit/data/registerCmHandles.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42216a32_e79d6eca",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "558dda0b_6d739c36",
+        "filename": "csit/data/registerCmHandles.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "These IP\u0027s were added accidentally. File has been deleted now as part of Joe\u0027s comment above",
+      "parentUuid": "872ddf1e_ddfb7a9d",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 83
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1c01669b_a5776fd2",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -119,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "7304071a_37f0c33a",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1edf1200_1974bdcc",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 53
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a2f52e2_2f5e064b",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -142,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "7ddf15dd_f8664d68",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a2f52e2_2f5e064b",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 22
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f69666f_6f805b74",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 1
@@ -153,6 +249,30 @@
       "writtenOn": "2022-01-12T11:57:38Z",
       "side": 1,
       "message": "NB: This is fine but we can mount a node as part of a test (worked on it a little as part of an old story). I\u0027ve added the robot test for reference if you prefer this method.\n\n...\n\n*** Settings ***\nDocumentation         Mount Node PNFDemo2\n\nLibrary               Collections\nLibrary               OperatingSystem\nLibrary               RequestsLibrary\nLibrary               BuiltIn\n\nSuite Setup           Create Session     SDNC_URL    http://${SDNC_HOST}:${SDNC_PORT}\n\n*** Variables ***\n\n${auth}                 Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ\u003d\u003d\n${sdncBasePath}         /restconf/config\n\n*** Test Cases ***\n\nmount node\n    ${uri}\u003d              Set Variable       ${sdncBasePath}/network-topology:network-topology/topology/topology-netconf/node/PNFDemo1\n    ${headers}\u003d          Create Dictionary  Content-Type\u003dapplication/json   Authorization\u003d${auth}\n    ${jsonData}\u003d         Get Binary File    ${DATADIR}${/}mountPNFDemo1.json\n    ${response}\u003d         PUT On Session     SDNC_URL   ${uri}   headers\u003d${headers}   data\u003d${jsonData}\n    Should Be Equal As Strings              ${response.status_code}   201\n...",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 123,
+        "endChar": 0
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4191eda4_34ae3ced",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "I think if we do this, we should also add the other mounted node for PNFDemo in the setup class to this test?",
+      "parentUuid": "9f69666f_6f805b74",
       "range": {
         "startLine": 101,
         "startChar": 6,
@@ -188,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "ab7b2763_2c35a99a",
+        "filename": "csit/tests/ncmp-inventory/ncmp-inventory.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a59eeffa_2e2fd849",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43f64426_41ac76b9",
         "filename": "csit/tests/ncmp-inventory/ncmp-inventory.robot",
         "patchSetId": 1
@@ -208,6 +352,30 @@
       "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "706885f1_dd95dd38",
+        "filename": "csit/tests/ncmp-inventory/ncmp-inventory.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T11:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43f64426_41ac76b9",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "0be6a0abff7c8119e959a9737a0c1765a7db3a49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
