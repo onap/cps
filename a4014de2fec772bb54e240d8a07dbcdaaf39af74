@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "141e3043_11f6a039",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T17:37:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3ce6d9c_de1a798d",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 4
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f80f1b0c_70c81b64",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fd80cc7d_408dcf33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T17:37:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f80f1b0c_70c81b64",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e34e0d02_f970375c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bf8838f_5a3cda27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T17:37:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e34e0d02_f970375c",
+      "range": {
+        "startLine": 65,
+        "startChar": 48,
+        "endLine": 65,
+        "endChar": 59
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +178,30 @@
       "side": 1,
       "message": "differnt school of thoughts on this. I tend to agree with your suggestion but this many wil argus taht business logic (or a conversion) does not belong in a simple data holder class  hence we kept it here...",
       "parentUuid": "2dc4829f_3dd21097",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "a4014de2fec772bb54e240d8a07dbcdaaf39af74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3224dd3a_a6cf4420",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-14T17:37:00Z",
+      "side": 1,
+      "message": "Yeah I would agree that it\u0027s probably better to keep the cm handle class purely as a model class with as little logic as possible.",
+      "parentUuid": "7b1538ed_b2616604",
       "range": {
         "startLine": 78,
         "startChar": 4,
