@@ -35,7 +35,7 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
     def mockDmiModelOperations = Mock(DmiModelOperations)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockDmiModelOperations,
-        mockCpsModuleService, null, null, mockCpsAdminService, new ObjectMapper())
+        mockCpsModuleService, null, mockCpsAdminService, new ObjectMapper())
 
     def expectedDataspaceName = 'NFP-Operational'
 
