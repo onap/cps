@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada
  *  ================================================================================
@@ -33,7 +33,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.spi.FetchDescendantsOption
@@ -45,52 +44,16 @@ import spock.lang.Specification
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
-    def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def spyObjectMapper = Spy(ObjectMapper)
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiDataOperations, null,
-        mockCpsModuleService, mockCpsDataService, mockCpsQueryService, mockCpsAdminService, spyObjectMapper)
+        mockCpsModuleService, mockCpsDataService, mockCpsAdminService, spyObjectMapper)
 
-    def cmHandle = 'some handle'
-    def noTimestamp = null
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
-    def expectedDataspaceName = 'NFP-Operational'
 
-    def 'Create full data node: #scenario.'() {
-        given: 'json data'
-            def jsonData = 'some json'
-        when: 'createDataNode is invoked'
-            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
-        then: 'save data is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, jsonData, noTimestamp)
-        where: 'following parameters were used'
-            scenario           | xpath
-            'no xpath'         | ''
-            'root level xpath' | '/'
-    }
-
-    def 'Create child data node.'() {
-        given: 'json data and xpath'
-            def jsonData = 'some json'
-            def xpath = '/test-node'
-        when: 'create data node is invoked'
-            objectUnderTest.createDataNode(cmHandle, xpath, jsonData)
-        then: 'save data is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveData(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
-    }
-
-    def 'Add list-node elements.'() {
-        given: 'json data and xpath'
-            def jsonData = 'some json'
-            def xpath = '/test-node'
-        when: 'add list node element is invoked'
-            objectUnderTest.addListNodeElements(cmHandle, xpath, jsonData)
-        then: 'the save list elements is invoked once with the expected parameters'
-            1 * mockCpsDataService.saveListElements(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
-    }
 
     def 'Write resource data for pass-through running from dmi using POST #scenario cm handle properties.'() {
         given: 'a data node'
@@ -133,14 +96,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             exceptionThrown.details.contains('404')
     }
 
-    def 'Get data node.'() {
-        when: 'get data node is invoked'
-            objectUnderTest.getDataNode(cmHandle, 'some xpath', fetchDescendantsOption)
-        then: 'the persistence data service is called once with the correct parameters'
-            1 * mockCpsDataService.getDataNode(expectedDataspaceName, cmHandle, 'some xpath', fetchDescendantsOption)
-        where: 'all fetch descendants options are supported'
-            fetchDescendantsOption << FetchDescendantsOption.values()
-    }
 
     def 'Get resource data for pass-through operational from dmi.'() {
         given: 'a data node'
@@ -270,25 +225,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
     }
 
-    def 'Update data node leaves.'() {
-        given: 'json data and xpath'
-            def jsonData = 'some json'
-            def xpath = '/xpath'
-        when: 'update node leaves is invoked'
-            objectUnderTest.updateNodeLeaves(cmHandle, xpath, jsonData)
-        then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataService.updateNodeLeaves(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
-    }
-
-    def 'Replace data node tree.'() {
-        given: 'json data and xpath'
-            def jsonData = 'some json'
-            def xpath = '/xpath'
-        when: 'replace node tree is invoked'
-            objectUnderTest.replaceNodeTree(cmHandle, xpath, jsonData)
-        then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataService.replaceNodeTree(expectedDataspaceName, cmHandle, xpath, jsonData, noTimestamp)
-    }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario cm handle properties.'() {
         given: 'a data node'
@@ -329,17 +265,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             'CREATE' | CREATE         || 'Not able to create resource data.'
             'READ'   | READ           || 'Not able to read resource data.'
             'UPDATE' | UPDATE         || 'Not able to update resource data.'
-    }
-
-    def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
-        given: 'a cps path'
-            def cpsPath = '/cps-path'
-        when: 'query data nodes is invoked'
-            objectUnderTest.queryDataNodes(cmHandle, cpsPath, fetchDescendantsOption)
-        then: 'the persistence query service is called once with the correct parameters'
-            1 * mockCpsQueryService.queryDataNodes(expectedDataspaceName, cmHandle, cpsPath, fetchDescendantsOption)
-        where: 'all fetch descendants options are supported'
-            fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
     def getDataNode(boolean includeCmHandleProperties) {

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modification Copyright (C) 2021 Nordix Foundation
+ *  Modification Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.rest.exceptions
 import groovy.json.JsonSlurper
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -55,9 +54,6 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     @Shared
     def errorDetails = 'some error details'
 
-    def cmHandle = 'some handle'
-    def xpath = 'some xpath'
-
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1"
     }
@@ -75,18 +71,16 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'other'  | new IllegalStateException(errorMessage)       || null
     }
 
-    def setupTestException(exception) {
-        mockNetworkCmProxyDataService.getDataNode(cmHandle, xpath, FetchDescendantsOption.OMIT_DESCENDANTS) >>
+    def setupTestException(exception){
+        mockNetworkCmProxyDataService.getYangResourcesModuleReferences('testCmHandle')>>
                 { throw exception}
     }
 
-    def performTestRequest() {
-        return mvc.perform(get("$dataNodeBaseEndpoint/cm-handles/$cmHandle/node").param('xpath', xpath))
-                .andReturn().response
+    def performTestRequest(){
+        return mvc.perform(get("$dataNodeBaseEndpoint/ch/testCmHandle/modules")).andReturn().response
     }
 
-    static void assertTestResponse(response, expectedStatus,expectedErrorMessage,
-                                   expectedErrorDetails) {
+    static void assertTestResponse(response, expectedStatus , expectedErrorMessage , expectedErrorDetails) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'] == expectedStatus.toString()

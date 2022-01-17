@@ -183,7 +183,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(null, null, mockCpsModuleService,
-                mockCpsDataService, null, null, spyObjectMapper))
+                mockCpsDataService, null, spyObjectMapper))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }
