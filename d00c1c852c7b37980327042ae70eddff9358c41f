@@ -94,6 +94,23 @@
     },
     {
       "key": {
+        "uuid": "14468fa1_4087cd2b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:50:30Z",
+      "side": 1,
+      "message": "as discussed. Importing a yang resource (that is already part of the project) as a csv files seems unnecessary complicated and a lead to lot of duplicate maintenance!\nInstead let try to use some progress sql to do the same directly using some advanced Postgres sql\nlike files.read() and sha256() sql functions\nas documented on\nhttp://shuber.io/reading-from-the-filesystem-with-postgres/\nhttps://www.postgresql.org/docs/11/functions-binarystring.html",
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea6fa65d_7e3ef623",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
         "patchSetId": 8
