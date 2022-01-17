@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23cb2294_a6bd5b2d",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-17T12:35:14Z",
+      "side": 0,
+      "message": "Do we not handle in the code if schema-set is not present? I think \u0027404\u0027 is valid for all GET, DELETE and PUT even though we don\u0027t explicitly throw it from the code? If they are missing, we should change the code to handle it.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 61
+      },
+      "revId": "5ffd70d6cb68373389198a7c3fe5acb80c53e7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
