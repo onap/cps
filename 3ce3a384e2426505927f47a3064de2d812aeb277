@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8792519_22be2b79",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-17T10:45:57Z",
+      "side": 1,
+      "message": "It looks like the test is now going to NCMP directly which I believe is incorrect. I believe the correct flow would be to call DMI to register the node and then it will call NCMP internally. Either way it does verify a sync so I would like teams thoughts in this.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "3ce3a384e2426505927f47a3064de2d812aeb277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
