@@ -26,8 +26,6 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
@@ -37,9 +35,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
-import com.google.gson.Gson
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -61,114 +57,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
 
-    def cmHandle = 'some handle'
-    def xpath = 'some xpath'
     def jsonString = '{"some-key":"some-value"}'
-
-    def 'Query data node by cps path for the given cm handle with #scenario.'() {
-        given: 'service method returns a list containing a data node'
-            def dataNode = new DataNodeBuilder().withXpath('/xpath').build()
-            def cpsPath = 'some cps-path'
-            mockNetworkCmProxyDataService.queryDataNodes(cmHandle, cpsPath, expectedCpsDataServiceOption) >> [dataNode]
-        and: 'the query endpoint'
-            def dataNodeEndpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes/query"
-        when: 'query data nodes API is invoked'
-            def response = mvc.perform(get(dataNodeEndpoint)
-                    .param('cps-path', cpsPath)
-                    .param('include-descendants', includeDescendantsOption))
-                    .andReturn().response
-        then: 'the response contains the the datanode in json format'
-            response.status == HttpStatus.OK.value()
-            def expectedJsonContent = new Gson().toJson(dataNode)
-            response.getContentAsString().contains(expectedJsonContent)
-        where: 'the following options for include descendants are provided in the request'
-            scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
-            'no descendants by default' | ''                       || OMIT_DESCENDANTS
-            'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
-            'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
-    }
-
-    def 'Create data node: #scenario.'() {
-        when: 'post request is performed'
-            def response = mvc.perform(
-                    post("$ncmpBasePathV1/cm-handles/$cmHandle/nodes")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonString)
-                            .param('xpath', reqXpath)
-            ).andReturn().response
-        then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.createDataNode(cmHandle, usedXpath, jsonString)
-        and: 'response status indicates success'
-            response.status == HttpStatus.CREATED.value()
-        where: 'following parameters were used'
-            scenario             | reqXpath || usedXpath
-            'no xpath parameter' | ''       || '/'
-            'root xpath'         | '/'      || '/'
-            'parent node xpath'  | '/xpath' || '/xpath'
-    }
-
-    def 'Add list-node elements.'() {
-        given: ' parent node xpath'
-            def parentNodeXpath = 'parent node xpath'
-        when: 'post request is performed'
-            def response = mvc.perform(
-                    post("$ncmpBasePathV1/cm-handles/$cmHandle/list-node")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonString)
-                            .param('xpath', parentNodeXpath)
-            ).andReturn().response
-        then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, jsonString)
-        and: 'response status indicates success'
-            response.status == HttpStatus.CREATED.value()
-    }
-
-    def 'Update data node leaves.'() {
-        given: 'the query endpoint'
-            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
-        when: 'patch request is performed'
-            def response = mvc.perform(
-                    patch(endpoint)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonString)
-                            .param('xpath', xpath)
-            ).andReturn().response
-        then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.updateNodeLeaves(cmHandle, xpath, jsonString)
-        and: 'response status indicates success'
-            response.status == HttpStatus.OK.value()
-    }
-
-    def 'Replace data node tree.'() {
-        given: 'the query endpoint'
-            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/nodes"
-        when: 'put request is performed'
-            def response = mvc.perform(
-                    put(endpoint)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(jsonString)
-                            .param('xpath', xpath)
-            ).andReturn().response
-        then: 'the service method is invoked once with expected parameters'
-            1 * mockNetworkCmProxyDataService.replaceNodeTree(cmHandle, xpath, jsonString)
-        and: 'response status indicates success'
-            response.status == HttpStatus.OK.value()
-    }
-
-    def 'Get data node.'() {
-        given: 'the service returns a data node'
-            def xpath = 'some xpath'
-            def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(["leaf": "value"]).build()
-            mockNetworkCmProxyDataService.getDataNode(cmHandle, xpath, OMIT_DESCENDANTS) >> dataNode
-        and: 'the query endpoint'
-            def endpoint = "$ncmpBasePathV1/cm-handles/$cmHandle/node"
-        when: 'get request is performed through REST API'
-            def response = mvc.perform(get(endpoint).param('xpath', xpath)).andReturn().response
-        then: 'a success response is returned'
-            response.status == HttpStatus.OK.value()
-        and: 'response contains expected leaf and value'
-            response.contentAsString.contains('"leaf":"value"')
-    }
 
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
