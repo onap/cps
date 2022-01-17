@@ -22,6 +22,52 @@
       "revId": "3ce3a384e2426505927f47a3064de2d812aeb277",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e314d0a8_cfd41128",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:49:11Z",
+      "side": 1,
+      "message": "NB: these \u0027dmi properties\u0027 are very similar to the public properties, they are both \u0027books :-)\nTo make it more \u0027realistic\u0027 you could use contact or addressing information as \u0027dmi properties\u0027\neg: \"contact no\":\"0990-123456\",\"Web\":\"our-bookstore.com\"",
+      "range": {
+        "startLine": 37,
+        "startChar": 136,
+        "endLine": 37,
+        "endChar": 223
+      },
+      "revId": "3ce3a384e2426505927f47a3064de2d812aeb277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "391ca66a_71991900",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:49:11Z",
+      "side": 1,
+      "message": "For functional test never need more then 2 entries to proof collection functionality...",
+      "range": {
+        "startLine": 37,
+        "startChar": 203,
+        "endLine": 37,
+        "endChar": 216
+      },
+      "revId": "3ce3a384e2426505927f47a3064de2d812aeb277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
