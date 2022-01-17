@@ -38,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
@@ -48,14 +47,11 @@ import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
-import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Slf4j
 @Service
@@ -73,8 +69,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private ObjectMapper objectMapper;
 
-    private CpsQueryService cpsQueryService;
-
     private DmiDataOperations dmiDataOperations;
 
     private DmiModelOperations dmiModelOperations;
@@ -87,66 +81,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * Constructor Injection for Dependencies.
      * @param dmiDataOperations DMI operation
      * @param cpsDataService Data Service Interface
-     * @param cpsQueryService Query Service Interface
      * @param objectMapper Object Mapper
      */
     public NetworkCmProxyDataServiceImpl(final DmiDataOperations dmiDataOperations,
                                          final DmiModelOperations dmiModelOperations,
                                          final CpsModuleService cpsModuleService,
                                          final CpsDataService cpsDataService,
-                                         final CpsQueryService cpsQueryService,
                                          final CpsAdminService cpsAdminService,
                                          final ObjectMapper objectMapper) {
         this.dmiDataOperations = dmiDataOperations;
         this.dmiModelOperations = dmiModelOperations;
         this.cpsModuleService = cpsModuleService;
         this.cpsDataService = cpsDataService;
-        this.cpsQueryService = cpsQueryService;
         this.cpsAdminService = cpsAdminService;
         this.objectMapper = objectMapper;
-    }
-
-    @Override
-    public DataNode getDataNode(final String cmHandle, final String xpath,
-        final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService
-            .getDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, xpath, fetchDescendantsOption);
-    }
-
-    @Override
-    public Collection<DataNode> queryDataNodes(final String cmHandle, final String cpsPath,
-        final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsQueryService
-            .queryDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, cpsPath, fetchDescendantsOption);
-    }
-
-    @Override
-    public void createDataNode(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        if (!StringUtils.hasText(parentNodeXpath) || "/".equals(parentNodeXpath)) {
-            cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, jsonData, NO_TIMESTAMP);
-        } else {
-            cpsDataService
-                .saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData, NO_TIMESTAMP);
-        }
-    }
-
-    @Override
-    public void addListNodeElements(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.saveListElements(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
-            NO_TIMESTAMP);
-    }
-
-    @Override
-    public void updateNodeLeaves(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService
-            .updateNodeLeaves(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
-                NO_TIMESTAMP);
-    }
-
-    @Override
-    public void replaceNodeTree(final String cmHandle, final String parentNodeXpath, final String jsonData) {
-        cpsDataService.replaceNodeTree(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle, parentNodeXpath, jsonData,
-            NO_TIMESTAMP);
     }
 
     @Override

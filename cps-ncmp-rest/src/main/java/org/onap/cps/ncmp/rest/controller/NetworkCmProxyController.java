@@ -48,9 +48,6 @@ import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.ModuleReference;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.utils.DataMapUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,89 +70,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     public NetworkCmProxyController(final NetworkCmProxyDataService networkCmProxyDataService) {
         this.networkCmProxyDataService = networkCmProxyDataService;
-    }
-
-    /**
-     * Create Node.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Void> createNode(final String cmHandle, @Valid final Object jsonData,
-        @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.createDataNode(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    /**
-     * Add List-node Child Element.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Void> addListNodeElements(@NotNull @Valid final String parentNodeXpath,
-        final String cmHandle, @Valid final Object jsonData) {
-        networkCmProxyDataService.addListNodeElements(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    /**
-     * Get Node By CM Handle and X-Path.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Object> getNodeByCmHandleAndXpath(final String cmHandle, @Valid final String xpath,
-        @Valid final Boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final var dataNode = networkCmProxyDataService.getDataNode(cmHandle, xpath, fetchDescendantsOption);
-        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
-    }
-
-    /**
-     * Query Data Nodes.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Object> queryNodesByCmHandleAndCpsPath(final String cmHandle, @Valid final String cpsPath,
-        @Valid final Boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final Collection<DataNode> dataNodes =
-            networkCmProxyDataService.queryDataNodes(cmHandle, cpsPath, fetchDescendantsOption);
-        return new ResponseEntity<>(GSON.toJson(dataNodes), HttpStatus.OK);
-    }
-
-    /**
-     * Replace Node With Descendants.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Object> replaceNode(final String cmHandle, @Valid final Object jsonData,
-        @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.replaceNodeTree(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    /**
-     * Update Node Leaves.
-     * @deprecated This Method is no longer used as part of NCMP.
-     */
-    // All deprecated APIs methods will be address into https://jira.onap.org/browse/CPS-642
-    @Override
-    @Deprecated(forRemoval = false)
-    public ResponseEntity<Object> updateNodeLeaves(final String cmHandle, @Valid final Object jsonData,
-        @Valid final String parentNodeXpath) {
-        networkCmProxyDataService.updateNodeLeaves(cmHandle, parentNodeXpath, GSON.toJson(jsonData));
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
