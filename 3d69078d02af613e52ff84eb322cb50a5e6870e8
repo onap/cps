@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a8e9bb4_7d4fdbdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: DMI (CH Handle) Properties",
+      "range": {
+        "startLine": 63,
+        "startChar": 11,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e622f717_0a9a3e35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NF: In comments and javadoc you can use uppercase for acronyms like this",
+      "range": {
+        "startLine": 53,
+        "startChar": 28,
+        "endLine": 53,
+        "endChar": 32
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e13ed563_f4cfcf3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "and DMI prooperties",
+      "range": {
+        "startLine": 53,
+        "startChar": 45,
+        "endLine": 53,
+        "endChar": 59
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f4e388d_2f526c5d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: remove unnecessary whitespace (pink in gerrit)",
+      "range": {
+        "startLine": 65,
+        "startChar": 199,
+        "endLine": 65,
+        "endChar": 245
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "757b6e08_44d7d9fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: remove unnecessary whitespace (pink in gerrit)",
+      "range": {
+        "startLine": 66,
+        "startChar": 217,
+        "endLine": 66,
+        "endChar": 228
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02afca88_c3050906",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: remove unnecessary whitespace (pink in gerrit)",
+      "range": {
+        "startLine": 67,
+        "startChar": 219,
+        "endLine": 67,
+        "endChar": 229
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37db9c50_c0f85689",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: dmpiProp1: \u0027dmiVal1\u0027 etc.",
+      "range": {
+        "startLine": 56,
+        "startChar": 49,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddb4ab42_b25a6a38",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: publicProp1:\u0027publicValue1\u0027 etc.",
+      "range": {
+        "startLine": 57,
+        "startChar": 52,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03958eec_c0acb3a1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: DMI",
+      "range": {
+        "startLine": 77,
+        "startChar": 39,
+        "endLine": 77,
+        "endChar": 50
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcb59a76_b59c5ba8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "NB: DMI",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f074640_cd203c5a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 60
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ec5dd09_9fca3ea7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetrieverSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "026ef93d_f6d9f58d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetrieverSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 61,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "615fa1c1_81705cf0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "missing initial revision and description of new version is different. this should by identical  to https://gerrit.onap.org/r/c/cps/+/126359/7/cps-service/src/test/resources/dmi-registry%25402021-12-13.yang",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4598e864_89a1d42b",
+        "filename": "cps-service/src/test/resources/dmi-registry@2021-12-13.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T10:00:00Z",
+      "side": 1,
+      "message": "description inside csv file is better",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "3d69078d02af613e52ff84eb322cb50a5e6870e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
