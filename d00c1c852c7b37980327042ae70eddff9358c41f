@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e47c2482_0c65a482",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:17:54Z",
+      "side": 1,
+      "message": "as discussed with or without dmi properties is irrelevant for the class being tested. Please remove from all test",
+      "range": {
+        "startLine": 110,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 29
+      },
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff4e67bd_d8a4947f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:17:54Z",
+      "side": 1,
+      "message": "probably not needed anymore, for tets simplicity all above test can be doen without.\nSo you can probably just declare and define a single statis data node for all test (no need for this method even)",
+      "range": {
+        "startLine": 345,
+        "startChar": 28,
+        "endLine": 345,
+        "endChar": 48
+      },
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b1b9f3_8b26c2af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:17:54Z",
+      "side": 1,
+      "message": "DMI for consistency (many occurrences through all tests)",
+      "range": {
+        "startLine": 140,
+        "startChar": 30,
+        "endLine": 140,
+        "endChar": 34
+      },
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76fc8c19_ff9b289d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetrieverSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:17:54Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea6fa65d_7e3ef623",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-17T12:17:54Z",
+      "side": 1,
+      "message": "unnecessary whitespace\n\nmore importantly this files are still inconsistent, teh actual yang fiel doe sNOT have this contact here...",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "d00c1c852c7b37980327042ae70eddff9358c41f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
