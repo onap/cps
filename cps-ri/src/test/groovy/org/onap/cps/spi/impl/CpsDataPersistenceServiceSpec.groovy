@@ -18,6 +18,7 @@
 
 package org.onap.cps.spi.impl
 
+
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
@@ -27,17 +28,104 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
-
 
 class CpsDataPersistenceServiceSpec extends Specification {
 
     def mockDataspaceRepository = Mock(DataspaceRepository)
     def mockAnchorRepository = Mock(AnchorRepository)
     def mockFragmentRepository = Mock(FragmentRepository)
+    def jsonObjectMapper = Mock(JsonObjectMapper)
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
-            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository)
+            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper)
+
+    def setup() {
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 15174}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', 15174)
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 15174.32}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', Double.valueOf(15174.32))
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 15174.0}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', Double.valueOf(15174.0))
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 0.32}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', Double.valueOf(0.32))
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 2147483648}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', 2147483648)
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": "Test"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', "Test")
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 1.2345e5}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', Double.valueOf(1.2345e5))
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": 123456789101112.0}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', Double.valueOf(123456789101112.0))
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": "String = \'1234\'"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', "String = '1234'")
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"some attribute": "12345"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('some attribute', "12345")
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{invalid json', Map) >> {
+            throw new DataValidationException('Invalid json', 'unable to parse json string')
+        }
+    }
 
     def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
 

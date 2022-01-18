@@ -21,9 +21,8 @@
  */
 package org.onap.cps.spi.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -32,6 +31,8 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -46,7 +47,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static final Gson GSON = new GsonBuilder().create()
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
+    static final JsonObjectMapper jsonObjectMapperObj = new JsonObjectMapper(new ObjectMapper())
 
     static final String SET_DATA = '/data/fragment.sql'
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
@@ -75,6 +79,52 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static {
         existingDataNode = createDataNodeTree(XPATH_DATA_NODE_WITH_DESCENDANTS)
         existingChildDataNode = createDataNodeTree('/parent-1/child-1')
+    }
+
+    def setup() {
+        jsonObjectMapper.mapObjectAsJsonString(new LinkedHashMap<String, String>() {
+            {
+                put('leaf-value', 'new')
+            }
+        }) >> { return '{"leaf-value":"new"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new LinkedHashMap<String, String>() {
+            {
+                put('leaf-value', 'original')
+            }
+        }) >> { return '{"leaf-value":"original"}' }
+
+        jsonObjectMapper.convertStringContentToValueType('{"grand-child-leaf": "grand-child-leaf value"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('grand-child-leaf', 'grand-child-leaf value')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"parent-leaf": "parent-leaf value"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('parent-leaf', 'parent-leaf value')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"first-child-leaf": "first-child-leaf value"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('first-child-leaf', 'first-child-leaf value')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"second-child-leaf": "second-child-leaf value"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('second-child-leaf', 'second-child-leaf value')
+                }
+            }
+        }
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -210,6 +260,14 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath without descendants.'() {
+        given:
+            jsonObjectMapper.convertStringContentToValueType(*_) >> {
+                return new LinkedHashMap<String, String>() {
+                    {
+                        put('parent-leaf', 'parent-leaf value')
+                    }
+                }
+            };
         when: 'data node is requested'
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
                     inputXPath, OMIT_DESCENDANTS)
@@ -549,7 +607,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
-        return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
+        return jsonObjectMapperObj.convertStringContentToValueType(fragmentEntity.getAttributes(), Map<String, Object>.class)
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {

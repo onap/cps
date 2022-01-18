@@ -20,8 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.ResponseEntity
@@ -37,12 +38,16 @@ import org.springframework.http.HttpStatus
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
     @Autowired
     DmiDataOperations objectUnderTest
 
     def 'call get resource data for #expectedDatastoreInUrl from DMI #scenario.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval(additionalProperties)
+            jsonObjectMapper.mapObjectAsJsonString(*_) >> { return expectedJson }
         and: 'a positive response from dmi service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(
@@ -69,6 +74,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
                 "/ncmp-datastore:passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
+            jsonObjectMapper.mapObjectAsJsonString(*_) >> { return expectedJson }
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, [:]) >> responseFromDmi
         when: 'write resource method is invoked'

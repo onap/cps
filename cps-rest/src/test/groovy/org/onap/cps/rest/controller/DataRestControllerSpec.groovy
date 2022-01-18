@@ -23,9 +23,11 @@
 package org.onap.cps.rest.controller
 
 import org.onap.cps.api.CpsDataService
+
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.DateTimeUtility
+import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -50,6 +52,9 @@ class DataRestControllerSpec extends Specification {
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
 
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
     @Autowired
     MockMvc mvc
 
@@ -73,6 +78,7 @@ class DataRestControllerSpec extends Specification {
 
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
+        jsonObjectMapper.mapObjectAsJsonString(*_) >> { return expectedJsonData }
     }
 
     def 'Create a node: #scenario.'() {

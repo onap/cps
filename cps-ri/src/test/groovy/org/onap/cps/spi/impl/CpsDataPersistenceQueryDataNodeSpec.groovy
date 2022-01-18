@@ -23,6 +23,8 @@ package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.exceptions.CpsPathException
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -34,7 +36,127 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
     static final String SET_DATA = '/data/cps-path-query.sql'
+
+    def setup() {
+        jsonObjectMapper.convertStringContentToValueType('{"code": 1, "name": "SciFi", "type": "bookstore"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('code', '1')
+                    put('name', 'SciFi')
+                    put('type', 'bookstore')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"code": 2, "name": "Fiction", "type": "bookstore"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('code', '2')
+                    put('name', 'Fiction')
+                    put('type', 'bookstore')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"title": "Dune", "Surname": "Bloggs", "FirstName": "Joe"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('title', 'Dune')
+                    put('Surname', 'Bloggs')
+                    put('FirstName', 'Joe')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"price": 5, "title": "Dune", "labels": ["special offer", "classics", ""]}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('price', 5)
+                    put('title', 'Dune')
+                    put('labels', ["special offer", "classics", ""])
+                }
+            }
+        }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('price', 5)
+            }
+        }) >> { return '{"price":5}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('title', 'Dune')
+            }
+        }) >> { return '{"title":"Dune"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('title', 'does not exist')
+            }
+        }) >> { return '{"title":"does not exist"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('price', 15)
+            }
+        }) >> { return '{"price":15}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('code', 1)
+            }
+        }) >> { return '{"code":1}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('FirstName', 'Joe')
+            }
+        }) >> { return '{"FirstName":"Joe"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('FirstName', 'Joe')
+                put('Surname', 'Bloggs')
+            }
+        }) >> { return '{"FirstName":"Joe","Surname":"Bloggs"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('FirstName', 'Joe')
+                put('title', 'Dune')
+            }
+        }) >> { return '{"FirstName": "Joe", "title": "Dune"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('id', 1)
+                put('type', 'bookstore')
+            }
+        }) >> { return '{"id": 1,"type":"bookstore"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('id', 1)
+            }
+        }) >> { return '{"id": 1}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('type', 'mob')
+            }
+        }) >> { return '{"type": "mob"}' }
+
+        jsonObjectMapper.mapObjectAsJsonString(new HashMap<String, Object>() {
+            {
+                put('code', 2)
+            }
+        }) >> { return '{"code": 2}' }
+    }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query for leaf value(s) with : #scenario.'() {

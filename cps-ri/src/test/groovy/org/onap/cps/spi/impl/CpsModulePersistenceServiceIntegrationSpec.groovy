@@ -31,6 +31,8 @@ import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -50,6 +52,9 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
 
     @Autowired
     CpsAdminPersistenceService cpsAdminPersistenceService
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
 
     static final String SET_DATA = '/data/schemaset.sql'
     static final String EXISTING_SCHEMA_SET_NAME = SCHEMA_SET_NAME1

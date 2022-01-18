@@ -22,17 +22,13 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.spi.model.DataNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.JsonObjectMapper
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-import com.google.gson.Gson
-import org.modelmapper.ModelMapper
-import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -49,6 +45,9 @@ class QueryRestControllerSpec extends Specification {
     @SpringBean
     CpsQueryService mockCpsQueryService = Mock()
 
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
     @Autowired
     MockMvc mvc
 
@@ -62,7 +61,14 @@ class QueryRestControllerSpec extends Specification {
             def dataspaceName = 'my_dataspace'
             def anchorName = 'my_anchor'
             def cpsPath = 'some cps-path'
+            def expectedDataNode = new ObjectMapper().writeValueAsString(new ArrayList() {
+                {
+                    add(dataNode1)
+                    add(dataNode1)
+                }
+            })
             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
+            jsonObjectMapper.mapObjectAsJsonString(*_) >> { return expectedDataNode }
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
         when: 'query data nodes API is invoked'
@@ -74,7 +80,7 @@ class QueryRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
-            response.getContentAsString() == '[{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]},{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}]'
+            response.getContentAsString() == expectedDataNode
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS

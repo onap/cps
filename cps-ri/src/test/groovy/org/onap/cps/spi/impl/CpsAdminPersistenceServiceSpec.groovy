@@ -29,6 +29,8 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -37,11 +39,36 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
+
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
+
+    def setup() {
+        jsonObjectMapper.convertStringContentToValueType('{"code": 1, "name": "SciFi", "type": "bookstore"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('code', '1')
+                    put('name', 'SciFi')
+                    put('type', 'bookstore')
+                }
+            }
+        }
+
+        jsonObjectMapper.convertStringContentToValueType('{"code": 2, "name": "Fiction", "type": "bookstore"}', Map) >> {
+            return new LinkedHashMap<String, String>() {
+                {
+                    put('code', '2')
+                    put('name', 'Fiction')
+                    put('type', 'bookstore')
+                }
+            }
+        }
+    }
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
