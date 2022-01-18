@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950f4220_57d04d46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-18T10:44:56Z",
+      "side": 1,
+      "message": "whitespace non blocking",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "05bbd8f6eeeb807898e92cbcc0db304c265090ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2a95529_af6a716f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-18T10:44:56Z",
+      "side": 1,
+      "message": "small typo non blocking",
+      "range": {
+        "startLine": 97,
+        "startChar": 74,
+        "endLine": 97,
+        "endChar": 77
+      },
+      "revId": "05bbd8f6eeeb807898e92cbcc0db304c265090ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
