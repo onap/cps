@@ -22,6 +22,75 @@
       "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "796b13a6_9c98b9bc",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-18T17:58:05Z",
+      "side": 1,
+      "message": "i thought on the NCMP interface it always comes in as app/json?!",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 14
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26b29688_1717cef6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-18T17:58:05Z",
+      "side": 1,
+      "message": "add to Javadoc",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 10
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9f2e72a_9cb68a66",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-18T17:58:05Z",
+      "side": 1,
+      "message": "can you describe a bit better what the patch entails; is it inserting these new categories, modifying something?",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 86
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
