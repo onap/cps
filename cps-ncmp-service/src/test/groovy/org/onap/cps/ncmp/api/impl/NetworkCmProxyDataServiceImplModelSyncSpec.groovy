@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,22 +20,25 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
 
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
+    def mockDmiDataOperations = Mock(DmiDataOperations)
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockDmiModelOperations,
-        mockCpsModuleService, null, mockCpsAdminService, new ObjectMapper())
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
+            mockCpsModuleService, mockCpsAdminService)
 
     def expectedDataspaceName = 'NFP-Operational'
 

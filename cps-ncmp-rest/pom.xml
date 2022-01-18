@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ============LICENSE_START=======================================================
-  Copyright (C) 2021 Nordix Foundation
+  Copyright (C) 2021-2022 Nordix Foundation
   Modifications Copyright (C) 2021 Bell Canada
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -60,10 +60,6 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
         </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>

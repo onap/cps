@@ -28,6 +28,8 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
+import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
+import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
@@ -46,11 +48,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
-    def spyObjectMapper = Spy(ObjectMapper)
+    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
+    def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiDataOperations, null,
-        mockCpsModuleService, mockCpsDataService, mockCpsAdminService, spyObjectMapper)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
+        mockCpsModuleService, mockCpsAdminService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -126,9 +129,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'objectMapper not able to parse object'
-            def mockObjectMapper = Mock(ObjectMapper)
-            objectUnderTest.objectMapper = mockObjectMapper
-            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('testException') }
+            spiedJsonObjectMapper.asJsonString(_) >> { throw new JsonProcessingException('testException') }
         and: 'dmi returns NOK response'
             mockDmiDataOperations.getResourceDataFromDmi(*_)
                 >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
