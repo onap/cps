@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cfe873c_c05d87c1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-18T17:50:25Z",
+      "side": 1,
+      "message": "Hi Sourabh, I am afraid you are mocking too much now and the is test is not testing what it was intended to test anymore. We\u0027ll discuss in te morning",
+      "revId": "bd851002a9c8060956d85389b279269a857894be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
