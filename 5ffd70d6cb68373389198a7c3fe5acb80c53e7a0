@@ -46,6 +46,30 @@
       "revId": "5ffd70d6cb68373389198a7c3fe5acb80c53e7a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b0e3281_73d09e85",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-18T14:00:04Z",
+      "side": 0,
+      "message": "There was an old decision made to use 400 Bad Request when a resource is not found.\n\nThis was #2 at https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+APIs+HTTP+Response+Codes#CPSExceptionsandRESTAPIsHTTPResponseCodes-Issues\u0026Decisions",
+      "parentUuid": "ca3299e8_2ea189a0",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 61
+      },
+      "revId": "5ffd70d6cb68373389198a7c3fe5acb80c53e7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
