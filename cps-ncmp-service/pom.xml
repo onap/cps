@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ============LICENSE_START=======================================================
-  Copyright (C) 2021 Nordix Foundation
+  Copyright (C) 2021-2022 Nordix Foundation
   Modifications Copyright (C) 2021 Pantheon.tech
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,6 +65,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
         </dependency>
     </dependencies>
 </project>

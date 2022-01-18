@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -45,10 +45,10 @@ public class DmiDataOperations extends DmiOperations {
      * @param dmiRestClient {@code DmiRestClient}
      */
     public DmiDataOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
-                             final ObjectMapper objectMapper,
+                             final JsonObjectMapper jsonObjectMapper,
                              final NcmpConfiguration.DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, objectMapper, dmiProperties, dmiRestClient);
+        super(cmHandlePropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient);
     }
 
     /**
@@ -73,7 +73,7 @@ public class DmiDataOperations extends DmiOperations {
             .operation(READ)
             .build();
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
-        final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
+        final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
             persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
@@ -106,7 +106,7 @@ public class DmiDataOperations extends DmiOperations {
             .dataType(dataType)
             .build();
         dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
-        final String jsonBody = getDmiRequestBodyAsString(dmiRequestBody);
+        final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
             getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
             cmHandle, resourceId, PASSTHROUGH_RUNNING);

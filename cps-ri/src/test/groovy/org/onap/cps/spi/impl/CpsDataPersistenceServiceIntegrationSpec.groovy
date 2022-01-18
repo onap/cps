@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
@@ -21,9 +21,8 @@
  */
 package org.onap.cps.spi.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -32,6 +31,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -46,7 +46,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static final Gson GSON = new GsonBuilder().create()
+    static final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     static final String SET_DATA = '/data/fragment.sql'
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
@@ -549,7 +549,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
-        return GSON.fromJson(fragmentEntity.getAttributes(), Map<String, Object>.class)
+        return jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map<String, Object>.class)
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
