@@ -22,9 +22,6 @@
 
 package org.onap.cps.ncmp.rest.controller
 
-import org.onap.cps.TestUtils
-import org.onap.cps.spi.model.ModuleReference
-
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -35,6 +32,11 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.modelmapper.ModelMapper
+import org.onap.cps.TestUtils
+import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -54,10 +56,16 @@ class NetworkCmProxyControllerSpec extends Specification {
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
+    @SpringBean
+    ModelMapper modelMapper = new ModelMapper()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
 
-    def jsonString = '{"some-key":"some-value"}'
+    def requestBody = '{"some-key":"some-value"}'
 
     def 'Get Resource Data from pass-through operational.' () {
         given: 'resource data url'
@@ -115,11 +123,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                 put(updateUrl)
                     .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .accept(MediaType.APPLICATION_JSON_VALUE).content(jsonString)
+                    .accept(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', UPDATE, jsonString, 'application/json;charset=UTF-8')
+                'parent/child', UPDATE, requestBody, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -192,11 +200,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                     patch(url)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON).content(jsonString)
+                            .accept(MediaType.APPLICATION_JSON).content(requestBody)
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', PATCH, jsonString, 'application/json;charset=UTF-8')
+                    'parent/child', PATCH, requestBody, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }

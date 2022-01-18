@@ -27,13 +27,13 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
@@ -50,11 +50,13 @@ import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
     private static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
@@ -67,35 +69,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CpsDataService cpsDataService;
 
-    private ObjectMapper objectMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
-    private DmiDataOperations dmiDataOperations;
+    private final DmiDataOperations dmiDataOperations;
 
-    private DmiModelOperations dmiModelOperations;
+    private final DmiModelOperations dmiModelOperations;
 
-    private CpsModuleService cpsModuleService;
+    private final CpsModuleService cpsModuleService;
 
-    private CpsAdminService cpsAdminService;
-
-    /**
-     * Constructor Injection for Dependencies.
-     * @param dmiDataOperations DMI operation
-     * @param cpsDataService Data Service Interface
-     * @param objectMapper Object Mapper
-     */
-    public NetworkCmProxyDataServiceImpl(final DmiDataOperations dmiDataOperations,
-                                         final DmiModelOperations dmiModelOperations,
-                                         final CpsModuleService cpsModuleService,
-                                         final CpsDataService cpsDataService,
-                                         final CpsAdminService cpsAdminService,
-                                         final ObjectMapper objectMapper) {
-        this.dmiDataOperations = dmiDataOperations;
-        this.dmiModelOperations = dmiModelOperations;
-        this.cpsModuleService = cpsModuleService;
-        this.cpsDataService = cpsDataService;
-        this.cpsAdminService = cpsAdminService;
-        this.objectMapper = objectMapper;
-    }
+    private final CpsAdminService cpsAdminService;
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -198,7 +180,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         throws JsonProcessingException {
         final PersistenceCmHandlesList updatedPersistenceCmHandlesList =
             getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getUpdatedCmHandles());
-        final String cmHandlesAsJson = objectMapper.writeValueAsString(updatedPersistenceCmHandlesList);
+        final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedPersistenceCmHandlesList);
         cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
     }
@@ -223,7 +205,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList)
         throws JsonProcessingException  {
-        final String cmHandleJsonData = objectMapper.writeValueAsString(persistenceCmHandlesList);
+        final String cmHandleJsonData = jsonObjectMapper.asJsonString(persistenceCmHandlesList);
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
             cmHandleJsonData, NO_TIMESTAMP);
 
