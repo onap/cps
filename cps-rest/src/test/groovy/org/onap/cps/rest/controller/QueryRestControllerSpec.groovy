@@ -22,17 +22,13 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.spi.model.DataNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.JsonObjectMapper
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-import com.google.gson.Gson
-import org.modelmapper.ModelMapper
-import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -48,6 +44,9 @@ class QueryRestControllerSpec extends Specification {
 
     @SpringBean
     CpsQueryService mockCpsQueryService = Mock()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Autowired
     MockMvc mvc

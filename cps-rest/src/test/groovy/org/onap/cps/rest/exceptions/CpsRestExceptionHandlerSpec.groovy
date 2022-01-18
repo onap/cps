@@ -38,6 +38,7 @@ import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
+import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -71,6 +72,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     ModelMapper modelMapper = Mock()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Mock()
 
     @Autowired
     MockMvc mvc
