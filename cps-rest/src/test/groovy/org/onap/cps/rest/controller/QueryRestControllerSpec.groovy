@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -22,17 +22,12 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.spi.model.DataNode
-
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-import com.google.gson.Gson
-import org.modelmapper.ModelMapper
-import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.api.CpsModuleService
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.spockframework.spring.SpringBean
@@ -48,6 +43,9 @@ class QueryRestControllerSpec extends Specification {
 
     @SpringBean
     CpsQueryService mockCpsQueryService = Mock()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Autowired
     MockMvc mvc

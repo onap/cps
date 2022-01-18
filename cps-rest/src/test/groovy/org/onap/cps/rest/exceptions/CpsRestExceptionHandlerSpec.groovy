@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,6 +38,7 @@ import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
+import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -58,19 +59,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
+    CpsAdminService mockCpsAdminService = Stub()
 
     @SpringBean
-    CpsModuleService mockCpsModuleService = Mock()
+    CpsModuleService mockCpsModuleService = Stub()
 
     @SpringBean
-    CpsDataService mockCpsDataService = Mock()
+    CpsDataService mockCpsDataService = Stub()
 
     @SpringBean
-    CpsQueryService mockCpsQueryService = Mock()
+    CpsQueryService mockCpsQueryService = Stub()
 
     @SpringBean
-    ModelMapper modelMapper = Mock()
+    ModelMapper modelMapper = Stub()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Stub()
 
     @Autowired
     MockMvc mvc

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,13 +22,17 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -44,7 +48,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def spyObjectMapper = Spy(ObjectMapper)
+    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
+    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockDmiModelOperations = Mock(DmiModelOperations)
+    def mockDmiDataOperations = Mock(DmiDataOperations)
 
     def noTimestamp = null
 
@@ -102,7 +109,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
         and: 'an json processing exception occurs'
-            spyObjectMapper.writeValueAsString(_) >> { throw (new JsonProcessingException('')) }
+            spiedJsonObjectMapper.asJsonString(_) >> { throw (new JsonProcessingException('')) }
         when: 'registration is updated and modules are synced'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a data validation exception is thrown'
@@ -182,8 +189,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {
-        def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(null, null, mockCpsModuleService,
-                mockCpsDataService, null, spyObjectMapper))
+        def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
+                mockCpsModuleService, mockCpsAdminService))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }
