@@ -18,6 +18,7 @@
 
 package org.onap.cps.spi.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
@@ -27,6 +28,7 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 
@@ -35,9 +37,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockDataspaceRepository = Mock(DataspaceRepository)
     def mockAnchorRepository = Mock(AnchorRepository)
     def mockFragmentRepository = Mock(FragmentRepository)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
-            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository)
+            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper)
 
     def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
 
