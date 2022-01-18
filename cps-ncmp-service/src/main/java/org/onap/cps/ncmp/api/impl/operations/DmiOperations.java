@@ -20,17 +20,19 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class DmiOperations {
 
     @Getter
@@ -44,27 +46,12 @@ public class DmiOperations {
         }
     }
 
-    protected ObjectMapper objectMapper;
-    protected PersistenceCmHandleRetriever cmHandlePropertiesRetriever;
-    protected DmiRestClient dmiRestClient;
-    protected NcmpConfiguration.DmiProperties dmiProperties;
+    protected final PersistenceCmHandleRetriever cmHandlePropertiesRetriever;
+    protected final JsonObjectMapper jsonObjectMapper;
+    protected final NcmpConfiguration.DmiProperties dmiProperties;
+    protected final DmiRestClient dmiRestClient;
 
     static final String URL_SEPARATOR = "/";
-
-    /**
-     * Constructor for {@code DmiOperations}. This method also manipulates url properties.
-     *
-     * @param dmiRestClient {@code DmiRestClient}
-     */
-    public DmiOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
-                         final ObjectMapper objectMapper,
-                         final NcmpConfiguration.DmiProperties dmiProperties,
-                         final DmiRestClient dmiRestClient) {
-        this.cmHandlePropertiesRetriever = cmHandlePropertiesRetriever;
-        this.objectMapper = objectMapper;
-        this.dmiRestClient = dmiRestClient;
-        this.dmiProperties = dmiProperties;
-    }
 
     String getCmHandleUrl(final String dmiServiceName, final String cmHandle) {
         return dmiServiceName
@@ -93,22 +80,6 @@ public class DmiOperations {
         final var httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.ACCEPT, acceptParam);
         return httpHeaders;
-    }
-
-    /**
-     * Convert DmiRequestBody to JSON.
-     *
-     * @param dmiRequestBody the dmi request body
-     * @return DmiRequestBody as JSON
-     */
-    String getDmiRequestBodyAsString(final DmiRequestBody dmiRequestBody) {
-        try {
-            return objectMapper.writeValueAsString(dmiRequestBody);
-        } catch (final JsonProcessingException e) {
-            log.error("Parsing error occurred while converting Object to JSON.");
-            throw new NcmpException("Parsing error occurred while converting given object to JSON.",
-                e.getMessage());
-        }
     }
 
 }

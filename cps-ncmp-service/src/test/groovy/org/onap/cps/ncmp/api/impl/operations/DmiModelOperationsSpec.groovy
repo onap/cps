@@ -21,9 +21,11 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
@@ -40,6 +42,9 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
 
     @Autowired
     DmiModelOperations objectUnderTest
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
     def 'Retrieving module references.'() {
         given: 'a persistence cm handle'
@@ -158,11 +163,11 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a persistence cm handle'
             mockPersistenceCmHandleRetrieval([])
         and: 'a Json processing exception occurs'
-            spyObjectMapper.writeValueAsString(_) >> {throw (new JsonProcessingException(''))}
+            jsonObjectMapper.mapObjectAsJsonString(_) >> {throw (new JsonProcessingException('parsing error'))}
         when: 'a dmi operation is executed'
             objectUnderTest.getModuleReferences(persistenceCmHandle)
         then: 'an ncmp exception is thrown'
-            def exceptionThrown = thrown(NcmpException)
+            def exceptionThrown = thrown(JsonProcessingException)
         and: 'the message indicates a parsing error'
             exceptionThrown.message.toLowerCase().contains('parsing error')
     }
