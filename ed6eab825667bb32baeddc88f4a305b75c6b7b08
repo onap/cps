@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a3613f2_6be49122",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "you can add some more detail like\n- introduced JsonObjectMapper (wapper) as Spring component",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfafb59e_a3e1b2e2",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "Check copyright of ALL modified files. this should now become\nCopyright (C) 2021-2022 Nordix Foundation\n\n(it\u0027s a pain, I know...)",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6105f9a_0371fa1d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "is this still needed?!",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1aea8a8_27055935",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "dont think you need this",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b8ab503_81b220a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "spiedJsonObjectMapper",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16cb54de_aca2060f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "NB (non-blocking) legacy issue: this could be extracted out to local variabel as it is used on line 60 as well and it has gone a bit long no for inline....",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 56,
+        "endChar": 111
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6288a08_33bb5f62",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "NNB: I wonder if these object are really used default mock behavior is for all methods to return null...\nDo these test fail if these are null? If need a \u0027Stub\u0027 is slight more lightweight and would be better if not really used\nsee https://stackoverflow.com/questions/24413184/difference-between-mock-stub-spy-in-spock-test-framework#:~:text\u003dA%20stub%20is%20concerned%20with,is%20simpler%20than%20a%20stub.",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 46
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6c077b_521f6840",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "just \u0027jsonObjectMapper\u0027 (remove \u0027Obj\u0027 at end)",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b5bae78_e16a0bbc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "2022 Happy New Year :-D",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f1d8aa_7b2f5002",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "open  to discussion (with team) but I would prefer slight short methodnames; the class is already called JsonObjectMapper so you can see names in teh context of the class name. Some suggestions (deliberately with classname and argument)\n\n1) JsonObjectMapper.asJson(object)\n2) JsonObjectMapper.asJsonString(object)\n3) JsonObjectMapper.toJson(object)\n4) JsonObjectMapper.toJsonString(object)\n\nI think I prefer option 2....",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 39
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afd45e9f_9304bf77",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "can it convert any Object? or maybe JsonObjects ?! (should be clear for Groovy Spec)\nDo we actually use this anywhere?",
+      "range": {
+        "startLine": 63,
+        "startChar": 51,
+        "endLine": 63,
+        "endChar": 58
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f2e6395_2754fbd2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "like above shorter  name suggestion\n\n1) convert\n2) convertTo\n3) convertToType",
+      "range": {
+        "startLine": 63,
+        "startChar": 17,
+        "endLine": 63,
+        "endChar": 44
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c31da88f_04bcf030",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "this seems incorrect?",
+      "range": {
+        "startLine": 67,
+        "startChar": 79,
+        "endLine": 67,
+        "endChar": 95
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe134b4_38deaafd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "json or jsonContent",
+      "range": {
+        "startLine": 81,
+        "startChar": 62,
+        "endLine": 81,
+        "endChar": 69
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39814d6d_05218130",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "like above shorter  name suggestion\n\n1) convertString\n2) convertJsonString\n3) convertStringTo \netc.",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe5af7a2_e469fae8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "align description with code like so:\n\n        then: \u0027the result is a valid json string (can be parsed)\u0027\n            def contentMap \u003d new JsonSlurper().parseText(content)\n         and: \u0027the parsed content is as expected\u0027\n            assert contentMap.\u0027test:bookstore\u0027.\u0027bookstore-name\u0027 \u003d\u003d \u0027Chapters\u0027",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 77
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec6ad0bf_26e752bc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "be more specific like so:\n(also combined with next test, conveting to an \u0027Object\u0027 is not  a great testcase and doe snot a test-coverage of our code really)\n\n        when: \u0027converted into a Map\u0027\n            def result \u003d jsonObjectMapper.convertFromValueToValueType(contentMap, Map);\n        then: \u0027the result is a mapped into class of type Map\u0027\n            assert result instanceof Map\n        and: \u0027the map contains the expected key\u0027\n            assert result.containsKey(\u0027test:bookstore\u0027)\n    }",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f275e6_a2d92290",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "you can add this to the previous test, not need for a separate test...",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 76
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd4a843d_7cfa68a1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "usntructured json string",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1058fd3_84dbbd88",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "replace with smaller example to make it easier to see what is wrong",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 86
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac752ed_a44804c1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-19T17:53:42Z",
+      "side": 1,
+      "message": "unstructured object",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 31
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
