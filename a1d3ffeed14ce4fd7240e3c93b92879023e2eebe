@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf627c5b_f069e7f3",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-19T09:58:15Z",
+      "side": 1,
+      "message": "Format for files created in 2021 and edited in 2022 is 2021-2022.",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "a1d3ffeed14ce4fd7240e3c93b92879023e2eebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c4ba301_0137705a",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-19T09:58:15Z",
+      "side": 1,
+      "message": "Don\u0027t think this has to be updated by us. Just the nordix copyright.",
+      "range": {
+        "startLine": 3,
+        "startChar": 31,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "a1d3ffeed14ce4fd7240e3c93b92879023e2eebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcce907d_f6bab97e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-19T09:58:15Z",
+      "side": 1,
+      "message": "Same as above, this doesn\u0027t have to be updated.",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "a1d3ffeed14ce4fd7240e3c93b92879023e2eebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ca84eee_321b2776",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-19T09:58:15Z",
+      "side": 1,
+      "message": "See comments on other files.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 47
+      },
+      "revId": "a1d3ffeed14ce4fd7240e3c93b92879023e2eebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
