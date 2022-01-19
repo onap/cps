@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2e958e4_40721ad3",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-19T13:32:45Z",
+      "side": 1,
+      "message": "Me and Toine discussed this, to provide a full end to end integration test, the ncmp inventory calls on the DMI service to register a node. So to keep all the tests in the relevant module, we decided to shift from using the DMI services in these tests to NCMP",
+      "parentUuid": "c8792519_22be2b79",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "3ce3a384e2426505927f47a3064de2d812aeb277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e314d0a8_cfd41128",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 5
