@@ -16,6 +16,24 @@
       "revId": "bd851002a9c8060956d85389b279269a857894be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f214f9bd_3f92724d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-19T13:39:58Z",
+      "side": 1,
+      "message": "As we discussed I used Spy or real object to invoke actual methods with sample data defined into unit test.",
+      "parentUuid": "2cfe873c_c05d87c1",
+      "revId": "bd851002a9c8060956d85389b279269a857894be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
