@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f249dd38_7d71e900",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-19T03:37:50Z",
+      "side": 1,
+      "message": "License for 2022 is missing.\n\nSame comment for other files.",
+      "revId": "3a464d4b9c9696e4cd5932849367e0b9b54ddd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab2213c1_ab609c52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-19T03:37:50Z",
+      "side": 1,
+      "message": "This property is not used anymore and should be removed.",
+      "range": {
+        "startLine": 73,
+        "startChar": 28,
+        "endLine": 73,
+        "endChar": 43
+      },
+      "revId": "3a464d4b9c9696e4cd5932849367e0b9b54ddd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
