@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45fd7f4f_b034792b",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-19T09:53:42Z",
+      "side": 1,
+      "message": "Just noticing we don\u0027t have a nordix modifications copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 31,
+        "endLine": 3,
+        "endChar": 31
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab098dd9_ff266efe",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-19T09:53:42Z",
+      "side": 1,
+      "message": "modifications copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 29
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb1580f8_40b8198b",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-19T09:53:42Z",
+      "side": 1,
+      "message": "2021-2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
