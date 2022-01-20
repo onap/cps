@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -129,6 +129,15 @@ public interface CpsDataService {
      */
     void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String dataNodeXpath,
                         OffsetDateTime observedTimestamp);
+
+    /**
+     * Deletes all data nodes for a given anchor in a dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName       anchor name
+     * @param observedTimestamp observed timestamp
+     */
+    void deleteDataNodes(@NonNull String dataspaceName, @NonNull String anchorName, OffsetDateTime observedTimestamp);
 
     /**
      * Deletes a list or a list-element under given anchor and dataspace.

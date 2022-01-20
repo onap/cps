@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Bell Canada
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,6 +124,14 @@ public interface CpsDataPersistenceService {
                         @NonNull String targetXpath);
 
     /**
+     * Deletes all dataNodes in a given anchor.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     */
+    void deleteDataNodes(String dataspaceName, String anchorName);
+
+    /**
      * Deletes existing a single list element or the whole list.
      *
      * @param dataspaceName   dataspace name
@@ -144,5 +153,4 @@ public interface CpsDataPersistenceService {
      */
     Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
         @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
-
 }
