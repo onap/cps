@@ -330,6 +330,16 @@ components:
         application/json:
           schema:
             type: object
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occured
     Created:
       description: Created
       content: {}
