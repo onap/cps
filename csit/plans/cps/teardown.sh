@@ -27,6 +27,12 @@ docker logs cps-and-ncmp
 echo '================================== DMI Logs ============================='
 docker logs ncmp-dmi-plugin
 
+echo '================================== SDNC Logs ============================='
+docker logs sdnc
+
+echo '================================== Device Simulator Logs ============================='
+docker logs netconf-pnp-simulator
+
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
