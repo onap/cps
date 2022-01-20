@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,6 +54,14 @@ class CpsAdminServiceImplSpec extends Specification {
             mockCpsAdminPersistenceService.getAnchors('someDataspace') >> anchors
         expect: 'the collection provided by persistence service is returned as result'
             objectUnderTest.getAnchors('someDataspace') == anchors
+    }
+
+    def 'Retrieve all anchors for schema-set.'() {
+        given: 'that anchor is associated with the dataspace and schemaset'
+            def anchors = [new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace', 'someSchemaSet') >> anchors
+        expect: 'the collection provided by persistence service is returned as result'
+            objectUnderTest.getAnchors('someDataspace', 'someSchemaSet') == anchors
     }
 
     def 'Retrieve anchor for dataspace and provided anchor name.'() {

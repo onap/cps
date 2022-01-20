@@ -2,7 +2,7 @@
    ============LICENSE_START=======================================================
     Copyright (C) 2020 Pantheon.tech
     Modifications Copyright (C) 2020 Nordix Foundation.
-    Modifications Copyright (C) 2021 Bell Canada.
+    Modifications Copyright (C) 2021-2022 Bell Canada.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@
 
 INSERT INTO DATASPACE (ID, NAME) VALUES
     (1001, 'DATASPACE-001'),
-    (1002, 'DATASPACE-002'),
+    (1002, 'DATASPACE-002-NO-DATA'),
     (1003, 'DATASPACE-003');
 
 INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2001, 'SCHEMA-SET-001', 1001),
     (2002, 'SCHEMA-SET-002', 1001),
-    (2003, 'SCHEMA-SET-002', 1003);
+    (2003, 'SCHEMA-SET-002-NO_ANCHORS', 1003);
 
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),

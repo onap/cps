@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
- *  Modifications Copyright (C) 2020-2021 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,8 +23,11 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.model.ModuleReference
 import org.spockframework.spring.SpringBean
@@ -35,17 +38,19 @@ import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cache.caffeine.CaffeineCacheManager
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 @SpringBootTest
 @EnableCaching
-@ContextConfiguration(classes = [YangTextSchemaSourceSetCache.class, CpsModuleServiceImpl.class])
+@ContextConfiguration(classes = [YangTextSchemaSourceSetCache, CpsModuleServiceImpl])
 class CpsModuleServiceImplSpec extends Specification {
 
     @SpringBean
     CpsModulePersistenceService mockModuleStoreService = Mock()
+
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
 
     @SpringBean
     CacheManager cacheManager = new CaffeineCacheManager("yangSchema")
@@ -105,18 +110,47 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
     }
 
-    def 'Delete set by name and dataspace with #cascadeDeleteOption.'() {
-        when: 'schema set deletion is requested'
-            objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
-        then: 'persistence service method is invoked with same parameters'
-            mockModuleStoreService.deleteSchemaSet(dataspaceName, schemaSetname, cascadeDeleteOption)
+    def 'Delete schema-set which when cascade is allowed.'() {
+        given: '#noOfAnchors anchors are associated with schemaset'
+            def associatedAnchors = getAnchors(numberOfAnchors)
+            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset') >> associatedAnchors
+        when: 'schema set deletion is requested with cascade allowed'
+            objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_ALLOWED)
+        then: 'anchor deletion is called #numberOfAnchors times'
+            numberOfAnchors * mockCpsAdminService.deleteAnchor('my-dataspace', _)
+        and: 'persistence service method is invoked with same parameters'
+            1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         where: 'following parameters are used'
-            dataspaceName | schemaSetname   | cascadeDeleteOption
-            'dataspace-1' | 'schemas-set-1' | CASCADE_DELETE_ALLOWED
-            'dataspace-2' | 'schemas-set-2' | CASCADE_DELETE_PROHIBITED
+            numberOfAnchors << [0, 3]
     }
 
-    def 'Get all yang resources module references.'(){
+    def 'Delete schema-set when cascade is prohibited.'() {
+        given: 'no anchors are associated with schemaset'
+            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset') >> Collections.emptyList()
+        when: 'schema set deletion is requested with cascade allowed'
+            objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_PROHIBITED)
+        then: 'no anchors are deleted'
+            0 * mockCpsAdminService.deleteAnchor(_, _)
+        and: 'persistence service method is invoked with same parameters'
+            1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
+    }
+
+    def 'Delete schema-set when cascade is prohibited and schema-set has anchors.'() {
+        given: '2 anchors are associated with schemaset'
+            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset') >> getAnchors(2)
+        when: 'schema set deletion is requested with cascade allowed'
+            objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_PROHIBITED)
+        then: 'Schema-Set in Use exception is thrown'
+            thrown(SchemaSetInUseException)
+    }
+
+    def getAnchors(int anchorCount) {
+        def anchors = []
+        (0..<anchorCount).each { anchors.add(new Anchor("my-anchor-$it", 'my-dataspace', 'my-schemaset')) }
+        return anchors
+    }
+
+    def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
             def moduleReferences = [new ExtendedModuleReference()]
             mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
@@ -125,7 +159,7 @@ class CpsModuleServiceImplSpec extends Specification {
     }
 
 
-    def 'Get all yang resources module references for the given dataspace name and anchor name.'(){
+    def 'Get all yang resources module references for the given dataspace name and anchor name.'() {
         given: 'the module store service service returns a list module references'
             def moduleReferences = [new ModuleReference()]
             mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences

@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +40,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
-    static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002'
+    static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
     static final Integer DELETED_ANCHOR_ID = 3001
     static final Long DELETED_FRAGMENT_ID = 4001
 
@@ -108,10 +109,34 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             result.size() == expectedAnchors.size()
             result.containsAll(expectedAnchors)
         where: 'the following data is used'
-            dataspaceName        || expectedAnchors
-            DATASPACE_NAME       || [Anchor.builder().name(ANCHOR_NAME1).schemaSetName(SCHEMA_SET_NAME1).dataspaceName(DATASPACE_NAME).build(),
-                                     Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()]
+            dataspaceName          || expectedAnchors
+            DATASPACE_NAME         || [Anchor.builder().name(ANCHOR_NAME1).schemaSetName(SCHEMA_SET_NAME1).dataspaceName(DATASPACE_NAME).build(),
+                                       Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()]
             DATASPACE_WITH_NO_DATA || []
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get all anchors associated with schemaset in a dataspace.'() {
+        when: 'anchors are retrieved by dataspace and schema-set'
+            def anchors = objectUnderTest.getAnchors(dataspace, schemasetName)
+        then: ' the response contains expected anchors'
+            anchors == expectedAnchors
+        where:
+            scenario     | dataspace       | schemasetName               || expectedAnchors
+            'no-anchors' | 'DATASPACE-003' | 'SCHEMA-SET-002-NO_ANCHORS' || Collections.emptyList()
+            'one-anchor' | 'DATASPACE-001' | 'SCHEMA-SET-001'            || List.of(new Anchor('ANCHOR-001', 'DATASPACE-001', 'SCHEMA-SET-001'))
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Error Handling: Get all anchors associated with schemaset in a dataspace.'() {
+        when: 'anchors are retrieved by dataspace and schema-set'
+            def anchors = objectUnderTest.getAnchors(dataspace, schemasetName)
+        then: ' an expected expception is thrown'
+            thrown(expectedException)
+        where:
+            scenario            | dataspace       | schemasetName               || expectedException
+            'unknown-dataspace' | 'unknown'       | 'SCHEMA-SET-002-NO_ANCHORS' || DataspaceNotFoundException
+            'unknown-schemaset' | 'DATASPACE-001' | 'unknown-schema-set'        || SchemaSetNotFoundException
     }
 
     @Sql(CLEAR_DATA)
@@ -132,7 +157,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'delete anchor error scenario: #scenario'(){
+    def 'delete anchor error scenario: #scenario'() {
         when: 'delete anchor attempt is performed'
             objectUnderTest.deleteAnchor(dataspaceName, anchorName)
         then: 'an #expectedException is thrown'
@@ -190,10 +215,10 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             def thrownException = thrown(expectedException)
             thrownException.details.contains(expectedMessageDetails)
         where: 'the following data is used'
-            scenario                          | dataspaceName       || expectedException            | expectedMessageDetails
-            'dataspace name does not exist'   | 'unknown'           || DataspaceNotFoundException   | 'unknown does not exist'
-            'dataspace contains an anchor'    | 'DATASPACE-001'     || DataspaceInUseException      | 'contains 2 anchor(s)'
-            'dataspace contains schemasets'   | 'DATASPACE-003'     || DataspaceInUseException      | 'contains 1 schemaset(s)'
+            scenario                        | dataspaceName   || expectedException          | expectedMessageDetails
+            'dataspace name does not exist' | 'unknown'       || DataspaceNotFoundException | 'unknown does not exist'
+            'dataspace contains an anchor'  | 'DATASPACE-001' || DataspaceInUseException    | 'contains 2 anchor(s)'
+            'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
     }
 
 }
