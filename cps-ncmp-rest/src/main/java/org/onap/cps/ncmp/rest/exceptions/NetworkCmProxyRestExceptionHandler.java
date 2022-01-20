@@ -20,8 +20,6 @@
 
 package org.onap.cps.ncmp.rest.exceptions;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
@@ -36,7 +34,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class})
 public class NetworkCmProxyRestExceptionHandler {
 

@@ -48,9 +48,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
     QueryRestController.class})
 public class CpsRestExceptionHandler {
 
-    private CpsRestExceptionHandler() {
-    }
-
     /**
      * Default exception handler.
      *

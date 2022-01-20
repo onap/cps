@@ -30,6 +30,8 @@ rest:
 spring:
     main:
         banner-mode: "off"
+    application:
+        name: "cps-application"
     jpa:
         ddl-auto: create
         open-in-view: false
@@ -125,6 +127,8 @@ logging:
     level:
         org:
             springframework: INFO
+            onap:
+                cps: INFO
 
 dmi:
     auth:
