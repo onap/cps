@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e8851f7_ab6369a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "NB: this could just be a static variable, no need to have  a  method...",
+      "range": {
+        "startLine": 338,
+        "startChar": 8,
+        "endLine": 339,
+        "endChar": 64
+      },
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62cdd799_967383f2",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "see comment on script I suggest to use a generated_svc folder and then a csv for each (future) file\nso in this case it should import something like \nchangelog/db/changes/data/dmi/generated_csv/yang_resource_dmi_registry@2021-12-13.yang.csv",
+      "range": {
+        "startLine": 170,
+        "startChar": 45,
+        "endLine": 170,
+        "endChar": 73
+      },
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6376e4a1_4ace4fa6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/yang_resource@2021-12-13.csv",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "this file should be removed now!",
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d36152ae_1a962f54",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "takje in the compleet file path! as a parameter",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4202593_ccddd56d",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "as per previous comment, generate a filename like this:\nchangelog/db/changes/data/dmi/generated_csv/yang_resource_dmi_registry@2021-12-13.yang.csv",
+      "range": {
+        "startLine": 13,
+        "startChar": 41,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41ccd231_01f0fc76",
+        "filename": "cps-service/src/test/resources/dmi-registry.yang",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:00:32Z",
+      "side": 1,
+      "message": "undo renaming!",
+      "revId": "b7c5270d3074a8b992ef134becc06b25e5183068",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
