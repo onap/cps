@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Bell Canada
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +24,6 @@ package org.onap.cps.spi;
 
 import java.util.Collection;
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.model.DataNode;
 
 /*
@@ -40,8 +40,7 @@ public interface CpsDataPersistenceService {
      * @param anchorName    anchor name
      * @param dataNode      data node
      */
-    void storeDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull DataNode dataNode);
+    void storeDataNode(String dataspaceName, String anchorName, DataNode dataNode);
 
     /**
      * Add a child to a Fragment.
@@ -51,8 +50,7 @@ public interface CpsDataPersistenceService {
      * @param parentXpath   parent xpath
      * @param dataNode      dataNode
      */
-    void addChildDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentXpath,
-        @NonNull DataNode dataNode);
+    void addChildDataNode(String dataspaceName, String anchorName, String parentXpath, DataNode dataNode);
 
     /**
      * Adds list child elements to a Fragment.
@@ -63,8 +61,8 @@ public interface CpsDataPersistenceService {
      * @param listElementsCollection collection of data nodes representing list elements
      */
 
-    void addListElements(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull Collection<DataNode> listElementsCollection);
+    void addListElements(String dataspaceName, String anchorName, String parentNodeXpath,
+        Collection<DataNode> listElementsCollection);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -76,8 +74,8 @@ public interface CpsDataPersistenceService {
      *                               (recursively) as well
      * @return data node object
      */
-    DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
-        @NonNull FetchDescendantsOption fetchDescendantsOption);
+    DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
+        FetchDescendantsOption fetchDescendantsOption);
 
 
     /**
@@ -88,8 +86,7 @@ public interface CpsDataPersistenceService {
      * @param xpath         xpath
      * @param leaves        the leaves as a map where key is a leaf name and a value is a leaf value
      */
-    void updateDataLeaves(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
-        @NonNull Map<String, Object> leaves);
+    void updateDataLeaves(String dataspaceName, String anchorName, String xpath, Map<String, Object> leaves);
 
     /**
      * Replaces existing data node content including descendants.
@@ -98,7 +95,7 @@ public interface CpsDataPersistenceService {
      * @param anchorName    anchor name
      * @param dataNode      data node
      */
-    void replaceDataNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull DataNode dataNode);
+    void replaceDataNodeTree(String dataspaceName, String anchorName, DataNode dataNode);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements
@@ -109,8 +106,8 @@ public interface CpsDataPersistenceService {
      * @param parentNodeXpath parent node xpath
      * @param newListElements collection of data nodes representing the new list content
      */
-    void replaceListContent(@NonNull String dataspaceName, @NonNull String anchorName,
-                            @NonNull String parentNodeXpath, @NonNull Collection<DataNode> newListElements);
+    void replaceListContent(String dataspaceName, String anchorName,
+                            String parentNodeXpath, Collection<DataNode> newListElements);
 
     /**
      * Deletes any dataNode, yang container or yang list or yang list element.
@@ -119,8 +116,15 @@ public interface CpsDataPersistenceService {
      * @param anchorName      anchor name
      * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
      */
-    void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
-                        @NonNull String targetXpath);
+    void deleteDataNode(String dataspaceName, String anchorName, String targetXpath);
+
+    /**
+     * Deletes all dataNodes in a given anchor.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     */
+    void deleteDataNodes(String dataspaceName, String anchorName);
 
     /**
      * Deletes existing a single list element or the whole list.
@@ -129,8 +133,7 @@ public interface CpsDataPersistenceService {
      * @param anchorName      anchor name
      * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
      */
-    void deleteListDataNode(@NonNull String dataspaceName, @NonNull String anchorName,
-                                 @NonNull String targetXpath);
+    void deleteListDataNode(String dataspaceName, String anchorName, String targetXpath);
 
     /**
      * Get a datanode by cps path.
@@ -142,7 +145,7 @@ public interface CpsDataPersistenceService {
      *                               included in the output
      * @return the data nodes found i.e. 0 or more data nodes
      */
-    Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
+        String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
 }
