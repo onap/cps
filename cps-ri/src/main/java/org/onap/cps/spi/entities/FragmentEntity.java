@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (C) 2020 Nordix Foundation.
  * Modifications Copyright (C) 2021 Pantheon.tech
+ * Modifications Copyright (C) 2022 Bell Canada
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +35,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -79,7 +79,8 @@ public class FragmentEntity implements Serializable {
     @JoinColumn(name = "dataspace_id")
     private DataspaceEntity dataspace;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
     private AnchorEntity anchor;
 
