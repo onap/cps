@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import com.google.common.base.Strings;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
 /**
@@ -80,7 +81,7 @@ public class DmiPluginRegistration {
         }
 
         if (errorMessage != null) {
-            throw new NcmpException(errorMessage, "Please supply correct plugin information.");
+            throw new DmiRequestException(errorMessage, "Please supply correct plugin information.");
         }
     }
 
