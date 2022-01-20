@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2020-2021 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -343,6 +343,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentRepository.save(parentEntity);
     }
 
+    @Override
+    @Transactional
+    public void deleteDataNodes(final String dataspaceName, final String anchorName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        anchorRepository.findByDataspaceAndName(dataspaceEntity, anchorName)
+            .ifPresent(
+                anchorEntity -> fragmentRepository.deleteByAnchorIn(Set.of(anchorEntity)));
+    }
 
     @Override
     @Transactional

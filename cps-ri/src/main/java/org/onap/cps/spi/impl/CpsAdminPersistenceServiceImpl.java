@@ -129,7 +129,6 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        fragmentRepository.deleteByAnchorIn(Set.of(anchorEntity));
         anchorRepository.delete(anchorEntity);
     }
 
