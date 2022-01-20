@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,6 +54,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         return cpsAdminPersistenceService.getAnchors(dataspaceName);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetName);
     }
 
     @Override
