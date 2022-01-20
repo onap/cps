@@ -69,4 +69,5 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
     void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
+
 }
