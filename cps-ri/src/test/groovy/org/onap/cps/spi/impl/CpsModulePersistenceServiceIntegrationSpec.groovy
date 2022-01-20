@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -176,10 +176,9 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Delete schema set with cascade delete prohibited but no anchors using it'() {
+    def 'Delete schema set'() {
         when: 'a schema set is deleted with cascade-prohibited option'
-            objectUnderTest.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NO_ANCHORS,
-                    CASCADE_DELETE_PROHIBITED)
+            objectUnderTest.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NO_ANCHORS)
         then: 'the schema set has been deleted'
             schemaSetRepository.findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_NO_ANCHORS).isPresent() == false
         and: 'any orphaned (not used by any schema set anymore) yang resources are deleted'
@@ -191,35 +190,15 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Delete schema set with cascade allowed.'() {
-        when: 'a schema set is deleted with cascade-allowed option'
-            objectUnderTest.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA,
-                    CASCADE_DELETE_ALLOWED)
-        then: 'the schema set has been deleted'
-            schemaSetRepository
-                    .findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA).isPresent() == false
-        and: 'the associated anchors are removed'
-            def associatedAnchorsIds = [ 6001, 6002 ]
-            associatedAnchorsIds.each {anchorRepository.findById(it).isPresent() == false }
-        and: 'the fragment(s) under those anchors are removed'
-            def fragmentUnderAnchor1Id = 7001L
-            fragmentRepository.findById(fragmentUnderAnchor1Id).isPresent() == false
-        and: 'the shared resources still persist'
-            def sharedResourceIds = [ 3003L, 3004L ]
-            sharedResourceIds.each {yangResourceRepository.findById(it).isPresent() }
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete schema set error scenario: #scenario.'() {
         when: 'attempt to delete a schema set where #scenario'
-            objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED)
+            objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetName)
         then: 'an #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
             scenario                                   | dataspaceName  | schemaSetName                         || expectedException
             'dataspace does not exist'                 | 'unknown'      | 'not-relevant'                        || DataspaceNotFoundException
             'schema set does not exists'               | DATASPACE_NAME | 'unknown'                             || SchemaSetNotFoundException
-            'cascade prohibited but schema set in use' | DATASPACE_NAME | SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA || SchemaSetInUseException
     }
 
     def assertSchemaSetPersisted(expectedDataspaceName,

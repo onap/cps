@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -60,12 +59,8 @@ public interface CpsModulePersistenceService {
      *
      * @param dataspaceName        dataspace name
      * @param schemaSetName        schema set name
-     * @param cascadeDeleteAllowed indicates the allowance to remove associated anchors and data if exist
-     * @throws DataInUseException if cascadeDeleteAllowed is set to CASCADE_DELETE_PROHIBITED and there
-     *                           is associated anchor record exists in database
      */
-    void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-        @NonNull CascadeDeleteAllowed cascadeDeleteAllowed);
+    void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName);
 
     /**
      * Returns YANG resources per specific dataspace / schemaSetName.

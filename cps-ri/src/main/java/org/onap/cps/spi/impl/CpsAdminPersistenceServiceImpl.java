@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2020 Nordix Foundation.
- * Modifications Copyright (C) 2020 Bell Canada.
+ * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,6 +30,7 @@ import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceInUseException;
@@ -77,12 +78,12 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final int numberOfAssociatedAnchors = anchorRepository.countByDataspace(dataspaceEntity);
         if (numberOfAssociatedAnchors != 0) {
             throw new DataspaceInUseException(dataspaceName,
-                    String.format("Dataspace contains %d anchor(s)", numberOfAssociatedAnchors));
+                String.format("Dataspace contains %d anchor(s)", numberOfAssociatedAnchors));
         }
         final int numberOfAssociatedSchemaSets = schemaSetRepository.countByDataspace(dataspaceEntity);
         if (numberOfAssociatedSchemaSets != 0) {
             throw new DataspaceInUseException(dataspaceName,
-                    String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
+                String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
         }
         dataspaceRepository.delete(dataspaceEntity);
     }
@@ -108,7 +109,17 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
-        return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+        return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity = schemaSetRepository.getByDataspaceAndName(
+            dataspaceEntity, schemaSetName);
+        return anchorRepository.findAllBySchemaSet(schemaSetEntity)
+            .stream().map(CpsAdminPersistenceServiceImpl::toAnchor)
+            .collect(Collectors.toSet());
     }
 
     @Override
