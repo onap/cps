@@ -73,6 +73,29 @@
     },
     {
       "key": {
+        "uuid": "b7bbba4e_094c4c9d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-20T16:27:40Z",
+      "side": 1,
+      "message": "Edit 1 seems identical to the data sample request above for create resource data.\n\nShould we include a different example here, assuming that we are applying a patch to an already created resource?",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 44
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "796b13a6_9c98b9bc",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 2
