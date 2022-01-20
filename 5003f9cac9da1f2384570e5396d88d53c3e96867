@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4676344c_612963e9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T13:37:12Z",
+      "side": 1,
+      "message": "its is not blocking, I think we can live with it.",
+      "parentUuid": "ed14642b_104310ee",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "796b13a6_9c98b9bc",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Between cps and dmi its always application/json and type goes in body as datatype. But from client to cps it goes as actual type like application/patch+json etc.",
       "parentUuid": "796b13a6_9c98b9bc",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 14
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4ea7394_398fa208",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T13:37:12Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "67acaae1_938eeb86",
       "range": {
         "startLine": 343,
         "startChar": 8,
