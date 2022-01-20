@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "ee6f4d89_5a560fd0",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T15:15:11Z",
+      "side": 1,
+      "message": "I think it was agreed and part of A/C to\n\n\"500 needs to be added to the specification for all endpoints\"",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab098dd9_ff266efe",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 2
@@ -48,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "4c2309db_484a3ba3",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T15:15:11Z",
+      "side": 1,
+      "message": "add 500 to all endpoints",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb1580f8_40b8198b",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 2
@@ -64,6 +110,29 @@
         "startChar": 17,
         "endLine": 2,
         "endChar": 21
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5422ade9_2bcb75df",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T15:15:11Z",
+      "side": 1,
+      "message": "add 500 to all",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 13
       },
       "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
