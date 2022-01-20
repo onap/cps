@@ -191,6 +191,75 @@
     },
     {
       "key": {
+        "uuid": "27b05af1_c0145cbf",
+        "filename": "csit/data/bookstorePatchExample.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:46:09Z",
+      "side": 1,
+      "message": "\"A new book in a new category\"",
+      "range": {
+        "startLine": 16,
+        "startChar": 30,
+        "endLine": 16,
+        "endChar": 43
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c598d3e_0a558e12",
+        "filename": "csit/data/bookstorePatchExample.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:46:09Z",
+      "side": 1,
+      "message": "maybe use existing category (\"1\")",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f23aac7_eeb7f85a",
+        "filename": "csit/data/bookstorePatchExample.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:46:09Z",
+      "side": 1,
+      "message": "for clarity say \"A New book in existing catgeroy\"",
+      "range": {
+        "startLine": 42,
+        "startChar": 30,
+        "endLine": 42,
+        "endChar": 41
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e9f2e72a_9cb68a66",
         "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
         "patchSetId": 2
@@ -226,6 +295,30 @@
       "side": 1,
       "message": "its adding these two categories, will update accordingly",
       "parentUuid": "e9f2e72a_9cb68a66",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 86
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f657b853_fb2c10be",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-20T14:46:09Z",
+      "side": 1,
+      "message": "assuming the proposed changes in patch work it should be something like\n, path will add new 1 net category with  new book  and add a new book to an existing category",
+      "parentUuid": "785ee713_7c03cdcb",
       "range": {
         "startLine": 120,
         "startChar": 53,
