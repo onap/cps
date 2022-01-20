@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,23 +25,38 @@ package org.onap.cps.api.impl;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.exceptions.SchemaSetInUseException;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("CpsModuleServiceImpl")
 public class CpsModuleServiceImpl implements CpsModuleService {
 
-    @Autowired
     private CpsModulePersistenceService cpsModulePersistenceService;
-
-    @Autowired
     private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
+    private CpsAdminService cpsAdminService;
+
+    /**
+     * Create an instance of CpsModuleServiceImpl.
+     *
+     * @param cpsModulePersistenceService  cpsModulePersistenceService
+     * @param yangTextSchemaSourceSetCache yangTextSchemaSourceSetCache
+     * @param cpsAdminService              cpsAdminService
+     */
+    public CpsModuleServiceImpl(final CpsModulePersistenceService cpsModulePersistenceService,
+        final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache, final CpsAdminService cpsAdminService) {
+        this.cpsModulePersistenceService = cpsModulePersistenceService;
+        this.yangTextSchemaSourceSetCache = yangTextSchemaSourceSetCache;
+        this.cpsAdminService = cpsAdminService;
+    }
 
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
@@ -53,10 +69,10 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                           final Map<String, String> newYangResourcesModuleNameToContentMap,
-                                           final List<ModuleReference> moduleReferences) {
+        final Map<String, String> newYangResourcesModuleNameToContentMap,
+        final List<ModuleReference> moduleReferences) {
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
-                newYangResourcesModuleNameToContentMap, moduleReferences);
+            newYangResourcesModuleNameToContentMap, moduleReferences);
 
     }
 
@@ -69,9 +85,18 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
+    @Transactional
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
         final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName, cascadeDeleteAllowed);
+        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName, schemaSetName);
+        if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
+            throw new SchemaSetInUseException(dataspaceName, schemaSetName);
+        }
+        for (final Anchor anchor : anchors) {
+            cpsAdminService.deleteAnchor(dataspaceName, anchor.getName());
+        }
+        cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName);
+        cpsModulePersistenceService.deleteUnusedYangResourceModules();
     }
 
     @Override
@@ -83,5 +108,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String dataspaceName,
         final String anchorName) {
         return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName, anchorName);
+    }
+
+    private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
 }

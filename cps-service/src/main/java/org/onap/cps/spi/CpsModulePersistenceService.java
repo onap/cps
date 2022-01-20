@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +24,6 @@ package org.onap.cps.spi;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -40,8 +38,7 @@ public interface CpsModulePersistenceService {
      * @param schemaSetName                 schema set name
      * @param yangResourcesNameToContentMap YANG resources (files) map where key is a name and value is content
      */
-    void storeSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-        @NonNull Map<String, String> yangResourcesNameToContentMap);
+    void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
 
     /**
      * Stores a schema set from new modules and existing modules.
@@ -49,45 +46,36 @@ public interface CpsModulePersistenceService {
      * @param dataspaceName                          Dataspace name
      * @param schemaSetName                          Schema set name
      * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param moduleReferences                    List of YANG resources module references
+     * @param moduleReferences                       List of YANG resources module references
      */
-    void storeSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
-                                   @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
-                                   @NonNull List<ModuleReference> moduleReferences);
+    void storeSchemaSetFromModules(String dataspaceName, String schemaSetName,
+        Map<String, String> newYangResourcesModuleNameToContentMap, List<ModuleReference> moduleReferences);
 
     /**
      * Deletes Schema Set.
      *
-     * @param dataspaceName        dataspace name
-     * @param schemaSetName        schema set name
-     * @param cascadeDeleteAllowed indicates the allowance to remove associated anchors and data if exist
-     * @throws DataInUseException if cascadeDeleteAllowed is set to CASCADE_DELETE_PROHIBITED and there
-     *                           is associated anchor record exists in database
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
      */
-    void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-        @NonNull CascadeDeleteAllowed cascadeDeleteAllowed);
+    void deleteSchemaSet(String dataspaceName, String schemaSetName);
 
     /**
      * Returns YANG resources per specific dataspace / schemaSetName.
      *
-     * @param dataspaceName   dataspace name
+     * @param dataspaceName dataspace name
      * @param schemaSetName schema set name
      * @return YANG resources (files) map where key is a name and value is content
      */
-    @NonNull
-    Map<String, String> getYangSchemaResources(@NonNull String dataspaceName,
-        @NonNull String schemaSetName);
+    Map<String, String> getYangSchemaResources(String dataspaceName, String schemaSetName);
 
     /**
      * Returns YANG resources per specific dataspace / anchorName.
      *
      * @param dataspaceName dataspace name
-     * @param anchorName anchor name
+     * @param anchorName    anchor name
      * @return YANG resources (files) map where key is a name and value is content
      */
-    @NonNull
-    Map<String, String> getYangSchemaSetResources(@NonNull String dataspaceName,
-        @NonNull String anchorName);
+    Map<String, String> getYangSchemaSetResources(String dataspaceName, String anchorName);
 
     /**
      * Returns YANG resources module references for the given dataspace name.
@@ -105,4 +93,9 @@ public interface CpsModulePersistenceService {
      * @return a collection of module names and revisions
      */
     Collection<ModuleReference> getYangResourceModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Remove unused Yang Resource Modules.
+     */
+    void deleteUnusedYangResourceModules();
 }
