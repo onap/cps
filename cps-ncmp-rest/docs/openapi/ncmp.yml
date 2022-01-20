@@ -220,8 +220,6 @@ getResourceDataForPassthroughOperational:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
 
 resourceDataForPassthroughRunning:
   get:
@@ -251,8 +249,6 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
   post:
     tags:
       - network-cm-proxy
@@ -287,9 +283,6 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
-
   put:
     tags:
       - network-cm-proxy
@@ -324,8 +317,6 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
 
   patch:
     tags:
@@ -355,9 +346,6 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
-
   delete:
     tags:
       - network-cm-proxy
@@ -379,7 +367,6 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
-
 
 fetchModuleReferencesByCmHandle:
   get:
@@ -405,8 +392,6 @@ fetchModuleReferencesByCmHandle:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
 
 executeCmHandleSearch:
   post:

@@ -20,17 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.exception;
 
-import lombok.Getter;
-
 /**
- * Network CM Proxy exception.
+ * Server Based Network CM Proxy exception.
  */
-public class NcmpException extends RuntimeException {
-
-    private static final long serialVersionUID = 1482619410918497467L;
-
-    @Getter
-    final String details;
+public class ServerNcmpException extends NcmpException {
 
     /**
      * Constructor.
@@ -38,9 +31,8 @@ public class NcmpException extends RuntimeException {
      * @param message the error message
      * @param details the error details
      */
-    public NcmpException(final String message, final String details) {
-        super(message);
-        this.details = details;
+    public ServerNcmpException(final String message, final String details) {
+        super(message, details);
     }
 
 }
