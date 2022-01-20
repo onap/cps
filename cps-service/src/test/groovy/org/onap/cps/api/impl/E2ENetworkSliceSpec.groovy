@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2021 Nordix Foundation.
- * Modifications Copyright (C) 2021 Bell Canada.
+ * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@
 
 package org.onap.cps.api.impl
 
-import java.time.OffsetDateTime
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.notification.NotificationService
@@ -38,9 +37,10 @@ class E2ENetworkSliceSpec extends Specification {
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockNotificationService = Mock(NotificationService)
-    def cpsModuleServiceImpl = new CpsModuleServiceImpl()
     def cpsDataServiceImpl = new CpsDataServiceImpl()
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
+            mockYangTextSchemaSourceSetCache,mockCpsAdminService )
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
@@ -52,8 +52,6 @@ class E2ENetworkSliceSpec extends Specification {
         cpsDataServiceImpl.cpsAdminService = mockCpsAdminService
         cpsDataServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
         cpsDataServiceImpl.notificationService = mockNotificationService
-        cpsModuleServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
-        cpsModuleServiceImpl.cpsModulePersistenceService = mockModuleStoreService
     }
 
     def 'E2E model can be parsed by CPS.'() {

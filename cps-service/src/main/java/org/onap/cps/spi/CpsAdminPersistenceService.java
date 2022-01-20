@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation.
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,6 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 
@@ -38,14 +37,14 @@ public interface CpsAdminPersistenceService {
      * @param dataspaceName dataspace name
      * @throws AlreadyDefinedException if dataspace with same name already exists
      */
-    void createDataspace(@NonNull String dataspaceName);
+    void createDataspace(String dataspaceName);
 
     /**
      * Delete dataspace.
      *
      * @param dataspaceName the name of the dataspace to delete
      */
-    void deleteDataspace(@NonNull String dataspaceName);
+    void deleteDataspace(String dataspaceName);
 
     /**
      * Create an Anchor.
@@ -54,7 +53,16 @@ public interface CpsAdminPersistenceService {
      * @param schemaSetName schema set name
      * @param anchorName    anchor name
      */
-    void createAnchor(@NonNull String dataspaceName, @NonNull String schemaSetName, @NonNull String anchorName);
+    void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
+
+    /**
+     * Read all anchors associated the given schema-set in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema-set name
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
 
     /**
      * Read all anchors in the given a dataspace.
@@ -62,8 +70,7 @@ public interface CpsAdminPersistenceService {
      * @param dataspaceName dataspace name
      * @return a collection of anchors
      */
-    @NonNull
-    Collection<Anchor> getAnchors(@NonNull String dataspaceName);
+    Collection<Anchor> getAnchors(String dataspaceName);
 
     /**
      * Query anchor names for the given module names in the provided dataspace.
@@ -83,8 +90,7 @@ public interface CpsAdminPersistenceService {
      * @param anchorName anchor name
      * @return an anchor
      */
-    @NonNull
-    Anchor getAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
+    Anchor getAnchor(String dataspaceName, String anchorName);
 
     /**
      * Delete anchor by name in given dataspace.
@@ -92,5 +98,5 @@ public interface CpsAdminPersistenceService {
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
      */
-    void deleteAnchor(@NonNull String dataspaceName, @NonNull String anchorName);
+    void deleteAnchor(String dataspaceName, String anchorName);
 }

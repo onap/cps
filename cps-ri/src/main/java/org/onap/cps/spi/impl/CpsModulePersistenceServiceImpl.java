@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020-2021 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,17 +44,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.exception.ConstraintViolationException;
-import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
-import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
-import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
@@ -172,21 +169,16 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
-        final CascadeDeleteAllowed cascadeDeleteAllowed) {
+    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-
-        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllBySchemaSet(schemaSetEntity);
-        if (!anchorEntities.isEmpty()) {
-            if (cascadeDeleteAllowed != CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) {
-                throw new SchemaSetInUseException(dataspaceName, schemaSetName);
-            }
-            fragmentRepository.deleteByAnchorIn(anchorEntities);
-            anchorRepository.deleteAll(anchorEntities);
-        }
         schemaSetRepository.delete(schemaSetEntity);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUnusedYangResourceModules() {
         yangResourceRepository.deleteOrphans();
     }
 
@@ -277,6 +269,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     /**
      * Convert the specified data integrity violation exception into a CPS duplicated Yang resource exception
      * if the cause of the error is a yang checksum database constraint violation.
+     *
      * @param originalException the original db exception.
      * @param yangResourceEntities the collection of Yang resources involved in the db failure.
      * @return an optional converted CPS duplicated Yang resource exception. The optional is empty if the original
@@ -307,6 +300,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     /**
      * Get the name of the yang resource having the specified checksum.
+     *
      * @param checksum the checksum. Null is supported.
      * @param yangResourceEntities the list of yang resources to search among.
      * @return the name found or null if none.
@@ -323,6 +317,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     /**
      * Get the checksum that caused the constraint violation exception.
+     *
      * @param exception the exception having the checksum in error.
      * @return the checksum in error or null if not found.
      */
