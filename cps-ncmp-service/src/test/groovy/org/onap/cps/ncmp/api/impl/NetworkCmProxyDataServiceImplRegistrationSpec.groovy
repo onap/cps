@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
@@ -172,7 +173,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'registration is called with incorrect DMI plugin information'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'an NcmpException is thrown with correct message details'
-            def exceptionThrown = thrown(NcmpException)
+            def exceptionThrown = thrown(DmiRequestException)
             assert exceptionThrown.getMessage().contains(expectedMessageDetails)
         and: 'registration is not called'
             0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
