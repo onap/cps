@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-
 import javax.validation.ConstraintViolationException
 import java.util.stream.Collectors
 
@@ -49,6 +48,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     static final String SET_DATA = '/data/fragment.sql'
+    static final int DATASPACE_1001_ID = 1001L
+    static final int ANCHOR_3003_ID = 3003L
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
     static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
@@ -538,6 +539,20 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                                        | datanodeXpath
             'valid data node, non existent child node'      | '/parent-203/child-non-existent'
             'invalid list element'                          | '/parent-206/child-206/grand-child-206@key="A"]'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete data node for an anchor.'() {
+        given: 'a data-node exists for an anchor'
+            assert fragmentsExistInDB(DATASPACE_1001_ID, ANCHOR_3003_ID)
+        when: 'data nodes are deleted '
+            objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3)
+        then: 'all data-nodes are deleted successfully'
+            assert !fragmentsExistInDB(DATASPACE_1001_ID, ANCHOR_3003_ID)
+    }
+
+    def fragmentsExistInDB(dataSpaceId, anchorId) {
+        !fragmentRepository.findRootsByDataspaceAndAnchor(dataSpaceId, anchorId).isEmpty()
     }
 
     static Collection<DataNode> toDataNodes(xpaths) {

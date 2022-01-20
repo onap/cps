@@ -37,10 +37,11 @@ class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockNotificationService = Mock(NotificationService)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl()
-    def cpsDataServiceImpl = new CpsDataServiceImpl()
-    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
+            mockYangTextSchemaSourceSetCache, mockNotificationService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
@@ -48,10 +49,6 @@ class E2ENetworkSliceSpec extends Specification {
     def noTimestamp = null
 
     def setup() {
-        cpsDataServiceImpl.cpsDataPersistenceService = mockDataStoreService
-        cpsDataServiceImpl.cpsAdminService = mockCpsAdminService
-        cpsDataServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
-        cpsDataServiceImpl.notificationService = mockNotificationService
         cpsModuleServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
         cpsModuleServiceImpl.cpsModulePersistenceService = mockModuleStoreService
     }

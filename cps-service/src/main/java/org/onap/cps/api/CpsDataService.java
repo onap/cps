@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
@@ -40,8 +39,7 @@ public interface CpsDataService {
      * @param jsonData      json data
      * @param observedTimestamp observedTimestamp
      */
-    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String jsonData,
-        OffsetDateTime observedTimestamp);
+    void saveData(String dataspaceName, String anchorName, String jsonData, OffsetDateTime observedTimestamp);
 
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
@@ -52,8 +50,8 @@ public interface CpsDataService {
      * @param jsonData        json data
      * @param observedTimestamp observedTimestamp
      */
-    void saveData(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Persists child data fragment representing one or more list elements under existing data node for the
@@ -65,9 +63,8 @@ public interface CpsDataService {
      * @param jsonData          json data representing list element(s)
      * @param observedTimestamp observedTimestamp
      */
-    void saveListElements(@NonNull String dataspaceName, @NonNull String anchorName,
-                              @NonNull String parentNodeXpath,
-                              @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void saveListElements(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -79,8 +76,8 @@ public interface CpsDataService {
      *                               (recursively) as well
      * @return data node object
      */
-    DataNode getDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String xpath,
-        @NonNull FetchDescendantsOption fetchDescendantsOption);
+    DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
+        FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Updates data node for given dataspace and anchor using xpath to parent node.
@@ -91,8 +88,8 @@ public interface CpsDataService {
      * @param jsonData        json data
      * @param observedTimestamp observedTimestamp
      */
-    void updateNodeLeaves(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Replaces existing data node content including descendants.
@@ -103,8 +100,8 @@ public interface CpsDataService {
      * @param jsonData        json data
      * @param observedTimestamp observedTimestamp
      */
-    void replaceNodeTree(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-        @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void replaceNodeTree(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as json
@@ -116,8 +113,8 @@ public interface CpsDataService {
      * @param jsonData          json data representing the new list elements
      * @param observedTimestamp observedTimestamp
      */
-    void replaceListContent(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
-                            @NonNull String jsonData, OffsetDateTime observedTimestamp);
+    void replaceListContent(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Deletes data node for given anchor and dataspace.
@@ -127,8 +124,17 @@ public interface CpsDataService {
      * @param dataNodeXpath data node xpath
      * @param observedTimestamp observed timestamp
      */
-    void deleteDataNode(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String dataNodeXpath,
-                        OffsetDateTime observedTimestamp);
+    void deleteDataNode(String dataspaceName, String anchorName, String dataNodeXpath,
+        OffsetDateTime observedTimestamp);
+
+    /**
+     * Deletes all data nodes for a given anchor in a dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName       anchor name
+     * @param observedTimestamp observed timestamp
+     */
+    void deleteDataNodes(String dataspaceName, String anchorName, OffsetDateTime observedTimestamp);
 
     /**
      * Deletes a list or a list-element under given anchor and dataspace.
@@ -138,8 +144,8 @@ public interface CpsDataService {
      * @param listElementXpath list element xpath
      * @param observedTimestamp observedTimestamp
      */
-    void deleteListOrListElement(@NonNull String dataspaceName, @NonNull String anchorName,
-                             @NonNull String listElementXpath, OffsetDateTime observedTimestamp);
+    void deleteListOrListElement(String dataspaceName, String anchorName, String listElementXpath,
+        OffsetDateTime observedTimestamp);
 
     /**
      * Updates leaves of DataNode for given dataspace and anchor using xpath, along with the leaves of each Child Data
