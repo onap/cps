@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,19 +22,26 @@
 
 package org.onap.cps.api.impl;
 
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("CpsAdminServiceImpl")
 public class CpsAdminServiceImpl implements CpsAdminService {
 
-    @Autowired
     private CpsAdminPersistenceService cpsAdminPersistenceService;
+    private CpsDataService cpsDataService;
+
+    public CpsAdminServiceImpl(final CpsAdminPersistenceService cpsAdminPersistenceService,
+        final CpsDataService cpsDataService) {
+        this.cpsAdminPersistenceService = cpsAdminPersistenceService;
+        this.cpsDataService = cpsDataService;
+    }
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -63,6 +70,7 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
+        cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
     }
 
