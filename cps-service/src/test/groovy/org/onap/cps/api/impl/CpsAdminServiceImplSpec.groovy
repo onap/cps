@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,17 +22,16 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
+import java.time.OffsetDateTime
 
 class CpsAdminServiceImplSpec extends Specification {
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
-    def objectUnderTest = new CpsAdminServiceImpl()
-
-    def setup() {
-        objectUnderTest.cpsAdminPersistenceService = mockCpsAdminPersistenceService
-    }
+    def mockCpsDataService = Mock(CpsDataService)
+    def objectUnderTest = new CpsAdminServiceImpl(mockCpsAdminPersistenceService, mockCpsDataService)
 
     def 'Create dataspace method invokes persistence service.'() {
         when: 'create dataspace method is invoked'
@@ -67,7 +66,9 @@ class CpsAdminServiceImplSpec extends Specification {
     def 'Delete anchor.'() {
         when: 'delete anchor is invoked'
             objectUnderTest.deleteAnchor('someDataspace','someAnchor')
-        then: 'associated persistence service method is invoked with same parameters'
+        then: 'delete data nodes is invoked on the data service with expected parameters'
+            1 * mockCpsDataService.deleteDataNodes('someDataspace','someAnchor', _ as OffsetDateTime )
+        and: 'the persistence service method is invoked with same parameters to delete anchor'
              1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
     }
 

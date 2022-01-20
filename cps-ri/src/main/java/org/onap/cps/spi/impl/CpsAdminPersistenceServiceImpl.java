@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2020 Nordix Foundation.
- * Modifications Copyright (C) 2020 Bell Canada.
+ * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,6 @@ package org.onap.cps.spi.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.onap.cps.spi.CpsAdminPersistenceService;
@@ -129,7 +128,6 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        fragmentRepository.deleteByAnchorIn(Set.of(anchorEntity));
         anchorRepository.delete(anchorEntity);
     }
 

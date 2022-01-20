@@ -17,8 +17,8 @@
 # Test suites are relative paths under csit/tests/.
 # Place the suites in run order.
 actuator
-cps-model-sync
-ncmp-passthrough
 cps-admin
 cps-data
+cps-model-sync
+ncmp-passthrough
 
