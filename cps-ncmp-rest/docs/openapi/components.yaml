@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -374,6 +374,16 @@ components:
         application/json:
           schema:
             type: object
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occured
     Created:
       description: Created
       content: {}

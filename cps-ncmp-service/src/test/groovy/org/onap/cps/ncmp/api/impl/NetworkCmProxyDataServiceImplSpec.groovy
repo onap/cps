@@ -22,6 +22,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
+
+import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
@@ -91,7 +94,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId', CREATE,
                 '{some-json}', 'application/json')
         then: 'exception is thrown'
-            def exceptionThrown = thrown(NcmpException.class)
+            def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains (not found) error code: 404'
             exceptionThrown.details.contains('404')
     }
@@ -138,7 +141,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testAcceptParam',
                 '(a=1,b=2)')
         then: 'exception is thrown with the expected details'
-            def exceptionThrown = thrown(NcmpException.class)
+            def exceptionThrown = thrown(ServerNcmpException.class)
             exceptionThrown.details == 'DMI status code: 404, DMI response body: NOK-json'
     }
 
@@ -161,7 +164,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testAcceptParam',
                 '(a=1,b=2)')
         then: 'exception is thrown'
-            def exceptionThrown = thrown(NcmpException.class)
+            def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
             exceptionThrown.details.contains('NOK-json')
     }
@@ -206,7 +209,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testAcceptParam',
                 '(a=1,b=2)')
         then: 'exception is thrown'
-            def exceptionThrown = thrown(NcmpException.class)
+            def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
             exceptionThrown.details.contains('NOK-json')
     }

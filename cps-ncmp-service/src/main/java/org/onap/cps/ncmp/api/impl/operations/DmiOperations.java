@@ -27,7 +27,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.springframework.http.HttpHeaders;
 
 @Slf4j
@@ -106,7 +106,7 @@ public class DmiOperations {
             return objectMapper.writeValueAsString(dmiRequestBody);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting Object to JSON.");
-            throw new NcmpException("Parsing error occurred while converting given object to JSON.",
+            throw new DmiRequestException("Parsing error occurred while converting given object to JSON.",
                 e.getMessage());
         }
     }
