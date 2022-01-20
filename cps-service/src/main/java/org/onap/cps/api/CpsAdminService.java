@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
- *  Modifications Copyright (C) 2020 Bell Canada.
+ *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,6 +66,15 @@ public interface CpsAdminService {
      */
     @NonNull
     Collection<Anchor> getAnchors(@NonNull String dataspaceName);
+
+    /**
+     * Read all anchors associated the given schema-set in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema-set name
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
 
     /**
      * Get an anchor in the given dataspace using the anchor name.
