@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class})
 public class NetworkCmProxyRestExceptionHandler {
 
