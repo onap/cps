@@ -38,3 +38,5 @@ updateDmiRegistration:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
