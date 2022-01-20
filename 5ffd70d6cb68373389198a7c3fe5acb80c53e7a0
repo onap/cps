@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "559e191b_591e9a96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-20T10:16:38Z",
+      "side": 0,
+      "message": "Not sure why this was removed. Seems to be causing failure in CSIT tests. See build log: https://jenkins.onap.org/job/cps-review-verification-maven-master/1144/console",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 10
+      },
+      "revId": "5ffd70d6cb68373389198a7c3fe5acb80c53e7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
