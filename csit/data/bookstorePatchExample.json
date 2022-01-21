@@ -1,0 +1,59 @@
+{
+  "ietf-restconf:yang-patch":{
+    "patch-id":"patch-1",
+    "edit":[
+      {
+        "edit-id":"edit1",
+        "operation":"merge",
+        "target":"/",
+        "value":{
+          "bookstore": {
+            "categories": [
+              {
+                "code": "100",
+                "books": [
+                  {
+                    "title": "A new book in a new category",
+                    "pub_year": "2019",
+                    "authors": [
+                      "Rahul"
+                    ],
+                    "lang": "English",
+                    "price": "2011"
+                  }
+                ],
+                "name": "Category100"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "edit-id":"edit2",
+        "operation":"merge",
+        "target":"/",
+        "value":{
+          "bookstore": {
+            "categories": [
+              {
+                "code": "02",
+                "name": "Horror",
+                "books": [
+                  {
+                    "title": "A New book in existing category",
+                    "lang": "English",
+                    "authors": [
+                      "Joe & Rahul"
+                    ],
+                    "pub_year": "2003",
+                    "price": "2000"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

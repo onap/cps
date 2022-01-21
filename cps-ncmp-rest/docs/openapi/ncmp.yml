@@ -165,12 +165,12 @@ resourceDataForPassthroughRunning:
     requestBody:
       required: true
       content:
-        application/json:
+        '*/*':
           schema:
             type: object
           examples:
             dataSampleRequest:
-              $ref: 'components.yaml#/components/examples/dataSampleRequest'
+              $ref: 'components.yaml#/components/examples/dataSamplePatchRequest'
     responses:
       200:
         $ref: 'components.yaml#/components/responses/Ok'

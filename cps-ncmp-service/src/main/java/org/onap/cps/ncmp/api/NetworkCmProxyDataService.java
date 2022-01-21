@@ -78,8 +78,9 @@ public interface NetworkCmProxyDataService {
      * @param operation required operation
      * @param requestBody request body to create resource
      * @param contentType content type in body
+     * @return {@code Object} return data
      */
-    void writeResourceDataPassThroughRunningForCmHandle(String cmHandle,
+    Object writeResourceDataPassThroughRunningForCmHandle(String cmHandle,
                                                         String resourceIdentifier,
                                                         OperationEnum operation,
                                                         String requestBody,

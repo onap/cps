@@ -118,9 +118,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
         final String cmHandle,
         final Object requestBody, final String contentType) {
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        final Object responseObject = networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
             resourceIdentifier, PATCH, GSON.toJson(requestBody), contentType);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(responseObject);
     }
 
     /**
