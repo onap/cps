@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c0f969a_16436d37",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-21T11:26:24Z",
+      "side": 1,
+      "message": "isnt the requestBody type defined? this way it will accept any wildcard character",
+      "range": {
+        "startLine": 343,
+        "startChar": 9,
+        "endLine": 343,
+        "endChar": 13
+      },
+      "revId": "ecd7f5e418c17d8f0f3f12af4fd0a543084e8254",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
