@@ -36,4 +36,9 @@ Test Liveness Probe Endpoint
 Test Readiness Probe Endpoint
     ${response}=      GET On Session    MANAGEMENT_URL     health/readiness    expected_status=200
     Should Be Equal As Strings          ${response.json()['status']}      UP
-
+    
+Test CPS Enhanced Healthcheck
+    ${response}=      GET On Session    MANAGEMENT_URL     health    expected_status=200
+    ${resp_body}=      Convert to string     ${response.text}
+    Should Contain      ${resp_body}     UP
+    Should Not Contain      ${resp_body}     DOWN
