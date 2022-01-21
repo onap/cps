@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c42975c_df06bce0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-01-21T09:59:03Z",
+      "side": 1,
+      "message": "Missing the license extension",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "5045bd0c90087080c3362e00cc86d5457649d07e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
