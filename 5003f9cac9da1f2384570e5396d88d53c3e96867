@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "dab54c98_92d58595",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-21T10:32:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7d6f0255_6515fabd",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 44
+      },
+      "revId": "5003f9cac9da1f2384570e5396d88d53c3e96867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "796b13a6_9c98b9bc",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 2
