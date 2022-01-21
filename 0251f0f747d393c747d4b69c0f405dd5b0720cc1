@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0badbab2_8c06ec2a",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T10:11:13Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "ee6f4d89_5a560fd0",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab098dd9_ff266efe",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2022-01-19T09:53:42Z",
       "side": 1,
       "message": "modifications copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 29
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3a60914_d8a35d76",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T10:11:13Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "ab098dd9_ff266efe",
       "range": {
         "startLine": 2,
         "startChar": 28,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3d01167f_23a9609a",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T10:11:13Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "4c2309db_484a3ba3",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb1580f8_40b8198b",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 2
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "648a9a6f_33a28f38",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T10:11:13Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "bb1580f8_40b8198b",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5422ade9_2bcb75df",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 2
@@ -128,6 +224,30 @@
       "writtenOn": "2022-01-20T15:15:11Z",
       "side": 1,
       "message": "add 500 to all",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1b50067_70facb79",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T10:11:13Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "5422ade9_2bcb75df",
       "range": {
         "startLine": 31,
         "startChar": 4,
