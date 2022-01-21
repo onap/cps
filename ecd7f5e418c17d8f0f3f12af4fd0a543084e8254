@@ -22,6 +22,30 @@
       "revId": "ecd7f5e418c17d8f0f3f12af4fd0a543084e8254",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df7cd00d_60b681ae",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-21T11:34:57Z",
+      "side": 1,
+      "message": "see discussion on patch #2 it need to support 2 options maybe it could be stricter but I think this is OK for now",
+      "parentUuid": "5c0f969a_16436d37",
+      "range": {
+        "startLine": 343,
+        "startChar": 9,
+        "endLine": 343,
+        "endChar": 13
+      },
+      "revId": "ecd7f5e418c17d8f0f3f12af4fd0a543084e8254",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
