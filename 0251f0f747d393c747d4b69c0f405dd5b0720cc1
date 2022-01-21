@@ -309,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "fee38d49_3507a5cf",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-21T11:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "648a9a6f_33a28f38",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "0251f0f747d393c747d4b69c0f405dd5b0720cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5422ade9_2bcb75df",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 2
