@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fec94471_3139c9e8",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6900
+      },
+      "writtenOn": "2022-01-24T14:33:46Z",
+      "side": 1,
+      "message": "Response for this health check will be like below:\n\nGET Response : url\u003dhttp://cps.fra-preprod:8081/manage/health \n\n status\u003d200, reason\u003dOK \n headers\u003d{\u0027Date\u0027: \u0027Fri, 17 Dec 2021 08:24:07 GMT\u0027, \u0027Set-Cookie\u0027: \u0027JSESSIONID\u003dnode019m5x87edmaoj1uik3qfr93jjz1513.node0; Path\u003d/\u0027, \u0027Expires\u0027: \u0027Thu, 01 Jan 1970 00:00:00 GMT\u0027, \u0027Content-Type\u0027: \u0027application/vnd.spring-boot.actuator.v3+json\u0027, \u0027X-Content-Type-Options\u0027: \u0027nosniff\u0027, \u0027X-XSS-Protection\u0027: \u00271; mode\u003dblock\u0027, \u0027X-Frame-Options\u0027: \u0027DENY\u0027, \u0027Transfer-Encoding\u0027: \u0027chunked\u0027} \n body\u003d{\"status\":\"UP\",\"components\":{\"db\":{\"status\":\"UP\",\"details\":{\"database\":\"PostgreSQL\",\"validationQuery\":\"isValid()\"}},\"discoveryComposite\":{\"description\":\"Discovery Client not initialized\",\"status\":\"UNKNOWN\",\"components\":{\"discoveryClient\":{\"description\":\"Discovery Client not initialized\",\"status\":\"UNKNOWN\"}}},\"diskSpace\":{\"status\":\"UP\",\"details\":{\"total\":270430900224,\"free\":181344980992,\"threshold\":10485760,\"exists\":true}},\"livenessState\":{\"status\":\"UP\"},\"ping\":{\"status\":\"UP\"},\"readinessState\":{\"status\":\"UP\"},\"refreshScope\":{\"status\":\"UP\"}},\"groups\":[\"liveness\",\"readiness\"]}\n\n\nIn above response the status of DB and diskspace are \"UP\" and  we are validating that DB, diskspace, liveliness, readiness all status are \"UP\" and nothing \"DOWN\" in line number 44 and 45",
+      "parentUuid": "216e5e06_d115d3a8",
+      "range": {
+        "startLine": 41,
+        "startChar": 110,
+        "endLine": 41,
+        "endChar": 138
+      },
+      "revId": "95a89ddcced175f6d79210461d1b0f2b87535b3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a7e5748_caf1992b",
         "filename": "csit/tests/actuator/actuator.robot",
         "patchSetId": 1
