@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7eb7a811_d7d321e1",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-24T15:05:31Z",
+      "side": 1,
+      "message": "NB: likely we changed it already in 2021 and forgot to add our (c) but if this is really the first change by Us it should just be 20220",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "a7f3499fac7ad845bafd4154f6784e73a09a9cba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
