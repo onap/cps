@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e3c8231_c6ddde52",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6900
+      },
+      "writtenOn": "2022-01-24T12:02:32Z",
+      "side": 1,
+      "message": "This enhanced health check includes liveliness and readiness test as well hence above tests can be removed.",
+      "parentUuid": "c9fd8efc_7b0b95f3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "95a89ddcced175f6d79210461d1b0f2b87535b3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a7e5748_caf1992b",
         "filename": "csit/tests/actuator/actuator.robot",
         "patchSetId": 1
