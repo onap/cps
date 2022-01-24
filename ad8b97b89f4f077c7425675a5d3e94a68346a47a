@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cdee27b_26e81153",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-24T12:59:32Z",
+      "side": 1,
+      "message": "A test is required for this Aspect. The build is failing due to insufficient code coverage and I would assume this is the reason.\n---\n20:45:57 [WARNING] Rule violated for bundle cps-service: instructions covered ratio is 0.91, but expected minimum is 0.94\n---",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
