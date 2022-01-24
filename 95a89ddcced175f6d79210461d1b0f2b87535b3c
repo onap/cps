@@ -69,6 +69,30 @@
       "revId": "95a89ddcced175f6d79210461d1b0f2b87535b3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c6739e_1d89e941",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6900
+      },
+      "writtenOn": "2022-01-24T12:04:54Z",
+      "side": 1,
+      "message": "Alignment is correct. it looks a bit distorted because of long Documentation",
+      "parentUuid": "6a7e5748_caf1992b",
+      "range": {
+        "startLine": 42,
+        "startChar": 22,
+        "endLine": 42,
+        "endChar": 37
+      },
+      "revId": "95a89ddcced175f6d79210461d1b0f2b87535b3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
