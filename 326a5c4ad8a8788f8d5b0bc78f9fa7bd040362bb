@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "03c4275f_e8b51135",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T16:30:06Z",
+      "side": 1,
+      "message": "We used Stub() here.",
+      "parentUuid": "62f148b3_80d2f741",
+      "range": {
+        "startLine": 61,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 0
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "213250ec_7d1c8270",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "00e75f9d_a7d1aaf4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T16:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "213250ec_7d1c8270",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c37af72_ee7c80bb",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38da4bc5_b782aa77",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T16:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c37af72_ee7c80bb",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

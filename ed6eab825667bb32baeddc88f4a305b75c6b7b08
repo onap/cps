@@ -566,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "12ef19cf_13c4bf0e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T16:30:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16cb54de_aca2060f",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 56,
+        "endChar": 111
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b58e6035_26a13df9",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
         "patchSetId": 2
