@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "aec76db4_fb26935d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "ok, I see now",
+      "parentUuid": "0927f940_746cc865",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5fdb349_1461fdae",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 2
@@ -350,6 +374,30 @@
       "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "924c6b67_19332796",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "I cant remmer a (team) decision on this Dylan. I think it is OK using an allArgs constructor makes it easier to test using plain-old-Java with need for SpringBoot testing... If needed we can discuss this at standup but II approve as it is now. We can always revert later if needed but it would have wider implications...",
+      "parentUuid": "a20f7241_d19425e6",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -1223,6 +1271,30 @@
     },
     {
       "key": {
+        "uuid": "deb9e5c4_a6091999",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "971d9232_732dd126",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "613fad31_2beee106",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
         "patchSetId": 2
@@ -1267,6 +1339,30 @@
       "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "785791b6_1dca9101",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7fc5b56f_199238af",
+      "range": {
+        "startLine": 83,
+        "startChar": 19,
+        "endLine": 83,
+        "endChar": 41
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

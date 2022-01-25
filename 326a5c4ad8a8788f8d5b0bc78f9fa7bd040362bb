@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62f148b3_80d2f741",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "Non-Blocking, Legacy issue: apparently we can use Stub() in most test unless we are interested in checking interactions ie. assert \"1 * someMock.someMethod()\"\n\nI wont comment on any if this but going forward I think we should try to use stubs over mocks...",
+      "range": {
+        "startLine": 61,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 0
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "213250ec_7d1c8270",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "NB: this is a new class, so it shoudl just have been 2022: Copyright (C) 2022 Nordix Foundation",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c37af72_ee7c80bb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T09:47:26Z",
+      "side": 1,
+      "message": "just 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "326a5c4ad8a8788f8d5b0bc78f9fa7bd040362bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
