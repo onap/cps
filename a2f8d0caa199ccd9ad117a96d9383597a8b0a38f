@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5307ac6_a59ae0d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-25T15:44:16Z",
+      "side": 1,
+      "message": "I would still like to keep both conditions visible. To make both the conditions at the same abstraction level, a method has been introduced to validate if cascade delete is prohibited.",
+      "parentUuid": "fe589e82_03223d6a",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 104
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d05205a8_d6d88661",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2022-01-25T13:43:29Z",
       "side": 1,
       "message": "Why use a #noOfAnchors here? I don\u0027t see this being used or assigned anywhere else.",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36f98885_d94d7452",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-25T15:44:16Z",
+      "side": 1,
+      "message": "Thanks :) I changed the variable name and missed updating at a few places.",
+      "parentUuid": "d05205a8_d6d88661",
       "range": {
         "startLine": 114,
         "startChar": 16,
