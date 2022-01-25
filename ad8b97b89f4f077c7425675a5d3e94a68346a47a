@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "a061bfbf_595ca9f2",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T14:54:00Z",
+      "side": 1,
+      "message": "Here the first wildcard matches any return value, the second matches any method name, and the (..) pattern matches any number of parameters (zero or more).",
+      "parentUuid": "8ccf54cc_ab347b4e",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56070bdc_10d74c30",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
