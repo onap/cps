@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aed97fb0_51e4c1a5",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T14:45:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90d9e26f_1d4e37ea",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 17
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cdee27b_26e81153",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f67109_7d701231",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T14:45:40Z",
+      "side": 1,
+      "message": "Wrote new test case for more coverage.",
+      "parentUuid": "4cdee27b_26e81153",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ba2aeb88_48dcf880",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T14:45:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a273604a_ceff10ea",
+      "range": {
+        "startLine": 39,
+        "startChar": 32,
+        "endLine": 39,
+        "endChar": 40
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56070bdc_10d74c30",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
@@ -114,6 +186,30 @@
       "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba945e2d_0f828547",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T14:45:40Z",
+      "side": 1,
+      "message": "logger.isDebugEnabled is required here.\n\nWe used :\n\n@ConditionalOnExpression(\n        \"\u0027${logging.level.org.onap.cps:INFO}\u0027.equalsIgnoreCase(\u0027DEBUG\u0027)\"\n)",
+      "parentUuid": "56070bdc_10d74c30",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 0
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
