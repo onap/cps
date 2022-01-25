@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe589e82_03223d6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T13:43:29Z",
+      "side": 1,
+      "message": "I would extract this out into a boolean variable to make it more readable when used in this if statement.",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 104
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d05205a8_d6d88661",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T13:43:29Z",
+      "side": 1,
+      "message": "Why use a #noOfAnchors here? I don\u0027t see this being used or assigned anywhere else.",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
