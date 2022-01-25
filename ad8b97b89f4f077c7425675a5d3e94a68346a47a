@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "edc7e336_5b3b5cf4",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-25T16:04:28Z",
+      "side": 1,
+      "message": "Yes are right it logs all the method hierarchy regardless of public or private. I should remove PUBLIC from variable as it\u0027s missleading.",
+      "parentUuid": "c26d8f75_698b666f",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56070bdc_10d74c30",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
