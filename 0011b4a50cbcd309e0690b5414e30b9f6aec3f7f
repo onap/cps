@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31fd5ac0_c1bd716b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "will this still work now or does the service layer need an equivalent method to use this as last method ?!",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 177,
+        "endChar": 47
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20d180ac_0eed886d",
+        "filename": "cps-ri/src/test/resources/data/anchor.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "good improvement on these terrible default names :-) Thanks",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe09b9e2_679c32c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "NB: di we agreed to remove @NonNull when we update these interfaces (like now)?",
+      "range": {
+        "startLine": 68,
+        "startChar": 34,
+        "endLine": 68,
+        "endChar": 42
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8b8d687_6233f9ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "as this is the last method orphanage delete probably still works...\nJust wondering is it \u0027business logic\u0027 that should be done here too ?!",
+      "range": {
+        "startLine": 98,
+        "startChar": 36,
+        "endLine": 98,
+        "endChar": 51
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9e6b20_c4d5b84d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "legacy issue the classname seem to contradict the enum value which make this a bit strange to read\n\nmaybe we should change the classname so it becomes\n\nCascadeDeleteFlag.CASCADE_DELETE_PROHIBITED \u003d\u003d cascadeDeleteAllowed",
+      "range": {
+        "startLine": 113,
+        "startChar": 15,
+        "endLine": 113,
+        "endChar": 61
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "037f1467_a31f21d1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:26:13Z",
+      "side": 1,
+      "message": "remove @NonNull (maybe everywhere in thsi class now)",
+      "range": {
+        "startLine": 63,
+        "startChar": 25,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
