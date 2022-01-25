@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b4e46560_e3365009",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:04:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29beccf4_08defc4b",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "874fb33d_5c59cefa",
         "filename": "cps-service/src/test/resources/dmi-registry@2021-12-13.yang",
         "patchSetId": 17
