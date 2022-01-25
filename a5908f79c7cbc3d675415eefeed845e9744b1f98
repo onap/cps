@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5bf521d9_1344f1db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ClientRequestNcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-25T13:37:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13ffddb8_43f05f08",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef7a8b2d_305077b8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/NcmpException.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-01-25T11:10:37Z",
       "side": 1,
       "message": "I don\u0027t see any other edits to this file, why was this changed?",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf844938_74fae8b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/NcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-25T13:37:48Z",
+      "side": 1,
+      "message": "Good point. I\u0027ll revert it.",
+      "parentUuid": "ef7a8b2d_305077b8",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -68,6 +116,30 @@
       "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c5ac967_b300ef5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-25T13:37:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f4eddfbd_d583e938",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
