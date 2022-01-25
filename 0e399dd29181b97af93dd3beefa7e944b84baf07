@@ -68,6 +68,52 @@
       "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30930512_60eeca60",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ClientRequestNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:55:11Z",
+      "side": 1,
+      "message": "Maybe my comments got lost (maybe the were in Nordix) I suggested to rename this to DmiRequestException",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a43548c2_2b173439",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:55:11Z",
+      "side": 1,
+      "message": "depending the DMIRequest Exception rename this might not ne needed!",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
