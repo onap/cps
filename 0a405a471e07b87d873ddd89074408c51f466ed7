@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "721fb098_aa0aedc5",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:34:32Z",
+      "side": 1,
+      "message": "add copywright",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8675c8d_758f6540",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:34:32Z",
+      "side": 1,
+      "message": "are these still required? As per the spike the only implemented ones are \n201 (created)\n\n409 (conflict)\n\n500 (internal server error)\n\nSame for below APIs as well",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 62
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
