@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e3926f1_0633c8bd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T11:16:27Z",
+      "side": 1,
+      "message": "awlways same, can be done on line 60 using \u0027groovy\u0027 cosntructor",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 68
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc07c0f9_319f3a0b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/generated-csv/README.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T11:16:27Z",
+      "side": 1,
+      "message": "Placeholder folder for....",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "155b0e61_59205ca7",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2021-12-13.yang",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T11:16:27Z",
+      "side": 1,
+      "message": "that\u0027s is :-)",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 3
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86e874e2_1cfa6be5",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T11:16:27Z",
+      "side": 1,
+      "message": "not a python expert, do these need this initialziation?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874fb33d_5c59cefa",
+        "filename": "cps-service/src/test/resources/dmi-registry@2021-12-13.yang",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T11:16:27Z",
+      "side": 1,
+      "message": "still a duplciate (for test) Cna teh test no acces the one used by Liquibase or can wee use a maven copy command to prent duplication?!",
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
