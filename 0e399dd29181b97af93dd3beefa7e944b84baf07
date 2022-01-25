@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76f84718_4e4c967e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:28:47Z",
+      "side": 1,
+      "message": "as per the spike, my understanding was to have these removed. \nSame for below... @Bruno Sakoto, please clarify",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 63
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
