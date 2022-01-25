@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5bccf635_24f98e98",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:31:30Z",
+      "side": 1,
+      "message": "I missed that, good question",
+      "parentUuid": "f8be110e_2752206d",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a1f428d_a5f88d9f",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 4
@@ -82,6 +106,30 @@
       "writtenOn": "2022-01-25T16:16:54Z",
       "side": 1,
       "message": "y this change?",
+      "range": {
+        "startLine": 4,
+        "startChar": 34,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57b00f11_feb30e9b",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T16:31:30Z",
+      "side": 1,
+      "message": "I ignored the unnecessary copyrights updates as these classes probably will change this year but you are right technically this is not correct!",
+      "parentUuid": "4bb842ad_040503a7",
       "range": {
         "startLine": 4,
         "startChar": 34,
