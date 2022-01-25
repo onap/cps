@@ -401,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "cfcd93c0_84480a25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T10:45:59Z",
+      "side": 1,
+      "message": "No problem. I thought it was done for security reasons, but that could just have been the Autowired tag :)",
+      "parentUuid": "924c6b67_19332796",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "ed6eab825667bb32baeddc88f4a305b75c6b7b08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adebb947_28afec08",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
         "patchSetId": 2
