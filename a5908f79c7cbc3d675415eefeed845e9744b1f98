@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13ffddb8_43f05f08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ClientRequestNcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T11:10:37Z",
+      "side": 1,
+      "message": "NB: Because this is a newly created file, I think 2022 is all that\u0027s needed here",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef7a8b2d_305077b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/NcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T11:10:37Z",
+      "side": 1,
+      "message": "I don\u0027t see any other edits to this file, why was this changed?",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4eddfbd_d583e938",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T11:10:37Z",
+      "side": 1,
+      "message": "Just 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "a5908f79c7cbc3d675415eefeed845e9744b1f98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
