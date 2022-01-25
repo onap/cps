@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "c26d8f75_698b666f",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-25T15:27:17Z",
+      "side": 1,
+      "message": "thanks for the explanation. The name I suggested was based on my limited understand and I included the word \u0027PUBLIC\u0027 but I am not sure if this is true, maybe it logs on private methods too?!",
+      "parentUuid": "a061bfbf_595ca9f2",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "ad8b97b89f4f077c7425675a5d3e94a68346a47a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56070bdc_10d74c30",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
