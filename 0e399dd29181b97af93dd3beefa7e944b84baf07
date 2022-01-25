@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "d0396b25_cebd4523",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:32:08Z",
+      "side": 1,
+      "message": "add copywright",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ba3ff1_0af0cac4",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:32:08Z",
+      "side": 1,
+      "message": "https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+APIs+HTTP+Response+Codes#:~:text\u003d8-,Inventory,-POST%20/v1/ch\n\nAs per the spike, are these still required?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "76f84718_4e4c967e",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 4
