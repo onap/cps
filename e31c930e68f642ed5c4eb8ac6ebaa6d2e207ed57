@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45805205_5f77db39",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/CpsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:16:54Z",
+      "side": 1,
+      "message": "y this change ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 46
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8be110e_2752206d",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:16:54Z",
+      "side": 1,
+      "message": "Are we trying to check if (logging.level.org.onap.cps).equalsIgnoreCase(\u0027DEBUG\u0027). If yes then whats the purpose of INFO there?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a1f428d_a5f88d9f",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:16:54Z",
+      "side": 1,
+      "message": "query: whats the purpose to add this here?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bb842ad_040503a7",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-25T16:16:54Z",
+      "side": 1,
+      "message": "y this change?",
+      "range": {
+        "startLine": 4,
+        "startChar": 34,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
