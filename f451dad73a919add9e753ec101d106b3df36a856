@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d29ebd3_bc96e7aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T12:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3926f1_0633c8bd",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 68
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc07c0f9_319f3a0b",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/generated-csv/README.md",
         "patchSetId": 17
@@ -45,6 +69,30 @@
       "revId": "f451dad73a919add9e753ec101d106b3df36a856",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "136c4f8b_b1d90baf",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/generated-csv/README.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T12:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc07c0f9_319f3a0b",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "29beccf4_08defc4b",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T12:02:23Z",
+      "side": 1,
+      "message": "Not necessarily. But Python will give a warning on the script that the variable can be undefined during the script running, I just put in these two empty initializations to remove these warnings  on the script. \nBut, if no arguments are passed through, the script won\u0027t run correctly without throwing an exception either way",
+      "parentUuid": "86e874e2_1cfa6be5",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "874fb33d_5c59cefa",
         "filename": "cps-service/src/test/resources/dmi-registry@2021-12-13.yang",
         "patchSetId": 17
@@ -108,6 +180,24 @@
       "revId": "f451dad73a919add9e753ec101d106b3df36a856",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1680252_12031b1f",
+        "filename": "cps-service/src/test/resources/dmi-registry@2021-12-13.yang",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-25T12:02:23Z",
+      "side": 1,
+      "message": "No, have deleted this file now. Wasn\u0027t sure if we would need it for later tests so left it for the moment, but if we are using generic bookstore model in the future, this has no use.",
+      "parentUuid": "874fb33d_5c59cefa",
+      "revId": "f451dad73a919add9e753ec101d106b3df36a856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
