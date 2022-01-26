@@ -439,7 +439,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'list element as a collection of data nodes'
             def listElementCollection = toDataNodes(listElementXpaths)
         when: 'list elements are replaced within the existing parent node'
-            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listElementCollection)
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, '/parent-203', listElementCollection)
         then: 'child list elements are updated as expected with non-list elements remaining as is'
             def parentFragment = fragmentRepository.getById(listElementFragmentID)
             def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
@@ -448,14 +448,17 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'grandchild list elements are updated as expected'
             def allGrandChildXpaths = parentFragment.getChildFragments().collect {
                 it.getChildFragments().collect {
-                    it.getXpath()}}
+                    it.getXpath()
+                }
+            }
             allGrandChildXpaths.removeIf(list -> list.isEmpty())
             assert allGrandChildXpaths.size() == expectedGrandChildXpaths.size()
             assert allGrandChildXpaths.containsAll(expectedGrandChildXpaths)
         where: 'following parameters were used'
-            scenario                                       | listElementXpaths                   | parentXpath   | listElementFragmentID                || expectedChildXpaths                                          | expectedGrandChildXpaths
-            'existing list element with existing keys'     | ['/parent-203/child-204[@key="X"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]'] | []
-            'non existing list element with existing keys' | ['/parent-203/child-204[@key="V"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="V"]'] | []
+            scenario                                           | listElementXpaths                                    | listElementFragmentID                || expectedChildXpaths                                                                                                                                 | expectedGrandChildXpaths
+            'existing list element with existing keys'         | ['/parent-203/child-204[@key="X"]']                  | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]']                                                                                        | []
+            'non existing list element with existing keys'     | ['/parent-203/child-204[@key="V"]']                  | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="V"]']                                                                                        | []
+            'non-existing list element with non-existing keys' | ['/parent-203/child-2100[@key="NEW_CHILD_NEW_KEY"]'] | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]', '/parent-203/child-2100[@key="NEW_CHILD_NEW_KEY"]', '/parent-203/child-204[@key="A"]'] | [['/parent-203/child-204[@key="X"]/grand-child-204[@key2="Y"]']]
     }
 
 
