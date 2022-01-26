@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65f23584_0f17a79d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/config/CpsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-26T09:14:40Z",
+      "side": 1,
+      "message": "Reverted. Not needded.",
+      "parentUuid": "45805205_5f77db39",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 46
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8be110e_2752206d",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 4
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "11ff8e6b_13a5c4e7",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-26T09:14:40Z",
+      "side": 1,
+      "message": "Hi Aditya, you are right we are checking here if logging.level.org.cps level is \"DEBUG\" then only this aspect will be autowired to spring bean context otherwise it will be ignored and there would not be any bean of this class will be available. Now the purpose of INFO here as a default level of logging.level.org.cps sothat in case of missing property \"logging.level.org.cps\" from application.yaml it would fall back to it\u0027s default level INFO and will not throw any exception. Considering this property will be always intact It is redundent here and should be removed.",
+      "parentUuid": "5bccf635_24f98e98",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a1f428d_a5f88d9f",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 4
@@ -83,6 +131,30 @@
       "writtenOn": "2022-01-25T16:16:54Z",
       "side": 1,
       "message": "query: whats the purpose to add this here?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea9b894_308825ca",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-26T09:14:40Z",
+      "side": 1,
+      "message": "In case of any exception we already capturing a proper exception and creating a service response for client.\n\nPurpose : Don\u0027t want to capture or ignore in case of any exception as we already have ExceptionHandlers to do this otherwise (break the current flow of service and we will get unwanted/unstructured response that is useful for developer but not for end user) we need to have capture all kind of exception here and either throw it again or again generate service response as it\u0027s already done into ExceptionHandlers. If we capture any exception here (Stmt at line no. 57 throws Throwable) than we need to be wrap it to it\u0027s specific exception that is unnecessary. The @SneakyThrows annotation from Lombok allows us to throw checked exceptions without using the throws declaration that can be captured into ExceptionHandlers. @SneakyThrows is used to throw checked exceptions without declaring them in signature.",
+      "parentUuid": "6a1f428d_a5f88d9f",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -130,6 +202,30 @@
       "side": 1,
       "message": "I ignored the unnecessary copyrights updates as these classes probably will change this year but you are right technically this is not correct!",
       "parentUuid": "4bb842ad_040503a7",
+      "range": {
+        "startLine": 4,
+        "startChar": 34,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "e31c930e68f642ed5c4eb8ac6ebaa6d2e207ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e9d9b99_62db3d65",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-26T09:14:40Z",
+      "side": 1,
+      "message": "Reverted.",
+      "parentUuid": "57b00f11_feb30e9b",
       "range": {
         "startLine": 4,
         "startChar": 34,
