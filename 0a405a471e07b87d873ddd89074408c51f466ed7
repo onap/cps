@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c8dc60c5_608c6265",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:07:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "721fb098_aa0aedc5",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8db0976e_bef49a27",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bf74b99f_20744904",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:07:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8db0976e_bef49a27",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 82
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8675c8d_758f6540",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2022-01-25T16:34:32Z",
       "side": 1,
       "message": "are these still required? As per the spike the only implemented ones are \n201 (created)\n\n409 (conflict)\n\n500 (internal server error)\n\nSame for below APIs as well",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 62
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b974e2b4_3e52e082",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:07:43Z",
+      "side": 1,
+      "message": "Looking at the \"changes required\" column of the table in the spike https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+APIs+HTTP+Response+Codes#CPSExceptionsandRESTAPIsHTTPResponseCodes-CPS-Core.1 it only mentions removing 400. Should this have been 4.x.x?",
+      "parentUuid": "a8675c8d_758f6540",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -91,6 +163,30 @@
       "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3cdd288_f46df16d",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:07:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "78d14f68_542ed489",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
