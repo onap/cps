@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "352af760_16078543",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:17:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0396b25_cebd4523",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75ba3ff1_0af0cac4",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2022-01-25T16:32:08Z",
       "side": 1,
       "message": "https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+APIs+HTTP+Response+Codes#:~:text\u003d8-,Inventory,-POST%20/v1/ch\n\nAs per the spike, are these still required?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "087329dd_4478fffc",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:17:53Z",
+      "side": 1,
+      "message": "@Bruno - can you clarify this?",
+      "parentUuid": "75ba3ff1_0af0cac4",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "561b92fc_89fd457c",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:17:53Z",
+      "side": 1,
+      "message": "As with review for cps-rest I only remove those specifically mentioned in \"changes required\" column of the table in the spike https://wiki.onap.org/display/DW/CPS+Exceptions+and+REST+APIs+HTTP+Response+Codes#CPSExceptionsandRESTAPIsHTTPResponseCodes-CPS-NCMP\n\nSee: https://gerrit.onap.org/r/c/cps/+/126608/6/cps-rest/docs/openapi/cpsAdmin.yml#34",
+      "parentUuid": "76f84718_4e4c967e",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 63
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30930512_60eeca60",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ClientRequestNcmpException.java",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9b8ee79b_cba10254",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ClientRequestNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:17:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30930512_60eeca60",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a43548c2_2b173439",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
         "patchSetId": 4
@@ -105,6 +201,30 @@
       "writtenOn": "2022-01-25T16:55:11Z",
       "side": 1,
       "message": "depending the DMIRequest Exception rename this might not ne needed!",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25455fa7_e9425da5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-26T10:17:53Z",
+      "side": 1,
+      "message": "This was suggested in Bruno\u0027s spike to differentiate between a client exception e.g. incorrect DMI information and an exception in the response is unsuccessful for any reason. Teams thought please?",
+      "parentUuid": "a43548c2_2b173439",
       "range": {
         "startLine": 26,
         "startChar": 13,
