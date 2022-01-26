@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e811890e_3470bd6d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T10:24:58Z",
+      "side": 1,
+      "message": "Ack\n\nJust a personal preference of mine on using operators in if statements is just to extract the parameter out to a boolean. But if you want to keep it this way, I think that\u0027s okay too!",
+      "parentUuid": "f5307ac6_a59ae0d0",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 104
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d05205a8_d6d88661",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 5
@@ -93,6 +117,30 @@
       "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32930604_9c4d9045",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T10:24:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36f98885_d94d7452",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "a2f8d0caa199ccd9ad117a96d9383597a8b0a38f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
