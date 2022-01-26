@@ -82,6 +82,23 @@
     },
     {
       "key": {
+        "uuid": "2a8256bd_95caeffb",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-26T13:26:24Z",
+      "side": 1,
+      "message": "For which log level sql statements are going to be logged ? Debug only ?",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "200e1fab_64df444d",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
         "patchSetId": 7
