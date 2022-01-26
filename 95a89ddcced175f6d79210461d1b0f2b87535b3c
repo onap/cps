@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "a26ce9df_eb2e47b1",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-26T14:38:14Z",
+      "side": 1,
+      "message": "@Nagendra , as discussed above, please remove the above 2 tests at line #32 and #36 as the latest test covers all the above scenarios.",
+      "parentUuid": "52c18d55_2a8a2e04",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "95a89ddcced175f6d79210461d1b0f2b87535b3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "216e5e06_d115d3a8",
         "filename": "csit/tests/actuator/actuator.robot",
         "patchSetId": 1
