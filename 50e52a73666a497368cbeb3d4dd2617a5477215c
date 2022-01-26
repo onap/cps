@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a799b44_694775cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "Did anything actually change in this file beside an extra line space on line 72?",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5851c8d0_4b89742d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "Copyright needed across all necessary edited files",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "104f2a95_3863e05d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "\u0027a data-node exists for an anchor\u0027",
+      "range": {
+        "startLine": 546,
+        "startChar": 16,
+        "endLine": 546,
+        "endChar": 43
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ceb4b731_9f11d4a6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "Is it necessary for this to be extracted into its own separate variable?",
+      "range": {
+        "startLine": 551,
+        "startChar": 19,
+        "endLine": 551,
+        "endChar": 73
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "200e1fab_64df444d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "Can both be final",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "027ed60e_40e59445",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "Probably my lack of knowledge in Spring, but why do we need this tag here,  but nowhere else?",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce7ad138_f443a60b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-26T11:31:35Z",
+      "side": 1,
+      "message": "upper case should not be used outside of acronyms in these block definitions",
+      "range": {
+        "startLine": 69,
+        "startChar": 19,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
