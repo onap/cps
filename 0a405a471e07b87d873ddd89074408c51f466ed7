@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "ec68f7a4_78070318",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-26T22:45:48Z",
+      "side": 1,
+      "message": "If I remember correctly, we decided to to keep them:\n\n* 401 is currently returned when unauthenticated\n* 403 is a major one, still to be implemented anyway to ensure data ownership.\n\nI\u0027m ok to have 401 and 403 here.",
+      "parentUuid": "b974e2b4_3e52e082",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 62
+      },
+      "revId": "0a405a471e07b87d873ddd89074408c51f466ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78d14f68_542ed489",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 6
