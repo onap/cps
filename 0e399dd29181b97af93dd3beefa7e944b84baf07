@@ -234,6 +234,30 @@
       "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d26afaa_65ae262d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-26T16:44:29Z",
+      "side": 1,
+      "message": "my thought is that now we have a DMI Exception we dont need this clarification any longer...",
+      "parentUuid": "25455fa7_e9425da5",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
