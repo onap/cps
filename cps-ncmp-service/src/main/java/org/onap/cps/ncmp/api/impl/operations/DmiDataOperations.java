@@ -27,7 +27,7 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +44,7 @@ public class DmiDataOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiDataOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
+    public DmiDataOperations(final YangModelCmHandleRetriever cmHandlePropertiesRetriever,
                              final JsonObjectMapper jsonObjectMapper,
                              final NcmpConfiguration.DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient) {
@@ -55,28 +55,28 @@ public class DmiDataOperations extends DmiOperations {
      * This method fetches the resource data from operational data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param cmHandle    network resource identifier
+     * @param cmHandleId    network resource identifier
      * @param resourceId  resource identifier
      * @param optionsParamInQuery options query
      * @param acceptParamInHeader accept parameter
      * @param dataStore  data store enum
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandle,
+    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandleId,
                                                           final String resourceId,
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
                                                           final DataStoreEnum dataStore) {
-        final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
+        final YangModelCmHandle yangModelCmHandle =
+            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .build();
-        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
-            persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
+            yangModelCmHandle.resolveDmiServiceName(DATA), cmHandleId, resourceId,
             optionsParamInQuery, dataStore);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
@@ -86,38 +86,38 @@ public class DmiDataOperations extends DmiOperations {
      * This method creates the resource data from pass-through running data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param cmHandle    network resource identifier
+     * @param cmHandleId    network resource identifier
      * @param resourceId  resource identifier
      * @param operation   operation enum
      * @param requestData the request data
      * @param dataType    data type
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandle,
+    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandleId,
                                                                              final String resourceId,
                                                                              final OperationEnum operation,
                                                                              final String requestData,
                                                                              final String dataType) {
-        final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
+        final YangModelCmHandle yangModelCmHandle =
+            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
             .dataType(dataType)
             .build();
-        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
-            getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
-            cmHandle, resourceId, PASSTHROUGH_RUNNING);
+            getResourceInDataStoreUrl(yangModelCmHandle.resolveDmiServiceName(DATA),
+                cmHandleId, resourceId, PASSTHROUGH_RUNNING);
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, new HttpHeaders());
     }
 
     private String getResourceInDataStoreUrl(final String dmiServiceName,
-                                             final String cmHandle,
+                                             final String cmHandleId,
                                              final String resourceId,
                                              final DataStoreEnum dataStoreEnum) {
-        return getCmHandleUrl(dmiServiceName, cmHandle)
+        return getCmHandleUrl(dmiServiceName, cmHandleId)
             + "data"
             + URL_SEPARATOR
             + "ds"
@@ -128,12 +128,12 @@ public class DmiDataOperations extends DmiOperations {
     }
 
     private String getDmiDatastoreUrlWithOptions(final String dmiServiceName,
-                                                 final String cmHandle,
+                                                 final String cmHandleId,
                                                  final String resourceId,
                                                  final String optionsParamInQuery,
                                                  final DataStoreEnum dataStoreEnum) {
         final String resourceInDataStoreUrl = getResourceInDataStoreUrl(dmiServiceName,
-            cmHandle, resourceId, dataStoreEnum);
+            cmHandleId, resourceId, dataStoreEnum);
         return appendOptionsQuery(resourceInDataStoreUrl, optionsParamInQuery);
     }
 

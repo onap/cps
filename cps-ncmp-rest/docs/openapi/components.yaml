@@ -47,7 +47,7 @@ components:
         createdCmHandles:
           type: array
           items:
-            $ref: '#/components/schemas/RestCmHandle'
+            $ref: '#/components/schemas/RestInputCmHandle'
         updatedCmHandles:
           type: array
           example:
@@ -61,14 +61,14 @@ components:
               update-my-property: updated-property
               delete-my-property: '~'
           items:
-            $ref: '#/components/schemas/RestCmHandle'
+            $ref: '#/components/schemas/RestInputCmHandle'
         removedCmHandles:
           type: array
           items:
             type: string
             example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
 
-    RestCmHandle:
+    RestInputCmHandle:
       required:
         - cmHandle
       type: object
@@ -142,6 +142,23 @@ components:
         revision:
           type: string
           example: my-module-revision
+
+    RestOutputCmHandle:
+      type: object
+      title: Cm handle Details
+      properties:
+        cmHandle:
+          type: string
+          example: my-cm-handle1
+        publicCmHandleProperties:
+          $ref: '#/components/schemas/CmHandlePublicProperties'
+    CmHandlePublicProperties:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: string
+          example: Book Type
 
   examples:
     dataSampleRequest:
