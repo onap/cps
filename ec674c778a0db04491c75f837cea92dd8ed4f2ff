@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "50061278_5b963c81",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-27T14:13:56Z",
+      "side": 1,
+      "message": "Are you able to figure out what is the change made in this patch that introduce this architecture dependency change ?\nAfter a quick overlook, I was not able to find ...",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0482d10b_28d847b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
         "patchSetId": 8
