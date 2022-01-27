@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -50,7 +50,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         given: 'the CPS service return a CM handle'
             mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
         and: 'an update cm handle request with public properties updates'
-            def cmHandleUpdateRequest = [new CmHandle(cmHandleID: cmHandleId, publicProperties: updatedPublicProperties)]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: updatedPublicProperties)]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the replace list method is called with correct params'
@@ -72,7 +72,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         given: 'the CPS service return a CM handle'
             mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
         and: 'an update cm handle request with DMI properties updates'
-            def cmHandleUpdateRequest = [new CmHandle(cmHandleID: cmHandleId, dmiProperties: updatedDmiProperties)]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, dmiProperties: updatedDmiProperties)]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'replace list method should is called with correct params'
@@ -96,7 +96,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: originalPropertyDataNodes)
             mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
-            def cmHandleUpdateRequest = [new CmHandle(cmHandleID: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the replace list method is not called'
@@ -115,7 +115,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Exception thrown when we try to update cmHandle'() {
         given: 'cm handles request'
-            def cmHandleUpdateRequest = [new CmHandle(cmHandleID: cmHandleId, publicProperties: [:], dmiProperties: [:])]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: [:], dmiProperties: [:])]
         and: 'data node cannot be found'
             mockCpsDataService.getDataNode(*_) >> { throw new DataNodeNotFoundException(dataspaceName, anchorName, cmHandleXpath) }
         when: 'update data node leaves is called using correct parameters'
