@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f9fc4b7_34d74117",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-27T13:36:01Z",
+      "side": 0,
+      "message": "As per the current design, deleting an Anchor will delete all the fragments associated with it? Is there any change in design now? Or am I missing something...",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 66
+      },
+      "revId": "87b991eb6502c20f441d00faa953f82de04fe12d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
