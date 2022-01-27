@@ -25,6 +25,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -37,9 +38,10 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockPersistenceCmHandleRetriever = Mock(PersistenceCmHandleRetriever)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-            mockCpsModuleService, mockCpsAdminService)
+            mockCpsModuleService, mockCpsAdminService, mockPersistenceCmHandleRetriever)
 
     def expectedDataspaceName = 'NFP-Operational'
 

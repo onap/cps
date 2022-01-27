@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever;
 import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
@@ -78,6 +79,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsModuleService cpsModuleService;
 
     private final CpsAdminService cpsAdminService;
+
+    private final PersistenceCmHandleRetriever persistenceCmHandleRetriever;
+
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -150,6 +154,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
         return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+    }
+
+    @Override
+    public PersistenceCmHandle getCmHandleDetails(final String cmHandle) {
+        return persistenceCmHandleRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
     }
 
     /**
