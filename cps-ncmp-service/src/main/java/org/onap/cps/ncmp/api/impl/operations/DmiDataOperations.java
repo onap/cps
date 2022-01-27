@@ -27,7 +27,7 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +44,7 @@ public class DmiDataOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiDataOperations(final PersistenceCmHandleRetriever cmHandlePropertiesRetriever,
+    public DmiDataOperations(final YangModelCmHandleRetriever cmHandlePropertiesRetriever,
                              final JsonObjectMapper jsonObjectMapper,
                              final NcmpConfiguration.DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient) {
@@ -67,16 +67,16 @@ public class DmiDataOperations extends DmiOperations {
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
                                                           final DataStoreEnum dataStore) {
-        final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
+        final YangModelCmHandle yangModelCmHandle =
+            cmHandlePropertiesRetriever.retrieveYangModelCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .build();
-        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
-            persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
+            yangModelCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
             optionsParamInQuery, dataStore);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
@@ -98,17 +98,17 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final OperationEnum operation,
                                                                              final String requestData,
                                                                              final String dataType) {
-        final PersistenceCmHandle persistenceCmHandle =
-            cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
+        final YangModelCmHandle yangModelCmHandle =
+            cmHandlePropertiesRetriever.retrieveYangModelCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
             .dataType(dataType)
             .build();
-        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
-            getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
+            getResourceInDataStoreUrl(yangModelCmHandle.resolveDmiServiceName(DATA),
             cmHandle, resourceId, PASSTHROUGH_RUNNING);
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, new HttpHeaders());
     }

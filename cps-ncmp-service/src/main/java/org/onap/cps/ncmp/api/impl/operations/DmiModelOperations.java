@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -49,7 +49,7 @@ public class DmiModelOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiModelOperations(final PersistenceCmHandleRetriever dmiPropertiesRetriever,
+    public DmiModelOperations(final YangModelCmHandleRetriever dmiPropertiesRetriever,
                               final JsonObjectMapper jsonObjectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient) {
@@ -59,34 +59,34 @@ public class DmiModelOperations extends DmiOperations {
     /**
      * Retrieves module references.
      *
-     * @param persistenceCmHandle the persistence cm handle
+     * @param yangModelCmHandle the yang model cm handle
      * @return module references
      */
-    public List<ModuleReference> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
+    public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .build();
-        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
-            persistenceCmHandle.resolveDmiServiceName(MODEL),
-                jsonObjectMapper.asJsonString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
+                jsonObjectMapper.asJsonString(dmiRequestBody), yangModelCmHandle.getId(), "modules");
         return toModuleReferences((Map) dmiFetchModulesResponseEntity.getBody());
     }
 
     /**
      * Retrieve yang resources from dmi for any modules that CPS-NCMP hasn't cached before.
      *
-     * @param persistenceCmHandle the persistenceCmHandle
+     * @param yangModelCmHandle the yangModelCmHandle
      * @param unknownModuleReferences the unknown module references
      * @return yang resources as map of module name to yang(re)source
      */
-    public Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
+    public Map<String, String> getNewYangResourcesFromDmi(final YangModelCmHandle yangModelCmHandle,
                                                           final List<ModuleReference> unknownModuleReferences) {
         final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
-            unknownModuleReferences, persistenceCmHandle.getDmiProperties());
+            unknownModuleReferences, yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
-            persistenceCmHandle.resolveDmiServiceName(MODEL),
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
             jsonWithDataAndDmiProperties,
-            persistenceCmHandle.getId(),
+            yangModelCmHandle.getId(),
             "moduleResources");
         return asModuleNameToYangResourceMap(responseEntity);
     }
@@ -109,7 +109,7 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
-        final List<PersistenceCmHandle.Property> dmiProperties) {
+        final List<YangModelCmHandle.Property> dmiProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
@@ -131,10 +131,10 @@ public class DmiModelOperations extends DmiOperations {
         return moduleReferences;
     }
 
-    private static JsonObject toJsonObject(final List<PersistenceCmHandle.Property>
+    private static JsonObject toJsonObject(final List<YangModelCmHandle.Property>
                                                dmiProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final PersistenceCmHandle.Property additionalProperty : dmiProperties) {
+        for (final YangModelCmHandle.Property additionalProperty : dmiProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import java.util.Collection;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.ModuleReference;
 
 /*
@@ -102,5 +103,13 @@ public interface NetworkCmProxyDataService {
      *         given module names
      */
     Collection<String> executeCmHandleHasAllModulesSearch(Collection<String> moduleNames);
+
+    /**
+     * Query cm handle details by cm handle's name.
+     *
+     * @param cmHandle cm handle
+     * @return a collection of cm handle details.
+     */
+    NcmpServiceCmHandle getNcmpServiceCmHandle(String cmHandle);
 
 }
