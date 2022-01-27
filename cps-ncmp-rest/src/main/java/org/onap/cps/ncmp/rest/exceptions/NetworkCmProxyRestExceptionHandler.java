@@ -59,23 +59,13 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({CpsException.class})
-    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
+    @ExceptionHandler({CpsException.class, ServerNcmpException.class})
+    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({ServerNcmpException.class})
-    public static ResponseEntity<Object> handleServerNcmpExceptions(final ServerNcmpException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
-    }
-
-    @ExceptionHandler({DmiRequestException.class})
-    public static ResponseEntity<Object> handleDmiRequestExceptions(final DmiRequestException exception) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
-    }
-
-    @ExceptionHandler({DataValidationException.class, HttpMessageNotReadableException.class})
-    public static ResponseEntity<Object> handleDataValidatedExceptions(final Exception exception) {
+    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class})
+    public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 

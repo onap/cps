@@ -20,20 +20,21 @@
 
 package org.onap.cps.ncmp.api.models
 
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
 
-class PersistenceCmHandleSpec extends Specification {
+class YangModelCmHandleSpec extends Specification {
 
-    def 'Creating persistence cm handle from a cm handle.'() {
+    def 'Creating yang model cm handle from a service api cm handle.'() {
         given: 'a cm handle with properties'
-            def cmHandle = new CmHandle()
-            cmHandle.dmiProperties = [myDmiProperty:'value1']
-            cmHandle.publicProperties = [myPublicProperty:'value2']
-        when: 'it is converted to a persistence cm handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle('','','', cmHandle)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value1']
+            ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
+        when: 'it is converted to a yang model cm handle'
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('','','', ncmpServiceCmHandle)
         then: 'the result has the right size'
             assert objectUnderTest.dmiProperties.size() == 1
         and: 'the DMI property in the result has the correct name and value'
@@ -45,8 +46,8 @@ class PersistenceCmHandleSpec extends Specification {
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
-        given: 'a Persistence CM Handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle())
+        given: 'a yang model cm handle'
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new NcmpServiceCmHandle())
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:

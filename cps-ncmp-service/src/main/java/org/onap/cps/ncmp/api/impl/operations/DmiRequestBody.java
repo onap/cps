@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
@@ -60,14 +60,14 @@ public class DmiRequestBody {
     private Map<String, String> dmiProperties;
 
     /**
-     * Set DMI Properties by converting a list of PersistenceCmHandle.Property objects.
+     * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
      *
-     * @param dmiPropertiesAsList list of cm handle dmi properties
+     * @param yangModelCmHandleProperties list of cm handle dmi properties
      */
     public void asDmiProperties(
-        final List<PersistenceCmHandle.Property> dmiPropertiesAsList) {
+        final List<YangModelCmHandle.Property> yangModelCmHandleProperties) {
         dmiProperties = new LinkedHashMap<>();
-        for (final PersistenceCmHandle.Property dmiProperty : dmiPropertiesAsList) {
+        for (final YangModelCmHandle.Property dmiProperty : yangModelCmHandleProperties) {
             dmiProperties.put(dmiProperty.getName(), dmiProperty.getValue());
         }
     }
