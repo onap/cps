@@ -82,6 +82,29 @@
     },
     {
       "key": {
+        "uuid": "5f8ef089_41450296",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:19:10Z",
+      "side": 1,
+      "message": "suggestion: put the negation inside this method to improved readability\n(this wil remove the !s in the method and in the asserts :-))\n\n def allFragmentsDeleted(dataSpaceId, anchorId) {\n        fragmentRepository.findRootsByDataspaceAndAnchor(dataSpaceId, anchorId).isEmpty()\n    }",
+      "range": {
+        "startLine": 554,
+        "startChar": 3,
+        "endLine": 557,
+        "endChar": 0
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a8256bd_95caeffb",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 7
@@ -93,6 +116,47 @@
       "writtenOn": "2022-01-26T13:26:24Z",
       "side": 1,
       "message": "For which log level sql statements are going to be logged ? Debug only ?",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d719c76_f82ec7df",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:19:10Z",
+      "side": 1,
+      "message": "i would like to understand what this does too....",
+      "parentUuid": "2a8256bd_95caeffb",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd8febda_303be7f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:19:10Z",
+      "side": 1,
+      "message": "as agreed, remove all of these please",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 58
+      },
       "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -145,6 +209,29 @@
     },
     {
       "key": {
+        "uuid": "1a8bcb60_5bd5f8a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:19:10Z",
+      "side": 1,
+      "message": "as agreed remove these",
+      "range": {
+        "startLine": 27,
+        "startChar": 49,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7ad138_f443a60b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 7
@@ -161,6 +248,29 @@
         "startChar": 19,
         "endLine": 69,
         "endChar": 31
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f7b762b_d8353a31",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:19:10Z",
+      "side": 1,
+      "message": "this is not needed in Groovy",
+      "range": {
+        "startLine": 70,
+        "startChar": 83,
+        "endLine": 70,
+        "endChar": 101
       },
       "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
