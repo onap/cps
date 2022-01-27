@@ -258,6 +258,30 @@
       "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aafa978_eefcc5c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-27T06:27:52Z",
+      "side": 1,
+      "message": "The need is to be able to have 2 different exception types to distinguish between client and server errors.\n\nIf we are keeping NcompException as super type, it is then required to have 2 different sub types (DmiRequestException and ServerNcmpException).\n\nIf the common super type is not used, this is the one we could eventually get rid of.",
+      "parentUuid": "1d26afaa_65ae262d",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "0e399dd29181b97af93dd3beefa7e944b84baf07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
