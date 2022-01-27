@@ -60,6 +60,20 @@ public class PersistenceCmHandleRetriever {
         );
     }
 
+    /**
+     * Retrieve Cm Handle Details.
+     * @param cmHandleId cmHandleId
+     * @return cmHandle
+     */
+    public CmHandle retrieveCmHandleDetails(final String cmHandleId) {
+        final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
+        final CmHandle cmHandle = new CmHandle();
+        cmHandle.setCmHandleID(cmHandleId);
+        populateCmHandlePublicProperties(cmHandleDataNode, cmHandle);
+        return cmHandle;
+    }
+
+
     private DataNode getCmHandleDataNode(final String cmHandle) {
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
@@ -76,6 +90,16 @@ public class PersistenceCmHandleRetriever {
             }
         }
         cmHandle.setDmiProperties(dmiProperties);
+    }
+
+    private static void populateCmHandlePublicProperties(final DataNode cmHandleDataNode, final CmHandle cmHandle) {
+        final Map<String, String> publicProperties = new LinkedHashMap<>();
+        for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
+            if (childDataNode.getXpath().contains("/public-properties[@name=")) {
+                addProperty(childDataNode, publicProperties);
+            }
+        }
+        cmHandle.setPublicProperties(publicProperties);
     }
 
     private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {

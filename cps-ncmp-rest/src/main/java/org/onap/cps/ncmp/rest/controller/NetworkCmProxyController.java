@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -38,9 +39,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.model.CmHandleDetails;
+import org.onap.cps.ncmp.rest.model.CmHandleId;
+import org.onap.cps.ncmp.rest.model.CmHandleIds;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
-import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandles;
 import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
@@ -186,6 +190,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
+     * Search for Cm Handle and Properties by Name.
+     * @param cmHandle cm-handle identifier
+     * @return cm handle and its properties
+     */
+    @Override
+    public ResponseEntity<CmHandleDetails> retrieveCmHandleByName(final String cmHandle) {
+        final CmHandleDetails cmHandleDetails = toCmHandleDetails(cmHandle);
+        return ResponseEntity.ok(cmHandleDetails);
+    }
+
+    /**
      * Return module references for a cm handle.
      *
      * @param cmHandle the cm handle
@@ -224,13 +239,24 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return moduleNames;
     }
 
-    private CmHandleProperties toCmHandleProperties(final Collection<String> cmHandleIdentifiers) {
-        final CmHandleProperties cmHandleProperties = new CmHandleProperties();
+    private CmHandleIds toCmHandleProperties(final Collection<String> cmHandleIdentifiers) {
+        final CmHandleIds cmHandleProperties = new CmHandleIds();
         for (final String cmHandleIdentifier : cmHandleIdentifiers) {
-            final CmHandleProperty cmHandleProperty = new CmHandleProperty();
-            cmHandleProperty.setCmHandleId(cmHandleIdentifier);
-            cmHandleProperties.add(cmHandleProperty);
+            final CmHandleId cmHandleId = new CmHandleId();
+            cmHandleId.setCmHandleId(cmHandleIdentifier);
+            cmHandleProperties.add(cmHandleId);
         }
         return cmHandleProperties;
+    }
+    
+    private CmHandleDetails toCmHandleDetails(final String cmHandle) {
+        final CmHandleDetails cmHandleDetails = new CmHandleDetails();
+        final CmHandleProperties cmHandleProperties = new CmHandleProperties();
+        final CmHandle persistedCmHandle = networkCmProxyDataService.getCmHandleDetails(cmHandle);
+        final Map<String, String> propertiesMap = persistedCmHandle.getPublicProperties();
+        cmHandleProperties.add(propertiesMap);
+        cmHandleDetails.setCmHandle(persistedCmHandle.getCmHandleID());
+        cmHandleDetails.setCmHandleProperties(cmHandleProperties);
+        return cmHandleDetails;
     }
 }

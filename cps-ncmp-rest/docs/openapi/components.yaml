@@ -110,13 +110,13 @@ components:
       type: object
       properties:
         cmHandles:
-          $ref: '#/components/schemas/CmHandleProperties'
-    CmHandleProperties:
+          $ref: '#/components/schemas/CmHandleIds'
+    CmHandleIds:
       type: array
       items:
         type: object
-        $ref: '#/components/schemas/CmHandleProperty'
-    CmHandleProperty:
+        $ref: '#/components/schemas/CmHandleId'
+    CmHandleId:
       properties:
         cmHandleId:
           type: string
@@ -132,6 +132,23 @@ components:
         revision:
           type: string
           example: my-module-revision
+
+    CmHandleDetails:
+      type: object
+      title: Cm-Handle Details
+      properties:
+        cmHandle:
+          type: string
+          example: Cm-Handle-Name
+        cmHandleProperties:
+          $ref: '#/components/schemas/CmHandleProperties'
+    CmHandleProperties:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: string
+          example: Book Type
 
   examples:
     dataSampleRequest:
