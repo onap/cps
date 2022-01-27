@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d2ea7b6_b93d0280",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T15:17:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bab359c5_b3a6db24",
+      "range": {
+        "startLine": 53,
+        "startChar": 78,
+        "endLine": 53,
+        "endChar": 86
+      },
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50061278_5b963c81",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 8
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "0e751816_4e9706aa",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T15:17:41Z",
+      "side": 1,
+      "message": "Same, could not locate where it came in",
+      "parentUuid": "50061278_5b963c81",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0482d10b_28d847b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
         "patchSetId": 8
@@ -53,6 +95,24 @@
       "writtenOn": "2022-01-27T14:05:28Z",
       "side": 1,
       "message": "Any reason getDmiRequestBodyAsString() method that was here in patch 7 is not here anymore. Where is this client request validation now ?",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "154b5238_0345b895",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T15:17:41Z",
+      "side": 1,
+      "message": "I believe this was removed after a rebase.\nThe change is here: https://gerrit.onap.org/r/c/cps/+/126633/8/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+      "parentUuid": "0482d10b_28d847b1",
       "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
