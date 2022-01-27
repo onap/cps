@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import java.util.Collection;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.ModuleReference;
 
 /*
@@ -44,13 +45,13 @@ public interface NetworkCmProxyDataService {
      * Get resource data for data store pass-through operational
      * using dmi.
      *
-     * @param cmHandle cm handle
+     * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param acceptParamInHeader accept param
      * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
-    Object getResourceDataOperationalForCmHandle(String cmHandle,
+    Object getResourceDataOperationalForCmHandle(String cmHandleId,
                                                  String resourceIdentifier,
                                                  String acceptParamInHeader,
                                                  String optionsParamInQuery);
@@ -59,13 +60,13 @@ public interface NetworkCmProxyDataService {
      * Get resource data for data store pass-through running
      * using dmi.
      *
-     * @param cmHandle cm handle
+     * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param acceptParamInHeader accept param
      * @param optionsParamInQuery options query
      * @return {@code Object} resource data
      */
-    Object getResourceDataPassThroughRunningForCmHandle(String cmHandle,
+    Object getResourceDataPassThroughRunningForCmHandle(String cmHandleId,
                                                         String resourceIdentifier,
                                                         String acceptParamInHeader,
                                                         String optionsParamInQuery);
@@ -73,14 +74,14 @@ public interface NetworkCmProxyDataService {
     /**
      * Write resource data for data store pass-through running
      * using dmi for given cm-handle.
-     *  @param cmHandle cm handle
+     *  @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param operation required operation
      * @param requestBody request body to create resource
      * @param contentType content type in body
      * @return {@code Object} return data
      */
-    Object writeResourceDataPassThroughRunningForCmHandle(String cmHandle,
+    Object writeResourceDataPassThroughRunningForCmHandle(String cmHandleId,
                                                         String resourceIdentifier,
                                                         OperationEnum operation,
                                                         String requestBody,
@@ -89,10 +90,10 @@ public interface NetworkCmProxyDataService {
     /**
      * Retrieve module references for the given cm handle.
      *
-     * @param cmHandle cm handle
+     * @param cmHandleId cm handle identifier
      * @return a collection of modules names and revisions
      */
-    Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandle);
+    Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandleId);
 
     /**
      * Query cm handle identifiers for the given collection of module names.
@@ -102,5 +103,13 @@ public interface NetworkCmProxyDataService {
      *         given module names
      */
     Collection<String> executeCmHandleHasAllModulesSearch(Collection<String> moduleNames);
+
+    /**
+     * Query cm handle details by cm handle's name.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return a collection of cm handle details.
+     */
+    NcmpServiceCmHandle getNcmpServiceCmHandle(String cmHandleId);
 
 }

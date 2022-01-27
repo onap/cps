@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared
 import spock.lang.Specification
@@ -30,27 +30,27 @@ import spock.lang.Specification
 abstract class DmiOperationsBaseSpec extends Specification {
 
     @Shared
-    def dmiSampleProperty = new PersistenceCmHandle.Property('prop1', 'val1')
+    def yangModelCmHandleProperty = new YangModelCmHandle.Property('prop1', 'val1')
 
     @SpringBean
     DmiRestClient mockDmiRestClient = Mock()
 
     @SpringBean
-    PersistenceCmHandleRetriever mockCmHandlePropertiesRetriever = Mock()
+    YangModelCmHandleRetriever mockCmHandlePropertiesRetriever = Mock()
 
     @SpringBean
     ObjectMapper spyObjectMapper = Spy()
 
-    def persistenceCmHandle = new PersistenceCmHandle()
+    def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'some service name'
     def static cmHandleId = 'some cm handle'
     def static resourceIdentifier = 'parent/child'
 
-    def mockPersistenceCmHandleRetrieval(dmiProperties) {
-        persistenceCmHandle.dmiDataServiceName = dmiServiceName
-        persistenceCmHandle.dmiServiceName = dmiServiceName
-        persistenceCmHandle.dmiProperties = dmiProperties
-        persistenceCmHandle.id = cmHandleId
-        mockCmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandleId) >> persistenceCmHandle
+    def mockYangModelCmHandleRetrieval(dmiProperties) {
+        yangModelCmHandle.dmiDataServiceName = dmiServiceName
+        yangModelCmHandle.dmiServiceName = dmiServiceName
+        yangModelCmHandle.dmiProperties = dmiProperties
+        yangModelCmHandle.id = cmHandleId
+        mockCmHandlePropertiesRetriever.getDmiServiceNamesAndProperties(cmHandleId) >> yangModelCmHandle
     }
 }
