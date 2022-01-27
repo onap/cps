@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0528687_0b257e36",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:40:54Z",
+      "side": 1,
+      "message": "change to 2021-2022 :-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "19eff54bb68f938ca794701ae1a7080a8fd6e3c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b36b17_32e9568a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T09:40:54Z",
+      "side": 1,
+      "message": "legacy: I don\u0027t understand what this line does...\nI have the feeling we should split this test in 2 different tests:\n1) focusses on insert and remove of element in the target list itself\n2) focusses on persistence of grandchildren or not\n\nactually there are already 3 replace list tests. Let\u0027s have a look together and clean these up a bit more...",
+      "range": {
+        "startLine": 454,
+        "startChar": 12,
+        "endLine": 454,
+        "endChar": 64
+      },
+      "revId": "19eff54bb68f938ca794701ae1a7080a8fd6e3c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
