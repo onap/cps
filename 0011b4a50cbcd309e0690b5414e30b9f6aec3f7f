@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "1efd20ad_72cb1313",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T11:37:26Z",
+      "side": 1,
+      "message": "Modifications appears to be different than in CpsModulePersistenceServiceImpl.java\nwhere it is:\n *  Modifications Copyright (C) 2020-2022 Bell Canada.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 48
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "20d180ac_0eed886d",
         "filename": "cps-ri/src/test/resources/data/anchor.sql",
         "patchSetId": 6
@@ -71,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "1fd75a14_2a4aef2c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T11:37:26Z",
+      "side": 1,
+      "message": "Different also",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 48
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8b8d687_6233f9ec",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 6
@@ -110,6 +156,29 @@
         "startChar": 15,
         "endLine": 113,
         "endChar": 61
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "501c432e_fc2e66e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T11:37:26Z",
+      "side": 1,
+      "message": "@NonNull in this file need to be removed as per team agreement",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 31
       },
       "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
