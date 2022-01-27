@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.rest.model.RestCmHandle
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.rest.model.RestInputCmHandle
 import spock.lang.Specification
 
 class RestInputMapperSpec extends Specification {
@@ -31,7 +31,7 @@ class RestInputMapperSpec extends Specification {
 
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
-            def inputRestCmHandle = new RestCmHandle(cmHandle : 'example-id', cmHandleProperties: dmiProperties,
+            def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: dmiProperties,
                 publicCmHandleProperties: publicProperties)
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])

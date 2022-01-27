@@ -24,8 +24,9 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
-import org.onap.cps.ncmp.api.models.CmHandle
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle
+import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -38,34 +39,35 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
     def nullNetworkCmProxyDataServicePropertyHandler = null
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(nullCpsDataService, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler)
+            mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler,mockYangModelCmHandleRetriever)
 
     def expectedDataspaceName = 'NFP-Operational'
 
     def 'Sync model for a (new) cm handle with #scenario'() {
-        given: 'persistence cm handle is given'
-            def cmHandle = new CmHandle()
+        given: 'a cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
-            cmHandle.cmHandleID = 'cm handle id 1'
-            def persistenceCmHandle = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, '' , '', cmHandle)
+            ncmpServiceCmHandle.cmHandleID = 'cm handle id 1'
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
                                                             new ModuleReference(moduleName:'module2',revision:'2') ]
-            mockDmiModelOperations.getModuleReferences(persistenceCmHandle) >> moduleReferences
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
+            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
-            objectUnderTest.syncModulesAndCreateAnchor(persistenceCmHandle)
+            objectUnderTest.syncModulesAndCreateAnchor(yangModelCmHandle)
         then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, persistenceCmHandle.getId(), yangResourceToContentMap, toModuleReference(expectedKnownModules))
+            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, yangModelCmHandle.getId(), yangResourceToContentMap, toModuleReference(expectedKnownModules))
         and: 'admin service create anchor method has been called with correct parameters'
-            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, persistenceCmHandle.getId(), persistenceCmHandle.getId())
+            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, yangModelCmHandle.getId(), yangModelCmHandle.getId())
         where: 'the following parameters are used'
             scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | yangResourceToContentMap      || expectedKnownModules
             'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source'] || [['module2' : '2']]

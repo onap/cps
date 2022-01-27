@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.models.CmHandle;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.model.DataNode;
@@ -56,28 +56,31 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private final CpsDataService cpsDataService;
 
     /**
-     * Iterates over incoming cmHandles and update the dataNodes based on the updated attributes.
+     * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
      * The attributes which are not passed will remain as is.
      *
-     * @param cmHandles collection of cmHandles
+     * @param ncmpServiceCmHandles collection of ncmpServiceCmHandles
      */
-    public void updateCmHandleProperties(final Collection<CmHandle> cmHandles) throws DataNodeNotFoundException {
-        for (final CmHandle cmHandle : cmHandles) {
+    public void updateCmHandleProperties(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles)
+        throws DataNodeNotFoundException {
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             try {
-                final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandle.getCmHandleID());
+                final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE,
+                    ncmpServiceCmHandle.getCmHandleID());
                 final DataNode existingCmHandleDataNode =
                         cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXpath,
                                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-                processUpdates(existingCmHandleDataNode, cmHandle);
+                processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
             } catch (final DataNodeNotFoundException e) {
-                log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandle.getCmHandleID(),
+                log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
+                    ncmpServiceCmHandle.getCmHandleID(),
                         e.getMessage());
                 throw e;
             }
         }
     }
 
-    private void processUpdates(final DataNode existingCmHandleDataNode, final CmHandle incomingCmHandle) {
+    private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {
         if (!incomingCmHandle.getPublicProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY, incomingCmHandle.getPublicProperties());
         }

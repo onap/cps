@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modification Copyright (C) 2021 highstreet technologies GmbH
  *  Modifications (C) 2021 Bell Canada
  *  ================================================================================
@@ -10,6 +10,7 @@
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,15 +39,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleProperty;
+import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandles;
 import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.ModuleReference;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -186,6 +190,18 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
+     * Search for Cm Handle and Properties by Name.
+     * @param cmHandleId cm-handle identifier
+     * @return cm handle and its properties
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
+        final NcmpServiceCmHandle ncmpServiceCmHandle = networkCmProxyDataService.getNcmpServiceCmHandle(cmHandleId);
+        final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
+        return ResponseEntity.ok(restOutputCmHandle);
+    }
+
+    /**
      * Return module references for a cm handle.
      *
      * @param cmHandle the cm handle
@@ -232,5 +248,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             cmHandleProperties.add(cmHandleProperty);
         }
         return cmHandleProperties;
+    }
+
+    private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
+        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleID());
+        cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
+        restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
+        return restOutputCmHandle;
     }
 }

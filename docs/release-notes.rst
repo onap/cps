@@ -29,9 +29,11 @@ Features
    - `CPS-559 <https://jira.onap.org/browse/CPS-559>`_  Define response objects (schemas) in cps-ncmp
    - `CPS-636 <https://jira.onap.org/browse/CPS-636>`_  Update operation for datastore pass through running
    - `CPS-638 <https://jira.onap.org/browse/CPS-638>`_  Delete operation for datastore pass through running
+   - `CPS-677 <https://jira.onap.org/browse/CPS-677>`_  Support 'public' Cm Handle Properties
    - `CPS-741 <https://jira.onap.org/browse/CPS-741>`_  Re sync after removing cm handles
    - `CPS-777 <https://jira.onap.org/browse/CPS-777>`_  Ensure all DMI operations use POST method
    - `CPS-780 <https://jira.onap.org/browse/CPS-780>`_  Add examples for parameters, request and response in openapi yaml for cps-core
+   - `CPS-817 <https://jira.onap.org/browse/CPS-817>`_  Create Endpoint For Get Cm Handles (incl. public properties) By Name
    - `CPS-837 <https://jira.onap.org/browse/CPS-837>`_  Add Remove and Update properties (DMI and Public) as part of CM Handle Registration update
 
 Bug Fixes
@@ -43,15 +45,19 @@ Bug Fixes
    - `CPS-841 <https://jira.onap.org/browse/CPS-841>`_ Upgrade log4j to 2.17.1 as recommended by ONAP SECCOM
    - `CPS-856 <https://jira.onap.org/browse/CPS-856>`_ Retry mechanism not working for concurrent CmHandle registration
    - `CPS-867 <https://jira.onap.org/browse/CPS-867>`_ Database port made configurable through env variable DB_PORT
+   - `CPS-886 <https://jira.onap.org/browse/CPS-886>`_ Fragment handling decreasing performance for large number of cmHandles
    - `CPS-887 <https://jira.onap.org/browse/CPS-887>`_ Increase performance of cmHandle registration for large number of schema sets in DB
    - `CPS-892 <https://jira.onap.org/browse/CPS-892>`_ Fixed the response code during CM-Handle Registration from 201 CREATED to 204 NO_CONTENT
+   - `CPS-893 <https://jira.onap.org/browse/CPS-893>`_ NCMP Java API depends on NCM-Rest-API (cyclic) through json properties on Java API
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
 
 *System Limitations*
 
-None
+Null can no longer be passed within the dmi plugin service names when registering a cm handle, as part of
+`CPS-837 <https://jira.onap.org/browse/CPS-837>`_ null is now used to indicate if a property should be removed as part
+of cm handle registration.
 
 *Known Vulnerabilities*
 
@@ -59,7 +65,8 @@ None
 
 *Workarounds*
 
-None
+Instead of passing null as a value within the dmi plugin service names, remove them from the request completely, or
+pass an empty string as the value if you do not want to include names for these values.
 
 Security Notes
 --------------
