@@ -48,9 +48,9 @@ public class DmiPluginRegistration {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiModelPlugin;
 
-    private List<CmHandle> createdCmHandles;
+    private List<RestModelCmHandle> createdCmHandles;
 
-    private List<CmHandle> updatedCmHandles;
+    private List<RestModelCmHandle> updatedCmHandles;
 
     private List<String> removedCmHandles;
 

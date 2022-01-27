@@ -26,11 +26,11 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
-import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.RestModelCmHandle
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
@@ -42,7 +42,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     @Shared
-    def persistenceCmHandle = new CmHandle()
+    def persistenceCmHandle = new RestModelCmHandle()
 
     @Shared
     def cmHandlesArray = ['cmHandle001']
@@ -53,6 +53,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockPersistenceHandleHandleRetriever = Mock(PersistenceCmHandleRetriever)
 
     def noTimestamp = null
 
@@ -196,7 +197,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-                mockCpsModuleService, mockCpsAdminService))
+                mockCpsModuleService, mockCpsAdminService, mockPersistenceHandleHandleRetriever))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }
