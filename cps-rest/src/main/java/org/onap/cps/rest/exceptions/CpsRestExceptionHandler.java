@@ -63,30 +63,25 @@ public class CpsRestExceptionHandler {
     }
 
     @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class,
-        CpsPathException.class})
-    public static ResponseEntity<Object> handleBadRequestExceptions(final CpsException exception) {
+        CpsPathException.class, ValidationException.class})
+    public static ResponseEntity<Object> handleBadRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({ValidationException.class})
-    public static ResponseEntity<Object> handleBadRequestExceptions(final ValidationException validationException) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, validationException);
-    }
-
     @ExceptionHandler({NotFoundInDataspaceException.class, DataNodeNotFoundException.class})
-    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception,
+    public static ResponseEntity<Object> handleNotFoundExceptions(final Exception exception,
         final HttpServletRequest request) {
         return buildErrorResponse(HttpMethod.GET.matches(request.getMethod())
             ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST, exception);
     }
 
     @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class})
-    public static ResponseEntity<Object> handleDataInUseException(final CpsException exception) {
+    public static ResponseEntity<Object> handleDataInUseException(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
     @ExceptionHandler({CpsException.class})
-    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
+    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
