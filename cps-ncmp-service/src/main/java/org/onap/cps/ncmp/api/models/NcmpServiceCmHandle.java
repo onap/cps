@@ -31,13 +31,15 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * CmHandle.
+ * The NCMP Service model used when issuing a POST request to register or update a CM Handle,
+ * or a GET to retrieve cm handle details.
+ * NCMP Service CmHandle.
  */
 @Validated
 @Getter
 @Setter
 @NoArgsConstructor
-public class CmHandle {
+public class NcmpServiceCmHandle {
 
     @JsonProperty("cmHandle")
     private String cmHandleID;
