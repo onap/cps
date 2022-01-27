@@ -22,6 +22,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
@@ -51,10 +54,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
-    def nullNetworkCmProxyDataServicePropertyHandler = null
+    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler)
+        mockCpsModuleService, mockCpsAdminService, mockYangModelCmHandleRetriever)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -208,6 +211,22 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
         then: 'get anchor identifiers is invoked  with the expected parameters'
             1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
+    }
+
+    def 'Get a cm handle.'() {
+        given: 'the system returns a yang modelled cm handle'
+            def dmiServiceName = 'some service name'
+            def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
+            def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
+            def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            1 * mockYangModelCmHandleRetriever.getDmiServiceNamesAndProperties('Some-Cm-Handle') >> yangModelCmHandle
+        when: 'getting cm handle details for a given cm handle id from ncmp service'
+            def result = objectUnderTest.getNcmpServiceCmHandle('Some-Cm-Handle')
+        then: 'the result returns the correct data'
+            result.cmHandleID == 'Some-Cm-Handle'
+            result.dmiProperties ==[ Book:'Romance Novel' ]
+            result.publicProperties == [ "Public Book":'Public Romance Novel' ]
+
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

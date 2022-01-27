@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,23 +59,13 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({CpsException.class})
-    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final CpsException exception) {
+    @ExceptionHandler({CpsException.class, ServerNcmpException.class})
+    public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({ServerNcmpException.class})
-    public static ResponseEntity<Object> handleServerNcmpExceptions(final ServerNcmpException exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
-    }
-
-    @ExceptionHandler({DmiRequestException.class})
-    public static ResponseEntity<Object> handleDmiRequestExceptions(final DmiRequestException exception) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
-    }
-
-    @ExceptionHandler({DataValidationException.class})
-    public static ResponseEntity<Object> handleDataValidatedExceptions(final DataValidationException exception) {
+    @ExceptionHandler({DmiRequestException.class, DataNodeNotFoundException.class, DataValidationException.class})
+    public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 

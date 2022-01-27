@@ -35,6 +35,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -47,10 +48,11 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
-import org.onap.cps.ncmp.api.models.CmHandle;
+import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandlesList;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
-import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleReference;
@@ -75,7 +77,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final CpsAdminService cpsAdminService;
 
-    private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
+    private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
+
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -99,12 +102,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataOperationalForCmHandle(final String cmHandle,
+    public Object getResourceDataOperationalForCmHandle(final String cmHandleId,
                                                         final String resourceIdentifier,
                                                         final String acceptParamInHeader,
                                                         final String optionsParamInQuery) {
         return handleResponse(dmiDataOperations.getResourceDataFromDmi(
-            cmHandle,
+            cmHandleId,
             resourceIdentifier,
             optionsParamInQuery,
             acceptParamInHeader,
@@ -112,12 +115,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandle,
+    public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
                                                                final String resourceIdentifier,
                                                                final String acceptParamInHeader,
                                                                final String optionsParamInQuery) {
         return handleResponse(dmiDataOperations.getResourceDataFromDmi(
-            cmHandle,
+            cmHandleId,
             resourceIdentifier,
             optionsParamInQuery,
             acceptParamInHeader,
@@ -125,21 +128,21 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandle,
+    public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
                                                                final String resourceIdentifier,
                                                                final OperationEnum operation,
                                                                final String requestData,
                                                                final String dataType) {
         return handleResponse(
             dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(
-                cmHandle, resourceIdentifier, operation, requestData, dataType),
+                cmHandleId, resourceIdentifier, operation, requestData, dataType),
             "Not able to " + operation + " resource data.");
     }
 
 
     @Override
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandle) {
-        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandle);
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
     /**
@@ -154,16 +157,56 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
-     * THis method registers a cm handle and intiates modules sync.
+     * Retrieve cm handle details for a given cm handle.
+     * @param cmHandleId cm handle identifier
+     * @return cm handle details
+     */
+    @Override
+    public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleId) {
+        final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        final YangModelCmHandle yangModelCmHandle =
+            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+        final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
+        final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
+        ncmpServiceCmHandle.setCmHandleID(yangModelCmHandle.getId());
+        setDmiProperties(dmiProperties, ncmpServiceCmHandle);
+        setPublicProperties(publicProperties, ncmpServiceCmHandle);
+        return ncmpServiceCmHandle;
+    }
+
+    private void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
+                                  final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
+        asPropertiesMap(dmiProperties, dmiPropertiesMap);
+        ncmpServiceCmHandle.setDmiProperties(dmiPropertiesMap);
+    }
+
+    private void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,
+                                     final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final Map<String, String> publicPropertiesMap = new LinkedHashMap<>();
+        asPropertiesMap(publicProperties, publicPropertiesMap);
+        ncmpServiceCmHandle.setPublicProperties(publicPropertiesMap);
+    }
+
+    private void asPropertiesMap(final List<YangModelCmHandle.Property> properties,
+                                 final Map<String, String> propertiesMap) {
+        for (final YangModelCmHandle.Property property: properties) {
+            propertiesMap.put(property.getName(), property.getValue());
+        }
+    }
+
+    /**
+     * THis method registers a cm handle and initiates modules sync.
      *
      * @param dmiPluginRegistration dmi plugin registration information.
      * @throws JsonProcessingException thrown if json is malformed or missing.
      */
     public void parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
         final DmiPluginRegistration dmiPluginRegistration) throws JsonProcessingException {
-        final PersistenceCmHandlesList createdPersistenceCmHandlesList =
-            getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getCreatedCmHandles());
-        registerAndSyncNewCmHandles(createdPersistenceCmHandlesList);
+        final YangModelCmHandlesList createdYangModelCmHandlesList =
+            getUpdatedYangModelCmHandlesList(dmiPluginRegistration,
+                dmiPluginRegistration.getCreatedCmHandles());
+        registerAndSyncNewCmHandles(createdYangModelCmHandlesList);
     }
 
     private static Object handleResponse(final ResponseEntity<?> responseEntity,
@@ -178,30 +221,35 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        networkCmProxyDataServicePropertyHandler.updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
+        final YangModelCmHandlesList updatedYangModelCmHandlesList =
+            getUpdatedYangModelCmHandlesList(dmiPluginRegistration,
+                dmiPluginRegistration.getUpdatedCmHandles());
+        final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedYangModelCmHandlesList);
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT, cmHandlesAsJson, NO_TIMESTAMP);
     }
 
-    private PersistenceCmHandlesList getUpdatedPersistenceCmHandlesList(
+    private YangModelCmHandlesList getUpdatedYangModelCmHandlesList(
         final DmiPluginRegistration dmiPluginRegistration,
-        final List<CmHandle> updatedCmHandles) {
-        return PersistenceCmHandlesList.toPersistenceCmHandlesList(
+        final List<NcmpServiceCmHandle> updatedCmHandles) {
+        return YangModelCmHandlesList.toYangModelCmHandlesList(
             dmiPluginRegistration.getDmiPlugin(),
             dmiPluginRegistration.getDmiDataPlugin(),
             dmiPluginRegistration.getDmiModelPlugin(),
             updatedCmHandles);
     }
 
-    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList) {
-        final String cmHandleJsonData = jsonObjectMapper.asJsonString(persistenceCmHandlesList);
+    private void registerAndSyncNewCmHandles(final YangModelCmHandlesList yangModelCmHandlesList) {
+        final String cmHandleJsonData = jsonObjectMapper.asJsonString(yangModelCmHandlesList);
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
 
-        for (final PersistenceCmHandle persistenceCmHandle : persistenceCmHandlesList.getPersistenceCmHandles()) {
-            syncModulesAndCreateAnchor(persistenceCmHandle);
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandlesList.getYangModelCmHandles()) {
+            syncModulesAndCreateAnchor(yangModelCmHandle);
         }
     }
 
-    protected void syncModulesAndCreateAnchor(final PersistenceCmHandle persistenceCmHandle) {
+    protected void syncModulesAndCreateAnchor(final YangModelCmHandle persistenceCmHandle) {
         syncAndCreateSchemaSet(persistenceCmHandle);
         createAnchor(persistenceCmHandle);
     }
@@ -227,9 +275,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void syncAndCreateSchemaSet(final PersistenceCmHandle persistenceCmHandle) {
+    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle) {
         final List<ModuleReference> moduleReferencesFromCmHandle =
-            dmiModelOperations.getModuleReferences(persistenceCmHandle);
+            dmiModelOperations.getModuleReferences(yangModelCmHandle);
         final List<ModuleReference> existingModuleReferences = new ArrayList<>();
         final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
         prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
@@ -238,11 +286,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (unknownModuleReferences.isEmpty()) {
             newYangResourcesModuleNameToContentMap = new HashMap<>();
         } else {
-            newYangResourcesModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle,
+            newYangResourcesModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
                 unknownModuleReferences);
         }
         cpsModuleService
-            .createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
+            .createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, yangModelCmHandle.getId(),
                 newYangResourcesModuleNameToContentMap, existingModuleReferences);
     }
 
@@ -262,8 +310,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void createAnchor(final PersistenceCmHandle persistenceCmHandle) {
-        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
-            persistenceCmHandle.getId());
+    private void createAnchor(final YangModelCmHandle yangModelCmHandle) {
+        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, yangModelCmHandle.getId(),
+            yangModelCmHandle.getId());
     }
 }

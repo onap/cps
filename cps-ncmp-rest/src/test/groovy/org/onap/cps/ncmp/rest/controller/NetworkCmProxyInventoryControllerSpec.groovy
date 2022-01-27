@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -65,17 +65,17 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             response.status == HttpStatus.NO_CONTENT.value()
     }
 
-    def 'Dmi plugin registration with #scenario' () {
-        given: 'jsonData, cmHandle, & DmiPluginRegistration'
+    def 'Dmi plugin registration' () {
+        given: 'a dmi registration for one cm handle'
             def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
-            def cmHandle = new CmHandle(cmHandleID : 'example-name')
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleID : 'example-name')
             def expectedDmiPluginRegistration = new DmiPluginRegistration(
                 dmiPlugin: 'service1',
                 dmiDataPlugin: '',
                 dmiModelPlugin: '',
-                createdCmHandles: [cmHandle])
+                createdCmHandles: [ncmpServiceCmHandle])
         when: 'post request is performed & registration is called with correct DMI plugin information'
-            def response = mvc.perform(
+            mvc.perform(
                 post("$ncmpBasePathV1/ch")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonData)
