@@ -133,6 +133,23 @@ components:
           type: string
           example: my-module-revision
 
+    CmHandleDetails:
+      type: object
+      title: Cm-Handle Details
+      properties:
+        cmHandle:
+          type: string
+          example: Bookstore
+        cmHandleProperties:
+          $ref: '#/components/schemas/CmHandlePublicProperties'
+    CmHandlePublicProperties:
+      type: array
+      items:
+        type: object
+        additionalProperties:
+          type: string
+          example: Book Type
+
   examples:
     dataSampleRequest:
         summary: Sample request
