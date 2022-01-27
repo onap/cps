@@ -37,3 +37,6 @@ paths:
 
   /v1/ch/searches:
     $ref: 'ncmp.yml#/executeCmHandleSearch'
+
+  /v1/ch/{cm-handle}:
+    $ref: 'ncmp.yml#/retrieveCmHandleDetailsById'

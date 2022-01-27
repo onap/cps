@@ -46,8 +46,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     DmiDataOperations objectUnderTest
 
     def 'call get resource data for #expectedDatastoreInUrl from DMI #scenario.'() {
-        given: 'a persistence cm handle for #cmHandleId'
-            mockPersistenceCmHandleRetrieval(dmiProperties)
+        given: 'a cm handle for #cmHandleId'
+            mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(
@@ -60,15 +60,15 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         where: 'the following parameters are used'
             scenario             | dmiProperties        | dataStore               | options     || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
             'without properties' | []                   | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'    | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'null options'       | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | null        || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'empty options'      | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | ''          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
+            'with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
+            'null options'       | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | null        || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
+            'empty options'      | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | ''          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
             'datastore running'  | []                   | PASSTHROUGH_RUNNING     | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
     def 'Write data for pass-through:running datastore in DMI.'() {
-        given: 'a persistence cm handle for #cmHandleId'
-            mockPersistenceCmHandleRetrieval([dmiSampleProperty])
+        given: 'a cm handle for #cmHandleId'
+            mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
                 "/ncmp-datastore:passthrough-running?resourceIdentifier=${resourceIdentifier}"

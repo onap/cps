@@ -21,18 +21,18 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.models.PersistenceCmHandle
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import spock.lang.Shared
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
-class PersistenceCmHandleRetrieverSpec extends Specification {
+class YangModelCmHandleRetrieverSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
-    def objectUnderTest = new PersistenceCmHandleRetriever(mockCpsDataService)
+    def objectUnderTest = new YangModelCmHandleRetriever(mockCpsDataService)
 
     def cmHandleId = 'some cm handle'
     def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
@@ -46,8 +46,8 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
-        when: 'retrieving the persisted cm handle'
-            def result = objectUnderTest.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandleId)
+        when: 'retrieving the yang modelled cm handle'
+            def result = objectUnderTest.retrieveYangModelCmHandleDmiServiceNamesAndDmiProperties(cmHandleId)
         then: 'the result has the correct id and service names'
             result.id == cmHandleId
             result.dmiServiceName == 'common service name'
@@ -58,6 +58,17 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
         where: 'the following parameters are used'
             scenario                 | childDataNodes                      || expectedCmHandleProperties
             'without DMI properties' | []                                  || []
-            'with DMI properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.Property("name1", "value1")]
+            'with DMI properties'    | childDataNodesForCmHandleProperties || [new YangModelCmHandle.Property("name1", "value1")]
+    }
+
+    def "Retrieve cm handle details." () {
+        given: 'the cps data service returns a data node from the DMI registry'
+            def dataNode = new DataNode(childDataNodes:childDataNodesForCmHandleProperties, leaves: leaves)
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+        when : 'retrieving the cm handle details'
+            def result = objectUnderTest.retrieveYangModelCmHandleDmiServiceNamesAndDmiProperties(cmHandleId)
+        then: 'the correct cm handle and and public properties are returned'
+            result.id == cmHandleId
+            result.publicProperties == [new YangModelCmHandle.Property("name2", "value2")]
     }
 }

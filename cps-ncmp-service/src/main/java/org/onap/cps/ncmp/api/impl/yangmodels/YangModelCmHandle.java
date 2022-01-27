@@ -19,7 +19,7 @@
  */
 
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl.yangmodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
@@ -32,14 +32,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
 /**
- * DmiRegistry.
+ * Cm Handle which follows the Yang resource dmi registry model when persisting data to DMI or the DB.
+ * Yang model CmHandle
  */
 @Getter
 @Setter
 @NoArgsConstructor
-public class PersistenceCmHandle {
+public class YangModelCmHandle {
 
     private String id;
 
@@ -59,25 +61,26 @@ public class PersistenceCmHandle {
     private List<Property> publicProperties;
 
     /**
-     * Create a persistenceCmHandle.
+     * Create a yangModelCmHandle.
      * @param dmiServiceName dmi service name
      * @param dmiDataServiceName dmi data service name
      * @param dmiModelServiceName dmi model service name
-     * @param cmHandle the cm handle
-     * @return instance of persistenceCmHandle
+     * @param ncmpServiceCmHandle the cm handle
+     * @return instance of yangModelCmHandle
      */
-    public static PersistenceCmHandle toPersistenceCmHandle(final String dmiServiceName,
-                                                            final String dmiDataServiceName,
-                                                            final String dmiModelServiceName,
-                                                            final CmHandle cmHandle) {
-        final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
-        persistenceCmHandle.setId(cmHandle.getCmHandleID());
-        persistenceCmHandle.setDmiServiceName(dmiServiceName);
-        persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
-        persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        persistenceCmHandle.setDmiProperties(asPersistenceCmHandleProperties(cmHandle.getDmiProperties()));
-        persistenceCmHandle.setPublicProperties(asPersistenceCmHandleProperties(cmHandle.getPublicProperties()));
-        return persistenceCmHandle;
+    public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
+                                                        final String dmiDataServiceName,
+                                                        final String dmiModelServiceName,
+                                                        final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
+        yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleID());
+        yangModelCmHandle.setDmiServiceName(dmiServiceName);
+        yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
+        yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
+        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
+            ncmpServiceCmHandle.getPublicProperties()));
+        return yangModelCmHandle;
     }
 
     /**
@@ -95,12 +98,12 @@ public class PersistenceCmHandle {
         return dmiServiceName;
     }
 
-    private static List<Property> asPersistenceCmHandleProperties(final Map<String, String> propertiesAsMap) {
-        final List<Property> persistenceCmHandleProperties = new ArrayList<>(propertiesAsMap.size());
+    private static List<Property> asYangModelCmHandleProperties(final Map<String, String> propertiesAsMap) {
+        final List<Property> yangModelCmHandleProperties = new ArrayList<>(propertiesAsMap.size());
         for (final Map.Entry<String, String> entry : propertiesAsMap.entrySet()) {
-            persistenceCmHandleProperties.add(new PersistenceCmHandle.Property(entry.getKey(), entry.getValue()));
+            yangModelCmHandleProperties.add(new YangModelCmHandle.Property(entry.getKey(), entry.getValue()));
         }
-        return persistenceCmHandleProperties;
+        return yangModelCmHandleProperties;
     }
 
     private static boolean isNullEmptyOrBlank(final String serviceName) {

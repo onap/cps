@@ -46,7 +46,7 @@ public class DmiOperations {
         }
     }
 
-    protected final PersistenceCmHandleRetriever cmHandlePropertiesRetriever;
+    protected final YangModelCmHandleRetriever yangModelCmHandleRetriever;
     protected final JsonObjectMapper jsonObjectMapper;
     protected final NcmpConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;

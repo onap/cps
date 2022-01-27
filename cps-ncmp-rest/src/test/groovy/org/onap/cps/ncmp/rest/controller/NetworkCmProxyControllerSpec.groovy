@@ -22,6 +22,9 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -178,6 +181,28 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
             response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
+    }
+
+    def 'Get Cm Handle details by Cm Handle id.' () {
+        given: 'an endpoint and a cm handle'
+            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/Some-Cm-Handle"
+        and: 'an existing ncmp service cm handle'
+            def cmHandleId = 'Some-Cm-Handle'
+            def dmiProperties = [ Book:'Romance Novel' ]
+            def publicProperties = [ "Public Book":'Public Romance Novel' ]
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleID: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties)
+        and: 'the service method is invoked with the cm handle name'
+            1 * mockNetworkCmProxyDataService.getNcmpServiceCmHandle('Some-Cm-Handle') >> ncmpServiceCmHandle
+        when: 'the cm handle details api is invoked'
+            def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
+        then: 'the correct response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response returns public properties and the correct properties'
+            response.contentAsString.contains('publicCmHandleProperties')
+            response.contentAsString.contains('Public Book')
+            response.contentAsString.contains('Public Romance Novel')
+        and: 'the content does not return dmi properties'
+            !response.contentAsString.contains("dmiCmHandleProperties")
     }
 
     def 'Call execute cm handle searches with unrecognized condition name.'() {
