@@ -22,6 +22,10 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+
+import org.onap.cps.ncmp.api.models.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -178,6 +182,20 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
             response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
+    }
+
+    def 'Get Cm Handle details by Cm Handle name.' () {
+        given: 'an endpoint and a cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.publicProperties = [Book:'Romance Novel']
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('','','', ncmpServiceCmHandle)
+            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/testCmHandle"
+        and: 'the service method is invoked with the cm handle name'
+            1 * mockNetworkCmProxyDataService.getCmHandleDetails('testCmHandle') >>  yangModelCmHandle
+        when: 'the cm handle details api is invoked'
+            def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
+        then: 'the correct response is returned'
+            response.status == HttpStatus.OK.value()
     }
 
     def 'Call execute cm handle searches with unrecognized condition name.'() {

@@ -22,6 +22,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
@@ -51,10 +53,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
-    def nullNetworkCmProxyDataServicePropertyHandler = null
+    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler)
+        mockCpsModuleService, mockCpsAdminService, mockYangModelCmHandleRetriever)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -208,6 +210,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
         then: 'get anchor identifiers is invoked  with the expected parameters'
             1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
+    }
+
+    def 'Get cm handle details for a given cm handle.'() {
+        when: 'getting cm handle details for a given cm handle id'
+            objectUnderTest.getCmHandleDetails('Some-Cm-Handle')
+        then: 'retrieve cm handle details is invoked with the expected parameters'
+            1 * mockYangModelCmHandleRetriever.retrieveCmHandleDetails('Some-Cm-Handle')
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

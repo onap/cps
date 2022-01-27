@@ -30,7 +30,9 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -38,15 +40,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.YangModelCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleProperty;
+import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandles;
 import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.ModuleReference;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -186,6 +191,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
+     * Search for Cm Handle and Properties by Name.
+     * @param cmHandleName cm-handle identifier
+     * @return cm handle and its properties
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandle> retrieveCmHandleByName(final String cmHandleName) {
+        final RestOutputCmHandle cmHandleDetails = toCmHandleDetails(cmHandleName);
+        return ResponseEntity.ok(cmHandleDetails);
+    }
+
+    /**
      * Return module references for a cm handle.
      *
      * @param cmHandle the cm handle
@@ -232,5 +248,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             cmHandleProperties.add(cmHandleProperty);
         }
         return cmHandleProperties;
+    }
+
+    private RestOutputCmHandle toCmHandleDetails(final String cmHandle) {
+        final RestOutputCmHandle cmHandleDetails = new RestOutputCmHandle();
+        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        final Map<String, String> propertiesMap = new LinkedHashMap<>();
+        final YangModelCmHandle yangModelCmHandle = networkCmProxyDataService.getCmHandleDetails(cmHandle);
+        final List<YangModelCmHandle.Property> propertiesList = yangModelCmHandle.getPublicProperties();
+        for (final YangModelCmHandle.Property property : propertiesList) {
+            propertiesMap.put(property.getName(), property.getValue());
+        }
+        cmHandlePublicProperties.add(propertiesMap);
+        cmHandleDetails.setCmHandle(yangModelCmHandle.getId());
+        cmHandleDetails.setCmHandleProperties(cmHandlePublicProperties);
+        return cmHandleDetails;
     }
 }
