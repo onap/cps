@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "0482d10b_28d847b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-27T14:05:28Z",
+      "side": 1,
+      "message": "Any reason getDmiRequestBodyAsString() method that was here in patch 7 is not here anymore. Where is this client request validation now ?",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c961abcc_ac5d25f6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 8
