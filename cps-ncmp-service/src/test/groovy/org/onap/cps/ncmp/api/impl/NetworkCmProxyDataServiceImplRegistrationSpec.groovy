@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever
 import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -52,6 +53,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockPersistenceHandleHandleRetriever = Mock(PersistenceCmHandleRetriever)
 
     def noTimestamp = null
 
@@ -195,7 +197,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-                mockCpsModuleService, mockCpsAdminService))
+                mockCpsModuleService, mockCpsAdminService, mockPersistenceHandleHandleRetriever))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }
