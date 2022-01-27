@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "d4f3147d_5a440ca7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-27T13:21:15Z",
+      "side": 1,
+      "message": "this if should ideally come inside the else block and not as the else block",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6236cc_4e98f458",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-27T13:21:15Z",
+      "side": 1,
+      "message": "temove extra space",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1741c1c3_32e4a0c4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelperTest.groovy",
         "patchSetId": 1
@@ -13,6 +59,52 @@
       "writtenOn": "2022-01-27T10:39:03Z",
       "side": 1,
       "message": "Missing copyright",
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe8a3ec_6275bec6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelperTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-27T13:21:15Z",
+      "side": 1,
+      "message": "rename to NetworkCmProxyDataServiceHelperSpec as thats the format being followed",
+      "range": {
+        "startLine": 6,
+        "startChar": 6,
+        "endLine": 6,
+        "endChar": 41
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf20bfb4_7e5bd300",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelperTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-27T13:21:15Z",
+      "side": 1,
+      "message": "tabs used across the file.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 1
+      },
       "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
