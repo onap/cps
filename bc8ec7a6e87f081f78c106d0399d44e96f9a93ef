@@ -22,6 +22,30 @@
       "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3739c3c2_1812513a",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T10:20:34Z",
+      "side": 1,
+      "message": "It is the same as here https://gerrit.onap.org/r/c/cps/+/126359/22/cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy and this also follows the same format with dates https://gerrit.onap.org/r/c/cps/+/126679/7/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java.\nPerhaps we need some clarification as to what is intended to be included in the modifications?",
+      "parentUuid": "5d4ee310_59587aea",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
