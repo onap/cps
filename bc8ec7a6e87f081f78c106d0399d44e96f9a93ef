@@ -70,6 +70,30 @@
       "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94f28135_a6f24005",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T13:30:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "743c6165_1d4f1d78",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
