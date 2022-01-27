@@ -34,7 +34,8 @@ import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 
 /**
- * DmiRegistry.
+ * Cm Handle which follows dmi registry model when persisting data to DMI or the DB.
+ * Persistence CmHandle
  */
 @Getter
 @Setter
@@ -63,20 +64,21 @@ public class PersistenceCmHandle {
      * @param dmiServiceName dmi service name
      * @param dmiDataServiceName dmi data service name
      * @param dmiModelServiceName dmi model service name
-     * @param cmHandle the cm handle
+     * @param restModelCmHandle the cm handle
      * @return instance of persistenceCmHandle
      */
     public static PersistenceCmHandle toPersistenceCmHandle(final String dmiServiceName,
                                                             final String dmiDataServiceName,
                                                             final String dmiModelServiceName,
-                                                            final CmHandle cmHandle) {
+                                                            final RestModelCmHandle restModelCmHandle) {
         final PersistenceCmHandle persistenceCmHandle = new PersistenceCmHandle();
-        persistenceCmHandle.setId(cmHandle.getCmHandleID());
+        persistenceCmHandle.setId(restModelCmHandle.getCmHandleID());
         persistenceCmHandle.setDmiServiceName(dmiServiceName);
         persistenceCmHandle.setDmiDataServiceName(dmiDataServiceName);
         persistenceCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        persistenceCmHandle.setDmiProperties(asPersistenceCmHandleProperties(cmHandle.getDmiProperties()));
-        persistenceCmHandle.setPublicProperties(asPersistenceCmHandleProperties(cmHandle.getPublicProperties()));
+        persistenceCmHandle.setDmiProperties(asPersistenceCmHandleProperties(restModelCmHandle.getDmiProperties()));
+        persistenceCmHandle.setPublicProperties(asPersistenceCmHandleProperties(
+            restModelCmHandle.getPublicProperties()));
         return persistenceCmHandle;
     }
 

@@ -60,4 +60,15 @@ class PersistenceCmHandleRetrieverSpec extends Specification {
             'without DMI properties' | []                                  || []
             'with DMI properties'    | childDataNodesForCmHandleProperties || [new PersistenceCmHandle.Property("name1", "value1")]
     }
+
+    def "Retrieve Cm Handle Details." () {
+        given: 'the cps data service returns a data node from the DMI registry'
+            def dataNode = new DataNode(childDataNodes:childDataNodesForCmHandleProperties, leaves: leaves)
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+        when : 'retrieving the cm handle details'
+            def result = objectUnderTest.retrieveCmHandleDetails(cmHandleId)
+        then: 'the correct cm handle and and public properties are returned'
+            result.id == cmHandleId
+            result.publicProperties == [new PersistenceCmHandle.Property("name2", "value2")]
+    }
 }
