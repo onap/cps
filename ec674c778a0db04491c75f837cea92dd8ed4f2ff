@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab359c5_b3a6db24",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T13:46:58Z",
+      "side": 1,
+      "message": "suggestion: add \u0027andCommonUtilityPackages\u0027",
+      "range": {
+        "startLine": 53,
+        "startChar": 78,
+        "endLine": 53,
+        "endChar": 86
+      },
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c961abcc_ac5d25f6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T13:46:58Z",
+      "side": 1,
+      "message": "since it was introduce deliberately it probably should be mentioned too  (but don\u0027t use classname)\ne..g \u0027a DMI request exception was...",
+      "range": {
+        "startLine": 175,
+        "startChar": 18,
+        "endLine": 175,
+        "endChar": 22
+      },
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
