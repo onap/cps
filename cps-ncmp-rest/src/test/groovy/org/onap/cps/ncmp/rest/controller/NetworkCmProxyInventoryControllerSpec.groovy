@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.models.RestModelCmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -67,7 +67,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     def 'Dmi plugin registration with #scenario' () {
         given: 'jsonData, cmHandle, & DmiPluginRegistration'
             def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
-            def cmHandle = new CmHandle(cmHandleID : 'example-name')
+            def cmHandle = new RestModelCmHandle(cmHandleID : 'example-name')
             def expectedDmiPluginRegistration = new DmiPluginRegistration(
                 dmiPlugin: 'service1',
                 dmiDataPlugin: '',

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,21 +37,22 @@ public class PersistenceCmHandlesList {
      * @param dmiServiceName the dmi service name
      * @param dmiDataServiceName the dmi data service name
      * @param dmiModelServiceName the dmi model service name
-     * @param cmHandles cm handles
+     * @param restModelCmHandles cm handles rest model
      * @return instance of PersistenceCmHandleList
      */
     public static PersistenceCmHandlesList toPersistenceCmHandlesList(final String dmiServiceName,
                                                                       final String dmiDataServiceName,
                                                                       final String dmiModelServiceName,
-                                                                      final Collection<CmHandle> cmHandles) {
+                                                                      final Collection<RestModelCmHandle>
+                                                                          restModelCmHandles) {
         final PersistenceCmHandlesList persistenceCmHandlesList = new PersistenceCmHandlesList();
-        for (final CmHandle cmHandle : cmHandles) {
+        for (final RestModelCmHandle restModelCmHandle : restModelCmHandles) {
             final PersistenceCmHandle persistenceCmHandle =
                 PersistenceCmHandle.toPersistenceCmHandle(
                     dmiServiceName,
                     dmiDataServiceName,
                     dmiModelServiceName,
-                    cmHandle);
+                    restModelCmHandle);
             persistenceCmHandlesList.add(persistenceCmHandle);
         }
         return persistenceCmHandlesList;

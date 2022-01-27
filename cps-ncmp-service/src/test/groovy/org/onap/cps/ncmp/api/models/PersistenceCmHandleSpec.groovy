@@ -29,7 +29,7 @@ class PersistenceCmHandleSpec extends Specification {
 
     def 'Creating persistence cm handle from a cm handle.'() {
         given: 'a cm handle with properties'
-            def cmHandle = new CmHandle()
+            def cmHandle = new RestModelCmHandle()
             cmHandle.dmiProperties = [myDmiProperty:'value1']
             cmHandle.publicProperties = [myPublicProperty:'value2']
         when: 'it is converted to a persistence cm handle'
@@ -46,7 +46,7 @@ class PersistenceCmHandleSpec extends Specification {
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a Persistence CM Handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle())
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new RestModelCmHandle())
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:

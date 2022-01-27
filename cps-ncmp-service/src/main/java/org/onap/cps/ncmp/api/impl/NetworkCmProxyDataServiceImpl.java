@@ -43,10 +43,11 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
-import org.onap.cps.ncmp.api.models.CmHandle;
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
+import org.onap.cps.ncmp.api.models.RestModelCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleReference;
@@ -78,6 +79,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsModuleService cpsModuleService;
 
     private final CpsAdminService cpsAdminService;
+
+    private final PersistenceCmHandleRetriever persistenceCmHandleRetriever;
+
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -153,6 +157,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
+     * Retrieve cm handle details for a given cm handle.
+     * @param cmHandle cm handle
+     * @return cm handle details
+     */
+    @Override
+    public PersistenceCmHandle getCmHandleDetails(final String cmHandle) {
+        return persistenceCmHandleRetriever.retrieveCmHandleDetails(cmHandle);
+    }
+
+    /**
      * THis method registers a cm handle and intiates modules sync.
      *
      * @param dmiPluginRegistration dmi plugin registration information.
@@ -187,7 +201,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private PersistenceCmHandlesList getUpdatedPersistenceCmHandlesList(
         final DmiPluginRegistration dmiPluginRegistration,
-        final List<CmHandle> updatedCmHandles) {
+        final List<RestModelCmHandle> updatedCmHandles) {
         return PersistenceCmHandlesList.toPersistenceCmHandlesList(
             dmiPluginRegistration.getDmiPlugin(),
             dmiPluginRegistration.getDmiDataPlugin(),
