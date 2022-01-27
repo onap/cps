@@ -46,6 +46,30 @@
       "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "743c6165_1d4f1d78",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T13:26:13Z",
+      "side": 1,
+      "message": "I meant to explain in a chat: it depend who touches the file when\nif the file was created in 2021 but NOT touched by EST (Nordix) until 2022 it should just say \n\n# Modifications Copyright (C) 2022 Nordix Foundation\n\nIf it was already modified by Nordix in 2021 (the modification copyright is already there) and your are making new changes in 2022 you modify it to say \n\n# Modifications Copyright (C) 2021-2022 Nordix Foundation\n\n\nJust base it on what copyright are there already when you modified no need to actually check the git-history, its a best effort approach",
+      "parentUuid": "3739c3c2_1812513a",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "bc8ec7a6e87f081f78c106d0399d44e96f9a93ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
