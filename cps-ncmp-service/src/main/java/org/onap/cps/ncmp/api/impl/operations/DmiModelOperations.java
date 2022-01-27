@@ -65,7 +65,7 @@ public class DmiModelOperations extends DmiOperations {
     public List<ModuleReference> getModuleReferences(final PersistenceCmHandle persistenceCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .build();
-        dmiRequestBody.asCmHandleProperties(persistenceCmHandle.getAdditionalProperties());
+        dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
                 jsonObjectMapper.asJsonString(dmiRequestBody), persistenceCmHandle.getId(), "modules");
@@ -82,7 +82,7 @@ public class DmiModelOperations extends DmiOperations {
     public Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
                                                           final List<ModuleReference> unknownModuleReferences) {
         final String jsonDataWithDataAndCmHandleProperties = getRequestBodyToFetchYangResources(
-            unknownModuleReferences, persistenceCmHandle.getAdditionalProperties());
+            unknownModuleReferences, persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             persistenceCmHandle.resolveDmiServiceName(MODEL),
             jsonDataWithDataAndCmHandleProperties,
@@ -109,7 +109,7 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
-        final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+        final List<PersistenceCmHandle.Property> cmHandleProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
@@ -131,9 +131,9 @@ public class DmiModelOperations extends DmiOperations {
         return moduleReferences;
     }
 
-    private static JsonObject toJsonObject(final List<PersistenceCmHandle.AdditionalProperty> cmHandleProperties) {
+    private static JsonObject toJsonObject(final List<PersistenceCmHandle.Property> cmHandleProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final PersistenceCmHandle.AdditionalProperty additionalProperty : cmHandleProperties) {
+        for (final PersistenceCmHandle.Property additionalProperty : cmHandleProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

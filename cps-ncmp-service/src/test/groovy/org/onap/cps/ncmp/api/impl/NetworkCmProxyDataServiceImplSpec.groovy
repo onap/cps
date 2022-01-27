@@ -52,8 +52,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockDmiDataOperations, null,
+        mockCpsModuleService, mockCpsDataService, mockCpsAdminService, spyObjectMapper, null)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -241,10 +241,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
                 UPDATE, '{some-json}', 'application/json')
                 >> { new ResponseEntity<>(HttpStatus.OK) }
-        where:
-            scenario  | includeCmHandleProperties || expectedJsonForCmhandleProperties
-            'with'    | true                      || '{"testName":"testValue"}'
-            'without' | false                     || '{}'
     }
 
     def 'Verify error message from handleResponse is correct for #scenario operation.'() {

@@ -24,6 +24,8 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
+import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -36,38 +38,38 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockPersistenceCmHandleRetriever = Mock(PersistenceCmHandleRetriever)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-            mockCpsModuleService, mockCpsAdminService)
+            mockCpsModuleService, mockCpsAdminService, mockPersistenceCmHandleRetriever)
 
     def expectedDataspaceName = 'NFP-Operational'
 
     def 'Sync model for a (new) cm handle with #scenario'() {
         given: 'persistence cm handle is given'
-            def cmHandleForModelSync = new PersistenceCmHandle(id:'some cm handle', dmiServiceName: 'some service name')
-        and: 'additional properties are set as required'
-            if (additionalProperties!=null) {
-                cmHandleForModelSync.asAdditionalProperties(additionalProperties)
-            }
-        and: 'dmi operations returns some module references'
+            def cmHandle = new CmHandle()
+            def dmiServiceName = 'some service name'
+            cmHandle.cmHandleID = 'cm handle id 1'
+            cmHandle.dmiProperties = dmiProperties
+            def persistenceCmHandle = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, '' , '', cmHandle)
+        and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
                                                             new ModuleReference(moduleName:'module2',revision:'2') ]
-            mockDmiModelOperations.getModuleReferences(cmHandleForModelSync) >> moduleReferences
+            mockDmiModelOperations.getModuleReferences(persistenceCmHandle) >> moduleReferences
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> existingModuleResourcesInCps
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(cmHandleForModelSync, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
+            mockDmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
         when: 'module sync is triggered'
-            objectUnderTest.syncModulesAndCreateAnchor(cmHandleForModelSync)
+            objectUnderTest.syncModulesAndCreateAnchor(persistenceCmHandle)
         then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, cmHandleForModelSync.getId(), yangResourceToContentMap, expectedKnownModules)
+            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, persistenceCmHandle.getId(), yangResourceToContentMap, expectedKnownModules)
         and: 'admin service create anchor method has been called with correct parameters'
-            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, cmHandleForModelSync.getId(), cmHandleForModelSync.getId())
+            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, persistenceCmHandle.getId(), persistenceCmHandle.getId())
         where: 'the following parameters are used'
-            scenario                        | additionalProperties | existingModuleResourcesInCps                                               | yangResourceToContentMap      || expectedKnownModules                                                       | expectedJsonForAdditionalProperties
-            'one unknown module'            | ['name1': 'value1']  | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')] | [module1: 'some yang source'] || [new ModuleReference('module2', '2')]                                      | '{"name1":"value1"}'
-            'no add. properties'            | [:]                  | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')] | [module1: 'some yang source'] || [new ModuleReference('module2', '2')]                                      | '{}'
-            'additional properties is null' | null                 | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')] | [module1: 'some yang source'] || [new ModuleReference('module2', '2')]                                      | '{}'
-            'no unknown module'             | [:]                  | [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')] | [:]                           || [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')] | '{}'
+            scenario                        | dmiProperties        | existingModuleResourcesInCps                                               | yangResourceToContentMap      || expectedKnownModules
+            'one unknown module'            | ['name1': 'value1']  | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')] | [module1: 'some yang source'] || [new ModuleReference('module2', '2')]
+            'no add. properties'            | [:]                  | [new ModuleReference('module2', '2'), new ModuleReference('module3', '3')] | [module1: 'some yang source'] || [new ModuleReference('module2', '2')]
+            'no unknown module'             | [:]                  | [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')] | [:]                           || [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
     }
 }

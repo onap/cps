@@ -180,6 +180,17 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
     }
 
+    def 'Get Cm Handle details by Cm Handle name.' () {
+        given: 'an endpoint and a cm handle'
+            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/testCmHandle"
+        and: 'the service method is invoked with the cm handle name'
+            1 * mockNetworkCmProxyDataService.getCmHandleDetails('PNFDemo') >> ['Book' : 'Romance']
+        when: 'the cm handle details api is invoked'
+            def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
+        then: 'the correct response is returned'
+            response.status == HttpStatus.OK.value()
+    }
+
     def 'Call execute cm handle searches with unrecognized condition name.'() {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
