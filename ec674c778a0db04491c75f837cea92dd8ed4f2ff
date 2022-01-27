@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "d04dcadd_73f2e56f",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T16:58:07Z",
+      "side": 1,
+      "message": "I suspect the  JsonObjectMapper: https://gerrit.onap.org/r/c/cps/+/126633",
+      "parentUuid": "0e751816_4e9706aa",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0482d10b_28d847b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
         "patchSetId": 8
@@ -116,6 +134,24 @@
       "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6c61b42_018a2734",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T16:58:07Z",
+      "side": 1,
+      "message": "its all part of https://gerrit.onap.org/r/c/cps/+/126633",
+      "parentUuid": "154b5238_0345b895",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

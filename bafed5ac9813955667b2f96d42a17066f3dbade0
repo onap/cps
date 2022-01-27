@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e7b67eb_535eb810",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-27T16:58:07Z",
+      "side": 1,
+      "message": "did you change this to DMI PLugin Exception?!",
+      "range": {
+        "startLine": 175,
+        "startChar": 18,
+        "endLine": 175,
+        "endChar": 31
+      },
+      "revId": "bafed5ac9813955667b2f96d42a17066f3dbade0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
