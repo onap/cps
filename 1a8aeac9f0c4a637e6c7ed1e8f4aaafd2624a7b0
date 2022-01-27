@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1741c1c3_32e4a0c4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelperTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T10:39:03Z",
+      "side": 1,
+      "message": "Missing copyright",
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879af26c_b7308d3a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelperTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-01-27T10:39:03Z",
+      "side": 1,
+      "message": "I believe your save format might be incorrect as we shouldn\u0027t use tabs. See https://wiki.onap.org/display/DW/Setting+Up+Your+Development+Environment#SettingUpYourDevelopmentEnvironment-ConfigureONAPcodestyleautoformattingforIntelliJ(usingthesamecheckstylerulesandautomatingitforyou)",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
