@@ -25,10 +25,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
-import org.onap.cps.ncmp.rest.model.RestCmHandle;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
 
 @Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
@@ -41,6 +41,6 @@ public interface RestInputMapper {
         @Mapping(source = "cmHandleProperties", target = "dmiProperties"),
         @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
     })
-    CmHandle toCmHandle(final RestCmHandle restCmHandle);
+    NcmpServiceCmHandle toCmHandle(final RestInputCmHandle restInputCmHandle);
 
 }

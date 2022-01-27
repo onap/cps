@@ -44,15 +44,14 @@ public class DmiPluginRegistration {
 
     private String dmiModelPlugin;
 
-    private List<CmHandle> createdCmHandles = Collections.emptyList();
+    private List<NcmpServiceCmHandle> createdCmHandles = Collections.emptyList();
 
-    private List<CmHandle> updatedCmHandles = Collections.emptyList();
+    private List<NcmpServiceCmHandle> updatedCmHandles = Collections.emptyList();
 
     private List<String> removedCmHandles = Collections.emptyList();
 
     /**
      * Validates plugin service names.
-     *
      * @throws NcmpException if validation fails.
      */
     public void validateDmiPluginRegistration() throws NcmpException {
