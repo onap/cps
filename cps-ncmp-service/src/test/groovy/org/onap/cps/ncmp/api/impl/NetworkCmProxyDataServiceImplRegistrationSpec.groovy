@@ -26,11 +26,11 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
-import org.onap.cps.ncmp.api.models.CmHandle
+import org.onap.cps.ncmp.api.impl.operations.PersistenceCmHandleRetriever
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.RestModelCmHandle
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
@@ -42,7 +42,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     @Shared
-    def persistenceCmHandle = new CmHandle()
+    def restModelCmHandle = new RestModelCmHandle()
 
     @Shared
     def cmHandlesArray = ['cmHandle001']
@@ -53,6 +53,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockPersistenceHandleHandleRetriever = Mock(PersistenceCmHandleRetriever)
 
     def noTimestamp = null
 
@@ -60,9 +61,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration'
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
-            persistenceCmHandle.cmHandleID = '123'
-            persistenceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
-            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
+            restModelCmHandle.cmHandleID = '123'
+            restModelCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
+            restModelCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
@@ -85,10 +86,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                     'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
             scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToUpdateNode | expectedCallsToDeleteSchemaSetAndListElement
-            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                         | 0
-            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 1                         | 0
+            'create'                    | [restModelCmHandle] | []                  | []             || 1 | 0 | 0
+            'update'                    | []                  | [restModelCmHandle] | []             || 0 | 1 | 0
             'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 0                         | 1
-            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                         | 1
+            'create, update and delete' | [restModelCmHandle] | [restModelCmHandle] | cmHandlesArray || 1 | 1 | 1
             'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0
     }
 
@@ -96,10 +97,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration without cm-handle properties'
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
-            persistenceCmHandle.cmHandleID = '123'
-            persistenceCmHandle.dmiProperties = Collections.emptyMap()
-            persistenceCmHandle.publicProperties = Collections.emptyMap()
-            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
+            restModelCmHandle.cmHandleID = '123'
+            restModelCmHandle.dmiProperties = Collections.emptyMap()
+            restModelCmHandle.publicProperties = Collections.emptyMap()
+            dmiPluginRegistration.createdCmHandles = [restModelCmHandle]
             def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,"additional-properties":[],"public-properties":[]}]}'
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
@@ -122,8 +123,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             thrown(DataValidationException)
         where:
             scenario | createdCmHandles      | updatedCmHandles
-            'create' | [persistenceCmHandle] | []
-            'update' | []                    | [persistenceCmHandle]
+            'create' | [restModelCmHandle] | []
+            'update' | []                  | [restModelCmHandle]
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) with no data found during delete process.'() {
@@ -157,7 +158,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:dmiPlugin, dmiModelPlugin:dmiModelPlugin,
                     dmiDataPlugin:dmiDataPlugin)
-            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
+            dmiPluginRegistration.createdCmHandles = [restModelCmHandle]
         when: 'update registration and sync module is called with correct DMI plugin information'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
@@ -174,7 +175,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:dmiPlugin, dmiModelPlugin:dmiModelPlugin,
                     dmiDataPlugin:dmiDataPlugin)
-            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
+            dmiPluginRegistration.createdCmHandles = [restModelCmHandle]
         when: 'registration is called with incorrect DMI plugin information'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a DMI Request Exception is thrown with correct message details'
@@ -196,7 +197,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-                mockCpsModuleService, mockCpsAdminService))
+                mockCpsModuleService, mockCpsAdminService, mockPersistenceHandleHandleRetriever))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }

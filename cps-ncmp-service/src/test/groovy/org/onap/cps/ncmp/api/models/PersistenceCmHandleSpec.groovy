@@ -29,11 +29,11 @@ class PersistenceCmHandleSpec extends Specification {
 
     def 'Creating persistence cm handle from a cm handle.'() {
         given: 'a cm handle with properties'
-            def cmHandle = new CmHandle()
-            cmHandle.dmiProperties = [myDmiProperty:'value1']
-            cmHandle.publicProperties = [myPublicProperty:'value2']
+            def restModelCmHandle = new RestModelCmHandle()
+            restModelCmHandle.dmiProperties = [myDmiProperty:'value1']
+            restModelCmHandle.publicProperties = [myPublicProperty:'value2']
         when: 'it is converted to a persistence cm handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle('','','', cmHandle)
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle('','','', restModelCmHandle)
         then: 'the result has the right size'
             assert objectUnderTest.dmiProperties.size() == 1
         and: 'the DMI property in the result has the correct name and value'
@@ -45,8 +45,8 @@ class PersistenceCmHandleSpec extends Specification {
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
-        given: 'a Persistence CM Handle'
-            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new CmHandle())
+        given: 'a Persistence cm handle'
+            def objectUnderTest = PersistenceCmHandle.toPersistenceCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new RestModelCmHandle())
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
