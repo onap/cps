@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ae9b7236_95b81052",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-01-28T09:11:01Z",
+      "side": 1,
+      "message": "Actually what I intend to do is as below.\nWhen leaves.containsKey(attributeKey) is true.\n     attributeValue is null : then remove the key.\n     attributeValue is not null : then we update the value(as key is already present)\nWhen leaves.containsKey(attributeKey) is false.\n     attributeValue is not null : then we can add it ( as it is the new key-value )\n     attributeValue is null : then we ignore it ( as no point of adding a key with null value )",
+      "parentUuid": "d4f3147d_5a440ca7",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe6236cc_4e98f458",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelper.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3f05ccc_5b7602ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/helper/NetworkCmProxyDataServiceHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-01-28T09:11:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe6236cc_4e98f458",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "1a8aeac9f0c4a637e6c7ed1e8f4aaafd2624a7b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
