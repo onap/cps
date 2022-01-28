@@ -424,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "74c87c1a_8fdded09",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-28T18:31:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ac0168c_3e6a46c4",
+      "range": {
+        "startLine": 113,
+        "startChar": 27,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7849bdc9_c1f92022",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 6
