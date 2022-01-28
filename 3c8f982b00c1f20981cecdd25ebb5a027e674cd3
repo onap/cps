@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "474e5c36_43f2026b",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T19:00:38Z",
+      "side": 1,
+      "message": "Minor spelling change : *occured -\u003e occurred",
+      "revId": "3c8f982b00c1f20981cecdd25ebb5a027e674cd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f16df32_30fca7d3",
         "filename": "cps-rest/docs/openapi/cpsQuery.yml",
         "patchSetId": 5
