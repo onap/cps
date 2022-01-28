@@ -127,6 +127,24 @@
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a2905f3_5ff88443",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:10:44Z",
+      "side": 1,
+      "message": "Also this is a private method, there isn\u0027t much use adding Javadoc to it.",
+      "parentUuid": "d16747c0_8a1961e5",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
