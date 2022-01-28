@@ -45,8 +45,8 @@ getResourceDataForPassthroughOperational:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
 resourceDataForPassthroughRunning:
   get:
@@ -76,8 +76,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
   post:
     tags:
       - network-cm-proxy
@@ -112,8 +112,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
   put:
     tags:
@@ -149,8 +149,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
   patch:
     tags:
@@ -180,8 +180,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
   delete:
     tags:
@@ -204,7 +204,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
-
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
 fetchModuleReferencesByCmHandle:
   get:
@@ -230,8 +231,8 @@ fetchModuleReferencesByCmHandle:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
-      404:
-        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
 
 executeCmHandleSearch:
   post:
@@ -259,3 +260,5 @@ executeCmHandleSearch:
         $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
