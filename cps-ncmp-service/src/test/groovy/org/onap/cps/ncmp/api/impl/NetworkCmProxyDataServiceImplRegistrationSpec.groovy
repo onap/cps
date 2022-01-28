@@ -26,7 +26,6 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.exception.NcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.models.CmHandle
@@ -53,16 +52,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
 
     def noTimestamp = null
 
     def 'Register or re-register a DMI Plugin for the given cm-handle(s) with #scenario process.'() {
         given: 'a registration'
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
-            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
+            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2']
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
@@ -74,22 +74,21 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'save list elements is invoked with the expected parameters'
             expectedCallsToSaveNode * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
-                    '/dmi-registry', expectedJsonData, noTimestamp)
-        and: 'update node and child data nodes is invoked with correct parameters'
-            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin',
-                    'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, noTimestamp)
+                '/dmi-registry', expectedJsonData, noTimestamp)
+        and: 'updateDataNodeLeaves is called with correct parameters'
+            expectedCallsToPropertyHandler * mockNetworkCmProxyDataServicePropertyHandler.updateDataNodeLeaves(updatedCmHandles)
         and: 'delete schema set is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'cmHandle001', CASCADE_DELETE_ALLOWED)
         and: 'delete list or list element is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
-                    'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
+                'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
-            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToUpdateNode | expectedCallsToDeleteSchemaSetAndListElement
-            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                         | 0
-            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 1                         | 0
-            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 0                         | 1
-            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                         | 1
-            'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0
+            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToPropertyHandler
+            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                                            | 1
+            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 0                                            | 1
+            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 1                                            | 1
+            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                                            | 1
+            'no valid data'             | null                  | null                  | null             || 0                       | 0                                            | 0
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
@@ -194,9 +193,25 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'only data DMI plugin'          | ''         | ''             | 'service1'    || 'Cannot register just a Data or Model plugin service name'
     }
 
+    def 'Exception logged when Add/Remove/Update properties(DMI and Public) called as part of CM-Handle registration update'() {
+        given: 'a CM-handle registration'
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+        and: 'dmiPluginRegistration input update request'
+            def dmiPluginReg = new DmiPluginRegistration();
+            dmiPluginReg.dmiPlugin = 'onap.dmap.plugin';
+            dmiPluginReg.updatedCmHandles = [new CmHandle(cmHandleID: 'unknownHandle')]
+        and: 'updateDataNodeLeaves is unable to find node and throws exception'
+            mockNetworkCmProxyDataServicePropertyHandler.updateDataNodeLeaves(*_) >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') }
+        when: 'updateDmiRegistrationAndSyncModule is called for unknown cmHandle'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginReg)
+        then: 'DataValidationException is thrown'
+            def exceptionThrown = thrown(DataValidationException.class)
+            assert exceptionThrown.getDetails().contains('DataNode not found')
+    }
+
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-                mockCpsModuleService, mockCpsAdminService))
+            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }

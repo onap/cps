@@ -73,6 +73,8 @@ components:
             $ref: '#/components/schemas/RestCmHandle'
         updatedCmHandles:
           type: array
+          example:
+            - { "cmHandle": "my-cm-handle", "cmHandleProperties": { "add-my-property": "add-property" , "update-my-property": "updated-property" , "delete-my-property": null },"publicCmHandleProperties": { "add-my-property": "add-property" , "update-my-property": "updated-property" , "delete-my-property": null } }
           items:
             $ref: '#/components/schemas/RestCmHandle'
         removedCmHandles:
