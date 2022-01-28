@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44486455_439c59a7",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-01-28T12:08:24Z",
+      "side": 1,
+      "message": "i think this should be ok with just \u0027properties\u0027 ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 28
+      },
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
