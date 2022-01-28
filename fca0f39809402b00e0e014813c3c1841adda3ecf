@@ -22,6 +22,57 @@
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecaa8e17_e0cfcd2e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T12:12:33Z",
+      "side": 1,
+      "message": "We can replace this Constructor by using @AllArgsConstructor",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69c06a99_d20a1816",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T12:12:33Z",
+      "side": 1,
+      "message": "We can use MapStruct here. May be it can be considered as improvment later.\n\nMapStruct is a code generator that greatly simplifies the implementation of mappings between Java bean types based on a convention over configuration approach.\n\nThe generated mapping code uses plain method invocations and thus is fast, type-safe and easy to understand.",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f2f5a30_25a9f215",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T12:12:33Z",
+      "side": 1,
+      "message": "We should doc. here",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
