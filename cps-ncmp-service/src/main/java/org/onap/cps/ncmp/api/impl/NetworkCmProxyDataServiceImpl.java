@@ -23,6 +23,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.impl.helper.NetworkCmProxyDataServiceHelper.handleAddOrRemoveCmHandleProperties;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
@@ -47,8 +48,10 @@ import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -94,6 +97,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         } catch (final JsonProcessingException e) {
             handleJsonProcessingException(dmiPluginRegistration, e);
+        } catch (final DataNodeNotFoundException e) {
+            handleDataNodeNotFoundException(dmiPluginRegistration, e);
         }
     }
 
@@ -176,13 +181,59 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
+    /**
+     * Iterate over incoming dmiPluginRegistration request and apply the property updates based on cmHandleId to the
+     * existing dataNode.
+     *
+     * @param dmiPluginRegistration dmi-plugin-registration
+     */
     private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration)
-        throws JsonProcessingException {
-        final PersistenceCmHandlesList updatedPersistenceCmHandlesList =
-            getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getUpdatedCmHandles());
-        final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedPersistenceCmHandlesList);
-        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
+            throws DataNodeNotFoundException {
+
+        final Collection<DataNode> updatedDataNodes = new ArrayList<>();
+        dmiPluginRegistration.getUpdatedCmHandles().forEach(cmHandle -> {
+            try {
+                final String cmHandleID = cmHandle.getCmHandleID();
+                final String targetXpath = "/dmi-registry/cm-handles[@id='" + cmHandleID + "']";
+                final DataNode dataNode =
+                        cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, targetXpath,
+                                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+
+                if (dataNode != null && dataNode.getLeaves() != null) {
+                    handleCmHandlePropertyUpdates(dataNode, cmHandle);
+                    updatedDataNodes.add(dataNode);
+                }
+
+                if (!updatedDataNodes.isEmpty()) {
+                    cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
+                            updatedDataNodes, NO_TIMESTAMP);
+                }
+            } catch (final DataNodeNotFoundException e) {
+                log.error("Unable to find dataNode for cmHandleId {} with cause {}", cmHandle.getCmHandleID(),
+                        e.getMessage());
+                throw e;
+            }
+        });
+    }
+
+    /**
+     * Handles DMI and Public property and applies the update to the dataNode.
+     *
+     * @param dataNode data-node
+     * @param cmHandle cm-handle
+     */
+    private void handleCmHandlePropertyUpdates(final DataNode dataNode, final CmHandle cmHandle) {
+        if (!cmHandle.getDmiProperties().isEmpty()) {
+            cmHandle.getDmiProperties().forEach(
+                    (attributeKey, attributeValue) -> handleAddOrRemoveCmHandleProperties(dataNode, attributeKey,
+                            attributeValue));
+        }
+
+        if (!cmHandle.getPublicProperties().isEmpty()) {
+            cmHandle.getPublicProperties().forEach(
+                    (attributeKey, attributeValue) -> handleAddOrRemoveCmHandleProperties(dataNode, attributeKey,
+                            attributeValue));
+        }
     }
 
     private PersistenceCmHandlesList getUpdatedPersistenceCmHandlesList(
@@ -199,6 +250,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                       final JsonProcessingException e) {
         final String message = "Parsing error occurred while processing DMI Plugin Registration"
             + dmiPluginRegistration;
+        log.error(message);
+        throw new DataValidationException(message, e.getMessage(), e);
+    }
+
+    private static void handleDataNodeNotFoundException(final DmiPluginRegistration dmiPluginRegistration,
+            final DataNodeNotFoundException e) {
+        final String message =
+                "Unable to find the data node for DMI Plugin Registration request " + dmiPluginRegistration;
         log.error(message);
         throw new DataValidationException(message, e.getMessage(), e);
     }
