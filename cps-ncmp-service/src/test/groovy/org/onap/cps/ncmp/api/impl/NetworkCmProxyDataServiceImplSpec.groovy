@@ -51,9 +51,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def nullNetworkCmProxyDataServicePropertyHandler = null
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService)
+        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
