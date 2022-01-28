@@ -53,7 +53,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService)
+        mockCpsModuleService, mockCpsAdminService, null)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

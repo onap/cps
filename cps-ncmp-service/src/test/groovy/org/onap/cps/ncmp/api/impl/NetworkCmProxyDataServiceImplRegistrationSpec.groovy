@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -53,16 +54,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
 
     def noTimestamp = null
 
     def 'Register or re-register a DMI Plugin for the given cm-handle(s) with #scenario process.'() {
         given: 'a registration'
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             persistenceCmHandle.cmHandleID = '123'
             persistenceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
-            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
+            persistenceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2']
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
@@ -70,26 +72,32 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 '"additional-properties":[{"name":"dmiProp1","value":"dmiValue1"},{"name":"dmiProp2","value":"dmiValue2"}],' +
                 '"public-properties":[{"name":"publicProp1","value":"publicValue1"},{"name":"publicProp2","value":"publicValue2"}]' +
                 '}]}'
+        and: 'a dataNode'
+            def dataNode = new DataNode()
+            dataNode.xpath = "/dmi-registry/cm-handles[@id='123']"
+            dataNode.leaves = ['dmiProp1': 'dmiValue1', 'dmiProp2': 'dmiValue2', 'publicProp1': 'publicValue1', 'publicProp2': 'publicValue2']
         when: 'registration is updated and modules are synced'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'save list elements is invoked with the expected parameters'
             expectedCallsToSaveNode * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
-                    '/dmi-registry', expectedJsonData, noTimestamp)
-        and: 'update node and child data nodes is invoked with correct parameters'
-            expectedCallsToUpdateNode * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin',
-                    'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, noTimestamp)
+                '/dmi-registry', expectedJsonData, noTimestamp)
+        and: 'updateDataNodeLeaves is called with correct parameters'
+            expectedCallsToPropertyHandler * mockNetworkCmProxyDataServicePropertyHandler.updateDataNodeLeaves('NCMP-Admin',
+                'ncmp-dmi-registry', '/dmi-registry', updatedCmHandles)
+        and: 'replace list content is also called'
+            expectedCallsToUpdateNode * mockCpsDataService.replaceListContent(*_)
         and: 'delete schema set is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'cmHandle001', CASCADE_DELETE_ALLOWED)
         and: 'delete list or list element is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
-                    'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
+                'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
-            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToUpdateNode | expectedCallsToDeleteSchemaSetAndListElement
-            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                         | 0
-            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 1                         | 0
-            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 0                         | 1
-            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                         | 1
-            'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0
+            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToUpdateNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToPropertyHandler
+            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                         | 0                                            | 0
+            'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 1                         | 0                                            | 1
+            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 0                         | 1                                            | 0
+            'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                         | 1                                            | 1
+            'no valid data'             | null                  | null                  | null             || 0                       | 0                         | 0                                            | 0
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
@@ -194,9 +202,75 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'only data DMI plugin'          | ''         | ''             | 'service1'    || 'Cannot register just a Data or Model plugin service name'
     }
 
+    def 'Add/Remove/Update properties(DMI and Public) as part of CM-Handle registration update #scenario'() {
+        given: 'a CM-handle registration'
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def cmHandleId = "myHandle1"
+            def cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
+        and: 'dataspace and anchor details along with parentXpath'
+            def dataspaceName = 'NCMP-Admin'
+            def anchorName = 'ncmp-dmi-registry'
+            def parentXpath = '/dmi-registry'
+        and: 'a data node with some attributes(leaves)'
+            def dataNode = new DataNode()
+            dataNode.xpath = cmHandleXpath
+            dataNode.leaves = expectedCmHandlesAfterUpdate
+            dataNode.childDataNodes = [expectedChildCmhandles]
+        and: 'dmiPluginRegistration input update request'
+            def dmiPluginReg = new DmiPluginRegistration();
+            dmiPluginReg.dmiPlugin = 'onap.dmap.plugin';
+            dmiPluginReg.updatedCmHandles = [new CmHandle(cmHandleID: cmHandleId, dmiProperties: updatedDmiProperties, publicProperties: updatedPublicProperties)]
+        and:
+            mockNetworkCmProxyDataServicePropertyHandler.updateDataNodeLeaves(dataspaceName,
+                anchorName, parentXpath, dmiPluginReg.getUpdatedCmHandles()) >> [dataNode]
+        when: 'updateDmiRegistrationAndSyncModule is called'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginReg)
+        then: 'check for leaves or immediate attributes with updated values'
+            assert dataNode.leaves.size() == expectedCmHandlesAfterUpdate.size()
+            assert dataNode.leaves == expectedCmHandlesAfterUpdate
+        then: 'check for child-nodes attributes'
+            assert dataNode.childDataNodes == [expectedChildCmhandles]
+        where:
+            scenario                                    | existingProperties                       | updatedDmiProperties  | updatedPublicProperties     | childCmHandles                 || expectedCmHandlesAfterUpdate                                      | expectedChildCmhandles
+            'property removed'                          | ['prop': 'value', 'pub-prop': 'pub-val'] | ['prop': null]        | ['pub-prop': null]          | ['child-key': 'child-value']   || [:]                                                               | ['child-key': 'child-value']
+            'property updated'                          | ['prop': 'value', 'pub-prop': 'pub-val'] | ['prop': 'newValue']  | ['pub-prop': 'newPubVal']   | ['ch1': 'val1', 'ch2': 'val2'] || ['prop': 'newValue', 'pub-prop': 'newPubVal']                     | ['ch1': 'val1', 'ch2': 'val2']
+            'property added'                            | ['prop': 'value']                        | ['new-prop': 'value'] | ['new-pub-prop': 'pub-val'] | [:]                            || ['prop': 'value', 'new-prop': 'value', 'new-pub-prop': 'pub-val'] | [:]
+            'property ignored(value is null)'           | ['prop': 'value', 'pub-prop': 'pub-val'] | ['propx': null]       | ['pub-propx': null]         | [:]                            || ['prop': 'value', 'pub-prop': 'pub-val']                          | [:]
+            'no existing property and we try to add'    | [:]                                      | ['prop4': 'value4']   | ['pub-prop4': 'val4']       | [:]                            || ['prop4': 'value4', 'pub-prop4': 'val4']                          | [:]
+            'no existing property and we try to remove' | [:]                                      | ['prop4': null]       | ['pub-prop4': null]         | [:]                            || [:]                                                               | [:]
+    }
+
+    def 'Exception logged when Add/Remove/Update properties(DMI and Public) called as part of CM-Handle registration update'() {
+        given: 'a CM-handle registration'
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def cmHandleId = "unknownHandle"
+            def cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
+        and: 'a data node'
+            def dataNode = new DataNode()
+            dataNode.xpath = cmHandleXpath
+		and: 'dataspace and anchor details along with parentXpath'
+			def dataspaceName = 'NCMP-Admin'
+			def anchorName = 'ncmp-dmi-registry'
+			def parentXpath = '/dmi-registry'
+        and: 'dmiPluginRegistration input update request'
+            def dmiPluginReg = new DmiPluginRegistration();
+            dmiPluginReg.dmiPlugin = 'onap.dmap.plugin';
+            dmiPluginReg.updatedCmHandles = [new CmHandle(cmHandleID: cmHandleId)]
+		and: 'updateDataNodeLeaves is unable to find node and throws exception'
+			mockNetworkCmProxyDataServicePropertyHandler.updateDataNodeLeaves(dataspaceName, anchorName, parentXpath, dmiPluginReg.getUpdatedCmHandles())
+				>> { throw new DataNodeNotFoundException(dataspaceName, anchorName) }
+        when: 'updateDmiRegistrationAndSyncModule is called for unknown dataNode'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginReg)
+        then: 'DataValidationException is thrown'
+            def exceptionThrown = thrown(DataValidationException.class)
+            assert exceptionThrown.getDetails().contains('DataNode not found')
+        and: 'replaceListContent is not called'
+            0 * mockCpsDataService.replaceListContent(*_)
+    }
+
     def getObjectUnderTestWithModelSyncDisabled() {
         def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-                mockCpsModuleService, mockCpsAdminService))
+            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler))
         objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
         return objectUnderTest
     }
