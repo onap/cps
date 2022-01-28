@@ -96,7 +96,7 @@ components:
       type: object
       additionalProperties:
         type: string
-        example: my-property
+        example: "add-property , update-property , null to remove-property"
     ErrorMessage:
       title: Error
       type: object
