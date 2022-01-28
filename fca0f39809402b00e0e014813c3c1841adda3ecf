@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "89bc5bed_37f7fb8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-28T14:14:55Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "c2403266_8afec632",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69c06a99_d20a1816",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 23
@@ -92,6 +110,24 @@
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1066668_442b204f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-28T14:14:55Z",
+      "side": 1,
+      "message": "Good suggestion Sourabh but maybe not at this stage of the commit anymore.\nWe should consider it going forward for similar changing in upcoming user stories. Again highlighting the need for early sharing and reviewing of each others code!",
+      "parentUuid": "2600f9d8_9241e3d4",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -142,6 +178,24 @@
       "side": 1,
       "message": "Also this is a private method, there isn\u0027t much use adding Javadoc to it.",
       "parentUuid": "d16747c0_8a1961e5",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31d226b8_082efe0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-28T14:14:55Z",
+      "side": 1,
+      "message": "agreed, not for private methods\n(method needs to be moved down though after all public methods)",
+      "parentUuid": "2a2905f3_5ff88443",
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
