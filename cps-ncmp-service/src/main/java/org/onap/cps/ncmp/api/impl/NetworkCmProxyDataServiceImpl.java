@@ -23,11 +23,15 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -59,14 +63,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
-    private static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
-
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
-    private static final OffsetDateTime NO_TIMESTAMP = null;
-
     private final CpsDataService cpsDataService;
 
     private final JsonObjectMapper jsonObjectMapper;
@@ -78,6 +74,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsModuleService cpsModuleService;
 
     private final CpsAdminService cpsAdminService;
+
+    private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -92,8 +90,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             if (dmiPluginRegistration.getRemovedCmHandles() != null) {
                 parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
             }
-        } catch (final JsonProcessingException e) {
-            handleJsonProcessingException(dmiPluginRegistration, e);
+        } catch (final JsonProcessingException | DataNodeNotFoundException e) {
+            final String errorMessage = String.format(
+                    "Error occurred while processing the CM-handle registration request [%s] ,caused by : [%s]",
+                    dmiPluginRegistration, e.getMessage());
+            throw new DataValidationException(errorMessage, e.getMessage(), e);
         }
     }
 
@@ -176,13 +177,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration)
-        throws JsonProcessingException {
-        final PersistenceCmHandlesList updatedPersistenceCmHandlesList =
-            getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getUpdatedCmHandles());
-        final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedPersistenceCmHandlesList);
-        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
+    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        networkCmProxyDataServicePropertyHandler.updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
     }
 
     private PersistenceCmHandlesList getUpdatedPersistenceCmHandlesList(
@@ -195,19 +191,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             updatedCmHandles);
     }
 
-    private static void handleJsonProcessingException(final DmiPluginRegistration dmiPluginRegistration,
-                                                      final JsonProcessingException e) {
-        final String message = "Parsing error occurred while processing DMI Plugin Registration"
-            + dmiPluginRegistration;
-        log.error(message);
-        throw new DataValidationException(message, e.getMessage(), e);
-    }
-
-    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList)
-        throws JsonProcessingException  {
+    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList) {
         final String cmHandleJsonData = jsonObjectMapper.asJsonString(persistenceCmHandlesList);
-        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
-            cmHandleJsonData, NO_TIMESTAMP);
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandleJsonData, NO_TIMESTAMP);
 
         for (final PersistenceCmHandle persistenceCmHandle : persistenceCmHandlesList.getPersistenceCmHandles()) {
             syncModulesAndCreateAnchor(persistenceCmHandle);
@@ -279,7 +266,4 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
             persistenceCmHandle.getId());
     }
-
-
-
 }
