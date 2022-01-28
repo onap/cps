@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36bc95b0_5ebd5426",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T15:15:50Z",
+      "side": 1,
+      "message": "Hello Lee Anjell. Properties is a keyword within Swagger see \nhttps://swagger.io/docs/specification/data-models/data-types/#:~:text\u003dThe%20properties%20keyword%20is%20used,a%20schema%20for%20each%20property.\u0026text\u003dTip%3A%20In%20OpenAPI%2C%20objects%20are,the%20request%20and%20response%20definitions.",
+      "parentUuid": "44486455_439c59a7",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 28
+      },
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ecaa8e17_e0cfcd2e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
         "patchSetId": 23
