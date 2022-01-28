@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -127,6 +127,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> newListElements =
             buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+    }
+
+    @Override
+    public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
+        cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
     }
 
