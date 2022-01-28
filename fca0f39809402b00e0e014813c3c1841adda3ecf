@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "c2403266_8afec632",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:04:08Z",
+      "side": 1,
+      "message": "As this wasn\u0027t decided upon when work started on this story, I can do it as part of the following commit maybe?\n\nhttps://gerrit.onap.org/r/c/cps/+/126844",
+      "parentUuid": "ecaa8e17_e0cfcd2e",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69c06a99_d20a1816",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 23
@@ -59,6 +77,24 @@
     },
     {
       "key": {
+        "uuid": "2600f9d8_9241e3d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:04:08Z",
+      "side": 1,
+      "message": "As this was out of scope, I think it should be done as a future improvement.",
+      "parentUuid": "69c06a99_d20a1816",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f2f5a30_25a9f215",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 23
@@ -70,6 +106,24 @@
       "writtenOn": "2022-01-28T12:12:33Z",
       "side": 1,
       "message": "We should doc. here",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d16747c0_8a1961e5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:04:08Z",
+      "side": 1,
+      "message": "Can also be done as part of this commit\n\nhttps://gerrit.onap.org/r/c/cps/+/126844",
+      "parentUuid": "6f2f5a30_25a9f215",
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
