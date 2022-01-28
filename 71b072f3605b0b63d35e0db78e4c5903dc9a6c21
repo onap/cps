@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0dd46040_080586b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-28T18:57:37Z",
+      "side": 1,
+      "message": "Commit message does does not follow ONAP guidelines:\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 67
+      },
+      "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c22775d_22afd1d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-28T18:57:37Z",
+      "side": 1,
+      "message": "Issue-ID is missing.\n\nWas the repo cloned with commit-msg hook that is supposed to do the verification when the change is pushed ?\nhttps://gerrit.onap.org/r/admin/repos/cps",
+      "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
