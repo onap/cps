@@ -49,6 +49,7 @@ import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -59,13 +60,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
-    private static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
+    public static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    public static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
 
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
+    public static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
-    private static final OffsetDateTime NO_TIMESTAMP = null;
+    public static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
+
+    public static final OffsetDateTime NO_TIMESTAMP = null;
 
     private final CpsDataService cpsDataService;
 
@@ -78,6 +81,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsModuleService cpsModuleService;
 
     private final CpsAdminService cpsAdminService;
+
+    private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
@@ -94,6 +99,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         } catch (final JsonProcessingException e) {
             handleJsonProcessingException(dmiPluginRegistration, e);
+        } catch (final DataNodeNotFoundException e) {
+            handleDataNodeNotFoundException(dmiPluginRegistration, e);
         }
     }
 
@@ -177,12 +184,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration)
-        throws JsonProcessingException {
-        final PersistenceCmHandlesList updatedPersistenceCmHandlesList =
-            getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getUpdatedCmHandles());
-        final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedPersistenceCmHandlesList);
-        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry", cmHandlesAsJson, NO_TIMESTAMP);
+            throws DataNodeNotFoundException {
+
+        if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
+            final Collection<DataNode> updatedDataNodes = networkCmProxyDataServicePropertyHandler.updateDataNodeLeaves(
+                    dmiPluginRegistration.getUpdatedCmHandles());
+
+            cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                    updatedDataNodes, NO_TIMESTAMP);
+        }
     }
 
     private PersistenceCmHandlesList getUpdatedPersistenceCmHandlesList(
@@ -199,6 +209,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                       final JsonProcessingException e) {
         final String message = "Parsing error occurred while processing DMI Plugin Registration"
             + dmiPluginRegistration;
+        log.error(message);
+        throw new DataValidationException(message, e.getMessage(), e);
+    }
+
+    private static void handleDataNodeNotFoundException(final DmiPluginRegistration dmiPluginRegistration,
+            final DataNodeNotFoundException e) {
+        final String message =
+                "Unable to find the data node for DMI Plugin Registration request " + dmiPluginRegistration;
         log.error(message);
         throw new DataValidationException(message, e.getMessage(), e);
     }

@@ -24,13 +24,13 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsModuleService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -201,6 +201,17 @@ class CpsDataServiceImplSpec extends Specification {
                     }
                 }
             )
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree', Operation.UPDATE)
+    }
+
+    def 'Replace list content data fragment which accepts Collection of dataNode'() {
+        when: 'replace list content method is invoked with collection of dataNode'
+            def dataNode = new DataNode();
+            dataNode.xpath = "/test-tree/branch[@name='A']"
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', [dataNode], observedTimestamp)
+        then: 'the persistence service method is invoked'
+            1 * mockCpsDataPersistenceService.replaceListContent(*_)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree', Operation.UPDATE)
     }

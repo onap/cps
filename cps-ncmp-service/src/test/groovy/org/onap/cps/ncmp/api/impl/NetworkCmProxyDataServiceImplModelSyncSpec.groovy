@@ -32,14 +32,16 @@ import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
 
+    def mockCpsDataService = null
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
+    def mockNetworkCmProxyDataServicePropertyHandler = null
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(null, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-            mockCpsModuleService, mockCpsAdminService)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
+        mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler)
 
     def expectedDataspaceName = 'NFP-Operational'
 
