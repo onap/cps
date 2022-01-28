@@ -22,6 +22,30 @@
       "revId": "87b991eb6502c20f441d00faa953f82de04fe12d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e250932f_4038c3c5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-28T20:06:15Z",
+      "side": 0,
+      "message": "Yes, but it is being taken care of at the AdminService Layer. https://gerrit.onap.org/r/c/cps/+/126679/7/cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+      "parentUuid": "3f9fc4b7_34d74117",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 66
+      },
+      "revId": "87b991eb6502c20f441d00faa953f82de04fe12d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
