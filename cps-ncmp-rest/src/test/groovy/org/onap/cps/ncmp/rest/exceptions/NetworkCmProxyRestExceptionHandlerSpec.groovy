@@ -23,7 +23,8 @@ package org.onap.cps.ncmp.rest.exceptions
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.impl.exception.NcmpException
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -34,6 +35,7 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
@@ -66,17 +68,18 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         dataNodeBaseEndpoint = "$basePath/v1"
     }
 
-    def 'Get request with generic #scenario exception returns HTTP Status Internal Server Error.'() {
-        when: 'generic CPS exception is thrown by the service'
+    def 'Get request with generic #scenario exception returns correct HTTP Status.'() {
+        when: 'an exception is thrown by the service'
             setupTestException(exception)
             def response = performTestRequest()
-        then: 'an HTTP Internal Server Error response is returned with correct message and details'
-            assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, expectedErrorDetails)
+        then: 'an HTTP response is returned with correct message and details'
+            assertTestResponse(response, expectedErrorCode, errorMessage, expectedErrorDetails)
         where:
-            scenario | exception                                     || expectedErrorDetails
-            'CPS'    | new CpsException(errorMessage, errorDetails)  || errorDetails
-            'NCMP'   | new NcmpException(errorMessage, errorDetails) || null
-            'other'  | new IllegalStateException(errorMessage)       || null
+            scenario      | exception                                           || expectedErrorDetails | expectedErrorCode
+            'CPS'         | new CpsException(errorMessage, errorDetails)        || errorDetails         | INTERNAL_SERVER_ERROR
+            'NCMP-server' | new ServerNcmpException(errorMessage, errorDetails) || null                 | INTERNAL_SERVER_ERROR
+            'NCMP-client' | new DmiRequestException(errorMessage, errorDetails) || null                 | BAD_REQUEST
+            'other'       | new IllegalStateException(errorMessage)             || null                 | INTERNAL_SERVER_ERROR
     }
 
     def setupTestException(exception){
