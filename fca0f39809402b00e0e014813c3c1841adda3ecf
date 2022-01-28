@@ -78,6 +78,24 @@
     },
     {
       "key": {
+        "uuid": "b2ab309c_5108f095",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:37:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89bc5bed_37f7fb8e",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69c06a99_d20a1816",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
         "patchSetId": 23
@@ -199,6 +217,24 @@
       "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8013b16c_e4a3205f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandle.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-01-28T14:37:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31d226b8_082efe0d",
+      "revId": "fca0f39809402b00e0e014813c3c1841adda3ecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
