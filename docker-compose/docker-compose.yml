@@ -89,7 +89,7 @@ services:
     container_name: dbpostgresql
     image: postgres:13.2-alpine
     ports:
-      - '5432:5432'
+      - ${DB_PORT:-5432}:5432
     environment:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
