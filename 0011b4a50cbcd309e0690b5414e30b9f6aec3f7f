@@ -206,6 +206,69 @@
       "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac0168c_3e6a46c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-28T13:54:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 113,
+        "startChar": 27,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7849bdc9_c1f92022",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-28T13:54:43Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 153,
+        "startChar": 53,
+        "endLine": 153,
+        "endChar": 54
+      },
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ef66d18_9b76118e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-01-28T13:54:43Z",
+      "side": 1,
+      "message": "Unexpected change",
+      "revId": "0011b4a50cbcd309e0690b5414e30b9f6aec3f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
