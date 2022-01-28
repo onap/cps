@@ -382,3 +382,13 @@ components:
     NoContent:
       description: No Content
       content: {}
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
