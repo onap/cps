@@ -39,6 +39,57 @@
       "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa5ade3d_cc94c32e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T18:59:15Z",
+      "side": 1,
+      "message": "*occured -\u003e occurred",
+      "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eae0502_449f2fd6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/DmiRequestException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T18:59:15Z",
+      "side": 1,
+      "message": "We should use only 2022",
+      "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4334647a_836ae986",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/ServerNcmpException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-28T18:59:15Z",
+      "side": 1,
+      "message": "2022",
+      "revId": "71b072f3605b0b63d35e0db78e4c5903dc9a6c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
