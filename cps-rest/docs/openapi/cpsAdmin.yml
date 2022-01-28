@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
+# Modifications Copyright (C) 2021-2022 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,13 +29,14 @@ dataspaces:
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
       '401':
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete a dataspace
     tags:
@@ -54,6 +56,8 @@ dataspaces:
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
         $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
 
 schemaSet:
   post:
@@ -71,7 +75,6 @@ schemaSet:
         multipart/form-data:
           schema:
             $ref: 'components.yml#/components/schemas/MultipartFile'
-
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
@@ -81,6 +84,10 @@ schemaSet:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
 
 schemaSetBySchemaSetName:
   get:
@@ -105,9 +112,8 @@ schemaSetBySchemaSetName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete a schema set given a schema set name and a dataspace
     tags:
@@ -128,6 +134,8 @@ schemaSetBySchemaSetName:
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
         $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
 
 anchorsByDataspace:
   get:
@@ -153,9 +161,8 @@ anchorsByDataspace:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   post:
     description: Create a new anchor in the given dataspace
     tags:
@@ -175,6 +182,10 @@ anchorsByDataspace:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
 
 anchorByDataspaceAndAnchorName:
   get:
@@ -199,9 +210,8 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
-      '404':
-        $ref: 'components.yml#/components/responses/NotFound'
-
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete an anchor given an anchor name and a dataspace
     tags:
@@ -220,3 +230,5 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
