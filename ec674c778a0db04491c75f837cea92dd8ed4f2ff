@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "548931d3_5cba2614",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-01-28T03:41:36Z",
+      "side": 1,
+      "message": "This is surprising that the tests did not fail for JsonObjectMapper change to prevent the merge at that time. I\u0027ll try to have a look later ...",
+      "parentUuid": "d04dcadd_73f2e56f",
+      "revId": "ec674c778a0db04491c75f837cea92dd8ed4f2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0482d10b_28d847b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
         "patchSetId": 8
