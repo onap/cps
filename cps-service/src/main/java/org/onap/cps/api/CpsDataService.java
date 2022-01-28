@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada
  *  ================================================================================
@@ -23,6 +23,7 @@
 package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -118,6 +119,19 @@ public interface CpsDataService {
      */
     void replaceListContent(@NonNull String dataspaceName, @NonNull String anchorName, @NonNull String parentNodeXpath,
                             @NonNull String jsonData, OffsetDateTime observedTimestamp);
+
+    /**
+     * Replaces list content by removing all existing elements and inserting the given new elements as data nodes
+     * under given parent, anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace-name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param dataNodes         datanodes representing the updated data
+     * @param observedTimestamp observedTimestamp
+     */
+    void replaceListContent(String dataspaceName, String anchorName, String parentNodeXpath,
+            Collection<DataNode> dataNodes, OffsetDateTime observedTimestamp);
 
     /**
      * Deletes data node for given anchor and dataspace.
