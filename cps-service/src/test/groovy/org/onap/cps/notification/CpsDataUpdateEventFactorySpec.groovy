@@ -36,27 +36,22 @@ import spock.lang.Specification
 class CpsDataUpdateEventFactorySpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
-    def mockCpsAdminService = Mock(CpsAdminService)
 
-    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService, mockCpsAdminService)
+    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService)
 
-    def myDataspaceName = 'my-dataspace'
-    def myAnchorName = 'my-anchorname'
-    def mySchemasetName = 'my-schemaset-name'
     def dateTimeFormat = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSZ'
 
     def 'Create a CPS data updated event successfully: #scenario'() {
-        given: 'cps admin service is able to return anchor details'
-            mockCpsAdminService.getAnchor(myDataspaceName, myAnchorName) >>
-                new Anchor(myAnchorName, myDataspaceName, mySchemasetName)
+        given: 'an anchor which has been updated'
+            def anchor = new Anchor('my-anchorname', 'my-dataspace', 'my-schemaset-name')
         and: 'cps data service returns the data node details'
             def xpath = '/'
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(['leafName': 'leafValue']).build()
             mockCpsDataService.getDataNode(
-                myDataspaceName, myAnchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                'my-dataspace', 'my-anchorname', xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'CPS data updated event is created'
-            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(myDataspaceName,
-                myAnchorName, DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE)
+            def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(anchor,
+                    DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE)
         then: 'CPS data updated event is created with correct envelope'
             with(cpsDataUpdatedEvent) {
                 type == 'org.onap.cps.data-updated-event'
@@ -73,9 +68,9 @@ class CpsDataUpdateEventFactorySpec extends Specification {
                 else
                     assert OffsetDateTime.now().minusSeconds(20).isBefore(
                         DateTimeUtility.toOffsetDateTime(observedTimestamp))
-                assert anchorName == myAnchorName
-                assert dataspaceName == myDataspaceName
-                assert schemaSetName == mySchemasetName
+                assert anchorName == 'my-anchorname'
+                assert dataspaceName == 'my-dataspace'
+                assert schemaSetName == 'my-schemaset-name'
                 assert operation == Content.Operation.CREATE
                 assert data == new Data().withAdditionalProperty('leafName', 'leafValue')
             }
