@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fefec900_1dba9d84",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-31T11:47:19Z",
+      "side": 1,
+      "message": "We can use and remove constructure from line no 41-45\n\n@AllArgsConstructor\npublic class CpsAdminServiceImpl implements CpsAdminService {\n\n    private final CpsAdminPersistenceService cpsAdminPersistenceService;\n    @Lazy\n    private final CpsDataService cpsDataService;",
+      "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef17ff83_c2aac1c0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 9
@@ -22,6 +39,23 @@
       "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d762ca43_76961586",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-01-31T11:47:19Z",
+      "side": 1,
+      "message": "We should use small \u0027p\u0027 here in \u0027Persistence\u0027 to avoid inconsistencies.",
+      "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
