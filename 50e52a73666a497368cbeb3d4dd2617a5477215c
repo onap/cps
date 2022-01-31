@@ -77,6 +77,30 @@
     },
     {
       "key": {
+        "uuid": "0b26d04c_4260e490",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-31T09:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "104f2a95_3863e05d",
+      "range": {
+        "startLine": 546,
+        "startChar": 16,
+        "endLine": 546,
+        "endChar": 43
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ceb4b731_9f11d4a6",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 7
@@ -171,6 +195,30 @@
     },
     {
       "key": {
+        "uuid": "e423d4bc_8f9fcfb5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-31T09:57:44Z",
+      "side": 1,
+      "message": "NB: I dont see any changes between #7 and #9 related to this?",
+      "parentUuid": "4ca37135_6c8f6f2d",
+      "range": {
+        "startLine": 554,
+        "startChar": 3,
+        "endLine": 557,
+        "endChar": 0
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a8256bd_95caeffb",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 7
@@ -221,6 +269,24 @@
       "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40a24d10_de880796",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-31T09:57:44Z",
+      "side": 1,
+      "message": "ah, I it is tet test application.yml. Should be fine (and helpful)",
+      "parentUuid": "fbbb5fb1_654e4faf",
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -338,6 +404,30 @@
       "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "597b7a9d_a96f988f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-31T09:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a21fba94_21f88515",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "50e52a73666a497368cbeb3d4dd2617a5477215c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
