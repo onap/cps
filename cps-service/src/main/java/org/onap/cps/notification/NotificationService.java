@@ -29,6 +29,7 @@ import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -80,22 +81,20 @@ public class NotificationService {
     /**
      * Process Data Updated Event and publishes the notification.
      *
-     * @param dataspaceName     dataspace name
-     * @param anchorName        anchor name
+     * @param anchor            anchor
      * @param observedTimestamp observedTimestamp
      * @param xpath             xpath of changed data node
      * @param operation         operation
      * @return future
      */
     @Async("notificationExecutor")
-    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
-                                                final OffsetDateTime observedTimestamp,
+    public Future<Void> processDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
                                                 final String xpath, final Operation operation) {
-        log.debug("process data updated event for dataspace '{}' & anchor '{}'", dataspaceName, anchorName);
+        log.debug("process data updated event for anchor '{}'", anchor);
         try {
-            if (shouldSendNotification(dataspaceName)) {
+            if (shouldSendNotification(anchor.getDataspaceName())) {
                 final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(dataspaceName, anchorName,
+                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
                         observedTimestamp, getRootNodeOperation(xpath, operation));
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
@@ -105,7 +104,7 @@ public class NotificationService {
                CPS operation should not fail if sending event fails for any reason.
              */
             notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
-                exception, dataspaceName, anchorName);
+                exception, anchor, xpath, operation);
         }
         return CompletableFuture.completedFuture(null);
     }
