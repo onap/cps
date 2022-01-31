@@ -25,7 +25,7 @@ import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-import org.onap.cps.api.CpsAdminService;
+import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.event.model.Content;
 import org.onap.cps.event.model.CpsDataUpdatedEvent;
@@ -38,6 +38,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor(onConstructor = @__(@Lazy))
 public class CpsDataUpdatedEventFactory {
 
     private static final URI EVENT_SCHEMA;
@@ -56,29 +57,22 @@ public class CpsDataUpdatedEventFactory {
         }
     }
 
+    @Lazy
     private final CpsDataService cpsDataService;
-    private final CpsAdminService cpsAdminService;
-
-    public CpsDataUpdatedEventFactory(@Lazy final CpsDataService cpsDataService,
-        final CpsAdminService cpsAdminService) {
-        this.cpsDataService = cpsDataService;
-        this.cpsAdminService = cpsAdminService;
-    }
 
     /**
      * Generates CPS Data Updated event. If observedTimestamp is not provided, then current timestamp is used.
      *
-     * @param dataspaceName     dataspaceName
-     * @param anchorName        anchorName
+     * @param anchor            anchor
      * @param observedTimestamp observedTimestamp
      * @param operation         operation
      * @return CpsDataUpdatedEvent
      */
-    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final String dataspaceName, final String anchorName,
+    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor,
         final OffsetDateTime observedTimestamp, final Operation operation) {
-        final var dataNode = cpsDataService
-            .getDataNode(dataspaceName, anchorName, "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final var dataNode = (operation == Operation.DELETE) ? null :
+            cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(),
+                "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 
@@ -105,10 +99,12 @@ public class CpsDataUpdatedEventFactory {
         content.withAnchorName(anchor.getName());
         content.withDataspaceName(anchor.getDataspaceName());
         content.withSchemaSetName(anchor.getSchemaSetName());
-        content.withData(createData(dataNode));
         content.withOperation(Content.Operation.fromValue(operation.name()));
         content.withObservedTimestamp(
             DATE_TIME_FORMATTER.format(observedTimestamp == null ? OffsetDateTime.now() : observedTimestamp));
+        if (dataNode != null) {
+            content.withData(createData(dataNode));
+        }
         return content;
     }
 }

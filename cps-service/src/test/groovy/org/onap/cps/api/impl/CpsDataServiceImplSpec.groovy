@@ -24,7 +24,6 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsModuleService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -47,9 +46,14 @@ class CpsDataServiceImplSpec extends Specification {
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
             mockYangTextSchemaSourceSetCache, mockNotificationService)
 
+    def setup() {
+        mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+    }
+
     def dataspaceName = 'some dataspace'
     def anchorName = 'some anchor'
     def schemaSetName = 'some schema set'
+    def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
     def 'Saving json data.'() {
@@ -62,7 +66,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == '/test-tree' })
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/', Operation.CREATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/', Operation.CREATE)
     }
 
     def 'Saving child data fragment under existing node.'() {
@@ -75,7 +79,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, '/test-tree',
                 { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree', Operation.CREATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/test-tree', Operation.CREATE)
     }
 
     def 'Saving list element data fragment under existing node.'() {
@@ -95,7 +99,7 @@ class CpsDataServiceImplSpec extends Specification {
                 }
             )
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree', Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/test-tree', Operation.UPDATE)
     }
 
     def 'Saving empty list element data fragment.'() {
@@ -127,7 +131,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, expectedNodeXpath, leaves)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, parentNodeXpath, Operation.UPDATE)
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath                   | leaves
             'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'                        | Collections.emptyMap()
@@ -160,7 +164,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
                 "/bookstore/categories[@code='01']", ['name':'Romance', 'code': '01'])
         and: 'the data updated event is sent to the notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/bookstore', Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/bookstore', Operation.UPDATE)
     }
 
     def 'Replace data node: #scenario.'() {
@@ -172,7 +176,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == expectedNodeXpath })
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, parentNodeXpath, Operation.UPDATE)
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath
             'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'
@@ -196,7 +200,7 @@ class CpsDataServiceImplSpec extends Specification {
                 }
             )
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree', Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/test-tree', Operation.UPDATE)
     }
 
     def 'Replace whole list content with empty list element.'() {
@@ -217,7 +221,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, '/test-tree/branch')
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/test-tree/branch', Operation.DELETE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/test-tree/branch', Operation.DELETE)
     }
 
     def 'Delete data node under anchor and dataspace.'() {
@@ -228,7 +232,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, '/data-node')
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, '/data-node', Operation.DELETE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/data-node', Operation.DELETE)
     }
 
     def 'Delete all data nodes for a given anchor and dataspace.'() {
@@ -238,11 +242,12 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
         then: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, '/', Operation.DELETE)
+
     }
 
     def setupSchemaSetMocks(String... yangResources) {
-        def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
-        mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
