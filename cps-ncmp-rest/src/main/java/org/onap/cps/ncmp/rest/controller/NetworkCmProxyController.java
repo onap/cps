@@ -224,6 +224,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return moduleNames;
     }
 
+    //Does this work?
     private CmHandleProperties toCmHandleProperties(final Collection<String> cmHandleIdentifiers) {
         final CmHandleProperties cmHandleProperties = new CmHandleProperties();
         for (final String cmHandleIdentifier : cmHandleIdentifiers) {
