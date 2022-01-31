@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b951b118_72783234",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-01-31T14:44:58Z",
+      "side": 1,
+      "message": "I don\u0027t mind either approach but consistency inside our repos would be good. Maybe we can have a quick vote/decision in our next stand-up. Can you please remind me in the next stand-up assuming you are both present?",
+      "parentUuid": "62d601ff_ad1ac62e",
+      "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef17ff83_c2aac1c0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 9
