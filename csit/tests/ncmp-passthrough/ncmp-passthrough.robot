@@ -35,6 +35,7 @@ ${ncmpBasePath}         /ncmp
 ${netconf}              NETCONF
 
 *** Test Cases ***
+*** Does this Work :') ***
 
 Get for Passthough Operational (CF, RO) with fields
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema/location)
