@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "62d601ff_ad1ac62e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-01-31T14:31:23Z",
+      "side": 1,
+      "message": "I prefer to create an explicit constructor so that we can also see how many classes the class is dependent on. It helps to identify if are doing too much in the class.",
+      "parentUuid": "fefec900_1dba9d84",
+      "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef17ff83_c2aac1c0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 9
