@@ -33,6 +33,7 @@ import org.onap.cps.notification.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.YangUtils;
@@ -134,7 +135,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
         final OffsetDateTime observedTimestamp) {
+        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, Operation.DELETE, observedTimestamp);
     }
 
     @Override
@@ -185,9 +188,16 @@ public class CpsDataServiceImpl implements CpsDataService {
     private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName,
                                               final OffsetDateTime observedTimestamp, final String xpath,
                                               final Operation operation) {
+        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        this.processDataUpdatedEventAsync(anchor, xpath, operation, observedTimestamp);
+    }
+
+    private void processDataUpdatedEventAsync(final Anchor anchor, final String xpath, final Operation operation,
+        final OffsetDateTime observedTimestamp) {
         try {
-            notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, xpath, operation);
+            notificationService.processDataUpdatedEvent(anchor, observedTimestamp, xpath, operation);
         } catch (final Exception exception) {
+            //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);
         }
     }
