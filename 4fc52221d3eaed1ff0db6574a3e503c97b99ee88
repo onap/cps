@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "823ab367_abd397a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:09:51Z",
+      "side": 1,
+      "message": "Should be \u0027Issue-ID: CPS-604\u0027",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b35cae3d_299098a7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:09:51Z",
+      "side": 1,
+      "message": "Perhaps \"As developers we have noticed that some services take more time to process requests than we expect.\" ?",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 105
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4086d6b_fd1d9c7c",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:09:51Z",
+      "side": 1,
+      "message": "Classes and methods",
+      "range": {
+        "startLine": 286,
+        "startChar": 47,
+        "endLine": 286,
+        "endChar": 55
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19ee3f74_54c2e897",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:09:51Z",
+      "side": 1,
+      "message": "Is this information relevant to the client?",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 231
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13c69e17_d8d585a9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:09:51Z",
+      "side": 1,
+      "message": "Step 3. Check CPS logs.\nBelow is a sample of the output",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 15
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
