@@ -35,9 +35,6 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Component
 @Slf4j
-@ConditionalOnExpression(
-        "'${logging.level.org.onap.cps}'.equalsIgnoreCase('DEBUG')"
-)
 public class CpsLoggingAspectService {
 
     private static final String ALL_CPS_METHODS = "execution(* org.onap.cps..*(..)))";
@@ -49,6 +46,9 @@ public class CpsLoggingAspectService {
      */
     @Around(ALL_CPS_METHODS)
     @SneakyThrows
+    @ConditionalOnExpression(
+            "'${logging.level.org.onap.cps}'.equalsIgnoreCase('DEBUG')"
+    )
     public Object logMethodExecutionTime(final ProceedingJoinPoint proceedingJoinPoint) {
         final StopWatch stopWatch = new StopWatch();
 
