@@ -25,11 +25,15 @@ import org.aspectj.lang.reflect.MethodSignature
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
+import java.util.logging.Level
+import java.util.logging.Logger
+
 class CpsLoggingAspectServiceSpec extends Specification {
 
     def mockProceedingJoinPoint = Mock(ProceedingJoinPoint)
     def mockMethodSignature = Mock(MethodSignature);
-    def objectUnderTest = new CpsLoggingAspectService()
+    def mockLogger = Mock(Logger)
+    def objectUnderTest = new CpsLoggingAspectService(mockLogger)
 
     def setup() {
         mockMethodSignature.getDeclaringType() >> this.getClass()
@@ -38,9 +42,22 @@ class CpsLoggingAspectServiceSpec extends Specification {
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
     }
 
-    def 'Log method execution time.'() {
-        given: 'mock valid arguments'
+    def 'Log method execution time with log level trace.'() {
+        given: 'mock valid arguments and log level as trace'
             mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+//            Logger.getLogger('org.onap.cps').setLevel(Level.FINEST)
+            mockLogger.isLoggable(Level.FINEST) >> true
+        when: 'aop intercepts cps method and start calculation of time'
+            objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
+        then: 'process successfully and log details of executed method'
+            1 * mockProceedingJoinPoint.proceed()
+    }
+
+    def 'Log method execution time with log level debug.'() {
+        given: 'mock valid arguments and log level as debug'
+            mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+//            Logger.getLogger('org.onap.cps').setLevel(Level.FINE)
+            mockLogger.isLoggable(Level.FINE) >> true
         when: 'aop intercepts cps method and start calculation of time'
             objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
         then: 'process successfully and log details of executed method'
@@ -49,7 +66,7 @@ class CpsLoggingAspectServiceSpec extends Specification {
 
     def 'Creating a data validation exception for invalid args.'() {
         given: 'a data validation exception is created'
-            mockProceedingJoinPoint.getArgs() >> {
+            mockProceedingJoinPoint.proceed() >> {
                 throw new DataValidationException('invalid args',
                         'invalid method arg(s) is passed', new Throwable())
             }

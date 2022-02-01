@@ -22,25 +22,27 @@ package org.onap.cps.aop;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 @Aspect
 @Component
 @Slf4j
-@ConditionalOnExpression(
-        "'${logging.level.org.onap.cps}'.equalsIgnoreCase('DEBUG')"
-)
+@AllArgsConstructor
 public class CpsLoggingAspectService {
 
-    private static final String ALL_CPS_METHODS = "execution(* org.onap.cps..*(..)))";
+    private final Logger logger;
+    private static final String CPS_PACKAGE_NAME = "org.onap.cps";
+    private static final String ALL_CPS_METHODS = "execution(* " + CPS_PACKAGE_NAME + "..*(..)))";
 
     /**
      * To measure method execution time as a logging.
@@ -51,19 +53,21 @@ public class CpsLoggingAspectService {
     @SneakyThrows
     public Object logMethodExecutionTime(final ProceedingJoinPoint proceedingJoinPoint) {
         final StopWatch stopWatch = new StopWatch();
-
         //Calculate method execution time
         stopWatch.start();
-        final Object logObject = Optional.ofNullable(proceedingJoinPoint.proceed()).orElse("");
+        final Object returnValue = Optional.ofNullable(proceedingJoinPoint.proceed()).orElse("");
         stopWatch.stop();
         final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-        //Log method execution time
-        log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
-                methodSignature.getDeclaringType().getSimpleName(),
-                methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), logObject,
-                stopWatch.getTotalTimeMillis());
-
-        return logObject;
+        // java.util.logging -> SLF4J (FINE -> DEBUG, FINEST -> TRACE)
+        if (logger.isLoggable(Level.FINE)
+                || logger.isLoggable(Level.FINEST)) {
+            //Log method execution time
+            log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
+                    methodSignature.getDeclaringType().getSimpleName(),
+                    methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), returnValue,
+                    stopWatch.getTotalTimeMillis());
+        }
+        return returnValue;
     }
 
 }
