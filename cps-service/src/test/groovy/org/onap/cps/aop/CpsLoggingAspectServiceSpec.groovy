@@ -25,6 +25,9 @@ import org.aspectj.lang.reflect.MethodSignature
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
+import java.util.logging.Level
+import java.util.logging.Logger
+
 class CpsLoggingAspectServiceSpec extends Specification {
 
     def mockProceedingJoinPoint = Mock(ProceedingJoinPoint)
@@ -36,6 +39,7 @@ class CpsLoggingAspectServiceSpec extends Specification {
         mockMethodSignature.getDeclaringType().getSimpleName() >> 'CpsLoggingAspectServiceSpec'
         mockMethodSignature.getName() >> 'logMethodExecutionTime'
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
+        Logger.getLogger('org.onap.cps').setLevel(Level.FINE)
     }
 
     def 'Log method execution time.'() {
@@ -49,7 +53,7 @@ class CpsLoggingAspectServiceSpec extends Specification {
 
     def 'Creating a data validation exception for invalid args.'() {
         given: 'a data validation exception is created'
-            mockProceedingJoinPoint.getArgs() >> {
+            mockProceedingJoinPoint.proceed() >> {
                 throw new DataValidationException('invalid args',
                         'invalid method arg(s) is passed', new Throwable())
             }
