@@ -24,8 +24,12 @@ import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.reflect.MethodSignature
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class CpsLoggingAspectServiceSpec extends Specification {
+
+    private static final Logger logger = Logger.getLogger("org.onap.cps")
 
     def mockProceedingJoinPoint = Mock(ProceedingJoinPoint)
     def mockMethodSignature = Mock(MethodSignature);
@@ -38,18 +42,39 @@ class CpsLoggingAspectServiceSpec extends Specification {
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
     }
 
-    def 'Log method execution time.'() {
-        given: 'mock valid arguments'
+    def 'Should not calculate and log method execution time for log level info.'() {
+        given: 'mock valid pointcut arguments and set log level to info'
             mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
-        when: 'aop intercepts cps method and start calculation of time'
+        logger.setLevel(Level.INFO)
+        when: 'aop intercepts cps method'
             objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
-        then: 'process successfully and log details of executed method'
-            1 * mockProceedingJoinPoint.proceed()
+        then: 'should not capture method name and log it'
+            0 * mockMethodSignature.getName()
+    }
+
+    def 'Log method execution time if log level is debug.'() {
+        given: 'mock valid pointcut arguments and set log level to debug'
+            mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+            logger.setLevel(Level.FINE)
+        when: 'aop intercepts cps method'
+            objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
+        then: 'should capture method name and log it'
+            1 * mockMethodSignature.getName()
+    }
+
+    def 'Log method execution time if log level is trace.'() {
+        given: 'mock valid pointcut arguments and set log level to trace'
+            mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+            logger.setLevel(Level.FINEST)
+        when: 'aop intercepts cps method'
+            def returnValue=objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
+        then: 'should capture method name and log it'
+            1 * mockMethodSignature.getName()
     }
 
     def 'Creating a data validation exception for invalid args.'() {
         given: 'a data validation exception is created'
-            mockProceedingJoinPoint.getArgs() >> {
+            mockProceedingJoinPoint.proceed() >> {
                 throw new DataValidationException('invalid args',
                         'invalid method arg(s) is passed', new Throwable())
             }
