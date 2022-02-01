@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86421c74_a64642fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-01T12:32:09Z",
+      "side": 1,
+      "message": "What is the purpose of catching exception here as it is already logged into processDataUpdatedEvent method.",
+      "revId": "47177303db0befccbe7cbeb3979cf5eb191eb3d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cb787b7_9b455345",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-01T12:32:09Z",
+      "side": 1,
+      "message": "remove extra space from beginning.",
+      "revId": "47177303db0befccbe7cbeb3979cf5eb191eb3d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
