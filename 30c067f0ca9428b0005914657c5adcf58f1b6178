@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4792cab1_c7f62991",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:16:36Z",
+      "side": 1,
+      "message": "I believe we need to 500 to all endpoints",
+      "revId": "30c067f0ca9428b0005914657c5adcf58f1b6178",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82b89f4b_d2467aa7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-01T16:16:36Z",
+      "side": 1,
+      "message": "Just a thought but could we use ObjectMapper here?",
+      "range": {
+        "startLine": 253,
+        "startChar": 28,
+        "endLine": 253,
+        "endChar": 45
+      },
+      "revId": "30c067f0ca9428b0005914657c5adcf58f1b6178",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
