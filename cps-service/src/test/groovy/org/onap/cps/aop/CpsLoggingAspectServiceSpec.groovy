@@ -49,7 +49,7 @@ class CpsLoggingAspectServiceSpec extends Specification {
 
     def 'Creating a data validation exception for invalid args.'() {
         given: 'a data validation exception is created'
-            mockProceedingJoinPoint.getArgs() >> {
+            mockProceedingJoinPoint.proceed() >> {
                 throw new DataValidationException('invalid args',
                         'invalid method arg(s) is passed', new Throwable())
             }
