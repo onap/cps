@@ -35,9 +35,6 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Component
 @Slf4j
-@ConditionalOnExpression(
-        "'${logging.level.org.onap.cps}'.equalsIgnoreCase('DEBUG')"
-)
 public class CpsLoggingAspectService {
 
     private static final String ALL_CPS_METHODS = "execution(* org.onap.cps..*(..)))";
@@ -49,21 +46,24 @@ public class CpsLoggingAspectService {
      */
     @Around(ALL_CPS_METHODS)
     @SneakyThrows
+    @ConditionalOnExpression(
+            "'${logging.level.org.onap.cps}'.equalsIgnoreCase('DEBUG')"
+    )
     public Object logMethodExecutionTime(final ProceedingJoinPoint proceedingJoinPoint) {
         final StopWatch stopWatch = new StopWatch();
 
         //Calculate method execution time
         stopWatch.start();
-        final Object logObject = Optional.ofNullable(proceedingJoinPoint.proceed()).orElse("");
+        final Object returnValue = Optional.ofNullable(proceedingJoinPoint.proceed()).orElse("");
         stopWatch.stop();
         final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
         //Log method execution time
         log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
                 methodSignature.getDeclaringType().getSimpleName(),
-                methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), logObject,
+                methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), returnValue,
                 stopWatch.getTotalTimeMillis());
 
-        return logObject;
+        return returnValue;
     }
 
 }
