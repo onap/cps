@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7bada017_6905f793",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-01T15:09:15Z",
+      "side": 1,
+      "message": "The notificationService is a async service. Due to any issue if async message can not be queued, the initial request should not failed.\n\nAdded comment.",
+      "parentUuid": "86421c74_a64642fe",
+      "revId": "47177303db0befccbe7cbeb3979cf5eb191eb3d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cb787b7_9b455345",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "47177303db0befccbe7cbeb3979cf5eb191eb3d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c2b50a_c4145d83",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-01T15:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb787b7_9b455345",
+      "revId": "47177303db0befccbe7cbeb3979cf5eb191eb3d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
