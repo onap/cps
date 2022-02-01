@@ -278,6 +278,44 @@ exhaustive.
 | thread-name-prefix                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
+Measure Execution Time of CPS Service
+======================================
+As a developers we have experienced that a some of the services takes quite huge time to process requests. To log total service time execution we have the steps that can be followed to capture the total time elapsed for CPS services. We introduced the concern
+surrounding logging execution time in our application using Spring-AOP (Aspect Oriented Programming) and AspectJ.
+
+Aim: Calculate and Log execution time taken by a Method.
+
+Spring-AOP & AspectJ: Helped us to modularize our current logging Execution Time taken concern.
+There are different Advice per AOP Concepts like Before, After, Around. Here we used of Around Advice, which helps us to surround all CPS Method Execution (Joint Point — term per AOP i.e. a point during the execution of a program.)
+
+Step 1. Set "logging.level.org.onap.cps" to DEBUG (Default level is INFO)
+
+Step 2. Execute any CPS service. For example :
+
+    curl --location --request GET 'http://localhost:8080/cps/api/v1/dataspaces/test42/anchors/bookstore' \
+    --header 'Authorization: Basic Y3BzdXNlcjpjcHNyMGNrcyE='
+
+Step 3. CPS Log
+
+2022-01-28 18:39:17.768 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : CpsAdminPersistenceServiceImpl.getAnchor() with argument[s] =
+[test42, bookstore] having result = Anchor(name=bookstore, dataspaceName=test42, schemaSetName=bookstore) :: 299 ms
+
+Current Log pattern is as below :
+
+<pattern>
+	{
+	"timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+	"severity": "%level",   // DEBUG
+	"service": "${springAppName}",  // cps-application
+	"trace": "${TraceId}", // e17da1571e518c59
+	"span": "${SpanId}", // e17da1571e518c59
+	"pid": "${PID}", //11128
+	"thread": "%thread", //tp1901272535-29
+	"class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+	"rest": "%message" // Execution time ...
+	}
+</pattern>
+
 CPS-Core Docker Installation
 ============================
 
