@@ -278,6 +278,70 @@ exhaustive.
 | thread-name-prefix                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
+Logging Configuration
+=====================
+
+Location of log files
+---------------------
+
+Changing logging level
+----------------------
+
+.. container:: ulist
+
+- Go to cps application resource folder : cps-application/src/main/resources
+- Open 'application.yaml' file
+- Change logging level of "logging.level.org.onap.cps" from 'INFO' to 'DEBUG'
+
+.. note::
+   Default logging level of "logging.level.org.onap.cps" is 'INFO'.
+
+Measure Execution Time of CPS Service
+-------------------------------------
+
+#############################
+CPS Log pattern is as below :
+#############################
+
+.. code-block:: java
+
+   <pattern>
+	   {
+	     "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+	     "severity": "%level",   // DEBUG
+	     "service": "${springAppName}",  // cps-application
+	     "trace": "${TraceId}", // e17da1571e518c59
+	     "span": "${SpanId}", // e17da1571e518c59
+	     "pid": "${PID}", //11128
+	     "thread": "%thread", //tp1901272535-29
+	     "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+	     "rest": "%message" // Execution time ...
+	   }
+   </pattern>
+
+#######################################################
+Calculate and Log execution time taken by a CPS service
+#######################################################
+
+.. code-block:: xml
+
+   2022-01-28 18:39:17.679 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : DataspaceRepository.getByName() with argument[s] = [test42] having result = org.onap.cps.spi.entities.DataspaceEntity@68ded236 :: 205 ms
+
+   2022-01-28 18:39:17.726 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : AnchorRepository.getByDataspaceAndName() with argument[s] = [org.onap.cps.spi.entities.DataspaceEntity@68ded236, bookstore] having result = org.onap.cps.spi.entities.AnchorEntity@71c47fb1 :: 46 ms
+
+   2022-01-28 18:39:17.768 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : CpsAdminPersistenceServiceImpl.getAnchor() with argument[s] = [test42, bookstore] having result = Anchor(name=bookstore, dataspaceName=test42, schemaSetName=bookstore) :: 299 ms
+
+   2022-01-28 18:39:17.768 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : CpsAdminServiceImpl.getAnchor() with argument[s] = [test42, bookstore] having result = Anchor(name=bookstore, dataspaceName=test42, schemaSetName=bookstore) :: 305 ms
+
+   2022-01-28 18:39:17.843 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : AdminRestController.getAnchor() with argument[s] = [test42, bookstore] having result = <200 OK OK,class AnchorDetails {
+    name: bookstore
+    dataspaceName: test42
+    schemaSetName: bookstore
+   },[]> :: 419 ms
+
+.. warning::
+   Revert logging level of "logging.level.org.onap.cps" to 'INFO' into 'cps-application/src/main/resources/application.yaml' file.
+
 CPS-Core Docker Installation
 ============================
 
