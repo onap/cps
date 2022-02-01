@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e511c245_ffad6728",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T14:40:36Z",
+      "side": 1,
+      "message": "as per team meeting there is a slight majority in favor of the @AllArgsConstructor annotation.\n(no need to change existing classes but only change service classes like here we wil use the annotation going forward)",
+      "parentUuid": "b951b118_72783234",
+      "revId": "75750743f6352bf0a12ac25140e416209b5a4b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef17ff83_c2aac1c0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 9
