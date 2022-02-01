@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "59cf39ff_f9a8fe09",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "We need a more generic section on \u0027Logging Configuration\u0027 first\nThis would be a subsection off that.\nI expect a Structure like\n\nLogging Configuration\n  +Location of log files\n  +Changing logging level\n  +Measure Execution Time of CPS Service",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 38
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b35cae3d_299098a7",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -41,6 +64,29 @@
         "startChar": 0,
         "endLine": 283,
         "endChar": 105
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b21748_f7560acf",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "background info, please remove.",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 106
       },
       "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -94,6 +140,75 @@
     },
     {
       "key": {
+        "uuid": "dd7cdd68_5ec20ecc",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "impl details, not needed in user guide. please remove",
+      "range": {
+        "startLine": 283,
+        "startChar": 234,
+        "endLine": 289,
+        "endChar": 231
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "400dd239_3eba3427",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "we need end-user level instruction, what file to change, restart(s) needed etc.",
+      "range": {
+        "startLine": 291,
+        "startChar": 7,
+        "endLine": 291,
+        "endChar": 73
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a506640_70ea10f6",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "not needed here, we can assume the user knows well how to execute their own usecase and it might be trough a client applciatioin",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 60
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13c69e17_d8d585a9",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -110,6 +225,98 @@
         "startChar": 0,
         "endLine": 298,
         "endChar": 15
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3747a0a_4323a9bb",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "I am missing step about changing the package filter (as you shoed us during Demo) can/should the end-user change those? Maybe to reduce scope to a subpackage ?!",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 15
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca8b87c_fcc1f7b5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "Example Log Entry",
+      "range": {
+        "startLine": 298,
+        "startChar": 8,
+        "endLine": 298,
+        "endChar": 15
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20030c9b_b40e7fb5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "Not a \u0027step\u0027 (in my opinion)",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 7
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "435d5673_e28b53b9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-01T16:20:34Z",
+      "side": 1,
+      "message": "good mut maybe before the \u0027example\u0027",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 10
       },
       "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
