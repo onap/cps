@@ -22,6 +22,30 @@
       "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f44512f_089e1cf6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-02T17:20:55Z",
+      "side": 1,
+      "message": "I agree with the first approach as it is more understandable.",
+      "parentUuid": "30341f98_9f0f1628",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
