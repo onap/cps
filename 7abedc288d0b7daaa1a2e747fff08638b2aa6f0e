@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aea40fd9_cf9ffbc0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-02T09:27:09Z",
+      "side": 1,
+      "message": "Working on modifying the test case , as now replaceListContent would be called from here instead of updateNodeLeavesAndExistingDescendantLeaves.",
+      "revId": "7abedc288d0b7daaa1a2e747fff08638b2aa6f0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c8cc97e_e1473995",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-02T09:27:09Z",
+      "side": 1,
+      "message": "Introduced this overloaded version of replaceListContent which accepts Collection\u003cDataNode\u003e directly as I was getting dataNode in my code and I was working on modifying/patching that object , hence I think we can have this overloaded method (as if we go with actual replaceListContent it will first convert object to jsonString and then it would be converted to Collection\u003cDataNode\u003e ). We can save some time in the conversion.",
+      "revId": "7abedc288d0b7daaa1a2e747fff08638b2aa6f0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
