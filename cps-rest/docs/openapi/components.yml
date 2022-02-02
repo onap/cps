@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
+# Modifications Copyright (C) 2021-2022 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -277,6 +278,16 @@ components:
           schema:
             type: string
             example: my-resource
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
     NoContent:
       description: No Content
       content: {}
