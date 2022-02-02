@@ -97,14 +97,14 @@ services:
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${VERSION:-latest}
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ports:
-      - "8883:8080"
-      - "8887:8081"
+      - ${CPS_CORE_PORT:-8883}:8080
+      - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
     environment:
-      CPS_USERNAME: ${CPS_USERNAME:-cpsuser}
-      CPS_PASSWORD: ${CPS_PASSWORD:-cpsr0cks!}
-      DB_HOST: ${DB_HOST:-dbpostgresql}
+      CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+      CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
+      DB_HOST: ${DB_HOST}
       DB_USERNAME: ${DB_USERNAME:-cps}
       DB_PASSWORD: ${DB_PASSWORD:-cps}
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
@@ -115,25 +115,3 @@ services:
     restart: unless-stopped
     depends_on:
       - dbpostgresql
-
-  ncmp-dmi-plugin:
-    container_name: ncmp-dmi-plugin
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${VERSION:-latest}
-    ports:
-      - "8783:8080"
-      - "8787:8081"
-    environment:
-      DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
-      DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
-      CPS_CORE_HOST: ${CPS_CORE_HOST}
-      CPS_CORE_PORT: ${CPS_CORE_PORT:-8883}
-      CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-      CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
-      SDNC_HOST: ${SDNC_HOST}
-      SDNC_PORT: ${SDNC_PORT:-8282}
-      SDNC_USERNAME: ${SDNC_USERNAME:-admin}
-      SDNC_PASSWORD: ${SDNC_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
-      DMI_SERVICE_URL: ${DMI_SERVICE_URL}
-    restart: unless-stopped
-    depends_on:
-      - cps-and-ncmp   #it depends on cps_and_ncmp for registration but as a container it can run independently.

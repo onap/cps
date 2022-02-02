@@ -23,7 +23,7 @@ Documentation         CPS - Actuator endpoints
 Library               Collections
 Library               RequestsLibrary
 
-Suite Setup           Create Session    MANAGEMENT_URL    http://${CPS_HOST}:${MANAGEMENT_PORT}/manage
+Suite Setup           Create Session    MANAGEMENT_URL    http://${CPS_CORE_HOST}:${CPS_CORE_MANAGEMENT_PORT}/manage
 
 *** Variables ***
 

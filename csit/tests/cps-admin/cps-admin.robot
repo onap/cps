@@ -23,7 +23,7 @@ Library               Collections
 Library               OperatingSystem
 Library               RequestsLibrary
 
-Suite Setup           Create Session      CPS_URL    http://${CPS_HOST}:${CPS_PORT}
+Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
 *** Variables ***
 
