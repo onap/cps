@@ -68,4 +68,3 @@ Execute test from current cps folder:
 ```bash
 ./csit/run-project-csit.sh
 ```
-

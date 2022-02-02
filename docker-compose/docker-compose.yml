@@ -118,7 +118,7 @@ services:
 
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${VERSION:-latest}
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:1.0.3
     ports:
       - "8783:8080"
       - "8787:8081"
