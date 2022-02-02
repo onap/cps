@@ -27,6 +27,7 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.CpsAdminException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -36,7 +37,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -56,10 +56,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final long UPDATE_DATA_NODE_SUB_FRAGMENT_ID = 4203L
     static final long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
     static final long LIST_DATA_NODE_PARENT203_FRAGMENT_ID = 4214L
-    static final long LIST_DATA_NODE_PARENT204_FRAGMENT_ID = 4219L
-    static final long LIST_DATA_NODE_PARENT205_FRAGMENT_ID = 4221L
-    static final long LIST_DATA_NODE_CHILD202_FRAGMENT_ID = 4204L
     static final long LIST_DATA_NODE_PARENT202_FRAGMENT_ID = 4211L
+    static final long PARENT_3_FRAGMENT_ID = 4003L
 
     static final DataNode newDataNode = new DataNodeBuilder().build()
     static DataNode existingDataNode
@@ -136,11 +134,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'the parent is now has to 2 children'
             def expectedExistingChildPath = '/parent-1/child-1'
             def parentFragment = fragmentRepository.findById(ID_DATA_NODE_WITH_DESCENDANTS).orElseThrow()
-            parentFragment.getChildFragments().size() == 2
+            parentFragment.childFragments.size() == 2
         and: 'it still has the old child'
-            parentFragment.getChildFragments().find({ it.xpath == expectedExistingChildPath })
+            parentFragment.childFragments.find({ it.xpath == expectedExistingChildPath })
         and: 'it has the new child'
-            parentFragment.getChildFragments().find({ it.xpath == newChild.xpath })
+            parentFragment.childFragments.find({ it.xpath == newChild.xpath })
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -158,16 +156,16 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add multiple list elements including an element with a child datanode.'() {
         given: 'two new data nodes for an existing list'
-            def listElementXpaths = ['/parent-201/child-204[@key="B"]', '/parent-201/child-204[@key="C"]']
+            def listElementXpaths = ['/parent-201/child-204[@key="NEW1"]', '/parent-201/child-204[@key="NEW2"]']
             def listElements = toDataNodes(listElementXpaths)
         and: 'a child node for one of the new data nodes'
-            def childDataNode = buildDataNode('/parent-201/child-204[@key="C"]/grand-child-204[@key2="Z"]', [leave:'value'], [])
+            def childDataNode = buildDataNode('/parent-201/child-204[@key="NEW1"]/grand-child-204[@key2="NEW1-CHILD"]', [leave:'value'], [])
             listElements[0].childDataNodes = [childDataNode]
         when: 'the data nodes (list elements) are added to existing parent node'
             objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listElements)
         then: 'new entries successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
             def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
-            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
             assert allChildXpaths.size() == 5
             assert allChildXpaths.containsAll(listElementXpaths)
         and: 'the child node of the new list entry is also present'
@@ -189,23 +187,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                     | parentNodeXpath | listElementXpaths                   || expectedException
             'parent node does not exist' | '/unknown'      | ['irrelevant']                      || DataNodeNotFoundException
             'already existing fragment'  | '/parent-201'   | ['/parent-201/child-204[@key="A"]'] || AlreadyDefinedException
-
-    }
-
-    static def createDataNodeTree(String... xpaths) {
-        def dataNodeBuilder = new DataNodeBuilder().withXpath(xpaths[0])
-        if (xpaths.length > 1) {
-            def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
-            def childDataNode = createDataNodeTree(xPathsDescendant)
-            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode))
-        }
-        dataNodeBuilder.build()
-    }
-
-    def getFragmentByXpath(dataspaceName, anchorName, xpath) {
-        def dataspace = dataspaceRepository.getByName(dataspaceName)
-        def anchor = anchorRepository.getByDataspaceAndName(dataspace, anchorName)
-        return fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspace, anchor, xpath).orElseThrow()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -214,10 +195,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
                     inputXPath, OMIT_DESCENDANTS)
         then: 'data node is returned with no descendants'
-            assert result.getXpath() == XPATH_DATA_NODE_WITH_LEAVES
+            assert result.xpath == XPATH_DATA_NODE_WITH_LEAVES
         and: 'expected leaves'
-            assert result.getChildDataNodes().size() == 0
-            assertLeavesMaps(result.getLeaves(), expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
+            assert result.childDataNodes.size() == 0
+            assertLeavesMaps(result.leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
         where: 'the following data is used'
             scenario      | inputXPath
             'some xpath'  | '/parent-100'
@@ -233,12 +214,12 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
         then: 'data node is returned with all the descendants populated'
             assert mappedResult.size() == 4
-            assert result.getChildDataNodes().size() == 2
-            assert mappedResult.get('/parent-100/child-001').getChildDataNodes().size() == 0
-            assert mappedResult.get('/parent-100/child-002').getChildDataNodes().size() == 1
+            assert result.childDataNodes.size() == 2
+            assert mappedResult.get('/parent-100/child-001').childDataNodes.size() == 0
+            assert mappedResult.get('/parent-100/child-002').childDataNodes.size() == 1
         and: 'extracted leaves maps are matching expected'
             mappedResult.forEach(
-                    (xPath, dataNode) -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xPath]))
+                    (xPath, dataNode) -> assertLeavesMaps(dataNode.leaves, expectedLeavesByXpathMap[xPath]))
         where: 'the following data is used'
             scenario      | inputXPath
             'some xpath'  | '/parent-100'
@@ -270,9 +251,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'existing child entry remains as is'
-            def childFragment = updatedFragment.getChildFragments().iterator().next()
+            def childFragment = updatedFragment.childFragments.iterator().next()
             def childLeaves = getLeavesMap(childFragment)
-            assert childFragment.getId() == UPDATE_DATA_NODE_SUB_FRAGMENT_ID
+            assert childFragment.id == UPDATE_DATA_NODE_SUB_FRAGMENT_ID
             assert childLeaves.'leaf-value' == 'original'
     }
 
@@ -301,7 +282,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'updated entry has no children'
-            updatedFragment.getChildFragments().isEmpty()
+            updatedFragment.childFragments.isEmpty()
         and: 'previously attached child entry is removed from database'
             fragmentRepository.findById(UPDATE_DATA_NODE_SUB_FRAGMENT_ID).isEmpty()
     }
@@ -320,8 +301,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'existing child entry is not updated as content is same'
-            def childFragment = updatedFragment.getChildFragments().iterator().next()
-            childFragment.getXpath() == '/parent-200/child-201/grand-child'
+            def childFragment = updatedFragment.childFragments.iterator().next()
+            childFragment.xpath == '/parent-200/child-201/grand-child'
             def childLeaves = getLeavesMap(childFragment)
             assert childLeaves.'leaf-value' == 'original'
     }
@@ -340,8 +321,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'existing child entry is updated with the new content'
-            def childFragment = updatedFragment.getChildFragments().iterator().next()
-            childFragment.getXpath() == '/parent-200/child-201/grand-child'
+            def childFragment = updatedFragment.childFragments.iterator().next()
+            childFragment.xpath == '/parent-200/child-201/grand-child'
             def childLeaves = getLeavesMap(childFragment)
             assert childLeaves.'leaf-value' == 'new'
     }
@@ -362,8 +343,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'previously attached child entry is removed from database'
             fragmentRepository.findById(UPDATE_DATA_NODE_SUB_FRAGMENT_ID).isEmpty()
         and: 'new child entry is persisted'
-            def childFragment = updatedFragment.getChildFragments().iterator().next()
-            childFragment.getXpath() == '/parent-200/child-201/grand-child-new'
+            def childFragment = updatedFragment.childFragments.iterator().next()
+            childFragment.xpath == '/parent-200/child-201/grand-child-new'
             def childLeaves = getLeavesMap(childFragment)
             assert childLeaves.'leaf-value' == 'new'
     }
@@ -384,92 +365,95 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace list content of #scenario.'() {
-        given: 'list element as a collection of data nodes'
-            def listElementCollection = toDataNodes(listElementXpaths)
-        when: 'list elements are replaced within the existing parent node'
-            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listElementCollection)
-        then: 'list elements are updated as expected, non-list element remains as is'
-            def parentFragment = fragmentRepository.getById(listElementFragmentID)
-            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
-            assert allChildXpaths.size() == expectedChildXpaths.size()
-            assert allChildXpaths.containsAll(expectedChildXpaths)
-        where: 'following parameters were used'
-            scenario                                                    | listElementXpaths                                                          | parentXpath             | listElementFragmentID                 || expectedChildXpaths
-            'existing list element with non existing key'               | ['/parent-201/child-204[@key="B"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="B"]']
-            'non existing list element with non existing key'           | ['/parent-201/child-205[@key="1"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="A"]', '/parent-201/child-204[@key="X"]', '/parent-201/child-205[@key="1"]']
-            'list element with 1 existing key'                          | ['/parent-201/child-204[@key="X"]']                                        | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="X"]']
-            'list element with combined keys'                           | ['/parent-202/child-205[@key="A"]']                                        | '/parent-202'           | LIST_DATA_NODE_PARENT202_FRAGMENT_ID  || ['/parent-202/child-206[@key="A"]', '/parent-202/child-205[@key="A"]']
-            'grandchild list element'                                   | ['/parent-200/child-202/grand-child-202[@key="E"]']                        | '/parent-200/child-202' | LIST_DATA_NODE_CHILD202_FRAGMENT_ID   || ['/parent-200/child-202/grand-child-202[@key="E"]']
-            'list element with two list elements'                       | ['/parent-201/child-204[@key="new X"]', '/parent-201/child-204[@key="Y"]'] | '/parent-201'           | LIST_DATA_NODE_PARENT201_FRAGMENT_ID  || ['/parent-201/child-203', '/parent-201/child-204[@key="new X"]', '/parent-201/child-204[@key="Y"]']
-            'list element with compounded list element'                 | ['/parent-202/child-205[@key="A" and @key2="B"]']                          | '/parent-202'           | LIST_DATA_NODE_PARENT202_FRAGMENT_ID  || ['/parent-202/child-206[@key="A"]', '/parent-202/child-205[@key="A" and @key2="B"]']
-            'list element with list element with parent with key value' | ['/parent-204[@key="L"]/child-210[@key="N"]']                              | '/parent-204[@key="L"]' | LIST_DATA_NODE_PARENT204_FRAGMENT_ID  || ['/parent-204[@key="L"]/child-210[@key="N"]']
+    def 'Update existing list with #scenario.'() {
+        given: 'a parent having a list of data nodes containing: #originalKeys (ech list element has a child too)'
+            def parentXpath = '/parent-3'
+            if (originalKeys.size() > 0) {
+                def originalListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'original value', originalKeys, true)
+                objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, originalListEntriesAsDataNodes)
+            }
+        and: 'each original list element has one child'
+            def originalParentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            originalParentFragment.childFragments.each {assert it.childFragments.size() == 1 }
+        when: 'it is updated with #scenario'
+            def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'new value', replacementKeys, false)
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, replacementListEntriesAsDataNodes)
+        then: 'the result list ONLY contains the expected replacement elements'
+            def parentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
+            def expectedListEntriesAfterUpdateAsXpaths = keysToXpaths(parentXpath, replacementKeys)
+            assert allChildXpaths.size() == replacementKeys.size()
+            assert allChildXpaths.containsAll(expectedListEntriesAfterUpdateAsXpaths)
+        and: 'all the list elements have the new values'
+            assert parentFragment.childFragments.stream().allMatch(childFragment -> childFragment.attributes.contains('new value'))
+        and: 'there are no more grandchildren as none of the replacement list entries had a child'
+            parentFragment.childFragments.each {assert it.childFragments.size() == 0 }
+        where: 'the following replacement lists are applied'
+            scenario                                            | originalKeys | replacementKeys
+            'one existing entry only'                           | []           | ['NEW']
+            'multiple new entries'                              | []           | ['NEW1', 'NEW2']
+            'one new entry only (existing entries are deleted)' | ['A', 'B']   | ['NEW1', 'NEW2']
+            'one existing on new entry'                         | ['A', 'B']   | ['A', 'NEW']
+            'one existing entry only'                           | ['A', 'B']   | ['A']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace list content that has #scenario'() {
-        given: 'list element with child list element as a collection of data nodes'
-            def grandChildDataNodes = toDataNodes(grandChildXpaths)
-            def listElementCollection = new DataNodeBuilder().withXpath(childXpath).withChildDataNodes(grandChildDataNodes).build()
-        when: 'list elements replaced within the existing parent node'
-            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, [listElementCollection ])
-        then: 'list elements are updated as expected with non-list elements remaining as is'
-            def parentFragment = fragmentRepository.getById(listElementFragmentId)
-            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
-            assert allChildXpaths.size() == expectedRemainingChildXpaths.size()
-            assert allChildXpaths.containsAll(expectedRemainingChildXpaths)
-        and: 'grandchild list elements are updated as expected'
-            def allGrandChildXpaths = parentFragment.getChildFragments().collect(){
-                it.getChildFragments().collect(){
-                    it.getXpath()}}
-            allGrandChildXpaths.removeIf(list -> list.isEmpty())
-            def grandChildXpathsToList = allGrandChildXpaths.stream().flatMap(List::stream).collect(Collectors.toList())
-            def expectedGrandChildXpaths = grandChildXpaths
-            assert grandChildXpathsToList.size() == expectedGrandChildXpaths.size()
-            assert grandChildXpathsToList.containsAll(expectedGrandChildXpaths)
-        where: 'the following parameters are used'
-            scenario                                  | parentXpath   | childXpath                        | grandChildXpaths                                                                              | listElementFragmentId                || expectedRemainingChildXpaths
-            'grandchild of list'                      | '/parent-203' | '/parent-203/child-204[@key="X"]' | ['/parent-203/child-204/grandchild[@key="2"]']                                                | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]']
-            'grandchild of list with two new element' | '/parent-203' | '/parent-203/child-204[@key="X"]' | ['/parent-203/child-204/grandchild[@key="2"]' , '/parent-203/child-204/grandchild[@key="3"]'] | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]']
-            'grandchild with compound list elements'  | '/parent-205' | '/parent-205/child-205[@key="X"]' | ['/parent-205/child-205/grand-child-206[@key="Y" and @key2="Z"]']                             | LIST_DATA_NODE_PARENT205_FRAGMENT_ID || ['/parent-205/child-205', '/parent-205/child-205[@key="X"]']
+    def 'Replacing existing list element with attributes and (grand)child.'() {
+        given: 'a parent with list elements A and B with attribute and grandchild tagged as "org"'
+            def parentXpath = '/parent-3'
+            def originalListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'org', ['A','B'], true)
+            objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, originalListEntriesAsDataNodes)
+        when: 'A is replaced with an entry with attribute and grandchild tagged tagged as "new" (B is not in replacement list)'
+            def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'new', ['A'], true)
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, replacementListEntriesAsDataNodes)
+        then: 'The updated fragment has a child-list with ONLY element "A"'
+            def parentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            parentFragment.childFragments.size() == 1
+            def childListElementA = parentFragment.childFragments[0]
+            childListElementA.xpath == "/parent-3/child-list[@key='A']"
+        and: 'element "A" has an attribute with the "new" (tag) value'
+            childListElementA.attributes == '{"attr1": "new"}'
+        and: 'element "A" has a only one (grand)child'
+            childListElementA.childFragments.size() == 1
+        and: 'the grandchild is the new grandchild (tag)'
+            def grandChild = childListElementA.childFragments[0]
+            grandChild.xpath == "/parent-3/child-list[@key='A']/new-grand-child"
+        and: 'the grandchild has an attribute with the "new" (tag) value'
+            grandChild.attributes == '{"attr1": "new"}'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace list content of #scenario with grandchildren.'() {
-        given: 'list element as a collection of data nodes'
-            def listElementCollection = toDataNodes(listElementXpaths)
-        when: 'list elements are replaced within the existing parent node'
-            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, parentXpath, listElementCollection)
-        then: 'child list elements are updated as expected with non-list elements remaining as is'
-            def parentFragment = fragmentRepository.getById(listElementFragmentID)
-            def allChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
-            assert allChildXpaths.size() == expectedChildXpaths.size()
-            assert allChildXpaths.containsAll(expectedChildXpaths)
-        and: 'grandchild list elements are updated as expected'
-            def allGrandChildXpaths = parentFragment.getChildFragments().collect {
-                it.getChildFragments().collect {
-                    it.getXpath()}}
-            allGrandChildXpaths.removeIf(list -> list.isEmpty())
-            assert allGrandChildXpaths.size() == expectedGrandChildXpaths.size()
-            assert allGrandChildXpaths.containsAll(expectedGrandChildXpaths)
-        where: 'following parameters were used'
-            scenario                                       | listElementXpaths                   | parentXpath   | listElementFragmentID                || expectedChildXpaths                                          | expectedGrandChildXpaths
-            'existing list element with existing keys'     | ['/parent-203/child-204[@key="X"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]'] | []
-            'non existing list element with existing keys' | ['/parent-203/child-204[@key="V"]'] | '/parent-203' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="V"]'] | []
+    def 'Replace list element for a parent (parent-1) with existing one (non-list) child'() {
+        when: 'a list element is added under the parent'
+            def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(XPATH_DATA_NODE_WITH_DESCENDANTS, 'new', ['A','B'], false)
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, replacementListEntriesAsDataNodes)
+        then: 'the parent will have 3 children after the replacement'
+            def parentFragment = fragmentRepository.getById(ID_DATA_NODE_WITH_DESCENDANTS)
+            parentFragment.childFragments.size() == 3
+            def xpaths = parentFragment.childFragments.collect {it.xpath}
+        and: 'one of the children is the original child fragment'
+            xpaths.contains('/parent-1/child-1')
+        and: 'it has the two new list elements'
+            xpaths.containsAll("/parent-1/child-list[@key='A']", "/parent-1/child-list[@key='B']")
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Replace list content using unknown parent'() {
+        given: 'list element as a collection of data nodes'
+            def listElementCollection = toDataNodes(['irrelevant'])
+        when: 'attempt to replace list elements under unknown parent node'
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, '/unknown', listElementCollection)
+        then: 'a datanode not found exception is thrown'
+            thrown(DataNodeNotFoundException)
+    }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace content error scenario: #scenario.'() {
-        given: 'list element as a collection of data nodes'
-            def listElementCollection = toDataNodes(listElementXpaths)
-        when: 'list elements were replaced under existing parent node'
-            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listElementCollection)
-        then: 'a #expectedException is thrown'
-            thrown(expectedException)
-        where: 'following parameters were used'
-            scenario                     | parentNodeXpath | listElementXpaths || expectedException
-            'parent node does not exist' | '/unknown'      | ['irrelevant'] || DataNodeNotFoundException
+    def 'Replace list content with empty collection is not supported'() {
+        when: 'attempt to replace list elements with empty collection'
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME3, '/parent-203', [])
+        then: 'a CPS admin exception is thrown'
+            def thrown = thrown(CpsAdminException)
+            assert thrown.message == 'Invalid list replacement'
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -478,15 +462,15 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             objectUnderTest.deleteListDataNode(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
         then: 'only the expected children remain'
             def parentFragment = fragmentRepository.getById(parentFragmentId)
-            def remainingChildXpaths = parentFragment.getChildFragments().collect { it.getXpath() }
+            def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
             assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()
             assert remainingChildXpaths.containsAll(expectedRemainingChildXpaths)
         where: 'following parameters were used'
             scenario                          | targetXpaths                                                 | parentFragmentId                     || expectedRemainingChildXpaths
-            'list element with key'           | '/parent-203/child-204[@key="A"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]']
+            'list element with key'           | '/parent-203/child-204[@key="A"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="B"]']
             'list element with combined keys' | '/parent-202/child-205[@key="A" and @key2="B"]'              | LIST_DATA_NODE_PARENT202_FRAGMENT_ID || ['/parent-202/child-206[@key="A"]']
             'whole list'                      | '/parent-203/child-204'                                      | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203']
-            'list element under list element' | '/parent-203/child-204[@key="X"]/grand-child-204[@key2="Y"]' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="X"]', '/parent-203/child-204[@key="A"]']
+            'list element under list element' | '/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="A"]', '/parent-203/child-204[@key="B"]']
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -515,7 +499,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'verify data nodes are removed'
             try {
                 dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, getDataNodesXpaths, INCLUDE_ALL_DESCENDANTS)
-                dataNodeXpath = dataNode.getXpath()
+                dataNodeXpath = dataNode.xpath
                 assert dataNodeXpath == expectedXpaths
             } catch (DataNodeNotFoundException) {
                 assert dataNodeXpath == expectedXpaths
@@ -549,7 +533,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
-        return jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map<String, Object>.class)
+        return jsonObjectMapper.convertJsonString(fragmentEntity.attributes, Map<String, Object>.class)
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
@@ -566,10 +550,51 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
-        flatMap.put(dataNodeTree.getXpath(), dataNodeTree)
-        dataNodeTree.getChildDataNodes()
+        flatMap.put(dataNodeTree.xpath, dataNodeTree)
+        dataNodeTree.childDataNodes
                 .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
         return flatMap
+    }
+
+    def keysToXpaths(parent, Collection keys) {
+        return keys.collect { "${parent}/child-list[@key='${it}']".toString() }
+    }
+
+    def static createDataNodeTree(String... xpaths) {
+        def dataNodeBuilder = new DataNodeBuilder().withXpath(xpaths[0])
+        if (xpaths.length > 1) {
+            def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
+            def childDataNode = createDataNodeTree(xPathsDescendant)
+            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode))
+        }
+        dataNodeBuilder.build()
+    }
+
+    def getFragmentByXpath(dataspaceName, anchorName, xpath) {
+        def dataspace = dataspaceRepository.getByName(dataspaceName)
+        def anchor = anchorRepository.getByDataspaceAndName(dataspace, anchorName)
+        return fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspace, anchor, xpath).orElseThrow()
+    }
+
+
+    def createChildListAllHavingAttributeValue(parentXpath, tag, Collection keys, boolean addGrandChild) {
+        def listElementAsDataNodes = keysToXpaths(parentXpath, keys).collect {
+                new DataNodeBuilder()
+                    .withXpath(it)
+                    .withLeaves([attr1: tag])
+                    .build()
+        }
+        if (addGrandChild) {
+            listElementAsDataNodes.each {it.childDataNodes = [createGrandChild(it.xpath, tag)]}
+        }
+        return listElementAsDataNodes
+    }
+
+    def createGrandChild(parentXPath, tag) {
+        new DataNodeBuilder()
+            .withXpath("${parentXPath}/${tag}-grand-child")
+            .withLeaves([attr1: tag])
+            .build()
     }
 
 }
