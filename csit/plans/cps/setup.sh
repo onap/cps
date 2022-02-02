@@ -36,6 +36,7 @@ export SDNC_HOST=$LOCAL_IP
 export CPS_CORE_HOST=$LOCAL_IP
 export DB_USERNAME=cps
 export DB_PASSWORD=cps
+export DOCKER_REPO=nexus3.onap.org:10001
 # Use latest image version
 export VERSION=latest
 
