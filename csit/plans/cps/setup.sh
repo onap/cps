@@ -37,7 +37,7 @@ export CPS_CORE_HOST=$LOCAL_IP
 export DB_USERNAME=cps
 export DB_PASSWORD=cps
 # Use latest image version
-export VERSION=latest
+#export VERSION=latest
 
 # download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
 curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
