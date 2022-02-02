@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "49938dea_7bb47476",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59cf39ff_f9a8fe09",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 38
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b35cae3d_299098a7",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -94,6 +118,54 @@
     },
     {
       "key": {
+        "uuid": "89a74692_700cc08c",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31b21748_f7560acf",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 106
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e578ddd2_9e10e3df",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "b35cae3d_299098a7",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 105
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4086d6b_fd1d9c7c",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -114,6 +186,30 @@
       "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c1bb3b_c36d6fff",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4086d6b_fd1d9c7c",
+      "range": {
+        "startLine": 286,
+        "startChar": 47,
+        "endLine": 286,
+        "endChar": 55
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -160,6 +256,54 @@
       "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa121a9f_c7055dcd",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "19ee3f74_54c2e897",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 231
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6bbe184_7936b9b7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-02T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7cdd68_5ec20ecc",
+      "range": {
+        "startLine": 283,
+        "startChar": 234,
+        "endLine": 289,
+        "endChar": 231
+      },
+      "revId": "4fc52221d3eaed1ff0db6574a3e503c97b99ee88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
