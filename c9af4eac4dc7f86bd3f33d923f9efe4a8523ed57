@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30341f98_9f0f1628",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-02T15:56:22Z",
+      "side": 1,
+      "message": "@Team, \nLombok does not copy the field annotation by default. There are two ways of doing it\n1. Add it in the annotation directly. It has local effect and does not impact another class.\n2. Add lombok.copyableAnnotations +\u003d org.springframework.context.annotation.Lazy in the lombok.config file and it will impact all the beans constructor.\n\nPlease share your views. I wanted to keep it localized and used the first approach.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
