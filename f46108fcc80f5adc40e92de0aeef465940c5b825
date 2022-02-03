@@ -68,6 +68,29 @@
       "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d1a0a26_4bc9f8f3",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-03T11:13:13Z",
+      "side": 1,
+      "message": "not very sure if we need to include this. The logs are included in the below section as well .",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 41
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
