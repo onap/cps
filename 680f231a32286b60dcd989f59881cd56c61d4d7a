@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e873bba4_0daccbdb",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T11:02:12Z",
+      "side": 1,
+      "message": "Yes ConditionalOnExpression will be validated at runtime as well if there is change into log level.",
+      "parentUuid": "cbd33451_875ef996",
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96e5e7f0_ae3605c9",
         "filename": "docs/deployment.rst",
         "patchSetId": 3
@@ -57,6 +75,30 @@
       "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89d0a3d9_3c21142f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T11:02:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96e5e7f0_ae3605c9",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 29
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -83,6 +125,30 @@
     },
     {
       "key": {
+        "uuid": "445530e9_2effa7a3",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T11:02:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ed3e554_ae2c6e38",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 55
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c35d48f7_b09fa1f7",
         "filename": "docs/deployment.rst",
         "patchSetId": 3
@@ -103,6 +169,30 @@
       "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "240ad56b_600d59c6",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T11:02:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c35d48f7_b09fa1f7",
+      "range": {
+        "startLine": 377,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 55
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
