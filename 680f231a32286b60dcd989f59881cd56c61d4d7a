@@ -16,6 +16,93 @@
       "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbd33451_875ef996",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T10:02:45Z",
+      "side": 1,
+      "message": "ok so even it is impl. as annotation it wil still affect at runtime",
+      "parentUuid": "b499c824_8acdc0ba",
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96e5e7f0_ae3605c9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T10:02:45Z",
+      "side": 1,
+      "message": "how does this render? \nI think the same convention applies here ie. you need to add 3 more ###",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 29
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ed3e554_ae2c6e38",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T10:02:45Z",
+      "side": 1,
+      "message": "add more ####",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 55
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c35d48f7_b09fa1f7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T10:02:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 377,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 55
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
