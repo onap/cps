@@ -24,9 +24,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://10.2.0.127:5432/cpsdb
+    username: cps
+    password: cps
     driverClassName: org.postgresql.Driver
     initialization-mode: always
 

@@ -36,8 +36,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cache.CacheManager
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cache.caffeine.CaffeineCacheManager
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+
+import javax.validation.ConstraintViolationException
+import java.sql.SQLException
+
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
@@ -61,10 +66,14 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            mockModuleStoreService.storeSchemaSet(_) >> { throw new DataIntegrityViolationException(
+                    "checksum integrity exception",
+                    new ConstraintViolationException('', new SQLException(String.format('(checksum)=(%s)',
+                            'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539')), 'yang_resource_checksum_key')) }
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            3 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
     }
 
     def 'Create schema set from new modules and existing modules.'() {

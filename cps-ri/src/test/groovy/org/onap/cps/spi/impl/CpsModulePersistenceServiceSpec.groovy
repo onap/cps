@@ -59,18 +59,18 @@ class CpsModulePersistenceServiceSpec extends Specification {
 
     // Scenario data
     @Shared
-    yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
+            yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
     @Shared
-    yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
+            yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
     @Shared
-    sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
+            sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
     @Shared
-    checksumIntegrityException =
-            new DataIntegrityViolationException(
-                    "checksum integrity exception",
-                    new ConstraintViolationException('', new SQLException(sqlExceptionMessage), yangResourceChecksumDbConstraint))
+            checksumIntegrityException =
+                    new DataIntegrityViolationException(
+                            "checksum integrity exception",
+                            new ConstraintViolationException('', new SQLException(sqlExceptionMessage), yangResourceChecksumDbConstraint))
     @Shared
-    anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
+            anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
 
     def setup() {
         objectUnderTest = new CpsModulePersistenceServiceImpl()
@@ -91,7 +91,7 @@ class CpsModulePersistenceServiceSpec extends Specification {
             def e = thrown(expectedThrownException)
             e.getMessage().contains(expectedThrownExceptionMessage)
         where: 'the following data is used'
-            scenario                | dbException                || expectedThrownException | expectedThrownExceptionMessage
+            scenario                | dbException                || expectedThrownException         | expectedThrownExceptionMessage
             'checksum data failure' | checksumIntegrityException || DuplicatedYangResourceException | yangResourceChecksum
             'other data failure'    | anotherIntegrityException  || DataIntegrityViolationException | 'another integrity exception'
     }
