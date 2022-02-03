@@ -235,6 +235,30 @@
       "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b52c6bbe_73bcc6ec",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T17:15:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8451c472_2b353169",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 41
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
