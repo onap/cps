@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2021 Nordix Foundation
+# Copyright (C) 2022 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,49 +16,85 @@
 
 version: '3'
 
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: ${MTU:-1500}
+
 services:
   mariadb:
-    image: mariadb:10.1.11
+    image: mariadb:10.5
     ports:
       - "3306:3306"
-    container_name: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-    hostname:
-      mariadb.so.testlab.onap.org
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
     logging:
       driver: "json-file"
       options:
         max-size: "30m"
         max-file: "5"
-  sdnc:
-    image: onap/sdnc-image:1.8.1
-    container_name: sdnc
-    volumes: 
-      - /etc/localtime:/etc/localtime:ro
-      - $SDNC_CERT_PATH:/opt/opendaylight/current/certs
-    entrypoint: ["/opt/onap/sdnc/bin/startODL.sh"]
-    ports:
-      - "8282:8181"
-    hostname:
-      sdnc
-    depends_on:
+
+  sdnc-ansible-server:
+    image: onap/sdnc-ansible-server-image:2.2.2
+    depends_on :
       - mariadb
+    entrypoint: ["/opt/ansible-server/startAnsibleServer.sh"]
+    ports:
+      - "8000"
+    links:
+      - mariadb:dbhost
+      - mariadb:sdnctldb01
+      - mariadb:sdnctldb02
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - SDNC_CONFIG_DIR=/opt/onap/sdnc/data/properties
-      - MYSQL_PASSWD=password
-      - ODL_CERT_DIR=/opt/opendaylight/current/certs
-      - ODL_ADMIN_USERNAME=admin
-      - ODL_ADMIN_PASSWORD=Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U
-    dns:
-      - ${DNS_IP_ADDR-10.0.100.1}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - ANSIBLE_TRUSTSTORE_PASSWORD=${ANSIBLE_TRUSTSTORE_PASSWORD}
     logging:
-      driver:   "json-file"
+      driver: "json-file"
       options:
         max-size: "30m"
         max-file: "5"
-    extra_hosts:
-      - sdnctldb02:${LOCAL_IP}
-      - sdnctldb01:${LOCAL_IP}
-      - dbhost:${LOCAL_IP}
+
+  sdnc:
+    image: onap/sdnc-image:${VERSION:-2.2.3}
+    depends_on :
+      - mariadb
+      - sdnc-ansible-server
+    entrypoint: ["/opt/onap/sdnc/bin/startODL.sh"]
+    ports:
+      - "8282:8181"
+    links:
+      - mariadb:dbhost
+      - mariadb:sdnctldb01
+      - mariadb:sdnctldb02
+      - sdnc-ansible-server:ansiblehost
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
+      - SDNC_CONFIG_DIR=/opt/onap/sdnc/data/properties
+      - SDNC_BIN=/opt/onap/sdnc/bin
+      - ODL_CERT_DIR=/opt/opendaylight/current/certs
+      - ODL_ADMIN_USERNAME=${ODL_USER:-admin}
+      - ODL_ADMIN_PASSWORD=${ODL_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
+      - SDNC_DB_INIT=true
+      - ANSIBLE_USER=${ANSIBLE_USER:-sdnc}
+      - ANSIBLE_PASSWORD=${ANSIBLE_PASSWORD:-sdnc}
+      - SQL_CRYPTKEY=${SQL_CRYPTKEY:-fakECryptKey}
+    volumes:
+      - $SDNC_CERT_PATH:/opt/opendaylight/current/certs
+    dns:
+      - ${DNS_IP_ADDR-10.0.100.1}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
