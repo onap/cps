@@ -153,6 +153,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
+    // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
+    // can occur in case of specific concurrent requests.
+    @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 2, backoff =
+        @Backoff(random = true, delay = 500, maxDelay = 600, multiplier = 1))
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newYangResourcesModuleNameToContentMap,
                                           final List<ModuleReference> moduleReferences) {
