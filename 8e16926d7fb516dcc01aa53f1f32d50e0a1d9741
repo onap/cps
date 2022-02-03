@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "037ff73d_0034f680",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "You can use it like :\n\ncatch (final JsonProcessingException | DataNodeNotFoundException e) {\n            handleJsonProcessingException(dmiPluginRegistration, e);\n        }",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571b926a_0d604bf2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "you can remove handleDataNodeNotFoundException and use handleJsonProcessingException. No need to create new method",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c00861_8d8e3d88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "\"throws\" JsonProcessingException declarations should not be superfluous. This should be removed.",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15e8bb20_0670b4a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "String literals should not be duplicated. Use NCMP_DMI_REGISTRY_PARENT that is already there.",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b595f7bc_8b74e4c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "It can be refactored as below with more functional way and use stream \"internal iteration\"\n\n  public Collection\u003cDataNode\u003e updateDataNodeLeaves(final Collection\u003cCmHandle\u003e cmHandles) {\n        return cmHandles.stream().map(cmHandle -\u003e updateExistingDataNode(cmHandle)).collect(Collectors.toList());\n    }\n\n\n    private DataNode updateExistingDataNode(CmHandle cmHandle) {\n        try {\n            final String targetXpath \u003d\n                    NCMP_DMI_REGISTRY_PARENT + \"/cm-handles[@id\u003d\u0027\" + cmHandle.getCmHandleID() + \"\u0027]\";\n            final DataNode existingDataNode \u003d\n                    cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, targetXpath,\n                            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);\n            return updateLeaves(existingDataNode, cmHandle.getDmiProperties(), cmHandle.getPublicProperties());\n        } catch (final DataNodeNotFoundException e) {\n            log.error(\"Unable to find dataNode for cmHandleId {} with cause {}\", cmHandle.getCmHandleID(),\n                    e.getMessage());\n            throw e;\n        }\n    }",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c732751_a0b06550",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 7

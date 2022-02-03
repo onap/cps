@@ -97,6 +97,40 @@
     },
     {
       "key": {
+        "uuid": "a5874b2d_0b4761f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "\"throws\" JsonProcessingException is superfluous. You can remove it from here.",
+      "revId": "4472a6adbee2b5cbc81e1633e5730ed0066ae8ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caaf1335_d628cae1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T18:22:09Z",
+      "side": 1,
+      "message": "String literals should not be duplicated. It is already defined as NCMP_DMI_REGISTRY_PARENT",
+      "revId": "4472a6adbee2b5cbc81e1633e5730ed0066ae8ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a417b5e_11eb7fb4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 6
