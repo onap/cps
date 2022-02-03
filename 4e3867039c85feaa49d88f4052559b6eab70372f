@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aad728c8_ea5a2463",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-03T12:38:25Z",
+      "side": 1,
+      "message": "There should not be any space between Issue-ID and Sign-off.\nMore details of the format can be seen here.\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "4e3867039c85feaa49d88f4052559b6eab70372f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
