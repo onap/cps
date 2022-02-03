@@ -133,6 +133,30 @@
     },
     {
       "key": {
+        "uuid": "50c5f9d6_de4d4b45",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T19:03:07Z",
+      "side": 1,
+      "message": "Go ahead with Approach-1.",
+      "parentUuid": "6a4febef_a6000fa7",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38121bf9_8bdee60d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 7
@@ -506,6 +530,30 @@
       "writtenOn": "2022-02-03T15:26:27Z",
       "side": 1,
       "message": "could delegate to the new method instead",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 118
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6323e3a8_33c12347",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T19:03:07Z",
+      "side": 1,
+      "message": "Agree with Toine, delegate to new method by replacing line no 129 and 130 with\n replaceListContent(dataspaceName,anchorName,parentNodeXpath,newListElements,observedTimestamp);",
+      "parentUuid": "188549c6_5c422a03",
       "range": {
         "startLine": 129,
         "startChar": 0,
