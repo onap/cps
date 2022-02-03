@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9dd9bf8f_70bbf999",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T16:02:18Z",
+      "side": 0,
+      "message": "We kept there as it\u0027s a logging service for all modules and this module is common to all. Later will narrow down point cut to be more specific.",
+      "parentUuid": "387a6913_45ea955c",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecde87c6_b49bf6d7",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 6
@@ -68,6 +92,54 @@
       "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee248ab2_eb9c1f60",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T16:02:18Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "ecde87c6_b49bf6d7",
+      "range": {
+        "startLine": 57,
+        "startChar": 84,
+        "endLine": 57,
+        "endChar": 95
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc3c911e_b03da1bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T16:02:18Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "896af57f_fc2572f8",
+      "range": {
+        "startLine": 57,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
