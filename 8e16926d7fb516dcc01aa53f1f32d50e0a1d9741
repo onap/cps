@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a4febef_a6000fa7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-03T14:39:17Z",
+      "side": 1,
+      "message": "Hi Team,\nAs we discussed I wanted to introduce an overloaded version of replaceListContent in CpsDataService(which takes in Collection\u003cDataNode\u003e )\n\nReason: \nLine 64 : I am fetching the existing dataNode using the cmHandleId from the request.\nLine 67 : Updating the existing dataNode with the updatedCmHandleProperties (DMI and Public properties)\nLine 69 : I have the updated collection of dataNodes.\n\nBenefit I see is we dont need to deserialise object to String and serialize it back.\n\nNow when the control actually goes to the calling method in NetworkCmProxyDataServiceImpl, there we are calling the replaceListContent method ( overloaded version )\n\nSo I wanted your suggestion if we can go ahead and do so OR we somehow need to convert the Collection\u003cDataNode\u003e to json-string and use the existing implementation (which when called will again convert the json-string to Collection\u003cDataNode\u003e when we see the existing implementation ) .\n\nSuggestion : \nApproach-1 : Go ahead with overloaded impl.\nApproach-2 : Use the existing replaceListContent.\nApproach-3 : Some other approach/suggestion.",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "624c6004_26768bb7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-03T14:39:17Z",
+      "side": 1,
+      "message": "existing implementation of replaceListContent.",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b66ba3e8_159e6dcb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-03T14:39:17Z",
+      "side": 1,
+      "message": "overloaded version which is introduced now.",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
