@@ -20,12 +20,17 @@
 # Modifications Copyright (C) 2021 Nordix Foundation
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
+echo '================================== docker info =========================='
+docker ps -a
 
 echo '================================== CPS-NCMP Logs ========================'
 docker logs cps-and-ncmp
 
 echo '================================== DMI Logs ============================='
 docker logs ncmp-dmi-plugin
+
+echo '================================== SDNC Logs ============================'
+docker logs sdnc
 
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
