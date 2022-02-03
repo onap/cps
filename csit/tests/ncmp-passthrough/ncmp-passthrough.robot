@@ -36,8 +36,8 @@ ${netconf}              NETCONF
 
 *** Test Cases ***
 
-Get for Passthough Operational (CF, RO) with fields
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema/location)
+Get for Passthrough Operational (CF, RO) with fields
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema)
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=200
     ${responseJson}=     Set Variable       ${response.json()}
