@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ============LICENSE_START=======================================================
-#   Copyright (C) 2021 Nordix Foundation.
+#   Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@ export SDNC_CERT_PATH=$WORKSPACE/plans/cps/sdnc/certs
 
 #start SDNC containers with docker compose and configuration from docker-compose.yml
 docker-compose -f $WORKSPACE/plans/cps/sdnc/docker-compose.yml up -d
+
+#create copy of certs from specified folder to a folder inside SDNC docker container to allow access rights. (See https://jira.onap.org/browse/SDNC-1667 for method purpose)
+docker cp $SDNC_CERT_PATH/. sdnc:/opt/opendaylight/current/certs
 
 # WAIT 10 minutes maximum and test every 30 seconds if SDNC is up using HealthCheck API
 TIME_OUT=600
