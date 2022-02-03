@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "387a6913_45ea955c",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-03T14:43:25Z",
+      "side": 0,
+      "message": "Do we want to keep this class in the cps-application module rather than cps-service as it adds logging to all modules not only cps-service?",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecde87c6_b49bf6d7",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-03T14:43:25Z",
+      "side": 0,
+      "message": "The orElse() condition will not differentiate between null response or empty string response. Maybe not important for now but something to keep in mind for later.",
+      "range": {
+        "startLine": 57,
+        "startChar": 84,
+        "endLine": 57,
+        "endChar": 95
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "896af57f_fc2572f8",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-03T14:43:25Z",
+      "side": 0,
+      "message": "It is a response of the actual bean method call and should be named to highlight that.",
+      "range": {
+        "startLine": 57,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
