@@ -55,6 +55,47 @@
     },
     {
       "key": {
+        "uuid": "8ea26a7d_ef49495b",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T11:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e873bba4_0daccbdb",
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f6ebb91_cb896d1f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T11:47:28Z",
+      "side": 1,
+      "message": "just: \"at runtime\"",
+      "range": {
+        "startLine": 318,
+        "startChar": 55,
+        "endLine": 318,
+        "endChar": 69
+      },
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96e5e7f0_ae3605c9",
         "filename": "docs/deployment.rst",
         "patchSetId": 3

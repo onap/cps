@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7a8c170b_f5d319d7",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T11:47:28Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "76979646_b07ed906",
+      "range": {
+        "startLine": 324,
+        "startChar": 42,
+        "endLine": 324,
+        "endChar": 67
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f9a12d6_0cf188e9",
         "filename": "docs/deployment.rst",
         "patchSetId": 4
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "e6d03c47_c60de5d3",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T11:47:28Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "3f9a12d6_0cf188e9",
+      "range": {
+        "startLine": 341,
+        "startChar": 43,
+        "endLine": 341,
+        "endChar": 104
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d1a0a26_4bc9f8f3",
         "filename": "docs/deployment.rst",
         "patchSetId": 4
@@ -82,6 +130,30 @@
       "writtenOn": "2022-02-03T11:13:13Z",
       "side": 1,
       "message": "not very sure if we need to include this. The logs are included in the below section as well .",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 41
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8451c472_2b353169",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T11:47:28Z",
+      "side": 1,
+      "message": "NB: I think it is nice to have an actual example (although their could be a maintenance cost). The example below is specific for execution time logging....",
+      "parentUuid": "7d1a0a26_4bc9f8f3",
       "range": {
         "startLine": 367,
         "startChar": 0,
