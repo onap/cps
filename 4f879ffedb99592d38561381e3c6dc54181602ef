@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "986efc4f_3331c5a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-03T19:52:42Z",
+      "side": 1,
+      "message": "I think this method is getting called even if ConditionalOnExpression is false.\n\nTo validate it, we can put an info log just to check if this method gets called when logging.level.org.onap.cps is other than \u0027DEBUG\u0027. By default, the logger itself supports dynamic log level change using actuator loggers endpoint. So, we won\u0027t be able to check by just checking if log statements are being printed as it is being handled by the logger already.  \n\nI validated it at my end and condition expression had no effect on method execution.",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "4f879ffedb99592d38561381e3c6dc54181602ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de1ba5f7_61e8aee1",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 7
