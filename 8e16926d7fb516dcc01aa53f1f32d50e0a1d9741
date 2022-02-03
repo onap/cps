@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c732751_a0b06550",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T16:15:54Z",
+      "side": 1,
+      "message": "now I have seen tests it became clear that there is something missing in the prod. code here!\n\nThe Registration DataNode for a cm-handle has 2 (list) child datanodes!\n\n\nlist additional-properties \nlist public-properties \n\nYou need to handle each separately with just the relevant update properties!\nprobably end up call replaceListContent twice for each list!",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 116
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a4febef_a6000fa7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 7
