@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4328e0c8_67716a9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-03T10:27:21Z",
+      "side": 1,
+      "message": "Amm..then would it be ok if we use a common constants file(something like NetworkCmProxyConstants) which would house all this and can be used from there. Currently we use the constants in NetworkCmProxyDataServiceImpl and NetworkCmProxyDataServicePropertyHandler.",
+      "parentUuid": "45480dd2_4133627d",
+      "range": {
+        "startLine": 191,
+        "startChar": 82,
+        "endLine": 192,
+        "endChar": 78
+      },
+      "revId": "4472a6adbee2b5cbc81e1633e5730ed0066ae8ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a417b5e_11eb7fb4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 6
