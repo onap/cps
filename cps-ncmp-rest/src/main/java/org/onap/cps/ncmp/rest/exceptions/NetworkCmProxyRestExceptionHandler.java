@@ -21,7 +21,9 @@
 package org.onap.cps.ncmp.rest.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -56,9 +58,14 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({NcmpException.class})
-    public static ResponseEntity<Object> handleNcmpExceptions(final NcmpException exception) {
+    @ExceptionHandler({ServerNcmpException.class})
+    public static ResponseEntity<Object> handleServerNcmpExceptions(final ServerNcmpException exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
+    @ExceptionHandler({DmiRequestException.class})
+    public static ResponseEntity<Object> handleDmiRequestExceptions(final DmiRequestException exception) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
