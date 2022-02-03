@@ -27,6 +27,12 @@ docker logs cps-and-ncmp
 echo '================================== DMI Logs ============================='
 docker logs ncmp-dmi-plugin
 
+echo '================================== SDNC Logs ============================'
+docker logs sdnc_sdnc_1
+
+echo '================================== docker info =========================='
+docker ps -a
+
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
