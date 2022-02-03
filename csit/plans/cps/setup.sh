@@ -17,7 +17,7 @@
 # Modifications copyright (c) 2017 AT&T Intellectual Property
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
-# Modifications Copyright (C) 2021 Bell Canada.
+# Modifications Copyright (C) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021 Nordix Foundation.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
@@ -36,8 +36,6 @@ export SDNC_HOST=$LOCAL_IP
 export CPS_CORE_HOST=$LOCAL_IP
 export DB_USERNAME=cps
 export DB_PASSWORD=cps
-# Use latest image version
-export VERSION=latest
 
 # download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
 curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose

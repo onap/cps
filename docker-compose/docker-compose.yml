@@ -1,6 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
-# Modifications Copyright (C) 2021 Bell Canada.
+# Modifications Copyright (C) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -97,7 +97,7 @@ services:
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${VERSION:-latest}
+    image: ${DOCKER_REPO_CPS_AND_NCMP:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${VERSION_CPS_AND_NCMP:-latest}
     ports:
       - "8883:8080"
       - "8887:8081"
@@ -118,7 +118,7 @@ services:
 
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${VERSION:-latest}
+    image: ${DOCKER_REPO_DMI_PLUGIN:-nexus3.onap.org:10001}/onap/ncmp-dmi-plugin:${VERSION_DMI_PLUGIN:-1.0.3}
     ports:
       - "8783:8080"
       - "8787:8081"
