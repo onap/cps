@@ -46,6 +46,30 @@
       "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fdbf3d5_7c7eeeff",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T08:37:14Z",
+      "side": 1,
+      "message": "approach 1 is fine with me too",
+      "parentUuid": "0f44512f_089e1cf6",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
