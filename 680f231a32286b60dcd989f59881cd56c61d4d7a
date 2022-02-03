@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b499c824_8acdc0ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-03T09:56:33Z",
+      "side": 1,
+      "message": "We moved ConditionalOnExpression from class to method so that once log level will be changed on fly, there should not be any need of restarting CPS service to take immidiate effect. If you will keep \"ConditionalOnExpression\" at class level than we have to restart CPS service to cteate CpsLoggingAspectService bean. To avoid service restart and make this bean available ConditionalOnExpression is moved to method. Now if we change log level on fly than immediatly the behaviour of this method will start working. In short for any log level change it will check the ConditionalOnExpression of fly and act accordingly.",
+      "revId": "680f231a32286b60dcd989f59881cd56c61d4d7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
