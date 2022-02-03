@@ -48,6 +48,7 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
+import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.model.DataNode;
@@ -384,6 +385,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static String getListElementXpathPrefix(final Collection<DataNode> newListElements) {
+        if (newListElements.isEmpty()) {
+            throw new CpsAdminException("Invalid list replacement",
+                "Cannot replace list elements with empty collection");
+        }
         final String firstChildNodeXpath = newListElements.iterator().next().getXpath();
         return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("[") + 1);
     }
