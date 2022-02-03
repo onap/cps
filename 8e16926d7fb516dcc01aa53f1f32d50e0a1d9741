@@ -25,6 +25,351 @@
     },
     {
       "key": {
+        "uuid": "38121bf9_8bdee60d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "\u0027no\u0027 instead of mock :-)",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9baf4758_dcd1b472",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "\u0027no\u0027 instead of mock :-)",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 12
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06fead2a_bbbf2a10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "there are no different scenarios (anymore) as those is no handled in your new class",
+      "range": {
+        "startLine": 198,
+        "startChar": 96,
+        "endLine": 198,
+        "endChar": 105
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "424ad6da_94f9117f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "accident ?",
+      "range": {
+        "startLine": 198,
+        "startChar": 94,
+        "endLine": 198,
+        "endChar": 95
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab41b86e_6a7c42cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "should be stricter on parameter checks here\n*_ should only be used when checking for NOT called or throwing exceptions etc.",
+      "range": {
+        "startLine": 210,
+        "startChar": 54,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76bd0a2f_bfa071c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "\u0027no\u0027 instead of \u0027mock\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 12
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa294ad1_8e3844a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "keep these short and more generic (dont duplicate details that are in label below, focus on the core intent of this test)\n\n\u0027Updating CM Handle Properties: #scenario\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 94
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dd09c6b_af8655d8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "with some properties  (the id is not that relevant for this test)",
+      "range": {
+        "startLine": 42,
+        "startChar": 27,
+        "endLine": 42,
+        "endChar": 46
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97e999b6_341131ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "i\u0027m worried on hoy you are combining dmi and public properties. this doens\u0027 t seem to be right. we might need Dylan to talk about this",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 48
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24942794_8e41420b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "dont add this, its described in line 51 and checked on line 52",
+      "range": {
+        "startLine": 49,
+        "startChar": 70,
+        "endLine": 49,
+        "endChar": 103
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57ed70fe_a2f72181",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "add a (generic) label e.g. \u0027the following property updates are made\u0027",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 14
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a861d713_1ad284cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "I think this tets should only one or the other and we can add a separate test for the others",
+      "range": {
+        "startLine": 54,
+        "startChar": 101,
+        "endLine": 54,
+        "endChar": 148
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39624384_1e8780e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "overall a good table, well done.\nMain concern is the use of both types of properties",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 76
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d50879_7402dbd7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "new-prop",
+      "range": {
+        "startLine": 58,
+        "startChar": 103,
+        "endLine": 58,
+        "endChar": 109
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09d48760_c7ae7361",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "this is where you can/should use _*  ie. we dont care about teh exact parameters this test is only interested in hwo teh exception is handled",
+      "range": {
+        "startLine": 67,
+        "startChar": 43,
+        "endLine": 68,
+        "endChar": 62
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "624c6004_26768bb7",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -42,6 +387,29 @@
     },
     {
       "key": {
+        "uuid": "188549c6_5c422a03",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "could delegate to the new method instead",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 118
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b66ba3e8_159e6dcb",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -53,6 +421,29 @@
       "writtenOn": "2022-02-03T14:39:17Z",
       "side": 1,
       "message": "overloaded version which is introduced now.",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d514f67_9756ea91",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-03T15:26:27Z",
+      "side": 1,
+      "message": "need specific parameter checks",
+      "range": {
+        "startLine": 214,
+        "startChar": 65,
+        "endLine": 214,
+        "endChar": 68
+      },
       "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
