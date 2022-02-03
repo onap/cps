@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b0052d3_3007bb6c",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-03T11:11:32Z",
+      "side": 1,
+      "message": "should be cps management port",
+      "range": {
+        "startLine": 324,
+        "startChar": 79,
+        "endLine": 324,
+        "endChar": 103
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76979646_b07ed906",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-03T11:11:32Z",
+      "side": 1,
+      "message": "this should be cps service name",
+      "range": {
+        "startLine": 324,
+        "startChar": 42,
+        "endLine": 324,
+        "endChar": 67
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9a12d6_0cf188e9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-03T11:11:32Z",
+      "side": 1,
+      "message": "should be cps-service-name:cps-management-port",
+      "range": {
+        "startLine": 341,
+        "startChar": 43,
+        "endLine": 341,
+        "endChar": 104
+      },
+      "revId": "f46108fcc80f5adc40e92de0aeef465940c5b825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
