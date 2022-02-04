@@ -71,6 +71,92 @@
     },
     {
       "key": {
+        "uuid": "1a212afa_bb688faa",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-04T09:09:19Z",
+      "side": 1,
+      "message": "y did we renamed this ? I prefer mariadb here",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 4
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe188c6_cc4615c1",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-04T09:09:19Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "472fcf1b_b9a13ea7",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-04T09:09:19Z",
+      "side": 1,
+      "message": "sdnc-ansible-server",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 9
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f04ae50_d92d53da",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-04T09:09:19Z",
+      "side": 1,
+      "message": "where does this come from ? a hard coded host ??",
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b45d52a_9254fefd",
         "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
         "patchSetId": 1
