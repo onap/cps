@@ -46,6 +46,30 @@
       "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed5245f9_20597396",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-04T14:09:58Z",
+      "side": 1,
+      "message": "By having istanbul release here, we are not going to test the change we are currently making, by default we are going to test Istanbul release, for which we already know the tests are ok.\n\nThis is the reason why I would not go with Istanbul release here and let the environment variable being set explicitly if a specific cps version needs to be tested.",
+      "parentUuid": "4e16d54a_cf6a0ac7",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 110
+      },
+      "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
