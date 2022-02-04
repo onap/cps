@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f4bc4dfb_311a2277",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T09:39:02Z",
+      "side": 1,
+      "message": "Why are these now public? Breaks encapsulation.",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 59
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "037ff73d_0034f680",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
@@ -168,6 +191,30 @@
       "writtenOn": "2022-02-03T15:26:27Z",
       "side": 1,
       "message": "\u0027no\u0027 instead of mock :-)",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84c13280_92b80449",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T09:39:02Z",
+      "side": 1,
+      "message": "Would nullCpsDataService be more understandable as to what it entails?",
+      "parentUuid": "38121bf9_8bdee60d",
       "range": {
         "startLine": 35,
         "startChar": 8,
@@ -495,6 +542,52 @@
         "startChar": 43,
         "endLine": 68,
         "endChar": 62
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "991a0b4c_2123ebac",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T09:39:02Z",
+      "side": 1,
+      "message": "I think it should be: \n*  Copyright (C) 2022 Nordix Foundation",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6e8f7c4_f7c64f10",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T09:39:02Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 45
       },
       "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
