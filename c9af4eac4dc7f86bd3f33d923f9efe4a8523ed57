@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ec6f3ecf_027841b7",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T15:01:17Z",
+      "side": 1,
+      "message": "NB: Could it be made configurable?",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "30341f98_9f0f1628",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
         "patchSetId": 16
