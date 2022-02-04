@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a253e3a2_8922dbc0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T10:11:43Z",
+      "side": 1,
+      "message": "there are used by the new helper classes of this service, I think that is OK",
+      "parentUuid": "f4bc4dfb_311a2277",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 59
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "037ff73d_0034f680",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
