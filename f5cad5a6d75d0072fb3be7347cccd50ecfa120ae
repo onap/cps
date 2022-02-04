@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1761bf30_99dedc1e",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T10:02:23Z",
+      "side": 0,
+      "message": "the intention was to log timing for successful execution. I presume if the method being logged throws an exception or similar there still we be an execution time?\nIn any case erroe logging was not the intent of this user story...",
+      "parentUuid": "5c8d1dfa_a0406a99",
+      "range": {
+        "startLine": 52,
+        "startChar": 18,
+        "endLine": 52,
+        "endChar": 40
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecde87c6_b49bf6d7",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 6
