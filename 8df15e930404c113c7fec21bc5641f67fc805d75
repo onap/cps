@@ -22,6 +22,30 @@
       "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e16d54a_cf6a0ac7",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-04T09:19:56Z",
+      "side": 1,
+      "message": "I think we should be using Istanbul release version here.",
+      "parentUuid": "c4a5e18f_ab0d3c19",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 110
+      },
+      "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
