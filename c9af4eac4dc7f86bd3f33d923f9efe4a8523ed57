@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "c9f61bd5_df85ae51",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-04T13:04:20Z",
+      "side": 1,
+      "message": "@Team, Thanks for the quick feedback :)",
+      "parentUuid": "8634b780_9f1402c7",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f79247f_4e4a9c02",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 16
@@ -132,6 +156,30 @@
       "writtenOn": "2022-02-04T10:44:14Z",
       "side": 1,
       "message": "Does this not need a processDataUpdatedEventAsync(...)? with root node xpath. Or is it used under the assumption it will only be called when delete anchor is called and included under that notification service call? Even if this is case I think it might need processDataUpdatedEventAsync(...) for if the method is used elsewhere in the future.",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "c9af4eac4dc7f86bd3f33d923f9efe4a8523ed57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "539400f9_438fdae1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-04T13:04:20Z",
+      "side": 1,
+      "message": "The current change is only to refactor the existing functionality. The notification implementation is in the dependent change. https://gerrit.onap.org/r/c/cps/+/126908/4/cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+      "parentUuid": "5f79247f_4e4a9c02",
       "range": {
         "startLine": 137,
         "startChar": 8,
