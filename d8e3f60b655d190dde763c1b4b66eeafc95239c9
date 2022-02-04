@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f04d87_f7a15691",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-04T21:39:47Z",
+      "side": 1,
+      "message": "Fixed (Major, Code smell) : Utility classes should not have public constructors\n\nIf access level is private than we were facing : IllegalArgumentException: No visible constructors in class NetworkCmProxyRestExceptionHandler. Basically in this case problem is with AOP proxy, for some reason CGLIB proxying not working in this case.",
+      "revId": "d8e3f60b655d190dde763c1b4b66eeafc95239c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ecfcc9c_46edc446",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-04T21:39:47Z",
+      "side": 1,
+      "message": "Fixed (Code smell, Minor) \"throws\" declarations should not be superfluous.",
+      "revId": "d8e3f60b655d190dde763c1b4b66eeafc95239c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24c17b29_459b089e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-04T21:39:47Z",
+      "side": 1,
+      "message": "Fixed (Code smell, Minor) \"throws\" declarations should not be superfluous.",
+      "revId": "d8e3f60b655d190dde763c1b4b66eeafc95239c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b41b7ec_0e581b95",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-04T21:39:47Z",
+      "side": 1,
+      "message": "Fixed (Major, Code smell) : Utility classes should not have public constructors\n\nIf access level is private than we were facing : IllegalArgumentException: No visible constructors in class CpsRestExceptionHandler. Basically in this case problem is with AOP proxy, for some reason CGLIB proxying not working in this case.",
+      "revId": "d8e3f60b655d190dde763c1b4b66eeafc95239c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
