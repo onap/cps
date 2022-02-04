@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "04888ef0_eddf0ce4",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-04T20:24:40Z",
+      "side": 0,
+      "message": "In case of any exception we already capturing a proper exception and creating a service response for client.\n\nPurpose : Don\u0027t want to capture or ignore in case of any exception as we already have ExceptionHandlers to do this otherwise (break the current flow of service and we will get unwanted/unstructured response that is useful for developer but not for end user) we need to have capture all kind of exception here and either throw it again or again generate service response as it\u0027s already done into ExceptionHandlers. If we capture any exception here (Stmt at line no. 57 throws Throwable) than we need to be wrap it to it\u0027s specific exception that is unnecessary. The @SneakyThrows annotation from Lombok allows us to throw checked exceptions without using the throws declaration that can be captured into ExceptionHandlers. @SneakyThrows is used to throw checked exceptions without declaring them in signature.",
+      "parentUuid": "5c8d1dfa_a0406a99",
+      "range": {
+        "startLine": 52,
+        "startChar": 18,
+        "endLine": 52,
+        "endChar": 40
+      },
+      "revId": "f5cad5a6d75d0072fb3be7347cccd50ecfa120ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecde87c6_b49bf6d7",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 6
