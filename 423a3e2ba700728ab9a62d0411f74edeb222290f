@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d556b044_f6868926",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-04T09:46:08Z",
+      "side": 1,
+      "message": "Is it possible to have a test for this or is the use case too specific?",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 77
+      },
+      "revId": "423a3e2ba700728ab9a62d0411f74edeb222290f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
