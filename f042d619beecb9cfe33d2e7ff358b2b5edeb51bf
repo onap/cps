@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "891e35fc_979cbf0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T08:57:17Z",
+      "side": 1,
+      "message": "it was part of the ticket but not part of this commit.\nAs we are NOT introducing any tets for this in CSIT (that will come later) it is a bit misleading to put it in the commit message",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af0bb01f_dbe401ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T08:57:17Z",
+      "side": 1,
+      "message": "as a bit more details: at least the new version of SDN-C and the fact you modified test to remove leave-filter",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1abfa1f8_f1e798d6",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T08:57:17Z",
+      "side": 1,
+      "message": "version of what is this, why is it lower then before?!",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b45d52a_9254fefd",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T08:57:17Z",
+      "side": 1,
+      "message": "New version of SDNC does not support leaf-filter. we raised ticket for this: https://jira.onap.org/browse/CCSDK-3582",
+      "range": {
+        "startLine": 40,
+        "startChar": 202,
+        "endLine": 40,
+        "endChar": 209
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
