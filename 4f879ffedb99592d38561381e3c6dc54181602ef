@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8387443f_6ee61777",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-04T10:03:12Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "8ce637a7_a331e36b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "4f879ffedb99592d38561381e3c6dc54181602ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "986efc4f_3331c5a1",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 7
