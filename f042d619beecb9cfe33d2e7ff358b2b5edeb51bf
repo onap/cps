@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "3fb5e6ee_cf844b37",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T09:29:19Z",
+      "side": 1,
+      "message": "Copyright extension",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1abfa1f8_f1e798d6",
         "filename": "csit/plans/cps/sdnc/docker-compose.yml",
         "patchSetId": 1
@@ -82,6 +105,30 @@
       "writtenOn": "2022-02-04T09:09:19Z",
       "side": 1,
       "message": "y did we renamed this ? I prefer mariadb here",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 4
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17ab1685_d1c219b7",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T09:29:19Z",
+      "side": 1,
+      "message": "Happened when I merged two docker-compose files together. I should have left at old name agreed",
+      "parentUuid": "1a212afa_bb688faa",
       "range": {
         "startLine": 27,
         "startChar": 2,
@@ -133,6 +180,29 @@
         "startChar": 2,
         "endLine": 44,
         "endChar": 9
+      },
+      "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd202c9_7076f6b6",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T09:29:19Z",
+      "side": 1,
+      "message": "Also my bad. Software Defined Network Controller Controller. \"_controller\" can be removed",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 35
       },
       "revId": "f042d619beecb9cfe33d2e7ff358b2b5edeb51bf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
