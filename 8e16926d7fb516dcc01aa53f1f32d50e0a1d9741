@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "5511531b_e25d3e77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T11:45:46Z",
+      "side": 1,
+      "message": "I would change handleJsonProcessingException to a more generic handleProcessingException with \"Error occurred while processing...\" and include the message from the thrown exception",
+      "parentUuid": "571b926a_0d604bf2",
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5c00861_8d8e3d88",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 7
@@ -192,6 +210,30 @@
       "side": 1,
       "message": "Go ahead with Approach-1.",
       "parentUuid": "6a4febef_a6000fa7",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c003a207_56c98e11",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T11:45:46Z",
+      "side": 1,
+      "message": "Agree with approach-1",
+      "parentUuid": "50c5f9d6_de4d4b45",
       "range": {
         "startLine": 58,
         "startChar": 8,
@@ -596,6 +638,30 @@
     },
     {
       "key": {
+        "uuid": "e2dff689_6f93f82f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T11:45:46Z",
+      "side": 1,
+      "message": "2020-2022 is right, we just don\u0027t see it very often! (Double checked license page)",
+      "parentUuid": "991a0b4c_2123ebac",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6e8f7c4_f7c64f10",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -616,6 +682,30 @@
       "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be538adf_be9c136b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-04T11:45:46Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "parentUuid": "e6e8f7c4_f7c64f10",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "8e16926d7fb516dcc01aa53f1f32d50e0a1d9741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
