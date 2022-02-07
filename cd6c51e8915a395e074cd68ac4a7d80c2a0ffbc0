@@ -93,6 +93,30 @@
     },
     {
       "key": {
+        "uuid": "0c79fb46_8e289dcc",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-07T19:37:40Z",
+      "side": 1,
+      "message": "Second check is not needed.",
+      "parentUuid": "855ad62d_1c192811",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 78
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fc4c84a_2c7a8336",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 10
@@ -104,6 +128,30 @@
       "writtenOn": "2022-02-07T14:20:24Z",
       "side": 1,
       "message": "need separate test to shows debug is called or not covering relevant branches on decision point in the prod code.",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f83d0075_5acf846f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-07T19:37:40Z",
+      "side": 1,
+      "message": "Wrote new test case to cover these scenarios.",
+      "parentUuid": "0fc4c84a_2c7a8336",
       "range": {
         "startLine": 42,
         "startChar": 7,
@@ -139,6 +187,30 @@
     },
     {
       "key": {
+        "uuid": "3eca279a_4f2152b8",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-07T19:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b799c97_4328f708",
+      "range": {
+        "startLine": 71,
+        "startChar": 66,
+        "endLine": 71,
+        "endChar": 169
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c9a11fa_cdd79060",
         "filename": "docs/admin-guide.rst",
         "patchSetId": 10
@@ -159,6 +231,30 @@
       "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e44420_4bd16da3",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-07T19:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c9a11fa_cdd79060",
+      "range": {
+        "startLine": 127,
+        "startChar": 71,
+        "endLine": 127,
+        "endChar": 72
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
