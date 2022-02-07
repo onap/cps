@@ -45,6 +45,30 @@
       "revId": "334b01d73240a0133a027ff891deff8116a0b7b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "006f06de_bb5dcc6e",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-07T18:29:03Z",
+      "side": 1,
+      "message": "It is the same issue on my environment where it seemingly cannot extract keys0.zip\n\n\n18:23:42 2022-02-07 18:09:57,308 - root - INFO - Connected status: True\n18:23:42 2022-02-07 18:09:57,310 - root - ERROR - Error while extracting zip file(s). Exiting Certificate Installation.\n18:23:42 2022-02-07 18:09:57,310 - root - INFO - Error details : [Errno 13] Permission denied: \u0027/opt/opendaylight/current/certs/keys0\u0027\n18:23:42 Stoppping SDNR container due to failure in installing Certificates",
+      "parentUuid": "459cddd7_d4601104",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "334b01d73240a0133a027ff891deff8116a0b7b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
