@@ -24,6 +24,7 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
@@ -37,26 +38,19 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
 
-    @Autowired
-    private CpsDataPersistenceService cpsDataPersistenceService;
-
-    @Autowired
-    private CpsAdminService cpsAdminService;
-
-    @Autowired
-    private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
-
-    @Autowired
-    private NotificationService notificationService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final CpsAdminService cpsAdminService;
+    private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
+    private final NotificationService notificationService;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
@@ -135,6 +129,12 @@ public class CpsDataServiceImpl implements CpsDataService {
                                final OffsetDateTime observedTimestamp) {
         cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, dataNodeXpath, Operation.DELETE);
+    }
+
+    @Override
+    public void deleteDataNodes(final String dataspaceName, final String anchorName,
+        final OffsetDateTime observedTimestamp) {
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
     }
 
     @Override

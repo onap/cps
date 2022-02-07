@@ -37,22 +37,16 @@ class E2ENetworkSliceSpec extends Specification {
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockNotificationService = Mock(NotificationService)
-    def cpsDataServiceImpl = new CpsDataServiceImpl()
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache,mockCpsAdminService )
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
+            mockYangTextSchemaSourceSetCache, mockNotificationService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
     def noTimestamp = null
-
-    def setup() {
-        cpsDataServiceImpl.cpsDataPersistenceService = mockDataStoreService
-        cpsDataServiceImpl.cpsAdminService = mockCpsAdminService
-        cpsDataServiceImpl.yangTextSchemaSourceSetCache = mockYangTextSchemaSourceSetCache
-        cpsDataServiceImpl.notificationService = mockNotificationService
-    }
 
     def 'E2E model can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'

@@ -41,8 +41,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
-    static final Integer DELETED_ANCHOR_ID = 3001
-    static final Long DELETED_FRAGMENT_ID = 4001
+    static final Integer DELETED_ANCHOR_ID = 3002
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
@@ -150,10 +149,9 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete anchor'() {
         when: 'delete anchor action is invoked'
-            objectUnderTest.deleteAnchor(DATASPACE_NAME, ANCHOR_NAME1)
-        then: 'anchor and associated data fragment are deleted'
+            objectUnderTest.deleteAnchor(DATASPACE_NAME, ANCHOR_NAME2)
+        then: 'anchor is deleted'
             assert anchorRepository.findById(DELETED_ANCHOR_ID).isEmpty()
-            assert fragmentRepository.findById(DELETED_FRAGMENT_ID).isEmpty()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
