@@ -117,6 +117,30 @@
       "revId": "423a3e2ba700728ab9a62d0411f74edeb222290f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59104661_e54c015a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T08:40:45Z",
+      "side": 1,
+      "message": "not sure if that is possible.\nThrowing an exception is easy but what about the framework to execute the retry?! Maybe in a @SpringBoot test...\n\nI know Aditya is trying now, lets wait and see",
+      "parentUuid": "517a6e0a_cb8df816",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 77
+      },
+      "revId": "423a3e2ba700728ab9a62d0411f74edeb222290f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
