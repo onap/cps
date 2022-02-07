@@ -34,6 +34,24 @@
       "revId": "4125b3266d9cda4a6e37b7efc9caa6bde231405b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f60ffe6a_2439cf40",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-07T16:07:26Z",
+      "side": 1,
+      "message": "It makes sense, thanks for the clarification.",
+      "parentUuid": "6318ce24_0f64bd69",
+      "revId": "4125b3266d9cda4a6e37b7efc9caa6bde231405b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
