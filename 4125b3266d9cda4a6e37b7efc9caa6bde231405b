@@ -16,6 +16,24 @@
       "revId": "4125b3266d9cda4a6e37b7efc9caa6bde231405b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6318ce24_0f64bd69",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-07T15:48:32Z",
+      "side": 1,
+      "message": "Yes. When an anchor is deleted, it is not possible to fetch details about schema-set name associated with the anchor. So, in the case of delete, it is required to fetch information before the actual deletion takes place. \n\nIn the old implementation, the anchor details were fetched when the event payload was created, which is too late in the case of anchor delete.",
+      "parentUuid": "e8a90b87_b1234f6d",
+      "revId": "4125b3266d9cda4a6e37b7efc9caa6bde231405b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
