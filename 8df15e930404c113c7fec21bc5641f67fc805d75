@@ -70,6 +70,30 @@
       "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54896f83_c650e7db",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T17:23:05Z",
+      "side": 1,
+      "message": "ohk...\nif so should the same (-latest) be used on line 121 for DMI plugin version?!",
+      "parentUuid": "ed5245f9_20597396",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 110
+      },
+      "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
