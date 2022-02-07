@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "819a5345_f0517b01",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T08:34:11Z",
+      "side": 1,
+      "message": "is this where the certs are?! or should this repo includes its own copy of certs?",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 47
+      },
+      "revId": "20f58bb9fd68462649bf5ef7a42fe5899d3cb6fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
