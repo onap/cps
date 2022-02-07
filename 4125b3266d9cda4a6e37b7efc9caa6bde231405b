@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8a90b87_b1234f6d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-07T15:39:34Z",
+      "side": 1,
+      "message": "Just wondering ... Any reason not to use the following ?\n\n  void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName,\n      final OffsetDateTime observedTimestamp, final String xpath,\n      final Operation operation)\n\nDoes it mean that we could get rid of:\n\n  void processDataUpdatedEventAsync(final Anchor anchor, \n      final String xpath, final Operation operation,\n      final OffsetDateTime observedTimestamp)",
+      "revId": "4125b3266d9cda4a6e37b7efc9caa6bde231405b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
