@@ -22,6 +22,29 @@
       "revId": "334b01d73240a0133a027ff891deff8116a0b7b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "459cddd7_d4601104",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T17:24:22Z",
+      "side": 1,
+      "message": "did that help finding out the issue with certs?!",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "334b01d73240a0133a027ff891deff8116a0b7b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
