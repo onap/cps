@@ -94,6 +94,30 @@
       "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69717939_7eac114e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-07T19:49:08Z",
+      "side": 1,
+      "message": "I don\u0027t think so.\n\nBeing in cps repo here, cps is build by the verification job and it generates cps latest image corresponding to the current change that is under test here. Hence latest cps image at line 100.\n\nBut dmi plugin is not part of this repo, then dmi latest image is not related to this change build at all. Either:\n* dmi plugin latest does not exist if if was old and cleaned-up (this is the reason why the test is currently failing)\n* or dmi plugin latest could also be a jakarta image related to any recent change in progress.\nEither way, not really suitable to be used for istanbul integration testing.\n\nThen I was thinking that the best dmi plugin image to use to run this istanbul integration test is latest istanbul dmi plugin image. Hence 1.0.3 dmi plugin image at line 121.\n\nSome explanation can also be found in https://jira.onap.org/browse/CPS-879 description and comment.\n\nLet me know if it clarifies the intent here.",
+      "parentUuid": "54896f83_c650e7db",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 110
+      },
+      "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
