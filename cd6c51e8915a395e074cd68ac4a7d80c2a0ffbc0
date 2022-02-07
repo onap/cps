@@ -67,6 +67,98 @@
       "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "855ad62d_1c192811",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T14:20:24Z",
+      "side": 1,
+      "message": "not sure if you need this OR statement...\n(it would mean that unit tets need to cover all 4 possible branches!)",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 78
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc4c84a_2c7a8336",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T14:20:24Z",
+      "side": 1,
+      "message": "need separate test to shows debug is called or not covering relevant branches on decision point in the prod code.",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b799c97_4328f708",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T14:20:24Z",
+      "side": 1,
+      "message": "After executing the curl command \"effectiveLevel\" will set and applied immediately without restarting CPS service.",
+      "range": {
+        "startLine": 71,
+        "startChar": 66,
+        "endLine": 71,
+        "endChar": 169
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c9a11fa_cdd79060",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-07T14:20:24Z",
+      "side": 1,
+      "message": "to prevent unnecessary logging and impacts of performance.",
+      "range": {
+        "startLine": 127,
+        "startChar": 71,
+        "endLine": 127,
+        "endChar": 72
+      },
+      "revId": "cd6c51e8915a395e074cd68ac4a7d80c2a0ffbc0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
