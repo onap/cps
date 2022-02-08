@@ -24,8 +24,12 @@ import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.reflect.MethodSignature
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class CpsLoggingAspectServiceSpec extends Specification {
+
+    private static final Logger logger = Logger.getLogger("org.onap.cps")
 
     def mockProceedingJoinPoint = Mock(ProceedingJoinPoint)
     def mockMethodSignature = Mock(MethodSignature);
@@ -38,24 +42,27 @@ class CpsLoggingAspectServiceSpec extends Specification {
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
     }
 
-    def 'Log method execution time.'() {
-        given: 'mock valid arguments'
+    def 'Log method execution time logging for log level : #logLevel.'() {
+        given: 'mock valid pointcut arguments and set log level to debug'
             mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
-        when: 'aop intercepts cps method and start calculation of time'
+            logger.setLevel(logLevel)
+        when: 'aop intercepts cps method'
             objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
-        then: 'process successfully and log details of executed method'
-            1 * mockProceedingJoinPoint.proceed()
+        then: 'expected number of method execution'
+            expectedNumberOfMethodExecution * mockMethodSignature.getName()
+        where: 'the following log levels are used'
+            logLevel     || expectedNumberOfMethodExecution
+            Level.INFO   || 0
+            Level.FINE   || 1
+            Level.FINEST || 1
     }
 
-    def 'Creating a data validation exception for invalid args.'() {
-        given: 'a data validation exception is created'
-            mockProceedingJoinPoint.getArgs() >> {
-                throw new DataValidationException('invalid args',
-                        'invalid method arg(s) is passed', new Throwable())
-            }
+    def 'Exception thrown during method execution.'() {
+        given: 'some exception is created'
+            mockProceedingJoinPoint.proceed() >> { throw new Exception("some exception") }
         when: 'aop intercepts cps method and start calculation of time'
             objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
-        then: 'data validation exception is thrown'
-            thrown(DataValidationException.class)
+        then: 'some exception is thrown'
+            thrown Exception
     }
 }

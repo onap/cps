@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.rest.exceptions;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
@@ -37,6 +39,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @Slf4j
 @RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class})
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 
     private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
