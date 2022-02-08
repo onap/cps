@@ -118,6 +118,30 @@
       "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b37437_0f1f45d2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T14:10:52Z",
+      "side": 1,
+      "message": "ok I understand now, thanks!",
+      "parentUuid": "69717939_7eac114e",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 110
+      },
+      "revId": "8df15e930404c113c7fec21bc5641f67fc805d75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
