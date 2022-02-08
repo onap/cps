@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a795a3af_8e0a06f3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-08T15:56:31Z",
+      "side": 1,
+      "message": "This results in a Security hotspot. Either we accept and suppress it or we think of another way  of finding the key from a xpath.\n\neg : \"/dmi-registry/cm-handles[@id\u003d\u0027\u0027123\u0027]/additional-properties[@name\u003d\u0027propertyKey\u0027]\"\nwith the regex i am trying to extract out propertyKey\n\nDetails : https://sonarcloud.io/project/security_hotspots?branch\u003d126916-10\u0026id\u003donap_cps\u0026sinceLeakPeriod\u003dtrue",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 100
+      },
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee0feb2_db06e4d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-08T15:56:31Z",
+      "side": 1,
+      "message": "Empty check is required as replaceListContent throws CpsAdminException when we pass in empty collection.\n\nthrow new CpsAdminException(\"Invalid list replacement\",\n                \"Cannot replace list elements with empty collection\");",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 9
+      },
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab34daea_51b4ed8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-08T15:56:31Z",
+      "side": 1,
+      "message": "This else block is required to handle a special case when we have only one Public OR one DMI property left and we try to delete it. \nIf we would have used replaceListContent then we will end up passing empty collection to it , which would result in CpsAdminException (As i explained in my previous comment)\nHence I thought of using cpsDataService.deleteDataNode to delete the dataNode. What do you guys think of this approach?",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 13
+      },
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "899c4e44_26130764",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-08T15:56:31Z",
+      "side": 1,
+      "message": "I will remove this bit in the next commit. This is actually not required here now.",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 57
+      },
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dc39825_e7ece0d5",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-08T15:56:31Z",
+      "side": 1,
+      "message": "Since the change is applied on RestCmHandleProperties , it would be applicable for both create and update cmHandles.\n\nThis would look something like below.\n\n{\n  \"dmiPlugin\": \"my-dmi-plugin\",\n  \"dmiDataPlugin\": \"my-dmi-data-plugin\",\n  \"dmiModelPlugin\": \"my-dmi-model-plugin\",\n  \"createdCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp2\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp3\": \"add-property , update-property , null to remove-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp2\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp3\": \"add-property , update-property , null to remove-property\"\n      }\n    }\n  ],\n  \"updatedCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp2\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp3\": \"add-property , update-property , null to remove-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp2\": \"add-property , update-property , null to remove-property\",\n        \"additionalProp3\": \"add-property , update-property , null to remove-property\"\n      }\n    }\n  ],\n  \"removedCmHandles\": [\n    \"[\\\"my-cm-handle1\\\",\\\"my-cm-handle2\\\",\\\"my-cm-handle3\\\"]\"\n  ]\n}",
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
