@@ -34,6 +34,24 @@
       "revId": "5d8ac890bab0d3f4b127d2bb898170ad1b4e86f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b17cd2f_b820874d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-08T14:15:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a7f76577_654b5136",
+      "revId": "5d8ac890bab0d3f4b127d2bb898170ad1b4e86f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
