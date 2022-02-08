@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "659e27c5_64c6ad3b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-08T13:21:25Z",
+      "side": 1,
+      "message": "Is it necessary to create a new file for this?\n\nCould these tests not go within the already existing CsModulePersistenceServiceSpec?",
+      "revId": "5d8ac890bab0d3f4b127d2bb898170ad1b4e86f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
