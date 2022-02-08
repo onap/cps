@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6f87f6b_9b25245e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-08T13:16:33Z",
+      "side": 1,
+      "message": "Commit message does not follow ONAP guidelines\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e510496c_e392cbe3",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-08T13:16:33Z",
+      "side": 1,
+      "message": "Does API responses include 404 ? From the story AC I\u0027m not sure ...",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f541f712_bcb8ef3b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-08T13:16:33Z",
+      "side": 1,
+      "message": "Should we have test for 400 CM-Handle does not exist scenario ?",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9fec478_bdfd4c77",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-08T13:16:33Z",
+      "side": 1,
+      "message": "Indentation",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
