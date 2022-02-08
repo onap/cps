@@ -176,8 +176,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration)
-        throws JsonProcessingException {
+    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         final PersistenceCmHandlesList updatedPersistenceCmHandlesList =
             getUpdatedPersistenceCmHandlesList(dmiPluginRegistration, dmiPluginRegistration.getUpdatedCmHandles());
         final String cmHandlesAsJson = jsonObjectMapper.asJsonString(updatedPersistenceCmHandlesList);
@@ -203,8 +202,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         throw new DataValidationException(message, e.getMessage(), e);
     }
 
-    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList)
-        throws JsonProcessingException  {
+    private void registerAndSyncNewCmHandles(final PersistenceCmHandlesList persistenceCmHandlesList) {
         final String cmHandleJsonData = jsonObjectMapper.asJsonString(persistenceCmHandlesList);
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry",
             cmHandleJsonData, NO_TIMESTAMP);
