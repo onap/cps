@@ -16,6 +16,24 @@
       "revId": "5d8ac890bab0d3f4b127d2bb898170ad1b4e86f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7f76577_654b5136",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-08T14:06:31Z",
+      "side": 1,
+      "message": "this needs to be added to a StringBootTest and hence new test had to be created.\nIt could have been added to CpsModulePersistenceServiceIntegrationSpec , but that test is already big enough.. so created a new spec for concurrency test",
+      "parentUuid": "659e27c5_64c6ad3b",
+      "revId": "5d8ac890bab0d3f4b127d2bb898170ad1b4e86f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
