@@ -16,6 +16,213 @@
       "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e737f9d_a9f158d7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "NB: system will attempt this method up to 5 times",
+      "range": {
+        "startLine": 227,
+        "startChar": 43,
+        "endLine": 227,
+        "endChar": 101
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60dcec82_1dca56f7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "you probably dont need so much content?",
+      "range": {
+        "startLine": 76,
+        "startChar": 48,
+        "endLine": 86,
+        "endChar": 15
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55442494_29550a4b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": ", retry mechanism",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 47
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8805cf06_dde9ac84",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "no pre-existing schemaset in database",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 14
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e74a8ca7_738dbeb9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "the system wil attempt to save the data 5 times (because an checksum integrity exception is thrown each time)",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 52
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3066fd85_f0749694",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "insert and: \u0027but eventually we ill get the duplicated yang resource exception\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 112,
+        "endChar": 59
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d06c02b_c19c0f31",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "schema set using modules, retry mechanism",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 33
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7a7a2c5_e93c3efa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "add label\nand maybe one or two and statement to describe test setup better",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 88
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a707f2a5_66021196",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-08T15:49:06Z",
+      "side": 1,
+      "message": "similar comment as above",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 59
+      },
+      "revId": "f9ea740de36f38e8212582f352c8963c57ddf1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
