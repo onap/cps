@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f227afe1_0408f9e8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-09T11:42:08Z",
+      "side": 1,
+      "message": "NB: I think we usually put \u0027mock\u0027 at the front of the name",
+      "range": {
+        "startLine": 65,
+        "startChar": 49,
+        "endLine": 65,
+        "endChar": 53
+      },
+      "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ba6650_30e552e3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-09T11:42:08Z",
+      "side": 1,
+      "message": "NB: I would change the order \n1) then: \u0027the system will attempt to save the data 5 times (because checksum integrity exception is thrown each time)\u0027\n2) and: \u0027as it still fails it wil throw a duplicate yang resource exception\u0027",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 12
+      },
+      "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a5fe51d_f63f638c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-09T11:42:08Z",
+      "side": 1,
+      "message": "same comment on order as above",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 93
+      },
+      "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
