@@ -108,6 +108,24 @@
       "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "580ff9a2_e32a5a08",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-09T08:27:44Z",
+      "side": 1,
+      "message": "Ignore the above , I found another way to display only on updatedCmHandles. Please see below and comment if this looks ok.\n\n{\n  \"dmiPlugin\": \"my-dmi-plugin\",\n  \"dmiDataPlugin\": \"my-dmi-data-plugin\",\n  \"dmiModelPlugin\": \"my-dmi-model-plugin\",\n  \"createdCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      }\n    }\n  ],\n  \"updatedCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"add-my-property\": \"add-property\",\n        \"update-my-property\": \"updated-property\",\n        \"delete-my-property\": null\n      },\n      \"publicCmHandleProperties\": {\n        \"add-my-property\": \"add-property\",\n        \"update-my-property\": \"updated-property\",\n        \"delete-my-property\": null\n      }\n    }\n  ],\n  \"removedCmHandles\": [\n    \"[\\\"my-cm-handle1\\\",\\\"my-cm-handle2\\\",\\\"my-cm-handle3\\\"]\"\n  ]\n}",
+      "parentUuid": "3dc39825_e7ece0d5",
+      "revId": "4598a9154e1ea750d2e4f20e397175abc3f09d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
