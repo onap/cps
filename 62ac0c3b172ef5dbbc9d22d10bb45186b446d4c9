@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "790ce922_69561fe9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-09T13:53:08Z",
+      "side": 1,
+      "message": "not so important but I still believe we first attempt 5 times because of checksumIntegrityException and THEN throw the DuplicatedYangResourceException",
+      "parentUuid": "ed8926e8_27c64860",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 12
+      },
+      "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a5fe51d_f63f638c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
         "patchSetId": 10
