@@ -134,10 +134,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
     // can occur in case of specific concurrent requests.
-    @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 2, backoff = @Backoff(delay = 500))
+    @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
+        @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
         final var schemaSetEntity = new SchemaSetEntity();
@@ -153,6 +153,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
+    // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
+    // can occur in case of specific concurrent requests.
+    @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
+        @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newYangResourcesModuleNameToContentMap,
                                           final List<ModuleReference> moduleReferences) {
@@ -219,7 +223,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 convertedException.ifPresent(
                     e ->  log.warn(
                                 "Cannot persist duplicated yang resource. "
-                                        + "A total of 2 attempts to store the schema set are planned.", e));
+                                        + "System will attempt this method up to 5 times.", e));
                 throw convertedException.isPresent() ? convertedException.get() : dataIntegrityViolationException;
             }
         }

@@ -21,11 +21,13 @@
 package org.onap.cps;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.retry.annotation.EnableRetry;
 
 /**
  * The @SpringBootApplication annotated class is required in order to run tests
  * marked with @SpringBootTest annotation.
  */
 @SpringBootApplication(scanBasePackages = "org.onap.cps.spi")
+@EnableRetry
 public class TestApplication {
 }
