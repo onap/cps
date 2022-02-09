@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77972746_cf2adf84",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-09T09:27:51Z",
+      "side": 1,
+      "message": "With this change the API docs are looking like below. Change in updatedCmHandles.\n\n{\n  \"dmiPlugin\": \"my-dmi-plugin\",\n  \"dmiDataPlugin\": \"my-dmi-data-plugin\",\n  \"dmiModelPlugin\": \"my-dmi-model-plugin\",\n  \"createdCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      }\n    }\n  ],\n  \"updatedCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"add-my-property\": \"add-property\",\n        \"update-my-property\": \"updated-property\",\n        \"delete-my-property\": null\n      },\n      \"publicCmHandleProperties\": {\n        \"add-my-property\": \"add-property\",\n        \"update-my-property\": \"updated-property\",\n        \"delete-my-property\": null\n      }\n    }\n  ],\n  \"removedCmHandles\": [\n    \"[\\\"my-cm-handle1\\\",\\\"my-cm-handle2\\\",\\\"my-cm-handle3\\\"]\"\n  ]\n}",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 315
+      },
+      "revId": "7811cceda6faf3cb9ad6b8ee79648117c90e25cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

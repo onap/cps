@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cac9002a_e4f30899",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-09T09:27:51Z",
+      "side": 1,
+      "message": "The use of LIST_INDEX_PATTERN results in a security hotspot.\n\nRegex : \".*\\\\[@(\\\\w+)[^\\\\/]\u0027([^\u0027]+)\u0027]\"\n\neg : \"/dmi-registry/cm-handles[@id\u003d\u0027\u0027123\u0027]/additional-properties[@name\u003d\u0027propertyKey\u0027]\"\nwith the regex I am trying to extract out propertyKey\n\nDetails : https://sonarcloud.io/project/security_hotspots?branch\u003d126916-11\u0026id\u003donap_cps\u0026sinceLeakPeriod\u003dtrue\n\nWe can use @SuppressWarnings(\"squid:S5852\") to suppress it if team accepts it.",
+      "revId": "78f32957e0f8958e502ca3e7f39d29a06d09225d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e45ca6d6_80bf1b76",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-09T09:27:51Z",
+      "side": 1,
+      "message": "Empty check is required as replaceListContent throws CpsAdminException when we pass in empty collection.\n\nthrow new CpsAdminException(\"Invalid list replacement\",\n\n                \"Cannot replace list elements with empty collection\");",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 9
+      },
+      "revId": "78f32957e0f8958e502ca3e7f39d29a06d09225d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a17efdae_4772be69",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-09T09:27:51Z",
+      "side": 1,
+      "message": "This else block is required to handle a special case when we have only one Public OR one DMI property left and we try to delete it. \nIf we would have used replaceListContent then we will end up passing empty collection to it , which would result in CpsAdminException (As i explained in my previous comment)\nHence I thought of using cpsDataService.deleteDataNode to delete the dataNode. \n \nWhat do you guys think of this approach?",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 13
+      },
+      "revId": "78f32957e0f8958e502ca3e7f39d29a06d09225d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
