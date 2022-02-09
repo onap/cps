@@ -116,6 +116,23 @@
       "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d49d1a84_80f2f1a7",
+        "filename": "cps-ri/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-09T15:03:04Z",
+      "side": 1,
+      "message": "Is this file to be kept for testing or is it a leftover?",
+      "revId": "62ac0c3b172ef5dbbc9d22d10bb45186b446d4c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
