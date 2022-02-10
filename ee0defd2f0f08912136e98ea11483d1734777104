@@ -234,6 +234,30 @@
       "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2560009_43220d47",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:32:07Z",
+      "side": 1,
+      "message": "someExeception can\u0027t be used here",
+      "parentUuid": "418e9231_fdfe0d28",
+      "range": {
+        "startLine": 69,
+        "startChar": 19,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
