@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f05da1e_747e3868",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T11:39:35Z",
+      "side": 1,
+      "message": "this still doesn\u0027t mention explicitly that the log level should be set to DEBUG...",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 88
+      },
+      "revId": "35d58eb5468dfe706228b641cd3a807d8c0e41ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ecd375f_695a560a",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 15
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T11:39:35Z",
+      "side": 1,
+      "message": "on",
+      "range": {
+        "startLine": 127,
+        "startChar": 115,
+        "endLine": 127,
+        "endChar": 117
+      },
+      "revId": "35d58eb5468dfe706228b641cd3a807d8c0e41ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
