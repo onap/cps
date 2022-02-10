@@ -1,0 +1,4 @@
+distribution_type: maven
+log_dir: cps-maven-stage-istanbul/68/
+project: cps
+version: 2.0.4
