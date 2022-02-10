@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1178031_f5570a2d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T12:00:25Z",
+      "side": 1,
+      "message": "no real need for scenario column in this case. The logLevel variable is clear enough!\nSo you can remove this column and update line 45 like so:\n\n def \u0027Log method execution time logging for log level : #logLevel.\u0027() {",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1474b0ff_7d87c958",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T12:00:25Z",
+      "side": 1,
+      "message": "Exception thrown during method execution",
+      "range": {
+        "startLine": 60,
+        "startChar": 9,
+        "endLine": 60,
+        "endChar": 63
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aecbab82_a8fcf7ac",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T12:00:25Z",
+      "side": 1,
+      "message": "def someException \u003d new Exception(\"some exception\")\nmockProceedingJoinPoint.proceed() \u003e\u003e { throw someException }",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c70ebf_2d26a106",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T12:00:25Z",
+      "side": 1,
+      "message": "the original exception is still thrown as well",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 50
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d07bd49d_17d851be",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T12:00:25Z",
+      "side": 1,
+      "message": "someExeception",
+      "range": {
+        "startLine": 69,
+        "startChar": 19,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
