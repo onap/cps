@@ -208,3 +208,51 @@ databaseChangeLog:
               delete from schema_set_yang_resources
               where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
               and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-12-13.yang')
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.9
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dmi//generated-csv/generated_yang_resource_dmi-registry@2022-02-10.csv'
+        onlyUpdate: 'false'
+        primaryKey: 'id'
+        quotchar: '"'
+        separator: '|'
+        tableName: 'yang_resource'
+        columns:
+          - column:
+              header:  name
+              name:  name
+              type:  STRING
+          - column:
+              header:  content
+              name: content
+              type: STRING
+          - column:
+              header:  checksum
+              name: checksum
+              type: STRING
+      rollback:
+        - sql:
+            sql: delete from yang_resource where name = 'dmi-registry@2022-02-10.yang'
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 9.11
+      loadUpdateData:
+        encoding: UTF-8
+        file: 'changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv'
+        quotchar: '"'
+        primaryKey: 'schema_set_id,yang_resource_id'
+        separator: '|'
+        tableName: 'schema_set_yang_resources'
+        usePreparedStatements:  true
+      rollback:
+        - sql:
+            sql: >
+              delete from schema_set_yang_resources
+              where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
+              and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2022-02-10.yang')
