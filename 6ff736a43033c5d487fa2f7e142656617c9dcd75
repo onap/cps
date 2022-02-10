@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "c7029b5a_b0b0aa17",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T14:13:47Z",
+      "side": 1,
+      "message": "is this correct? \n(especially since the name suggest plural?!)",
+      "range": {
+        "startLine": 151,
+        "startChar": 10,
+        "endLine": 151,
+        "endChar": 28
+      },
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e510496c_e392cbe3",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 9
@@ -36,6 +59,29 @@
     },
     {
       "key": {
+        "uuid": "53f68fc0_9f83f1bc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T14:13:47Z",
+      "side": 1,
+      "message": "method name and return type are conflicting .\nI this because you changed something in the API definition?!",
+      "range": {
+        "startLine": 243,
+        "startChar": 12,
+        "endLine": 243,
+        "endChar": 44
+      },
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f541f712_bcb8ef3b",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 9
@@ -47,6 +93,24 @@
       "writtenOn": "2022-02-08T13:16:33Z",
       "side": 1,
       "message": "Should we have test for 400 CM-Handle does not exist scenario ?",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d01aa669_d1f4cd4e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T14:13:47Z",
+      "side": 1,
+      "message": "i think we have separate (test)class for all the exception scenarios (irrelevant of the endpoint used)",
+      "parentUuid": "f541f712_bcb8ef3b",
       "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
