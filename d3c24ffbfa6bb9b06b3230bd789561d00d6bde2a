@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0b0f1ab5_435e8b6c",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "tested and removed - not needed - CSIT passes",
+      "parentUuid": "23b2de82_720e7c97",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 23
+      },
+      "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f9ddae6_bfc6fd55",
         "filename": "csit/plans/cps/sdnc/docker-compose.yml",
         "patchSetId": 11
@@ -92,6 +116,30 @@
       "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb110162_3c19bee2",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f9ddae6_bfc6fd55",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 27
+      },
+      "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "192c4e80_33b1dfa2",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4652803a_38233d38",
+      "range": {
+        "startLine": 80,
+        "startChar": 6,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48bc4ab4_468740eb",
         "filename": "csit/plans/cps/sdnc/docker-compose.yml",
         "patchSetId": 11
@@ -138,6 +210,30 @@
       "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73e3f6de_44f4e83d",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48bc4ab4_468740eb",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 50
+      },
+      "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +351,30 @@
       "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd1a219e_99d8801e",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87a1e73d_8a3a8adf",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 12
+      },
+      "revId": "d3c24ffbfa6bb9b06b3230bd789561d00d6bde2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

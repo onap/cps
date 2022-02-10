@@ -98,6 +98,24 @@
       "revId": "74e2e6d069b285584f64ff903b99eea969699684",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe743a45_7f0e4175",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-02-10T12:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64fa58d2_90177163",
+      "revId": "74e2e6d069b285584f64ff903b99eea969699684",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
