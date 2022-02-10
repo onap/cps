@@ -30,33 +30,18 @@ import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.model.ModuleReference
-import org.spockframework.spring.SpringBean
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.cache.CacheManager
-import org.springframework.cache.annotation.EnableCaching
-import org.springframework.cache.caffeine.CaffeineCacheManager
-import org.springframework.test.context.ContextConfiguration
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
-@SpringBootTest
-@EnableCaching
-@ContextConfiguration(classes = [YangTextSchemaSourceSetCache, CpsModuleServiceImpl])
 class CpsModuleServiceImplSpec extends Specification {
 
-    @SpringBean
-    CpsModulePersistenceService mockModuleStoreService = Mock()
+    def mockModuleStoreService = Mock(CpsModulePersistenceService)
+    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
 
-    @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
-
-    @SpringBean
-    CacheManager cacheManager = new CaffeineCacheManager("yangSchema")
-
-    @Autowired
-    CpsModuleServiceImpl objectUnderTest
+    def objectUnderTest = new CpsModuleServiceImpl(mockModuleStoreService, mockYangTextSchemaSourceSetCache, mockCpsAdminService)
 
     def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'
@@ -90,24 +75,14 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get schema set by name and dataspace.'() {
         given: 'an already present schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
+        and: 'yang resource cache returns the expected schema set'
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
         when: 'get schema set method is invoked'
             def result = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
         then: 'the correct schema set is returned'
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getExtendedModuleReferences().contains(new ExtendedModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
-    }
-
-    def 'Schema set caching.'() {
-        given: 'an  schema set'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-        when: 'get schema set method is invoked twice'
-            2.times {
-                objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
-            }
-        then: 'the persistency service called only once'
-            1 * mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> yangResourcesNameToContentMap
     }
 
     def 'Delete schema-set when cascade is allowed.'() {
@@ -120,6 +95,8 @@ class CpsModuleServiceImplSpec extends Specification {
             numberOfAnchors * mockCpsAdminService.deleteAnchor('my-dataspace', _)
         and: 'persistence service method is invoked with same parameters'
             1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
+        and: 'schema set is removed from the cache'
+            1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
             1 * mockModuleStoreService.deleteUnusedYangResourceModules()
         where: 'following parameters are used'
@@ -135,6 +112,8 @@ class CpsModuleServiceImplSpec extends Specification {
             0 * mockCpsAdminService.deleteAnchor(_, _)
         and: 'persistence service method is invoked with same parameters'
             1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
+        and: 'schema set is removed from the cache'
+            1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
             1 * mockModuleStoreService.deleteUnusedYangResourceModules()
     }
