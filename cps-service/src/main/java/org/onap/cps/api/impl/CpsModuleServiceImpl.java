@@ -25,6 +25,7 @@ package org.onap.cps.api.impl;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
@@ -38,25 +39,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("CpsModuleServiceImpl")
+@AllArgsConstructor
 public class CpsModuleServiceImpl implements CpsModuleService {
 
-    private CpsModulePersistenceService cpsModulePersistenceService;
-    private YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
-    private CpsAdminService cpsAdminService;
-
-    /**
-     * Create an instance of CpsModuleServiceImpl.
-     *
-     * @param cpsModulePersistenceService  cpsModulePersistenceService
-     * @param yangTextSchemaSourceSetCache yangTextSchemaSourceSetCache
-     * @param cpsAdminService              cpsAdminService
-     */
-    public CpsModuleServiceImpl(final CpsModulePersistenceService cpsModulePersistenceService,
-        final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache, final CpsAdminService cpsAdminService) {
-        this.cpsModulePersistenceService = cpsModulePersistenceService;
-        this.yangTextSchemaSourceSetCache = yangTextSchemaSourceSetCache;
-        this.cpsAdminService = cpsAdminService;
-    }
+    private final CpsModulePersistenceService cpsModulePersistenceService;
+    private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
+    private final CpsAdminService cpsAdminService;
 
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
@@ -96,6 +84,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             cpsAdminService.deleteAnchor(dataspaceName, anchor.getName());
         }
         cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName);
+        yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
         cpsModulePersistenceService.deleteUnusedYangResourceModules();
     }
 
