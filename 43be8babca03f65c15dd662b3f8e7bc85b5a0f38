@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "335f13b3_08729193",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T13:13:47Z",
+      "side": 1,
+      "message": "use inner if then as you should NOT go into else when replacementPropertyDataNodes.isEmpty()",
+      "range": {
+        "startLine": 101,
+        "startChar": 50,
+        "endLine": 101,
+        "endChar": 86
+      },
+      "revId": "43be8babca03f65c15dd662b3f8e7bc85b5a0f38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34fe07d8_0a984826",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T13:13:47Z",
+      "side": 1,
+      "message": "Update CM Handle Properties, all properties removed",
+      "range": {
+        "startLine": 91,
+        "startChar": 9,
+        "endLine": 91,
+        "endChar": 60
+      },
+      "revId": "43be8babca03f65c15dd662b3f8e7bc85b5a0f38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
