@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e247ab5f_a14d2f30",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T12:38:41Z",
+      "side": 1,
+      "message": "Added a new Notes to highlight that log level should be DEBUG.",
+      "parentUuid": "1f05da1e_747e3868",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 88
+      },
+      "revId": "35d58eb5468dfe706228b641cd3a807d8c0e41ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ecd375f_695a560a",
         "filename": "docs/admin-guide.rst",
         "patchSetId": 15
@@ -45,6 +69,30 @@
       "revId": "35d58eb5468dfe706228b641cd3a807d8c0e41ca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d3a144d_a1687eea",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 15
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T12:38:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ecd375f_695a560a",
+      "range": {
+        "startLine": 127,
+        "startChar": 115,
+        "endLine": 127,
+        "endChar": 117
+      },
+      "revId": "35d58eb5468dfe706228b641cd3a807d8c0e41ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
