@@ -22,6 +22,30 @@
       "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68da6abd_14c36750",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T15:01:57Z",
+      "side": 1,
+      "message": "Line no. 59 : To explain the log levels into java.util.Logger class and SLF4J class. For example. In Logger log level is FINE is equivalent to DEBUG into SLF4J.\n\nAs by executing curl commands of cps management we are changing log level of \"org.onap.cps\" at runtime, our intension by this if condition is to log execution time only if \"org.onap.cps\" log level is DEBUG (Level.FINE is DEBUG here).\n\nFor further clarification we can connect.",
+      "parentUuid": "103f0770_6ab8b09c",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
