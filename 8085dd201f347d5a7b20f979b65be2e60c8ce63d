@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bd1acb8_cfa01a9d",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-10T13:12:54Z",
+      "side": 1,
+      "message": "perfect, good comments (incl the Jira is important)!",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 94
+      },
+      "revId": "8085dd201f347d5a7b20f979b65be2e60c8ce63d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
