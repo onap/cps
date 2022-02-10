@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "103f0770_6ab8b09c",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-10T14:37:31Z",
+      "side": 1,
+      "message": "What is this if condition for? Can you please explain the intent?\n\nUsually logging framework log only if the method ( debug ) is higher or same as the configured level. So, log.debug will log if log level is either DEBUG or TRACE.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
