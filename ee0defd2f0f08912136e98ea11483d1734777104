@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "15793719_f677df94",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1178031_f5570a2d",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1474b0ff_7d87c958",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3015906_6f4f107d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1474b0ff_7d87c958",
+      "range": {
+        "startLine": 60,
+        "startChar": 9,
+        "endLine": 60,
+        "endChar": 63
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d5663f0a_37ec494d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aecbab82_a8fcf7ac",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79c70ebf_2d26a106",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8f5e46aa_66c55aaf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79c70ebf_2d26a106",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 50
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d07bd49d_17d851be",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2022-02-10T12:00:25Z",
       "side": 1,
       "message": "someExeception",
+      "range": {
+        "startLine": 69,
+        "startChar": 19,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "ee0defd2f0f08912136e98ea11483d1734777104",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "418e9231_fdfe0d28",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-10T13:26:43Z",
+      "side": 1,
+      "message": "Have to use \"thrown Exception\" here",
+      "parentUuid": "d07bd49d_17d851be",
       "range": {
         "startLine": 69,
         "startChar": 19,
