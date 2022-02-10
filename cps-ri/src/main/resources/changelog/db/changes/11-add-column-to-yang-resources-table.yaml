@@ -40,4 +40,4 @@ databaseChangeLog:
         - sql:
             sql: update yang_resource set module_name = 'dummy_module_name', revision = '2021-08-04' where module_name is null and revision is null
       rollback:
-        comment: Rollback for change set 11.1 is not supported. Please rollback change set 11 to rollback changeset 11.1. Change set 11.1 removes null values from the yang_resource table created by change set 11.
+        sql: update yang_resource set module_name = null, revision = null where module_name = 'dummy_module_name' and revision = '2021-08-04'
