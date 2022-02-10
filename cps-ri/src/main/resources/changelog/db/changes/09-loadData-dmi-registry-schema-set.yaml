@@ -167,7 +167,7 @@ databaseChangeLog:
       id: 9.7
       loadUpdateData:
         encoding: UTF-8
-        file: 'changelog/db/changes/data/dmi//generated-csv/generated_yang_resource_dmi-registry@2021-12-13.csv'
+        file: 'changelog/db/changes/data/dmi/generated-csv/generated_yang_resource_dmi-registry@2021-12-13.csv'
         onlyUpdate: 'false'
         primaryKey: 'id'
         quotchar: '"'
