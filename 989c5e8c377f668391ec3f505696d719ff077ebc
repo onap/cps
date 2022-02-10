@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "646b9dc7_8b9ceb69",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-10T15:30:43Z",
+      "side": 1,
+      "message": "NB: What is the intent of this comment?",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 58
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "103f0770_6ab8b09c",
         "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
         "patchSetId": 2
@@ -42,6 +65,52 @@
         "startChar": 8,
         "endLine": 60,
         "endChar": 70
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad6ffcb9_f4984e6c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-10T15:30:43Z",
+      "side": 1,
+      "message": "I\u0027d remove this. Would read better without it",
+      "range": {
+        "startLine": 45,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1930239_0a65a8e8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-10T15:30:43Z",
+      "side": 1,
+      "message": "Will always output \"debug\", use #logLevel instead.",
+      "range": {
+        "startLine": 46,
+        "startChar": 67,
+        "endLine": 46,
+        "endChar": 72
       },
       "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
