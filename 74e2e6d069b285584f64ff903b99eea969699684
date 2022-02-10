@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "145aaa84_3340a5bd",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-10T10:47:53Z",
+      "side": 1,
+      "message": "NB: Perhaps add the bug link here for reference?",
+      "revId": "74e2e6d069b285584f64ff903b99eea969699684",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64fa58d2_90177163",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-10T10:47:53Z",
+      "side": 1,
+      "message": "NB: Forgot to move this to above cps-ncmp logs",
+      "revId": "74e2e6d069b285584f64ff903b99eea969699684",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
