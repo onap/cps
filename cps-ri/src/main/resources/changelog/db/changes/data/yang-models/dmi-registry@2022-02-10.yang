@@ -1,0 +1,81 @@
+module dmi-registry {
+
+  yang-version 1.1;
+
+  namespace "org:onap:cps:ncmp";
+
+  prefix dmi-reg;
+
+  contact "toine.siebelink@est.tech";
+
+  revision "2022-02-10" {
+    description
+    "Added State, LockReason, LockReasonDetails to aid with cmHandle sync and timestamp to aid with retry/timeout scenarios";
+  }
+
+  revision "2021-12-13" {
+    description
+    "Added new list of public additional properties for a Cm-Handle which are exposed to clients of the NCMP interface";
+  }
+
+  revision "2021-10-20" {
+    description
+    "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
+  }
+
+  revision "2021-05-20" {
+    description
+    "Initial Version";
+  }
+
+  container dmi-registry {
+    list cm-handles {
+      key "id";
+      leaf id {
+        type string;
+      }
+      leaf dmi-service-name {
+        type string;
+      }
+      leaf dmi-data-service-name {
+        type string;
+      }
+      leaf dmi-model-service-name {
+        type string;
+      }
+
+      list additional-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+
+      list public-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+
+      leaf state {
+        type string;
+      }
+      leaf lock-reason {
+        type string;
+      }
+      leaf lock-reason-details {
+        type string;
+      }
+      leaf last-update-time {
+        type string;
+      }
+    }
+  }
+}

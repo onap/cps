@@ -141,6 +141,13 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: delete from yang_resource where name = 'dmi-registry@2021-10-20.yang'
+        - loadUpdateData:
+            encoding: UTF-8
+            file: 'changelog/db/changes/data/dmi/schema_set_yang_resources.csv'
+            quotchar: '"'
+            primaryKey: 'schema_set_id,yang_resource_id'
+            separator: '|'
+            tableName: 'schema_set_yang_resources'
 
   - changeSet:
       author: cps
@@ -154,12 +161,37 @@ databaseChangeLog:
         separator: '|'
         tableName: 'schema_set_yang_resources'
         usePreparedStatements:  true
+      sql: delete from schema_set_yang_resources
+        where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
+        and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-05-20.yang');
+        delete from yang_resource where name = 'dmi-registry@2021-05-20.yang'
       rollback:
         - sql:
             sql: >
               delete from schema_set_yang_resources
               where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
               and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-10-20.yang')
+        - loadUpdateData:
+            encoding: UTF-8
+            file: 'changelog/db/changes/data/dmi/yang_resource.csv'
+            onlyUpdate: 'false'
+            primaryKey: 'id'
+            quotchar: '"'
+            separator: '|'
+            tableName: 'yang_resource'
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: STRING
+              - column:
+                  header: content
+                  name: content
+                  type: STRING
+              - column:
+                  header: checksum
+                  name: checksum
+                  type: STRING
 
   - changeSet:
       author: cps
@@ -167,7 +199,7 @@ databaseChangeLog:
       id: 9.7
       loadUpdateData:
         encoding: UTF-8
-        file: 'changelog/db/changes/data/dmi//generated-csv/generated_yang_resource_dmi-registry@2021-12-13.csv'
+        file: 'changelog/db/changes/data/dmi/generated-csv/generated_yang_resource_dmi-registry@2021-12-13.csv'
         onlyUpdate: 'false'
         primaryKey: 'id'
         quotchar: '"'
@@ -189,6 +221,14 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: delete from yang_resource where name = 'dmi-registry@2021-12-13.yang'
+        - loadUpdateData:
+            encoding: UTF-8
+            file: 'changelog/db/changes/data/dmi/schema_set_yang_resources@2021-10-20.csv'
+            quotchar: '"'
+            primaryKey: 'schema_set_id,yang_resource_id'
+            separator: '|'
+            tableName: 'schema_set_yang_resources'
+            usePreparedStatements: true
 
   - changeSet:
       author: cps
@@ -202,9 +242,34 @@ databaseChangeLog:
         separator: '|'
         tableName: 'schema_set_yang_resources'
         usePreparedStatements:  true
+      sql: delete from schema_set_yang_resources
+        where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
+        and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-10-20.yang');
+        delete from yang_resource where name = 'dmi-registry@2021-10-20.yang'
       rollback:
         - sql:
             sql: >
               delete from schema_set_yang_resources
               where schema_set_id = (select id from schema_set where name = 'ncmp-dmi-registry-model')
               and yang_resource_id = (select id from yang_resource where name = 'dmi-registry@2021-12-13.yang')
+        - loadUpdateData:
+            encoding: UTF-8
+            file: 'changelog/db/changes/data/dmi/yang_resource@2021-10-20.csv'
+            onlyUpdate: 'false'
+            primaryKey: 'id'
+            quotchar: '"'
+            separator: '|'
+            tableName: 'yang_resource'
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: STRING
+              - column:
+                  header: content
+                  name: content
+                  type: STRING
+              - column:
+                  header: checksum
+                  name: checksum
+                  type: STRING
