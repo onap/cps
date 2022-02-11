@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7daf12ab_66c15ade",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:15:16Z",
+      "side": 1,
+      "message": "need to check this...",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 319
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "686ec96c_1bd041ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:15:16Z",
+      "side": 1,
+      "message": "did you add test for both of these?",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "003f6fec_46452966",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:15:16Z",
+      "side": 1,
+      "message": "need to tets with jsonvalidation exception too ?",
+      "range": {
+        "startLine": 208,
+        "startChar": 41,
+        "endLine": 208,
+        "endChar": 64
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
