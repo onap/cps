@@ -70,6 +70,9 @@ public class FragmentEntity implements Serializable {
     @Column(columnDefinition = "text")
     private String xpath;
 
+    @Column(name = "parent_id")
+    private Long parentId;
+
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private String attributes;
