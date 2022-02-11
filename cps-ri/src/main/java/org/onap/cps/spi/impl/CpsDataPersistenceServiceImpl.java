@@ -73,41 +73,38 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private final JsonObjectMapper jsonObjectMapper;
 
-
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
 
     @Override
-    public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentXpath,
-        final DataNode dataNode) {
-        final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentXpath);
-        final FragmentEntity fragmentEntity =
-            toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode);
-        parentFragment.getChildFragments().add(fragmentEntity);
-        try {
-            fragmentRepository.save(parentFragment);
-        } catch (final DataIntegrityViolationException exception) {
-            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
-        }
+    @Transactional
+    public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+        final DataNode newChildDataNode) {
+        addChildDataNodes(dataspaceName, anchorName, parentNodeXpath,  Collections.singleton(newChildDataNode));
     }
 
     @Override
+    @Transactional
     public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final Collection<DataNode> dataNodes) {
-        final FragmentEntity parentFragment = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final List<FragmentEntity> newFragmentEntities =
-            dataNodes.stream().map(
-                dataNode -> toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode)
-            ).collect(Collectors.toUnmodifiableList());
-        parentFragment.getChildFragments().addAll(newFragmentEntities);
+        final Collection<DataNode> newListElements) {
+        addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
+    }
+
+    private void addChildDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                                final Collection<DataNode> newChildren) {
+        final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         try {
-            fragmentRepository.save(parentFragment);
-            dataNodes.forEach(
-                dataNode -> getChildFragments(dataspaceName, anchorName, dataNode)
-            );
+            for (final DataNode newChildAsDataNode : newChildren) {
+                final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
+                    parentFragmentEntity.getDataspace(),
+                    parentFragmentEntity.getAnchor(),
+                    newChildAsDataNode);
+                newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
+                fragmentRepository.save(newChildAsFragmentEntity);
+            }
         } catch (final DataIntegrityViolationException exception) {
-            final List<String> conflictXpaths = dataNodes.stream()
+            final List<String> conflictXpaths = newChildren.stream()
                 .map(DataNode::getXpath)
                 .collect(Collectors.toList());
             throw AlreadyDefinedException.forDataNodes(conflictXpaths, anchorName, exception);
@@ -148,17 +145,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         parentFragment.setChildFragments(childFragmentsImmutableSetBuilder.build());
         return parentFragment;
-    }
-
-    private void getChildFragments(final String dataspaceName, final String anchorName, final DataNode dataNode) {
-        for (final DataNode childDataNode: dataNode.getChildDataNodes()) {
-            final FragmentEntity getChildsParentFragmentByXPath =
-                getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
-            final FragmentEntity childFragmentEntity = toFragmentEntity(getChildsParentFragmentByXPath.getDataspace(),
-                getChildsParentFragmentByXPath.getAnchor(), childDataNode);
-            getChildsParentFragmentByXPath.getChildFragments().add(childFragmentEntity);
-            fragmentRepository.save(getChildsParentFragmentByXPath);
-        }
     }
 
     private FragmentEntity toFragmentEntity(final DataspaceEntity dataspaceEntity,
