@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "78dd5821_4ac9128c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-11T14:51:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "837f3dbc_029c8b7f",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "093f081b_e6754e2c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
         "patchSetId": 2
