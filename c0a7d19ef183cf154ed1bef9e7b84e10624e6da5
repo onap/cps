@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "c87ef66b_529aee4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:38:49Z",
+      "side": 1,
+      "message": "agreed, no point generating teh same string twice using different methods",
+      "parentUuid": "e40cf42b_3c39826b",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "310f369e_9aaf7aa7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 17
@@ -91,6 +115,30 @@
       "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b72d3928_31e70945",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:38:49Z",
+      "side": 1,
+      "message": "we cannot rename this, it is the yang model",
+      "parentUuid": "310f369e_9aaf7aa7",
+      "range": {
+        "startLine": 59,
+        "startChar": 22,
+        "endLine": 59,
+        "endChar": 43
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "0c8517e1_d6ce25ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:38:49Z",
+      "side": 1,
+      "message": "i think \u0027args\u0027 is more descriptive",
+      "parentUuid": "cdedf80c_29803854",
+      "range": {
+        "startLine": 56,
+        "startChar": 117,
+        "endLine": 56,
+        "endChar": 122
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50056d2a_0df13db9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 17
@@ -128,6 +200,30 @@
       "writtenOn": "2022-02-11T12:30:39Z",
       "side": 1,
       "message": "I like this but perhaps format it so it is more readble\n\n expectedPropertiesAfterUpdateAsMap.forEach(property -\u003e \n            property.forEach((key, val) -\u003e {\n                properties.add([\u0027name\u0027: key, \u0027value\u0027: val])\n        }))",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 11
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb1dce46_3d7f1c67",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:38:49Z",
+      "side": 1,
+      "message": "agrreed",
+      "parentUuid": "50056d2a_0df13db9",
       "range": {
         "startLine": 129,
         "startChar": 8,
