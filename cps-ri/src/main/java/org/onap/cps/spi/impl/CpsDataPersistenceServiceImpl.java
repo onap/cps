@@ -100,9 +100,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             dataNodes.stream().map(
                 dataNode -> toFragmentEntity(parentFragment.getDataspace(), parentFragment.getAnchor(), dataNode)
             ).collect(Collectors.toUnmodifiableList());
-        parentFragment.getChildFragments().addAll(newFragmentEntities);
         try {
-            fragmentRepository.save(parentFragment);
+            for (final FragmentEntity newFragmentEntity: newFragmentEntities) {
+                newFragmentEntity.setParentId(parentFragment.getId());
+                fragmentRepository.save(newFragmentEntity);
+            }
             dataNodes.forEach(
                 dataNode -> getChildFragments(dataspaceName, anchorName, dataNode)
             );
