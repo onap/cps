@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f1ae94d_bc9cf008",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-11T10:50:02Z",
+      "side": 1,
+      "message": "NB: For my own knowledge is p0 \u0026 p1 the arguments into the removeFromCache method so would be like for example \"myDS-myAnchor\"?",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
