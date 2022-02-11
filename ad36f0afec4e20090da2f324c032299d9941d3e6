@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "52c69516_09628747",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-11T09:32:09Z",
+      "side": 1,
+      "message": "Yes. Before I added in openapi-inventory.yml and generated a sample from local(and showed you in comments) , but when I ran the application it was getting overridden. So I had to introduce the example over here. And in components.yml i was unable to display null without double quotes. [If I do so the whole property was not getting displayed somehow] . Hence I added this way for now.",
+      "parentUuid": "7daf12ab_66c15ade",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 319
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "686ec96c_1bd041ba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
