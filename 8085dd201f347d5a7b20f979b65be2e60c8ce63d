@@ -22,6 +22,29 @@
       "revId": "8085dd201f347d5a7b20f979b65be2e60c8ce63d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e2cec3a_36382890",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4931
+      },
+      "writtenOn": "2022-02-11T08:18:41Z",
+      "side": 1,
+      "message": "As stated in the SDNC-1667: The problem is to use the subdirectory as volume. After doing thes the write rights for ODL-user are not there anymore. \nPlease modify the docker-compose to assign the two files like in the exmample below and it should work.\n volumes:\n - ./certs/certs.properties:/opt/opendaylight/certs/certs.properties\n - ./certs/keys0.zip:/opt/opendaylight/certs/keys0.zip",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "8085dd201f347d5a7b20f979b65be2e60c8ce63d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
