@@ -22,6 +22,144 @@
       "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "093f081b_e6754e2c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "maybe at a (debug level) log statemenet?!",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 72
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27315c30_02649a66",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "since we only checking the interaction with the cache maybe the tets should read \u0027will be\u0027",
+      "range": {
+        "startLine": 98,
+        "startChar": 25,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be9f0379_d435a0a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "NB: I now do prefer to use the \u0027assert\u0027 keyword in front of such statements",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f60601d9_4f471fdb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "I like tour test titles (scenarios) Short and to the point!",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 37
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f049a70_718ba638",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "NB: I would just prefer\nassert getCachedValue(\u0027my-dataspace\u0027, \u0027my-schemaset\u0027) \u003d\u003d null",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 113,
+        "endChar": 36
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bab796fb_5d6e33c2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T10:59:21Z",
+      "side": 1,
+      "message": "NB: I would just prefer\nassert getCachedValue(\u0027my-dataspace\u0027, \u0027my-schemaset\u0027) \u003d\u003d null",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 36
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
