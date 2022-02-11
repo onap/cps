@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d9b5b2f_b060b973",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:27:03Z",
+      "side": 1,
+      "message": "NB: would be nice we we could defined this  as a #/components/schemas/UpdatedRestCmHandle",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 53
+      },
+      "revId": "a9f829f0a94187c2f4f9c6c4d4f1eecceab55f49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
