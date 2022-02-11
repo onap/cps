@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e7031f_0f19209f",
+        "filename": "csit/plans/cps/sdnc/sdnc_setup.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-11T23:51:25Z",
+      "side": 1,
+      "message": "Not required if the file is not modified.",
+      "range": {
+        "startLine": 4,
+        "startChar": 22,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "02a89e4739beb90b57da45661fe1c738929694d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
