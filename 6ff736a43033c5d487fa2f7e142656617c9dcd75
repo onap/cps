@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d5d1f216_9df676a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-11T17:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6f87f6b_9b25245e",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7029b5a_b0b0aa17",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 9
@@ -30,6 +48,30 @@
       "writtenOn": "2022-02-10T14:13:47Z",
       "side": 1,
       "message": "is this correct? \n(especially since the name suggest plural?!)",
+      "range": {
+        "startLine": 151,
+        "startChar": 10,
+        "endLine": 151,
+        "endChar": 28
+      },
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec0d4082_10e2c62d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-11T17:49:52Z",
+      "side": 1,
+      "message": "As part of the additional property examples, 3 additional properties will be shown like this\n    {\n      \"additionalProp1\": \"Book Type\",\n      \"additionalProp2\": \"Book Type\",\n      \"additionalProp3\": \"Book Type\"\n    }\nI kept it singular, because each field is a single type.\nI have changed the cm handle name example to reflect a bookstore to make this field make more sense.\nIf you still think this should be book types let me know",
+      "parentUuid": "c7029b5a_b0b0aa17",
       "range": {
         "startLine": 151,
         "startChar": 10,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "c4d3a3a2_c1b1a51a",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-11T17:49:52Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "e510496c_e392cbe3",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53f68fc0_9f83f1bc",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 9
@@ -79,6 +139,30 @@
       "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9c46261_5f39477e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-11T17:49:52Z",
+      "side": 1,
+      "message": "I have changed this back to the way it was. I think I changed this because of duplication in the api definition. But have changed the other names now",
+      "parentUuid": "53f68fc0_9f83f1bc",
+      "range": {
+        "startLine": 243,
+        "startChar": 12,
+        "endLine": 243,
+        "endChar": 44
+      },
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -131,6 +215,24 @@
       "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01b948e1_8ea9b7e2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-11T17:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9fec478_bdfd4c77",
+      "revId": "6ff736a43033c5d487fa2f7e142656617c9dcd75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
