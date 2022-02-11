@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4d1b071b_ccaf8fe8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-11T10:11:07Z",
+      "side": 1,
+      "message": "Actually I added for DataNodeNotFoundException , and we already have it for JsonProcessingException.\n\nI noticed that this \"handleProcessingException\" is used just here and I dont need a separate method now . So I can just directly form the exception message and rethrow exception. Also that would fully cover the all the branches.",
+      "parentUuid": "686ec96c_1bd041ba",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "003f6fec_46452966",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 16
