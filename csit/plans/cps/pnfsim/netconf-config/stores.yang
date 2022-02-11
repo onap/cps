@@ -6,12 +6,12 @@ module stores {
 
     prefix book-store;
 
-	import ietf-yang-types { prefix yang; }
-	import ietf-inet-types { prefix inet; }
+    import ietf-yang-types { prefix yang; }
+    import ietf-inet-types { prefix inet; }
 
     revision "2020-09-15" {
         description
-        "Sample Model";
+            "Sample Model";
     }
 
     typedef year {
@@ -51,13 +51,13 @@ module stores {
                     type string;
                 }
                 leaf pub_year {
-                     type year;
+                    type year;
                 }
                 leaf price {
-                     type uint64;
+                    type uint64;
                 }
             }
         }
-   }
+    }
 }
 
