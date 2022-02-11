@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8394bc4f_abb817f5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T12:12:31Z",
+      "side": 1,
+      "message": "check with Luke, he wil provide a yaml-way of adding this example",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 319
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
