@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "3263848a_ef5365d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-11T12:44:16Z",
+      "side": 1,
+      "message": "Actually I tried that but Slf4j doesnt allow me to do so..It says like below : \n\n[ERROR] High: Format should be constant. Use placeholder to reduce the needless cost of parameter construction. see http://www.slf4j.org/faq.html#logging_performance [org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServiceImpl] At NetworkCmProxyDataServiceImpl.java:[line 103] SLF4J_FORMAT_SHOULD_BE_CONST",
+      "parentUuid": "c87ef66b_529aee4f",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "310f369e_9aaf7aa7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 17
