@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50e8d628_ccec70a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:26:55Z",
+      "side": 1,
+      "message": "since it need explanation it might be to extract like this\n\nstatic private boolean isSlf4JDebugEnabled() {\n  boolean isloggerFineEnabled \u003d Logger.getLogger(CPS_PACKAGE_NAME).isLoggable(Level.FINE);\n  return isloggerFineEnabled;\n}\n\n\nThis might explain it using code (which is always better then comments)",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "90f0407a447e8010a9ccc0519f244e638b8de6bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

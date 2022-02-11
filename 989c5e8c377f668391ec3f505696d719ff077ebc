@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f21706cc_41cabbe4",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:26:55Z",
+      "side": 1,
+      "message": "since it need explanation it might be to extract in code like this\n\nboolean isSlf4JDebugEnabled() {\n  boolean isloggerFineEnabled \u003d Logger.getLogger(CPS_PACKAGE_NAME).isLoggable(Level.FINE);\n  return isloggerFineEnabled;\n}\n\nThis might explain it using code (which is always better then comments)",
+      "parentUuid": "68da6abd_14c36750",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "989c5e8c377f668391ec3f505696d719ff077ebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad6ffcb9_f4984e6c",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 2
