@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7dcd2c6d_156192a4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:48:50Z",
+      "side": 1,
+      "message": "I just talked to Luke, he is going to show you how to add it in a different way using a new commit in Nordix",
+      "parentUuid": "52c69516_09628747",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 319
+      },
+      "revId": "ad36f0afec4e20090da2f324c032299d9941d3e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "686ec96c_1bd041ba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
