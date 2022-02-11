@@ -45,6 +45,30 @@
       "revId": "8085dd201f347d5a7b20f979b65be2e60c8ce63d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84a909b8_707da2f7",
+        "filename": "csit/plans/cps/sdnc/docker-compose.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-11T09:06:28Z",
+      "side": 1,
+      "message": "thanks Herbert!",
+      "parentUuid": "9e2cec3a_36382890",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "8085dd201f347d5a7b20f979b65be2e60c8ce63d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
