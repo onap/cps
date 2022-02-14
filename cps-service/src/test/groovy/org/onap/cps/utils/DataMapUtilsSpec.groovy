@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,6 +45,9 @@ class DataMapUtilsSpec extends Specification {
         when: 'data node structure is converted to a map'
             Map result = DataMapUtils.toDataMap(dataNode)
 
+        then: 'root node identifier is null'
+            result.'parent' == null
+
         then: 'root node leaves are top level elements'
             result.parentLeaf == 'parentLeafValue'
             result.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
@@ -59,6 +63,14 @@ class DataMapUtilsSpec extends Specification {
         and: 'leaves for grandchild element is populated under its node identifier'
             Map grandChildObjectData = childObjectData.'grand-child-object'
             grandChildObjectData.grandChildLeaf == 'grandChildLeafValue'
+    }
+
+    def 'Data node structure conversion to map with root node identifier.'() {
+        when: 'data node structure is converted to a map with root node identifier'
+            Map result = DataMapUtils.toDataMapWithIdentifier(dataNode)
+
+        then: 'root node identifier is not null'
+            result.'parent' != null
     }
 
 }

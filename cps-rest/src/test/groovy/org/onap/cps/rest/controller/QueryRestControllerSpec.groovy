@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -72,7 +72,7 @@ class QueryRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
-            response.getContentAsString() == '[{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]},{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}]'
+            response.getContentAsString() == '[{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}},{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}]'
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS
