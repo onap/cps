@@ -69,6 +69,30 @@
       "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7623c77e_09025076",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T20:40:56Z",
+      "side": 1,
+      "message": "The same performance issue exists in \u0027addChildDataNode\u0027 method too as we are fetching all the child fragments to add one to the parentFragment.",
+      "parentUuid": "8b3f5ce6_81a8a1a5",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
