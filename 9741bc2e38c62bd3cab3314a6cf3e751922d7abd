@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d180b895_e9371c97",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "should be spelled like \"cm handle\" in all descriptions",
+      "range": {
+        "startLine": 268,
+        "startChar": 62,
+        "endLine": 268,
+        "endChar": 71
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aba9ae46_f491bfab",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "add 500",
+      "range": {
+        "startLine": 288,
+        "startChar": 6,
+        "endLine": 288,
+        "endChar": 9
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38243fff_ca6a15f1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "I stil wonder can the REST interface depend on something that is defined in the persistence API. I thin we discussed this before, maybe it is alright...",
+      "range": {
+        "startLine": 43,
+        "startChar": 36,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9468e200_877d47b0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "cmHandleName ?",
+      "range": {
+        "startLine": 199,
+        "startChar": 79,
+        "endLine": 199,
+        "endChar": 87
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669a35d5_bd406b3e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "its more then conversion!\nI would use \u0027get\u0027 or even \u0027retrieve\u0027",
+      "range": {
+        "startLine": 253,
+        "startChar": 28,
+        "endLine": 253,
+        "endChar": 45
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3df49074_285057da",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "\"cm handle\"  (might not have bene used consistently in test so far)",
+      "range": {
+        "startLine": 186,
+        "startChar": 33,
+        "endLine": 186,
+        "endChar": 43
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6bff860_d98db82d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "can you check content too ie. json representation of persistenceCmHandle",
+      "range": {
+        "startLine": 197,
+        "startChar": 11,
+        "endLine": 197,
+        "endChar": 52
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "311f0f4b_e175824e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetriever.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "did I see this before?!  (looks like you are doing something very similar in NetworkCmProxyController.java ?!",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 5
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a87aad14_6f5412d9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "restModelCmHandle",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddabf64a_95ddfd52",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "conflicting name and type ?!",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1247cffc_a02cb774",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/PersistenceCmHandleRetrieverSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "cm handle details",
+      "range": {
+        "startLine": 64,
+        "startChar": 17,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2199666_626d750c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/PersistenceCmHandleSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:10:54Z",
+      "side": 1,
+      "message": "restModel...",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
