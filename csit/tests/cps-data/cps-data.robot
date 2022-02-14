@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Pantheon.tech.
+# Modifications Copyright (C) 2022 Bell Canada.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,7 +46,7 @@ Get Data Node by XPath
     ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='Left']/nest
     ${headers}=         Create Dictionary   Authorization=${auth}
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
-    ${responseJson}=    Set Variable        ${response.json()}
+    ${responseJson}=    Set Variable        ${response.json()['nest']}
     Should Be Equal As Strings              ${responseJson['name']}   Small
 
 
