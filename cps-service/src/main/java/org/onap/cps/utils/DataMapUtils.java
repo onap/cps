@@ -42,8 +42,13 @@ public class DataMapUtils {
      * @param dataNode data node object
      * @return a map representing same data
      */
+    public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode) {
+        return ImmutableMap.<String, Object>builder()
+            .put(getNodeIdentifier(dataNode.getXpath()), toDataMap(dataNode))
+            .build();
+    }
 
-    public static Map<String, Object> toDataMap(final DataNode dataNode) {
+    private static Map<String, Object> toDataMap(final DataNode dataNode) {
         return ImmutableMap.<String, Object>builder()
             .putAll(dataNode.getLeaves())
             .putAll(listElementsAsMap(dataNode.getChildDataNodes()))

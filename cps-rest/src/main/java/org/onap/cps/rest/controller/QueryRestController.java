@@ -54,7 +54,7 @@ public class QueryRestController implements CpsQueryApi {
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataNodeList = new ArrayList<>();
         for (final DataNode dataNode : dataNodes) {
-            dataNodeList.add(DataMapUtils.toDataMap(dataNode));
+            dataNodeList.add(DataMapUtils.toDataMapWithIdentifier(dataNode));
         }
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodeList), HttpStatus.OK);
     }
