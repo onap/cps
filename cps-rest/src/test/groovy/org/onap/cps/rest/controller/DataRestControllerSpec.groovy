@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -174,7 +174,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Get data node with leaves'() {
         given: 'the service returns data node leaves'
-            def xpath = 'some xPath'
+            def xpath = 'xpath'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
             mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
         when: 'get request is performed through REST API'
@@ -183,6 +183,8 @@ class DataRestControllerSpec extends Specification {
                     .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
+        then: 'the response contains the the datanode in json format'
+            response.getContentAsString() == '{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}'
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
         and: 'response contains expected leaf-list and values'
