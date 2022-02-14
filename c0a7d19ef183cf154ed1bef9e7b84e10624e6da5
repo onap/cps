@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "0d151d2d_642a7b9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T09:28:06Z",
+      "side": 1,
+      "message": "maybe there is a small misunderstanding I think should work like so:\n\nfinal String message \u003d String.format(\n                    \"Error occurred while processing the CM-handle registration request [%s] ,caused by : [%s]\",\n                    dmiPluginRegistration, e.getMessage());\n            log.error(message);\n            throw new DataValidationException(message, e.getMessage(), e);",
+      "parentUuid": "3263848a_ef5365d2",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "310f369e_9aaf7aa7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 17
