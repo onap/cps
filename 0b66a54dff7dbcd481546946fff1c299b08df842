@@ -16,6 +16,24 @@
       "revId": "0b66a54dff7dbcd481546946fff1c299b08df842",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff7e6599_2aa8799a",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-14T14:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5905592_3ff6eca6",
+      "revId": "0b66a54dff7dbcd481546946fff1c299b08df842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
