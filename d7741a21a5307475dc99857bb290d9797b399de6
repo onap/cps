@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "858dfc19_7bb9cd74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "Name suggestion: updateCMHandles",
+      "range": {
+        "startLine": 181,
+        "startChar": 49,
+        "endLine": 181,
+        "endChar": 69
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9c9e90d_557aa065",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "updateCMHandles",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 36
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cc1216e_e70ef6f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "Suggestion: These statements are required to update the CmHandle and can be moved to the called method (processUpdates)",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 80
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4766c6db_871fed63",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "name suggestion: updateCMHandle",
+      "range": {
+        "startLine": 80,
+        "startChar": 17,
+        "endLine": 80,
+        "endChar": 31
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7496c99_1c9800ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "This license is not in the correct format. There is usually a line after http://www.apache.org/licenses/LICENSE-2.0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5609dbbc_1fe67b87",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "Why did we decide to go with null instead of Mock()?\n\nIf it can be null in the test, then there is no test case to validate the usage of these dependencies \nOr \nthis class is doing a lot. Due to that, we are testing it in multiple classes and one set of functionality does not need a few dependencies.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e64b26_06248173",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "same null comment",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f252343_01e80c93",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "Why null instead of mock?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 59
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f926e8a_eb754327",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T16:33:36Z",
+      "side": 1,
+      "message": "Different license format",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
