@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,9 +54,8 @@ public class QueryRestController implements CpsQueryApi {
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataNodeList = new ArrayList<>();
-        for (final DataNode dataNode : dataNodes) {
-            dataNodeList.add(DataMapUtils.toDataMap(dataNode));
-        }
+        dataNodes.stream()
+            .forEach(dataNode -> dataNodeList.add(DataMapUtils.toDataMapWithIdentifier(dataNode)));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodeList), HttpStatus.OK);
     }
 }

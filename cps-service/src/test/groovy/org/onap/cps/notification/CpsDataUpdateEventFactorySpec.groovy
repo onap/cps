@@ -45,10 +45,10 @@ class CpsDataUpdateEventFactorySpec extends Specification {
         given: 'an anchor which has been updated'
             def anchor = new Anchor('my-anchorname', 'my-dataspace', 'my-schemaset-name')
         and: 'cps data service returns the data node details'
-            def xpath = '/'
+            def xpath = '/xpath'
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(['leafName': 'leafValue']).build()
             mockCpsDataService.getDataNode(
-                'my-dataspace', 'my-anchorname', xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                    'my-dataspace', 'my-anchorname', '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'CPS data updated event is created'
             def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(anchor,
                     DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE)
@@ -72,7 +72,7 @@ class CpsDataUpdateEventFactorySpec extends Specification {
                 assert dataspaceName == 'my-dataspace'
                 assert schemaSetName == 'my-schemaset-name'
                 assert operation == Content.Operation.CREATE
-                assert data == new Data().withAdditionalProperty('leafName', 'leafValue')
+                assert data == new Data().withAdditionalProperty('xpath', ['leafName': 'leafValue'])
             }
         where:
             scenario                        | inputObservedTimestamp
