@@ -45,7 +45,7 @@ Get Data Node by XPath
     ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='Left']/nest
     ${headers}=         Create Dictionary   Authorization=${auth}
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
-    ${responseJson}=    Set Variable        ${response.json()}
+    ${responseJson}=    Set Variable        ${response.json()['nest']}
     Should Be Equal As Strings              ${responseJson['name']}   Small
 
 

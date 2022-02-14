@@ -42,18 +42,19 @@ class DataMapUtilsSpec extends Specification {
 
     def 'Data node structure conversion to map.'() {
         when: 'data node structure is converted to a map'
-            Map result = DataMapUtils.toDataMap(dataNode)
+            Map result = DataMapUtils.toDataMapWithIdentifier(dataNode)
 
         then: 'root node leaves are top level elements'
-            result.parentLeaf == 'parentLeafValue'
-            result.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
+            Map parentNode = result.'parent'
+            parentNode.parentLeaf == 'parentLeafValue'
+            parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
 
         and: 'leaves of child list element are listed as structures under common identifier'
-            result.'child-list'.collect().containsAll(['listElementLeaf': 'listElement1leafValue'],
+            parentNode.'child-list'.collect().containsAll(['listElementLeaf': 'listElement1leafValue'],
                                                       ['listElementLeaf': 'listElement2leafValue'])
 
         and: 'leaves for child element is populated under its node identifier'
-            Map childObjectData = result.'child-object'
+            Map childObjectData = parentNode.'child-object'
             childObjectData.childLeaf == 'childLeafValue'
 
         and: 'leaves for grandchild element is populated under its node identifier'
