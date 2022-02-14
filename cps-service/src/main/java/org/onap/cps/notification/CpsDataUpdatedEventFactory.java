@@ -89,7 +89,7 @@ public class CpsDataUpdatedEventFactory {
 
     private Data createData(final DataNode dataNode) {
         final var data = new Data();
-        DataMapUtils.toDataMap(dataNode).forEach(data::setAdditionalProperty);
+        DataMapUtils.toDataMapWithIdentifier(dataNode).forEach(data::setAdditionalProperty);
         return data;
     }
 
