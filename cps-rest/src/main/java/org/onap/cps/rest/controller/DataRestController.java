@@ -86,7 +86,7 @@ public class DataRestController implements CpsDataApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode), HttpStatus.OK);
     }
 
     @Override
