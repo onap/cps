@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd97338d_9b2fa667",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T02:47:54Z",
+      "side": 1,
+      "message": "Can these changes be done for dataNode functionality too? It would be good to improve performance for all the cases where it is applicable.",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
