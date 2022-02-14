@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e118f6e6_cab9344e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T10:34:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88857361_7ca68b9a",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7406f90_e4418086",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 17
@@ -68,6 +92,30 @@
       "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af3b3fc_99afcaad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T10:34:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a7406f90_e4418086",
+      "range": {
+        "startLine": 101,
+        "startChar": 31,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "maybe there is a small misunderstanding I think should work like so:\n\nfinal String message \u003d String.format(\n                    \"Error occurred while processing the CM-handle registration request [%s] ,caused by : [%s]\",\n                    dmiPluginRegistration, e.getMessage());\n            log.error(message);\n            throw new DataValidationException(message, e.getMessage(), e);",
       "parentUuid": "3263848a_ef5365d2",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2933e6c2_d9c151b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T10:34:58Z",
+      "side": 1,
+      "message": "Checkstyle doesnt allow us to log with dynamic string , hence we wont duplicate here as anyways the message would be logged in the exception trace.\nRemoving the logger.",
+      "parentUuid": "0d151d2d_642a7b9b",
       "range": {
         "startLine": 103,
         "startChar": 22,
@@ -304,6 +376,30 @@
       "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ce4b49c_29de81ef",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T10:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb1dce46_3d7f1c67",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 131,
+        "endChar": 11
+      },
+      "revId": "c0a7d19ef183cf154ed1bef9e7b84e10624e6da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
