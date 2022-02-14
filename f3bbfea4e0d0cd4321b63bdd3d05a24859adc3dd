@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "9f518ae8_8109acaf",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T09:00:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a95a76b_4e24925b",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 72
+      },
+      "revId": "f3bbfea4e0d0cd4321b63bdd3d05a24859adc3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27315c30_02649a66",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
