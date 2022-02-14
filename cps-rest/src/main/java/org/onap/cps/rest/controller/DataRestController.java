@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Bell Canada.
+ *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
@@ -86,7 +86,7 @@ public class DataRestController implements CpsDataApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        return new ResponseEntity<>(DataMapUtils.toDataMap(dataNode), HttpStatus.OK);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode), HttpStatus.OK);
     }
 
     @Override
