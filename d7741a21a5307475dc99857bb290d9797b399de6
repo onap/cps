@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "14649d4b_bda76fcd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-14T20:34:31Z",
+      "side": 1,
+      "message": "Yes. That issue has been addressed.",
+      "parentUuid": "c205f9f7_d09a6614",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11e64b26_06248173",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 19
