@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "bfab2a7d_2e6a0003",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:28:52Z",
+      "side": 1,
+      "message": "should not happen  here but in service",
+      "parentUuid": "669a35d5_bd406b3e",
+      "range": {
+        "startLine": 253,
+        "startChar": 28,
+        "endLine": 253,
+        "endChar": 45
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3df49074_285057da",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
@@ -156,6 +180,29 @@
         "startChar": 11,
         "endLine": 197,
         "endChar": 52
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2850bab4_3e8b8098",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T11:28:52Z",
+      "side": 1,
+      "message": "this should convert to ReEstModelCmHandle and to the conversion here instead of the REST Layer",
+      "range": {
+        "startLine": 165,
+        "startChar": 11,
+        "endLine": 165,
+        "endChar": 31
       },
       "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
