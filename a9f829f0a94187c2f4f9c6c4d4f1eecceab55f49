@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d9a971e1_8178af35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T09:08:11Z",
+      "side": 1,
+      "message": "I advised again a separate constant class, my main concern is the large constant class anti-pattern.\nBut I looked up latest bets practice and found a good article on a website I tryst here:\nhttps://www.baeldung.com/java-constants-good-practices.\n\nLooks like a small constant class is the way to go e.g. DmiRegistryConstants.class",
+      "parentUuid": "3cab08d7_c579670e",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 10
+      },
+      "revId": "a9f829f0a94187c2f4f9c6c4d4f1eecceab55f49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6dc8a023_94cd386f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 18
@@ -59,6 +83,30 @@
       "writtenOn": "2022-02-11T15:31:03Z",
       "side": 1,
       "message": "Usually new types are defined at the bottom to not block the flow.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "a9f829f0a94187c2f4f9c6c4d4f1eecceab55f49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da3f2970_272bb3cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T09:08:11Z",
+      "side": 1,
+      "message": "yeah I think that\u0027s were they usually are too...",
+      "parentUuid": "6dc8a023_94cd386f",
       "range": {
         "startLine": 58,
         "startChar": 4,
