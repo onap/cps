@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9e0ac401_2421637e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T08:56:14Z",
+      "side": 1,
+      "message": "since we have several DB operation now should we use transaction (annotation)?!",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 76
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd97338d_9b2fa667",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -13,6 +36,30 @@
       "writtenOn": "2022-02-14T02:47:54Z",
       "side": 1,
       "message": "Can these changes be done for dataNode functionality too? It would be good to improve performance for all the cases where it is applicable.",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b3f5ce6_81a8a1a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-14T08:56:14Z",
+      "side": 1,
+      "message": "1) lets commit this first.\n2) Can you be more specific which other places need a similar update you think?",
+      "parentUuid": "cd97338d_9b2fa667",
       "range": {
         "startLine": 105,
         "startChar": 16,
