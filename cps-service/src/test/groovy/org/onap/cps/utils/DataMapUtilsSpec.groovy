@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,7 +43,10 @@ class DataMapUtilsSpec extends Specification {
 
     def 'Data node structure conversion to map.'() {
         when: 'data node structure is converted to a map'
-            Map result = DataMapUtils.toDataMap(dataNode)
+            def result = DataMapUtils.toDataMap(dataNode)
+
+        then: 'root node identifier is null'
+            result.parent == null
 
         then: 'root node leaves are top level elements'
             result.parentLeaf == 'parentLeafValue'
@@ -53,12 +57,28 @@ class DataMapUtilsSpec extends Specification {
                                                       ['listElementLeaf': 'listElement2leafValue'])
 
         and: 'leaves for child element is populated under its node identifier'
-            Map childObjectData = result.'child-object'
-            childObjectData.childLeaf == 'childLeafValue'
+            result.'child-object'.childLeaf == 'childLeafValue'
 
         and: 'leaves for grandchild element is populated under its node identifier'
-            Map grandChildObjectData = childObjectData.'grand-child-object'
-            grandChildObjectData.grandChildLeaf == 'grandChildLeafValue'
+            result.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
     }
 
+    def 'Data node structure conversion to map with root node identifier.'() {
+        when: 'data node structure is converted to a map with root node identifier'
+            def result = DataMapUtils.toDataMapWithIdentifier(dataNode)
+
+        then: 'root node identifier is not null'
+            result.parent != null
+
+        then: 'root node leaves are populated under its node identifier'
+            def parentNode = result.parent
+            parentNode.parentLeaf == 'parentLeafValue'
+            parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
+
+        and: 'leaves for child element is populated under its node identifier'
+            parentNode.'child-object'.childLeaf == 'childLeafValue'
+
+        and: 'leaves for grandchild element is populated under its node identifier'
+            parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
+    }
 }
