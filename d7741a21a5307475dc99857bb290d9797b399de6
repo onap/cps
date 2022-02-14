@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "81d8a661_d040ba5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T17:06:33Z",
+      "side": 1,
+      "message": "Yes..correct..But somehow it got correctly applied on the other file.(Which was also new) 😊\nI will correct it.",
+      "parentUuid": "b7496c99_1c9800ac",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5609dbbc_1fe67b87",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 19
@@ -128,6 +152,30 @@
       "writtenOn": "2022-02-14T16:33:36Z",
       "side": 1,
       "message": "Why did we decide to go with null instead of Mock()?\n\nIf it can be null in the test, then there is no test case to validate the usage of these dependencies \nOr \nthis class is doing a lot. Due to that, we are testing it in multiple classes and one set of functionality does not need a few dependencies.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ba11ca_73898f5c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T17:06:33Z",
+      "side": 1,
+      "message": "Yes.I deliberately kept it as null (and named it that way) as it is not been used/tested in this class..\nWe can agree here on one thing (to keep as null or use Mock instead) and I will follow the same wherever applicable.",
+      "parentUuid": "5609dbbc_1fe67b87",
       "range": {
         "startLine": 35,
         "startChar": 4,
@@ -206,6 +254,30 @@
       "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "445c7eee_3e3f7d6a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-14T17:06:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f926e8a_eb754327",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
