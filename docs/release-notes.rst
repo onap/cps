@@ -73,6 +73,82 @@ None
 ..      * * *   ISTANBUL   * * *
 ..      ========================
 
+Version: 2.0.4
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:2.0.4                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 2.0.4 Istanbul                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2022 Feb 09                                            |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+
+   - `CPS-879 <https://jira.onap.org/browse/CPS-879>`_  Fix docker compose for csit test.
+   - `CPS-873 <https://jira.onap.org/browse/CPS-873>`_  Fix intermittent circular dependency error when the application starts.
+
+Version: 2.0.3
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:2.0.3                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 2.0.3 Istanbul                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2022-07-01                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+
+   - `CPS-841 <https://jira.onap.org/browse/CPS-841>`_  Update log4j version to 2.17.1 due to security vulnerability
+
+Version: 2.0.2
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:2.0.2                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 2.0.2 Istanbul                                         |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2021-16-12                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+
+   - `CPS-820 <https://jira.onap.org/browse/CPS-820>`_  Update log4j version due to security vulnerability
+
 Version: 2.0.1
 ==============
 
@@ -195,7 +271,7 @@ Bug Fixes
    - `CPS-573 <https://jira.onap.org/browse/CPS-573>`_ /v1/ch/PNFDemo1/modules returning 401 unauthorised.
    - `CPS-587 <https://jira.onap.org/browse/CPS-587>`_ cps-ncmp-service NullpointerException when DmiPluginRegistration has no additionProperties
    - `CPS-591 <https://jira.onap.org/browse/CPS-591>`_ CPS-Core Leaf stored as integer is being returned from DB as float
-   - `CPS-601 <https://jira.onap.org/browse/CPS-601>`_ CPS swagger-ui does not show NCMP endpoints   
+   - `CPS-601 <https://jira.onap.org/browse/CPS-601>`_ CPS swagger-ui does not show NCMP endpoints
    - `CPS-616 <https://jira.onap.org/browse/CPS-616>`_ NCMP base path does not conform to agreed API URL
    - `CPS-630 <https://jira.onap.org/browse/CPS-630>`_ Incorrect information sent when same anchor is updated faster than notification service processes
    - `CPS-635 <https://jira.onap.org/browse/CPS-635>`_ Module Resource call does not include body
