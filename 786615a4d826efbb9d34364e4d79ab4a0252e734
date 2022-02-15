@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "3d38c04a_1c1ff094",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-15T09:27:08Z",
+      "side": 1,
+      "message": "Should be refactored as below for consistency:\n\n newFragmentEntities.stream().forEach(newFragmentEntity -\u003e {\n                newFragmentEntity.setParentId(parentFragment.getId());\n                fragmentRepository.save(newFragmentEntity);\n            });",
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd97338d_9b2fa667",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
