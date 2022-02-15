@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,14 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
+import org.onap.cps.spi.model.ModuleReference;
 
 public interface SchemaSetYangResourceRepository {
 
     void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceId);
+
+    void identifyNewYangResourceModuleReferences(final Collection<ModuleReference> inputYangResourceModuleReference);
 
 }

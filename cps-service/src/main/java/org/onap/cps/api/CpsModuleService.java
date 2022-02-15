@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -96,4 +96,14 @@ public interface CpsModuleService {
      * @return a list of ModuleReference objects
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Identify previously unknown Yang Resource module references.
+     *
+     * @param inputYangResourceModuleReferences the inputYangResourceModuleReferences
+     * @returns collection of module references
+     */
+    Collection<ModuleReference> identifyNewYangResourceModuleReferences(
+        Collection<ModuleReference> inputYangResourceModuleReferences);
+
 }
