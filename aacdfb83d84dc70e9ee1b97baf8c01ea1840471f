@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c40be36_ae911510",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-15T13:45:03Z",
+      "side": 1,
+      "message": "Copyright modification is missing.\n\nSame comment for other files.",
+      "revId": "aacdfb83d84dc70e9ee1b97baf8c01ea1840471f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d26afda9_d07aa159",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-15T13:45:03Z",
+      "side": 1,
+      "message": "What about having 2 unit test methods for each method (toDataMapWithIdentifier and toDataMap) instead having one test method testing both together ?",
+      "revId": "aacdfb83d84dc70e9ee1b97baf8c01ea1840471f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
