@@ -102,4 +102,21 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
         return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
+
+    @Override
+    public List<ModuleReference> identifyNewYangResourceModuleReferences(
+        final Collection<ModuleReference> knownModuleReferencesInCps,
+        final Collection<ModuleReference> inputYangResourceModuleReference) {
+        return cpsModulePersistenceService.identifyNewYangResourceModuleReferences(
+            knownModuleReferencesInCps, inputYangResourceModuleReference);
+    }
+
+    @Override
+    public List<ModuleReference> existingYangResourceModuleReferences(
+        final Collection<ModuleReference> knownModuleReferencesInCps,
+        final List<ModuleReference> inputYangResourceModuleReference) {
+        return cpsModulePersistenceService.existingYangResourceModuleReferences(
+            knownModuleReferencesInCps, inputYangResourceModuleReference);
+    }
+
 }

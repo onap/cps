@@ -98,4 +98,26 @@ public interface CpsModulePersistenceService {
      * Remove unused Yang Resource Modules.
      */
     void deleteUnusedYangResourceModules();
+
+    /**
+     * Identify new Yang Resource module references from an input list of new module references.
+     *
+     * @param knownModuleReferencesInCps the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     * @returns list of {@link ModuleReference} of previously unknown module references
+     */
+    List<ModuleReference> identifyNewYangResourceModuleReferences(
+        Collection<ModuleReference> knownModuleReferencesInCps,
+        Collection<ModuleReference> inputYangResourceModuleReference);
+
+    /**
+     * Identify new Yang Resource module references from an input list of new module references.
+     *
+     * @param knownModuleReferencesInCps the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     * @returns list of {@link ModuleReference} of existing module references common to node and CPS
+     */
+    List<ModuleReference> existingYangResourceModuleReferences(
+        Collection<ModuleReference> knownModuleReferencesInCps,
+        Collection<ModuleReference> inputYangResourceModuleReference);
 }
