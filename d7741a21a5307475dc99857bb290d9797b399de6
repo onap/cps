@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "552c3b20_48b4b81d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "updated to \"updateCmHandleProperties\"",
+      "parentUuid": "858dfc19_7bb9cd74",
+      "range": {
+        "startLine": 181,
+        "startChar": 49,
+        "endLine": 181,
+        "endChar": 69
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9c9e90d_557aa065",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 19
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "i think it stil should be more specific but maybe it is not correct to talk about leaves in NCMP service (public method).\n\nsuggestion: updateCmHandleProperties",
       "parentUuid": "f9c9e90d_557aa065",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 36
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b03ced78_31a8fade",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "updated to \"updateCmHandleProperties\"",
+      "parentUuid": "039afbb8_44880aeb",
       "range": {
         "startLine": 64,
         "startChar": 16,
@@ -189,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "e840f593_bb84ebaf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81d8a661_d040ba5d",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5609dbbc_1fe67b87",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 19
@@ -284,6 +356,30 @@
     },
     {
       "key": {
+        "uuid": "f63bdd43_264223e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14649d4b_bda76fcd",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11e64b26_06248173",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
         "patchSetId": 19
@@ -307,6 +403,30 @@
     },
     {
       "key": {
+        "uuid": "c5cd9f86_d329a3c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "11e64b26_06248173",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f252343_01e80c93",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 19
@@ -327,6 +447,30 @@
       "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e47e61d1_f51e556a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-15T09:14:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f252343_01e80c93",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 59
+      },
+      "revId": "d7741a21a5307475dc99857bb290d9797b399de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
