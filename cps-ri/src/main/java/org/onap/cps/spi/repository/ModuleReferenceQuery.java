@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,15 @@
 
 package org.onap.cps.spi.repository;
 
-import java.util.List;
+import java.util.Collection;
+import org.onap.cps.spi.model.ModuleReference;
 
-public interface SchemaSetYangResourceRepository {
+/**
+ * This interface is used in conjunction with {@link ModuleReferenceRepository} to create native sql queries.
+ */
+public interface ModuleReferenceQuery {
 
-    void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceId);
+    Collection<ModuleReference> identifyNewModuleReferences(
+        final Collection<ModuleReference> moduleReferencesToCheck);
 
 }
