@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CascadeDeleteAllowed;
@@ -48,16 +47,14 @@ public interface CpsModuleService {
 
     /**
      * Create a schema set from new modules and existing modules.
-     *
-     * @param dataspaceName                          Dataspace name
-     * @param schemaSetName                          schema set name
-     * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param moduleReferences               List of YANG resources module references of the modules
-     *                                               needed for this handle that are already in CPS
+     *  @param dataspaceName            Dataspace name
+     * @param schemaSetName             schema set name
+     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param moduleReferences          List of YANG resources module references of the modules
      */
     void createSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
-                                    @NonNull Map<String, String> newYangResourcesModuleNameToContentMap,
-                                    @NonNull List<ModuleReference> moduleReferences);
+                                    @NonNull Map<String, String> newModuleNameToContentMap,
+                                    Collection<ModuleReference> moduleReferences);
 
     /**
      * Read schema set in the given dataspace.
@@ -96,4 +93,14 @@ public interface CpsModuleService {
      * @return a list of ModuleReference objects
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Identify previously unknown Yang Resource module references.
+     *
+     * @param moduleReferencesToCheck the moduleReferencesToCheck
+     * @returns collection of module references
+     */
+    Collection<ModuleReference> identifyNewModuleReferences(
+        Collection<ModuleReference> moduleReferencesToCheck);
+
 }
