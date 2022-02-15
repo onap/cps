@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7ac35848_4d34dc95",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T18:18:27Z",
+      "side": 1,
+      "message": "not even sure which whitespace is the issue here in any case I dont think this is  blocking :-)",
+      "parentUuid": "2966a38d_d6c075dd",
+      "revId": "c4cedc907002a994c33906d06dadb3165c0a7e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4c29a8_ac02299b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
         "patchSetId": 3
@@ -69,6 +87,24 @@
       "revId": "c4cedc907002a994c33906d06dadb3165c0a7e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63a2acfd_e54f605b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T18:18:27Z",
+      "side": 1,
+      "message": "not even sure which whitespace is the issue here in any case I dont think this is  blocking :-)",
+      "parentUuid": "fdde5807_560650bb",
+      "revId": "c4cedc907002a994c33906d06dadb3165c0a7e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
