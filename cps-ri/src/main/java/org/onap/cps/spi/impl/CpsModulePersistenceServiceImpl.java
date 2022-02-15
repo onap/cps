@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -56,6 +56,7 @@ import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
+import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.opendaylight.yangtools.yang.common.Revision;
@@ -68,7 +69,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
-
 
 @Component
 @Slf4j
@@ -96,6 +96,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Autowired
     private CpsAdminPersistenceService cpsAdminPersistenceService;
+
+    @Autowired
+    private ModuleReferenceRepository moduleReferenceRepository;
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
@@ -184,6 +187,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     public void deleteUnusedYangResourceModules() {
         yangResourceRepository.deleteOrphans();
+    }
+
+    @Override
+    public Collection<ModuleReference> identifyNewYangResourceModuleReferences(
+        final Collection<ModuleReference> inputYangResourceModuleReference) {
+
+        moduleReferenceRepository.identifyNewYangResourceModuleReferences(inputYangResourceModuleReference);
+
+        final Collection<ModuleReference> newModuleReferences = moduleReferenceRepository
+            .identifyNewYangResourceModuleReferences(inputYangResourceModuleReference);
+
+        return newModuleReferences;
     }
 
     private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {

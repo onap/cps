@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -102,4 +102,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
         return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
+
+    @Override
+    public Collection<ModuleReference> identifyNewYangResourceModuleReferences(
+        final Collection<ModuleReference> inputYangResourceModuleReferences) {
+        return cpsModulePersistenceService.identifyNewYangResourceModuleReferences(inputYangResourceModuleReferences);
+    }
+
 }
