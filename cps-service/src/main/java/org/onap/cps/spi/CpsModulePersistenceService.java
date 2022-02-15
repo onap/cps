@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,4 +98,26 @@ public interface CpsModulePersistenceService {
      * Remove unused Yang Resource Modules.
      */
     void deleteUnusedYangResourceModules();
+
+    /**
+     * Identify new Yang Resource module references from an input list of new module references.
+     *
+     * @param knownModuleReferencesInCps the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     * @returns list of {@link ModuleReference} of previously unknown module references
+     */
+    List<ModuleReference> identifyNewYangResourceModuleReferences(
+        Collection<ModuleReference> knownModuleReferencesInCps,
+        Collection<ModuleReference> inputYangResourceModuleReference);
+
+    /**
+     * Identify new Yang Resource module references from an input list of new module references.
+     *
+     * @param knownModuleReferences the knownModuleReferences
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     * @returns list of {@link ModuleReference} of existing module references common to node and CPS
+     */
+    List<ModuleReference> existingYangResourceModuleReferences(
+        Collection<ModuleReference> knownModuleReferences,
+        Collection<ModuleReference> inputYangResourceModuleReference);
 }
