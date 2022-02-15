@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -68,7 +68,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
-
 
 @Component
 @Slf4j
@@ -184,6 +183,25 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     public void deleteUnusedYangResourceModules() {
         yangResourceRepository.deleteOrphans();
+    }
+
+    @Override
+    public List<ModuleReference> identifyNewYangResourceModuleReferences(
+        final Collection<ModuleReference> knownModuleReferencesInCps,
+        final Collection<ModuleReference> inputYangResourceModuleReference) {
+
+        yangResourceRepository.createTemporaryTablesAndInsertData(
+            inputYangResourceModuleReference, knownModuleReferencesInCps);
+
+        final List<ModuleReference> moduleReferences = yangResourceRepository.identifyNewYangResourceModuleReferences()
+            .stream().map(mr -> {
+                final ModuleReference modRef = new ModuleReference();
+                modRef.setModuleName(mr.getModuleName());
+                modRef.setRevision(mr.getRevision());
+                return modRef;
+            }).collect(Collectors.toList());
+
+        return moduleReferences;
     }
 
     private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {

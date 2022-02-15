@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,16 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Transactional
 public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourceRepository {
 
@@ -41,5 +46,53 @@ public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourc
                         .setParameter("yangResourceId", id)
                         .executeUpdate()
         );
+    }
+
+    /**
+     * Create temporary table.
+     *
+     * @param knownModuleReferencesInCps the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     */
+    public void createTemporaryTablesAndInsertData(
+        final Collection<ModuleReference> knownModuleReferencesInCps,
+        final Collection<ModuleReference> inputYangResourceModuleReference) {
+
+        // create temp tables
+        createTemporaryTable("moduleReference");
+        createTemporaryTable("inputYangResourceModuleReference");
+
+        // insert data into temp tables
+        insertDataIntoTable("moduleReference", knownModuleReferencesInCps);
+        insertDataIntoTable("inputYangResourceModuleReference", inputYangResourceModuleReference);
+    }
+
+    private void createTemporaryTable(final String tempTableName) {
+        // These are ephemeral and are gone once the session ends
+        final StringBuilder sqlStringBuilder = new StringBuilder("CREATE TEMPORARY TABLE " + tempTableName + "(\n");
+        sqlStringBuilder.append(" id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, \n");
+        sqlStringBuilder.append(" module_name varchar NOT NULL, \n");
+        sqlStringBuilder.append(" revision varchar NOT NULL\n");
+        sqlStringBuilder.append(");");
+
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString());
+        query.executeUpdate();
+    }
+
+    private void insertDataIntoTable(final String tempTableName, final Collection<ModuleReference> moduleReferences) {
+
+        // Individual inserts are not performant - looking into bulk updates
+        moduleReferences.stream().forEach(moduleReference -> {
+            final StringBuilder sqlStringBuilder = new StringBuilder("INSERT INTO  " + tempTableName);
+            sqlStringBuilder.append(" (module_name, revision) ");
+            sqlStringBuilder.append(" VALUES ('");
+            sqlStringBuilder.append(moduleReference.getModuleName());
+            sqlStringBuilder.append("', '");
+            sqlStringBuilder.append(moduleReference.getRevision());
+            sqlStringBuilder.append("');");
+
+            final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString());
+            query.executeUpdate();
+        });
     }
 }
