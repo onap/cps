@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "922b0e49_c9fe8c9b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T18:31:07Z",
+      "side": 1,
+      "message": "I am not sure why we wrap up 2 sql statements as a csv file  that gets imported... \ninstead we should jsut execute the sql statements directly (I know this way was used before but it is not correct)",
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
