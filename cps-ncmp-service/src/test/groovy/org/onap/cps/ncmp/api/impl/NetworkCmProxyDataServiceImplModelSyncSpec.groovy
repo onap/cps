@@ -61,6 +61,8 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             mockDmiModelOperations.getNewYangResourcesFromDmi(persistenceCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
         when: 'module sync is triggered'
+            mockCpsModuleService.identifyNewYangResourceModuleReferences(*_) >> [new ModuleReference(moduleName:'module1',revision:'1')]
+            mockCpsModuleService.existingYangResourceModuleReferences(*_) >> expectedKnownModules
             objectUnderTest.syncModulesAndCreateAnchor(persistenceCmHandle)
         then: 'the CPS module service is called once with the correct parameters'
             1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, persistenceCmHandle.getId(), yangResourceToContentMap, expectedKnownModules)

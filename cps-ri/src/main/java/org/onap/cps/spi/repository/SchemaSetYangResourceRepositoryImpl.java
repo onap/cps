@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,12 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -41,5 +44,49 @@ public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourc
                         .setParameter("yangResourceId", id)
                         .executeUpdate()
         );
+    }
+
+    /**
+     * Create temporary table & insert data into temporary tables.
+     *
+     * @param knownModuleReferences the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     */
+    public void createTemporaryTablesAndInsertData(
+        final Collection<ModuleReference> knownModuleReferences,
+        final Collection<ModuleReference> inputYangResourceModuleReference) {
+
+        createTemporaryTable("moduleReference");
+        createTemporaryTable("inputYangResourceModuleReference");
+
+        insertDataIntoTable("moduleReference", knownModuleReferences);
+        insertDataIntoTable("inputYangResourceModuleReference", inputYangResourceModuleReference);
+    }
+
+    private void createTemporaryTable(final String tempTableName) {
+        final StringBuilder sqlStringBuilder = new StringBuilder("CREATE TEMPORARY TABLE " + tempTableName + "(\n");
+        sqlStringBuilder.append(" id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, \n");
+        sqlStringBuilder.append(" module_name varchar NOT NULL, \n");
+        sqlStringBuilder.append(" revision varchar NOT NULL\n");
+        sqlStringBuilder.append(");");
+
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString());
+        query.executeUpdate();
+    }
+
+    private void insertDataIntoTable(final String tempTableName, final Collection<ModuleReference> moduleReferences) {
+        // TODO: @Joe - bulk updates investigation ongoing
+        moduleReferences.stream().forEach(moduleReference -> {
+            final StringBuilder sqlStringBuilder = new StringBuilder("INSERT INTO  " + tempTableName);
+            sqlStringBuilder.append(" (module_name, revision) ");
+            sqlStringBuilder.append(" VALUES ('");
+            sqlStringBuilder.append(moduleReference.getModuleName());
+            sqlStringBuilder.append("', '");
+            sqlStringBuilder.append(moduleReference.getRevision());
+            sqlStringBuilder.append("');");
+
+            final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString());
+            query.executeUpdate();
+        });
     }
 }
