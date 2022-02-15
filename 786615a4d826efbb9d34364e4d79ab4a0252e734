@@ -42,6 +42,48 @@
     },
     {
       "key": {
+        "uuid": "62953655_014789a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-15T14:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0ac401_2421637e",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 76
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfa9aed9_a03e1cec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-15T14:14:29Z",
+      "side": 1,
+      "message": "We decided to use a standard enhanced for loop for this instead as part of refactoring.",
+      "parentUuid": "3d38c04a_1c1ff094",
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd97338d_9b2fa667",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -134,6 +176,30 @@
       "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2e94a5f_d2edea09",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-15T14:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c21205f_2eb9fe1f",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "786615a4d826efbb9d34364e4d79ab4a0252e734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
