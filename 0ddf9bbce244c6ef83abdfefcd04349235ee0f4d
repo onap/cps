@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a95cd883_ef70968c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-15T10:03:45Z",
+      "side": 1,
+      "message": "Use java stream for code consistency",
+      "revId": "0ddf9bbce244c6ef83abdfefcd04349235ee0f4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
