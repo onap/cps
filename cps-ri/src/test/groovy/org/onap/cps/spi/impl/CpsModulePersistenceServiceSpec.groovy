@@ -19,9 +19,11 @@
 package org.onap.cps.spi.impl
 
 import org.hibernate.exception.ConstraintViolationException
+import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
 import org.onap.cps.spi.repository.DataspaceRepository
+import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.dao.DataIntegrityViolationException
@@ -42,6 +44,8 @@ class CpsModulePersistenceServiceSpec extends Specification {
     def dataspaceRepositoryMock = Mock(DataspaceRepository)
     def yangResourceRepositoryMock = Mock(YangResourceRepository)
     def schemaSetRepositoryMock = Mock(SchemaSetRepository)
+    def cpsAdminPersistenceServiceMock = Mock(CpsAdminPersistenceService)
+    def moduleReferenceRepositoryMock = Mock(ModuleReferenceRepository)
 
     // Constants
     def yangResourceName = 'my-yang-resource-name'
@@ -73,10 +77,8 @@ class CpsModulePersistenceServiceSpec extends Specification {
     anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
 
     def setup() {
-        objectUnderTest = new CpsModulePersistenceServiceImpl()
-        objectUnderTest.dataspaceRepository = dataspaceRepositoryMock
-        objectUnderTest.yangResourceRepository = yangResourceRepositoryMock
-        objectUnderTest.schemaSetRepository = schemaSetRepositoryMock
+        objectUnderTest = new CpsModulePersistenceServiceImpl(yangResourceRepositoryMock, schemaSetRepositoryMock,
+            dataspaceRepositoryMock, cpsAdminPersistenceServiceMock, moduleReferenceRepositoryMock)
     }
 
     def 'Store schema set error scenario: #scenario.'() {

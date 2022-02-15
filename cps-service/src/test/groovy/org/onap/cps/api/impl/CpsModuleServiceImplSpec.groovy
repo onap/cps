@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
@@ -148,5 +148,17 @@ class CpsModuleServiceImplSpec extends Specification {
             mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
             objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName') == moduleReferences
+    }
+
+    def 'Identifying new module references'(){
+        given: 'some new and existing module references'
+            def newModuleReference = new ModuleReference("newModule.test", "2022-10-12")
+            def inputListOfModuleReferences = [newModuleReference]
+        when: 'identifyNewModuleReferences is called'
+            mockModuleStoreService.identifyNewModuleReferences(inputListOfModuleReferences) >> inputListOfModuleReferences
+        then: 'the input list given is returned as result'
+            def returnedNewModuleReference = objectUnderTest.identifyNewModuleReferences(inputListOfModuleReferences)
+            assert returnedNewModuleReference.get(0).getModuleName() == newModuleReference.getModuleName()
+            assert returnedNewModuleReference.get(0).getRevision() == newModuleReference.getRevision()
     }
 }
