@@ -50,6 +50,24 @@
       "revId": "c4cedc907002a994c33906d06dadb3165c0a7e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "765379a7_f0091646",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T10:07:04Z",
+      "side": 1,
+      "message": "50/50 on this being blocking... But technically ye this should have JavaDoc. But if that once that is addressed I can merge it without waiting for further +1 again....",
+      "parentUuid": "9a24ffd2_ebf00f07",
+      "revId": "c4cedc907002a994c33906d06dadb3165c0a7e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
