@@ -32,7 +32,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -230,9 +229,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void syncAndCreateSchemaSet(final PersistenceCmHandle persistenceCmHandle) {
         final List<ModuleReference> moduleReferencesFromCmHandle =
             dmiModelOperations.getModuleReferences(persistenceCmHandle);
-        final List<ModuleReference> existingModuleReferences = new ArrayList<>();
-        final List<ModuleReference> unknownModuleReferences = new ArrayList<>();
-        prepareModuleSubsets(moduleReferencesFromCmHandle, existingModuleReferences, unknownModuleReferences);
+        final Collection<ModuleReference> knownModuleReferences =
+            cpsModuleService.getYangResourceModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+
+        final List<ModuleReference> unknownModuleReferences = cpsModuleService.identifyNewYangResourceModuleReferences(
+            knownModuleReferences, moduleReferencesFromCmHandle);
+
+        final List<ModuleReference> existingModuleReferences = cpsModuleService.existingYangResourceModuleReferences();
 
         final Map<String, String> newYangResourcesModuleNameToContentMap;
         if (unknownModuleReferences.isEmpty()) {
@@ -244,22 +247,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         cpsModuleService
             .createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
                 newYangResourcesModuleNameToContentMap, existingModuleReferences);
-    }
-
-    private void prepareModuleSubsets(final List<ModuleReference> moduleReferencesFromCmHandle,
-                                      final List<ModuleReference> existingModuleReferences,
-                                      final List<ModuleReference> unknownModuleReferences) {
-
-        final Collection<ModuleReference> knownModuleReferencesInCps =
-            cpsModuleService.getYangResourceModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
-
-        for (final ModuleReference moduleReferenceFromDmiForCmHandle : moduleReferencesFromCmHandle) {
-            if (knownModuleReferencesInCps.contains(moduleReferenceFromDmiForCmHandle)) {
-                existingModuleReferences.add(moduleReferenceFromDmiForCmHandle);
-            } else {
-                unknownModuleReferences.add(moduleReferenceFromDmiForCmHandle);
-            }
-        }
     }
 
     private void createAnchor(final PersistenceCmHandle persistenceCmHandle) {
