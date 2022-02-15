@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17e59eff_c7eac5c6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T14:35:12Z",
+      "side": 1,
+      "message": "is the order guaranteed, i.e. could this test fail randomly?\nIf so you might need to do few assert response.getContentAsString().contains(....) instead",
+      "range": {
+        "startLine": 75,
+        "startChar": 45,
+        "endLine": 75,
+        "endChar": 208
+      },
+      "revId": "c1cb0428f6a9099c811f31101c5d63561feeb44a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa805c0_1521dbe9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T14:35:12Z",
+      "side": 1,
+      "message": "why in \u0027 \u0027 ?",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 27
+      },
+      "revId": "c1cb0428f6a9099c811f31101c5d63561feeb44a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e939b4a_b08a95ad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-15T14:35:12Z",
+      "side": 1,
+      "message": "just combine dto one line no need for Map type (java)",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 71
+      },
+      "revId": "c1cb0428f6a9099c811f31101c5d63561feeb44a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
