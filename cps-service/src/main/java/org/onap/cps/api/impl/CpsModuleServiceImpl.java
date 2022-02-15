@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -23,7 +23,6 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
@@ -57,10 +56,10 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> newYangResourcesModuleNameToContentMap,
-        final List<ModuleReference> moduleReferences) {
+        final Map<String, String> newModuleNameToContentMap,
+        final Collection<ModuleReference> moduleReferences) {
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
-            newYangResourcesModuleNameToContentMap, moduleReferences);
+            newModuleNameToContentMap, moduleReferences);
 
     }
 
@@ -102,4 +101,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
         return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
+
+    @Override
+    public Collection<ModuleReference> identifyNewModuleReferences(
+        final Collection<ModuleReference> moduleReferencesToCheck) {
+        return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
 }
