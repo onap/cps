@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
@@ -37,11 +37,11 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModuleServiceImplSpec extends Specification {
 
-    def mockModuleStoreService = Mock(CpsModulePersistenceService)
+    def mockCpsModulePersistenceService = Mock(CpsModulePersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
 
-    def objectUnderTest = new CpsModuleServiceImpl(mockModuleStoreService, mockYangTextSchemaSourceSetCache, mockCpsAdminService)
+    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService)
 
     def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'
@@ -49,7 +49,7 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
     }
 
     def 'Create schema set from new modules and existing modules.'() {
@@ -59,8 +59,7 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
-
+            1 * mockCpsModulePersistenceService.storeSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
     }
 
     def 'Create schema set from invalid resources'() {
@@ -94,11 +93,11 @@ class CpsModuleServiceImplSpec extends Specification {
         then: 'anchor deletion is called #numberOfAnchors times'
             numberOfAnchors * mockCpsAdminService.deleteAnchor('my-dataspace', _)
         and: 'persistence service method is invoked with same parameters'
-            1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
+            1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
-            1 * mockModuleStoreService.deleteUnusedYangResourceModules()
+            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
         where: 'following parameters are used'
             numberOfAnchors << [0, 3]
     }
@@ -111,11 +110,11 @@ class CpsModuleServiceImplSpec extends Specification {
         then: 'no anchors are deleted'
             0 * mockCpsAdminService.deleteAnchor(_, _)
         and: 'persistence service method is invoked with same parameters'
-            1 * mockModuleStoreService.deleteSchemaSet('my-dataspace', 'my-schemaset')
+            1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
-            1 * mockModuleStoreService.deleteUnusedYangResourceModules()
+            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
     }
 
     def 'Delete schema-set when cascade is prohibited and schema-set has anchors.'() {
@@ -136,7 +135,7 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
             def moduleReferences = [new ExtendedModuleReference()]
-            mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
+            mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
             objectUnderTest.getYangResourceModuleReferences('someDataspaceName') == moduleReferences
     }
@@ -145,8 +144,18 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Get all yang resources module references for the given dataspace name and anchor name.'() {
         given: 'the module store service service returns a list module references'
             def moduleReferences = [new ModuleReference()]
-            mockModuleStoreService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences
+            mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
             objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName') == moduleReferences
+    }
+
+    def 'Identifying new module references'(){
+        given: 'module references from cm handle'
+            def moduleReferencesFromCmHandle = new ModuleReference('some-module', 'some-revision')
+            def moduleReferencesToCheck = [moduleReferencesFromCmHandle]
+            objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
+        when: 'identifyNewModuleReferences is called'
+        then: 'cps module persistence service is called with module references to check'
+            1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 }
