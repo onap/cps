@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.ModuleReference;
 
@@ -45,11 +44,11 @@ public interface CpsModulePersistenceService {
      *
      * @param dataspaceName                          Dataspace name
      * @param schemaSetName                          Schema set name
-     * @param newYangResourcesModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
      * @param moduleReferences                       List of YANG resources module references
      */
     void storeSchemaSetFromModules(String dataspaceName, String schemaSetName,
-        Map<String, String> newYangResourcesModuleNameToContentMap, List<ModuleReference> moduleReferences);
+        Map<String, String> newModuleNameToContentMap, Collection<ModuleReference> moduleReferences);
 
     /**
      * Deletes Schema Set.
@@ -98,4 +97,14 @@ public interface CpsModulePersistenceService {
      * Remove unused Yang Resource Modules.
      */
     void deleteUnusedYangResourceModules();
+
+    /**
+     * Identify new module references from those returned by a node compared to what is in CPS already.
+     *
+     * @param moduleReferencesToCheck the module references ot check
+     * @returns Collection of {@link ModuleReference} of previously unknown module references
+     */
+    Collection<ModuleReference> identifyNewModuleReferences(
+        Collection<ModuleReference> moduleReferencesToCheck);
+
 }

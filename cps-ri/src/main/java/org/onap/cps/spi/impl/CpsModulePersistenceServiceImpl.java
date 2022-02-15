@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -40,6 +40,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -53,9 +54,8 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleReference;
-import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentRepository;
+import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.opendaylight.yangtools.yang.common.Revision;
@@ -63,15 +63,14 @@ import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
-
-@Component
 @Slf4j
+@Component
+@AllArgsConstructor
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
 
     private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
@@ -79,23 +78,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
             .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
-    @Autowired
     private YangResourceRepository yangResourceRepository;
 
-    @Autowired
     private SchemaSetRepository schemaSetRepository;
 
-    @Autowired
     private DataspaceRepository dataspaceRepository;
 
-    @Autowired
-    private AnchorRepository anchorRepository;
-
-    @Autowired
-    private FragmentRepository fragmentRepository;
-
-    @Autowired
     private CpsAdminPersistenceService cpsAdminPersistenceService;
+
+    private ModuleReferenceRepository moduleReferenceRepository;
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
@@ -137,9 +128,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
         @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, String> moduleReferenceNameToContentMap) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var yangResourceEntities = synchronizeYangResources(yangResourcesNameToContentMap);
+        final var yangResourceEntities = synchronizeYangResources(moduleReferenceNameToContentMap);
         final var schemaSetEntity = new SchemaSetEntity();
         schemaSetEntity.setName(schemaSetName);
         schemaSetEntity.setDataspace(dataspaceEntity);
@@ -158,9 +149,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Retryable(value = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
         @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                          final Map<String, String> newYangResourcesModuleNameToContentMap,
-                                          final List<ModuleReference> moduleReferences) {
-        storeSchemaSet(dataspaceName, schemaSetName, newYangResourcesModuleNameToContentMap);
+                                          final Map<String, String> newModuleNameToContentMap,
+                                          final Collection<ModuleReference> moduleReferences) {
+        storeSchemaSet(dataspaceName, schemaSetName, newModuleNameToContentMap);
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
@@ -186,8 +177,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         yangResourceRepository.deleteOrphans();
     }
 
-    private Set<YangResourceEntity> synchronizeYangResources(final Map<String, String> yangResourcesNameToContentMap) {
-        final Map<String, YangResourceEntity> checksumToEntityMap = yangResourcesNameToContentMap.entrySet().stream()
+    @Override
+    public Collection<ModuleReference> identifyNewModuleReferences(
+        final Collection<ModuleReference> moduleReferencesToCheck) {
+        return moduleReferenceRepository.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
+    private Set<YangResourceEntity> synchronizeYangResources(
+        final Map<String, String> moduleReferenceNameToContentMap) {
+        final Map<String, YangResourceEntity> checksumToEntityMap = moduleReferenceNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
                 final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
