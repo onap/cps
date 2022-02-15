@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -25,17 +25,14 @@ import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
+import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -54,7 +51,6 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     static final String SET_DATA = '/data/schemaset.sql'
     static final String EXISTING_SCHEMA_SET_NAME = SCHEMA_SET_NAME1
     static final String SCHEMA_SET_NAME_NO_ANCHORS = 'SCHEMA-SET-100'
-    static final String SCHEMA_SET_NAME_WITH_ANCHORS_AND_DATA = 'SCHEMA-SET-101'
     static final String SCHEMA_SET_NAME_NEW = 'SCHEMA-SET-NEW'
 
     static final String NEW_RESOURCE_NAME = 'some new resource'
@@ -76,9 +72,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             .revision(NEW_RESOURCE_REVISION).build()
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]
-    def allYangResourcesModuleAndRevisionList = [new ExtendedModuleReference(name: 'MODULE-NAME-002',namespace:null, revision: 'REVISION-002'), new ExtendedModuleReference(name: 'MODULE-NAME-003',namespace:null, revision: 'REVISION-003'),
-                                                 new ExtendedModuleReference(name: 'MODULE-NAME-004',namespace:null, revision: 'REVISION-004'), ExtendedModuleReference.builder().build(),
-                                                 ExtendedModuleReference.builder().build(), newModuleReference]
+
     def dataspaceEntity
 
     def setup() {
@@ -184,6 +178,19 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Identifying new module references where #scenario'() {
+        when: 'identifyNewModuleReferences is called'
+            def result = objectUnderTest.identifyNewModuleReferences(moduleReferences)
+        then: 'the correct module reference collection is returned'
+            assert result == expectedResult
+        where: 'the following data is used'
+            scenario                              | moduleReferences                                                                                  || expectedResult
+            'new module references exist'         | toModuleReference([['some module 1' : 'some revision 1'], ['some module 2' : 'some revision 2']]) || toModuleReference([['some module 1' : 'some revision 1'], ['some module 2' : 'some revision 2']])
+            'no new module references exist'      | []                                                                                                || []
+            'module references collection is null'| null                                                                                              || []
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete schema set error scenario: #scenario.'() {
         when: 'attempt to delete a schema set where #scenario'
             objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetName)
@@ -234,6 +241,15 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         yangResourceEntity.checksum == expectedYangResourceChecksum
         yangResourceEntity.moduleName == expectedYangResourceModuleName
         yangResourceEntity.revision == expectedYangResourceRevision
+    }
+
+    def toModuleReference(moduleReferenceAsMap) {
+        def moduleReferences = [].withDefault { [:] }
+        moduleReferenceAsMap.forEach(property ->
+            property.forEach((moduleName, revision) -> {
+                moduleReferences.add(new ModuleReference('moduleName' : moduleName, 'revision' : revision))
+            }))
+        return moduleReferences
     }
 
 }
