@@ -96,4 +96,15 @@ public interface CpsModuleService {
      * @return a list of ModuleReference objects
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Identify new Yang Resource module references from an input list of new module references.
+     *
+     * @param knownModuleReferencesInCps the knownModuleReferencesInCps
+     * @param inputYangResourceModuleReference the inputYangResourceModuleReference
+     * @returns collection of {@link ModuleReference}
+     */
+    List<ModuleReference> identifyNewYangResourceModuleReferences(
+        Collection<ModuleReference> knownModuleReferencesInCps,
+        Collection<ModuleReference> inputYangResourceModuleReference);
 }

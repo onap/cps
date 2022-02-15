@@ -149,4 +149,12 @@ class CpsModuleServiceImplSpec extends Specification {
         expect: 'the list provided by persistence service is returned as result'
             objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName') == moduleReferences
     }
+
+    def 'Identify all new yang resources module references among the given list of input module references'(){
+        given: 'an input list of yang resources module references containing new module references'
+            def newModuleReference = new ModuleReference("newModule.test", "2022-10-12")
+            def inputListOfModuleReferences = [newModuleReference]
+        expect: 'the input list given is returned as result'
+            objectUnderTest.identifyNewYangResourceModuleReferences(inputListOfModuleReferences) == inputListOfModuleReferences
+    }
 }

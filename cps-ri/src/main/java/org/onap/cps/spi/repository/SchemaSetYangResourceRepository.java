@@ -20,10 +20,16 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
 import java.util.List;
+import org.onap.cps.spi.model.ModuleReference;
 
 public interface SchemaSetYangResourceRepository {
 
     void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceId);
+
+    void createTemporaryTablesAndInsertData(
+        final Collection<ModuleReference> knownModuleReferencesInCps,
+        final Collection<ModuleReference> inputYangResourceModuleReference);
 
 }
