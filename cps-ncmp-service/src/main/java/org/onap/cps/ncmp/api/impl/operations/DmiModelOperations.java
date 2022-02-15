@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +81,7 @@ public class DmiModelOperations extends DmiOperations {
      * @return yang resources as map of module name to yang(re)source
      */
     public Map<String, String> getNewYangResourcesFromDmi(final PersistenceCmHandle persistenceCmHandle,
-                                                          final List<ModuleReference> unknownModuleReferences) {
+                                                          final Collection<ModuleReference> unknownModuleReferences) {
         final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
             unknownModuleReferences, persistenceCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
@@ -108,7 +109,7 @@ public class DmiModelOperations extends DmiOperations {
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonData, new HttpHeaders());
     }
 
-    private static String getRequestBodyToFetchYangResources(final List<ModuleReference> unknownModuleReferences,
+    private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> unknownModuleReferences,
         final List<PersistenceCmHandle.Property> dmiProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(unknownModuleReferences);
         final JsonObject data = new JsonObject();
@@ -119,7 +120,7 @@ public class DmiModelOperations extends DmiOperations {
         return jsonRequestObject.toString();
     }
 
-    private static JsonArray getModuleReferencesAsJson(final List<ModuleReference> unknownModuleReferences) {
+    private static JsonArray getModuleReferencesAsJson(final Collection<ModuleReference> unknownModuleReferences) {
         final JsonArray moduleReferences = new JsonArray();
 
         for (final ModuleReference moduleReference : unknownModuleReferences) {

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) Nordix Foundation
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -80,7 +80,6 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName,
         @Param("moduleNames") Collection<String> moduleNames);
 
-
     @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
     Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);
 
@@ -88,4 +87,13 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
         + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
     void deleteOrphans();
+
+    @Query(value = "SELECT inputYangResourceModuleReference.module_name, inputYangResourceModuleReference.revision\n"
+        + " from inputYangResourceModuleReference left join yang_resource\n"
+        + " ON yang_resource.module_name=inputYangResourceModuleReference.module_name\n"
+        + " and yang_resource.revision=inputYangResourceModuleReference.revision\n"
+        + " where yang_resource.module_name is null\n"
+        + " and inputYangResourceModuleReference.module_name != 'dummy_module_name';", nativeQuery = true)
+    Collection<YangResourceModuleReference> identifyNewYangResourceModuleReferences();
+
 }

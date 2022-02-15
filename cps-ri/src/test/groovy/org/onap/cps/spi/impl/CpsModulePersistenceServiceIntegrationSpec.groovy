@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -25,7 +25,6 @@ import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.model.ExtendedModuleReference
@@ -33,9 +32,6 @@ import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -181,6 +177,17 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             objectUnderTest.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NO_ANCHORS)
         then: 'the schema set has been deleted'
             schemaSetRepository.findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_NO_ANCHORS).isPresent() == false
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Identify all new yang resources module references among the given list of input module references'() {
+        given: 'an input list of yang resources module references containing new module references'
+            def newModuleReference = new ModuleReference("newModule.test", "2022-10-12")
+            def inputListOfModuleReferences = [newModuleReference]
+        expect: 'the input list given is returned as result'
+            def returnedNewModuleReference = objectUnderTest.identifyNewYangResourceModuleReferences(inputListOfModuleReferences)
+            assert returnedNewModuleReference.get(0).getModuleName() == newModuleReference.getModuleName()
+            assert returnedNewModuleReference.get(0).getRevision() == newModuleReference.getRevision()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
