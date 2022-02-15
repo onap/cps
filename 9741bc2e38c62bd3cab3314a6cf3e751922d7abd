@@ -322,6 +322,52 @@
       "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "979a34e1_d2f798c3",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-15T11:50:11Z",
+      "side": 1,
+      "message": "Might be better off defining the error responses in the components at the bottom of the page and referencing back to it as it is what we do in cps api files",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 50
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e8f4099_48e245c3",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-15T11:50:11Z",
+      "side": 1,
+      "message": "components might need to be moved to components.yaml as it is much larger now",
+      "range": {
+        "startLine": 832,
+        "startChar": 0,
+        "endLine": 832,
+        "endChar": 11
+      },
+      "revId": "9741bc2e38c62bd3cab3314a6cf3e751922d7abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
