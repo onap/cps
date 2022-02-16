@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.constants;
 
 import java.time.OffsetDateTime;
+import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -39,4 +40,14 @@ public final class DmiRegistryConstants {
     public static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
     public static final OffsetDateTime NO_TIMESTAMP = null;
+
+    // valid kafka topic name regex
+    public static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
+            + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
+
+    public static final String NO_TOPIC = null;
+
+    public static final String NO_REQUEST_ID = null;
+
+    public static final String DMI_EXCEPTION_MESSAGE = "Not able to get resource data.";
 }

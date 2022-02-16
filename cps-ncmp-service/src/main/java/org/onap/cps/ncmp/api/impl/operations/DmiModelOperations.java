@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.model.ModuleReference;
@@ -53,8 +54,8 @@ public class DmiModelOperations extends DmiOperations {
     public DmiModelOperations(final YangModelCmHandleRetriever dmiPropertiesRetriever,
                               final JsonObjectMapper jsonObjectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
-                              final DmiRestClient dmiRestClient) {
-        super(dmiPropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient);
+                              final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
+        super(dmiPropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
 
     /**
