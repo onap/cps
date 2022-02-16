@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
@@ -56,6 +57,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def NO_TOPIC = null
+    def NO_REQUEST_ID = null
+    @Shared
+    def OPTIONS_PARAM = '(a=1,b=2)'
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
         mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever)
@@ -63,7 +68,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
     def dataNode = new DataNode(leaves: ['dmi-service-name': 'testDmiService'])
-
 
     def 'Write resource data for pass-through running from DMI using POST #scenario cm handle properties.'() {
         given: 'cpsDataService returns valid datanode'
@@ -104,16 +108,19 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'get resource data from DMI is called'
             mockDmiDataOperations.getResourceDataFromDmi(
-                'testCmHandle',
-                'testResourceId',
-                '(a=1,b=2)',
-                'testAcceptParam' ,
-                PASSTHROUGH_OPERATIONAL) >> new ResponseEntity<>('result-json', HttpStatus.OK)
+                    'testCmHandle',
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    'testAcceptParam',
+                    PASSTHROUGH_OPERATIONAL,
+                    NO_REQUEST_ID,
+                    NO_TOPIC) >> new ResponseEntity<>('result-json', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
             def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    NO_TOPIC)
         then: 'DMI returns a json response'
             response == 'result-json'
     }
@@ -129,9 +136,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    NO_TOPIC)
         then: 'exception is thrown with the expected details'
             def exceptionThrown = thrown(ServerNcmpException.class)
             exceptionThrown.details == 'DMI status code: 404, DMI response body: NOK-json'
@@ -143,16 +151,19 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'DMI returns NOK response'
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
-                'testResourceId',
-                '(a=1,b=2)',
-                'testAcceptParam',
-                PASSTHROUGH_OPERATIONAL)
-                >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    'testAcceptParam',
+                    PASSTHROUGH_OPERATIONAL,
+                    NO_REQUEST_ID,
+                    NO_TOPIC)
+                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    NO_TOPIC)
         then: 'exception is thrown'
             def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
@@ -165,15 +176,18 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'DMI returns valid response and data'
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
-                'testResourceId',
-                '(a=1,b=2)',
-                'testAcceptParam',
-                PASSTHROUGH_RUNNING) >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    'testAcceptParam',
+                    PASSTHROUGH_RUNNING,
+                    NO_REQUEST_ID,
+                    NO_TOPIC) >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
         when: 'get resource data is called'
             def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    NO_TOPIC)
         then: 'get resource data returns expected response'
             response == '{result-json}'
     }
@@ -184,20 +198,97 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'DMI returns NOK response'
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
-                'testResourceId',
-                '(a=1,b=2)',
-                'testAcceptParam',
-                PASSTHROUGH_RUNNING)
-                >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    'testAcceptParam',
+                    PASSTHROUGH_RUNNING,
+                    NO_REQUEST_ID,
+                    NO_TOPIC)
+                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    NO_TOPIC)
         then: 'exception is thrown'
             def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
             exceptionThrown.details.contains('NOK-json')
+    }
+
+    def 'Get resource data for operational from DMI with empty topic sync request.'() {
+        given: 'cps data service returns valid data node'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'dmi data operation returns valid response and data'
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, NO_REQUEST_ID, NO_TOPIC)
+                    >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+        when: 'get resource data is called data operational with blank topic'
+            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle(
+                    'testCmHandle',
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    emptyTopic)
+        then: 'synchronous response is expected'
+            assert responseData == '{result-json}'
+        where: 'the following parameters are used'
+            scenario             | emptyTopic
+            'No topic in url'    | ''
+            'Null topic in url'  | null
+            'Empty topic in url' | '\"\"'
+            'Blank topic in url' | ' '
+    }
+
+    def 'Get resource data for data operational from DMI with valid topic i.e. async request.'() {
+        given: 'cps data service returns valid data node'
+            mockCpsDataService.getDataNode(*_) >> dataNode
+        and: 'dmi data operation returns valid response and data'
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, _, 'my-topic-name')
+                    >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+        when: 'get resource data is called for data operational with valid topic'
+            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '', '', '', 'my-topic-name')
+        then: 'non empty request id is generated'
+            assert responseData.body.requestId.length() > 0
+    }
+
+    def 'Get resource data for pass through running from DMI with valid topic async request.'() {
+        given: 'cps data service returns valid data node'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'dmi data operation returns valid response and data'
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, _, 'my-topic-name')
+                    >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+        when: 'get resource data is called for data operational with valid topic'
+            def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle(
+                    'testCmHandle',
+                    'testResourceId',
+                    'testAcceptParam',
+                    OPTIONS_PARAM,
+                    'my-topic-name')
+        then: 'non empty request id is generated'
+            assert responseData.body.requestId.length() > 0
+    }
+
+    def 'Get resource data for pass through running from DMI sync request where #scenario.'() {
+        given: 'cps data service returns valid data node'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'dmi data operation returns valid response and data'
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, NO_REQUEST_ID, NO_TOPIC)
+                    >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+        when: 'get resource data is called for data operational with valid topic'
+            def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
+                    '', '', '', emptyTopic)
+        then: 'synchronous response is expected'
+            assert responseData == '{result-json}'
+        where: 'the following parameters are used'
+            scenario             | emptyTopic
+            'No topic in url'    | ''
+            'Null topic in url'  | null
+            'Empty topic in url' | '\"\"'
+            'Blank topic in url' | ' '
     }
 
     def 'Getting Yang Resources.'() {
