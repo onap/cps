@@ -20,17 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import com.google.common.base.Strings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class DmiOperations {
@@ -39,7 +37,7 @@ public class DmiOperations {
     public enum DataStoreEnum {
         PASSTHROUGH_OPERATIONAL("ncmp-datastore:passthrough-operational"),
         PASSTHROUGH_RUNNING("ncmp-datastore:passthrough-running");
-        private String value;
+        private final String value;
 
         DataStoreEnum(final String value) {
             this.value = value;
@@ -50,30 +48,12 @@ public class DmiOperations {
     protected final JsonObjectMapper jsonObjectMapper;
     protected final NcmpConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
-
-    static final String URL_SEPARATOR = "/";
-
-    String getCmHandleUrl(final String dmiServiceName, final String cmHandle) {
-        return dmiServiceName
-            + dmiProperties.getDmiBasePath()
-            + URL_SEPARATOR
-            + "v1"
-            + URL_SEPARATOR
-            + "ch"
-            + URL_SEPARATOR
-            + cmHandle
-            + URL_SEPARATOR;
-    }
+    protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
 
     String getDmiResourceUrl(final String dmiServiceName, final String cmHandle, final String resourceName) {
-        return getCmHandleUrl(dmiServiceName, cmHandle) + resourceName;
-    }
-
-    static String appendOptionsQuery(final String url, final String optionsParamInQuery) {
-        if (Strings.isNullOrEmpty(optionsParamInQuery)) {
-            return url;
-        }
-        return url + "&options=" + optionsParamInQuery;
+        return dmiServiceUrlBuilder.getCmHandleUrl()
+                .pathSegment("{resourceName}")
+                .buildAndExpand(dmiServiceName, dmiProperties.getDmiBasePath(), cmHandle, resourceName).toUriString();
     }
 
     static HttpHeaders prepareHeader(final String acceptParam) {

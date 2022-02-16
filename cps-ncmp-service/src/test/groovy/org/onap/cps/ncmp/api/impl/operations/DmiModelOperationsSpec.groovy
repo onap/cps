@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -31,6 +32,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Shared
 
 @SpringBootTest
@@ -49,20 +51,25 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving module references.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def moduleReferencesAsLisOfMaps = [[moduleName:'mod1',revision:'A'],[moduleName:'mod2',revision:'X']]
-            def responseFromDmi = new ResponseEntity([schemas:moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
-                '{"cmHandleProperties":{}}', [:]) >> responseFromDmi
+            def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
+            def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
+            def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{}}', [:])
+                    >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
         then: 'the result consists of expected module references'
-            assert result == [new ModuleReference(moduleName:'mod1',revision:'A'), new ModuleReference(moduleName:'mod2',revision:'X')]
+            assert result == [new ModuleReference(moduleName: 'mod1', revision: 'A'), new ModuleReference(moduleName: 'mod2', revision: 'X')]
     }
 
     def 'Retrieving module references edge case: #scenario.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'any response from DMI service when it is called with the expected parameters'
             // TODO (toine): production code ignores any error code from DMI, this should be improved in future
             def responseFromDmi = new ResponseEntity(bodyAsMap, HttpStatus.NO_CONTENT)
@@ -82,6 +89,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving module references, DMI property handling:  #scenario.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval(dmiProperties)
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
@@ -99,6 +108,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving yang resources.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source'],
                                                       [moduleName: 'mod2', revision: 'C', yangSource: 'other yang source']], HttpStatus.OK)
@@ -116,6 +127,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving yang resources, edge case: scenario.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             // TODO (toine): production code ignores any error code from DMI, this should be improved in future
             def responseFromDmi = new ResponseEntity(responseFromDmiBody, HttpStatus.NO_CONTENT)
@@ -133,6 +146,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving yang resources, DMI property handling #scenario.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval(dmiProperties)
+        and: 'uri component builder'
+            mockCmHandleUriComponentsBuilder()
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
