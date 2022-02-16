@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -31,6 +32,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Shared
 
 @SpringBootTest
@@ -50,14 +52,15 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def moduleReferencesAsLisOfMaps = [[moduleName:'mod1',revision:'A'],[moduleName:'mod2',revision:'X']]
-            def responseFromDmi = new ResponseEntity([schemas:moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
-                '{"cmHandleProperties":{}}', [:]) >> responseFromDmi
+            def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
+            def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
+            def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{}}', [:])
+                    >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
         then: 'the result consists of expected module references'
-            assert result == [new ModuleReference(moduleName:'mod1',revision:'A'), new ModuleReference(moduleName:'mod2',revision:'X')]
+            assert result == [new ModuleReference(moduleName: 'mod1', revision: 'A'), new ModuleReference(moduleName: 'mod2', revision: 'X')]
     }
 
     def 'Retrieving module references edge case: #scenario.'() {
