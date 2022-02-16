@@ -67,7 +67,9 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def requestBody = '{"some-key":"some-value"}'
 
-    def 'Get Resource Data from pass-through operational.' () {
+    def NO_TOPIC = null
+
+    def 'Get Resource Data from pass-through operational.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational" +
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)"
@@ -75,18 +77,19 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                     get(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON_VALUE)
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
                     'application/json',
-                    '(a=1,b=2)')
+                    '(a=1,b=2)',
+                    NO_TOPIC)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.' () {
+    def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                     "?resourceIdentifier=" + resourceIdentifier + "&options=(a=1,b=2)"
@@ -94,7 +97,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     resourceIdentifier,
                     'application/json',
-                    '(a=1,b=2)') >> '{valid-json}'
+                    '(a=1,b=2)',
+                    NO_TOPIC) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)

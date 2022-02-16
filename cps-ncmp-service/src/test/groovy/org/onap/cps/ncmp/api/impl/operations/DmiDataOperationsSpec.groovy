@@ -22,12 +22,14 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.models.DmiResponse
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import java.util.regex.Pattern
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
@@ -39,39 +41,75 @@ import org.springframework.http.HttpStatus
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
+    def expectedJsonWithoutDmiProp = '{"operation":"read","cmHandleProperties":{}}'
+    def expectedJsonWithDmiProp = '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}'
+    def expectedJsonWithoutDmiPropAndRequestId = '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{}}'
+    def expectedJsonWithDmiPropAndRequestId = '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}'
+    def passThroughOperational = 'passthrough-operational'
+    def passThroughRunning = 'passthrough-running'
+    def expectedOption = '&options=(a=1,b=2)'
+    def option = '(a=1,b=2)'
+    def topicName = 'my-topic-name'
+    def expectedTopic = '&topic=my-topic-name'
+    def dmiServiceBaseUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
+            "/ncmp-datastore:"
+    def NO_TOPIC = null
+
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
     @Autowired
     DmiDataOperations objectUnderTest
 
-    def 'call get resource data for #expectedDatastoreInUrl from DMI #scenario.'() {
+    def UUID_REGEX_PATTERN =
+            Pattern.compile('^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$');
+
+    def 'call get resource data for #expectedDatastoreInUrl from DMI without topic #scenario.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(
-                "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
+                    dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
                 expectedJson, [Accept:['sample accept header']]) >> responseFromDmi
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
-            scenario             | dmiProperties        | dataStore               | options     || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
-            'without properties' | []                   | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'    | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'null options'       | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | null        || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'empty options'      | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | ''          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'datastore running'  | []                   | PASSTHROUGH_RUNNING     | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
+            scenario             | dmiProperties       | dataStore               | options || expectedJson               | expectedDatastoreInUrl | expectedOptionsInUrl
+            'without properties' | []                  | PASSTHROUGH_OPERATIONAL | option  || expectedJsonWithoutDmiProp | passThroughOperational | expectedOption
+            'with properties'    | [dmiSampleProperty] | PASSTHROUGH_OPERATIONAL | option  || expectedJsonWithDmiProp    | passThroughOperational | expectedOption
+            'null options'       | [dmiSampleProperty] | PASSTHROUGH_OPERATIONAL | null    || expectedJsonWithDmiProp    | passThroughOperational | ''
+            'datastore running'  | []                  | PASSTHROUGH_RUNNING     | option  || expectedJsonWithoutDmiProp | passThroughRunning     | expectedOption
+    }
+
+    def 'call get resource data for #expectedDatastoreInUrl from DMI with topic #scenario.'() {
+        given: 'a persistence cm handle for #cmHandleId'
+            mockPersistenceCmHandleRetrieval(dmiProperties)
+        and: 'json object mapper parsing dmi request object and returns json string with request id'
+            spiedJsonObjectMapper.asJsonString(_) >> expectedJson
+        and: 'a positive response from DMI service when it is called with the expected parameters'
+            def responseFromDmi = ResponseEntity.status(HttpStatus.OK).body();
+            mockDmiRestClient.postOperationWithJsonData(
+                    dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}${expectedTopicInUrl}",
+                    expectedJson, [Accept: ['sample accept header']]) >> responseFromDmi
+        when: 'get resource data is invoked'
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, resourceIdentifier, options, 'sample accept header', dataStore, topic)
+        then: 'the result is the response from the DMI service'
+            assert result.statusCode == responseFromDmi.statusCode
+        and: 'return requestId that ia a valid UUID'
+            assert isValidRequestId(((DmiResponse) result.getBody()).getRequestId())
+        where: 'the following parameters are used'
+            scenario     | dmiProperties | dataStore           | options | topic     || expectedJson                           | expectedDatastoreInUrl | expectedOptionsInUrl | expectedTopicInUrl
+            'with topic' | []            | PASSTHROUGH_RUNNING | option  | topicName || expectedJsonWithoutDmiPropAndRequestId | passThroughRunning     | expectedOption       | expectedTopic
     }
 
     def 'Write data for pass-through:running datastore in DMI.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval([dmiSampleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
-                "/ncmp-datastore:passthrough-running?resourceIdentifier=${resourceIdentifier}"
+            def expectedUrl = dmiServiceBaseUrl+"passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, [:]) >> responseFromDmi
@@ -83,6 +121,10 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             operation || expectedOperationInUrl
             CREATE    || 'create'
             UPDATE    || 'update'
+    }
+
+    def isValidRequestId(String requestId) {
+        return requestId == null ? false : UUID_REGEX_PATTERN.matcher(requestId).matches();
     }
 
 }

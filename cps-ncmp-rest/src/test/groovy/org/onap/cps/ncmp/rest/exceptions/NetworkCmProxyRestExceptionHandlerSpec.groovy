@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.RestInputMapper
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -44,6 +45,7 @@ import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandl
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -75,9 +77,13 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     def dataNodeBaseEndpointNcmpInventory
 
     @Shared
-    def errorMessage = 'some error message'
+    def sampleErrorMessage = 'some error message'
     @Shared
-    def errorDetails = 'some error details'
+    def sampleErrorDetails = 'some error details'
+    @Shared
+    def dataNodeNotFoundDetails = 'DataNode not found for anchor myAnchorName and dataspace myDataspaceName.'
+    @Shared
+    def datNodeNotFoundMessage = 'DataNode not found'
 
     def setup() {
         dataNodeBaseEndpointNcmp = "$basePathNcmp/v1"
@@ -89,23 +95,24 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             setupTestException(exception, NCMP)
             def response = performTestRequest(NCMP)
         then: 'an HTTP response is returned with correct message and details'
-            assertTestResponse(response, expectedErrorCode, errorMessage, expectedErrorDetails)
+            assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario      | exception                                           || expectedErrorDetails | expectedErrorCode
-            'CPS'         | new CpsException(errorMessage, errorDetails)        || errorDetails         | INTERNAL_SERVER_ERROR
-            'NCMP-server' | new ServerNcmpException(errorMessage, errorDetails) || null                 | INTERNAL_SERVER_ERROR
-            'NCMP-client' | new DmiRequestException(errorMessage, errorDetails) || null                 | BAD_REQUEST
-            'other'       | new IllegalStateException(errorMessage)             || null                 | INTERNAL_SERVER_ERROR
+            scenario          | exception                                                        || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
+            'CPS'             | new CpsException(sampleErrorMessage, sampleErrorDetails) || sampleErrorDetails | sampleErrorMessage | INTERNAL_SERVER_ERROR
+            'NCMP-server'     | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
+            'NCMP-client'     | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | BAD_REQUEST
+            'other'           | new IllegalStateException(sampleErrorMessage)                    || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
+            'NCMP-DMI-Plugin' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || dataNodeNotFoundDetails              | message              | NOT_FOUND
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
         given: 'the service throws data validation exception'
-            def exception = new DataValidationException(errorMessage, errorDetails)
+            def exception = new DataValidationException(sampleErrorMessage, sampleErrorDetails)
             setupTestException(exception, NCMPINVENTORY)
         when: 'the HTTP request is made'
             def response = performTestRequest(NCMPINVENTORY)
         then: 'an HTTP response is returned with correct message and details'
-            assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
+            assertTestResponse(response, BAD_REQUEST, sampleErrorMessage, sampleErrorDetails)
     }
 
     def setupTestException(exception, apiType) {
@@ -126,8 +133,8 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     static void assertTestResponse(response, expectedStatus , expectedErrorMessage , expectedErrorDetails) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
-        assert content['status'] == expectedStatus.toString()
-        assert content['message'] == expectedErrorMessage
+        assert content['status'].toString().contains(expectedStatus.toString())
+        assert content['message'].toString().contains(expectedErrorMessage)
         assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
     }
 

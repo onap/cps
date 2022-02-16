@@ -52,6 +52,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
+    def NO_TOPIC = null
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
         mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler)
@@ -97,19 +98,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get resource data for pass-through operational from DMI.'() {
         given: 'get data node is called'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'get resource data from DMI is called'
             mockDmiDataOperations.getResourceDataFromDmi(
-                'testCmHandle',
-                'testResourceId',
-                '(a=1,b=2)',
-                'testAcceptParam' ,
-                PASSTHROUGH_OPERATIONAL) >> new ResponseEntity<>('result-json', HttpStatus.OK)
+                    'testCmHandle',
+                    'testResourceId',
+                    '(a=1,b=2)',
+                    'testAcceptParam',
+                    PASSTHROUGH_OPERATIONAL,
+                    NO_TOPIC) >> new ResponseEntity<>('result-json', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
             def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    '(a=1,b=2)',
+                    NO_TOPIC)
         then: 'DMI returns a json response'
             response == 'result-json'
     }
@@ -117,17 +120,18 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get resource data for pass-through operational from DMI with Json Processing Exception.'() {
         given: 'cps data service returns valid data node'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'objectMapper not able to parse object'
             spiedJsonObjectMapper.asJsonString(_) >> { throw new JsonProcessingException('testException') }
         and: 'DMI returns NOK response'
             mockDmiDataOperations.getResourceDataFromDmi(*_)
-                >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
+                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                'testResourceId',
-                'testAcceptParam',
-                '(a=1,b=2)')
+                    'testResourceId',
+                    'testAcceptParam',
+                    '(a=1,b=2)',
+                    NO_TOPIC)
         then: 'exception is thrown with the expected details'
             def exceptionThrown = thrown(ServerNcmpException.class)
             exceptionThrown.details == 'DMI status code: 404, DMI response body: NOK-json'
@@ -142,13 +146,15 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId',
                 '(a=1,b=2)',
                 'testAcceptParam',
-                PASSTHROUGH_OPERATIONAL)
+                PASSTHROUGH_OPERATIONAL,
+                    NO_TOPIC)
                 >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                 'testResourceId',
                 'testAcceptParam',
-                '(a=1,b=2)')
+                '(a=1,b=2)',
+                    NO_TOPIC)
         then: 'exception is thrown'
             def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
@@ -164,12 +170,14 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId',
                 '(a=1,b=2)',
                 'testAcceptParam',
-                PASSTHROUGH_RUNNING) >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
+                PASSTHROUGH_RUNNING,
+                    NO_TOPIC) >> new ResponseEntity<>('{result-json}', HttpStatus.OK)
         when: 'get resource data is called'
             def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId',
                 'testAcceptParam',
-                '(a=1,b=2)')
+                '(a=1,b=2)',
+                    NO_TOPIC)
         then: 'get resource data returns expected response'
             response == '{result-json}'
     }
@@ -183,13 +191,15 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId',
                 '(a=1,b=2)',
                 'testAcceptParam',
-                PASSTHROUGH_RUNNING)
+                PASSTHROUGH_RUNNING,
+                    NO_TOPIC)
                 >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
         when: 'get resource data is called'
             objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId',
                 'testAcceptParam',
-                '(a=1,b=2)')
+                '(a=1,b=2)',
+                    NO_TOPIC)
         then: 'exception is thrown'
             def exceptionThrown = thrown(ServerNcmpException.class)
         and: 'details contains the original response'
