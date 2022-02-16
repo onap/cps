@@ -36,9 +36,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
@@ -49,6 +52,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.DmiResponse;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandlesList;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -77,6 +81,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
+    // valid kafka topic name regex
+    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
+            + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
+
+    private static final String NO_TOPIC = null;
+
+    private static final String NO_REQUEST_ID = null;
+
+    private static final String dmiExceptionMessage = "Not able to get resource data.";
+
+    public static final String REQUEST_ID = UUID.randomUUID().toString();
+
     @Override
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
@@ -100,26 +116,33 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Object getResourceDataOperationalForCmHandle(final String cmHandle,
                                                         final String resourceIdentifier,
                                                         final String acceptParamInHeader,
-                                                        final String optionsParamInQuery) {
-        return handleResponse(dmiDataOperations.getResourceDataFromDmi(
-            cmHandle,
-            resourceIdentifier,
-            optionsParamInQuery,
-            acceptParamInHeader,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL), "Not able to get resource data.");
+                                                        final String optionsParamInQuery,
+                                                        final String topicParamInQuery) {
+
+        return isValidTopicName(topicParamInQuery) ? handleResponse(ResponseEntity.status(
+                dmiDataOperations.getResourceDataFromDmi(
+                                cmHandle, resourceIdentifier, optionsParamInQuery, acceptParamInHeader,
+                                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, REQUEST_ID, topicParamInQuery)
+                        .getStatusCode()).body(buildDmiResponse(REQUEST_ID)), dmiExceptionMessage)
+                : handleResponse(dmiDataOperations.getResourceDataFromDmi(cmHandle, resourceIdentifier,
+                optionsParamInQuery, acceptParamInHeader, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+                NO_REQUEST_ID, NO_TOPIC), dmiExceptionMessage);
     }
 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandle,
                                                                final String resourceIdentifier,
                                                                final String acceptParamInHeader,
-                                                               final String optionsParamInQuery) {
-        return handleResponse(dmiDataOperations.getResourceDataFromDmi(
-            cmHandle,
-            resourceIdentifier,
-            optionsParamInQuery,
-            acceptParamInHeader,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING), "Not able to get resource data.");
+                                                               final String optionsParamInQuery,
+                                                               final String topicParamInQuery) {
+        return isValidTopicName(topicParamInQuery) ? handleResponse(ResponseEntity.status(
+                dmiDataOperations.getResourceDataFromDmi(
+                                cmHandle, resourceIdentifier, optionsParamInQuery, acceptParamInHeader,
+                                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, REQUEST_ID, topicParamInQuery)
+                        .getStatusCode()).body(buildDmiResponse(REQUEST_ID)), dmiExceptionMessage)
+                : handleResponse(dmiDataOperations.getResourceDataFromDmi(cmHandle, resourceIdentifier,
+                optionsParamInQuery, acceptParamInHeader, DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
+                NO_REQUEST_ID, NO_TOPIC), dmiExceptionMessage);
     }
 
     @Override
@@ -252,5 +275,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void createAnchor(final PersistenceCmHandle persistenceCmHandle) {
         cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, persistenceCmHandle.getId(),
             persistenceCmHandle.getId());
+    }
+
+    private static boolean isValidTopicName(final String topicName) {
+        return Strings.isNotEmpty(topicName) && TOPIC_NAME_PATTERN.matcher(topicName).matches();
+    }
+
+    private DmiResponse buildDmiResponse(final String requestId) {
+        final DmiResponse dmiResponse = new DmiResponse();
+        dmiResponse.setRequestId(requestId);
+        return dmiResponse;
     }
 }

@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
@@ -39,39 +40,54 @@ import org.springframework.http.HttpStatus
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
+    @Shared
+    def expectedJsonWithoutDmiProp = '{"operation":"read","cmHandleProperties":{}}'
+    @Shared
+    def expectedJsonWithDmiProp = '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}'
+    @Shared
+    def passThroughOperational = 'passthrough-operational'
+    @Shared
+    def passThroughRunning = 'passthrough-running'
+    @Shared
+    def expectedOption = '&options=(a=1,b=2)'
+    @Shared
+    def option = '(a=1,b=2)'
+    def dmiServiceBaseUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
+            "/ncmp-datastore:"
+    def NO_TOPIC = null
+    def NO_REQUEST_ID = null
+
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
     @Autowired
     DmiDataOperations objectUnderTest
 
-    def 'call get resource data for #expectedDatastoreInUrl from DMI #scenario.'() {
+    def 'call get resource data for #expectedDatastoreInUrl from DMI without topic #scenario.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(
-                "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
+                    dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
                 expectedJson, [Accept:['sample accept header']]) >> responseFromDmi
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore, NO_REQUEST_ID, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
-            scenario             | dmiProperties        | dataStore               | options     || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
-            'without properties' | []                   | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'    | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'null options'       | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | null        || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'empty options'      | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | ''          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'datastore running'  | []                   | PASSTHROUGH_RUNNING     | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
+            scenario             | dmiProperties       | dataStore               | options || expectedJson               | expectedDatastoreInUrl | expectedOptionsInUrl
+            'without properties' | []                  | PASSTHROUGH_OPERATIONAL | option  || expectedJsonWithoutDmiProp | passThroughOperational | expectedOption
+            'with properties'    | [dmiSampleProperty] | PASSTHROUGH_OPERATIONAL | option  || expectedJsonWithDmiProp    | passThroughOperational | expectedOption
+            'null options'       | [dmiSampleProperty] | PASSTHROUGH_OPERATIONAL | null    || expectedJsonWithDmiProp    | passThroughOperational | ''
+            'datastore running'  | []                  | PASSTHROUGH_RUNNING     | option  || expectedJsonWithoutDmiProp | passThroughRunning     | expectedOption
     }
 
     def 'Write data for pass-through:running datastore in DMI.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval([dmiSampleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds" +
-                "/ncmp-datastore:passthrough-running?resourceIdentifier=${resourceIdentifier}"
+            def expectedUrl = dmiServiceBaseUrl+"passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, [:]) >> responseFromDmi
@@ -84,5 +100,4 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             CREATE    || 'create'
             UPDATE    || 'update'
     }
-
 }
