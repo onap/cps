@@ -39,4 +39,5 @@ public final class DmiRegistryConstants {
     public static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
     public static final OffsetDateTime NO_TIMESTAMP = null;
+
 }
