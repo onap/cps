@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.rest.exceptions;
 
+import javax.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -69,6 +72,13 @@ public class NetworkCmProxyRestExceptionHandler {
     @ExceptionHandler({DmiRequestException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final DmiRequestException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
+    }
+
+    @ExceptionHandler({DataNodeNotFoundException.class})
+    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception,
+                                                                  final HttpServletRequest request) {
+        return buildErrorResponse(HttpMethod.GET.matches(request.getMethod())
+                ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
