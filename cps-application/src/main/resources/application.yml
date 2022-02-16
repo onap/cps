@@ -135,4 +135,4 @@ dmi:
         username: ${DMI_USERNAME}
         password: ${DMI_PASSWORD}
     api:
-        base-path: /dmi
+        base-path: dmi
