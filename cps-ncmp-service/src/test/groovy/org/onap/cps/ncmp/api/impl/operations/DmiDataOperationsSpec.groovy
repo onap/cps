@@ -22,12 +22,14 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.models.DmiResponse
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import java.util.regex.Pattern
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
@@ -45,25 +47,34 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     @Autowired
     DmiDataOperations objectUnderTest
 
+    def spiedDmiResponse = Spy(DmiResponse)
+
+    def UUID_REGEX_PATTERN =
+            Pattern.compile('^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$');
+
     def 'call get resource data for #expectedDatastoreInUrl from DMI #scenario.'() {
         given: 'a persistence cm handle for #cmHandleId'
             mockPersistenceCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
+            spiedDmiResponse.setRequestId('09f43da1-af5b-4385-9740-1e32599d63ac');
+            def responseFromDmi = ResponseEntity.status(HttpStatus.OK).body(spiedDmiResponse);
             mockDmiRestClient.postOperationWithJsonData(
-                "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}",
+                "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}${expectedTopicInUrl}",
                 expectedJson, [Accept:['sample accept header']]) >> responseFromDmi
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId,resourceIdentifier, options,'sample accept header', dataStore, topic)
         then: 'the result is the response from the DMI service'
-            assert result == responseFromDmi
+            assert result.statusCode == responseFromDmi.statusCode
+            assert isValidrRequestId(((DmiResponse)result.getBody()).getRequestId())
         where: 'the following parameters are used'
-            scenario             | dmiProperties        | dataStore               | options     || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
-            'without properties' | []                   | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'    | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'null options'       | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | null        || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'empty options'      | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | ''          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'datastore running'  | []                   | PASSTHROUGH_RUNNING     | '(a=1,b=2)' || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
+            scenario             | dmiProperties        | dataStore               | options     | topic             || expectedJson                                                                                                     | expectedDatastoreInUrl    | expectedOptionsInUrl | expectedTopicInUrl
+            'without properties' | []                   | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' | 'my-topic-name'   || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)' | '&topic=my-topic-name'
+            'with properties'    | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' | 'my-topic-name'   || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)' | '&topic=my-topic-name'
+            'null options'       | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | null        | 'my-topic-name'   || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''                   | '&topic=my-topic-name'
+            'empty options'      | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | ''          | 'my-topic-name'   || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''                   | '&topic=my-topic-name'
+            'null topic'         | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' | null              || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''                   | ''
+            'empty topic'        | [dmiSampleProperty]  | PASSTHROUGH_OPERATIONAL | '(a=1,b=2)' | ''                || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''                   | ''
+            'datastore running'  | []                   | PASSTHROUGH_RUNNING     | '(a=1,b=2)' | 'my-topic-name'   || '{"operation":"read","requestId": "09f43da1-af5b-4385-9740-1e32599d63ac","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)' | '&topic=my-topic-name'
     }
 
     def 'Write data for pass-through:running datastore in DMI.'() {
@@ -83,6 +94,10 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             operation || expectedOperationInUrl
             CREATE    || 'create'
             UPDATE    || 'update'
+    }
+
+    def isValidrRequestId(String requestId) {
+        return requestId == null ? false : UUID_REGEX_PATTERN.matcher(requestId).matches();
     }
 
 }
