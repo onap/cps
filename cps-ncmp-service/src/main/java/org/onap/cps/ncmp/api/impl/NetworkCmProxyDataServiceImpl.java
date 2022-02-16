@@ -102,26 +102,30 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Object getResourceDataOperationalForCmHandle(final String cmHandle,
                                                         final String resourceIdentifier,
                                                         final String acceptParamInHeader,
-                                                        final String optionsParamInQuery) {
+                                                        final String optionsParamInQuery,
+                                                        final String topicParamInQuery) {
         return handleResponse(dmiDataOperations.getResourceDataFromDmi(
             cmHandle,
             resourceIdentifier,
             optionsParamInQuery,
             acceptParamInHeader,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL), "Not able to get resource data.");
+            DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+            topicParamInQuery), "Not able to get resource data.");
     }
 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandle,
                                                                final String resourceIdentifier,
                                                                final String acceptParamInHeader,
-                                                               final String optionsParamInQuery) {
+                                                               final String optionsParamInQuery,
+                                                               final String topicParamInQuery) {
         return handleResponse(dmiDataOperations.getResourceDataFromDmi(
             cmHandle,
             resourceIdentifier,
             optionsParamInQuery,
             acceptParamInHeader,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING), "Not able to get resource data.");
+            DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
+            topicParamInQuery), "Not able to get resource data.");
     }
 
     @Override
