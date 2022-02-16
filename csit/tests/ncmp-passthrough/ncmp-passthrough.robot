@@ -137,3 +137,12 @@ Patch will add new category with new book and add a new book to an existing cate
     ${verifyResponse}=  Get On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
     ${responseJson}=    Set Variable       ${verifyResponse.json()}
     Should Be Equal As Strings             ${verifyResponse.status_code}   200
+
+Get for Passthrough Operational (CF, RO) with fields and topic
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema)&topic=my-topic-name
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=200
+    ${responseJson}=     Set Variable       ${response.json()}
+    ${requestUuid}=      Get length         ${responseJson['requestId']}
+    Should Be Equal As Strings              ${response.status_code}   200
+    Should Be True                          ${requestUuid} >0

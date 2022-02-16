@@ -81,7 +81,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
                     'application/json',
-                    '(a=1,b=2)')
+                    '(a=1,b=2)',
+            null)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
     }
@@ -94,7 +95,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     resourceIdentifier,
                     'application/json',
-                    '(a=1,b=2)') >> '{valid-json}'
+                    '(a=1,b=2)',
+            null) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)

@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,6 +38,7 @@ import spock.lang.Specification
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest
@@ -63,6 +65,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     def errorMessage = 'some error message'
     @Shared
     def errorDetails = 'some error details'
+    @Shared
+    def details = 'DataNode not found for anchor myAnchorName and dataspace myDataspaceName.'
+    @Shared
+    def message = 'DataNode not found'
 
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1"
@@ -73,13 +79,14 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             setupTestException(exception)
             def response = performTestRequest()
         then: 'an HTTP response is returned with correct message and details'
-            assertTestResponse(response, expectedErrorCode, errorMessage, expectedErrorDetails)
+            assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario      | exception                                           || expectedErrorDetails | expectedErrorCode
-            'CPS'         | new CpsException(errorMessage, errorDetails)        || errorDetails         | INTERNAL_SERVER_ERROR
-            'NCMP-server' | new ServerNcmpException(errorMessage, errorDetails) || null                 | INTERNAL_SERVER_ERROR
-            'NCMP-client' | new DmiRequestException(errorMessage, errorDetails) || null                 | BAD_REQUEST
-            'other'       | new IllegalStateException(errorMessage)             || null                 | INTERNAL_SERVER_ERROR
+            scenario          | exception                                                        || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
+            'CPS'             | new CpsException(errorMessage, errorDetails)                     || errorDetails         | errorMessage         | INTERNAL_SERVER_ERROR
+            'NCMP-server'     | new ServerNcmpException(errorMessage, errorDetails)              || null                 | errorMessage         | INTERNAL_SERVER_ERROR
+            'NCMP-client'     | new DmiRequestException(errorMessage, errorDetails)              || null                 | errorMessage         | BAD_REQUEST
+            'other'           | new IllegalStateException(errorMessage)                          || null                 | errorMessage         | INTERNAL_SERVER_ERROR
+            'NCMP-DMI-Plugin' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || details              | message              | NOT_FOUND
     }
 
     def setupTestException(exception){
