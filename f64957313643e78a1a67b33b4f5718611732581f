@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71c429aa_79af0859",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-16T17:50:05Z",
+      "side": 1,
+      "message": "Why?",
+      "range": {
+        "startLine": 315,
+        "startChar": 19,
+        "endLine": 315,
+        "endChar": 102
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aade7024_1aa56782",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-16T17:50:05Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 315,
+        "startChar": 108,
+        "endLine": 315,
+        "endChar": 115
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bf3f707_4f5a4a29",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-16T17:50:05Z",
+      "side": 1,
+      "message": "This is the internal DMI -\u003e NCMP topic. Should be made generic like \"my-topic-name\"",
+      "range": {
+        "startLine": 323,
+        "startChar": 26,
+        "endLine": 323,
+        "endChar": 40
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96ae49f9_b6d79c43",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-16T17:50:05Z",
+      "side": 1,
+      "message": "We don\u0027t need to return the topic to the client",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
