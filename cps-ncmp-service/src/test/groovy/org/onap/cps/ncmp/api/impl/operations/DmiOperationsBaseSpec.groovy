@@ -22,8 +22,11 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.spockframework.spring.SpringBean
+import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -41,6 +44,9 @@ abstract class DmiOperationsBaseSpec extends Specification {
     @SpringBean
     ObjectMapper spyObjectMapper = Spy()
 
+    @SpringBean
+    DmiServiceUrlBuilder dmiServiceUrlBuilder = Mock()
+
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'some service name'
     def static cmHandleId = 'some cm handle'
@@ -53,4 +59,14 @@ abstract class DmiOperationsBaseSpec extends Specification {
         yangModelCmHandle.id = cmHandleId
         mockCmHandlePropertiesRetriever.getDmiServiceNamesAndProperties(cmHandleId) >> yangModelCmHandle
     }
+
+    def mockCmHandleUriComponentsBuilder() {
+        dmiServiceUrlBuilder.getCmHandleUrl() >> UriComponentsBuilder.newInstance()
+                .path("{dmiServiceName}")
+                .pathSegment("{dmiBasePath}")
+                .pathSegment("v1")
+                .pathSegment("ch")
+                .pathSegment("{cmHandle}")
+    }
+
 }
