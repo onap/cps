@@ -58,6 +58,7 @@ public class DmiRequestBody {
     private String data;
     @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties;
+    private String requestId;
 
     /**
      * Set DMI Properties by converting a list of PersistenceCmHandle.Property objects.
