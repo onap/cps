@@ -329,6 +329,18 @@ components:
         sample 3:
           value:
             options: (depth=2,fields=book/authors)
+    topicParamInQuery:
+      name: topic
+      in: query
+      description: topic parameter in query.
+      required: false
+      schema:
+        type: string
+      allowReserved: true
+      examples:
+        sample 1:
+          value:
+            topic: my-topic-name
     contentParamInHeader:
       name: Content-Type
       in: header

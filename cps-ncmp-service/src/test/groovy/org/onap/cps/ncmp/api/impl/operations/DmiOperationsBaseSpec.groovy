@@ -22,7 +22,9 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared
 import spock.lang.Specification
@@ -40,6 +42,9 @@ abstract class DmiOperationsBaseSpec extends Specification {
 
     @SpringBean
     ObjectMapper spyObjectMapper = Spy()
+
+    @SpringBean
+    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new NcmpConfiguration.DmiProperties())
 
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'some service name'
