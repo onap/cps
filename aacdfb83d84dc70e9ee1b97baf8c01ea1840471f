@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b6e7eb40_1755fa89",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-16T11:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c40be36_ae911510",
+      "revId": "aacdfb83d84dc70e9ee1b97baf8c01ea1840471f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d26afda9_d07aa159",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "aacdfb83d84dc70e9ee1b97baf8c01ea1840471f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3897683_d9c375d9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-16T11:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d26afda9_d07aa159",
+      "revId": "aacdfb83d84dc70e9ee1b97baf8c01ea1840471f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
