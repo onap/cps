@@ -29,6 +29,7 @@ getResourceDataForPassthroughOperational:
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
     responses:
       200:
         description: OK
@@ -60,6 +61,7 @@ resourceDataForPassthroughRunning:
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
     responses:
       200:
         description: OK
