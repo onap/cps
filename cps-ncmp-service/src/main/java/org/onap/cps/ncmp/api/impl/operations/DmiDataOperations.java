@@ -25,13 +25,22 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.models.DmiResponse;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * Operations class for DMI data.
@@ -66,20 +75,26 @@ public class DmiDataOperations extends DmiOperations {
                                                           final String resourceId,
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
-                                                          final DataStoreEnum dataStore) {
+                                                          final DataStoreEnum dataStore,
+                                                         final String topicParamInQuery) {
         final PersistenceCmHandle persistenceCmHandle =
             cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-            .operation(READ)
-            .build();
+                .operation(READ)
+                .requestId(StringUtils.hasLength(topicParamInQuery) ? UUID.randomUUID().toString() : null)
+                .build();
         dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
-        final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
-            persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
-            optionsParamInQuery, dataStore);
+        final var dmiResourceDataUrl = getResourceInDataStoreUrl(populateQueryParamMap(resourceId, optionsParamInQuery,
+                topicParamInQuery), populateUriVariables(persistenceCmHandle, cmHandle, dataStore));
         final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        final ResponseEntity<Object> objectResponseEntity = dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl,
+                jsonBody, httpHeaders);
+        if (StringUtils.hasLength(topicParamInQuery)) {
+            return ResponseEntity.status(objectResponseEntity.getStatusCode()).body(buildDmiResponse(dmiRequestBody));
+        }
+        return objectResponseEntity;
     }
 
     /**
@@ -108,33 +123,48 @@ public class DmiDataOperations extends DmiOperations {
         dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
-            getResourceInDataStoreUrl(persistenceCmHandle.resolveDmiServiceName(DATA),
-            cmHandle, resourceId, PASSTHROUGH_RUNNING);
+                getResourceInDataStoreUrl(populateQueryParamMap(resourceId, null, null),
+                        populateUriVariables(persistenceCmHandle, cmHandle, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, new HttpHeaders());
     }
 
-    private String getResourceInDataStoreUrl(final String dmiServiceName,
-                                             final String cmHandle,
-                                             final String resourceId,
-                                             final DataStoreEnum dataStoreEnum) {
-        return getCmHandleUrl(dmiServiceName, cmHandle)
-            + "data"
-            + URL_SEPARATOR
-            + "ds"
-            + URL_SEPARATOR
-            + dataStoreEnum.getValue()
-            + "?resourceIdentifier="
-            + resourceId;
+    private String getResourceInDataStoreUrl(final MultiValueMap<String, String> queryParamMap,
+                                             final Map<String, Object> uriVariables) {
+        final UriComponentsBuilder uriComponentsBuilder = getCmHandleUrl()
+                .pathSegment("data")
+                .pathSegment("ds")
+                .pathSegment("{dataStore}")
+                .queryParams(queryParamMap)
+                .uriVariables(uriVariables);
+        return uriComponentsBuilder.buildAndExpand().toUriString();
     }
 
-    private String getDmiDatastoreUrlWithOptions(final String dmiServiceName,
-                                                 final String cmHandle,
-                                                 final String resourceId,
-                                                 final String optionsParamInQuery,
-                                                 final DataStoreEnum dataStoreEnum) {
-        final String resourceInDataStoreUrl = getResourceInDataStoreUrl(dmiServiceName,
-            cmHandle, resourceId, dataStoreEnum);
-        return appendOptionsQuery(resourceInDataStoreUrl, optionsParamInQuery);
+    private Map<String, Object> populateUriVariables(final PersistenceCmHandle persistenceCmHandle,
+                                                     final String cmHandle,
+                                                     final DataStoreEnum dataStore) {
+        final Map<String, Object> uriVariables = new HashMap<>();
+        uriVariables.put("dmiServiceName", persistenceCmHandle.resolveDmiServiceName(DATA));
+        uriVariables.put("dmiBasePath", dmiProperties.getDmiBasePath());
+        uriVariables.put("cmHandle", cmHandle);
+        uriVariables.put("dataStore", dataStore.getValue());
+        return uriVariables;
+    }
+
+    private MultiValueMap<String, String> populateQueryParamMap(final String resourceId,
+                                                                final String optionsParamInQuery,
+                                                                final String topicParamInQuery) {
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+        Optional.ofNullable(resourceId).ifPresent((resourceIdentifier) -> queryParams.add("resourceIdentifier",
+                resourceIdentifier));
+        Optional.ofNullable(optionsParamInQuery).ifPresent((optionsParam) -> queryParams.add("options", optionsParam));
+        Optional.ofNullable(topicParamInQuery).ifPresent((topicParam) -> queryParams.add("topic", topicParam));
+        return queryParams;
+    }
+
+    private DmiResponse buildDmiResponse(final DmiRequestBody dmiRequestBody) {
+        final DmiResponse dmiResponse = new DmiResponse();
+        dmiResponse.setRequestId(dmiRequestBody.getRequestId());
+        return dmiResponse;
     }
 
 }
