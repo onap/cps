@@ -155,25 +155,25 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Add multiple list elements including an element with a child datanode.'() {
-        given: 'two new data nodes for an existing list'
+    def 'Add multiple new list elements including an element with a child datanode.'() {
+        given: 'two new child list elements for an existing parent'
             def listElementXpaths = ['/parent-201/child-204[@key="NEW1"]', '/parent-201/child-204[@key="NEW2"]']
             def listElements = toDataNodes(listElementXpaths)
-        and: 'a child node for one of the new data nodes'
-            def childDataNode = buildDataNode('/parent-201/child-204[@key="NEW1"]/grand-child-204[@key2="NEW1-CHILD"]', [leave:'value'], [])
-            listElements[0].childDataNodes = [childDataNode]
-        when: 'the data nodes (list elements) are added to existing parent node'
+        and: 'a (grand)child data node for one of the new list elements'
+            def grandChild = buildDataNode('/parent-201/child-204[@key="NEW1"]/grand-child-204[@key2="NEW1-CHILD"]', [leave:'value'], [])
+            listElements[0].childDataNodes = [grandChild]
+        when: 'the new data node (list elements) are added to an existing parent node'
             objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listElements)
-        then: 'new entries successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
+        then: 'new entries are successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
             def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
             assert allChildXpaths.size() == 5
             assert allChildXpaths.containsAll(listElementXpaths)
-        and: 'the child node of the new list entry is also present'
+        and: 'the (grand)child node of the new list entry is also present'
             def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
             def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
-            def listElementChild = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, childDataNode.xpath)
-            assert listElementChild.isPresent()
+            def grandChildFragmentEntity = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, grandChild.xpath)
+            assert grandChildFragmentEntity.isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
