@@ -76,6 +76,13 @@ public class DmiOperations {
         return url + "&options=" + optionsParamInQuery;
     }
 
+    static String appendTopicQuery(final String url, final String topicParamInQuery) {
+        if (Strings.isNullOrEmpty(topicParamInQuery)) {
+            return url;
+        }
+        return url + "&topic=" + topicParamInQuery;
+    }
+
     static HttpHeaders prepareHeader(final String acceptParam) {
         final var httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.ACCEPT, acceptParam);

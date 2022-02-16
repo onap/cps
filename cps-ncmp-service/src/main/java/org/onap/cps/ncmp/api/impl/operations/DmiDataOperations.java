@@ -25,11 +25,14 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
+import java.util.UUID;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.models.DmiResponse;
 import org.onap.cps.ncmp.api.models.PersistenceCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -66,20 +69,29 @@ public class DmiDataOperations extends DmiOperations {
                                                           final String resourceId,
                                                           final String optionsParamInQuery,
                                                           final String acceptParamInHeader,
-                                                          final DataStoreEnum dataStore) {
+                                                          final DataStoreEnum dataStore,
+                                                         final String topicParamInQuery) {
         final PersistenceCmHandle persistenceCmHandle =
             cmHandlePropertiesRetriever.retrieveCmHandleDmiServiceNameAndDmiProperties(cmHandle);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-            .operation(READ)
+            .operation(READ).requestId(UUID.randomUUID().toString())
             .build();
         dmiRequestBody.asDmiProperties(persistenceCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
         final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
             persistenceCmHandle.resolveDmiServiceName(DATA), cmHandle, resourceId,
-            optionsParamInQuery, dataStore);
+            optionsParamInQuery, dataStore, topicParamInQuery);
         final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        return ResponseEntity.status(HttpStatus.OK).body(buildDmiResponse(topicParamInQuery, dmiRequestBody));
+    }
+
+    private DmiResponse buildDmiResponse(final String topicParamInQuery, final DmiRequestBody dmiRequestBody) {
+        final DmiResponse dmiResponse = new DmiResponse();
+        dmiResponse.setRequestId(dmiRequestBody.getRequestId());
+        dmiResponse.setTopic(topicParamInQuery);
+        return dmiResponse;
     }
 
     /**
@@ -131,10 +143,12 @@ public class DmiDataOperations extends DmiOperations {
                                                  final String cmHandle,
                                                  final String resourceId,
                                                  final String optionsParamInQuery,
-                                                 final DataStoreEnum dataStoreEnum) {
-        final String resourceInDataStoreUrl = getResourceInDataStoreUrl(dmiServiceName,
-            cmHandle, resourceId, dataStoreEnum);
-        return appendOptionsQuery(resourceInDataStoreUrl, optionsParamInQuery);
+                                                 final DataStoreEnum dataStoreEnum,
+                                                 final String topicParamInQuery) {
+        String resourceInDataStoreUrl = getResourceInDataStoreUrl(dmiServiceName,
+                cmHandle, resourceId, dataStoreEnum);
+        resourceInDataStoreUrl = appendOptionsQuery(resourceInDataStoreUrl, optionsParamInQuery);
+        return appendTopicQuery(resourceInDataStoreUrl, topicParamInQuery);
     }
 
 }
