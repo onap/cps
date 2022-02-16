@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a0a877c_436bd173",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-16T06:12:22Z",
+      "side": 1,
+      "message": "NB: We have added the parent relationship as a Long which does not tell hibernate about the relationship when both parent and child are getting created in the same request. \n\nIn this test case, there are three inserts as expected, but the grandchild insert did not have parentId. So, the hibernate had to send another update to set the parent_id of the grandchild. \n\nTo fix it, we need update the FragmentEntity to define the parent_id as FragmentEntity and show a relationship between childFragments and parentId ( parentFragment). If we follow this approach, more changes are required but it may help us to fix the performance issues due to hierarchy in one go.",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 8
+      },
+      "revId": "c76392f0491e357b444b3458cc26649f7dc1e7fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
