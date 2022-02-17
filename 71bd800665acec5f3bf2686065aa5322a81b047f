@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5da96f46_7d8034dc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-17T15:17:48Z",
+      "side": 1,
+      "message": "The existing assert statement has been removed. We can use below statement to keep both the validation.\nassert data \u003d\u003d new Data().withAdditionalProperty(\u0027xpath\u0027, [\u0027leafName\u0027: \u0027leafValue\u0027])",
+      "range": {
+        "startLine": 75,
+        "startChar": 16,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "71bd800665acec5f3bf2686065aa5322a81b047f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
