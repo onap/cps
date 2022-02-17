@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57a73015_2cc5f08e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-17T08:10:48Z",
+      "side": 1,
+      "message": "the newly added node-identifier xpath check is missing here.",
+      "range": {
+        "startLine": 194,
+        "startChar": 9,
+        "endLine": 194,
+        "endChar": 38
+      },
+      "revId": "8fffad2242ace3e48f0ceb1d163c52aa487115ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
