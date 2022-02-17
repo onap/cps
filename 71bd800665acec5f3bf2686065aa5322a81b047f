@@ -22,6 +22,30 @@
       "revId": "71bd800665acec5f3bf2686065aa5322a81b047f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e9070ad_c9c56844",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-02-17T16:13:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5da96f46_7d8034dc",
+      "range": {
+        "startLine": 75,
+        "startChar": 16,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "71bd800665acec5f3bf2686065aa5322a81b047f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
