@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f36a39da_abfe53ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-18T11:09:02Z",
+      "side": 1,
+      "message": "Thoughts? Should I reinstate an existingModuleReferences? Could be done programtically via lookup or by creating another query to essentially get the opposite of the unknowns",
+      "range": {
+        "startLine": 248,
+        "startChar": 11,
+        "endLine": 248,
+        "endChar": 15
+      },
+      "revId": "08830627b957cacc89bdba727d55caee6a916242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2630708_7294e2b9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-18T11:09:02Z",
+      "side": 1,
+      "message": "I\u0027ll remove this",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "08830627b957cacc89bdba727d55caee6a916242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee9924ed_aa48d28a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-18T11:09:02Z",
+      "side": 1,
+      "message": "I\u0027m looking into bulk updates rather than individual which wouldn\u0027t the most optimal if we have e.g. 10,000 cm handles",
+      "range": {
+        "startLine": 82,
+        "startChar": 17,
+        "endLine": 82,
+        "endChar": 36
+      },
+      "revId": "08830627b957cacc89bdba727d55caee6a916242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45d9e130_5b22c9f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-18T11:09:02Z",
+      "side": 1,
+      "message": "Pending",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 8
+      },
+      "revId": "08830627b957cacc89bdba727d55caee6a916242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
