@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "584fc469_a050d389",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-18T11:31:27Z",
+      "side": 1,
+      "message": "It has to be reinstated but how?",
+      "parentUuid": "f36a39da_abfe53ca",
+      "range": {
+        "startLine": 248,
+        "startChar": 11,
+        "endLine": 248,
+        "endChar": 15
+      },
+      "revId": "08830627b957cacc89bdba727d55caee6a916242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2630708_7294e2b9",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
         "patchSetId": 2
