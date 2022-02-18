@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "209668b3_b15b9166",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-18T11:45:30Z",
+      "side": 1,
+      "message": "These properties can be re-used from \"DmiRegistryConstants\" class which has these constants.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "87d384a02e605da31466b8f9af520fba1f85adcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af541be6_2635e861",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-18T11:45:30Z",
+      "side": 1,
+      "message": "The reason for removing DataNodeNotFoundException from here is that you introduced in the common Exceptional Handler?? Right?\n\nAlso when I was working around this , the main reason for removing the method \"handleJsonProcessingException\" was that it was used only once and due to that the branch coverage was not proper. May be you can check around that.",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 68
+      },
+      "revId": "87d384a02e605da31466b8f9af520fba1f85adcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
