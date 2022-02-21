@@ -1,0 +1,12 @@
+{
+  "dmiPlugin": "service1",
+  "updatedCmHandles":[
+    {
+      "cmHandle":"ch3(upd)",
+      "cmHandleProperties":{
+        "dmiProp1":"ch3-dmi1",
+        "dmiProp2":null
+      }
+    }
+  ]
+}
