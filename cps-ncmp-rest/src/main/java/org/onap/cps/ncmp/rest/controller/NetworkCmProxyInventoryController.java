@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada
+ * Modifications Copyright (C) 20212 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,12 +20,14 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
+import org.onap.cps.ncmp.rest.model.RestCmHandle;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,17 +39,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
-    private final ObjectMapper objectMapper;
 
     /**
      * Constructor Injection for Dependencies.
      * @param networkCmProxyDataService Data Service Interface
-     * @param objectMapper Object Mapper
      */
-    public NetworkCmProxyInventoryController(final NetworkCmProxyDataService networkCmProxyDataService,
-        final ObjectMapper objectMapper) {
+    public NetworkCmProxyInventoryController(final NetworkCmProxyDataService networkCmProxyDataService) {
         this.networkCmProxyDataService = networkCmProxyDataService;
-        this.objectMapper = objectMapper;
     }
 
     /**
@@ -64,7 +63,30 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
-        return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);
+        final DmiPluginRegistration dmiPluginRegistration = new DmiPluginRegistration();
+        dmiPluginRegistration.setDmiPlugin(restDmiPluginRegistration.getDmiPlugin());
+        dmiPluginRegistration.setDmiModelPlugin(restDmiPluginRegistration.getDmiModelPlugin());
+        dmiPluginRegistration.setDmiDataPlugin(restDmiPluginRegistration.getDmiDataPlugin());
+        dmiPluginRegistration.setCreatedCmHandles(toNcmpServiceCmHandles(
+            restDmiPluginRegistration.getCreatedCmHandles()));
+        dmiPluginRegistration.setUpdatedCmHandles(toNcmpServiceCmHandles(
+            restDmiPluginRegistration.getUpdatedCmHandles()));
+        dmiPluginRegistration.setRemovedCmHandles(restDmiPluginRegistration.getRemovedCmHandles());
+        return dmiPluginRegistration;
+    }
+
+    private List<CmHandle> toNcmpServiceCmHandles(final List<RestCmHandle> restCmHandles) {
+        return restCmHandles.stream()
+                .map(NetworkCmProxyInventoryController::toNcmpServiceCmHandle)
+                .collect(Collectors.toList());
+    }
+
+    private static CmHandle toNcmpServiceCmHandle(final RestCmHandle restCmHandle) {
+        final CmHandle cmHandle = new CmHandle();
+        cmHandle.setCmHandleID(restCmHandle.getCmHandle());
+        cmHandle.setDmiProperties(restCmHandle.getCmHandleProperties());
+        cmHandle.setPublicProperties(restCmHandle.getPublicCmHandleProperties());
+        return cmHandle;
     }
 
 }

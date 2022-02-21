@@ -1,0 +1,24 @@
+{
+  "dmiPlugin": "service1",
+  "dmiDataPlugin": "",
+  "dmiModelPlugin": "",
+  "createdCmHandles": [{
+    "cmHandle": "example-name",
+    "cmHandleProperties": {
+      "Property-Example": "example property"
+    },
+    "publicCmHandleProperties": {
+      "Public-Property-Example": "public example property"
+    }
+  }],
+  "updatedCmHandles": [{
+    "cmHandle": "updated-example",
+    "cmHandleProperties": {
+      "Updated-Property-Example": "updated example property"
+    },
+    "publicCmHandleProperties": {
+      "Public-Updated-Property-Example": "updated public example property"
+    }
+  }],
+  "removedCmHandles": ["removed-cm-handle"]
+}

@@ -49,43 +49,43 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
 
-    def 'Register CM Handle Event' () {
-        given: 'jsonData'
-            def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
-        when: 'post request is performed'
-            def response = mvc.perform(
-                post("$ncmpBasePathV1/ch")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonData)
-            ).andReturn().response
-        then: 'the cm handles are registered with the service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
-        and: 'response status is created'
-            response.status == HttpStatus.CREATED.value()
-    }
-
     def 'Dmi plugin registration with #scenario' () {
-        given: 'jsonData, cmHandle, & DmiPluginRegistration'
-            def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
-            def cmHandle = new CmHandle(cmHandleID : 'example-name')
+        given: 'a dmi plugin registration with created'
+            def jsonData = TestUtils.getResourceFileContent(dmiRegistrationJson)
+            def createdCmHandle = new CmHandle(cmHandleID : 'example-name', dmiProperties: expectedCreatedDmiProperties, publicProperties: expectedCreatedPublicProperties)
+            def updatedCmHandle = new CmHandle(cmHandleID : 'updated-example', dmiProperties: expectedUpdatedDmiProperties, publicProperties: expectedUpdatedPublicProperties)
             def expectedDmiPluginRegistration = new DmiPluginRegistration(
                 dmiPlugin: 'service1',
                 dmiDataPlugin: '',
                 dmiModelPlugin: '',
-                createdCmHandles: [cmHandle])
+                createdCmHandles: [createdCmHandle],
+                updatedCmHandles: [updatedCmHandle],
+                removedCmHandles: ['removed-cm-handle'])
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonData)
             ).andReturn().response
-        then: 'no NcmpException is thrown & updateDmiRegistrationAndSyncModule is called with correct parameters'
+        then: 'no NcmpException is thrown & updateDmiRegistrationAndSyncModule is called with the expected parameters'
             1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule({
-                it.getDmiPlugin() == expectedDmiPluginRegistration.getDmiPlugin()
-                it.getDmiDataPlugin() == expectedDmiPluginRegistration.getDmiDataPlugin()
-                it.getDmiModelPlugin() == expectedDmiPluginRegistration.getDmiModelPlugin()
-                it.getCreatedCmHandles().get(0).getCmHandleID() == expectedDmiPluginRegistration.getCreatedCmHandles().get(0).getCmHandleID()
+                it instanceof DmiPluginRegistration
+                it.dmiPlugin == expectedDmiPluginRegistration.dmiPlugin
+                it.dmiDataPlugin == expectedDmiPluginRegistration.dmiDataPlugin
+                it.dmiModelPlugin == expectedDmiPluginRegistration.dmiModelPlugin
+                it.createdCmHandles[0].cmHandleID == expectedDmiPluginRegistration.createdCmHandles[0].cmHandleID
+                it.updatedCmHandles[0].cmHandleID == expectedDmiPluginRegistration.updatedCmHandles[0].cmHandleID
+                it.removedCmHandles[0] == expectedDmiPluginRegistration.removedCmHandles[0]
+                it.createdCmHandles[0].dmiProperties == expectedDmiPluginRegistration.createdCmHandles[0].dmiProperties
+                it.updatedCmHandles[0].publicProperties == expectedDmiPluginRegistration.updatedCmHandles[0].publicProperties
             })
+        and: 'response status is created'
+            response.status == HttpStatus.CREATED.value()
+        where: 'there following parameters are used'
+            scenario                    | dmiRegistrationJson                                       | expectedCreatedDmiProperties             | expectedCreatedPublicProperties                        | expectedUpdatedDmiProperties                             | expectedUpdatedPublicProperties
+            'additional properties'     | 'dmi_registration_combined_valid_with_properties.json'    | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | ['Updated-Property-Example': 'updated example property'] | ['Public-Updated-Property-Example': 'updated public example property']
+            'no additional properties'  | 'dmi_registration_combined_valid_without_properties.json' | null                                     | null                                                   |  null                                                    | null
+
     }
 }
 

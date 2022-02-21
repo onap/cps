@@ -38,18 +38,23 @@ components:
         dmiPlugin:
           type: string
           example: my-dmi-plugin
+          default: ""
         dmiDataPlugin:
           type: string
           example: my-dmi-data-plugin
+          default: ""
         dmiModelPlugin:
           type: string
           example: my-dmi-model-plugin
+          default: ""
         createdCmHandles:
           type: array
+          default: []
           items:
             $ref: '#/components/schemas/RestCmHandle'
         updatedCmHandles:
           type: array
+          default: []
           example:
             cmHandle: my-cm-handle
             cmHandleProperties:
@@ -64,6 +69,7 @@ components:
             $ref: '#/components/schemas/RestCmHandle'
         removedCmHandles:
           type: array
+          default: []
           items:
             type: string
             example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
