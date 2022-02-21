@@ -30,7 +30,7 @@ import lombok.Getter;
 public class PersistenceCmHandlesList {
 
     @JsonProperty("cm-handles")
-    private List<PersistenceCmHandle> persistenceCmHandles = new ArrayList<>();
+    private final List<PersistenceCmHandle> persistenceCmHandles = new ArrayList<>();
 
     /**
      * Create a PersistenceCmHandleList given all service names and a collection of cmHandles.
