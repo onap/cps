@@ -1,0 +1,10 @@
+{
+  "dmiPlugin":"",
+  "dmiDataPlugin":"service2",
+  "dmiModelPlugin":"service3",
+  "createdCmHandles":[
+    {
+      "cmHandle": "ch1(new)"
+    }
+  ]
+}
