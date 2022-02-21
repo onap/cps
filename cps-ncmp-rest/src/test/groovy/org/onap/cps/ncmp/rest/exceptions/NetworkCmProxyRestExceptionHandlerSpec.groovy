@@ -27,6 +27,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+import org.onap.cps.ncmp.rest.controller.RestInputMapper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
@@ -60,6 +61,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = Stub()
+
+    @SpringBean
+    RestInputMapper restInputMapper = Mock()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
@@ -105,17 +109,17 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     }
 
     def setupTestException(exception, apiType) {
-        if (NCMP.equals(apiType)) {
+        if (NCMP == apiType) {
             mockNetworkCmProxyDataService.getYangResourcesModuleReferences(*_) >> { throw exception }
         }
         mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
     }
 
     def performTestRequest(apiType) {
-        if (NCMP.equals(apiType)) {
+        if (NCMP == apiType) {
             return mvc.perform(get("$dataNodeBaseEndpointNcmp/ch/testCmHandle/modules")).andReturn().response
         }
-        def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
+        def jsonData = TestUtils.getResourceFileContent('dmi_registration_all_singing_and_dancing.json')
         return mvc.perform(post("$dataNodeBaseEndpointNcmpInventory/ch").contentType(MediaType.APPLICATION_JSON).content(jsonData)).andReturn().response
     }
 

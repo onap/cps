@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,32 +18,27 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.rest.controller;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
-import java.util.Collections;
-import java.util.Map;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.onap.cps.ncmp.api.models.CmHandle;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestCmHandle;
+import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 
-/**
- * CmHandle.
- */
-@Validated
-@Getter
-@Setter
-@NoArgsConstructor
-public class CmHandle {
+@Mapper(componentModel = "spring")
+public interface RestInputMapper {
 
-    private String cmHandleID;
 
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    private Map<String, String> dmiProperties = Collections.emptyMap();
+    DmiPluginRegistration toDmiPluginRegistration(final RestDmiPluginRegistration restDmiPluginRegistration);
 
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    private Map<String, String> publicProperties = Collections.emptyMap();
+    @Mappings({
+        @Mapping(source = "cmHandle", target = "cmHandleID"),
+        @Mapping(source = "cmHandleProperties", target = "dmiProperties"),
+        @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
+    })
+    CmHandle toCmHandle(final RestCmHandle restCmHandle);
 
 }

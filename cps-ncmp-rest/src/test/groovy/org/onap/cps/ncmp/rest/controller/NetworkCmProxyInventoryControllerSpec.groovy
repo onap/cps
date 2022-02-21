@@ -24,8 +24,9 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.models.CmHandle
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -47,46 +48,51 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
+    @SpringBean
+    RestInputMapper restInputMapper = Mock()
+
+    DmiPluginRegistration mockDmiPluginRegistration = Mock()
+
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
 
-    def 'Register CM Handle Event' () {
-        given: 'jsonData'
-            def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
-        when: 'post request is performed'
-            def response = mvc.perform(
-                post("$ncmpBasePathV1/ch")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonData)
-            ).andReturn().response
-        then: 'the cm handles are registered with the service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
-        and: 'response status is No Content'
-            response.status == HttpStatus.NO_CONTENT.value()
-    }
-
-    def 'Dmi plugin registration with #scenario' () {
-        given: 'jsonData, cmHandle, & DmiPluginRegistration'
-            def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
-            def cmHandle = new CmHandle(cmHandleID : 'example-name')
-            def expectedDmiPluginRegistration = new DmiPluginRegistration(
-                dmiPlugin: 'service1',
-                dmiDataPlugin: '',
-                dmiModelPlugin: '',
-                createdCmHandles: [cmHandle])
+    def 'Dmi plugin registration #scenario' () {
+        given: 'a dmi plugin registration with #scenario'
+            def jsonData = TestUtils.getResourceFileContent(dmiRegistrationJson)
+        and: 'the expected rest input as an object'
+            def expectedRestDmiPluginRegistration = jsonObjectMapper.convertJsonString(jsonData, RestDmiPluginRegistration)
+        and: 'the converter returns a dmi registration (only for the expected input object)'
+            restInputMapper.toDmiPluginRegistration(expectedRestDmiPluginRegistration) >> mockDmiPluginRegistration
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonData)
             ).andReturn().response
-        then: 'no NcmpException is thrown & updateDmiRegistrationAndSyncModule is called with correct parameters'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule({
-                it.getDmiPlugin() == expectedDmiPluginRegistration.getDmiPlugin()
-                it.getDmiDataPlugin() == expectedDmiPluginRegistration.getDmiDataPlugin()
-                it.getDmiModelPlugin() == expectedDmiPluginRegistration.getDmiModelPlugin()
-                it.getCreatedCmHandles().get(0).getCmHandleID() == expectedDmiPluginRegistration.getCreatedCmHandles().get(0).getCmHandleID()
-            })
+        then: 'the converted object is forwarded to the registration service'
+            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration)
+        and: 'response status is no content'
+            response.status ==  HttpStatus.NO_CONTENT.value()
+        where: 'the following registration json is used'
+            scenario                                                                       | dmiRegistrationJson
+            'multiple services, added, updated and removed cm handles and many properties' | 'dmi_registration_all_singing_and_dancing.json'
+            'updated cm handle with updated/new and removed properties'                    | 'dmi_registration_updates_only.json'
+            'without any properties'                                                       | 'dmi_registration_without_properties.json'
     }
-}
 
+    def 'Dmi plugin registration with invalid json' () {
+        given: 'a dmi plugin registration with #scenario'
+            def jsonDataWithUndefinedDataLabel = '{"notAdmiPlugin":""}'
+        when: 'post request is performed & registration is called with correct DMI plugin information'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonDataWithUndefinedDataLabel)
+            ).andReturn().response
+        then: 'response status is internal server error'
+            response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
+    }
+
+}
