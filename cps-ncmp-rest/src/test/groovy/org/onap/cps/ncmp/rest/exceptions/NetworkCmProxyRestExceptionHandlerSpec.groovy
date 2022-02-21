@@ -25,6 +25,9 @@ import org.modelmapper.ModelMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController
+import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController
+import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryControllerSpec
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -39,7 +42,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-@WebMvcTest
+@WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @Autowired
