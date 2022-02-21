@@ -19,12 +19,15 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandle;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
+import org.onap.cps.ncmp.rest.model.RestCmHandle;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,17 +39,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
-    private final ObjectMapper objectMapper;
 
     /**
      * Constructor Injection for Dependencies.
      * @param networkCmProxyDataService Data Service Interface
-     * @param objectMapper Object Mapper
      */
-    public NetworkCmProxyInventoryController(final NetworkCmProxyDataService networkCmProxyDataService,
-        final ObjectMapper objectMapper) {
+    public NetworkCmProxyInventoryController(final NetworkCmProxyDataService networkCmProxyDataService) {
         this.networkCmProxyDataService = networkCmProxyDataService;
-        this.objectMapper = objectMapper;
     }
 
     /**
@@ -64,7 +63,56 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
-        return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);
+        final DmiPluginRegistration dmiPluginRegistration = new DmiPluginRegistration();
+        dmiPluginRegistration.setDmiPlugin(Optional.ofNullable(
+            restDmiPluginRegistration.getDmiPlugin()).orElse(""));
+        dmiPluginRegistration.setDmiModelPlugin(Optional.ofNullable(
+            restDmiPluginRegistration.getDmiModelPlugin()).orElse(""));
+        dmiPluginRegistration.setDmiDataPlugin(Optional.ofNullable(
+            restDmiPluginRegistration.getDmiDataPlugin()).orElse(""));
+        setCreatedCmHandles(restDmiPluginRegistration, dmiPluginRegistration);
+        setUpdatedCmHandles(restDmiPluginRegistration, dmiPluginRegistration);
+        setRemovedCmHandles(restDmiPluginRegistration, dmiPluginRegistration);
+        return dmiPluginRegistration;
+    }
+
+    private void setCreatedCmHandles(final RestDmiPluginRegistration restDmiPluginRegistration,
+                                     final DmiPluginRegistration dmiPluginRegistration) {
+        if (restDmiPluginRegistration.getCreatedCmHandles() != null) {
+            final List<CmHandle> createdCmHandleList = new ArrayList<>();
+            final List<RestCmHandle> restCmHandles = restDmiPluginRegistration.getCreatedCmHandles();
+            toNcmpServiceCmHandle(restCmHandles, createdCmHandleList);
+            dmiPluginRegistration.setCreatedCmHandles(createdCmHandleList);
+        }
+    }
+
+    private void setUpdatedCmHandles(final RestDmiPluginRegistration restDmiPluginRegistration,
+                                     final DmiPluginRegistration dmiPluginRegistration) {
+        if (restDmiPluginRegistration.getUpdatedCmHandles() != null) {
+            final List<CmHandle> updatedCmHandleList = new ArrayList<>();
+            final List<RestCmHandle> restCmHandles = restDmiPluginRegistration.getUpdatedCmHandles();
+            toNcmpServiceCmHandle(restCmHandles, updatedCmHandleList);
+            dmiPluginRegistration.setUpdatedCmHandles(updatedCmHandleList);
+        }
+    }
+
+    private void toNcmpServiceCmHandle(final List<RestCmHandle> restCmHandles, final List<CmHandle> cmHandleList) {
+        final CmHandle cmHandle = new CmHandle();
+        for (final RestCmHandle restCmHandle: restCmHandles) {
+            cmHandle.setCmHandleID(restCmHandle.getCmHandle());
+            cmHandle.setDmiProperties(restCmHandle.getCmHandleProperties());
+            cmHandle.setPublicProperties(restCmHandle.getPublicCmHandleProperties());
+            cmHandleList.add(cmHandle);
+        }
+    }
+
+
+    private void setRemovedCmHandles(final RestDmiPluginRegistration restDmiPluginRegistration,
+                                    final DmiPluginRegistration dmiPluginRegistration) {
+        if (restDmiPluginRegistration.getRemovedCmHandles() != null) {
+            final List<String> restCmHandles = restDmiPluginRegistration.getRemovedCmHandles();
+            dmiPluginRegistration.setRemovedCmHandles(restCmHandles);
+        }
     }
 
 }
