@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93704013_c291def7",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-21T15:44:01Z",
+      "side": 1,
+      "message": "NB: Just a thought - Should this be the PTL email address?",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "5741db35baa26193ff13b27518efb1a4f20d7f89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
