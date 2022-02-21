@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -73,8 +74,8 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({DataValidationException.class})
-    public static ResponseEntity<Object> handleDataValidatedExceptions(final DataValidationException exception) {
+    @ExceptionHandler({DataValidationException.class, HttpMessageNotReadableException.class})
+    public static ResponseEntity<Object> handleDataValidatedExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
