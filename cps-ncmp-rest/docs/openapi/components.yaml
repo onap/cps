@@ -38,12 +38,15 @@ components:
         dmiPlugin:
           type: string
           example: my-dmi-plugin
+          default: ""
         dmiDataPlugin:
           type: string
           example: my-dmi-data-plugin
+          default: ""
         dmiModelPlugin:
           type: string
           example: my-dmi-model-plugin
+          default: ""
         createdCmHandles:
           type: array
           items:
