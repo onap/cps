@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "7c13580b_d94be13a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "newModuleReferencesFromCmHandle",
+      "range": {
+        "startLine": 235,
+        "startChar": 36,
+        "endLine": 235,
+        "endChar": 60
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ac4ebb_312e3bc6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "this should NOT be input to the method!",
+      "range": {
+        "startLine": 236,
+        "startChar": 12,
+        "endLine": 236,
+        "endChar": 33
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb451a5_a0d94af4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "existingModuleReferencesFromCmhandle \n\nYou now need to deduce these  removing \u0027identified new ones\u0027 from  moduleReferencesFromCmHandle\n\nI think you can actually use Collection.removeAll()! Probably better to use stream and collectors the correct way.\n\nmoduleReferencesFromCmhandleAlreadyInCps  \u003d moduleReferencesFromCmHandle.stream(.!in(newModuleReferencesFromCmHandle)   ).collect(toCollection)",
+      "range": {
+        "startLine": 238,
+        "startChar": 36,
+        "endLine": 238,
+        "endChar": 61
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8d7ec23_f2bc5a74",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 9
@@ -25,6 +94,92 @@
     },
     {
       "key": {
+        "uuid": "a149e012_7a9d5872",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "Collection",
+      "range": {
+        "startLine": 189,
+        "startChar": 11,
+        "endLine": 189,
+        "endChar": 15
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d50863_f4b6fecb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 190,
+        "endChar": 68
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "094dd743_247fd1dc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "should not be part of any interface\n\nsinetad create somethign like \n\nCollection\u003c....\u003e identifyNewYangResourceModuleReferences(Collection\u003c....\u003e inputYangResourceModuleReference)",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dd0f554_22ed349a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "I think all DB code should be on yangResoucRepository",
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "550d8bd6_1f6f8885",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
         "patchSetId": 9
@@ -41,6 +196,75 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 23
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "796fba96_43a1c035",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "remove known ones (they are in the DB)",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 64
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1a252fe_20d6c3ea",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "Collection",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 8
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a638c582_ae32a80b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "should NOT need this!\n\nNCMP get from node ALL module refences on a given Cm Handle :  [A,B,C,D,E]\nCPS-Core will tell NCMP which one are NEW\nnewModuleReferences \u003d cpsModuleService.identifyNewYangResourceModuleReferences([A,B,C,D,E])\nnewModuleReferences -\u003e [C,E]\n-\u003e existingModuleReferencesForCmhHandle \u003d [A,B,D]",
+      "range": {
+        "startLine": 104,
+        "startChar": 44,
+        "endLine": 104,
+        "endChar": 80
       },
       "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -94,6 +318,52 @@
     },
     {
       "key": {
+        "uuid": "b46bafcb_914eae9c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "Collection",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 8
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b0613fe_3ea45fd3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 108,
+        "startChar": 36,
+        "endLine": 108,
+        "endChar": 57
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b50545d_4ff498e4",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 9
@@ -117,6 +387,52 @@
     },
     {
       "key": {
+        "uuid": "d3a5a4c9_d458ca96",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "Collection ?",
+      "range": {
+        "startLine": 107,
+        "startChar": 11,
+        "endLine": 107,
+        "endChar": 15
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "162e5a30_56e18aad",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 115,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 69
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4cea8a57_f44632a7",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
         "patchSetId": 9
@@ -133,6 +449,75 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 23
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3062341e_78f71990",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "Collection ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 8
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02cd2c2e_0aaca255",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 110,
+        "startChar": 36,
+        "endLine": 110,
+        "endChar": 62
+      },
+      "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c1e67f_a9820cbb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T10:21:07Z",
+      "side": 1,
+      "message": "removed",
+      "range": {
+        "startLine": 118,
+        "startChar": 26,
+        "endLine": 118,
+        "endChar": 62
       },
       "revId": "7560ac257cf79be32417a7ea183ed82c33b28c4e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
