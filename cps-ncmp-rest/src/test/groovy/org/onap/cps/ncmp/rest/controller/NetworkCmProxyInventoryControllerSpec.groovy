@@ -49,30 +49,18 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
 
-    def 'Register CM Handle Event' () {
-        given: 'jsonData'
-            def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
-        when: 'post request is performed'
-            def response = mvc.perform(
-                post("$ncmpBasePathV1/ch")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonData)
-            ).andReturn().response
-        then: 'the cm handles are registered with the service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
-        and: 'response status is created'
-            response.status == HttpStatus.CREATED.value()
-    }
-
     def 'Dmi plugin registration with #scenario' () {
-        given: 'jsonData, cmHandle, & DmiPluginRegistration'
+        given: 'jsonData, createdCmHandle, & DmiPluginRegistration'
             def jsonData = TestUtils.getResourceFileContent('dmi_registration_combined_valid.json' )
-            def cmHandle = new CmHandle(cmHandleID : 'example-name')
+            def createdCmHandle = new CmHandle(cmHandleID : 'example-name')
+            def updatedCmHandle = new CmHandle(cmHandleID : 'updated-example')
             def expectedDmiPluginRegistration = new DmiPluginRegistration(
                 dmiPlugin: 'service1',
                 dmiDataPlugin: '',
                 dmiModelPlugin: '',
-                createdCmHandles: [cmHandle])
+                createdCmHandles: [createdCmHandle],
+                updatedCmHandles: [updatedCmHandle],
+                removedCmHandles: ['removed-cm-handle'])
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
@@ -85,7 +73,11 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 it.getDmiDataPlugin() == expectedDmiPluginRegistration.getDmiDataPlugin()
                 it.getDmiModelPlugin() == expectedDmiPluginRegistration.getDmiModelPlugin()
                 it.getCreatedCmHandles().get(0).getCmHandleID() == expectedDmiPluginRegistration.getCreatedCmHandles().get(0).getCmHandleID()
+                it.getUpdatedCmHandles().get(0).getCmHandleID() == expectedDmiPluginRegistration.getUpdatedCmHandles().get(0).getCmHandleID()
+                it.getRemovedCmHandles().get(0) == expectedDmiPluginRegistration.getRemovedCmHandles().get(0)
             })
+        and: 'response status is created'
+            response.status == HttpStatus.CREATED.value()
     }
 }
 

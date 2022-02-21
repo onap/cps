@@ -43,11 +43,9 @@ public class CmHandle {
     private String cmHandleID;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties = Collections.emptyMap();
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @JsonProperty("publicCmHandleProperties")
     private Map<String, String> publicProperties = Collections.emptyMap();
 
 }
