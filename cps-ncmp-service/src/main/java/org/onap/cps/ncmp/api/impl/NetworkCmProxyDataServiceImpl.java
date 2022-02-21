@@ -81,15 +81,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
         try {
-            if (dmiPluginRegistration.getCreatedCmHandles() != null) {
+            if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
                 parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration);
             }
-            if (dmiPluginRegistration.getUpdatedCmHandles() != null) {
+            if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
                 parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
             }
-            if (dmiPluginRegistration.getRemovedCmHandles() != null) {
-                parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
-            }
+            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
         } catch (final JsonProcessingException | DataNodeNotFoundException e) {
             final String errorMessage = String.format(
                     "Error occurred while processing the CM-handle registration request, caused by : [%s]",

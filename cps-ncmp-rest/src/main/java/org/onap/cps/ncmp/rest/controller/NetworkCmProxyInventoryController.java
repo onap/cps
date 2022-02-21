@@ -21,12 +21,9 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.springframework.http.HttpStatus;
@@ -40,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
-    private final ObjectMapper objectMapper;
+    private final RestInputMapper restInputMapper;
 
     /**
      * Update DMI Plugin Registration (used for first registration also).
@@ -49,14 +46,11 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     @Override
     public ResponseEntity<Void> updateDmiPluginRegistration(
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
-        final DmiPluginRegistration dmiPluginRegistration =
-            convertRestObjectToJavaApiObject(restDmiPluginRegistration);
-        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
+        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            restInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    private DmiPluginRegistration convertRestObjectToJavaApiObject(
-        final RestDmiPluginRegistration restDmiPluginRegistration) {
-        return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);
-    }
 }
+
+

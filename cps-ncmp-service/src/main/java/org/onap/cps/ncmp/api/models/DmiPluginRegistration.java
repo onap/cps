@@ -22,9 +22,8 @@ package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
 import com.google.common.base.Strings;
+import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,20 +38,17 @@ import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 @JsonInclude(Include.NON_NULL)
 public class DmiPluginRegistration {
 
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiPlugin;
 
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiDataPlugin;
 
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiModelPlugin;
 
-    private List<CmHandle> createdCmHandles;
+    private List<CmHandle> createdCmHandles = Collections.emptyList();
 
-    private List<CmHandle> updatedCmHandles;
+    private List<CmHandle> updatedCmHandles = Collections.emptyList();
 
-    private List<String> removedCmHandles;
+    private List<String> removedCmHandles = Collections.emptyList();
 
     /**
      * Validates plugin service names.

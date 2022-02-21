@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Collections;
@@ -39,15 +38,12 @@ import org.springframework.validation.annotation.Validated;
 @NoArgsConstructor
 public class CmHandle {
 
-    @JsonProperty("cmHandle")
     private String cmHandleID;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties = Collections.emptyMap();
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @JsonProperty("publicCmHandleProperties")
     private Map<String, String> publicProperties = Collections.emptyMap();
 
 }

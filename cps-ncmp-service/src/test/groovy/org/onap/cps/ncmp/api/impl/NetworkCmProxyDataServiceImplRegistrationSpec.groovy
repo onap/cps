@@ -76,19 +76,19 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             expectedCallsToSaveNode * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', expectedJsonData, noTimestamp)
         and: 'update data node leaves is called with correct parameters'
-            expectedCallsToPropertyHandler * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(updatedCmHandles)
+            expectedCallsToUpdateCmHandleProperty * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(updatedCmHandles)
         and: 'delete schema set is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'cmHandle001', CASCADE_DELETE_ALLOWED)
         and: 'delete list or list element is invoked with the correct parameters'
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
                 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
-            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToPropertyHandler
-            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                                            | 1
+            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToUpdateCmHandleProperty
+            'create'                    | [persistenceCmHandle] | []                    | []               || 1                       | 0                                            | 0
             'update'                    | []                    | [persistenceCmHandle] | []               || 0                       | 0                                            | 1
-            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 1                                            | 1
+            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 1                                            | 0
             'create, update and delete' | [persistenceCmHandle] | [persistenceCmHandle] | cmHandlesArray   || 1                       | 1                                            | 1
-            'no valid data'             | null                  | null                  | null             || 0                       | 0                                            | 0
+            'no valid data'             | []                    | []                    | []               || 0                       | 0                                            | 0
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
@@ -107,22 +107,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                     '/dmi-registry', expectedJsonData, noTimestamp)
     }
 
-    def 'Register a DMI Plugin for a given cm-handle(s) with JSON processing errors during #scenario process.'() {
+    def 'Register a DMI Plugin for a given cm-handle(s) with JSON processing errors during process.'() {
         given: 'a registration without cm-handle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
-            dmiPluginRegistration.createdCmHandles = createdCmHandles
-            dmiPluginRegistration.updatedCmHandles = updatedCmHandles
+            dmiPluginRegistration.createdCmHandles = [persistenceCmHandle]
         and: 'an json processing exception occurs'
             spiedJsonObjectMapper.asJsonString(_) >> { throw (new JsonProcessingException('')) }
         when: 'registration is updated and modules are synced'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
-        where:
-            scenario | createdCmHandles      | updatedCmHandles
-            'create' | [persistenceCmHandle] | []
-            'update' | []                    | [persistenceCmHandle]
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) with no data found during delete process.'() {
