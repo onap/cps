@@ -22,6 +22,30 @@
       "revId": "5741db35baa26193ff13b27518efb1a4f20d7f89",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1a60bff_6c73b680",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-21T16:48:17Z",
+      "side": 1,
+      "message": "I think it was discussed in a meeting a while back when we were changing it from Rahul\u0027s email to have it as Dylan\u0027s email but maybe Toine can confirm",
+      "parentUuid": "93704013_c291def7",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "5741db35baa26193ff13b27518efb1a4f20d7f89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
