@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51514420_68e453d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T17:22:08Z",
+      "side": 1,
+      "message": "as discussed this code all belongs to ModuelReference Repository (just mater of setting up 2nd interface for that and move this impl there)",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 40
+      },
+      "revId": "4e57bed0d544faaf3ba093a28eec6e690b06c2ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1668d0e5_b681791d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T17:22:08Z",
+      "side": 1,
+      "message": "I think we need a proper temporary unique name. Many concurrent threads could be doing this in parallel",
+      "range": {
+        "startLine": 57,
+        "startChar": 30,
+        "endLine": 57,
+        "endChar": 62
+      },
+      "revId": "4e57bed0d544faaf3ba093a28eec6e690b06c2ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d15e7087_671b9262",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-21T17:22:08Z",
+      "side": 1,
+      "message": "see comment on uniqueness of this name in native query impl part.\nAlso combine into 1 step (db call):\nso method will take in list of modulesfrom cm handle, create temp tabel do thee join (thsi query) with existing modules and return the \u0027new\u0027 ones....",
+      "range": {
+        "startLine": 91,
+        "startChar": 73,
+        "endLine": 91,
+        "endChar": 105
+      },
+      "revId": "4e57bed0d544faaf3ba093a28eec6e690b06c2ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
