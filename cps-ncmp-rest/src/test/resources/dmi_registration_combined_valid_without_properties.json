@@ -4,5 +4,9 @@
   "dmiModelPlugin": "",
   "createdCmHandles": [{
     "cmHandle": "example-name"
-  }]
+  }],
+  "updatedCmHandles": [{
+    "cmHandle": "updated-example"
+  }],
+  "removedCmHandles": ["removed-cm-handle"]
 }
