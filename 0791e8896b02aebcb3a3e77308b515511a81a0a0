@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70ea9ca5_8586b6a7",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Should probably keep consistency with naming in regards to \u0027Cm-Handle\u0027 and \u0027cm handle\u0027",
+      "range": {
+        "startLine": 268,
+        "startChar": 26,
+        "endLine": 268,
+        "endChar": 71
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "452b4931_9ed4199d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Should this be a not found exception?",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 56
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f2ea778_b1985a5d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Should be dmiProperties?",
+      "range": {
+        "startLine": 205,
+        "startChar": 48,
+        "endLine": 205,
+        "endChar": 69
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387f9e8d_1d9d455d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Do people think we can shorten this, we get the context of YangModelCmHandleRetriever from the class name so could be retrieveDmiServiceNamesAndDmiProperties?",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 85
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b5520ed_2ae118c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Can the ncmpServiceCmHandle not have both dmiProperties and publicProperties? Not sure myself but with the else only one of each is getting added to an ncmpServiceCmHandle I think?",
+      "range": {
+        "startLine": 78,
+        "startChar": 14,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23736a76_f2479692",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Should these be outside the for loop?",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 70
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a546354_0d844c5c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-22T17:10:47Z",
+      "side": 1,
+      "message": "Spacing, same for 90 \u0026 92",
+      "range": {
+        "startLine": 89,
+        "startChar": 105,
+        "endLine": 89,
+        "endChar": 117
+      },
+      "revId": "0791e8896b02aebcb3a3e77308b515511a81a0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
