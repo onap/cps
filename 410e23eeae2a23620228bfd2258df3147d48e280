@@ -53,6 +53,190 @@
     },
     {
       "key": {
+        "uuid": "a7fe8224_027d47ea",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "probably better of to move this and private methods into a new testable class",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03c75fd2_d21707e8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "not sure about the readability of Optional.of....\nwhat wrong with old-fashioned  If (xx\u003dnull) { ... } else {... }",
+      "range": {
+        "startLine": 67,
+        "startChar": 44,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eb3b697_2b92db5f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "why create a placeholder and populated it in the next method, created and return it in that method...",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 73
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "097b4993_0e1b502c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "I think with a little refactoring this wil be more readable as a one-liner:\n\ndmiPluginRegistration.setCreatedCmHandles(\n    toNcmpServiceCmHandles(restDmiPluginRegistration.getCreatedCmHandles())\n\nsame applies to all 3 methods",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 75
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06173781_19b2a3a5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "return new collection",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 17
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ecc6e02_563dce90",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "no need as input,  only as output",
+      "range": {
+        "startLine": 99,
+        "startChar": 100,
+        "endLine": 99,
+        "endChar": 112
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "896710b8_001bb6e4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "add s (plural)",
+      "range": {
+        "startLine": 99,
+        "startChar": 17,
+        "endLine": 99,
+        "endChar": 38
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76cf4795_9c7cd4a3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "include a fe \u0027and:\u0027 labels!",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 14
+      },
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6efda74_6d59dff3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandle.java",
         "patchSetId": 5
@@ -64,6 +248,24 @@
       "writtenOn": "2022-02-22T18:15:11Z",
       "side": 1,
       "message": "Is this json property still needed ?",
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae2616e8_5e43baa8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-22T18:18:56Z",
+      "side": 1,
+      "message": "agreed it should be removed!",
+      "parentUuid": "d6efda74_6d59dff3",
       "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
