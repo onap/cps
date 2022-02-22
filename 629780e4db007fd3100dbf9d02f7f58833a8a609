@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f81e30ca_764ba563",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T13:58:55Z",
+      "side": 1,
+      "message": "It looks it is ok but I\u0027m wondering about the 2 slashes in the path ...",
+      "range": {
+        "startLine": 218,
+        "startChar": 44,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "922b0e49_c9fe8c9b",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv",
         "patchSetId": 6
@@ -13,6 +36,24 @@
       "writtenOn": "2022-02-15T18:31:07Z",
       "side": 1,
       "message": "I am not sure why we wrap up 2 sql statements as a csv file  that gets imported... \ninstead we should jsut execute the sql statements directly (I know this way was used before but it is not correct)",
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db957738_e26c7b9f",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T13:58:55Z",
+      "side": 1,
+      "message": "It makes sense, it could be more straight forward and simpler to have one insert sql statement in the change set directly.",
+      "parentUuid": "922b0e49_c9fe8c9b",
       "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
