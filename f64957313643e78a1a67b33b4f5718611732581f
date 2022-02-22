@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "26080252_28330f28",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:56:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aade7024_1aa56782",
+      "range": {
+        "startLine": 315,
+        "startChar": 108,
+        "endLine": 315,
+        "endChar": 115
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b19e52ca_3e95c7bc",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:56:50Z",
+      "side": 1,
+      "message": "Contact Fiachra Corcoran regarding ONAP conventions.\n\nResponse was that there aren\u0027t any conventions to speak of but we would use dashes (i.e. my-new-topic) instead of dot notation (i.e. my.new.topic) for topic name as per point number 2 \"https://wiki.onap.org/display/DW/CPS-821+Spike%3A+Support+Async+read-write+operations+on+CPS-NCMP+interface#CPS821Spike:SupportAsyncreadwriteoperationsonCPSNCMPinterface-ProposedDesign\"",
+      "parentUuid": "71c429aa_79af0859",
+      "range": {
+        "startLine": 315,
+        "startChar": 19,
+        "endLine": 315,
+        "endChar": 102
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3bf3f707_4f5a4a29",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2022-02-16T17:50:05Z",
       "side": 1,
       "message": "This is the internal DMI -\u003e NCMP topic. Should be made generic like \"my-topic-name\"",
+      "range": {
+        "startLine": 323,
+        "startChar": 26,
+        "endLine": 323,
+        "endChar": 40
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4d87718_6ab5f857",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:56:50Z",
+      "side": 1,
+      "message": "Removed internal topic names.",
+      "parentUuid": "3bf3f707_4f5a4a29",
       "range": {
         "startLine": 323,
         "startChar": 26,
