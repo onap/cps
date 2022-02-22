@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "679e8151_4ec27763",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T18:15:11Z",
+      "side": 1,
+      "message": "Commit message does not follow ONAP guidelines:\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae119867_cee4ee2b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T18:15:11Z",
+      "side": 1,
+      "message": "Modified copyright is missing.",
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252b57b3_9b99251c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T18:15:11Z",
+      "side": 1,
+      "message": "Would it be interesting to use MapStruct to generate this mapping code and avoid boilerplate code maintenance?\nIt seems that it would not introduce the cyclic dependency we had before as any custom mapping required is described independently from the classes that are mapped.\n\nSee cps temporal for an example: \nhttps://github.com/onap/cps-cps-temporal/blob/master/src/main/java/org/onap/cps/temporal/controller/rest/model/AnchorDetailsMapper.java",
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6efda74_6d59dff3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-22T18:15:11Z",
+      "side": 1,
+      "message": "Is this json property still needed ?",
+      "revId": "410e23eeae2a23620228bfd2258df3147d48e280",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
