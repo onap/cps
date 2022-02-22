@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f3c06a9_4d277e3c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-22T05:28:59Z",
+      "side": 1,
+      "message": "I missed it when I was reviewing it for the first time.\n1. Missing changes in openapi.yaml to reflect the new response structure.\n2. These changes break the existing REST contract so we should increase the cps versioning from 2.1.0 to 3.0.0",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 98
+      },
+      "revId": "ebfa4077b2e462237301e93566fed6ef2f56674c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
