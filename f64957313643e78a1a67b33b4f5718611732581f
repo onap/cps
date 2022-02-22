@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "013acc9c_73d71b24",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:58:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b19e52ca_3e95c7bc",
+      "range": {
+        "startLine": 315,
+        "startChar": 19,
+        "endLine": 315,
+        "endChar": 102
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bf3f707_4f5a4a29",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "0517d3f6_7e8c5023",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:58:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4d87718_6ab5f857",
+      "range": {
+        "startLine": 323,
+        "startChar": 26,
+        "endLine": 323,
+        "endChar": 40
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96ae49f9_b6d79c43",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 1
@@ -163,6 +211,30 @@
       "revId": "f64957313643e78a1a67b33b4f5718611732581f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d01c27f_21986f46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-22T16:58:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96ae49f9_b6d79c43",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "f64957313643e78a1a67b33b4f5718611732581f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
