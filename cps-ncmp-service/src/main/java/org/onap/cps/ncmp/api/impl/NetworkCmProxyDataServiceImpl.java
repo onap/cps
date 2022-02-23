@@ -92,8 +92,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         } catch (final JsonProcessingException | DataNodeNotFoundException e) {
             final String errorMessage = String.format(
-                    "Error occurred while processing the CM-handle registration request [%s] ,caused by : [%s]",
-                    dmiPluginRegistration, e.getMessage());
+                    "Error occurred while processing the CM-handle registration request, caused by : [%s]",
+                    e.getMessage());
             throw new DataValidationException(errorMessage, e.getMessage(), e);
         }
     }

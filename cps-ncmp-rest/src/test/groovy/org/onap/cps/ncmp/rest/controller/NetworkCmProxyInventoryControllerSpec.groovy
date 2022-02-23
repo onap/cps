@@ -8,6 +8,7 @@
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,8 +61,8 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'the cm handles are registered with the service'
             1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(_)
-        and: 'response status is created'
-            response.status == HttpStatus.CREATED.value()
+        and: 'response status is No Content'
+            response.status == HttpStatus.NO_CONTENT.value()
     }
 
     def 'Dmi plugin registration with #scenario' () {
