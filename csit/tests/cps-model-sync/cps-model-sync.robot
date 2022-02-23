@@ -41,7 +41,7 @@ Register node, update data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
-    Should Be Equal As Strings              ${response.status_code}   201
+    Should Be Equal As Strings              ${response.status_code}   204
 
 Get modules for registered data node
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/modules
