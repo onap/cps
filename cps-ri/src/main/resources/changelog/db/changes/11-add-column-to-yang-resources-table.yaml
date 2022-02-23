@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2021 Nordix Foundation.
+# Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ databaseChangeLog:
               - column:
                   name: revision
                   type: TEXT
+
   - changeSet:
       id: 11.1
       label: update-previous-data-module-name-and-revision
@@ -38,3 +39,5 @@ databaseChangeLog:
       changes:
         - sql:
             sql: update yang_resource set module_name = 'dummy_module_name', revision = '2021-08-04' where module_name is null and revision is null
+      rollback:
+        comment: Rollback for change set 11.1 is not supported. Please rollback change set 11 to rollback changeset 11.1. Change set 11.1 removes null values from the yang_resource table created by change set 11.
