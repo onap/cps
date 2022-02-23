@@ -22,6 +22,30 @@
       "revId": "2140ed913a42ef0741828aaf9bdb787822ee1315",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "900a8be4_7af26104",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T13:16:18Z",
+      "side": 1,
+      "message": "i thought we agreed to ALWAYS just return OK (kep it simple)",
+      "parentUuid": "a9750648_ca5a04a2",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 391,
+        "endChar": 17
+      },
+      "revId": "2140ed913a42ef0741828aaf9bdb787822ee1315",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
