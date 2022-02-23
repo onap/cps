@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6d237045_c1385384",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-23T23:41:29Z",
+      "side": 1,
+      "message": "Commit message does not follow ONAP guidelines:\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74e7b62f_2b0232a6",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 3
