@@ -42,6 +42,7 @@ Bug Fixes
    - `CPS-841 <https://jira.onap.org/browse/CPS-841>`_ Upgrade log4j to 2.17.1 as recommended by ONAP SECCOM
    - `CPS-867 <https://jira.onap.org/browse/CPS-867>`_ Database port made configurable through env variable DB_PORT
    - `CPS-856 <https://jira.onap.org/browse/CPS-856>`_ Retry mechanism not working for concurrent CmHandle registration
+   - `CPS-892 <https://jira.onap.org/browse/CPS-892>`_ Fixed the response code during CM-Handle Registration from 201 CREATED to 204 NO_CONTENT
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
