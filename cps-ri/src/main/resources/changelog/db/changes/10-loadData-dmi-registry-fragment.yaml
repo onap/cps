@@ -40,6 +40,8 @@ databaseChangeLog:
               header: schema_node_id
               name: schema_node_id
               type: NUMERIC
+      rollback:
+        - DELETE FROM fragment WHERE id = 144
 
   - changeSet:
       author: cps
@@ -50,4 +52,6 @@ databaseChangeLog:
             comment: Fixes the id sequence after data insert with predefined ids
             dbms: postgresql
             sql: ALTER SEQUENCE IF EXISTS fragment_id_seq RESTART WITH 200
+      rollback:
+        comment: Rollback for 10.1 is not supported
 

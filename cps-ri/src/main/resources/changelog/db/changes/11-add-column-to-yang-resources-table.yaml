@@ -31,6 +31,9 @@ databaseChangeLog:
               - column:
                   name: revision
                   type: TEXT
+      rollback:
+        - sql: ALTER TABLE yang_resource DROP COLUMN module_name, DROP COLUMN revision;
+
   - changeSet:
       id: 11.1
       label: update-previous-data-module-name-and-revision
@@ -38,3 +41,5 @@ databaseChangeLog:
       changes:
         - sql:
             sql: update yang_resource set module_name = 'dummy_module_name', revision = '2021-08-04' where module_name is null and revision is null
+      rollback:
+        comment: Rollback for 11.1 is not supported
