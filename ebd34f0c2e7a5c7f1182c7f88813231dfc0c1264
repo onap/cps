@@ -754,6 +754,30 @@
     },
     {
       "key": {
+        "uuid": "e47c24a9_e6a59820",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T12:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ce86d09_83db939d",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 64
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66d075b2_56b9d90a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 12
@@ -1657,6 +1681,30 @@
     },
     {
       "key": {
+        "uuid": "bac0cda3_d66528ba",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T12:08:26Z",
+      "side": 1,
+      "message": "Was able to proceed without this",
+      "parentUuid": "7e8d3e5c_ab670090",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd1ecc51_91a4f651",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 12
@@ -1768,6 +1816,24 @@
     },
     {
       "key": {
+        "uuid": "9f16c0cf_561f2685",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepository.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T12:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b437279c_93f3a9d0",
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdd2e124_bf9525ea",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
         "patchSetId": 12
@@ -1785,6 +1851,24 @@
     },
     {
       "key": {
+        "uuid": "32516873_d2cff95d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T12:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd2e124_bf9525ea",
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ff64d92_3742afc3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
         "patchSetId": 12
@@ -1799,6 +1883,24 @@
       "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ecb2be7_227e9042",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T12:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ff64d92_3742afc3",
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
