@@ -31,8 +31,8 @@ updateDmiRegistration:
           schema:
             $ref: 'components.yaml#/components/schemas/RestDmiPluginRegistration'
     responses:
-      201:
-        $ref: 'components.yaml#/components/responses/Created'
+      204:
+        $ref: 'components.yaml#/components/responses/NoContent'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:

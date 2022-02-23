@@ -1,12 +1,14 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,6 +24,7 @@ package org.onap.cps.ncmp.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
@@ -33,21 +36,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.api.ncmp-inventory-base-path}")
+@RequiredArgsConstructor
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final ObjectMapper objectMapper;
-
-    /**
-     * Constructor Injection for Dependencies.
-     * @param networkCmProxyDataService Data Service Interface
-     * @param objectMapper Object Mapper
-     */
-    public NetworkCmProxyInventoryController(final NetworkCmProxyDataService networkCmProxyDataService,
-        final ObjectMapper objectMapper) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-        this.objectMapper = objectMapper;
-    }
 
     /**
      * Update DMI Plugin Registration (used for first registration also).
@@ -59,12 +52,11 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final DmiPluginRegistration dmiPluginRegistration =
             convertRestObjectToJavaApiObject(restDmiPluginRegistration);
         networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     private DmiPluginRegistration convertRestObjectToJavaApiObject(
         final RestDmiPluginRegistration restDmiPluginRegistration) {
         return objectMapper.convertValue(restDmiPluginRegistration, DmiPluginRegistration.class);
     }
-
 }
