@@ -27,8 +27,10 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
+import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,7 +40,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class})
+@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class, NetworkCmProxyInventoryController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 
@@ -68,6 +70,11 @@ public class NetworkCmProxyRestExceptionHandler {
 
     @ExceptionHandler({DmiRequestException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final DmiRequestException exception) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
+    }
+
+    @ExceptionHandler({DataValidationException.class})
+    public static ResponseEntity<Object> handleDataValidatedExceptions(final DataValidationException exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 

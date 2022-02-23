@@ -20,8 +20,8 @@ paths:
               $ref: '#/components/schemas/RestDmiPluginRegistration'
         required: true
       responses:
-        "201":
-          description: Created
+        "204":
+          description: No Content
           content: {}
         "400":
           description: Bad Request
