@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b9b1e7fa_58e077c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "add details on details fixes after a blank line using bulleted list like so:\n\nCPS-892 Fix success response code CM Handle Registration\n\n- changed registration response code to 204\n- improved exception handling for registration API",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf848fe8_b9882b75",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
         "patchSetId": 2
@@ -18,6 +41,167 @@
         "startChar": 73,
         "endLine": 43,
         "endChar": 112
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5903ce38_575bad68",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "no need for table if only one row!\nIf only one scenario  needs to be tested simply remove the where block and apply the values in the code above",
+      "range": {
+        "startLine": 104,
+        "startChar": 1,
+        "endLine": 105,
+        "endChar": 124
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab5291a1_3201a167",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "*_",
+      "range": {
+        "startLine": 110,
+        "startChar": 75,
+        "endLine": 110,
+        "endChar": 89
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27b9ef47_842cb2cb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "no need for else (return in previous block)",
+      "range": {
+        "startLine": 111,
+        "startChar": 10,
+        "endLine": 111,
+        "endChar": 14
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2a3578e_afcc1420",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "no need to check this, no other option...",
+      "range": {
+        "startLine": 111,
+        "startChar": 19,
+        "endLine": 111,
+        "endChar": 51
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e26ca85e_441cf001",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "no need to check this, no other option...",
+      "range": {
+        "startLine": 119,
+        "startChar": 19,
+        "endLine": 119,
+        "endChar": 51
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e43c170b_4708f749",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "no need for else (return in previous block)",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 15
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6509a9_ec826db1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T16:23:53Z",
+      "side": 1,
+      "message": "Good idea  but needs beter name :-)\n\nApi\n\nor\n\nApiType\n\nor\n\nTestApi\n\n\nyou choose :-)",
+      "range": {
+        "startLine": 133,
+        "startChar": 9,
+        "endLine": 133,
+        "endChar": 20
       },
       "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
