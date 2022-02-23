@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf848fe8_b9882b75",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-23T16:23:33Z",
+      "side": 1,
+      "message": "As this bit was not there , hence the exceptions from NetworkCmProxyInventoryController were not been handled and were returning in 500 INTERNAL_SERVER_ERROR without any proper details.\n\nBoth NetworkCmProxyController and NetworkCmProxyInventoryController uses the same service class , hence in my opinion this class should handle exceptions from both controllers.",
+      "range": {
+        "startLine": 43,
+        "startChar": 73,
+        "endLine": 43,
+        "endChar": 112
+      },
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02dc697a_70e9622e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-23T16:23:33Z",
+      "side": 1,
+      "message": "removed logging dmiPluginRegistration from here as currently it doesnt have the toString() implemented. Also we need to look other class which are logged and doesnt have toString impl.",
+      "revId": "50e40ed424a2f3334de41fcc5a5f05c35501c326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
