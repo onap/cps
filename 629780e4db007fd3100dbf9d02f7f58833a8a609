@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "25dc1d98_eb9ab287",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T13:14:05Z",
+      "side": 1,
+      "message": "should we stil convert the previous on too?\nmaybe not....",
+      "range": {
+        "startLine": 423,
+        "startChar": 24,
+        "endLine": 423,
+        "endChar": 68
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f81e30ca_764ba563",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 6
@@ -13,6 +36,30 @@
       "writtenOn": "2022-02-22T13:58:55Z",
       "side": 1,
       "message": "It looks it is ok but I\u0027m wondering about the 2 slashes in the path ...",
+      "range": {
+        "startLine": 218,
+        "startChar": 44,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92a6862e_d2bcbb77",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T13:14:05Z",
+      "side": 1,
+      "message": "agreed, is probably ignored by OIS but looks bad",
+      "parentUuid": "f81e30ca_764ba563",
       "range": {
         "startLine": 218,
         "startChar": 44,
@@ -54,6 +101,29 @@
       "side": 1,
       "message": "It makes sense, it could be more straight forward and simpler to have one insert sql statement in the change set directly.",
       "parentUuid": "922b0e49_c9fe8c9b",
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f44d313b_821b39a6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-23T13:14:05Z",
+      "side": 1,
+      "message": "did we no agree a more generic named?! (as per Tonys mail)",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 31
+      },
       "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
