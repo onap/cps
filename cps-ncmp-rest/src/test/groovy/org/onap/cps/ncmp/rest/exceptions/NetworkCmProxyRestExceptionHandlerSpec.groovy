@@ -8,6 +8,7 @@
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,22 +23,28 @@ package org.onap.cps.ncmp.rest.exceptions
 
 import groovy.json.JsonSlurper
 import org.modelmapper.ModelMapper
+import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
 
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest
 class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
@@ -55,9 +62,13 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     JsonObjectMapper jsonObjectMapper = Stub()
 
     @Value('${rest.api.ncmp-base-path}')
-    def basePath
+    def basePathNcmp
 
-    def dataNodeBaseEndpoint
+    @Value('${rest.api.ncmp-inventory-base-path}')
+    def basePathNcmpInventory
+
+    def dataNodeBaseEndpointNcmp
+    def dataNodeBaseEndpointNcmpInventory
 
     @Shared
     def errorMessage = 'some error message'
@@ -65,13 +76,14 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     def errorDetails = 'some error details'
 
     def setup() {
-        dataNodeBaseEndpoint = "$basePath/v1"
+        dataNodeBaseEndpointNcmp = "$basePathNcmp/v1"
+        dataNodeBaseEndpointNcmpInventory = "$basePathNcmpInventory/v1"
     }
 
     def 'Get request with generic #scenario exception returns correct HTTP Status.'() {
         when: 'an exception is thrown by the service'
-            setupTestException(exception)
-            def response = performTestRequest()
+            setupTestException(exception, NCMP)
+            def response = performTestRequest(NCMP)
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, errorMessage, expectedErrorDetails)
         where:
@@ -82,13 +94,29 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'other'       | new IllegalStateException(errorMessage)             || null                 | INTERNAL_SERVER_ERROR
     }
 
-    def setupTestException(exception){
-        mockNetworkCmProxyDataService.getYangResourcesModuleReferences('testCmHandle')>>
-                { throw exception}
+    def 'Post request with exception returns correct HTTP Status.'() {
+        given: 'an exception'
+            def exception = new DataValidationException(errorMessage, errorDetails)
+            setupTestException(exception, NCMPINVENTORY)
+        when: 'the HTTP request is made'
+            def response = performTestRequest(NCMPINVENTORY)
+        then: 'an HTTP response is returned with correct message and details'
+            assertTestResponse(response, BAD_REQUEST, errorMessage, errorDetails)
     }
 
-    def performTestRequest(){
-        return mvc.perform(get("$dataNodeBaseEndpoint/ch/testCmHandle/modules")).andReturn().response
+    def setupTestException(exception, apiType) {
+        if (NCMP.equals(apiType)) {
+            mockNetworkCmProxyDataService.getYangResourcesModuleReferences(*_) >> { throw exception }
+        }
+        mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
+    }
+
+    def performTestRequest(apiType) {
+        if (NCMP.equals(apiType)) {
+            return mvc.perform(get("$dataNodeBaseEndpointNcmp/ch/testCmHandle/modules")).andReturn().response
+        }
+        def jsonData = TestUtils.getResourceFileContent('dmi-registration.json')
+        return mvc.perform(post("$dataNodeBaseEndpointNcmpInventory/ch").contentType(MediaType.APPLICATION_JSON).content(jsonData)).andReturn().response
     }
 
     static void assertTestResponse(response, expectedStatus , expectedErrorMessage , expectedErrorDetails) {
@@ -97,5 +125,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         assert content['status'] == expectedStatus.toString()
         assert content['message'] == expectedErrorMessage
         assert expectedErrorDetails == null || content['details'] == expectedErrorDetails
+    }
+
+    enum ApiType {
+        NCMP,
+        NCMPINVENTORY;
     }
 }
