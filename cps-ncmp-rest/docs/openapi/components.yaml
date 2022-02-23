@@ -386,6 +386,9 @@ components:
         application/json:
           schema:
             type: object
+    Ok_NoContent:
+      description: OK
+      content: {}
     Created:
       description: Created
       content: {}
