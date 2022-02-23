@@ -1130,6 +1130,30 @@
     },
     {
       "key": {
+        "uuid": "656f0dc8_fb789805",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepository.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T14:53:56Z",
+      "side": 1,
+      "message": "Without this there were failures in loading the applicationcontext. I believe it is needed.",
+      "parentUuid": "753ce0b8_aa4753c1",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33a67e3e_26944139",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 12
@@ -1420,6 +1444,30 @@
       "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df52223c_4fb8d289",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-23T14:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddd631a7_f23973bf",
+      "range": {
+        "startLine": 56,
+        "startChar": 28,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
