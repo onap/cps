@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9750648_ca5a04a2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-23T10:05:41Z",
+      "side": 1,
+      "message": "Reason for introducing \"Ok_NoContent\" is because the current method in controller is returning ResponseEntity\u003cVoid\u003e as we are not returning body. \nIf we plan to return body then I can reuse the \"Ok\" which returns Object.\nWhat do you guys suggest?",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 391,
+        "endChar": 17
+      },
+      "revId": "2140ed913a42ef0741828aaf9bdb787822ee1315",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
