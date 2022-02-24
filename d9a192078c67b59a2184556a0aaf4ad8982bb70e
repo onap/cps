@@ -22,6 +22,30 @@
       "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92b8af63_3cf5e5ae",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T13:38:58Z",
+      "side": 1,
+      "message": "I think so yeah, this is the content of fragment.csv which adds a fragment of id 144 to the table so as long as that doesn\u0027t change\n\nid|xpath|attributes|anchor_id|parent_id|dataspace_id|schema_node_id\n144|/dmi-registry|{}|(select id from anchor where name\u003d\u0027ncmp-dmi-registry\u0027)|null|(select id from dataspace where name\u003d\u0027NCMP-Admin\u0027)|null",
+      "parentUuid": "89140a40_54da516c",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
