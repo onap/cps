@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d5690459_d95acfdf",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:27:35Z",
+      "side": 1,
+      "message": "NB: CM for consistency",
+      "range": {
+        "startLine": 148,
+        "startChar": 13,
+        "endLine": 148,
+        "endChar": 15
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5133a7ee_8052e90a",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 17
@@ -19,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "1285a409_fb246930",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:27:35Z",
+      "side": 1,
+      "message": "agreed, please check your template",
+      "parentUuid": "5133a7ee_8052e90a",
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b08531ec_1beb72a7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 17
@@ -30,6 +71,30 @@
       "writtenOn": "2022-02-24T16:59:17Z",
       "side": 1,
       "message": "Actually these can be used from a constants file.\nDmiRegistryConstants.class. These were extracted out in my last commit related to CM handle registration update.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a249e058_88b9d6ff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:27:35Z",
+      "side": 1,
+      "message": "I assume Priyanks update has been merged, so yes fd use constant file",
+      "parentUuid": "b08531ec_1beb72a7",
       "range": {
         "startLine": 64,
         "startChar": 4,
@@ -65,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "904990cb_eecd03e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:27:35Z",
+      "side": 1,
+      "message": "yes! https://wiki.onap.org/pages/viewpage.action?pageId\u003d117747955",
+      "parentUuid": "528980f8_10a260e1",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0c625d2_c3e6fab0",
         "filename": "docs/api/swagger/ncmp/openapi.yaml",
         "patchSetId": 17
@@ -76,6 +165,30 @@
       "writtenOn": "2022-02-24T17:01:50Z",
       "side": 1,
       "message": "I believe this should be consistent with comments made at https://gerrit.onap.org/r/c/cps/+/126844/16/cps-ncmp-rest/docs/openapi/ncmp.yml#268",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 23
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e99ba96e_48410171",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:27:35Z",
+      "side": 1,
+      "message": "well spotted, but this is not a label of a description but a parameter-name which follows different conventions",
+      "parentUuid": "f0c625d2_c3e6fab0",
       "range": {
         "startLine": 131,
         "startChar": 14,
