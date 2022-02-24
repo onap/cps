@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "64264370_9785556e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T17:14:55Z",
+      "side": 1,
+      "message": "This is done in order to keep the changesets sequential for rollback situations. Wouldn\u0027t be able to remove changeset 9.9 without removing changesets 10 and 11 also which are unrelated to 9.9 so better to have new changeset starting at 12.",
+      "parentUuid": "77e29166_b2b98b55",
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3759962d_be2b6ad1",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
         "patchSetId": 11
