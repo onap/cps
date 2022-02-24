@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4593f6c8_ab2f4052",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T11:36:54Z",
+      "side": 1,
+      "message": "CPS performs the request the exception is thrown",
+      "range": {
+        "startLine": 100,
+        "startChar": 15,
+        "endLine": 100,
+        "endChar": 53
+      },
+      "revId": "7798825d5670da970c530997dfb5feaf9b478302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
