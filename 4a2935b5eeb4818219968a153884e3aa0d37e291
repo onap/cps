@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "9d65b468_d7501dcf",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T09:05:33Z",
+      "side": 1,
+      "message": "Priyank explain in stand-up yesterday we never return any response data so correct response should be 204...",
+      "parentUuid": "74e7b62f_2b0232a6",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c14ad5aa_14ef8db2",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 3
