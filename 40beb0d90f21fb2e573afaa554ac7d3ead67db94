@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "70e79ba1_dbe836f4",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:44:16Z",
+      "side": 1,
+      "message": "same name as step 9, suggestion: 12-updateData-dmi-registry-schema-set",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77e29166_b2b98b55",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 11
@@ -66,6 +89,30 @@
       "writtenOn": "2022-02-24T11:23:33Z",
       "side": 1,
       "message": "NB: I think we should have PTL email address here",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43e2f3ad_3f2b3f17",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:44:16Z",
+      "side": 1,
+      "message": "you mean my address?! Nah....\nActually I don\u0027t mind it is for internal use only",
+      "parentUuid": "3759962d_be2b6ad1",
       "range": {
         "startLine": 9,
         "startChar": 0,
