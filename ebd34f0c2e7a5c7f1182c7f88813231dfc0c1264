@@ -683,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "e2934555_7823e301",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T12:49:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13f218b3_aa73b2ae",
+      "range": {
+        "startLine": 72,
+        "startChar": 146,
+        "endLine": 72,
+        "endChar": 201
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19fffb41_56704ab5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 12
@@ -2116,6 +2140,30 @@
     },
     {
       "key": {
+        "uuid": "d0148c83_39882218",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T12:49:38Z",
+      "side": 1,
+      "message": "Covered in: service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+      "parentUuid": "2bff8174_42c38066",
+      "range": {
+        "startLine": 185,
+        "startChar": 10,
+        "endLine": 186,
+        "endChar": 66
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed741e2e_acefbaa6",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 12
@@ -2277,6 +2325,30 @@
       "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c48ecc89_f051e18d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T12:49:38Z",
+      "side": 1,
+      "message": "Covered in: service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+      "parentUuid": "febc60b4_b006b7cb",
+      "range": {
+        "startLine": 191,
+        "startChar": 3,
+        "endLine": 191,
+        "endChar": 5
+      },
+      "revId": "ebd34f0c2e7a5c7f1182c7f88813231dfc0c1264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
