@@ -39,6 +39,52 @@
       "revId": "044b09c52a790f166385e82aee436ffa4f139888",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "528980f8_10a260e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T17:01:50Z",
+      "side": 1,
+      "message": "NB: Is there a wiki outlining the changes in cmhande names and what each one represents?",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c625d2_c3e6fab0",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T17:01:50Z",
+      "side": 1,
+      "message": "I believe this should be consistent with comments made at https://gerrit.onap.org/r/c/cps/+/126844/16/cps-ncmp-rest/docs/openapi/ncmp.yml#268",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 23
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
