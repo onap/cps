@@ -21,47 +21,52 @@
 */
 
 INSERT INTO DATASPACE (ID, NAME) VALUES
-    (1001, 'DATASPACE-001');
+    (1001, ''DATASPACE-001'');
 
 INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
-    (2001, 'SCHEMA-SET-001', 1001);
+    (2001, ''SCHEMA-SET-001'', 1001);
 
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
-    (3001, 'ANCHOR-001', 1001, 2001),
-    (3003, 'ANCHOR-003', 1001, 2001);
+    (3001, ''ANCHOR-001'', 1001, 2001),
+    (3003, ''ANCHOR-003'', 1001, 2001);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
-    (4001, 1001, 3001, null, '/parent-1'),
-    (4002, 1001, 3001, null, '/parent-2'),
-    (4003, 1001, 3001, null, '/parent-3'),
-    (4004, 1001, 3001, 4001, '/parent-1/child-1'),
-    (4005, 1001, 3001, 4002, '/parent-2/child-2'),
-    (4006, 1001, 3001, 4004, '/parent-1/child-1/grandchild-1');
+    (4001, 1001, 3001, null, ''/parent-1''),
+    (4002, 1001, 3001, null, ''/parent-2''),
+    (4003, 1001, 3001, null, ''/parent-3''),
+    (4004, 1001, 3001, 4001, ''/parent-1/child-1''),
+    (4005, 1001, 3001, 4002, ''/parent-2/child-2''),
+    (4006, 1001, 3001, 4004, ''/parent-1/child-1/grandchild-1'');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
-    (4101, 1001, 3003, null, '/parent-100', '{"parent-leaf": "parent-leaf value"}'),
-    (4102, 1001, 3003, 4101, '/parent-100/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
-    (4103, 1001, 3003, 4101, '/parent-100/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
-    (4104, 1001, 3003, 4103, '/parent-100/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
+    (4101, 1001, 3003, null, ''/parent-100'', ''{"parent-leaf": "parent-leaf value"}''),
+    (4102, 1001, 3003, 4101, ''/parent-100/child-001'', ''{"first-child-leaf": "first-child-leaf value"}''),
+    (4103, 1001, 3003, 4101, ''/parent-100/child-002'', ''{"second-child-leaf": "second-child-leaf value"}''),
+    (4104, 1001, 3003, 4103, ''/parent-100/child-002/grand-child'', ''{"grand-child-leaf": "grand-child-leaf value"}'');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
-    (4201, 1001, 3003, null, '/parent-200', '{"leaf-value": "original"}'),
-    (4202, 1001, 3003, 4201, '/parent-200/child-201', '{"leaf-value": "original"}'),
-    (4203, 1001, 3003, 4202, '/parent-200/child-201/grand-child', '{"leaf-value": "original"}'),
-    (4206, 1001, 3003, null, '/parent-201', '{"leaf-value": "original"}'),
-    (4207, 1001, 3003, 4206, '/parent-201/child-203', '{}'),
-    (4208, 1001, 3003, 4206, '/parent-201/child-204[@key="A"]', '{"key": "A"}'),
-    (4209, 1001, 3003, 4206, '/parent-201/child-204[@key="B"]', '{"key": "B"}'),
-    (4211, 1001, 3003, null, '/parent-202', '{"leaf-value": "original"}'),
-    (4212, 1001, 3003, 4211, '/parent-202/child-205[@key="A" and @key2="B"]', '{"key": "A", "key2": "B"}'),
-    (4213, 1001, 3003, 4211, '/parent-202/child-206[@key="A"]', '{"key": "A"}'),
-    (4214, 1001, 3003, null, '/parent-203', '{"leaf-value": "original"}'),
-    (4215, 1001, 3003, 4214, '/parent-203/child-203', '{}'),
-    (4216, 1001, 3003, 4214, '/parent-203/child-204[@key="A"]', '{"key": "A"}'),
-    (4217, 1001, 3003, 4214, '/parent-203/child-204[@key="B"]', '{"key": "B"}'),
-    (4218, 1001, 3003, 4217, '/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]', '{"key": "B", "key2": "Y"}'),
-    (4226, 1001, 3003, null, '/parent-206', '{"leaf-value": "original"}'),
-    (4227, 1001, 3003, 4226, '/parent-206/child-206', '{}'),
-    (4228, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206', '{}'),
-    (4229, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206[@key="A"]', '{"key": "A"}'),
-    (4230, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206[@key="X"]', '{"key": "X"}');
+    (4201, 1001, 3003, null, ''/parent-200'', ''{"leaf-value": "original"}''),
+    (4202, 1001, 3003, 4201, ''/parent-200/child-201'', ''{"leaf-value": "original"}''),
+    (4203, 1001, 3003, 4202, ''/parent-200/child-201/grand-child'', ''{"leaf-value": "original"}''),
+    (4206, 1001, 3003, null, ''/parent-201'', ''{"leaf-value": "original"}''),
+    (4207, 1001, 3003, 4206, ''/parent-201/child-203'', ''{}''),
+    (4208, 1001, 3003, 4206, ''/parent-201/child-204[@key="A"]'', ''{"key": "A"}''),
+    (4209, 1001, 3003, 4206, ''/parent-201/child-204[@key="B"]'', ''{"key": "B"}''),
+    (4211, 1001, 3003, null, ''/parent-202'', ''{"leaf-value": "original"}''),
+    (4212, 1001, 3003, 4211, ''/parent-202/child-205[@key="A" and @key2="B"]'', ''{"key": "A", "key2": "B"}''),
+    (4213, 1001, 3003, 4211, ''/parent-202/child-206[@key="A"]'', ''{"key": "A"}''),
+    (4214, 1001, 3003, null, ''/parent-203'', ''{"leaf-value": "original"}''),
+    (4215, 1001, 3003, 4214, ''/parent-203/child-203'', ''{}''),
+    (4216, 1001, 3003, 4214, ''/parent-203/child-204[@key="A"]'', ''{"key": "A"}''),
+    (4217, 1001, 3003, 4214, ''/parent-203/child-204[@key="B"]'', ''{"key": "B"}''),
+    (4218, 1001, 3003, 4217, ''/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]'', ''{"key": "B", "key2": "Y"}''),
+    (4226, 1001, 3003, null, ''/parent-206'', ''{"leaf-value": "original"}''),
+    (4227, 1001, 3003, 4226, ''/parent-206/child-206'', ''{}''),
+    (4228, 1001, 3003, 4227, ''/parent-206/child-206/grand-child-206'', ''{}''),
+    (4229, 1001, 3003, 4227, ''/parent-206/child-206/grand-child-206[@key="A"]'', ''{"key": "A"}''),
+    (4230, 1001, 3003, 4227, ''/parent-206/child-206/grand-child-206[@key="X"]'', ''{"key": "X"}''),
+    (4231, 1001, 3003, null, ''/parent-206[@key="A"]'', ''{"key": "A"}''),
+    (4232, 1001, 3003, 4231, ''/parent-206[@key="A"]/child-206'', ''{}''),
+    (4233, 1001, 3003, null, ''/parent-206[@key="B"]'', ''{"key": "B"}'');
+
+
