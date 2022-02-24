@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e27a8104_8a69d685",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T11:28:17Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 37
+      },
+      "revId": "17629309d82aa4913daf03f4ce9cddce11f8fd99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "814e4c06_a3351ffb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T11:28:17Z",
+      "side": 1,
+      "message": "NB: Perhaps add @Builder to DmiPluginRegistration and use that?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 99
+      },
+      "revId": "17629309d82aa4913daf03f4ce9cddce11f8fd99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
