@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4271d087_590983a3",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T15:10:38Z",
+      "side": 1,
+      "message": "Suggestion : May be we can define this in a common properties section in this file or in the parent pom file.\n\u003cproperties\u003e\n \u003cmapstruct.version\u003e1.4.2.Final\u003c/mapstruct.version\u003e\n\u003c/properties\u003e",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f104feb_05757d4c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T15:10:38Z",
+      "side": 1,
+      "message": "Modifications Copyright (C) 2021-2022 Nordix Foundation",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12dd24f7_71cb4d0c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T15:10:38Z",
+      "side": 1,
+      "message": "one new line after this.",
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
