@@ -46,6 +46,53 @@
       "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d98a8726_3cc85247",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:31:35Z",
+      "side": 1,
+      "message": "it might be more readable to use  condition on more meaningful column data (check previous steps that do something similar)",
+      "parentUuid": "92b8af63_3cf5e5ae",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8144d44c_d2e4abb5",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-24T17:31:35Z",
+      "side": 1,
+      "message": "why not?",
+      "range": {
+        "startLine": 45,
+        "startChar": 17,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
