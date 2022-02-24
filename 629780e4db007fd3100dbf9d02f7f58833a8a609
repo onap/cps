@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c399585_55c22a12",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T11:02:33Z",
+      "side": 1,
+      "message": "Liquibase applies the changesets sequentially so it still needs the previously generated csv unless we want to go back and alter the changesets. Also its better to have the generated file for rollback purposes. I think benefits outweigh the overhead of having it.",
+      "parentUuid": "25dc1d98_eb9ab287",
+      "range": {
+        "startLine": 423,
+        "startChar": 24,
+        "endLine": 423,
+        "endChar": 68
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f81e30ca_764ba563",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 6
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "270f3332_df569d5b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T11:02:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92a6862e_d2bcbb77",
+      "range": {
+        "startLine": 218,
+        "startChar": 44,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "922b0e49_c9fe8c9b",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv",
         "patchSetId": 6
@@ -107,6 +155,24 @@
     },
     {
       "key": {
+        "uuid": "c14593f7_daaa6bbd",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/dmi/schema_set_yang_resources@2022-02-10.csv",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T11:02:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db957738_e26c7b9f",
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f44d313b_821b39a6",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
         "patchSetId": 6
@@ -127,6 +193,30 @@
       "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "738c5a43_03f6a6c8",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-24T11:02:33Z",
+      "side": 1,
+      "message": "Was changed in later patchset (this is patch 6 of 10)",
+      "parentUuid": "f44d313b_821b39a6",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "629780e4db007fd3100dbf9d02f7f58833a8a609",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
