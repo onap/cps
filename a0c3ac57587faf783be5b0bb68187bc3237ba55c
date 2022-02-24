@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "7c497e3f_87415729",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T17:41:40Z",
+      "side": 1,
+      "message": ":) Thnx for this. Even I have a open bug where I introduced this copyright. I will also correct  it.",
+      "parentUuid": "a6667b99_87fa3587",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c55daa1b_ff8a50c0",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
         "patchSetId": 10
