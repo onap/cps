@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c2234003_2d499346",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-24T12:20:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d237045_c1385384",
+      "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74e7b62f_2b0232a6",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 3
@@ -66,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "8d076d82_8dba465e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-24T12:20:37Z",
+      "side": 1,
+      "message": "Sorry, I missed that and when reviewing yesterday I was referring to https://wiki.onap.org/display/DW/CPS-892+Update+HTTP+Response+Code+for+CM+Handle+Registration that was still mentioning 200 Ok. I\u0027m good.",
+      "parentUuid": "9d65b468_d7501dcf",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c14ad5aa_14ef8db2",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 3
@@ -86,6 +128,30 @@
       "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e37f0dd_bee31499",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-24T12:20:37Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "parentUuid": "c14ad5aa_14ef8db2",
+      "range": {
+        "startLine": 55,
+        "startChar": 47,
+        "endLine": 55,
+        "endChar": 57
+      },
+      "revId": "4a2935b5eeb4818219968a153884e3aa0d37e291",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
