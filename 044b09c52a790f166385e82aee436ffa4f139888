@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5133a7ee_8052e90a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T16:59:17Z",
+      "side": 1,
+      "message": "one new line after this.",
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b08531ec_1beb72a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-24T16:59:17Z",
+      "side": 1,
+      "message": "Actually these can be used from a constants file.\nDmiRegistryConstants.class. These were extracted out in my last commit related to CM handle registration update.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
