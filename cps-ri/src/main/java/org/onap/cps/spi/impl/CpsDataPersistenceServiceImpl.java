@@ -344,7 +344,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             }
             parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
             final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
-            final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE.matcher(lastXpathElement).find();
+            final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE
+                .matcher(lastXpathElement).find();
             if (isListElement) {
                 targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
             } else {
@@ -364,7 +365,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
-        if (parentFragmentEntity.getXpath().equals(targetXpath) ) {
+        if (parentFragmentEntity.getXpath().equals(targetXpath)) {
             fragmentRepository.delete(parentFragmentEntity);
             return true;
         } else if (parentFragmentEntity.getChildFragments()
@@ -441,6 +442,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static boolean isContainerNodeXpath(final String xpath) {
-        return 0==(xpath.lastIndexOf('/'));
+        return 0 == (xpath.lastIndexOf('/'));
     }
 }
