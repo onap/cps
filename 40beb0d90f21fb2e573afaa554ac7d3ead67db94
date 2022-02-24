@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "79bdd6c7_21ad0323",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-24T17:40:44Z",
+      "side": 1,
+      "message": "I think this file should probably be named differently then as opposed to just have a different number indicating the step at the start. Or maybe document in the liquibase wiki that this file is now being used to load schema sets and not file 09?\n\nWhat does the team think?",
+      "parentUuid": "64264370_9785556e",
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3759962d_be2b6ad1",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
         "patchSetId": 11
