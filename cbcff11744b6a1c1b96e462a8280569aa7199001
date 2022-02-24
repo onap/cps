@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "30d37cdc_3a762410",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-24T19:59:42Z",
+      "side": 1,
+      "message": "Yes It can be handled by new code.\n\n.pathSegment(\"{dmiBasePath}\") -\u003e /dmi",
+      "parentUuid": "f46d2a59_7dc45281",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0d289fc_351b0c75",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2022-02-24T14:31:42Z",
       "side": 1,
       "message": "Will this take care of \n* no topic in url    e.g. dmi/dostuff?options\u003d{...}\n* null topic in url  e.g. dmi/dostuff?options\u003d{...}\u0026topic\u003dnull\n* empty topic in url e.g. dmi/dostuff?options\u003d{...}\u0026topic\u003d\"\"\n* missing topic in url e.g. dmi/dostuff?options\u003d{...}\u0026topic\u003d",
+      "range": {
+        "startLine": 84,
+        "startChar": 39,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67bd05ed_e584a118",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-24T19:59:42Z",
+      "side": 1,
+      "message": "In case of empty or missing topic it\u0027s failing. I addressed this issue into new patch with pattern match as below :\n\n// valid kafka topic name regex\n    private static final String TOPIC_NAME_PATTERN \u003d \"^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){0,}[a-zA-Z0-9]$\";\n    protected static final Pattern topicPattern \u003d Pattern.compile(TOPIC_NAME_PATTERN);",
+      "parentUuid": "a0d289fc_351b0c75",
       "range": {
         "startLine": 84,
         "startChar": 39,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "57079023_c52c2ddb",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-24T19:59:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "487e38d8_065fb0dc",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7757d8d8_69fd20d5",
         "filename": "cps-ncmp-service/src/test/resources/application.yml",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "18c3d32d_2daacc1a",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-24T19:59:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7757d8d8_69fd20d5",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c31cffe3_bc2467f7",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 5
@@ -114,6 +210,30 @@
       "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ecb5b86_68c9651c",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-02-24T19:59:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c31cffe3_bc2467f7",
+      "range": {
+        "startLine": 146,
+        "startChar": 205,
+        "endLine": 146,
+        "endChar": 206
+      },
+      "revId": "cbcff11744b6a1c1b96e462a8280569aa7199001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
