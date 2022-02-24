@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86950376_90e4e10e",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-24T14:37:49Z",
+      "side": 1,
+      "message": "Copyright needs updating",
+      "revId": "945b0f068b4ab89f9ef5a6257965fd869c3a4dcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
