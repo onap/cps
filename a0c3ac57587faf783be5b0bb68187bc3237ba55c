@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f99b4822_af7391ac",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-24T17:34:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4271d087_590983a3",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f104feb_05757d4c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2022-02-24T15:10:38Z",
       "side": 1,
       "message": "Modifications Copyright (C) 2021-2022 Nordix Foundation",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6667b99_87fa3587",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-24T17:34:44Z",
+      "side": 1,
+      "message": "I don\u0027t think it is Priyank, as we only started editing this file starting 2022. It was created initially by Renu in 2021 as seen by the Bell Canada Copyright\n\nThis can be seen in the CpsModulePersistenceServiceImpl.java class for example with the Pantheon.tech copyright",
+      "parentUuid": "2f104feb_05757d4c",
       "range": {
         "startLine": 4,
         "startChar": 3,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e159c740_21dff6a5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-24T17:34:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c55daa1b_ff8a50c0",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12dd24f7_71cb4d0c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
         "patchSetId": 10
@@ -85,6 +157,24 @@
       "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4b44649_17b2ffc5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-24T17:34:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12dd24f7_71cb4d0c",
+      "revId": "a0c3ac57587faf783be5b0bb68187bc3237ba55c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
