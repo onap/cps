@@ -472,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "5e171b88_6e4dd4aa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "ok, so the original description was misleading...",
+      "parentUuid": "3c9dc4ff_0c6f143e",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b9795b5_cb696cac",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 26

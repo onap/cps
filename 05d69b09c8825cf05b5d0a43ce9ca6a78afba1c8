@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "721cc3af_0f4c0947",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "NB: just \u0027sql\u0027 would have sufficed \n(there are no other sql statements in this method and teh intent of teh sql string is visible by the methodname)",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 52
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f390d2b5_585106ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "looks much better :-)",
+      "range": {
+        "startLine": 84,
+        "startChar": 3,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80df3658_3985c626",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "assrt you got both back (because you didn\u0027t  I thought one was new and one was existing)\nalso can you simply  assert the objects instead of the content?\n\nassert result[0] \u003d\u003d newModuleReference1\nassert result[1] \u003d\u003d newModuleReference2",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 74
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfc0bb1c_0834aa43",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "use single \u0027 :-)",
+      "range": {
+        "startLine": 154,
+        "startChar": 85,
+        "endLine": 154,
+        "endChar": 86
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58e907f8_56c9ec2e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T15:03:35Z",
+      "side": 1,
+      "message": "should simplify this to\n\n            def moduleReferencesToCheck \u003d [new ModuleReference(\u0027som module\u0027, \u0027some revision\u0027)]\n\nNot eh use of generic values to not mislead the reader that they matter for the test....",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 72
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
