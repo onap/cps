@@ -40,9 +40,6 @@ import spock.lang.Specification
 @Testcontainers
 class CpsPersistenceSpecBase extends Specification {
 
-    @Shared
-    DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
-
     @Autowired
     DataspaceRepository dataspaceRepository
 
