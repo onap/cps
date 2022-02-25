@@ -232,6 +232,29 @@
     },
     {
       "key": {
+        "uuid": "b84b56f6_734c9759",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T14:47:29Z",
+      "side": 1,
+      "message": "this code should be in service layer. No need to handle actual request/reply message",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 30
+      },
+      "revId": "5b42983c5c1b49e1ee821fc39fc7e97fb6fb917b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "73a54df9_e36abfea",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 8
