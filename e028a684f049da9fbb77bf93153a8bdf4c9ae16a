@@ -22,6 +22,388 @@
       "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddbaef18_6dc72c4f",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Should we add modifications copyright here?",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb9f62ef_3325f7a5",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3256f5e3_3ba77043",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d238c486_9c0d5e72",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Modifications needed here also?",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8476b4c_5a7a3e13",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689e5102_2a1adcb8",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Does this copyright need to be updated?",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "628fc6aa_ec3d6717",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Add Bell copyright",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0436066_80325836",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c520f1c_e1ecc263",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22df55b0_bc68c1e3",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Bell copyright needs to be updated",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb8e7ec4_dea290bb",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7f6fdb_02bcf405",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "This needs to be removed",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a8393a9_a073d349",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Bell Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01664ecf_924884ec",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 5,
+        "startChar": 35,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "167c94c9_07dbd387",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6edb11_a885e7fd",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 5,
+        "startChar": 35,
+        "endLine": 5,
+        "endChar": 40
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67f803bb_af5f3b19",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "There is no copyright in this file...",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e03888ae_909c17bf",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 7,
+        "startChar": 35,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "197ecc52_295bf88d",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffba8d5c_d91ebe41",
+        "filename": "version.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:09:33Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
