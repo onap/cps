@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "959925ec_250f4bc8",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T10:17:34Z",
+      "side": 1,
+      "message": "after discussion: 12-add-updated-model-dmi-registry-schema-set",
+      "parentUuid": "70e79ba1_dbe836f4",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77e29166_b2b98b55",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 11
@@ -78,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "577cddef_b0d968cd",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T10:17:34Z",
+      "side": 1,
+      "message": "my understanding is that liquibase updates should NEVER update previous steps because of rollback!\n(@Bruno can you confirm?)",
+      "parentUuid": "79bdd6c7_21ad0323",
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06ea8d22_ead4bb11",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 11
@@ -101,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "07d9ca9c_680533f8",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T10:17:34Z",
+      "side": 1,
+      "message": "agreed, looks like we got away with it in the past but should be populating those columns, Renu is right!",
+      "parentUuid": "06ea8d22_ead4bb11",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0439b780_6d6ba039",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 11
@@ -112,6 +178,30 @@
       "writtenOn": "2022-02-25T04:54:01Z",
       "side": 1,
       "message": "Does it work if we have multiple yang resources defined with the same prefix  in the schema-set?\nWhich one does it pick?",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 159
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c6f1f0_8406ece0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T10:17:34Z",
+      "side": 1,
+      "message": "our application is based on the assumption (after much discussion) that model-name+revision is unique! \nthe generated module-name follows the convention of modulename@reviusion and is therefore als assumed to be unique",
+      "parentUuid": "0439b780_6d6ba039",
       "range": {
         "startLine": 53,
         "startChar": 11,
