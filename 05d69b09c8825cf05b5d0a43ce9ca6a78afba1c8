@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5fef2a2d_4a76d817",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:22:11Z",
+      "side": 1,
+      "message": "I think this should be OK as the UUID is 32 hex digits + 4 dashes. Without the dashes it will be 32 as you said. So 32 + moduleReferencesToCheckTemp (28) \u003d 60 chars total",
+      "parentUuid": "fa6a5b26_c40422fc",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "721cc3af_0f4c0947",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 27
@@ -45,6 +69,30 @@
       "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b9b2a69_00792823",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721cc3af_0f4c0947",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 52
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "729df11f_3a07a800",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:22:11Z",
+      "side": 1,
+      "message": "I answered this in https://gerrit.onap.org/r/c/cps/+/127208/26/cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy where the existing are tested elsewhere. \nI\u0027ll add the other moduleReference and assert the objects as you suggest",
+      "parentUuid": "80df3658_3985c626",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 74
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dfc0bb1c_0834aa43",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 27
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "d7100485_28614b16",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc0bb1c_0834aa43",
+      "range": {
+        "startLine": 154,
+        "startChar": 85,
+        "endLine": 154,
+        "endChar": 86
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58e907f8_56c9ec2e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 27
@@ -137,6 +233,30 @@
       "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e9c7ab5_56ad428f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T15:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58e907f8_56c9ec2e",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 72
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
