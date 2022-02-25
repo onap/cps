@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "851017d2_faa37d09",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "NB: when we commented on this we didn\u0027t realize toCollection still needs a type. so toList() is probably better",
+      "range": {
+        "startLine": 241,
+        "startChar": 33,
+        "endLine": 241,
+        "endChar": 61
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e078c624_2b47da61",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "wring name asl always consider teh context of teh method (so usually it needs a more generic name)\nsuggestion: moduleReferenceAsMap",
+      "range": {
+        "startLine": 76,
+        "startChar": 44,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68904b5a_4093090e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "use new name",
+      "range": {
+        "startLine": 186,
+        "startChar": 87,
+        "endLine": 186,
+        "endChar": 116
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6d8bb8_8b8eb661",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "I don\u0027t think thsa is unique enough, chance 2 thread try this at the same second are realistic... \nWhy not go back using random or even UUID (replace dash with blank)",
+      "range": {
+        "startLine": 46,
+        "startChar": 67,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65d770f4_e85c0b3a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "why not replace with \";\" then you dont\u0027 need next line :-)",
+      "range": {
+        "startLine": 79,
+        "startChar": 91,
+        "endLine": 79,
+        "endChar": 93
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8985f3a1_36ffe241",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "why is are the first two using %1$s and all others are just %s",
+      "range": {
+        "startLine": 87,
+        "startChar": 54,
+        "endLine": 87,
+        "endChar": 59
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b9795b5_cb696cac",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "your mocking what you are testing ?!",
+      "range": {
+        "startLine": 187,
+        "startChar": 11,
+        "endLine": 187,
+        "endChar": 99
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27464628_e6ba5b13",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "usually just call this \u0027result\u0027 (convention in testware)",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 189,
+        "endChar": 43
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9831a20_99f359bb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:13:03Z",
+      "side": 1,
+      "message": "mock teh test?!",
+      "range": {
+        "startLine": 158,
+        "startChar": 11,
+        "endLine": 158,
+        "endChar": 122
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
