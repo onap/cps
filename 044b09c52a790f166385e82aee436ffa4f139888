@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0dfcb37_557acf52",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T09:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5690459_d95acfdf",
+      "range": {
+        "startLine": 148,
+        "startChar": 13,
+        "endLine": 148,
+        "endChar": 15
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5133a7ee_8052e90a",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 17
@@ -57,6 +81,24 @@
       "revId": "044b09c52a790f166385e82aee436ffa4f139888",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b8351e1_6e0700fc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T09:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1285a409_fb246930",
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +146,30 @@
       "revId": "044b09c52a790f166385e82aee436ffa4f139888",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2f0c26e_13a9c1b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T09:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a249e058_88b9d6ff",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +244,30 @@
     },
     {
       "key": {
+        "uuid": "e7c947df_fc9af8e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T09:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "904990cb_eecd03e6",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0c625d2_c3e6fab0",
         "filename": "docs/api/swagger/ncmp/openapi.yaml",
         "patchSetId": 17
@@ -236,6 +326,30 @@
       "writtenOn": "2022-02-25T08:46:27Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "e99ba96e_48410171",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 23
+      },
+      "revId": "044b09c52a790f166385e82aee436ffa4f139888",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6a83b63_80697df9",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T09:40:39Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "e99ba96e_48410171",
       "range": {
         "startLine": 131,
