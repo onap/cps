@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d270496_971c1a85",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-25T10:40:08Z",
+      "side": 1,
+      "message": "one blank space came due to new line.. happens with me all the time :)",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "42d2eb9dad71ab65392eeb93a871390e901fea82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
