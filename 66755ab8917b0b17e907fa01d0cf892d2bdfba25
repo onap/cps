@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "13c2d32a_65415288",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T11:52:55Z",
+      "side": 1,
+      "message": "Can this be a collection?",
+      "range": {
+        "startLine": 232,
+        "startChar": 14,
+        "endLine": 232,
+        "endChar": 18
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "851017d2_faa37d09",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 26
@@ -187,6 +210,29 @@
       "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e380ba83_e170d446",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-02-25T11:52:55Z",
+      "side": 1,
+      "message": "I think we discussed this on Tuesday, but is this /n for a new line necessary?",
+      "range": {
+        "startLine": 57,
+        "startChar": 83,
+        "endLine": 57,
+        "endChar": 85
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
