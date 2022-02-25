@@ -511,6 +511,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'child data node, parent still exists'  | '/parent-206/child-206'                            | '/parent-206'                                     || '/parent-206'
             'list element'                          | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="A"]' || null
             'list element, sibling still exists'    | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="X"]' || '/parent-206/child-206/grand-child-206[@key="X"]'
+            'container node'                        | '/parent-206'                                      | '/parent-206'                                     || null
+            'container list node'                   | '/parent-206[@key="A"]'                            | '/parent-206[@key="B"]'                           || '/parent-206[@key="B"]'
+            'root node with xpath /'                | '/'                                                | '/'                                               || null
+            'root node with xpath passed as blank'  | ''                                                 | ''                                                || null
+
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

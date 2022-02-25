@@ -329,22 +329,34 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath,
-                                final boolean onlySupportListNodeDeletion) {
-        final String parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
-        final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
-        final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
-        final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE.matcher(lastXpathElement).find();
-        boolean targetExist;
-        if (isListElement) {
-            targetExist = deleteDataNode(parentFragmentEntity, targetXpath);
+        final boolean onlySupportListNodeDeletion) {
+        final String parentNodeXpath;
+        FragmentEntity parentFragmentEntity = null;
+        boolean targetDeleted = false;
+        if (isRootXpath(targetXpath)) {
+            deleteDataNodes(dataspaceName, anchorName);
+            targetDeleted = true;
         } else {
-            targetExist = deleteAllListElements(parentFragmentEntity, targetXpath);
-            final boolean tryToDeleteDataNode = !targetExist && !onlySupportListNodeDeletion;
-            if (tryToDeleteDataNode) {
-                targetExist = deleteDataNode(parentFragmentEntity, targetXpath);
+            if (isContainerNodeXpath(targetXpath)) {
+                parentNodeXpath = targetXpath;
+            } else {
+                parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
+            }
+            parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+            final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
+            final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE
+                .matcher(lastXpathElement).find();
+            if (isListElement) {
+                targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
+            } else {
+                targetDeleted = deleteAllListElements(parentFragmentEntity, targetXpath);
+                final boolean tryToDeleteDataNode = !targetDeleted && !onlySupportListNodeDeletion;
+                if (tryToDeleteDataNode) {
+                    targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
+                }
             }
         }
-        if (!targetExist) {
+        if (!targetDeleted) {
             final String additionalInformation = onlySupportListNodeDeletion
                 ? "The target is probably not a List." : "";
             throw new DataNodeNotFoundException(parentFragmentEntity.getDataspace().getName(),
@@ -353,14 +365,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
-        if (parentFragmentEntity.getChildFragments()
+        if (parentFragmentEntity.getXpath().equals(targetXpath)) {
+            fragmentRepository.delete(parentFragmentEntity);
+            return true;
+        } else if (parentFragmentEntity.getChildFragments()
             .removeIf(fragment -> fragment.getXpath().equals(targetXpath))) {
             fragmentRepository.save(parentFragmentEntity);
             return true;
         }
         return false;
     }
-
 
     private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
         final String deleteTargetXpathPrefix = listXpath + "[";
@@ -384,7 +398,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 "Cannot replace list elements with empty collection");
         }
         final String firstChildNodeXpath = newListElements.iterator().next().getXpath();
-        return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf("[") + 1);
+        return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf('[') + 1);
     }
 
     private FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
@@ -406,6 +420,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static boolean isNewDataNode(final DataNode replacementDataNode,
                                          final Map<String, FragmentEntity> existingListElementsByXpath) {
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
+    }
+
+    private static boolean isContainerNodeXpath(final String xpath) {
+        return 0 == (xpath.lastIndexOf('/'));
     }
 
     private void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
