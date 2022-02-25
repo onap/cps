@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "dcc30ef0_5f5da735",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T16:38:33Z",
+      "side": 1,
+      "message": "as arred in meeting. we do need to delete old version of the schema and schema sets",
+      "parentUuid": "b6c6f1f0_8406ece0",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 159
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3759962d_be2b6ad1",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
         "patchSetId": 11
