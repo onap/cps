@@ -140,6 +140,52 @@
     },
     {
       "key": {
+        "uuid": "0b97baf0_81e5b4ac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:33:59Z",
+      "side": 1,
+      "message": "no year, great solution!",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3e34102_13735b6c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:33:59Z",
+      "side": 1,
+      "message": "if diffent rename liek existing... and new...",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b9795b5_cb696cac",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 26
@@ -179,6 +225,29 @@
         "startChar": 16,
         "endLine": 189,
         "endChar": 43
+      },
+      "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "944d9c7c_56566236",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T09:33:59Z",
+      "side": 1,
+      "message": "in Groovy this can just be result[0].moduleName\n\nresult[0] \u003d\u003d expected...\n\nbut not sure about test mayeb uou need to assrte\n1) new moduelRefere is returned\n2) existing modulerReference are NOT in result",
+      "range": {
+        "startLine": 190,
+        "startChar": 19,
+        "endLine": 190,
+        "endChar": 52
       },
       "revId": "66755ab8917b0b17e907fa01d0cf892d2bdfba25",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
