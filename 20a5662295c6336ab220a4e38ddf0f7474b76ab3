@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e2a8c01_3f4d59e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T12:10:20Z",
+      "side": 1,
+      "message": "a lot of branching did you check cobertura report (in site folder) that all branches are covered?",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 358,
+        "endChar": 9
+      },
+      "revId": "20a5662295c6336ab220a4e38ddf0f7474b76ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63e1ebcf_c91be9a4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T12:10:20Z",
+      "side": 1,
+      "message": "no need for else (return in prev block)\nthis might help with code coverage",
+      "range": {
+        "startLine": 371,
+        "startChar": 9,
+        "endLine": 371,
+        "endChar": 15
+      },
+      "revId": "20a5662295c6336ab220a4e38ddf0f7474b76ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cde110a_264a3aca",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T12:10:20Z",
+      "side": 1,
+      "message": "out brackets redundant (I think)",
+      "range": {
+        "startLine": 426,
+        "startChar": 43,
+        "endLine": 426,
+        "endChar": 44
+      },
+      "revId": "20a5662295c6336ab220a4e38ddf0f7474b76ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b847f0_4ed52200",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T12:10:20Z",
+      "side": 1,
+      "message": "you didn\u0027t go for the create during test approach?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 70
+      },
+      "revId": "20a5662295c6336ab220a4e38ddf0f7474b76ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
