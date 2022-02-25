@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0e9fe18b_87decbbb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-25T16:17:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "987f502a_10437f56",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "05d69b09c8825cf05b5d0a43ce9ca6a78afba1c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "721cc3af_0f4c0947",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 27
