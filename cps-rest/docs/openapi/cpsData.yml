@@ -37,8 +37,8 @@ nodeByDataspaceAndAnchor:
             schema:
               type: object
             examples:
-              dataSampleResponse:
-                $ref: 'components.yml#/components/examples/dataSampleResponse'
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
@@ -68,8 +68,8 @@ listElementByDataspaceAndAnchor:
           schema:
             type: object
           examples:
-            dataSampleRequest:
-              $ref: 'components.yml#/components/examples/dataSampleRequest'
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
@@ -99,8 +99,8 @@ listElementByDataspaceAndAnchor:
           schema:
             type: object
           examples:
-            dataSampleRequest:
-              $ref: 'components.yml#/components/examples/dataSampleRequest'
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
@@ -155,8 +155,8 @@ nodesByDataspaceAndAnchor:
           schema:
             type: object
           examples:
-            dataSampleRequest:
-              $ref: 'components.yml#/components/examples/dataSampleRequest'
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
@@ -188,8 +188,8 @@ nodesByDataspaceAndAnchor:
           schema:
             type: object
           examples:
-            dataSampleRequest:
-              $ref: 'components.yml#/components/examples/dataSampleRequest'
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
@@ -241,8 +241,8 @@ nodesByDataspaceAndAnchor:
           schema:
             type: object
           examples:
-            dataSampleRequest:
-              $ref: 'components.yml#/components/examples/dataSampleRequest'
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'

@@ -37,8 +37,8 @@ nodesByDataspaceAndAnchorAndCpsPath:
             schema:
               type: object
             examples:
-              dataSampleResponse:
-                $ref: 'components.yml#/components/examples/dataSampleResponse'
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
