@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a5fb201_5f066a2f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T11:59:42Z",
+      "side": 1,
+      "message": "as the methodname suggets this is part of teh test setup so belong in teh given: blcok not in teh when:\n\ngiven: \u0027the service throws an exception\u0027\n   def exeception...\n   setupTestException(...)\nwhen: \u0027the HTTP request is made\u0027\n   def response \u003d performTestRequest(NCMPINVENTORY)\n....",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 30
+      },
+      "revId": "b6a686cd13418ad8e9c9b9b4cbe72fc2a49f8d4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
