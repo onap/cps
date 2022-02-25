@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (c) 2021 Bell Canada.
+# Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2022 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,19 +86,9 @@ components:
           example: my-schema-set
 
   examples:
-    dataSampleRequest:
+    dataSample:
       value:
         test:bookstore:
-          bookstore-name: Chapters
-          categories:
-            - code: 01
-              name: SciFi
-            - code: 02
-              name: kids
-
-    dataSampleResponse:
-      summary: The data node returned does not include the root node. This is being investigated as a part of CPS-461
-      value:
           bookstore-name: Chapters
           categories:
             - code: 01
@@ -269,7 +259,7 @@ components:
           schema:
             type: object
           examples:
-            dataSampleResponse:
+            dataSample:
               value: ""
     Created:
       description: Created
