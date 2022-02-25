@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9e59a09d_bff60a64",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-25T14:56:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d98a8726_3cc85247",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8144d44c_d2e4abb5",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "writtenOn": "2022-02-24T17:31:35Z",
       "side": 1,
       "message": "why not?",
+      "range": {
+        "startLine": 45,
+        "startChar": 17,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c85bd17_18221750",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-02-25T14:56:37Z",
+      "side": 1,
+      "message": "The sql changes the null to dummy values. Changeset 11.1 is a fix for data related to changeset 11 so the rollback should go all the way to 11 instead of just 11.1 otherwise may cause errors. Rollback for changeset 11 drops the effected columns in changeset 11.1. I will add description to comment.",
+      "parentUuid": "8144d44c_d2e4abb5",
       "range": {
         "startLine": 45,
         "startChar": 17,
