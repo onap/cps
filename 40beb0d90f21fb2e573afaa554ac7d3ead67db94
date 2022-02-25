@@ -101,6 +101,29 @@
     },
     {
       "key": {
+        "uuid": "0439b780_6d6ba039",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-02-25T04:54:01Z",
+      "side": 1,
+      "message": "Does it work if we have multiple yang resources defined with the same prefix  in the schema-set?\nWhich one does it pick?",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 159
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3759962d_be2b6ad1",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
         "patchSetId": 11
