@@ -46,6 +46,30 @@
       "revId": "10329d571248235d7dca1f022c3c09c17c6b5ba4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0a019f7_c724ae6c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-25T14:48:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c4087bc8_bf09a739",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "10329d571248235d7dca1f022c3c09c17c6b5ba4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
