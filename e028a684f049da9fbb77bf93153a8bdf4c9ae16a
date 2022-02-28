@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "3fbd80d1_6e7a74fe",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-28T10:01:19Z",
+      "side": 1,
+      "message": "II chatted with Aditya, since varion bumping is a command (precisely to prevent tedious stuff) we agreed copyright should not have to be updated for that activity",
+      "parentUuid": "717b0ed4_d25f3e66",
+      "revId": "e028a684f049da9fbb77bf93153a8bdf4c9ae16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb9f62ef_3325f7a5",
         "filename": "cps-application/pom.xml",
         "patchSetId": 1
