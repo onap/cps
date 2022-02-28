@@ -19,7 +19,7 @@ CPS Release Notes
 ..      * * *   JAKARTA   * * *
 ..      ========================
 
-Version: 2.1.0-SNAPSHOT
+Version: 3.0.0-SNAPSHOT
 =======================
 
 This section lists the main changes & fixes merged into master (snapshot) version of CPS-NCMP. This information is here to assist developers that want experiment/test using our latest code bases directly. Stability of this is not guaranteed.

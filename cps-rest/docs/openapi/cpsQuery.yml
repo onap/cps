@@ -1,6 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Nordix Foundation
-#  Copyright (C) 2021-2022 Nordix Foundation
+#  Modifications Copyright (c) 2022 Bell Canada.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -37,8 +37,8 @@ nodesByDataspaceAndAnchorAndCpsPath:
             schema:
               type: object
             examples:
-              dataSampleResponse:
-                $ref: 'components.yml#/components/examples/dataSampleResponse'
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
