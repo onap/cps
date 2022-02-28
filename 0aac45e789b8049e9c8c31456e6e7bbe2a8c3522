@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1b4d89_13a51024",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/RestInputMapperSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-28T12:31:50Z",
+      "side": 1,
+      "message": "NB: Could assert result.createdCmHandles[0] \u003d\u003d someInstanceOfACmHandle rather than individual.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 83
+      },
+      "revId": "0aac45e789b8049e9c8c31456e6e7bbe2a8c3522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61a03c82_9fdcf99d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/PersistenceCmHandlesList.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-02-28T12:31:50Z",
+      "side": 1,
+      "message": "Copyright needs to be updated",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "0aac45e789b8049e9c8c31456e6e7bbe2a8c3522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
