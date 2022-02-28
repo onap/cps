@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0c2ec97_bba09cd6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-02-28T23:44:53Z",
+      "side": 1,
+      "message": "Is it required ?\nLiquibase should be able to have a default Auto rollback for addColumn change type:\nhttps://docs.liquibase.com/change-types/add-column.html",
+      "revId": "5d786c67bdf9fec6dac553bffb8e7005eb4ce0c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
