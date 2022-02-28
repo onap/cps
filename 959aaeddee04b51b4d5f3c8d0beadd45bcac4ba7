@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2c589896_ed2e7ee3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-28T13:55:33Z",
+      "side": 1,
+      "message": "well spotted! no really possible but since this is a public PAI we should protect it. \nAt check on line #45 above to return an empty collection if the input is empty...\n(adn add a unit test for edge case)",
+      "parentUuid": "9d127a13_0809999f",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "959aaeddee04b51b4d5f3c8d0beadd45bcac4ba7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "60e082af_15b09cfa",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 29
