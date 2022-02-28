@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d127a13_0809999f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-28T13:05:36Z",
+      "side": 1,
+      "message": "If there are no moduleReferences then the query formed will be invalid (as for-each section wont be executed)\nIt wont pollute the data as nothing would be inserted [bad query] , just that there will be exceptions related to that.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "959aaeddee04b51b4d5f3c8d0beadd45bcac4ba7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60e082af_15b09cfa",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-02-28T13:05:36Z",
+      "side": 1,
+      "message": "one little space.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 8
+      },
+      "revId": "959aaeddee04b51b4d5f3c8d0beadd45bcac4ba7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
