@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e934fd2a_aa758787",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-02-28T12:30:55Z",
+      "side": 1,
+      "message": "ddi you change this back by accident?",
+      "range": {
+        "startLine": 252,
+        "startChar": 70,
+        "endLine": 252,
+        "endChar": 89
+      },
+      "revId": "b69177a496976354787f95e5dfb4015865e4e3e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
