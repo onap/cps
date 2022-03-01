@@ -90,35 +90,15 @@ class NotificationServiceSpec extends Specification {
             'dataspace name matches filter'        | 'my-dataspace-published' || 1
     }
 
-    def 'Send UPDATE operation when non-root data nodes are changed.'() {
-        given: 'notification is enabled'
-            spyNotificationProperties.isEnabled() >> true
-        and: 'event factory creates event if operation is UPDATE'
-            def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp,
-                    Operation.UPDATE) >> cpsDataUpdatedEvent
-        when: 'dataUpdatedEvent is received for non-root xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/non-root-node',
-                    operation)
-        and: 'wait for async processing to complete'
-            future.get(10, TimeUnit.SECONDS)
-        then: 'async process completed successfully'
-            future.isDone()
-        and: 'notification is sent'
-            1 * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
-        where:
-            operation << [Operation.CREATE, Operation.UPDATE, Operation.DELETE]
-    }
-
-    def 'Send same operation when root nodes are changed.'() {
+    def '#scenario are changed with xpath #xpath and operation #operation'() {
         given: 'notification is enabled'
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory creates event if operation is #operation'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, operation) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for root xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', operation)
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, xpath, operation)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -126,9 +106,20 @@ class NotificationServiceSpec extends Specification {
         and: 'notification is sent'
             1 * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
         where:
-            operation << [Operation.CREATE, Operation.UPDATE, Operation.DELETE]
+            scenario                                   | xpath           | operation            || expectedOperationInEvent
+            'Same event is sent when root nodes'       | ''              | Operation.CREATE     || Operation.CREATE
+            'Same event is sent when root nodes'       | ''              | Operation.UPDATE     || Operation.UPDATE
+            'Same event is sent when root nodes'       | ''              | Operation.DELETE     || Operation.DELETE
+            'Same event is sent when root nodes'       | '/'             | Operation.CREATE     || Operation.CREATE
+            'Same event is sent when root nodes'       | '/'             | Operation.UPDATE     || Operation.UPDATE
+            'Same event is sent when root nodes'       | '/'             | Operation.DELETE     || Operation.DELETE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.CREATE     || Operation.UPDATE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.UPDATE     || Operation.UPDATE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.DELETE     || Operation.UPDATE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.CREATE     || Operation.CREATE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.UPDATE     || Operation.UPDATE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.DELETE     || Operation.DELETE
     }
-
 
     def 'Error handling in notification service.'() {
         given: 'notification is enabled'
@@ -146,5 +137,4 @@ class NotificationServiceSpec extends Specification {
             notThrown Exception
             1 * spyNotificationErrorHandler.onException(_, _, _, '/', Operation.CREATE)
     }
-
 }
