@@ -141,6 +141,30 @@
       "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c25c448_c6b2e830",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-01T16:05:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c85bd17_18221750",
+      "range": {
+        "startLine": 45,
+        "startChar": 17,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
