@@ -45,6 +45,53 @@
       "revId": "f266b306fc1e540c036bbd713b78b5b3f508b9df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92657ddf_899629fb",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-01T17:39:30Z",
+      "side": 1,
+      "message": "I noticed revision 2021-10-20 is deleted as part of change set 9.8\nand 2021-12-13 is deleted as part of 12.1 in changelog 12. I presume this is done so they are deleted when the data for the new ones are added?",
+      "parentUuid": "f9d5b87a_6b2c841d",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 77
+      },
+      "revId": "f266b306fc1e540c036bbd713b78b5b3f508b9df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89be733a_11d773ef",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-add-updated-dmi-registry-schema-set.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-01T17:39:30Z",
+      "side": 1,
+      "message": "Why not delete this as part changeset 12? Similar to how it is done previously when the new file data is loaded in.",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 77
+      },
+      "revId": "f266b306fc1e540c036bbd713b78b5b3f508b9df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
