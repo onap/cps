@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bd243c9_e342a649",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-01T17:12:45Z",
+      "side": 1,
+      "message": "1) is this a fundamental behavior change, I would like to see Renu\u0027s approval for this part...\n\n2) this change would require new test too",
+      "range": {
+        "startLine": 121,
+        "startChar": 36,
+        "endLine": 121,
+        "endChar": 64
+      },
+      "revId": "19bcac6f46b7bd19966e8edd82cc8d9f94ad2188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
