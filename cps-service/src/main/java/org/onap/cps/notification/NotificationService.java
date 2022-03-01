@@ -37,8 +37,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class NotificationService {
 
-    private static final String ROOT_NODE_XPATH = "/";
-
     private NotificationProperties notificationProperties;
     private NotificationPublisher notificationPublisher;
     private CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
@@ -120,7 +118,15 @@ public class NotificationService {
     }
 
     private Operation getRootNodeOperation(final String xpath, final Operation operation) {
-        return ROOT_NODE_XPATH.equals(xpath) ? operation : Operation.UPDATE;
+        return isRootXpath(xpath) || isContainerNodeXpath(xpath) ? operation : Operation.UPDATE;
+    }
+
+    private static boolean isRootXpath(final String xpath) {
+        return "/".equals(xpath) || "".equals(xpath);
+    }
+
+    private static boolean isContainerNodeXpath(final String xpath) {
+        return 0 == xpath.lastIndexOf('/');
     }
 
 }

@@ -98,7 +98,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp,
                     Operation.UPDATE) >> cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for non-root xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/non-root-node',
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/parent/child',
                     operation)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
@@ -110,7 +110,7 @@ class NotificationServiceSpec extends Specification {
             operation << [Operation.CREATE, Operation.UPDATE, Operation.DELETE]
     }
 
-    def 'Send same operation when root nodes are changed.'() {
+    def 'Send same operation when root nodes are changed with xpath #xpath and operation #operation'() {
         given: 'notification is enabled'
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory creates event if operation is #operation'
@@ -118,7 +118,33 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, operation) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for root xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', operation)
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, xpath, operation)
+        and: 'wait for async processing to complete'
+            future.get(10, TimeUnit.SECONDS)
+        then: 'async process completed successfully'
+            future.isDone()
+        and: 'notification is sent'
+            1 * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
+        where:
+            xpath | operation
+            ''    | Operation.CREATE
+            ''    | Operation.UPDATE
+            ''    | Operation.DELETE
+            '/'   | Operation.CREATE
+            '/'   | Operation.UPDATE
+            '/'   | Operation.DELETE
+
+    }
+
+    def 'Send same operation when container nodes are changed.'() {
+        given: 'notification is enabled'
+            spyNotificationProperties.isEnabled() >> true
+        and: 'event factory creates event if operation is #operation'
+            def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, operation) >>
+                    cpsDataUpdatedEvent
+        when: 'dataUpdatedEvent is received for root xpath'
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/parent', operation)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -128,7 +154,6 @@ class NotificationServiceSpec extends Specification {
         where:
             operation << [Operation.CREATE, Operation.UPDATE, Operation.DELETE]
     }
-
 
     def 'Error handling in notification service.'() {
         given: 'notification is enabled'
