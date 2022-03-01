@@ -46,6 +46,30 @@
       "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23bc1f81_fb23920a",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-01T16:03:38Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "7054d49c_b3c11ce2",
+      "range": {
+        "startLine": 170,
+        "startChar": 44,
+        "endLine": 170,
+        "endChar": 46
+      },
+      "revId": "d9a192078c67b59a2184556a0aaf4ad8982bb70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
