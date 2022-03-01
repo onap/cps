@@ -98,7 +98,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp,
                     Operation.UPDATE) >> cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for non-root xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/non-root-node',
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/parent/child',
                     operation)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
