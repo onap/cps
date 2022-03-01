@@ -22,6 +22,30 @@
       "revId": "275b167e9aaa472e2bb81efe9cc83c785c2e365a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12b48729_0042f4be",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-01T17:39:46Z",
+      "side": 1,
+      "message": "Changeset 11 just makes those columns \u0027dummy module\u0027 and a random revision date whereas the python file parses the module_name and revision from the file itself. since the dummy module and random revision are done in 11 it wont effect this and future models because theyll be uploaded in 12 and the changesets are executed sequentially",
+      "parentUuid": "a47696d2_9c9cf0db",
+      "range": {
+        "startLine": 60,
+        "startChar": 83,
+        "endLine": 60,
+        "endChar": 110
+      },
+      "revId": "275b167e9aaa472e2bb81efe9cc83c785c2e365a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
