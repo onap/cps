@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a47696d2_9c9cf0db",
+        "filename": "cps-ri/src/main/resources/yangResourceCsvGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-01T16:23:25Z",
+      "side": 1,
+      "message": "Don\u0027t we already have a change set which adds module name and revision? Will this overwrite the change additions?\n\nIf so, do we need the sql within change set 11.1 as part of 11-add-column-to-yang-resources-table.yaml, or should this be removed?",
+      "range": {
+        "startLine": 60,
+        "startChar": 83,
+        "endLine": 60,
+        "endChar": 110
+      },
+      "revId": "275b167e9aaa472e2bb81efe9cc83c785c2e365a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
