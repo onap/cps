@@ -337,7 +337,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             deleteDataNodes(dataspaceName, anchorName);
             targetDeleted = true;
         } else {
-            if (isContainerNodeXpath(targetXpath)) {
+            if (isRootContainerNodeXpath(targetXpath)) {
                 parentNodeXpath = targetXpath;
             } else {
                 parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
@@ -423,7 +423,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private static boolean isContainerNodeXpath(final String xpath) {
+    private static boolean isRootContainerNodeXpath(final String xpath) {
         return 0 == xpath.lastIndexOf('/');
     }
 
