@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4d91dedd_f7668395",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-01T14:26:02Z",
+      "side": 1,
+      "message": "I agree, this is code I initially committed. I think we can leave out the \u0027WITH 200\u0027 and the sequence will continue from the latest ID, or we could remove this altogether. Would this have to be done as a different changeset, or could we just modify this one as it is the last step here.\n\nThis is also done in file 05-loadData-fragment.yaml, should it be removed/changed here also.",
+      "parentUuid": "ebb3b5f7_0a05a171",
+      "revId": "5d786c67bdf9fec6dac553bffb8e7005eb4ce0c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0c2ec97_bba09cd6",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/11-add-column-to-yang-resources-table.yaml",
         "patchSetId": 2
