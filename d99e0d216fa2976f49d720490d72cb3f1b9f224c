@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d7da6022_c432da29",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-01T15:47:19Z",
+      "side": 1,
+      "message": "NB - Missed whitespace. Can fix this a different time?",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 3
+      },
+      "revId": "d99e0d216fa2976f49d720490d72cb3f1b9f224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "636de22d_88b030d3",
         "filename": "docs/release-notes.rst",
         "patchSetId": 23
