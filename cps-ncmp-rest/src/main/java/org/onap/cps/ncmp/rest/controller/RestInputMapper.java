@@ -40,4 +40,6 @@ public interface RestInputMapper {
     @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
     NcmpServiceCmHandle toNcmpServiceCmHandle(final RestInputCmHandle restInputCmHandle);
 
+    org.onap.cps.ncmp.rest.model.ModuleReference toNcmpModuleReference(
+        final org.onap.cps.spi.model.ModuleReference moduleReference);
 }

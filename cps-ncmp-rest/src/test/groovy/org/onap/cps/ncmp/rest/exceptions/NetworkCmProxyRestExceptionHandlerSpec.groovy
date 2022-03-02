@@ -22,7 +22,6 @@
 package org.onap.cps.ncmp.rest.exceptions
 
 import groovy.json.JsonSlurper
-import org.modelmapper.ModelMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
@@ -56,9 +55,6 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
-
-    @SpringBean
-    ModelMapper modelMapper = Stub()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = Stub()

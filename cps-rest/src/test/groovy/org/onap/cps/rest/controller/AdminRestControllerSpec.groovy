@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
- *  Modifications Copyright (C) 2021 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,17 +22,17 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.rest.model.AnchorDetails
+import org.onap.cps.rest.model.SchemaSetDetails
+
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
-import org.modelmapper.ModelMapper
 import org.onap.cps.api.CpsAdminService
-import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
@@ -59,7 +59,7 @@ class AdminRestControllerSpec extends Specification {
     CpsAdminService mockCpsAdminService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = Spy()
+    RestControllerMapper mockRestControllerMapper = Mock()
 
     @Autowired
     MockMvc mvc
@@ -68,10 +68,9 @@ class AdminRestControllerSpec extends Specification {
     def basePath
 
     def dataspaceName = 'my_dataspace'
-    def anchor = new Anchor(name: 'my_anchor')
-    def anchorList = [anchor]
     def anchorName = 'my_anchor'
     def schemaSetName = 'my_schema_set'
+    def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
 
     def 'Create new dataspace.'() {
         given: 'an endpoint'
@@ -242,8 +241,11 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing schema set.'() {
         given: 'service method returns a new schema set'
-            mockCpsModuleService.getSchemaSet(dataspaceName, schemaSetName) >>
-                    new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName)
+            def schemaSet = new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName)
+            mockCpsModuleService.getSchemaSet(dataspaceName, schemaSetName) >> schemaSet
+        and: 'mapper method returns a new schema set details for schema set'
+            mockRestControllerMapper.toSchemaSetDetails(schemaSet) >>
+                new SchemaSetDetails(dataspaceName: dataspaceName, moduleReferences: [], name: schemaSetName)
         and: 'an endpoint'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'get schema set API is invoked'
@@ -274,7 +276,10 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchor.'() {
         given: 'service method returns a list of anchors'
-            mockCpsAdminService.getAnchors(dataspaceName) >> anchorList
+            mockCpsAdminService.getAnchors(dataspaceName) >> [anchor]
+        and: 'mapper method returns a new anchor details for anchor in list'
+            mockRestControllerMapper.toAnchorDetails(anchor) >>
+                new AnchorDetails(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
@@ -288,6 +293,9 @@ class AdminRestControllerSpec extends Specification {
         given: 'service method returns an anchor'
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
+        and: 'mapper method returns new anchor details for given anchor'
+            mockRestControllerMapper.toAnchorDetails(anchor) >>
+                new AnchorDetails(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
         when: 'get anchor API is invoked'

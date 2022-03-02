@@ -36,7 +36,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.modelmapper.ModelMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -60,7 +59,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = new ModelMapper()
+    RestInputMapper restInputMapper = Mock()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
@@ -156,11 +155,16 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get module references for the given dataspace and cm handle.' () {
         given: 'get module references url'
             def getUrl = "$ncmpBasePathV1/ch/some-cmhandle/modules"
+        and: 'a cps module reference'
+            def cpsModuleReference = new ModuleReference(moduleName: 'some-name1',revision: '2021-10-03')
+        and: 'mapper method returns an ncmpModuleReference for the cpsModuleReference'
+            restInputMapper.toNcmpModuleReference(cpsModuleReference) >>
+                new org.onap.cps.ncmp.rest.model.ModuleReference(moduleName: 'some-name1',revision: '2021-10-03')
         when: 'get module resource request is performed'
             def response =mvc.perform(get(getUrl)).andReturn().response
         then: 'ncmp service method to get yang resource module references is called'
             mockNetworkCmProxyDataService.getYangResourcesModuleReferences('some-cmhandle')
-                    >> [new ModuleReference(moduleName: 'some-name1',revision: '2021-10-03')]
+                    >> [cpsModuleReference]
         and: 'response contains an array with the module name and revision'
             response.getContentAsString() == '[{"moduleName":"some-name1","revision":"2021-10-03"}]'
         and: 'response returns an OK http code'

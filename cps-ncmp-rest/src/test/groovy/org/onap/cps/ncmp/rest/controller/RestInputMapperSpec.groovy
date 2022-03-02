@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle
+import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
 class RestInputMapperSpec extends Specification {
@@ -61,4 +62,15 @@ class RestInputMapperSpec extends Specification {
             assert result.removedCmHandles == []
     }
 
+    def 'Convert a CPS ModuleReference to an NCMP ModuleReference'() {
+        given: 'a CPS ModuleReference'
+            def cpsModuleReference = new ModuleReference(moduleName: 'some-module', revision: 'some-revision')
+        when: 'toNCMPModuleReference is called'
+            def result = objectUnderTest.toNcmpModuleReference(cpsModuleReference)
+        then: 'the result is of the correct ModuleReference'
+            result.class == org.onap.cps.ncmp.rest.model.ModuleReference.class
+        and: 'the properties of the result are the same as the CPS ModuleReference'
+            result.moduleName == cpsModuleReference.moduleName
+            result.revision ==  cpsModuleReference.revision
+    }
 }

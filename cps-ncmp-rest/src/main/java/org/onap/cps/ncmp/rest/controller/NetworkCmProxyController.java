@@ -37,7 +37,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
@@ -65,9 +64,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final String NO_BODY = null;
 
-    private final ModelMapper modelMapper;
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final RestInputMapper restInputMapper;
 
     /**
      * Get resource data from operational datastore.
@@ -210,7 +209,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<List<ModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
         final List<ModuleReference> moduleReferences =
             networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle).stream()
-            .map(moduleReference -> modelMapper.map(moduleReference, ModuleReference.class))
+            .map(restInputMapper::toNcmpModuleReference)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(moduleReferences, HttpStatus.OK);
     }
