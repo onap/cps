@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020 Nordix Foundation.
+ * Copyright (C) 2020-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
@@ -147,20 +147,24 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     private void validateDataspaceAndModuleNames(final String dataspaceName,
         final Collection<String> inputModuleNames) {
-        final Collection<String> retrievedModuleNames =
-            yangResourceRepository.findAllModuleReferences(dataspaceName, inputModuleNames)
+        final Collection<String> retrievedModuleReferences =
+            yangResourceRepository.findAllModuleReferencesByDataspaceAndModuleNames(dataspaceName, inputModuleNames)
                 .stream().map(YangResourceModuleReference::getModuleName)
                 .collect(Collectors.toList());
-        if (retrievedModuleNames.isEmpty()) {
-            dataspaceRepository.getByName(dataspaceName);
+        if (retrievedModuleReferences.isEmpty()) {
+            verifyDataspaceName(dataspaceName);
         }
-        if (inputModuleNames.size() > retrievedModuleNames.size()) {
+        if (inputModuleNames.size() > retrievedModuleReferences.size()) {
             final List<String> moduleNamesNotFound = inputModuleNames.stream()
-                .filter(moduleName -> !retrievedModuleNames.contains(moduleName))
+                .filter(moduleName -> !retrievedModuleReferences.contains(moduleName))
                 .collect(Collectors.toList());
             if (!moduleNamesNotFound.isEmpty()) {
                 throw new ModuleNamesNotFoundException(dataspaceName, moduleNamesNotFound);
             }
         }
+    }
+
+    private void verifyDataspaceName(final String dataspaceName) {
+        dataspaceRepository.getByName(dataspaceName);
     }
 }
