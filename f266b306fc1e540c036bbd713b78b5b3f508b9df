@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e488a6d9_2c6e0fb4",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:38:22Z",
+      "side": 1,
+      "message": "I don\u0027t think so, I think standard liquibase procedure is to always keep going forward.\n\nhttps://www.liquibase.com/blog/dealing-with-changing-changesets",
+      "parentUuid": "c7fe4b1a_8b0269b9",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 50
+      },
+      "revId": "f266b306fc1e540c036bbd713b78b5b3f508b9df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9d5b87a_6b2c841d",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 13
