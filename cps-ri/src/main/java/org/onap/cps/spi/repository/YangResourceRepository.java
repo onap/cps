@@ -49,7 +49,7 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
         + "WHERE\n"
         + "dataspace.name = :dataspaceName", nativeQuery = true)
-    Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName);
+    Set<YangResourceModuleReference> findAllModuleRefByDataspace(@Param("dataspaceName") String dataspaceName);
 
     @Query(value = "SELECT DISTINCT\n"
         + "yang_resource.module_Name AS module_name,\n"
@@ -64,7 +64,7 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "WHERE\n"
         + "dataspace.name = :dataspaceName AND\n"
         + "anchor.name =:anchorName", nativeQuery = true)
-    Set<YangResourceModuleReference> findAllModuleReferences(
+    Set<YangResourceModuleReference> findAllModuleRefByDataspaceAndAnchor(
         @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
 
     @Query(value = "SELECT DISTINCT\n"
@@ -77,8 +77,8 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
         + "WHERE\n"
         + "dataspace.name = :dataspaceName and yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
-    Set<YangResourceModuleReference> findAllModuleReferences(@Param("dataspaceName") String dataspaceName,
-        @Param("moduleNames") Collection<String> moduleNames);
+    Set<YangResourceModuleReference> findAllModuleRefByDataspaceAndModuleNames(
+            @Param("dataspaceName") String dataspaceName, @Param("moduleNames") Collection<String> moduleNames);
 
 
     @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
