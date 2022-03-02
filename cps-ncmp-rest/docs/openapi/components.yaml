@@ -135,7 +135,7 @@ components:
           type: string
           example: my-cm-handle-id
 
-    ModuleReference:
+    RestModuleReference:
       type: object
       title: Module reference details
       properties:
