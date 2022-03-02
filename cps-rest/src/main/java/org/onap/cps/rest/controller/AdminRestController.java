@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import org.modelmapper.ModelMapper;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
@@ -56,7 +55,7 @@ public class AdminRestController implements CpsAdminApi {
     private CpsModuleService cpsModuleService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private CpsRestInputMapper cpsRestInputMapper;
 
     /**
      * Create a dataspace.
@@ -107,7 +106,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<SchemaSetDetails> getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
-        final var schemaSetDetails = modelMapper.map(schemaSet, SchemaSetDetails.class);
+        final var schemaSetDetails = cpsRestInputMapper.toSchemaSetDetails(schemaSet);
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
     }
 
@@ -162,7 +161,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<AnchorDetails> getAnchor(final String dataspaceName, final String anchorName) {
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final var anchorDetails = modelMapper.map(anchor, AnchorDetails.class);
+        final var anchorDetails = cpsRestInputMapper.toAnchorDetails(anchor);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
@@ -175,8 +174,8 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String dataspaceName) {
         final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(anchor ->
-            modelMapper.map(anchor, AnchorDetails.class)).collect(Collectors.toList());
+        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
+            .collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 }

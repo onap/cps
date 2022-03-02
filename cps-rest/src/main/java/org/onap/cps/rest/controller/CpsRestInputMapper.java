@@ -18,26 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller;
+package org.onap.cps.rest.controller;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
-import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
+import org.onap.cps.rest.model.AnchorDetails;
+import org.onap.cps.rest.model.SchemaSetDetails;
+import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.SchemaSet;
 
 @Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
-public interface RestInputMapper {
+public interface CpsRestInputMapper {
 
-    DmiPluginRegistration toDmiPluginRegistration(final RestDmiPluginRegistration restDmiPluginRegistration);
+    @Mapping(source = "extendedModuleReferences", target = "moduleReferences")
+    SchemaSetDetails toSchemaSetDetails(final SchemaSet schemaSet);
 
-    @Mapping(source = "cmHandle", target = "cmHandleID")
-    @Mapping(source = "cmHandleProperties", target = "dmiProperties")
-    @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
-    NcmpServiceCmHandle toNcmpServiceCmHandle(final RestInputCmHandle restInputCmHandle);
+    AnchorDetails toAnchorDetails(final Anchor anchor);
 
 }
