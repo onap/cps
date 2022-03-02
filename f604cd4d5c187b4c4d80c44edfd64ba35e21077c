@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "65f31f75_92104462",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T10:42:24Z",
+      "side": 1,
+      "message": "as per my understanding we had agreed to get this removed",
+      "range": {
+        "startLine": 104,
+        "startChar": 75,
+        "endLine": 104,
+        "endChar": 82
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e4757d0_2d689dd2",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
@@ -416,6 +439,29 @@
     },
     {
       "key": {
+        "uuid": "d0cd5ebd_c836ad7a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T10:42:24Z",
+      "side": 1,
+      "message": "duplicate piece of code\nAlso can be better readable in conventional if else loop",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 63
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62c87bf4_cf83916e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -496,6 +542,24 @@
       "writtenOn": "2022-03-02T10:29:12Z",
       "side": 1,
       "message": "Is it necessary to have this entire class just to set the REQUEST_ID?\n\nCan we not just return it directly?",
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9ebeb1_dc409e16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiResponse.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T10:42:24Z",
+      "side": 1,
+      "message": "same query",
+      "parentUuid": "c0cd535e_a964ab05",
       "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
