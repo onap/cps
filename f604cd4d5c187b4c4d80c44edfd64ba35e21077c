@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "431d16a5_d4ff5d03",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "as suggetse before I prefr NOT have to use variables for this and since you changed the assert to use .contains we can inline string literal below \u0027DataNode not found\u0027",
+      "range": {
+        "startLine": 84,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 53
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14a67bf1_5bafec17",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "use string literal \u0027DataNode not found\u0027",
+      "range": {
+        "startLine": 106,
+        "startChar": 104,
+        "endLine": 106,
+        "endChar": 127
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "430fa629_833e2ad8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "se string literal \u0027DataNode not found\u0027",
+      "range": {
+        "startLine": 106,
+        "startChar": 130,
+        "endLine": 106,
+        "endChar": 153
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce4bcab4_07d9cd3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "like above",
+      "range": {
+        "startLine": 138,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 63
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aba6f6a_f2f96110",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "why did you not move these to utility class?",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 167,
+        "endChar": 5
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea49c9b_7b736b13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T09:46:24Z",
+      "side": 1,
+      "message": "did we agree to add a new test WITH requestId and topic?",
+      "range": {
+        "startLine": 75,
+        "startChar": 136,
+        "endLine": 75,
+        "endChar": 161
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
