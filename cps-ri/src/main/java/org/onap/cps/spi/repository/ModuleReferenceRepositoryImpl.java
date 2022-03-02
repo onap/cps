@@ -45,11 +45,11 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         final Collection<ModuleReference> moduleReferencesToCheck) {
 
         if (moduleReferencesToCheck == null || moduleReferencesToCheck.isEmpty()) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
 
         final String tempTableName = "moduleReferencesToCheckTemp"
-            + UUID.randomUUID().toString().replaceAll("-", "");
+            + UUID.randomUUID().toString().replace("-", "");
 
         createTemporaryTable(tempTableName);
         insertDataIntoTable(tempTableName, moduleReferencesToCheck);
