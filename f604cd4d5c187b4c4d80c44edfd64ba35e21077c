@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c9a1257b_68549d11",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-02T09:59:07Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 76,
+        "startChar": 32,
+        "endLine": 77,
+        "endChar": 4
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "431d16a5_d4ff5d03",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 11
@@ -71,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "9dafba58_375286c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-02T09:59:07Z",
+      "side": 1,
+      "message": "I think this is a lot of logic for a ternary operator. Should it be an if else instead?",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 129,
+        "endChar": 63
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce4bcab4_07d9cd3b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -82,6 +128,29 @@
       "writtenOn": "2022-03-02T09:46:24Z",
       "side": 1,
       "message": "like above",
+      "range": {
+        "startLine": 138,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 63
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a6ad20e_01988883",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-02T09:59:07Z",
+      "side": 1,
+      "message": "Same as above, could even be extracted into a separate private method since there is a lot of repetition",
       "range": {
         "startLine": 138,
         "startChar": 15,
@@ -117,6 +186,29 @@
     },
     {
       "key": {
+        "uuid": "f3b34aea_ae610023",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-02T09:59:07Z",
+      "side": 1,
+      "message": "extra tabbing, non blocking just harder to see whats being changed",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 109,
+        "endChar": 20
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bea49c9b_7b736b13",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
         "patchSetId": 11
@@ -133,6 +225,29 @@
         "startChar": 136,
         "endLine": 75,
         "endChar": 161
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e63c92_97622572",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-02T09:59:07Z",
+      "side": 1,
+      "message": "spaces around +",
+      "range": {
+        "startLine": 90,
+        "startChar": 46,
+        "endLine": 90,
+        "endChar": 50
       },
       "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
