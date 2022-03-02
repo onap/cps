@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3f1a6039_aec01476",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-02T11:40:00Z",
+      "side": 1,
+      "message": "hence my call for  a meeting with Bruno and walkthrough",
+      "parentUuid": "e488a6d9_2c6e0fb4",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 50
+      },
+      "revId": "f266b306fc1e540c036bbd713b78b5b3f508b9df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9d5b87a_6b2c841d",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/09-loadData-dmi-registry-schema-set.yaml",
         "patchSetId": 13
