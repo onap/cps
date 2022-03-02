@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0d4c2389_32c6b4ea",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T09:47:45Z",
+      "side": 1,
+      "message": "I agree.. In swagger UI this example is shown as {  \"topic\": \"(topic\u003dmy-topic-name)\"}\nThe below should suffice :\ntopic: my-topic-name",
+      "parentUuid": "fb8b3247_7e15b71c",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 40
+      },
+      "revId": "5b42983c5c1b49e1ee821fc39fc7e97fb6fb917b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54c4d196_44074c56",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 8
