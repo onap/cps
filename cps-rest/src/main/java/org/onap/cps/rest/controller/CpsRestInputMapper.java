@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,16 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.config
+package org.onap.cps.rest.controller;
 
-import org.modelmapper.ModelMapper
-import spock.lang.Specification
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.onap.cps.rest.model.AnchorDetails;
+import org.onap.cps.rest.model.SchemaSetDetails;
+import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.SchemaSet;
 
-class CpsConfigSpec extends Specification {
-    def objectUnderTest = new CpsConfig()
+@Mapper(componentModel = "spring")
+public interface CpsRestInputMapper {
 
-    def 'CPS configuration has a Model Mapper'() {
-        expect: 'the CPS configuration has a Model Mapper'
-            objectUnderTest.modelMapper() instanceof ModelMapper
-    }
+    @Mapping(source = "extendedModuleReferences", target = "moduleReferences")
+    SchemaSetDetails toSchemaSetDetails(final SchemaSet schemaSet);
+
+    AnchorDetails toAnchorDetails(final Anchor anchor);
+
 }
