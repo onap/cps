@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "0334d9cb_e4861186",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Why did we remove the /.\n\nWas it just unnecessary?",
+      "range": {
+        "startLine": 138,
+        "startChar": 19,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e4757d0_2d689dd2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "This is only used once below. I think we can just pass null in directly.",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 16
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb42f83_7a996255",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Spacing on these can go back one indent.",
+      "range": {
+        "startLine": 80,
+        "startChar": 20,
+        "endLine": 80,
+        "endChar": 28
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec381c14_2206ad6e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Spacing here too, but this seems to be legacy issue.",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 28
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9a1257b_68549d11",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 11
@@ -16,6 +108,29 @@
       "range": {
         "startLine": 76,
         "startChar": 32,
+        "endLine": 77,
+        "endChar": 4
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e89941b_c29b58f8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "White spacing(I\u0027m very bad for not catching these normally! :) )",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
         "endLine": 77,
         "endChar": 4
       },
@@ -94,6 +209,98 @@
     },
     {
       "key": {
+        "uuid": "204db81e_81ab9eb9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "There\u0027s a test here for data node not found, but it isn\u0027t defined in the exception handler class as part of this commit.\n\nWas this done as part of a separate commit because surely this would cause the test to fail?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 164
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e79d5ae_05a7163c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "We have a separate class for constants now, I feel like these should be extracted into that.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 87
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0a87dd2_ce201c39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "DMI_EXCEPTION_MESSAGE",
+      "range": {
+        "startLine": 92,
+        "startChar": 32,
+        "endLine": 92,
+        "endChar": 51
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48cd10b7_b186280d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Should generated strings be defined as constants?",
+      "range": {
+        "startLine": 94,
+        "startChar": 31,
+        "endLine": 94,
+        "endChar": 73
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9dafba58_375286c3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 11
@@ -110,6 +317,52 @@
         "startChar": 15,
         "endLine": 129,
         "endChar": 63
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd28a42f_04c27448",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "I think a standard if else statement here would probably be more readable.",
+      "range": {
+        "startLine": 127,
+        "startChar": 18,
+        "endLine": 129,
+        "endChar": 61
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "815517ad_5696b026",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "PASSTHROUGH_RUNNING?",
+      "range": {
+        "startLine": 141,
+        "startChar": 60,
+        "endLine": 141,
+        "endChar": 83
       },
       "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -163,6 +416,29 @@
     },
     {
       "key": {
+        "uuid": "62c87bf4_cf83916e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "If request id is a constant why are we not passing the constants directly in here?",
+      "range": {
+        "startLine": 286,
+        "startChar": 33,
+        "endLine": 286,
+        "endChar": 42
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7aba6f6a_f2f96110",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 11
@@ -180,6 +456,46 @@
         "endLine": 167,
         "endChar": 5
       },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30fe0cdd_87aff679",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperations.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Legacy code - May be final.",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0cd535e_a964ab05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiResponse.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T10:29:12Z",
+      "side": 1,
+      "message": "Is it necessary to have this entire class just to set the REQUEST_ID?\n\nCan we not just return it directly?",
       "revId": "f604cd4d5c187b4c4d80c44edfd64ba35e21077c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
