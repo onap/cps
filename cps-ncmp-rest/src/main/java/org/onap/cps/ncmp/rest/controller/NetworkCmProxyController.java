@@ -37,7 +37,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
@@ -49,7 +48,7 @@ import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
-import org.onap.cps.ncmp.rest.model.ModuleReference;
+import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -65,9 +64,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final String NO_BODY = null;
 
-    private final ModelMapper modelMapper;
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final NcmpRestInputMapper ncmpRestInputMapper;
 
     /**
      * Get resource data from operational datastore.
@@ -207,12 +206,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param cmHandle the cm handle
      * @return module references for cm handle. Namespace will be always blank because restConf does not include this.
      */
-    public ResponseEntity<List<ModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
-        final List<ModuleReference> moduleReferences =
+    public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
+        final List<RestModuleReference> restModuleReferences =
             networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle).stream()
-            .map(moduleReference -> modelMapper.map(moduleReference, ModuleReference.class))
+            .map(ncmpRestInputMapper::toRestModuleReference)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(moduleReferences, HttpStatus.OK);
+        return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
     }
 
     private Collection<String> processConditions(final List<ConditionProperties> conditionProperties) {
