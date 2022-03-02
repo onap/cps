@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d999924d_f139d5f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-02T12:10:24Z",
+      "side": 1,
+      "message": "I\u0027d probably rename these scenarios as to avoid duplication.\n\nMaybe \u0027Created event is expected when root node is used with created operation\u0027\n\u0027UPDATE event is expected when non root node is used with created operation\u0027 etc",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 115
+      },
+      "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
