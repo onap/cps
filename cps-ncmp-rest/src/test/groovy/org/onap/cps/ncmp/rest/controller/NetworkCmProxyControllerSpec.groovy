@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.rest.controller
 
 
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.springframework.context.annotation.ComponentScan
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -36,7 +37,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.modelmapper.ModelMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -51,6 +51,7 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
 @WebMvcTest(NetworkCmProxyController)
+@ComponentScan("org.onap.cps.ncmp.rest.controller")
 class NetworkCmProxyControllerSpec extends Specification {
 
     @Autowired
@@ -58,9 +59,6 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @SpringBean
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
-
-    @SpringBean
-    ModelMapper modelMapper = new ModelMapper()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())

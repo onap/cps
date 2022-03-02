@@ -49,7 +49,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
-    RestInputMapper restInputMapper = Mock()
+    NcmpRestInputMapper ncmpRestInputMapper = Mock()
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
@@ -64,7 +64,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the expected rest input as an object'
             def expectedRestDmiPluginRegistration = jsonObjectMapper.convertJsonString(jsonData, RestDmiPluginRegistration)
         and: 'the converter returns a dmi registration (only for the expected input object)'
-            restInputMapper.toDmiPluginRegistration(expectedRestDmiPluginRegistration) >> mockDmiPluginRegistration
+            ncmpRestInputMapper.toDmiPluginRegistration(expectedRestDmiPluginRegistration) >> mockDmiPluginRegistration
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")

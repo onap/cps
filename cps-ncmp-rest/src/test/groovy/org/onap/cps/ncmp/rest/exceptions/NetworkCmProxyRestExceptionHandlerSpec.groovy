@@ -22,12 +22,11 @@
 package org.onap.cps.ncmp.rest.exceptions
 
 import groovy.json.JsonSlurper
-import org.modelmapper.ModelMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
-import org.onap.cps.ncmp.rest.controller.RestInputMapper
+import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -58,13 +57,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = Stub()
-
-    @SpringBean
     JsonObjectMapper jsonObjectMapper = Stub()
 
     @SpringBean
-    RestInputMapper restInputMapper = Mock()
+    NcmpRestInputMapper restInputMapper = Mock()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp

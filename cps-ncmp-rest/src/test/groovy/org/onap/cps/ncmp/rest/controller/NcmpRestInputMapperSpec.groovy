@@ -23,11 +23,13 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle
+import org.onap.cps.ncmp.rest.model.RestModuleReference
+import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
-class RestInputMapperSpec extends Specification {
+class NcmpRestInputMapperSpec extends Specification {
 
-    def objectUnderTest = Mappers.getMapper(RestInputMapper.class)
+    def objectUnderTest = Mappers.getMapper(NcmpRestInputMapper.class)
 
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
@@ -61,4 +63,12 @@ class RestInputMapperSpec extends Specification {
             assert result.removedCmHandles == []
     }
 
+    def 'Convert a ModuleReference to a RestModuleReference'() {
+        given: 'a ModuleReference'
+            def moduleReference = new ModuleReference(moduleName: 'some-module', revision: 'some-revision')
+        when: 'toRestModuleReference is called'
+            def result = objectUnderTest.toRestModuleReference(moduleReference)
+        then: 'the result is of the correct class RestModuleReference'
+            result.class == RestModuleReference.class
+    }
 }

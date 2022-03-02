@@ -224,7 +224,7 @@ fetchModuleReferencesByCmHandle:
             schema:
               type: array
               items:
-                $ref: 'components.yaml#/components/schemas/ModuleReference'
+                $ref: 'components.yaml#/components/schemas/RestModuleReference'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
