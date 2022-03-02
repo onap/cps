@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "210e0f62_269640fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T15:57:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea197ea6_cdb60c8a",
+      "range": {
+        "startLine": 100,
+        "startChar": 48,
+        "endLine": 100,
+        "endChar": 58
+      },
+      "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b147969a_322927fb",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 4
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3e7eb44f_4e4ae801",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T15:57:13Z",
+      "side": 1,
+      "message": "As discussed, the order is changed",
+      "parentUuid": "550071f1_0834c2c9",
+      "range": {
+        "startLine": 119,
+        "startChar": 58,
+        "endLine": 119,
+        "endChar": 65
+      },
+      "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d999924d_f139d5f8",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 4
@@ -139,6 +187,30 @@
       "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466f0a1c_55ca2c24",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T15:57:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7f015f8e_faf882d2",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 115
+      },
+      "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
