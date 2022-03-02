@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "82cf7825_724faf17",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-02T15:56:15Z",
+      "side": 1,
+      "message": "NotificationService does not have a check for listElement and treats all as same. Hence ths check is not required here.\nIt is included in CpsDataPersistenceServiceImplSpec",
+      "parentUuid": "b147969a_322927fb",
+      "range": {
+        "startLine": 109,
+        "startChar": 57,
+        "endLine": 109,
+        "endChar": 63
+      },
+      "revId": "894df00eafb1cd010c5e5c335161fbb6071573f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "550071f1_0834c2c9",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 4
