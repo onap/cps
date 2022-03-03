@@ -38,7 +38,7 @@ import spock.lang.Shared
 class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
 
     @Shared
-    def newModuleReferences = [new ModuleReference('mod1','A'), new ModuleReference('mod2','X')]
+    def newModuleReferences = [new ModuleReference('mod1','A','namespace'), new ModuleReference('mod2','X','namespace')]
 
     @Autowired
     DmiModelOperations objectUnderTest

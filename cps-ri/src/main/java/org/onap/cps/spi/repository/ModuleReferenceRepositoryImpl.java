@@ -99,7 +99,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
         final List<ModuleReference> resultsAsModuleReferences = new ArrayList<>(resultsAsObjects.size());
         for (final Object[] row : resultsAsObjects) {
-            resultsAsModuleReferences.add(new ModuleReference((String) row[0], (String) row[1]));
+            resultsAsModuleReferences.add(new ModuleReference((String) row[0], (String) row[1], ""));
         }
 
         return resultsAsModuleReferences;

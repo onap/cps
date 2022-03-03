@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
-import org.onap.cps.spi.model.ExtendedModuleReference;
+import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -88,15 +88,15 @@ public final class YangTextSchemaSourceSetBuilder {
         }
 
         @Override
-        public List<ExtendedModuleReference> getModuleReferences() {
+        public List<ModuleReference> getModuleReferences() {
             return schemaContext.getModules().stream()
                 .map(YangTextSchemaSourceSetImpl::toModuleReference)
                 .collect(Collectors.toList());
         }
 
-        private static ExtendedModuleReference toModuleReference(final Module module) {
-            return ExtendedModuleReference.builder()
-                .name(module.getName())
+        private static ModuleReference toModuleReference(final Module module) {
+            return ModuleReference.builder()
+                .moduleName(module.getName())
                 .namespace(module.getQNameModule().getNamespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();

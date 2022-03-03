@@ -35,5 +35,5 @@ public class SchemaSet implements Serializable {
     private static final long serialVersionUID = 1464791260718603291L;
     private String name;
     private String dataspaceName;
-    private List<ExtendedModuleReference> extendedModuleReferences;
+    private List<ModuleReference> moduleReferences;
 }

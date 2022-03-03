@@ -27,9 +27,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
-import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -68,8 +66,8 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     static final String NEW_RESOURCE_CHECKSUM = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
     static final String NEW_RESOURCE_MODULE_NAME = 'stores'
     static final String NEW_RESOURCE_REVISION = '2020-09-15'
-    static final ExtendedModuleReference newModuleReference = ExtendedModuleReference.builder().name(NEW_RESOURCE_MODULE_NAME)
-            .revision(NEW_RESOURCE_REVISION).build()
+    static final ModuleReference newModuleReference = ModuleReference.builder().moduleName(NEW_RESOURCE_MODULE_NAME)
+            .revision(NEW_RESOURCE_REVISION).namespace("").build()
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]
 
@@ -104,7 +102,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     def 'Store and retrieve new schema set from new modules and existing modules.'() {
         given: 'map of new modules, a list of existing modules, module reference'
             def mapOfNewModules = [newModule1: 'module newmodule { yang-version 1.1; revision "2021-10-12" { } }']
-            def moduleReferenceForExistingModule = new ModuleReference("test","2021-10-12")
+            def moduleReferenceForExistingModule = new ModuleReference("test","2021-10-12","")
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
             def mapOfExistingModule = [test: 'module test { yang-version 1.1; revision "2021-10-12" { } }']
             objectUnderTest.storeSchemaSet(DATASPACE_NAME, "someSchemaSetName", mapOfExistingModule)
@@ -246,9 +244,9 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     def toModuleReference(moduleReferenceAsMap) {
         def moduleReferences = [].withDefault { [:] }
         moduleReferenceAsMap.forEach(property ->
-            property.forEach((moduleName, revision) -> {
-                moduleReferences.add(new ModuleReference('moduleName' : moduleName, 'revision' : revision))
-            }))
+                property.forEach((moduleName, revision) -> {
+                    moduleReferences.add(new ModuleReference('moduleName': moduleName, 'revision': revision, 'namespace': ''))
+                }))
         return moduleReferences
     }
 

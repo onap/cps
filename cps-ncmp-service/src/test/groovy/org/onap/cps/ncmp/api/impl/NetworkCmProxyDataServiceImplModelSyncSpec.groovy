@@ -60,7 +60,7 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
+            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1',null)]) >> yangResourceToContentMap
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncModulesAndCreateAnchor(yangModelCmHandle)
