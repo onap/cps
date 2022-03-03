@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "aa60d5a0_21469a5f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-03T10:55:24Z",
+      "side": 1,
+      "message": "Could use NO_TOPIC definition here",
+      "range": {
+        "startLine": 116,
+        "startChar": 91,
+        "endLine": 116,
+        "endChar": 95
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf52dea5_0b605211",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 15
@@ -133,6 +156,75 @@
         "startChar": 4,
         "endLine": 84,
         "endChar": 61
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5ff99c_c04e5f1a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-03T10:55:24Z",
+      "side": 1,
+      "message": "use passthroughOperational definition here",
+      "range": {
+        "startLine": 84,
+        "startChar": 165,
+        "endLine": 84,
+        "endChar": 190
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e68d8a2d_79cf461a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-03T10:55:24Z",
+      "side": 1,
+      "message": "expectedJsonWithDmiProp definition too",
+      "range": {
+        "startLine": 84,
+        "startChar": 102,
+        "endLine": 84,
+        "endChar": 161
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93a5cb2a_b6245894",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-03T10:55:24Z",
+      "side": 1,
+      "message": "Because we use the same value everytime here, we can just pass this in as a literal string, and remove this column",
+      "range": {
+        "startLine": 68,
+        "startChar": 67,
+        "endLine": 68,
+        "endChar": 87
       },
       "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
