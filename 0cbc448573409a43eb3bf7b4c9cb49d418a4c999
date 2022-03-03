@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0c75cbf_fb26f75e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T15:28:03Z",
+      "side": 1,
+      "message": "NB: not sure what the convention for these labels is, should they be unique? or should the deliberately be generic?\nI would like if the mention the version of the module they are deleting...",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 39
+      },
+      "revId": "0cbc448573409a43eb3bf7b4c9cb49d418a4c999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "1476c2b5_6cc93b78",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T15:28:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ef4f2303_5fb699fd",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8e7663b_68c1d78c",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
         "patchSetId": 14
