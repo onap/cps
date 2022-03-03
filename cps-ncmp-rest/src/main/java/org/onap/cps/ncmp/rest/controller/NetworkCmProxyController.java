@@ -205,7 +205,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Return module references for a cm handle.
      *
      * @param cmHandle the cm handle
-     * @return module references for cm handle
+     * @return module references for cm handle. Namespace will be always blank because restConf does not include this.
      */
     public ResponseEntity<List<ModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
         final List<ModuleReference> moduleReferences =
