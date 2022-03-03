@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c65948ab_7c19adcf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "NB: it is a big commit would be could to list a few keypoint here",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c76f7fd_4da49b8d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "see previous comments (patch #8) (aslo form Aditya has given feedback)",
+      "range": {
+        "startLine": 340,
+        "startChar": 5,
+        "endLine": 343,
+        "endChar": 40
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb253b9e_a7df43a0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "why did signature change, this is not used, is it an (optional?) framework change?!",
+      "range": {
+        "startLine": 76,
+        "startChar": 66,
+        "endLine": 76,
+        "endChar": 98
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf52dea5_0b605211",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "name is misleading but I think variable is not needed anyway and this avoid naming-difficulties, just use string literal as I suggested before",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7699072a_e94c5964",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "these are useful constantst but not sure if they belong in the DMiRegistry specific files. \nI think NO_TOPIC can be on the public interface itself",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23e32247_543c7985",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T10:14:49Z",
+      "side": 1,
+      "message": "why all these constants now?! In general I don\u0027t agree with the (very old anit-)pattern of introducing constants for each String literal. \nOnly if the string literal need further clarification or is likely to change \n\nin any case not all of these constants are related to DmiRegistry!!!",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
