@@ -137,6 +137,30 @@
     },
     {
       "key": {
+        "uuid": "c2697201_4e969f87",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-03T13:14:41Z",
+      "side": 1,
+      "message": "It would be good to have the logic to identify if it is a rootXPath at the beginning of processing. And within our code, we can have just one definition of rootXPath. It will make code readable and also avoid issues if we forgot that rootXpath can be defined in three ways :) \n\nIt looks like a tech-debt.",
+      "parentUuid": "f283a12a_da9e82fe",
+      "range": {
+        "startLine": 125,
+        "startChar": 36,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8c548ab_9e219bff",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
