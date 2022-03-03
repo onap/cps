@@ -100,9 +100,11 @@ public interface CpsModulePersistenceService {
 
     /**
      * Identify new module references from those returned by a node compared to what is in CPS already.
+     * The system will ignore the namespace of all module references.
      *
      * @param moduleReferencesToCheck the module references ot check
-     * @returns Collection of {@link ModuleReference} of previously unknown module references
+     * @returns Collection of {@link ModuleReference} (namespace will be always blank)
+     *
      */
     Collection<ModuleReference> identifyNewModuleReferences(
         Collection<ModuleReference> moduleReferencesToCheck);

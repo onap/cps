@@ -1,12 +1,14 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +37,7 @@ import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
-import org.onap.cps.spi.model.ExtendedModuleReference;
+import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -88,15 +90,15 @@ public final class YangTextSchemaSourceSetBuilder {
         }
 
         @Override
-        public List<ExtendedModuleReference> getModuleReferences() {
+        public List<ModuleReference> getModuleReferences() {
             return schemaContext.getModules().stream()
                 .map(YangTextSchemaSourceSetImpl::toModuleReference)
                 .collect(Collectors.toList());
         }
 
-        private static ExtendedModuleReference toModuleReference(final Module module) {
-            return ExtendedModuleReference.builder()
-                .name(module.getName())
+        private static ModuleReference toModuleReference(final Module module) {
+            return ModuleReference.builder()
+                .moduleName(module.getName())
                 .namespace(module.getQNameModule().getNamespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();
