@@ -68,7 +68,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
-            .extendedModuleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+            .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
     }
 
     @Override

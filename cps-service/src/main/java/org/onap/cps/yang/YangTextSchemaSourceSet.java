@@ -20,8 +20,7 @@
 package org.onap.cps.yang;
 
 import java.util.List;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.onap.cps.spi.model.ExtendedModuleReference;
+import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /**
@@ -34,13 +33,11 @@ public interface YangTextSchemaSourceSet {
      *
      * @return list of ModuleRef
      */
-    @NonNull
-    List<ExtendedModuleReference> getModuleReferences();
+    List<ModuleReference> getModuleReferences();
 
     /**
      *  Return SchemaContext for given YangSchema.
      * @return SchemaContext
      */
-    @NonNull
     SchemaContext getSchemaContext();
 }
