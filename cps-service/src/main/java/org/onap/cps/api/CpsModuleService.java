@@ -96,9 +96,10 @@ public interface CpsModuleService {
 
     /**
      * Identify previously unknown Yang Resource module references.
+     * The system will ignore the namespace of all module references.
      *
      * @param moduleReferencesToCheck the moduleReferencesToCheck
-     * @returns collection of module references
+     * @returns collection of module references (namespace will be always blank)
      */
     Collection<ModuleReference> identifyNewModuleReferences(
         Collection<ModuleReference> moduleReferencesToCheck);
