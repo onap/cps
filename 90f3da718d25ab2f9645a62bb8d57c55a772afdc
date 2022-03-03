@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7581ac71_beefc192",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:27:35Z",
+      "side": 1,
+      "message": "as agreed, make it remove ALL (word \u0027previous\u0027 makes it ambiguous)",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21435ee6_8e43f66f",
         "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
         "patchSetId": 14
@@ -13,6 +36,30 @@
       "writtenOn": "2022-03-03T09:08:42Z",
       "side": 1,
       "message": "suggestion: 13-insert-dmi-registry-2022-02-10-schema-set.yaml",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "668fc090_6dc1e760",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21435ee6_8e43f66f",
       "range": {
         "startLine": 44,
         "startChar": 36,
@@ -87,6 +134,29 @@
         "startChar": 0,
         "endLine": 26,
         "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a59538_62442c49",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:27:35Z",
+      "side": 1,
+      "message": "dmi-registry-schema-load-revision-2022-02-10",
+      "range": {
+        "startLine": 105,
+        "startChar": 13,
+        "endLine": 105,
+        "endChar": 40
       },
       "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
