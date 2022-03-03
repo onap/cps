@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21435ee6_8e43f66f",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:08:42Z",
+      "side": 1,
+      "message": "suggestion: 13-insert-dmi-registry-2022-02-10-schema-set.yaml",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3626c01_f29499bb",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:08:42Z",
+      "side": 1,
+      "message": "since we are deleting ALL dmi-registry schema\u0027s do we need this second condition?\n\n(there should be no customer added dmi-regsitry schemas!, all prev are added by prc. liquibase steps!)",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8e7663b_68c1d78c",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:08:42Z",
+      "side": 1,
+      "message": "see prev comment, no separate step needed I think\n(assuming the rollback for both can be combined)",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8e9c2c_e8bed018",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T09:08:42Z",
+      "side": 1,
+      "message": "is this not done in 12 now?!",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
