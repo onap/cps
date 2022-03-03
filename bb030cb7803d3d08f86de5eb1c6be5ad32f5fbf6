@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1a03d2a_95c6082f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T14:12:11Z",
+      "side": 1,
+      "message": "better!",
+      "range": {
+        "startLine": 426,
+        "startChar": 27,
+        "endLine": 426,
+        "endChar": 51
+      },
+      "revId": "bb030cb7803d3d08f86de5eb1c6be5ad32f5fbf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
