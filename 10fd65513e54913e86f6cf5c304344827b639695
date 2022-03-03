@@ -22,6 +22,64 @@
       "revId": "10fd65513e54913e86f6cf5c304344827b639695",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f13c85a_23420c49",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-03T09:49:20Z",
+      "side": 1,
+      "message": "NB : Agree with Priyank",
+      "parentUuid": "1c617a1e_b4b9bc46",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0123f02f_543654e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-03T09:49:20Z",
+      "side": 1,
+      "message": "NB : Constant can be used for all \"/\" and \"\"",
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54392f97_469a8eca",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-03T09:49:20Z",
+      "side": 1,
+      "message": "NB : Use constant for \u0027Same event is sent when root nodes\u0027, \u0027\u0027, \u0027/parent\u0027, \u0027/parent/child\u0027 and \u0027Same event is sent when container nodes\u0027",
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
