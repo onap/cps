@@ -163,6 +163,167 @@
     },
     {
       "key": {
+        "uuid": "412097fb_1c2f9b39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "this one might be OK but not right place",
+      "range": {
+        "startLine": 84,
+        "startChar": 31,
+        "endLine": 84,
+        "endChar": 52
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "647590d6_4bd49916",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "should NOT fall back to default it HAS to be configured",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6c6c72_0fe98e6f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "no need to verify Java library (not written by us)",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 92
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c56d3196_8d79f1fc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "just check it has somethign",
+      "range": {
+        "startLine": 236,
+        "startChar": 25,
+        "endLine": 236,
+        "endChar": 36
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd3bca3_ab656046",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "same comments as above",
+      "range": {
+        "startLine": 239,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 8
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f72f87_229539ff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "separate test, can combine blank and invalid topic-if",
+      "range": {
+        "startLine": 254,
+        "startChar": 65,
+        "endLine": 254,
+        "endChar": 76
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc9a0dde_ae3d16b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "(*_) any a number of any parameters, not great for positive test!\n(_,_,_) exactly 3 parameters of any type\n(p1,_p3) parameter 1 ha to  match p1, parameter 2 can be anything, p3 has to match parameter",
+      "range": {
+        "startLine": 74,
+        "startChar": 52,
+        "endLine": 74,
+        "endChar": 54
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d5ff99c_c04e5f1a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
         "patchSetId": 15
@@ -209,6 +370,167 @@
     },
     {
       "key": {
+        "uuid": "4a7106a8_65ece447",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "see prev. comment",
+      "range": {
+        "startLine": 96,
+        "startChar": 51,
+        "endLine": 96,
+        "endChar": 55
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9745b13_56ab7469",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "a dmi datastore URI is generated",
+      "range": {
+        "startLine": 59,
+        "startChar": 15,
+        "endLine": 59,
+        "endChar": 43
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa14e345_ac09a241",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "the URL is as expected",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 43
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "536b7e5b_fe498d9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "as per prod code there should be no handling of this, no need for test \n(maybe just assert the \u0027configured path\u0027 is used)",
+      "range": {
+        "startLine": 64,
+        "startChar": 106,
+        "endLine": 64,
+        "endChar": 115
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c273d5_6ce70dda",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "no variation, need need for column",
+      "range": {
+        "startLine": 64,
+        "startChar": 67,
+        "endLine": 64,
+        "endChar": 89
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fbea476_5f8041ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "no need for with here",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 18
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cdda138_891e3ea6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "just use string literals here",
+      "range": {
+        "startLine": 65,
+        "startChar": 118,
+        "endLine": 65,
+        "endChar": 137
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93a5cb2a_b6245894",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
         "patchSetId": 15
@@ -225,6 +547,29 @@
         "startChar": 67,
         "endLine": 68,
         "endChar": 87
+      },
+      "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "570bf779_3336027e",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T11:16:44Z",
+      "side": 1,
+      "message": "call it something unique: dmiBaseForTest\nthen you can asset it is used",
+      "range": {
+        "startLine": 24,
+        "startChar": 19,
+        "endLine": 24,
+        "endChar": 22
       },
       "revId": "83b55bdc8c71a9324ce32dde518ca41d02259811",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
