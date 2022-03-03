@@ -396,6 +396,30 @@
       "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01136db0_f5717653",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-02-10.yang",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-03T13:19:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "43e2f3ad_3f2b3f17",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "40beb0d90f21fb2e573afaa554ac7d3ead67db94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
