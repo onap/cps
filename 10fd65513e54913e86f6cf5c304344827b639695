@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "1399e744_bf5b8b52",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T14:31:55Z",
+      "side": 1,
+      "message": "these all seem legacy issues, if Aditya cna do a quick fix great but we can also leave it till later\nI Suggest to create a small improv/tech debt Jira like we did at the end of Honolulu",
+      "parentUuid": "30d6f90f_4a0d5f5b",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0123f02f_543654e3",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
@@ -161,6 +185,24 @@
     },
     {
       "key": {
+        "uuid": "dd3bcee5_6e2d7d14",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T14:31:55Z",
+      "side": 1,
+      "message": "I think you now know how I feel about constants :-)\nWhat would be more appropriate is ONE utility method and a util package  to handle this. We already have a JIra to create general utility package, I have add this as a possible common method: https://jira.onap.org/browse/CPS-558",
+      "parentUuid": "0123f02f_543654e3",
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8c548ab_9e219bff",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
@@ -181,6 +223,30 @@
       "revId": "10fd65513e54913e86f6cf5c304344827b639695",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e74453fb_271c5964",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-03T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8c548ab_9e219bff",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
