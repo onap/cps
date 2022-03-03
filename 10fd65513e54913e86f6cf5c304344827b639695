@@ -66,6 +66,52 @@
     },
     {
       "key": {
+        "uuid": "3a5bc2b9_c2cb5214",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-03T12:13:06Z",
+      "side": 1,
+      "message": "In which scenario do we expectect rootXpath to be \u0027\u0027 ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 36,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c548ab_9e219bff",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-03T12:13:06Z",
+      "side": 1,
+      "message": "I think this is also a way to identify if the request came with \u0027/\u0027 or containerNode(/bookstore). \nIt would be readable to use method inside the isRootXpath method. As per NotificaionService logic, it only wants to check if it is rootNode or not and the event will be for root node if the xpath is \u0027/\u0027 or \u0027\u0027 or \u0027/parent\u0027 (containerNodeCheck) . \n\nName Suggestion: isRootContainerNodeXPath -\u003e Container node can be confused with container at any level but here we are checking if it is root container node.",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54392f97_469a8eca",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 5
@@ -77,6 +123,29 @@
       "writtenOn": "2022-03-03T09:49:20Z",
       "side": 1,
       "message": "NB : Use constant for \u0027Same event is sent when root nodes\u0027, \u0027\u0027, \u0027/parent\u0027, \u0027/parent/child\u0027 and \u0027Same event is sent when container nodes\u0027",
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b5ebac1_44fdb564",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-03T12:13:06Z",
+      "side": 1,
+      "message": "Can we create a data-node with \u0027\u0027 parentPath ? I thought we must have atleast \u0027/\u0027 in the input.",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 115
+      },
       "revId": "10fd65513e54913e86f6cf5c304344827b639695",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
