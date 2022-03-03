@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "57779fef_4bf2e245",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7581ac71_beefc192",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21435ee6_8e43f66f",
         "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
         "patchSetId": 14
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4a6d6310_190cfed3",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "668fc090_6dc1e760",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3626c01_f29499bb",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
         "patchSetId": 14
@@ -83,6 +131,30 @@
       "writtenOn": "2022-03-03T09:08:42Z",
       "side": 1,
       "message": "since we are deleting ALL dmi-registry schema\u0027s do we need this second condition?\n\n(there should be no customer added dmi-regsitry schemas!, all prev are added by prc. liquibase steps!)",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef4f2303_5fb699fd",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "They can be removed all at once but the rollback can only load one csv file at a time. So either this way or need a new csv file with all of the dmi-registries in it that can be loaded in",
+      "parentUuid": "c3626c01_f29499bb",
       "range": {
         "startLine": 26,
         "startChar": 8,
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "d0c58c2e_0ff0c7a8",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "rollback cannot be combined",
+      "parentUuid": "d8e7663b_68c1d78c",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c8e9c2c_e8bed018",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
         "patchSetId": 14
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "a061c486_d52e62dc",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c8e9c2c_e8bed018",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 105
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31a59538_62442c49",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
         "patchSetId": 14
@@ -161,6 +281,30 @@
       "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d13233cc_4db891da",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/13-replace-current-dmi-registry-schema-set.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-03T11:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31a59538_62442c49",
+      "range": {
+        "startLine": 105,
+        "startChar": 13,
+        "endLine": 105,
+        "endChar": 40
+      },
+      "revId": "90f3da718d25ab2f9645a62bb8d57c55a772afdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
