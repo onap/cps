@@ -38,7 +38,7 @@ public class DataNode {
     private String dataspace;
     private String schemaSetName;
     private String anchorName;
-    private ExtendedModuleReference extendedModuleReference;
+    private ModuleReference moduleReference;
     private String xpath;
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;

@@ -28,7 +28,6 @@ import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -54,7 +53,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Create schema set from new modules and existing modules.'() {
         given: 'a list of existing modules module reference'
-            def moduleReferenceForExistingModule = new ExtendedModuleReference("test", "test.org", "2021-10-12")
+            def moduleReferenceForExistingModule = new ModuleReference("test", "test.org", "2021-10-12")
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
@@ -81,7 +80,7 @@ class CpsModuleServiceImplSpec extends Specification {
         then: 'the correct schema set is returned'
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
-            result.getExtendedModuleReferences().contains(new ExtendedModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
+            result.getExtendedModuleReferences().contains(new ModuleReference('stores', 'org:onap:ccsdk:sample', '2020-09-15'))
     }
 
     def 'Delete schema-set when cascade is allowed.'() {
@@ -134,7 +133,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
-            def moduleReferences = [new ExtendedModuleReference()]
+            def moduleReferences = [new ModuleReference()]
             mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
         expect: 'the list provided by persistence service is returned as result'
             objectUnderTest.getYangResourceModuleReferences('someDataspaceName') == moduleReferences

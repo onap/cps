@@ -27,9 +27,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
-import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -68,7 +66,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     static final String NEW_RESOURCE_CHECKSUM = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
     static final String NEW_RESOURCE_MODULE_NAME = 'stores'
     static final String NEW_RESOURCE_REVISION = '2020-09-15'
-    static final ExtendedModuleReference newModuleReference = ExtendedModuleReference.builder().name(NEW_RESOURCE_MODULE_NAME)
+    static final ModuleReference newModuleReference = ModuleReference.builder().name(NEW_RESOURCE_MODULE_NAME)
             .revision(NEW_RESOURCE_REVISION).build()
 
     def newYangResourcesNameToContentMap = [(NEW_RESOURCE_NAME):NEW_RESOURCE_CONTENT]

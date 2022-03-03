@@ -35,4 +35,5 @@ public class ModuleReference implements Serializable {
     private static final long serialVersionUID = -1761408847591042599L;
     private String moduleName;
     private String revision;
+    private String namespace;
 }
