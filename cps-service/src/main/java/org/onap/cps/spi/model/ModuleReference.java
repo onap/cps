@@ -35,4 +35,19 @@ public class ModuleReference implements Serializable {
     private static final long serialVersionUID = -1761408847591042599L;
     private String moduleName;
     private String revision;
+    //blank namespace will be added while object is created by builder
+    @Builder.Default
+    private String namespace = "";
+
+    /**
+     * Blank namespace will be added for module references.
+     *
+     * @param moduleName module names.
+     * @param revision   revision of module.
+     */
+    public ModuleReference(final String moduleName, final String revision) {
+        this.moduleName = moduleName;
+        this.revision = revision;
+        this.namespace = "";
+    }
 }

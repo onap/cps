@@ -21,29 +21,20 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.exception.ConstraintViolationException
-import org.mockito.InjectMocks
-import org.mockito.Mock
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.DataspaceEntity
-import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
-import org.onap.cps.spi.model.ExtendedModuleReference
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
-import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.jdbc.Sql
 import spock.lang.Shared
-import spock.lang.Specification
 
 import java.sql.SQLException
 
