@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "30d6f90f_4a0d5f5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-03-03T12:26:21Z",
+      "side": 1,
+      "message": "What about notification properties logging with lombok ?",
+      "parentUuid": "9f13c85a_23420c49",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0123f02f_543654e3",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
