@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "f283a12a_da9e82fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-03T12:28:16Z",
+      "side": 1,
+      "message": "Not sure when the rootXpath can be \u0027\u0027, but in cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java, the method isRootXpath checks for both \u0027/\u0027 and \u0027\u0027 before get, post or delete of the data node. Hence updated this method to be in sync with the one in CpsDataPersistenceServiceImpl.",
+      "parentUuid": "3a5bc2b9_c2cb5214",
+      "range": {
+        "startLine": 125,
+        "startChar": 36,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8c548ab_9e219bff",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
         "patchSetId": 5
@@ -164,6 +188,30 @@
       "writtenOn": "2022-03-03T12:13:06Z",
       "side": 1,
       "message": "Can we create a data-node with \u0027\u0027 parentPath ? I thought we must have atleast \u0027/\u0027 in the input.",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 115
+      },
+      "revId": "10fd65513e54913e86f6cf5c304344827b639695",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d9a4027_07fc9a84",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-03T12:28:16Z",
+      "side": 1,
+      "message": "At present for creating a data node, xpath need not be passed.. in that case it is considered as the root node.",
+      "parentUuid": "9b5ebac1_44fdb564",
       "range": {
         "startLine": 110,
         "startChar": 12,
