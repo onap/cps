@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8f702670_1a66e840",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T15:30:18Z",
+      "side": 1,
+      "message": "Copied this from Jira story. Have edited now.",
+      "parentUuid": "91912268_891a7a22",
+      "range": {
+        "startLine": 7,
+        "startChar": 61,
+        "endLine": 7,
+        "endChar": 69
+      },
+      "revId": "ff4922c0711161784e7a3c1bcc4b1b0c277f955f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03fa455d_36b079d5",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/05-loadData-fragment.yaml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "ff4922c0711161784e7a3c1bcc4b1b0c277f955f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb85cada_2d002e27",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/05-loadData-fragment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T15:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03fa455d_36b079d5",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "ff4922c0711161784e7a3c1bcc4b1b0c277f955f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
