@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dd6794f_01cc65ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "Did we agree to check if the topic exists in Kafka or is that coming later?",
+      "range": {
+        "startLine": 303,
+        "startChar": 27,
+        "endLine": 303,
+        "endChar": 43
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d492b08b_5c3a791e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "Javadoc does not match method name populateUriVariables",
+      "range": {
+        "startLine": 77,
+        "startChar": 7,
+        "endLine": 77,
+        "endChar": 47
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fa41164_72530b7e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "#topic from data table below",
+      "range": {
+        "startLine": 230,
+        "startChar": 65,
+        "endLine": 230,
+        "endChar": 76
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37b6e260_76bab3f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "\"given\" and \"and\" are very similar in these tests. Could be extracted to out so minimize code and avoid mistakes if things need to be changed.",
+      "range": {
+        "startLine": 248,
+        "startChar": 8,
+        "endLine": 248,
+        "endChar": 13
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5e17be2_0cdcf979",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "uri variables are setup/created",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c5add1_db6e6908",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "null query params",
+      "range": {
+        "startLine": 67,
+        "startChar": 14,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20cfa60e_7cdd5680",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-04T12:46:56Z",
+      "side": 1,
+      "message": "the created dmi service url matches the expected",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
