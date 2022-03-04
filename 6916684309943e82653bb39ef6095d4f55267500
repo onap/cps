@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c86f9305_b2766d12",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T16:08:27Z",
+      "side": 1,
+      "message": "Should we pass in a generic value for namespace here as opposed to null and test for it?",
+      "range": {
+        "startLine": 63,
+        "startChar": 117,
+        "endLine": 63,
+        "endChar": 121
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44eb8f1a_7d72aa86",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 2
@@ -203,6 +226,29 @@
         "startChar": 19,
         "endLine": 38,
         "endChar": 28
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daab6382_42d1d2a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T16:08:27Z",
+      "side": 1,
+      "message": "These @NonNulls can be removed",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 12
       },
       "revId": "6916684309943e82653bb39ef6095d4f55267500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
