@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2e10fbf_777854ca",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:14:48Z",
+      "side": 1,
+      "message": "Maybe rename this one to RestModuleReferecne so we dont need the full class names here?!",
+      "range": {
+        "startLine": 43,
+        "startChar": 33,
+        "endLine": 43,
+        "endChar": 48
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8907ac98_c7d04f97",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/RestControllerMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:14:48Z",
+      "side": 1,
+      "message": "CpsRestInputMapper\n\n(rename the other to NcmpRestInputMapper)",
+      "range": {
+        "startLine": 34,
+        "startChar": 17,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d499e4de_bedfb08c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:14:48Z",
+      "side": 1,
+      "message": "no need to mock it, use the real thing instead",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 58
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f84b36e0_53588d81",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/RestControllerMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:14:48Z",
+      "side": 1,
+      "message": "i wonder if this can be simplified to result.moduleReferences[0]  \u003d\u003d extendedModuleReference",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 83
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2235b54c_b638ef0a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:14:48Z",
+      "side": 1,
+      "message": "no need to mock, well if it is no used I think Sub() is the \u0027cheapest\u0027 way to initialize it, actually cannot it just be null?",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 54
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
