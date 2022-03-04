@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -69,3 +69,16 @@ databaseChangeLog:
             comment: Fixes the id sequence after data insert with predefined ids
             dbms: postgresql
             sql: ALTER SEQUENCE IF EXISTS fragment_id_seq RESTART WITH 200
+
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 5.2
+      changes:
+        - sql:
+            comment: Sets sequence value to current max value of the ID from the fragment table
+            dbms: postgresql
+            sql: SELECT setval('fragment_id_seq', (SELECT MAX(ID) FROM fragment))
+      rollback:
+        sql: SELECT setval('fragment_id_seq', 200)
+        comment: Rollback Sequence to restart with the sequence number in the last changeset
