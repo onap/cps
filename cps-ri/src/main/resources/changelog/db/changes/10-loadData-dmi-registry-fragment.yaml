@@ -74,3 +74,15 @@ databaseChangeLog:
       rollback:
         comment: Rollback for 10.1 is not supported. Please rollback change set 10 to undo change set 10.1. Cannot revert sequence altering.
 
+  - changeSet:
+      author: cps
+      label: dmi-registry-schema-preload
+      id: 10.2
+      changes:
+        - sql:
+            comment: Sets sequence value to current max value of the ID from the fragment table
+            dbms: postgresql
+            sql: SELECT setval('fragment_id_seq', (SELECT MAX(ID) FROM fragment))
+      rollback:
+        sql: SELECT setval('fragment_id_seq', 200)
+        comment: Rollback Sequence to restart with the sequence number in the last changeset
