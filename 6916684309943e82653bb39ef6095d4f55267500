@@ -25,6 +25,98 @@
     },
     {
       "key": {
+        "uuid": "1eb91811_250b6a92",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T12:21:02Z",
+      "side": 1,
+      "message": "use a value",
+      "range": {
+        "startLine": 103,
+        "startChar": 90,
+        "endLine": 103,
+        "endChar": 95
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1846a9_dd86ec53",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T12:21:02Z",
+      "side": 1,
+      "message": "should not be needed",
+      "range": {
+        "startLine": 70,
+        "startChar": 45,
+        "endLine": 70,
+        "endChar": 58
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e34533_534e73c9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T12:21:02Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 248,
+        "startChar": 109,
+        "endLine": 248,
+        "endChar": 124
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b178522_8e7ed155",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T12:21:02Z",
+      "side": 1,
+      "message": "update javadoc (on service interface) to explain that namespace wil be ignored and the output namespaces will always be blank!",
+      "range": {
+        "startLine": 106,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 38
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cd70daa_2aae2537",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 2
@@ -64,6 +156,29 @@
         "startChar": 13,
         "endLine": 33,
         "endChar": 29
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fee115c5_d03b5c2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T12:21:02Z",
+      "side": 1,
+      "message": "initialise with \u0027\u0027",
+      "range": {
+        "startLine": 38,
+        "startChar": 19,
+        "endLine": 38,
+        "endChar": 28
       },
       "revId": "6916684309943e82653bb39ef6095d4f55267500",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
