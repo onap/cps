@@ -25,6 +25,98 @@
     },
     {
       "key": {
+        "uuid": "63d734f8_a7be01d3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/RestInputMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "Rest",
+      "range": {
+        "startLine": 43,
+        "startChar": 51,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae179a9_920c7377",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "use the real this, save lines of code",
+      "range": {
+        "startLine": 62,
+        "startChar": 36,
+        "endLine": 62,
+        "endChar": 44
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d85c7d6_2980949d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/RestInputMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "remove this, maintenance cost, your test a 3pp....",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 59
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83cfac75_1f9e4add",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "since you now have @RequiredArgsConstructor I think you can remove @AutoWired and make it final",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 14
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8907ac98_c7d04f97",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/RestControllerMapper.java",
         "patchSetId": 1
@@ -87,6 +179,53 @@
         "startChar": 0,
         "endLine": 48,
         "endChar": 83
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50917251_e1684545",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/RestControllerMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "actually just check the types, no need to check (just what is mapped using annotations)",
+      "parentUuid": "f84b36e0_53588d81",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 83
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a3957c9_1865ef19",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/RestControllerMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T09:41:07Z",
+      "side": 1,
+      "message": "just check instanceof",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 56
       },
       "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
