@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44eb8f1a_7d72aa86",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T10:58:10Z",
+      "side": 1,
+      "message": "suggestion: should we overload the constructor to make namespace optional ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 96,
+        "endLine": 102,
+        "endChar": 98
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cd70daa_2aae2537",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T10:58:10Z",
+      "side": 1,
+      "message": "in this case the namespace should NOT be populated, we might need some extra code for that...",
+      "range": {
+        "startLine": 108,
+        "startChar": 43,
+        "endLine": 108,
+        "endChar": 70
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6f503b4_a9bf02f0",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-04T10:58:10Z",
+      "side": 1,
+      "message": "I think we need a 2 argument constructor as i see inconsistent use of 3 parameter being null/blank",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "6916684309943e82653bb39ef6095d4f55267500",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
