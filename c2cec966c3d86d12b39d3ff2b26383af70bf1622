@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "abd93fc6_a97af8a2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T14:48:05Z",
+      "side": 1,
+      "message": "def objectUnderTest \u003d Mappers.getMapper(RestInputMapper.class)",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 44
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d85c7d6_2980949d",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/RestInputMapperSpec.groovy",
         "patchSetId": 1
@@ -156,6 +179,52 @@
         "startChar": 4,
         "endLine": 62,
         "endChar": 58
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dfa1675_32c625c7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T14:48:05Z",
+      "side": 1,
+      "message": "def objectUnderTest \u003d Mappers.getMapper(RestControllerMapper.class)",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 58
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6e7062_4e9550d0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-04T14:48:05Z",
+      "side": 1,
+      "message": "NB - Don\u0027t think it\u0027s necessary to specify that the anchor details are \u0027new\u0027.\nJust \u0027mapper returns anchor details\u0027.\n\nSame for above and below tests",
+      "range": {
+        "startLine": 280,
+        "startChar": 14,
+        "endLine": 280,
+        "endChar": 75
       },
       "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
