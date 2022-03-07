@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -24,6 +24,8 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
@@ -81,5 +83,10 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public Collection<String> queryAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
         final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
         return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getCmHandlesForMatchingPublicProperties(final Map<String, String> publicProperties) {
+        return  cpsAdminPersistenceService.getCmHandlesForMatchingPublicProperties(publicProperties);
     }
 }
