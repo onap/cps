@@ -21,4 +21,5 @@ cps-model-sync
 ncmp-passthrough
 cps-admin
 cps-data
+public-properties-query
 
