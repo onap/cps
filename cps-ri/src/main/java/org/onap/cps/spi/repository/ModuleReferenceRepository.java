@@ -27,10 +27,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ModuleReferenceRepository extends
-    JpaRepository<YangResourceEntity, Long>, ModuleReferenceQuery {
+public interface ModuleReferenceRepository extends JpaRepository<YangResourceEntity, Long>, ModuleReferenceQuery {
 
-    Collection<ModuleReference> identifyNewModuleReferences(
-        final Collection<ModuleReference> moduleReferencesToCheck);
+    Collection<ModuleReference> identifyNewModuleReferences(final Collection<ModuleReference> moduleReferencesToCheck);
 
 }

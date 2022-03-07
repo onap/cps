@@ -20,19 +20,24 @@
 
 package org.onap.cps.spi.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @Transactional
 public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
@@ -55,6 +60,66 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         insertDataIntoTable(tempTableName, moduleReferencesToCheck);
 
         return identifyNewModuleReferencesForCmHandle(tempTableName);
+    }
+
+    /**
+     * Retrieve public properties for given cm handle.
+     *
+     * @param publicProperties the public properties to match
+     * @return lit of cm handles that match
+     */
+    @Override
+    public List<String> getCmHandlesForMatchingPublicProperties(final Map<String, String> publicProperties) {
+        final String retrievePublicFragments =
+            "SELECT xpath, attributes #>> '{}' AS attributes FROM fragment WHERE fragment.xpath LIKE '%public%';";
+
+        final List<Object[]> resultsAsObjects =
+            entityManager.createNativeQuery(retrievePublicFragments).getResultList();
+        final Set<String> cmHandlesThatMatch = new TreeSet<>();
+        final Set<String> allCmHandles = new TreeSet<>();
+
+        for (final Object[] row : resultsAsObjects) {
+            final String xpath = (String) row[0];
+            final String attributes = (String) row[1];
+            allCmHandles.add(getCmHandle(xpath));
+
+            try {
+                final String attributesAsJsonString = getAttributesAsJsonString(attributes);
+                final JsonObject attributesAsJsonObject = new JsonParser().parse(attributesAsJsonString)
+                    .getAsJsonObject();
+
+                if (nameAndValueMatch(publicProperties, attributesAsJsonObject)) {
+                    cmHandlesThatMatch.add(getCmHandle(xpath));
+                }
+            } catch (final JsonProcessingException jsonProcessingException) {
+                jsonProcessingException.getMessage();
+            }
+        }
+
+        if (publicProperties.get("name").isEmpty() && publicProperties.get("value").isEmpty() ) {
+            return List.copyOf(allCmHandles);
+        }
+
+        return List.copyOf(cmHandlesThatMatch);
+    }
+
+    private String getAttributesAsJsonString(final String attributes) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        String attributesAsJsonString = objectMapper.writeValueAsString(attributes);
+        attributesAsJsonString = attributesAsJsonString.replace("\\", "");
+        attributesAsJsonString = attributesAsJsonString.replaceFirst("\"", "");
+        attributesAsJsonString = attributesAsJsonString.substring(0, attributesAsJsonString.length() - 1);
+        return attributesAsJsonString;
+    }
+
+    private boolean nameAndValueMatch(final Map<String, String> publicProperties,
+                                      final JsonObject attributesAsJsonObject) {
+        return attributesAsJsonObject.get("value").getAsString().equals(publicProperties.get("value"))
+            && attributesAsJsonObject.get("name").getAsString().equals(publicProperties.get("name"));
+    }
+
+    private String getCmHandle(final String xpath) {
+        return xpath.substring(xpath.indexOf("\"") + 1, xpath.indexOf("]") - 1);
     }
 
     private void createTemporaryTable(final String tempTableName) {
