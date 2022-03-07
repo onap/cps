@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
+ * Modifications Copyright (C) 2022 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +29,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
@@ -35,32 +38,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class NotificationService {
 
-    private NotificationProperties notificationProperties;
-    private NotificationPublisher notificationPublisher;
-    private CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
-    private NotificationErrorHandler notificationErrorHandler;
+    private final NotificationProperties notificationProperties;
+    private final NotificationPublisher notificationPublisher;
+    private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
+    private final NotificationErrorHandler notificationErrorHandler;
     private List<Pattern> dataspacePatterns;
 
-    /**
-     * Create an instance of Notification Subscriber.
-     *
-     * @param notificationProperties     properties for notification
-     * @param notificationPublisher      notification Publisher
-     * @param cpsDataUpdatedEventFactory to create CPSDataUpdatedEvent
-     * @param notificationErrorHandler   error handler
-     */
-    public NotificationService(
-        final NotificationProperties notificationProperties,
-        final NotificationPublisher notificationPublisher,
-        final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory,
-        final NotificationErrorHandler notificationErrorHandler) {
+    @PostConstruct
+    public void init() {
         log.info("Notification Properties {}", notificationProperties);
-        this.notificationProperties = notificationProperties;
-        this.notificationPublisher = notificationPublisher;
-        this.cpsDataUpdatedEventFactory = cpsDataUpdatedEventFactory;
-        this.notificationErrorHandler = notificationErrorHandler;
         this.dataspacePatterns = getDataspaceFilterPatterns(notificationProperties);
     }
 
