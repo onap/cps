@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright 2016-2017 Huawei Technologies Co., Ltd.
+# Modifications Copyright (C) 2021-2022 Nordix Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -96,28 +97,72 @@ SDNC_TIME=0
 
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
-  # Mount netconf node
-  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
-  --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "node": [
-    {
-      "node-id": "PNFDemo",
-      "netconf-node-topology:protocol": {
-      "name": "TLS"
-      },
-      "netconf-node-topology:host": "'$LOCAL_IP'",
-      "netconf-node-topology:key-based": {
-      "username": "netconf",
-      "key-id": "ODL_private_key_0"
-      },
-      "netconf-node-topology:port": 6512,
-      "netconf-node-topology:tcp-only": false,
-      "netconf-node-topology:max-connection-attempts": 5
-    }
-    ]
-  }'
+   # Mount netconf node
+   curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
+   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+     "node": [
+     {
+       "node-id": "PNFDemo",
+       "netconf-node-topology:protocol": {
+       "name": "TLS"
+       },
+       "netconf-node-topology:host": "'$LOCAL_IP'",
+       "netconf-node-topology:key-based": {
+       "username": "netconf",
+       "key-id": "ODL_private_key_0"
+       },
+       "netconf-node-topology:port": 6512,
+       "netconf-node-topology:tcp-only": false,
+       "netconf-node-topology:max-connection-attempts": 5
+     }
+     ]
+   }'
+
+   curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo2' \
+   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+     "node": [
+     {
+       "node-id": "PNFDemo2",
+       "netconf-node-topology:protocol": {
+       "name": "TLS"
+       },
+       "netconf-node-topology:host": "'$LOCAL_IP'",
+       "netconf-node-topology:key-based": {
+       "username": "netconf",
+       "key-id": "ODL_private_key_0"
+       },
+       "netconf-node-topology:port": 6512,
+       "netconf-node-topology:tcp-only": false,
+       "netconf-node-topology:max-connection-attempts": 5
+     }
+     ]
+   }'
+
+   curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo3' \
+   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+     "node": [
+     {
+       "node-id": "PNFDemo3",
+       "netconf-node-topology:protocol": {
+       "name": "TLS"
+       },
+       "netconf-node-topology:host": "'$LOCAL_IP'",
+       "netconf-node-topology:key-based": {
+       "username": "netconf",
+       "key-id": "ODL_private_key_0"
+       },
+       "netconf-node-topology:port": 6512,
+       "netconf-node-topology:tcp-only": false,
+       "netconf-node-topology:max-connection-attempts": 5
+     }
+     ]
+   }'
 
    # Verify node has been mounted
 
@@ -143,4 +188,4 @@ check_health $DMI_HOST:$DMI_MANAGEMENT_PORT 'dmi-plugin'
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data --exitonfailure"
+ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT  -v SDNC_HOST:$SDNC_HOST -v SDNC_PORT:$SDNC_PORT -v DATADIR:$WORKSPACE/data --exitonfailure"
