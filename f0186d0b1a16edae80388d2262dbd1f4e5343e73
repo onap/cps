@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfc39ceb_13b70865",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-07T13:55:06Z",
+      "side": 1,
+      "message": "this should be 2022.right?",
+      "range": {
+        "startLine": 5,
+        "startChar": 30,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6c75fb_ffcf520f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-07T13:55:06Z",
+      "side": 1,
+      "message": "unused import.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 59
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5e92c15_8567b3c4",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-07T13:55:06Z",
+      "side": 1,
+      "message": "2022?",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 39
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a38457a6_e763980d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-07T13:55:06Z",
+      "side": 1,
+      "message": "Suggestion: can use lombok for dependency injection.",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 50
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f044bdfe_429b367e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-07T13:55:06Z",
+      "side": 1,
+      "message": "unused imports.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
