@@ -109,19 +109,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                     '/dmi-registry', expectedJsonData, noTimestamp)
     }
 
-    def 'Register a DMI Plugin for a given cm-handle(s) with JSON processing errors during process.'() {
-        given: 'a registration without cm-handle properties '
-            NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
-            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
-        and: 'an json processing exception occurs'
-            spiedJsonObjectMapper.asJsonString(_) >> { throw (new JsonProcessingException('')) }
-        when: 'registration is updated and modules are synced'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-    }
-
     def 'Register a DMI Plugin for the given cm-handle(s) with no data found during delete process.'() {
         given: 'a registration without cm-handle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
@@ -195,7 +182,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
         and: 'dmi plugin registration input update request'
             def dmiPluginReg = new DmiPluginRegistration();
-            dmiPluginReg.dmiPlugin = 'onap.dmap.plugin';
+            dmiPluginReg.dmiPlugin = 'onap.dmap.plugin'
             dmiPluginReg.updatedCmHandles = [new NcmpServiceCmHandle(cmHandleID: 'unknownHandle')]
         and: 'update data node leaves is unable to find data node'
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') }

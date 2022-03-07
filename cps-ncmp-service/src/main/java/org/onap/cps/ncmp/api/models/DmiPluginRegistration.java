@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.google.common.base.Strings;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
@@ -48,7 +49,7 @@ public class DmiPluginRegistration {
 
     private List<NcmpServiceCmHandle> updatedCmHandles = Collections.emptyList();
 
-    private List<String> removedCmHandles = Collections.emptyList();
+    private Set<String> removedCmHandles = Collections.emptySet();
 
     /**
      * Validates plugin service names.

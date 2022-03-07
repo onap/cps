@@ -28,9 +28,11 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,6 +40,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.model.DataNode;
@@ -61,23 +64,30 @@ public class NetworkCmProxyDataServicePropertyHandler {
      *
      * @param ncmpServiceCmHandles collection of ncmpServiceCmHandles
      */
-    public void updateCmHandleProperties(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles)
-        throws DataNodeNotFoundException {
+    public List<CmHandleRegistrationResponse> updateCmHandleProperties(
+        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
+            final String cmHandle = ncmpServiceCmHandle.getCmHandleID();
             try {
-                final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE,
-                    ncmpServiceCmHandle.getCmHandleID());
+                final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandle);
                 final DataNode existingCmHandleDataNode =
-                        cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXpath,
-                                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                    cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXpath,
+                        FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
             } catch (final DataNodeNotFoundException e) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
-                    ncmpServiceCmHandle.getCmHandleID(),
-                        e.getMessage());
-                throw e;
+                    cmHandle, e.getMessage());
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
+                    .createFailureResponse(cmHandle, CmHandleRegistrationResponse.Error.CM_HANDLE_DOES_NOT_EXIST));
+            } catch (final Exception exception) {
+                log.error("Unable to update dataNode for cmHandleId : {} , caused by : {}",
+                    cmHandle, exception.getMessage());
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(cmHandle, exception));
             }
         }
+        return cmHandleRegistrationResponses;
     }
 
     private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {

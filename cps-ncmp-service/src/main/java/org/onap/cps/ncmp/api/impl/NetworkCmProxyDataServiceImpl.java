@@ -32,6 +32,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -51,10 +52,13 @@ import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandlesList;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Error;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -82,22 +86,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
 
     @Override
-    public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
+    public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
+        final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
-        try {
-            if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
-                parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration);
-            }
-            if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
-                parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
-            }
-            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
-        } catch (final JsonProcessingException | DataNodeNotFoundException e) {
-            final String errorMessage = String.format(
-                    "Error occurred while processing the CM-handle registration request, caused by : [%s]",
-                    e.getMessage());
-            throw new DataValidationException(errorMessage, e.getMessage(), e);
+        DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
+        if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setRemovedCmHandles(
+                parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration));
         }
+        if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setCreatedCmHandles(
+                parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration));
+        }
+        if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setUpdatesCmHandles(
+                parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration));
+        }
+        return dmiPluginRegistrationResponse;
     }
 
     @Override
@@ -128,10 +133,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
-                                                               final String resourceIdentifier,
-                                                               final OperationEnum operation,
-                                                               final String requestData,
-                                                               final String dataType) {
+                                                                 final String resourceIdentifier,
+                                                                 final OperationEnum operation,
+                                                                 final String requestData,
+                                                                 final String dataType) {
         return handleResponse(
             dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(
                 cmHandleId, resourceIdentifier, operation, requestData, dataType),
@@ -157,6 +162,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     /**
      * Retrieve cm handle details for a given cm handle.
+     *
      * @param cmHandleId cm handle identifier
      * @return cm handle details
      */
@@ -189,7 +195,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void asPropertiesMap(final List<YangModelCmHandle.Property> properties,
                                  final Map<String, String> propertiesMap) {
-        for (final YangModelCmHandle.Property property: properties) {
+        for (final YangModelCmHandle.Property property : properties) {
             propertiesMap.put(property.getName(), property.getValue());
         }
     }
@@ -200,12 +206,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @param dmiPluginRegistration dmi plugin registration information.
      * @throws JsonProcessingException thrown if json is malformed or missing.
      */
-    public void parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
-        final DmiPluginRegistration dmiPluginRegistration) throws JsonProcessingException {
+    public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
+        final DmiPluginRegistration dmiPluginRegistration) {
         final YangModelCmHandlesList createdYangModelCmHandlesList =
             getUpdatedYangModelCmHandlesList(dmiPluginRegistration,
                 dmiPluginRegistration.getCreatedCmHandles());
-        registerAndSyncNewCmHandles(createdYangModelCmHandlesList);
+        return createdYangModelCmHandlesList.getYangModelCmHandles()
+            .stream().map(this::registerAndSyncCmHandle).collect(Collectors.toList());
     }
 
     private static Object handleResponse(final ResponseEntity<?> responseEntity,
@@ -214,13 +221,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return responseEntity.getBody();
         } else {
             throw new ServerNcmpException(exceptionMessage,
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
+                "DMI status code: " + responseEntity.getStatusCodeValue()
+                    + ", DMI response body: " + responseEntity.getBody());
         }
     }
 
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        networkCmProxyDataServicePropertyHandler.updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
+    private List<CmHandleRegistrationResponse>
+    parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        return networkCmProxyDataServicePropertyHandler
+            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
     }
 
     private YangModelCmHandlesList getUpdatedYangModelCmHandlesList(
@@ -233,30 +242,55 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             updatedCmHandles);
     }
 
-    private void registerAndSyncNewCmHandles(final YangModelCmHandlesList yangModelCmHandlesList) {
-        final String cmHandleJsonData = jsonObjectMapper.asJsonString(yangModelCmHandlesList);
-        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+    private CmHandleRegistrationResponse registerAndSyncCmHandle(YangModelCmHandle yangModelCmHandle) {
+        final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}"
+            , jsonObjectMapper.asJsonString(yangModelCmHandle));
+        try {
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
-
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandlesList.getYangModelCmHandles()) {
-            syncModulesAndCreateAnchor(yangModelCmHandle);
+        } catch (AlreadyDefinedException alreadyDefinedException) {
+            return CmHandleRegistrationResponse.createFailureResponse(
+                yangModelCmHandle.getId(), Error.CM_HANDLE_ALREADY_EXIST);
         }
+        try {
+            syncModulesAndCreateAnchor(yangModelCmHandle);
+        } catch (Exception exception) {
+            return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
+        }
+        return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
     }
+
 
     protected void syncModulesAndCreateAnchor(final YangModelCmHandle yangModelCmHandle) {
         syncAndCreateSchemaSet(yangModelCmHandle);
         createAnchor(yangModelCmHandle);
     }
 
-    private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+    private List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
+        final DmiPluginRegistration dmiPluginRegistration) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
-                attemptToDeleteSchemaSetWithCascade(cmHandle);
-                cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
-            } catch (final DataNodeNotFoundException e) {
-                log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
+                deregisterCmHandler(cmHandle);
+            } catch (final Exception exception) {
+                log.error("CM Handle {} deregistration failed with error ", cmHandle, exception);
+                cmHandleRegistrationResponses
+                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandle, exception));
             }
+            cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+        }
+        return cmHandleRegistrationResponses;
+    }
+
+    private void deregisterCmHandler(final String cmHandle) {
+        try {
+            attemptToDeleteSchemaSetWithCascade(cmHandle);
+            // TODO: Is it okay to deregister cm-handle if schemaset exist or should we validate
+            //  if schemaset deletion fails?
+            cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
+        } catch (final DataNodeNotFoundException e) {
+            log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
         }
     }
 

@@ -22,9 +22,9 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
@@ -117,12 +117,22 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: [:], dmiProperties: [:])]
         and: 'data node cannot be found'
-            mockCpsDataService.getDataNode(*_) >> { throw new DataNodeNotFoundException(dataspaceName, anchorName, cmHandleXpath) }
+            mockCpsDataService.getDataNode(*_) >> { throw exception }
         when: 'update data node leaves is called using correct parameters'
-            objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
-        then: 'data validation exception is thrown'
-            def exceptionThrown = thrown(DataValidationException.class)
-            assert exceptionThrown.getMessage().contains('DataNode not found')
+            def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'one failed registration response'
+            response.size() == 1
+        and: 'it has expected error details'
+            with(response.get(0)) {
+                it.status == CmHandleRegistrationResponse.Status.FAILURE
+                it.cmHandle == cmHandleId
+                it.errorCode == expectedError
+                it.getErrorText() == expectedErrorText
+            }
+        where:
+            scenario                  | exception                                                        || expectedError                                     | expectedErrorText
+            'cmhandle does not exist' | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') || CmHandleRegistrationResponse.Error.CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'unexpected error'        | new RuntimeException('Failed')                                   || CmHandleRegistrationResponse.Error.UNKNOWN_ERROR            | 'Failed'
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {

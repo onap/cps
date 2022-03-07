@@ -55,10 +55,10 @@ class RestInputMapperSpec extends Specification {
             def restDmiPluginRegistration = new RestDmiPluginRegistration()
         when: 'to plugin dmi registration is called'
             def result  = objectUnderTest.toDmiPluginRegistration(restDmiPluginRegistration)
-        then: 'unspecified lists remain as empty lists'
+        then: 'unspecified collections remain as empty '
             assert result.createdCmHandles == []
             assert result.updatedCmHandles == []
-            assert result.removedCmHandles == []
+            assert result.removedCmHandles == [] as Set
     }
 
 }
