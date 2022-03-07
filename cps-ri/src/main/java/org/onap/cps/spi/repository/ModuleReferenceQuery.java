@@ -20,7 +20,10 @@
 
 package org.onap.cps.spi.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -30,5 +33,14 @@ public interface ModuleReferenceQuery {
 
     Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck);
+
+    /**
+     * Retrieve public properties for given cm handle.
+     *
+     * @param publicProperties the public properties to match
+     * @return lit of cm handles that match
+     */
+    List<String> getCmHandlesForMatchingPublicProperties(Map<String, String> publicProperties)
+        throws JsonProcessingException;
 
 }
