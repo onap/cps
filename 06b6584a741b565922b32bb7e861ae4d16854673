@@ -22,6 +22,30 @@
       "revId": "06b6584a741b565922b32bb7e861ae4d16854673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecf8c6dc_4bcdc050",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/10-loadData-dmi-registry-fragment.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-07T15:35:54Z",
+      "side": 1,
+      "message": "Tech-debt story created https://jira.onap.org/browse/CPS-910",
+      "parentUuid": "ecf539d3_d0cefd37",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 81
+      },
+      "revId": "06b6584a741b565922b32bb7e861ae4d16854673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
