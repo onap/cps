@@ -155,6 +155,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
     }
 
+    @Override
+    public List<String> getCmHandlesForMatchingPublicProperties(final Map<String, String> publicProperties) {
+        return cpsAdminService.getCmHandlesForMatchingPublicProperties(publicProperties);
+    }
+
     /**
      * Retrieve cm handle details for a given cm handle.
      * @param cmHandleId cm handle identifier

@@ -50,6 +50,7 @@ import org.onap.cps.ncmp.rest.model.Conditions;
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.ModuleReference;
+import org.onap.cps.ncmp.rest.model.PublicProperties;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -187,6 +188,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandles cmHandles = new CmHandles();
         cmHandles.setCmHandles(toCmHandleProperties(processConditions(conditionProperties)));
         return ResponseEntity.ok(cmHandles);
+    }
+
+    @Override
+    public ResponseEntity<List<String>> getCmHandlesForMatchingPublicProperties(
+        final PublicProperties publicProperties) {
+
+        if (!publicProperties.getPublicCmHandleProperties().containsKey("name")
+            || !publicProperties.getPublicCmHandleProperties().containsKey("value")) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        final List<String> cmHandlesThatMatch = networkCmProxyDataService.getCmHandlesForMatchingPublicProperties(
+            publicProperties.getPublicCmHandleProperties());
+        return ResponseEntity.ok(cmHandlesThatMatch);
     }
 
     /**

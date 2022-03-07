@@ -28,13 +28,31 @@ Library               BuiltIn
 
 Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
+*** Keywords ***
+
+Run Test
+	[Arguments]    ${node}    ${value}
+	${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/${node}
+	${headers}=          Create Dictionary  Authorization=${auth}
+	${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+	${responseJson}=     Set Variable       ${response.json()}
+    Log to Console       ${\n}"${responseJson}"${\n}
+	Should Be Equal As Strings              ${response.status_code}   200
+	IF    "${responseJson['cmHandle']}" == "${node}"
+		FOR   ${item}   IN  @{responseJson['publicCmHandleProperties']}
+		    Should Be Equal As Strings              "${item['Contact']}"  "${value}"
+		END
+	END
+
 *** Variables ***
 
 ${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}  /ncmpInventory
 ${ncmpBasePath}           /ncmp
 ${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
-${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com"}}]}
+
+${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book 1"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com"}},{"cmHandle":"PNFDemo2","cmHandleProperties":{"Book2":"Sci-Fi Book 2"},	"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}},{"cmHandle": "PNFDemo3","cmHandleProperties":{"Book3": "Sci-Fi Book 3"},"publicCmHandleProperties":{"Contact":"someotheremail@doesntexist.fake"}}]}
+
 ${jsonDataUpdate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","updatedCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Romance Book"},"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}}]}
 
 *** Test Cases ***
@@ -45,17 +63,9 @@ Register data node and sync modules.
     Should Be Equal As Strings              ${response.status_code}   204
 
 Get CM Handle details and confirm it has been registered.
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
-    ${responseJson}=     Set Variable       ${response.json()}
-    ${schemaCount}=      Get length         ${responseJson}
-    Should Be Equal As Strings              ${response.status_code}   200
-    IF    "${responseJson['cmHandle']}" == "PNFDemo"
-           FOR   ${item}   IN  @{responseJson['publicCmHandleProperties']}
-                   Should Be Equal As Strings              "${item['Contact']}"  "storeemail@bookstore.com"
-           END
-    END
+    Run Test    PNFDemo    storeemail@bookstore.com
+    Run Test    PNFDemo2   newemailforstore@bookstore.com
+    Run Test    PNFDemo3   someotheremail@doesntexist.fake
 
 Update data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
@@ -68,7 +78,6 @@ Get CM Handle details and confirm it has been updated.
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     ${responseJson}=     Set Variable       ${response.json()}
-    ${schemaCount}=      Get length         ${responseJson}
     Should Be Equal As Strings              ${response.status_code}   200
     IF    "${responseJson['cmHandle']}" == "PNFDemo"
            FOR   ${item}   IN  @{responseJson['publicCmHandleProperties']}
@@ -83,7 +92,7 @@ Get modules for registered data node
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{responseJson}
-            IF   "${item['moduleName']}" == "stores"
-                Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
-            END
+        IF   "${item['moduleName']}" == "stores"
+            Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
         END
+    END

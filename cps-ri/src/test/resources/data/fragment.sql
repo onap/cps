@@ -1,6 +1,6 @@
 /*
    ============LICENSE_START=======================================================
-    Copyright (C) 2021 Nordix Foundation.
+    Copyright (C) 2021-2022 Nordix Foundation.
     Modifications Copyright (C) 2021 Pantheon.tech
     Modifications Copyright (C) 2021-2022 Bell Canada.
    ================================================================================
@@ -68,3 +68,10 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4231, 1001, 3003, null, '/parent-206[@key="A"]', '{"key": "A"}'),
     (4232, 1001, 3003, 4231, '/parent-206[@key="A"]/child-206', '{}'),
     (4233, 1001, 3003, null, '/parent-206[@key="B"]', '{"key": "B"}');
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (5000, 1001, 3001, null, '/dmi-registr/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact1"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5001, 1001, 3001, 5000, '/dmi-registry/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact2"]', '{"name": "Contact", "value": "some other value"}'),
+    (5002, 1001, 3001, 5001, '/dmi-registry/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact3"]', '{"name": "some other name", "value": "newemailforstore@bookstore.com"}'),
+    (5003, 1001, 3001, 5002, '/dmi-registry/cm-handles[@id="PNFDemo2"]/public-properties[@name="Contact4"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5004, 1001, 3001, 5003, '/dmi-registry/cm-handles[@id="PNFDemo3"]/public-properties[@name="Contact4"]', '{"name": "x", "value": "y"}');
