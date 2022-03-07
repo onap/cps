@@ -94,6 +94,23 @@
     },
     {
       "key": {
+        "uuid": "cfc19fd5_f458153d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-07T16:04:46Z",
+      "side": 1,
+      "message": "NB remove extra line",
+      "revId": "5f6675bd9eea13506ca57eadef2ecdb0e85dda7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d492b08b_5c3a791e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
         "patchSetId": 18
