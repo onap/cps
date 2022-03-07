@@ -171,7 +171,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('cmhandle-search.json')
-        and: 'the service method is invoked with module names and returns two cm handle ids'
+        and: 'the service method is invoked with module names and returns  cm handle ids'
             mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
@@ -215,6 +215,21 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
             response.contentAsString == '{"cmHandles":[]}'
+    }
+
+    def 'Call getCmHandlesForMatchingPublicProperties'() {
+        given: 'an endpoint and json data'
+            def searchesEndpoint = "$ncmpBasePathV1/data/ch/searches"
+            String jsonString = '{"publicCmHandleProperties": {"name": "name", "value": "newemailforstore@bookstore.com"}}'
+        and: 'the service method is invoked with module names and returns cm handle ids'
+            mockNetworkCmProxyDataService.getCmHandlesForMatchingPublicProperties(*_) >> ['some-cmhandle-id1','some-cmhandle-id2']
+        when: 'the searches api is invoked'
+            def response = mvc.perform(post(searchesEndpoint)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonString)).andReturn().response
+        println response.getContentAsString()
+        then: 'cm handles are returned'
+            response.contentAsString == '["some-cmhandle-id1","some-cmhandle-id2"]'
     }
 
     def 'Patch resource data in pass-through running datastore.' () {
