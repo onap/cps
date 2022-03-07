@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -22,6 +22,7 @@
 
 package org.onap.cps.spi.impl
 
+import org.mockito.Mock
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
@@ -32,11 +33,15 @@ import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
 
 class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     @Autowired
     CpsAdminPersistenceService objectUnderTest
+
+    @Mock
+    ObjectMapper objectMapper
 
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
@@ -219,4 +224,17 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
     }
 
+    @Sql([CLEAR_DATA,'/data/fragment.sql'])
+    def 'Retrieve cm handles when #scenario.'() {
+        when: 'the service is invoked'
+            def returnedCmHandles = objectUnderTest.getCmHandlesForMatchingPublicProperties(publicProperties)
+        then: 'the correct expected cm handles are returned'
+            returnedCmHandles == expectedCmHandles
+        where: 'the following data is used'
+            scenario                                       | publicProperties                                                    || expectedCmHandles
+            'public properties match'                      | [["name": "Contact", "value": "newemailforstore@bookstore.com"]]    || ['PNFDemo', 'PNFDemo2']
+            'public properties dont match'                 | [["name": "wont_match", "value": "wont_match"]]                     || []
+            'one matches, one does not'                    | [["name": "Contact", "value": "wont_match"]]                        || []
+            'No public properties - return all cm handles' | [:]                                                                 || ['PNFDemo', 'PNFDemo2', 'PNFDemo3']
+    } // TODO: @Joe - return 400
 }
