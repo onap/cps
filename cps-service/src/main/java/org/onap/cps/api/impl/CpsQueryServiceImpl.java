@@ -25,6 +25,7 @@ import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Override
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
         final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
     }
 }
