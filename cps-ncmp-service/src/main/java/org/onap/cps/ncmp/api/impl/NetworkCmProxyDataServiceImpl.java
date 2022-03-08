@@ -59,6 +59,7 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -240,6 +241,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void registerAndSyncNewCmHandles(final YangModelCmHandlesList yangModelCmHandlesList) {
         final String cmHandleJsonData = jsonObjectMapper.asJsonString(yangModelCmHandlesList);
+        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandlesList.getYangModelCmHandles()) {
+            CpsValidator.validateNameCharacters(yangModelCmHandle.getId());
+        }
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
 
@@ -256,6 +260,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
+                // TODO Discuss with Renu how should Validator for cm handle names should be applied here
                 attemptToDeleteSchemaSetWithCascade(cmHandle);
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
