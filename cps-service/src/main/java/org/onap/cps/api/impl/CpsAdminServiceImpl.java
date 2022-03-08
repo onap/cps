@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -42,44 +43,51 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     private final CpsDataService cpsDataService;
 
     @Override
-    public void createDataspace(final String dataspaceName) {
-        cpsAdminPersistenceService.createDataspace(dataspaceName);
+    public void createDataspace(final String dataspaceId) {
+        CpsValidator.validateFunctionIds(dataspaceId);
+        cpsAdminPersistenceService.createDataspace(dataspaceId);
     }
 
     @Override
-    public void deleteDataspace(final String dataspaceName) {
-        cpsAdminPersistenceService.deleteDataspace(dataspaceName);
+    public void deleteDataspace(final String dataspaceId) {
+        CpsValidator.validateFunctionIds(dataspaceId);
+        cpsAdminPersistenceService.deleteDataspace(dataspaceId);
     }
 
     @Override
-    public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+    public void createAnchor(final String dataspaceId, final String schemaSetId, final String anchorId) {
+        CpsValidator.validateFunctionIds(dataspaceId, schemaSetId, anchorId);
+        cpsAdminPersistenceService.createAnchor(dataspaceId, schemaSetId, anchorId);
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName) {
-        return cpsAdminPersistenceService.getAnchors(dataspaceName);
+    public Collection<Anchor> getAnchors(final String dataspaceId) {
+        CpsValidator.validateFunctionIds(dataspaceId);
+        return cpsAdminPersistenceService.getAnchors(dataspaceId);
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
-        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetName);
+    public Collection<Anchor> getAnchors(final String dataspaceId, final String schemaSetId) {
+        CpsValidator.validateFunctionIds(dataspaceId, schemaSetId);
+        return cpsAdminPersistenceService.getAnchors(dataspaceId, schemaSetId);
     }
 
     @Override
-    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
-        return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+    public Anchor getAnchor(final String dataspaceId, final String anchorId) {
+        CpsValidator.validateFunctionIds(dataspaceId, anchorId);
+        return cpsAdminPersistenceService.getAnchor(dataspaceId, anchorId);
     }
 
     @Override
-    public void deleteAnchor(final String dataspaceName, final String anchorName) {
-        cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
-        cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
+    public void deleteAnchor(final String dataspaceId, final String anchorId) {
+        CpsValidator.validateFunctionIds(dataspaceId, anchorId);
+        cpsDataService.deleteDataNodes(dataspaceId, anchorId, OffsetDateTime.now());
+        cpsAdminPersistenceService.deleteAnchor(dataspaceId, anchorId);
     }
 
     @Override
-    public Collection<String> queryAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
-        final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
+    public Collection<String> queryAnchorNames(final String dataspaceId, final Collection<String> moduleNames) {
+        final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceId, moduleNames);
         return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
     }
 }
