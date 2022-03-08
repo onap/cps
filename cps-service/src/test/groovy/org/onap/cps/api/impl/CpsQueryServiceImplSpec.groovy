@@ -35,8 +35,8 @@ class CpsQueryServiceImplSpec extends Specification {
 
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
-            def dataspaceName = 'some dataspace'
-            def anchorName = 'some anchor'
+            def dataspaceName = 'some-dataspace'
+            def anchorName = 'some-anchor'
             def cpsPath = '/cps-path'
         when: 'queryDataNodes is invoked'
             objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
