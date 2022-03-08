@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69fe4686_5a25a7ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-08T18:03:03Z",
+      "side": 1,
+      "message": "I downloaded the patch in my IDE and I now realise you should NOT use handleResponse() method here. it was intended to handle the response from the dmiDataOperation (on line 329)\n\njust build a body around the requestId and status 200 instead!",
+      "range": {
+        "startLine": 333,
+        "startChar": 19,
+        "endLine": 333,
+        "endChar": 33
+      },
+      "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcfc68a3_0a42b094",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-08T18:03:03Z",
+      "side": 1,
+      "message": "can use empty input values like on line 249",
+      "range": {
+        "startLine": 281,
+        "startChar": 21,
+        "endLine": 284,
+        "endChar": 30
+      },
+      "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
