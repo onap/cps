@@ -22,8 +22,9 @@
 
 package org.onap.cps.rest.controller
 
+import javax.validation.ConstraintViolation
+import javax.validation.ConstraintViolationException
 import org.mapstruct.factory.Mappers
-
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -73,7 +74,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Create new dataspace.'() {
         given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces";
+            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -86,9 +87,29 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
     }
 
+    def 'Create a dataspace with a dataspace name #scenario.'() {
+        given: 'an endpoint'
+            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
+        when: 'post is invoked to create dataspace with an invalid name'
+            def response =
+                mvc.perform(
+                    post(createDataspaceEndpoint)
+                        .param('dataspace-name', invalidDataspaceName))
+                    .andReturn().response
+        then: 'associated service method is invoked with invalid dataspace name'
+            1 * mockCpsAdminService.createDataspace(invalidDataspaceName) >>
+                { throw new ConstraintViolationException(_ as String, _ as Set<? extends ConstraintViolation<?>>) }
+        and: 'response code indicates a bad request'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following dataspace names are used'
+            scenario             | invalidDataspaceName
+            'containing a comma' | 'someDataspace,'
+            'containing a dash'  | 'someDataspace-'
+    }
+
     def 'Create dataspace over existing with same name.'() {
         given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces";
+            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         and: 'the service method throws an exception indicating the dataspace is already defined'
             def thrownException = new AlreadyDefinedException(dataspaceName, new RuntimeException())
             mockCpsAdminService.createDataspace(dataspaceName) >> { throw thrownException }
@@ -121,6 +142,29 @@ class AdminRestControllerSpec extends Specification {
             yangResourceMapCapture['filename.yang'] == 'content'
         and: 'response code indicates success'
             response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Create a schema set with a schema set name #scenario.'() {
+        given: 'single yang file'
+            def multipartFile = createMultipartFile("filename.yang", "content")
+        and: 'an endpoint'
+            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
+        when: 'file uploaded with schema set create request'
+            def response =
+                mvc.perform(
+                    multipart(schemaSetEndpoint)
+                        .file(multipartFile)
+                        .param('schema-set-name', invalidSchemaSetName))
+                    .andReturn().response
+        then: 'associated service method is invoked with invalid schema set name'
+            1 * mockCpsModuleService.createSchemaSet(dataspaceName, invalidSchemaSetName, _)  >>
+                { throw new ConstraintViolationException(_ as String, _ as Set<? extends ConstraintViolation<?>>) }
+        and: 'response code indicates a bad request'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following schema set names are used'
+            scenario             | invalidSchemaSetName
+            'containing a comma' | 'someSchemaSet,'
+            'containing a dash'  | 'someSchemaSet-'
     }
 
     def 'Create schema set from zip archive.'() {
@@ -268,6 +312,30 @@ class AdminRestControllerSpec extends Specification {
             1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
             response.status == HttpStatus.CREATED.value()
             response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Create an anchor with a anchor name #scenario.'() {
+        given: 'request parameters'
+            def requestParams = new LinkedMultiValueMap<>()
+            requestParams.add('schema-set-name', schemaSetName)
+            requestParams.add('anchor-name', invalidAnchorName)
+        and: 'an endpoint'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
+        when: 'post is invoked to create an anchor with an invalid name'
+            def response =
+                mvc.perform(
+                    post(anchorEndpoint).contentType(MediaType.APPLICATION_JSON)
+                        .params(requestParams as MultiValueMap))
+                    .andReturn().response
+        then: 'associated service method is invoked with invalid anchor name'
+            1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, invalidAnchorName) >>
+                { throw new ConstraintViolationException(_ as String, _ as Set<? extends ConstraintViolation<?>>) }
+        and: 'response code indicates a bad request'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following dataspace names are used'
+            scenario             | invalidAnchorName
+            'containing a comma' | 'someAnchor,'
+            'containing a dash'  | 'someAnchor-'
     }
 
     def 'Get existing anchor.'() {
