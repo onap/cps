@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
@@ -50,6 +51,21 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+    }
+
+    def 'Create a schema set with a schema set name #scenario.'() {
+        given: 'Valid yang resource as name-to-content map'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        when: 'create dataspace method is invoked with incorrectly named dataspace'
+            objectUnderTest.createSchemaSet('someDataspace', schemaSetName, yangResourcesNameToContentMap)
+        then: 'the persistence service method is invoked with same parameters'
+            0 * mockCpsModulePersistenceService.storeSchemaSet(_, _, _)
+        and: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following dataspace names are used'
+            scenario             | schemaSetName
+            'containing a comma' | 'someSchemaSet,'
+            'containing a dash'  | 'someSchemaSet-'
     }
 
     def 'Create schema set from new modules and existing modules.'() {
