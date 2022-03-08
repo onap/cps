@@ -45,8 +45,10 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.utils.ValidationUtils;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -73,6 +75,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandle = ncmpServiceCmHandle.getCmHandleID();
             try {
+                ValidationUtils.validateFunctionIds(cmHandle);
                 final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandle);
                 final DataNode existingCmHandleDataNode =
                         cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXpath,
@@ -84,6 +87,12 @@ public class NetworkCmProxyDataServicePropertyHandler {
                     cmHandle, e.getMessage());
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
                     .createFailureResponse(cmHandle, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
+            } catch (final DataValidationException e) {
+                log.error("Unable to update cm handle : {}, caused by : {}",
+                    cmHandle, e.getMessage());
+                cmHandleRegistrationResponses.add(
+                    CmHandleRegistrationResponse.createFailureResponse(cmHandle,
+                        RegistrationError.CM_HANDLE_INVALID_ID));
             } catch (final Exception exception) {
                 log.error("Unable to update dataNode for cmHandleId : {} , caused by : {}",
                     cmHandle, exception.getMessage());

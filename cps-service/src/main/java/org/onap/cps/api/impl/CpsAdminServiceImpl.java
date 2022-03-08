@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.utils.ValidationUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -43,36 +44,43 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void createDataspace(final String dataspaceName) {
+        ValidationUtils.validateFunctionIds(dataspaceName);
         cpsAdminPersistenceService.createDataspace(dataspaceName);
     }
 
     @Override
     public void deleteDataspace(final String dataspaceName) {
+        ValidationUtils.validateFunctionIds(dataspaceName);
         cpsAdminPersistenceService.deleteDataspace(dataspaceName);
     }
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
+        ValidationUtils.validateFunctionIds(dataspaceName, schemaSetName, anchorName);
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
     }
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
+        ValidationUtils.validateFunctionIds(dataspaceName);
         return cpsAdminPersistenceService.getAnchors(dataspaceName);
     }
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
+        ValidationUtils.validateFunctionIds(dataspaceName, schemaSetName);
         return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetName);
     }
 
     @Override
     public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        ValidationUtils.validateFunctionIds(dataspaceName, anchorName);
         return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
     }
 
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
+        ValidationUtils.validateFunctionIds(dataspaceName, anchorName);
         cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
     }

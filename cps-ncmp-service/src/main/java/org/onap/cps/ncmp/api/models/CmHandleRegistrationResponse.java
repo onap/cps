@@ -77,7 +77,8 @@ public class CmHandleRegistrationResponse {
     public enum RegistrationError {
         UNKNOWN_ERROR("00", "Unknown error"),
         CM_HANDLE_ALREADY_EXIST("01", "cm-handle already exists"),
-        CM_HANDLE_DOES_NOT_EXIST("02", "cm-handle does not exist");
+        CM_HANDLE_DOES_NOT_EXIST("02", "cm-handle does not exist"),
+        CM_HANDLE_INVALID_ID("03", "cm-handle has an invalid id");
 
         public final String errorCode;
         public final String errorText;

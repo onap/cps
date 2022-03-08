@@ -30,8 +30,8 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 ${auth}                 Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${basePath}             /cps/api
-${dataspaceName}        CSIT-Dataspace
-${anchorName}           CSIT-Anchor
+${dataspaceName}        CSIT_Dataspace
+${anchorName}           CSIT_Anchor
 
 *** Test Cases ***
 Create Data Node

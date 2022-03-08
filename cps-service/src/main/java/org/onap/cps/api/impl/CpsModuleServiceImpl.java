@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.utils.ValidationUtils;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
+        ValidationUtils.validateFunctionIds(dataspaceName, schemaSetName);
         final var yangTextSchemaSourceSet
             = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
@@ -65,6 +67,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
+        ValidationUtils.validateFunctionIds(dataspaceName, schemaSetName);
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
@@ -75,6 +78,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Transactional
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
         final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        ValidationUtils.validateFunctionIds(dataspaceName, schemaSetName);
         final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName, schemaSetName);
         if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
             throw new SchemaSetInUseException(dataspaceName, schemaSetName);
