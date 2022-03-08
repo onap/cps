@@ -23,7 +23,6 @@
 package org.onap.cps.rest.controller
 
 import org.mapstruct.factory.Mappers
-
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -73,7 +72,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Create new dataspace.'() {
         given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces";
+            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -88,7 +87,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Create dataspace over existing with same name.'() {
         given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces";
+            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         and: 'the service method throws an exception indicating the dataspace is already defined'
             def thrownException = new AlreadyDefinedException(dataspaceName, new RuntimeException())
             mockCpsAdminService.createDataspace(dataspaceName) >> { throw thrownException }
