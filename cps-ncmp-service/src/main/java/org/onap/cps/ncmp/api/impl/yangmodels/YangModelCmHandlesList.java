@@ -24,14 +24,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.exceptions.DataValidationException;
 
+@Slf4j
 @Getter
 public class YangModelCmHandlesList {
 
     @JsonProperty("cm-handles")
     private final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
+
+    private static final Pattern REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS = Pattern.compile("^[a-zA-Z0-9_]*$");
 
     /**
      * Create a YangModelCmHandleList given all service names and a collection of cmHandles.
@@ -45,16 +52,27 @@ public class YangModelCmHandlesList {
                                                                   final String dmiDataServiceName,
                                                                   final String dmiModelServiceName,
                                                                   final Collection<NcmpServiceCmHandle>
-                                                            ncmpServiceCmHandles) {
+                                                                      ncmpServiceCmHandles) {
         final YangModelCmHandlesList yangModelCmHandlesList = new YangModelCmHandlesList();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
-            final YangModelCmHandle yangModelCmHandle =
-                YangModelCmHandle.toYangModelCmHandle(
-                    dmiServiceName,
-                    dmiDataServiceName,
-                    dmiModelServiceName,
-                    ncmpServiceCmHandle);
-            yangModelCmHandlesList.add(yangModelCmHandle);
+            try {
+                final YangModelCmHandle yangModelCmHandle =
+                    YangModelCmHandle.toYangModelCmHandle(
+                        dmiServiceName,
+                        dmiDataServiceName,
+                        dmiModelServiceName,
+                        ncmpServiceCmHandle);
+                final Matcher matcher
+                    = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(yangModelCmHandle.getId());
+                if (matcher.matches()) {
+                    yangModelCmHandlesList.add(yangModelCmHandle);
+                } else {
+                    throw new DataValidationException("Invalid Data", "Cm Handle "
+                        + "'" + yangModelCmHandle.getId() + "'" + " cannot have dashes or commas in the name");
+                }
+            } catch (final DataValidationException e) {
+                log.warn("Cm Handle not added. {}", e.getDetails());
+            }
         }
         return yangModelCmHandlesList;
     }
