@@ -64,6 +64,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -127,7 +128,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                         final String acceptParamInHeader,
                                                         final String optionsParamInQuery,
                                                         final String topicParamInQuery) {
-
+        CpsValidator.validateNameCharacters(cmHandleId);
         return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier, acceptParamInHeader,
                 DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, optionsParamInQuery, topicParamInQuery);
     }
@@ -138,6 +139,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final String acceptParamInHeader,
                                                                final String optionsParamInQuery,
                                                                final String topicParamInQuery) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier, acceptParamInHeader,
                 DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery);
     }
@@ -148,6 +150,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final OperationEnum operation,
                                                                final String requestData,
                                                                final String dataType) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         return handleResponse(
             dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(
                 cmHandleId, resourceIdentifier, operation, requestData, dataType),
@@ -157,6 +160,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
@@ -179,6 +183,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final YangModelCmHandle yangModelCmHandle =
             yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
@@ -248,6 +253,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void registerAndSyncNewCmHandles(final YangModelCmHandlesList yangModelCmHandlesList) {
         final String cmHandleJsonData = jsonObjectMapper.asJsonString(yangModelCmHandlesList);
+        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandlesList.getYangModelCmHandles()) {
+            CpsValidator.validateNameCharacters(yangModelCmHandle.getId());
+        }
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
 
