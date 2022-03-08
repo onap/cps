@@ -126,7 +126,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration without cm-handle properties '
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'some-plugin')
-            dmiPluginRegistration.removedCmHandles = ['some cm handle']
+            dmiPluginRegistration.removedCmHandles = ['some-cm-handle']
         and: 'an json processing exception occurs during delete process'
             mockCpsDataService.deleteListOrListElement(*_) >>  { throw (new DataNodeNotFoundException('','')) }
         when: 'registration is updated and modules are synced'
