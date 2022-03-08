@@ -24,6 +24,7 @@ package org.onap.cps.api.impl;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,7 @@ public class YangTextSchemaSourceSetCache {
      */
     @Cacheable(key = "#p0.concat('-').concat(#p1)")
     public YangTextSchemaSourceSet get(final String dataspaceName, final String schemaSetName) {
+        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         final Map<String, String> yangResourceNameToContent =
                 cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
         return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
@@ -69,6 +71,7 @@ public class YangTextSchemaSourceSetCache {
     @CanIgnoreReturnValue
     public YangTextSchemaSourceSet updateCache(final String dataspaceName, final String schemaSetName,
             final YangTextSchemaSourceSet yangTextSchemaSourceSet) {
+        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         return yangTextSchemaSourceSet;
     }
 
@@ -81,6 +84,7 @@ public class YangTextSchemaSourceSetCache {
      */
     @CacheEvict(key = "#p0.concat('-').concat(#p1)")
     public void removeFromCache(final String dataspaceName, final String schemaSetName) {
+        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         // Spring provides implementation for removing object from cache
     }
 

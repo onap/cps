@@ -21,7 +21,10 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.spi.exceptions.DataValidationException
+
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
@@ -118,7 +121,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             'no original properties'              | []                        || 0
     }
 
-    def 'Exception thrown when we try to update cmHandle'() {
+    def '#scenario error leads to #exception when we try to update cmHandle'() {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: [:], dmiProperties: [:])]
         and: 'data node cannot be found'
@@ -135,9 +138,10 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                  | exception                                                        || expectedError            | expectedErrorText
-            'cmhandle does not exist' | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
-            'unexpected error'        | new RuntimeException('Failed')                                   || UNKNOWN_ERROR            | 'Failed'
+            scenario                   | cmHandleId               | exception                                                                                           || expectedError            | expectedErrorText
+            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry')                                    || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR            | 'Failed'
+            'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid id'
     }
 
     def 'Multiple update operations in a single request'() {
