@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (C) 2020 Pantheon.tech
+  Modifications Copyright (C) 2022 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -32,6 +33,7 @@
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <sonar.skip>true</sonar.skip>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
+        <script.executor>python3</script.executor>
     </properties>
 
     <distributionManagement>
@@ -46,4 +48,32 @@
             <url>${nexusproxy}${snapshotNexusPath}</url>
         </snapshotRepository>
     </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>copyright-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${script.executor}</executable>
+                            <workingDirectory>../checkstyle/src/main/</workingDirectory>
+                            <arguments>
+                                <argument>CopyrightCheck.py</argument>
+                                <argument>resources/project-committers-config.csv</argument>
+                                <argument>resources/copyright-template.txt</argument>
+                                <argument>resources/ignore-files-config.csv</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
