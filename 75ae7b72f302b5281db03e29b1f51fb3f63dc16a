@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab4d7d8_f16c20df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-08T08:37:19Z",
+      "side": 1,
+      "message": "not suer if this is correct in teh case of async response, we only return a request id....",
+      "range": {
+        "startLine": 334,
+        "startChar": 68,
+        "endLine": 334,
+        "endChar": 100
+      },
+      "revId": "75ae7b72f302b5281db03e29b1f51fb3f63dc16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae5e066c_642813d3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-08T08:37:19Z",
+      "side": 1,
+      "message": "especially becasue these \u0027expectations\u0027 are not set/dont change in the scope of these test I woudl prefer NO_REQUEST_ID and NO_TOPIC here",
+      "range": {
+        "startLine": 230,
+        "startChar": 74,
+        "endLine": 230,
+        "endChar": 109
+      },
+      "revId": "75ae7b72f302b5281db03e29b1f51fb3f63dc16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
