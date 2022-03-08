@@ -24,11 +24,14 @@ package org.onap.cps.api.impl;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ModuleReference;
@@ -45,13 +48,21 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final CpsAdminService cpsAdminService;
 
+    private static final Pattern REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS = Pattern.compile("^[^,-]+$");
+
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-        final var yangTextSchemaSourceSet
-            = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
-        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
-        yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
+        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(schemaSetName);
+        if (matcher.matches()) {
+            final var yangTextSchemaSourceSet
+                = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+            cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+            yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Schema Set Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override

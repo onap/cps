@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -24,11 +24,14 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -41,9 +44,17 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Lazy
     private final CpsDataService cpsDataService;
 
+    private static final Pattern REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS = Pattern.compile("^[^,-]+$");
+
     @Override
     public void createDataspace(final String dataspaceName) {
-        cpsAdminPersistenceService.createDataspace(dataspaceName);
+        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(dataspaceName);
+        if (matcher.matches()) {
+            cpsAdminPersistenceService.createDataspace(dataspaceName);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Dataspace Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override
@@ -53,7 +64,13 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(anchorName);
+        if (matcher.matches()) {
+            cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Anchor Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override
