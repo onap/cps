@@ -47,6 +47,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     @Shared
     def cmHandlesArray = ['cmHandle001']
 
+    @Shared
+    def expectedJsonDataWithValidName = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,' +
+        '"additional-properties":[{"name":"dmiProp1","value":"dmiValue1"},{"name":"dmiProp2","value":"dmiValue2"}],' +
+        '"public-properties":[{"name":"publicProp1","value":"publicValue1"},{"name":"publicProp2","value":"publicValue2"}]' +
+        '}]}'
+    @Shared
+    def expectedJsonDataWithInvalidName = '{"cm-handles":[]}'
+
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
@@ -62,16 +70,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration'
             def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
-            ncmpServiceCmHandle.cmHandleID = '123'
+            ncmpServiceCmHandle.cmHandleID = cmHandleName
             ncmpServiceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
             ncmpServiceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
             dmiPluginRegistration.createdCmHandles = createdCmHandles
             dmiPluginRegistration.updatedCmHandles = updatedCmHandles
             dmiPluginRegistration.removedCmHandles = removedCmHandles
-            def expectedJsonData = '{"cm-handles":[{"id":"123","dmi-service-name":"my-server","dmi-data-service-name":null,"dmi-model-service-name":null,' +
-                '"additional-properties":[{"name":"dmiProp1","value":"dmiValue1"},{"name":"dmiProp2","value":"dmiValue2"}],' +
-                '"public-properties":[{"name":"publicProp1","value":"publicValue1"},{"name":"publicProp2","value":"publicValue2"}]' +
-                '}]}'
         when: 'registration is updated and modules are synced'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'save list elements is invoked with the expected parameters'
@@ -85,12 +89,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             expectedCallsToDeleteSchemaSetAndListElement * mockCpsDataService.deleteListOrListElement('NCMP-Admin',
                     'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='cmHandle001']", noTimestamp)
         where:
-            scenario                    | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToUpdateCmHandleProperty
-            'create'                    | [ncmpServiceCmHandle] | []                    | []               || 1                       | 0                                            | 0
-            'update'                    | []                    | [ncmpServiceCmHandle] | []               || 0                       | 0                                            | 1
-            'delete'                    | []                    | []                    | cmHandlesArray   || 0                       | 1                                            | 0
-            'create, update and delete' | [ncmpServiceCmHandle] | [ncmpServiceCmHandle] | cmHandlesArray   || 1                       | 1                                            | 1
-            'no valid data'             | []                    | []                    | []               || 0                       | 0                                            | 0
+            scenario                    | cmHandleName  | createdCmHandles      | updatedCmHandles      | removedCmHandles || expectedCallsToSaveNode | expectedCallsToDeleteSchemaSetAndListElement | expectedCallsToUpdateCmHandleProperty | expectedJsonData
+            'create'                    | '123'         | [ncmpServiceCmHandle] | []                    | []               || 1                       | 0                                            | 0                                     | expectedJsonDataWithValidName
+            'update'                    | '123'         | []                    | [ncmpServiceCmHandle] | []               || 0                       | 0                                            | 1                                     | expectedJsonDataWithValidName
+            'delete'                    | '123'         | []                    | []                    | cmHandlesArray   || 0                       | 1                                            | 0                                     | expectedJsonDataWithValidName
+            'create, update and delete' | '123'         | [ncmpServiceCmHandle] | [ncmpServiceCmHandle] | cmHandlesArray   || 1                       | 1                                            | 1                                     | expectedJsonDataWithValidName
+            'no valid data'             | '123'         | []                    | []                    | []               || 0                       | 0                                            | 0                                     | expectedJsonDataWithValidName
+            'invalid cm handle name'    | '123-'        | [ncmpServiceCmHandle] | []                    | []               || 1                       | 0                                            | 0                                     | expectedJsonDataWithInvalidName
     }
 
     def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
