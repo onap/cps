@@ -26,8 +26,8 @@ import spock.lang.Specification
 
 class CmHandleRegistrationResponseSpec extends Specification {
 
-    def 'Successful CmHandle Registration Response'() {
-        when: 'CMHandle response is created'
+    def 'Successful cm-handle Registration Response'() {
+        when: 'cm-handle response is created'
             def cmHandleRegistrationResponse = CmHandleRegistrationResponse.createSuccessResponse('cmHandle')
         then: 'a success response is returned'
             with(cmHandleRegistrationResponse) {
@@ -39,8 +39,8 @@ class CmHandleRegistrationResponseSpec extends Specification {
             cmHandleRegistrationResponse.errorText == null
     }
 
-    def 'Failed Cm Handle Registration Response: for unexpected exception'() {
-        when: 'CMHandle response is created for an unexpected exception'
+    def 'Failed cm-handle Registration Response: for unexpected exception'() {
+        when: 'cm-handle response is created for an unexpected exception'
             def cmHandleRegistrationResponse =
                 CmHandleRegistrationResponse.createFailureResponse('cmHandle', new Exception('unexpected error'))
         then: 'the response is created with expected value'
@@ -51,8 +51,8 @@ class CmHandleRegistrationResponseSpec extends Specification {
             }
     }
 
-    def 'Failed Cm Handle Registration Response: for known error'() {
-        when: 'CMHandle response is created for known error'
+    def 'Failed cm-handle Registration Response: for cm-handle already exists'() {
+        when: 'cm-handle response is created for cm-handle already exists'
             def cmHandleRegistrationResponse =
                 CmHandleRegistrationResponse.createFailureResponse('cmHandle', RegistrationError.CM_HANDLE_ALREADY_EXIST)
         then: 'the response is created with expected value'
@@ -61,6 +61,21 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 assert it.cmHandle == 'cmHandle'
                 assert it.status == Status.FAILURE
                 assert errorText == RegistrationError.CM_HANDLE_ALREADY_EXIST.errorText
+            }
+
+    }
+
+
+    def 'Failed cm-handle Registration Response: for cm-handle id is invalid'() {
+        when: 'cm-handle response is created for cm-handle id is invalid'
+            def cmHandleRegistrationResponse =
+                CmHandleRegistrationResponse.createFailureResponse('cm handle', RegistrationError.CM_HANDLE_INVALID_ID)
+        then: 'the response is created with expected value'
+            with(cmHandleRegistrationResponse) {
+                assert it.registrationError == RegistrationError.CM_HANDLE_INVALID_ID
+                assert it.cmHandle == 'cm handle'
+                assert it.status == Status.FAILURE
+                assert errorText == RegistrationError.CM_HANDLE_INVALID_ID.errorText
             }
 
     }
