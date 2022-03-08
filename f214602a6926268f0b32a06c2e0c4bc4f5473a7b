@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "294623ed_996ec1a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModuleReferenceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "2021-2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "313f13b8_be9e0d1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "2020-2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c4bc5ed_17aba730",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "2021-2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b412e3_9938fb1a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/SchemaSet.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "Nordix Copyright",
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38430370_e0037c3c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/SchemaSet.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "New line",
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7f040f4_f1491f42",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSet.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "Nordix Foundation Modification Copyright",
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2481c220_b20f2f2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "Nordix Copyright",
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc34371_1c53cdaf",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-08T08:54:22Z",
+      "side": 1,
+      "message": "Newline after this.",
+      "revId": "f214602a6926268f0b32a06c2e0c4bc4f5473a7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
