@@ -79,6 +79,7 @@ components:
         cmHandle:
           type: string
           example: my-cm-handle
+          pattern: '^[a-zA-Z0-9_-]*$'
         cmHandleProperties:
             $ref: '#/components/schemas/RestCmHandleProperties'
         publicCmHandleProperties:

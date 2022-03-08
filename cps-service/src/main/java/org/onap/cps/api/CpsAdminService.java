@@ -23,13 +23,16 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import javax.validation.constraints.Pattern;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * CPS Admin Service.
  */
+@Validated
 public interface CpsAdminService {
 
     /**
@@ -38,7 +41,7 @@ public interface CpsAdminService {
      * @param dataspaceName dataspace name
      * @throws AlreadyDefinedException if dataspace with same name already exists
      */
-    void createDataspace(String dataspaceName);
+    void createDataspace(@Pattern(regexp = "^[a-zA-Z0-9_]*$") String dataspaceName);
 
     /**
      * Delete dataspace.
@@ -55,7 +58,8 @@ public interface CpsAdminService {
      * @param anchorName    anchor name
      * @throws CpsException if input data is invalid.
      */
-    void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
+    void createAnchor(String dataspaceName, String schemaSetName,
+                      @Pattern(regexp = "^[a-zA-Z0-9_]*$") String anchorName);
 
     /**
      * Read all anchors in the given dataspace.

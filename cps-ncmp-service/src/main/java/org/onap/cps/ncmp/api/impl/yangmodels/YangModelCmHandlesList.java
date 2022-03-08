@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.validation.Valid;
 import lombok.Getter;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
@@ -44,8 +45,8 @@ public class YangModelCmHandlesList {
     public static YangModelCmHandlesList toYangModelCmHandlesList(final String dmiServiceName,
                                                                   final String dmiDataServiceName,
                                                                   final String dmiModelServiceName,
-                                                                  final Collection<NcmpServiceCmHandle>
-                                                            ncmpServiceCmHandles) {
+                                                                  @Valid final Collection<NcmpServiceCmHandle>
+                                                                      ncmpServiceCmHandles) {
         final YangModelCmHandlesList yangModelCmHandlesList = new YangModelCmHandlesList();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final YangModelCmHandle yangModelCmHandle =
