@@ -3,7 +3,7 @@
   "dmiModelPlugin":"service3",
   "createdCmHandles":[
     {
-      "cmHandle":"ch1(new)",
+      "cmHandle":"ch1-new",
       "cmHandleProperties":{
         "dmiProp1":"ch1-dmi1",
         "dmiProp2":"ch1-dmi2"
@@ -14,7 +14,7 @@
       }
     },
     {
-      "cmHandle":"ch2(new)",
+      "cmHandle":"ch2-new",
       "cmHandleProperties":{
         "dmiProp1":"ch2-dmi1",
         "dmiProp2":"ch2-dmi2"
@@ -27,7 +27,7 @@
   ],
   "updatedCmHandles":[
     {
-      "cmHandle":"ch3(upd)",
+      "cmHandle":"ch3-upd",
       "cmHandleProperties":{
         "dmiProp1":"ch3-dmi1"
       },
