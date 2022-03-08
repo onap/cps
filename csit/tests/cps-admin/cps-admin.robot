@@ -29,11 +29,11 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 ${auth}                 Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${basePath}             /cps/api
-${dataspaceName}        CSIT-Dataspace
-${schemaSetName}        CSIT-SchemaSet
-${anchorName}           CSIT-Anchor
-${ranDataspaceName}     NFP-Operational
-${ranSchemaSetName}     cps-ran-schema-model
+${dataspaceName}        CSIT_Dataspace
+${schemaSetName}        CSIT_SchemaSet
+${anchorName}           CSIT_Anchor
+${ranDataspaceName}     NFP_Operational
+${ranSchemaSetName}     cps_ran_schema_model
 
 *** Test Cases ***
 Create Dataspace
