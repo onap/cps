@@ -42,6 +42,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 
@@ -249,9 +250,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                   | deleteListElementException                | expectedError            | expectedErrorText
-            'cm-handle does not exist' | new DataNodeNotFoundException("", "", "") | CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
-            'an unexpected exception'  | new RuntimeException("Failed")            | UNKNOWN_ERROR            | 'Failed'
+            scenario                     | cmHandleId             | deleteListElementException                | expectedError            | expectedErrorText
+            'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException("", "", "") | CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException("", "")       | CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid id'
+            'an unexpected exception'    | 'cmhandle'             | new RuntimeException("Failed")            | UNKNOWN_ERROR            | 'Failed'
     }
 
     def 'Create CM-handle Validation: Registration with valid Service names: #scenario'() {
