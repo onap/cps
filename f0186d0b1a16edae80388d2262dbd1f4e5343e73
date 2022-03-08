@@ -164,6 +164,23 @@
     },
     {
       "key": {
+        "uuid": "55f01062_7d347804",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestInputMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-03-08T11:30:10Z",
+      "side": 1,
+      "message": "By default I would recommend not to add extra logic in the mapper to handle nulls. It brings some intelligence in the mapper that it might not have as a null and a default instantiated type does not means the same thing.\n\nFor example, a null Anchor is going to be mapped into an AnchorDetails with empty name, dataspace and shcema set, which are not the same.\n\nUnless when explicitly needed, I think the mapper should remains dumb, with minimum responsibility, and handling null on the mapper result should be the mapper client\u0027s responsibility.",
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f044bdfe_429b367e",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 3
