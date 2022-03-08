@@ -25,13 +25,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
+import org.apache.commons.validator.routines.RegexValidator;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Getter
 public class YangModelCmHandlesList {
 
     @JsonProperty("cm-handles")
     private final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
+
+    private static final RegexValidator regexValidator = new RegexValidator("^[a-zA-Z0-9_]*$");
 
     /**
      * Create a YangModelCmHandleList given all service names and a collection of cmHandles.
@@ -45,7 +49,7 @@ public class YangModelCmHandlesList {
                                                                   final String dmiDataServiceName,
                                                                   final String dmiModelServiceName,
                                                                   final Collection<NcmpServiceCmHandle>
-                                                            ncmpServiceCmHandles) {
+                                                                      ncmpServiceCmHandles) {
         final YangModelCmHandlesList yangModelCmHandlesList = new YangModelCmHandlesList();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final YangModelCmHandle yangModelCmHandle =
@@ -54,7 +58,12 @@ public class YangModelCmHandlesList {
                     dmiDataServiceName,
                     dmiModelServiceName,
                     ncmpServiceCmHandle);
-            yangModelCmHandlesList.add(yangModelCmHandle);
+            if (regexValidator.isValid(yangModelCmHandle.getId())) {
+                yangModelCmHandlesList.add(yangModelCmHandle);
+            } else {
+                throw new DataValidationException("Invalid Data", "Cm Handle "
+                    + "'" + yangModelCmHandle.getId() + "'" + " cannot have dashes or commas in the name");
+            }
         }
         return yangModelCmHandlesList;
     }

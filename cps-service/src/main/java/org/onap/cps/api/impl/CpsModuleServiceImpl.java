@@ -25,10 +25,12 @@ package org.onap.cps.api.impl;
 import java.util.Collection;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import org.apache.commons.validator.routines.RegexValidator;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ModuleReference;
@@ -45,13 +47,20 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final CpsAdminService cpsAdminService;
 
+    private final RegexValidator regexValidator = new RegexValidator("^[a-zA-Z0-9_]*$");
+
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-        final var yangTextSchemaSourceSet
-            = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
-        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
-        yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
+        if (regexValidator.isValid(schemaSetName)) {
+            final var yangTextSchemaSourceSet
+                = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+            cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+            yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Schema Set Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override

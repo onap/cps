@@ -26,9 +26,11 @@ import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.apache.commons.validator.routines.RegexValidator;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -41,9 +43,16 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Lazy
     private final CpsDataService cpsDataService;
 
+    private final RegexValidator regexValidator = new RegexValidator("^[a-zA-Z0-9_]*$");
+
     @Override
     public void createDataspace(final String dataspaceName) {
-        cpsAdminPersistenceService.createDataspace(dataspaceName);
+        if (regexValidator.isValid(dataspaceName)) {
+            cpsAdminPersistenceService.createDataspace(dataspaceName);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Dataspace Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override
@@ -53,7 +62,12 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        if (regexValidator.isValid(anchorName)) {
+            cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        } else {
+            throw new DataValidationException("Invalid data.",
+                "Anchor Name Cannot have commas' or dashes as part of request");
+        }
     }
 
     @Override

@@ -93,6 +93,26 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'no valid data'             | []                    | []                    | []               || 0                       | 0                                            | 0
     }
 
+    def 'Register an invalid cm handle for the following scenario #scenario.'() {
+        given: 'an invalid registration'
+            def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin:'my-server')
+            ncmpServiceCmHandle.cmHandleID = cmHandleId
+            ncmpServiceCmHandle.dmiProperties = [dmiProp1: 'dmiValue1', dmiProp2: 'dmiValue2']
+            ncmpServiceCmHandle.publicProperties = [publicProp1: 'publicValue1', publicProp2: 'publicValue2' ]
+            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
+        when: 'create dataspace method is invoked with incorrectly named dataspace'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'save list elements is not invoked'
+            0 * mockCpsDataService.saveListElements(_, _, _, _, _)
+        and: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following cm handle ids are used'
+            scenario             | cmHandleId
+            'containing a comma' | 'someCmHandle,'
+            'containing a dash'  | 'someCmHandle-'
+    }
+
     def 'Register a DMI Plugin for the given cm-handle(s) without DMI properties.'() {
         given: 'a registration without cm-handle properties'
             NetworkCmProxyDataServiceImpl objectUnderTest = getObjectUnderTestWithModelSyncDisabled()

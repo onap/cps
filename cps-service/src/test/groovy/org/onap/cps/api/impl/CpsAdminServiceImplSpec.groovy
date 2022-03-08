@@ -24,6 +24,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
 import java.time.OffsetDateTime
@@ -40,11 +41,37 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
     }
 
+    def 'Create a dataspace with a dataspace name #scenario.'() {
+        when: 'create dataspace method is invoked with incorrectly named dataspace'
+            objectUnderTest.createDataspace(dataspaceName)
+        then: 'the persistence service method is invoked with same parameters'
+            0 * mockCpsAdminPersistenceService.createDataspace(_)
+        and: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following dataspace names are used'
+            scenario             | dataspaceName
+            'containing a comma' | 'someDataspace,'
+            'containing a dash'  | 'someDataspace-'
+    }
+
     def 'Create anchor method invokes persistence service.'() {
         when: 'create anchor method is invoked'
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
         then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
+    }
+
+    def 'Create an anchor with a anchor name #scenario.'() {
+        when: 'create anchor method is invoked with incorrectly named dataspace'
+            objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', anchorName)
+        then: 'the persistence service method is invoked with same parameters'
+            0 * mockCpsAdminPersistenceService.createAnchor(_, _, _)
+        and: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following anchor names are used'
+            scenario             | anchorName
+            'containing a comma' | 'someAnchor,'
+            'containing a dash'  | 'someAnchor-'
     }
 
     def 'Retrieve all anchors for dataspace.'() {
