@@ -45,7 +45,7 @@ public class YangModelCmHandlesList {
                                                                   final String dmiDataServiceName,
                                                                   final String dmiModelServiceName,
                                                                   final Collection<NcmpServiceCmHandle>
-                                                            ncmpServiceCmHandles) {
+                                                                      ncmpServiceCmHandles) {
         final YangModelCmHandlesList yangModelCmHandlesList = new YangModelCmHandlesList();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final YangModelCmHandle yangModelCmHandle =

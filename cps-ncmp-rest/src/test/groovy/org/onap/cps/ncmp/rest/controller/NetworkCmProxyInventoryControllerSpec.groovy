@@ -72,14 +72,15 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                     .content(jsonData)
             ).andReturn().response
         then: 'the converted object is forwarded to the registration service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration)
+            expectedCallsToSyncModule * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration)
         and: 'response status is no content'
-            response.status ==  HttpStatus.NO_CONTENT.value()
+            response.status ==  expectedResponse
         where: 'the following registration json is used'
-            scenario                                                                       | dmiRegistrationJson
-            'multiple services, added, updated and removed cm handles and many properties' | 'dmi_registration_all_singing_and_dancing.json'
-            'updated cm handle with updated/new and removed properties'                    | 'dmi_registration_updates_only.json'
-            'without any properties'                                                       | 'dmi_registration_without_properties.json'
+            scenario                                                                       | dmiRegistrationJson                             || expectedResponse               | expectedCallsToSyncModule
+            'multiple services, added, updated and removed cm handles and many properties' | 'dmi_registration_all_singing_and_dancing.json' || HttpStatus.NO_CONTENT.value()  |  1
+            'updated cm handle with updated/new and removed properties'                    | 'dmi_registration_updates_only.json'            || HttpStatus.NO_CONTENT.value()  |  1
+            'without any properties'                                                       | 'dmi_registration_without_properties.json'      || HttpStatus.NO_CONTENT.value()  |  1
+            'with invalid cm handle id'                                                    | 'dmi_registration_invalid.json'                 || HttpStatus.BAD_REQUEST.value() |  0
     }
 
     def 'Dmi plugin registration with invalid json' () {
