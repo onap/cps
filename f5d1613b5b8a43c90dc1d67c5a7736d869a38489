@@ -22,6 +22,30 @@
       "revId": "f5d1613b5b8a43c90dc1d67c5a7736d869a38489",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "553df4a3_13484019",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-08T11:38:58Z",
+      "side": 1,
+      "message": "It would be good to keep it to make issue investigation easier.",
+      "parentUuid": "6268dc84_745feeb7",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "f5d1613b5b8a43c90dc1d67c5a7736d869a38489",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
