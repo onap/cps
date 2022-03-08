@@ -286,7 +286,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('some cm handle')
+            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some cm handle')
     }
