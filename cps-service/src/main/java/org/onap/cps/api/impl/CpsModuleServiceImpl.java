@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,56 +47,59 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final CpsAdminService cpsAdminService;
 
     @Override
-    public void createSchemaSet(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> yangResourcesNameToContentMap) {
+    public void createSchemaSet(final String dataspaceId, final String schemaSetId,
+                                final Map<String, String> yangResourcesNameToContentMap) {
+        CpsValidator.validateFunctionIds(dataspaceId, schemaSetId);
         final var yangTextSchemaSourceSet
             = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
-        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
-        yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
+        cpsModulePersistenceService.storeSchemaSet(dataspaceId, schemaSetId, yangResourcesNameToContentMap);
+        yangTextSchemaSourceSetCache.updateCache(dataspaceId, schemaSetId, yangTextSchemaSourceSet);
     }
 
     @Override
-    public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> newModuleNameToContentMap,
-        final Collection<ModuleReference> moduleReferences) {
-        cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
+    public void createSchemaSetFromModules(final String dataspaceId, final String schemaSetId,
+                                           final Map<String, String> newModuleNameToContentMap,
+                                           final Collection<ModuleReference> moduleReferences) {
+        cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceId, schemaSetId,
             newModuleNameToContentMap, moduleReferences);
 
     }
 
     @Override
-    public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
+    public SchemaSet getSchemaSet(final String dataspaceId, final String schemaSetId) {
+        CpsValidator.validateFunctionIds(dataspaceId, schemaSetId);
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
-            .get(dataspaceName, schemaSetName);
-        return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
+            .get(dataspaceId, schemaSetId);
+        return SchemaSet.builder().name(schemaSetId).dataspaceName(dataspaceId)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
     }
 
     @Override
     @Transactional
-    public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
+    public void deleteSchemaSet(final String dataspaceId, final String schemaSetId,
         final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName, schemaSetName);
+        CpsValidator.validateFunctionIds(dataspaceId, schemaSetId);
+        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceId, schemaSetId);
         if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
-            throw new SchemaSetInUseException(dataspaceName, schemaSetName);
+            throw new SchemaSetInUseException(dataspaceId, schemaSetId);
         }
         for (final Anchor anchor : anchors) {
-            cpsAdminService.deleteAnchor(dataspaceName, anchor.getName());
+            cpsAdminService.deleteAnchor(dataspaceId, anchor.getName());
         }
-        cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName);
-        yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
+        cpsModulePersistenceService.deleteSchemaSet(dataspaceId, schemaSetId);
+        yangTextSchemaSourceSetCache.removeFromCache(dataspaceId, schemaSetId);
         cpsModulePersistenceService.deleteUnusedYangResourceModules();
     }
 
     @Override
-    public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {
-        return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName);
+    public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceId) {
+        return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceId);
     }
 
     @Override
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String dataspaceName,
-        final String anchorName) {
-        return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName, anchorName);
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String dataspaceId,
+        final String anchorId) {
+        return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceId, anchorId);
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

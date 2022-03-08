@@ -23,7 +23,6 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.model.ModuleReference;
@@ -42,8 +41,8 @@ public interface CpsModuleService {
      * @param yangResourcesNameToContentMap yang resources (files) as a mep where key is resource name
      *                                      and value is content
      */
-    void createSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-                         @NonNull Map<String, String> yangResourcesNameToContentMap);
+    void createSchemaSet(String dataspaceName, String schemaSetName,
+                         Map<String, String> yangResourcesNameToContentMap);
 
     /**
      * Create a schema set from new modules and existing modules.
@@ -52,8 +51,8 @@ public interface CpsModuleService {
      * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
      * @param moduleReferences          List of YANG resources module references of the modules
      */
-    void createSchemaSetFromModules(@NonNull String dataspaceName, @NonNull String schemaSetName,
-                                    @NonNull Map<String, String> newModuleNameToContentMap,
+    void createSchemaSetFromModules(String dataspaceName, String schemaSetName,
+                                    Map<String, String> newModuleNameToContentMap,
                                     Collection<ModuleReference> moduleReferences);
 
     /**
@@ -63,7 +62,7 @@ public interface CpsModuleService {
      * @param schemaSetName schema set name
      * @return a SchemaSet
      */
-    SchemaSet getSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName);
+    SchemaSet getSchemaSet(String dataspaceName, String schemaSetName);
 
     /**
      * Deletes Schema Set.
@@ -74,8 +73,8 @@ public interface CpsModuleService {
      * @throws DataInUseException if cascadeDeleteAllowed is set to CASCADE_DELETE_PROHIBITED and there
      *                           is associated anchor record exists in database
      */
-    void deleteSchemaSet(@NonNull String dataspaceName, @NonNull String schemaSetName,
-        @NonNull CascadeDeleteAllowed cascadeDeleteAllowed);
+    void deleteSchemaSet(String dataspaceName, String schemaSetName,
+                         CascadeDeleteAllowed cascadeDeleteAllowed);
 
     /**
      * Retrieve module references for the given dataspace name.
