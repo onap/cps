@@ -29,6 +29,8 @@ dataspaces:
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
       '401':
         $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
