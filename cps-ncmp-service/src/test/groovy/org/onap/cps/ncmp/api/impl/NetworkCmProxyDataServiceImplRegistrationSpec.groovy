@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
@@ -42,6 +43,7 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
@@ -218,7 +220,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Error Handling: Registration fails: #scenario'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleID: 'cmhandle')]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleID: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
             mockCpsDataService.saveListElements(_, _, _, _, _) >> { throw exception }
         when: 'registration is updated'
@@ -227,16 +229,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             response.getCreatedCmHandles().size() == 1
             with(response.getCreatedCmHandles().get(0)) {
                 assert it.status == Status.FAILURE
-                assert it.cmHandle == 'cmhandle'
+                assert it.cmHandle ==  cmHandleId
                 assert it.registrationError == expectedError
                 assert it.errorText == expectedErrorText
             }
         and: 'model-sync is not invoked'
             0 * objectUnderTest.syncModulesAndCreateAnchor(_)
         where:
-            scenario                                        | exception                                               || expectedError           | expectedErrorText
-            'cm-handle already exist'                       | new AlreadyDefinedException('', new RuntimeException()) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
-            'unknown exception while registering cm-handle' | new RuntimeException('Failed')                          || UNKNOWN_ERROR           | 'Failed'
+            scenario                                        | cmHandleId             | exception                                               || expectedError           | expectedErrorText
+            'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedException('', new RuntimeException()) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
+            'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")                     || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
+            'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                          || UNKNOWN_ERROR           | 'Failed'
     }
 
     def 'Create CM-Handle Error Handling: Model Sync fails'() {
@@ -268,12 +271,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle updates can be processed successfully'
             def updateOperationResponse = [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-1'),
                                            CmHandleRegistrationResponse.createFailureResponse('cm-handle-2', new Exception("Failed")),
-                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLE_DOES_NOT_EXIST)]
+                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLE_DOES_NOT_EXIST),
+                                           CmHandleRegistrationResponse.createFailureResponse('cm handle 4', CM_HANDLE_INVALID_ID)]
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) >> updateOperationResponse
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the response contains updateOperationResponse'
-            assert response.getUpdatedCmHandles().size() == 3
+            assert response.getUpdatedCmHandles().size() == 4
             assert response.getUpdatedCmHandles().containsAll(updateOperationResponse)
     }
 
@@ -369,9 +373,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                   | deleteListElementException                | expectedError            | expectedErrorText
-            'cm-handle does not exist' | new DataNodeNotFoundException("", "", "") | CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
-            'an unexpected exception'  | new RuntimeException("Failed")            | UNKNOWN_ERROR            | 'Failed'
+            scenario                     | cmHandleId             | deleteListElementException                ||  expectedError           | expectedErrorText
+            'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException("", "", "") || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException("", "")       || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
+            'an unexpected exception'    | 'cmhandle'             | new RuntimeException("Failed")            || UNKNOWN_ERROR            | 'Failed'
     }
 
     def getObjectUnderTestWithModelSyncDisabled() {

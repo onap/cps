@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -77,7 +78,8 @@ public class CmHandleRegistrationResponse {
     public enum RegistrationError {
         UNKNOWN_ERROR("00", "Unknown error"),
         CM_HANDLE_ALREADY_EXIST("01", "cm-handle already exists"),
-        CM_HANDLE_DOES_NOT_EXIST("02", "cm-handle does not exist");
+        CM_HANDLE_DOES_NOT_EXIST("02", "cm-handle does not exist"),
+        CM_HANDLE_INVALID_ID("03", "cm-handle has an invalid character(s) in id");
 
         public final String errorCode;
         public final String errorText;

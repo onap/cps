@@ -50,9 +50,9 @@ class CpsDataServiceImplSpec extends Specification {
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
     }
 
-    def dataspaceName = 'some dataspace'
-    def anchorName = 'some anchor'
-    def schemaSetName = 'some schema set'
+    def dataspaceName = 'some-dataspace'
+    def anchorName = 'some-anchor'
+    def schemaSetName = 'some-schema-set'
     def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
