@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1d0c6f45_d6159db2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-08T13:39:28Z",
+      "side": 1,
+      "message": "As per my discussion with Joe we returns only request id in this case.",
+      "parentUuid": "bab4d7d8_f16c20df",
+      "range": {
+        "startLine": 334,
+        "startChar": 68,
+        "endLine": 334,
+        "endChar": 100
+      },
+      "revId": "75ae7b72f302b5281db03e29b1f51fb3f63dc16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae5e066c_642813d3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 20
@@ -45,6 +69,30 @@
       "revId": "75ae7b72f302b5281db03e29b1f51fb3f63dc16a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e8858f_c5ced859",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-08T13:39:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae5e066c_642813d3",
+      "range": {
+        "startLine": 230,
+        "startChar": 74,
+        "endLine": 230,
+        "endChar": 109
+      },
+      "revId": "75ae7b72f302b5281db03e29b1f51fb3f63dc16a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
