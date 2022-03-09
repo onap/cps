@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b052371_8f449a51",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T18:01:11Z",
+      "side": 1,
+      "message": "would we prefer a empty collection here, normally we do but maybe this is a non-existing edge-case... a valdi schemeaset has to have at least 1 module...",
+      "range": {
+        "startLine": 57,
+        "startChar": 55,
+        "endLine": 57,
+        "endChar": 62
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f15a87d7_af44d1f7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T18:01:11Z",
+      "side": 1,
+      "message": "when we debugged the test did we not conclude that \na) the objectMappper is NOT used so can be a stub (as null is not allowed)\nb) the RestInputMapper IS used ie. should have real instance here?!",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b59faa30_bad0bb8d",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T18:01:11Z",
+      "side": 1,
+      "message": "maybe add xml comment saying all below excluding are referring to generated code!",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 30
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
