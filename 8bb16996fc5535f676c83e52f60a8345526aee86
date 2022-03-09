@@ -25,6 +25,54 @@
     },
     {
       "key": {
+        "uuid": "d9d1e95c_1854bd3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-09T12:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69fe4686_5a25a7ef",
+      "range": {
+        "startLine": 333,
+        "startChar": 19,
+        "endLine": 333,
+        "endChar": 33
+      },
+      "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8f99623_b237fbdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-09T12:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69fe4686_5a25a7ef",
+      "range": {
+        "startLine": 333,
+        "startChar": 19,
+        "endLine": 333,
+        "endChar": 33
+      },
+      "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcfc68a3_0a42b094",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 21
@@ -45,6 +93,30 @@
       "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c87b2d60_82147955",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-09T12:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcfc68a3_0a42b094",
+      "range": {
+        "startLine": 281,
+        "startChar": 21,
+        "endLine": 284,
+        "endChar": 30
+      },
+      "revId": "8bb16996fc5535f676c83e52f60a8345526aee86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
