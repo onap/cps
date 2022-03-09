@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa2b6cd5_bfda65d0",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-09T16:35:08Z",
+      "side": 0,
+      "message": "Missing Copyright",
+      "revId": "df4ca87b955e54180046b25294913b5fca5a1270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
