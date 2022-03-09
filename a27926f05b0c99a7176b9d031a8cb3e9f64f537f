@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94b56a5c_65cc647b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "I am not sure did we clearly agree scope with team for this user story?!\nYou seem to focus (just on) cm-handle names for now\nalso if anchor names are vlaidation maybe we need NOT to valid CM -handles one will follow from teh other...",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "356d4cb0_2dcf8c6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "I think any validation (of cm-handle names) should be done in a utility class that can be used anywhere NCMP",
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3650ebbe_4558972e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "ddi you get any input from anyone/anywhere on this?",
+      "range": {
+        "startLine": 41,
+        "startChar": 100,
+        "endLine": 41,
+        "endChar": 109
+      },
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99834b2d_d02e66c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "we\u0027ll probably get a SonarQube security hotspot for this but we can address it being not user input",
+      "range": {
+        "startLine": 41,
+        "startChar": 100,
+        "endLine": 41,
+        "endChar": 108
+      },
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21fa265_89d38ecb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "not suer about this part:\nit more like FOR_CM_HANDLE_NAMES  (need to confirm when I see code)",
+      "range": {
+        "startLine": 41,
+        "startChar": 59,
+        "endLine": 41,
+        "endChar": 80
+      },
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d3c2e67_0aa68f38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-09T17:16:47Z",
+      "side": 1,
+      "message": "validateCmHAndleName",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "a27926f05b0c99a7176b9d031a8cb3e9f64f537f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
