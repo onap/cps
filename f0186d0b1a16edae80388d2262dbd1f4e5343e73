@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6dc09fd6_db4c346b",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4df199f4_30648786",
+      "range": {
+        "startLine": 5,
+        "startChar": 30,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9649a196_887e562b",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
         "patchSetId": 3
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2ac10db5_6f6e9cb8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd6c75fb_ffcf520f",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 59
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38fab272_952dca54",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
         "patchSetId": 3
@@ -115,6 +163,30 @@
       "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "343a88dd_958fa3be",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38fab272_952dca54",
+      "range": {
+        "startLine": 63,
+        "startChar": 42,
+        "endLine": 63,
+        "endChar": 48
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "053c23a3_023b3b1e",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a5e92c15_8567b3c4",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 39
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a38457a6_e763980d",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 3
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "c4025b6c_b9e109a4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a38457a6_e763980d",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 50
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55f01062_7d347804",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestInputMapper.java",
         "patchSetId": 3
@@ -178,6 +298,24 @@
       "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9e9ec35_73c87132",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/CpsRestInputMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55f01062_7d347804",
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -204,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "cf166027_c104d3d9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f044bdfe_429b367e",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98a4facf_2eb28d98",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
         "patchSetId": 3
@@ -224,6 +386,30 @@
       "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88770465_3c45f191",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98a4facf_2eb28d98",
+      "range": {
+        "startLine": 38,
+        "startChar": 70,
+        "endLine": 39,
+        "endChar": 70
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -250,6 +436,30 @@
     },
     {
       "key": {
+        "uuid": "256ebc30_3bb71937",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e862446b_dd73ef85",
+      "range": {
+        "startLine": 47,
+        "startChar": 24,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76c3bac0_2c7e0bdf",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
         "patchSetId": 3
@@ -270,6 +480,30 @@
       "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6b8b19b_0153b745",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76c3bac0_2c7e0bdf",
+      "range": {
+        "startLine": 53,
+        "startChar": 42,
+        "endLine": 53,
+        "endChar": 98
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -296,6 +530,30 @@
     },
     {
       "key": {
+        "uuid": "258e3a78_13e9628f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bc864d7_c388c46e",
+      "range": {
+        "startLine": 65,
+        "startChar": 37,
+        "endLine": 65,
+        "endChar": 122
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb18755e_3c0031d2",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 3
@@ -307,6 +565,30 @@
       "writtenOn": "2022-03-07T14:59:31Z",
       "side": 1,
       "message": "if not use \u0027null\u0027 might be good enough",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cdf02a1_95d03f3a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Set as new JsonObjectMapper object as per discussion",
+      "parentUuid": "fb18755e_3c0031d2",
       "range": {
         "startLine": 75,
         "startChar": 40,
@@ -339,6 +621,30 @@
       "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f04f114_4b3ba0cb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-09T17:06:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6077e7f1_d8d7a9e5",
+      "range": {
+        "startLine": 78,
+        "startChar": 44,
+        "endLine": 78,
+        "endChar": 48
+      },
+      "revId": "f0186d0b1a16edae80388d2262dbd1f4e5343e73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
