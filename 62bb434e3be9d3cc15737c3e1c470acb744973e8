@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "04f3e693_7938393d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T14:58:37Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary? Wherever the mapped values are the same, it doesn\u0027t need to be defined within a mapping tag.\n\nAnd I think the null checks could still be defined globally at the top of the class as done previously.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 91
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b052371_8f449a51",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
         "patchSetId": 5
@@ -83,6 +106,30 @@
       "writtenOn": "2022-03-09T18:01:11Z",
       "side": 1,
       "message": "maybe add xml comment saying all below excluding are referring to generated code!",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 30
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "315e9115_b5aa1f3c",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T14:58:37Z",
+      "side": 1,
+      "message": "If we are excluding this. Are the tests still necessary for the new mapping interfaces?\n\nI would imagine we want to keep them functionality wise, as opposed to just meeting coverage checks?",
+      "parentUuid": "b59faa30_bad0bb8d",
       "range": {
         "startLine": 63,
         "startChar": 16,
