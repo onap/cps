@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0a382f0_83f6e5b9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T11:02:13Z",
+      "side": 1,
+      "message": "NB - I think we should still have this as a constant shared definition for consistency.",
+      "range": {
+        "startLine": 100,
+        "startChar": 127,
+        "endLine": 100,
+        "endChar": 146
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70cd9ef7_6eb7d404",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T11:02:13Z",
+      "side": 1,
+      "message": "NB - Does the team feel like this could be extracted out as a shared def?\n\nIt\u0027s hard to tell exactly what a\u003db is. If was extracted out into a constant, it could be defined in more plain English as an optionsParam?",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0db420b_124ab9a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T11:02:13Z",
+      "side": 1,
+      "message": "Same comment as before, should these be extracted into a shared definition.",
+      "range": {
+        "startLine": 72,
+        "startChar": 110,
+        "endLine": 72,
+        "endChar": 119
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53e48352_4271bbd1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T11:02:13Z",
+      "side": 1,
+      "message": "With not necessary as it is already in the test definition. So the label would look like this\n\n\u0027Test dmi api base path with With /\u0027",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02ff9aad_ff887933",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-10T11:02:13Z",
+      "side": 1,
+      "message": "Is this invalid? I think the URL may still work with an extra /. If not should an exception be thrown, or should we expect a bad request of some sort to test for.",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
