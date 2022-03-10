@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "25cf3700_f37e2716",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-10T09:11:55Z",
+      "side": 1,
+      "message": "No that was the NcmpRestExceptionHandlerSpec, I debugged this one myself and it was the other way around",
+      "parentUuid": "f15a87d7_af44d1f7",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b59faa30_bad0bb8d",
         "filename": "jacoco-report/pom.xml",
         "patchSetId": 5
