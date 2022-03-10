@@ -53,16 +53,16 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(schemaSetName);
-        if (matcher.matches()) {
+        //final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(schemaSetName);
+        //if (matcher.matches()) {
             final var yangTextSchemaSourceSet
                 = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
             cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
             yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
-        } else {
-            throw new DataValidationException("Invalid data.",
-                "Schema Set Name Cannot have commas' or dashes as part of request");
-        }
+        //} else {
+        //    throw new DataValidationException("Invalid data.",
+        //        "Schema Set Name Cannot have commas' or dashes as part of request");
+        //}
     }
 
     @Override

@@ -23,14 +23,17 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.Map;
+import javax.validation.constraints.Pattern;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.DataInUseException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * Responsible for managing module sets.
  */
+@Validated
 public interface CpsModuleService {
 
     /**
@@ -41,7 +44,7 @@ public interface CpsModuleService {
      * @param yangResourcesNameToContentMap yang resources (files) as a mep where key is resource name
      *                                      and value is content
      */
-    void createSchemaSet(String dataspaceName, String schemaSetName,
+    void createSchemaSet(String dataspaceName, @Pattern(regexp = "^[a-zA-Z0-9_]*$") String schemaSetName,
                          Map<String, String> yangResourcesNameToContentMap);
 
     /**

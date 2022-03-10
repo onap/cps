@@ -44,17 +44,17 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Lazy
     private final CpsDataService cpsDataService;
 
-    private static final Pattern REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS = Pattern.compile("^[a-zA-Z0-9_]*$");
+    //private static final Pattern REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS = Pattern.compile("^[a-zA-Z0-9_]*$");
 
     @Override
     public void createDataspace(final String dataspaceName) {
-        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(dataspaceName);
-        if (matcher.matches()) {
+        //final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(dataspaceName);
+        //if (matcher.matches()) {
             cpsAdminPersistenceService.createDataspace(dataspaceName);
-        } else {
-            throw new DataValidationException("Invalid data.",
-                "Dataspace Name Cannot have commas' or dashes as part of request");
-        }
+        //} else {
+       //     throw new DataValidationException("Invalid data.",
+        //        "Dataspace Name Cannot have commas' or dashes as part of request");
+        //}
     }
 
     @Override
@@ -64,13 +64,13 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(anchorName);
-        if (matcher.matches()) {
+        //final Matcher matcher = REG_EX_VALIDATION_PATTERN_FOR_NETWORK_FUNCTIONS.matcher(anchorName);
+        //if (matcher.matches()) {
             cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
-        } else {
-            throw new DataValidationException("Invalid data.",
-                "Anchor Name Cannot have commas' or dashes as part of request");
-        }
+        //} else {
+        //    throw new DataValidationException("Invalid data.",
+        //        "Anchor Name Cannot have commas' or dashes as part of request");
+        //}
     }
 
     @Override
