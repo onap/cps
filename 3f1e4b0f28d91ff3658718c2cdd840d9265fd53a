@@ -22,6 +22,30 @@
       "revId": "3f1e4b0f28d91ff3658718c2cdd840d9265fd53a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8954041_cb678f0b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/SchemaSet.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T16:29:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1f6130a_ebc13a28",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "3f1e4b0f28d91ff3658718c2cdd840d9265fd53a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
