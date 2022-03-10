@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "81598f70_fb917363",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T14:21:26Z",
+      "side": 1,
+      "message": "We used it as constant in previous patch but later decised to use string literal.",
+      "parentUuid": "b0a382f0_83f6e5b9",
+      "range": {
+        "startLine": 100,
+        "startChar": 127,
+        "endLine": 100,
+        "endChar": 146
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70cd9ef7_6eb7d404",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 22
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "736d1437_50e701e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T14:21:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "70cd9ef7_6eb7d404",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0db420b_124ab9a6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
         "patchSetId": 22
@@ -68,6 +116,30 @@
       "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b16179d_ffee1542",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T14:21:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f0db420b_124ab9a6",
+      "range": {
+        "startLine": 72,
+        "startChar": 110,
+        "endLine": 72,
+        "endChar": 119
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +186,54 @@
       "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18f64cd9_17db007f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T14:21:26Z",
+      "side": 1,
+      "message": "Yes it\u0027s invalid as if we append base path with \"/\" then it produces //dmi that is invalid and you will get 404.",
+      "parentUuid": "02ff9aad_ff887933",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "073ed31b_3c583bd1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-10T14:21:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53e48352_4271bbd1",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "9a3278f6965e1de9bba52a23061c6e8e1ac3f2d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
