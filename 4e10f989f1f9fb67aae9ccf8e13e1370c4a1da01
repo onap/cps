@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea9eb9fb_d488058d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "This needs to be replaced with CPS Path Query.",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09e3734f_b639e1be",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "This should be SET_DATA. I had my own custom sql here at one point to add additional fragments but this is not needed so the default will be sufficient.",
+      "range": {
+        "startLine": 227,
+        "startChar": 21,
+        "endLine": 227,
+        "endChar": 41
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "160e0879_9643506c",
+        "filename": "csit/data/cmHandleRegistration.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "Is this file actually even used anymore? Perhaps it can safely be removed?",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a7d3efc_0373162a",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "Commented out as I was attempting to add nodes via robot framework. This, as I mentioned in another comments did not work as the nodes for some reason had no modules when tests ran... could be a timing issue or could be they need to be mounted during sdnc up time for the modules to be added? Either way it works when nodes are added to the setup.sh",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 23
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53c5c5f2_83e502b5",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "These keywords act as placeholders for functions to be called later as on lines 66-68. Reduces lines of code and makes the tests reusable 😊",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8539edbc_1abf9129",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "This can be removed. It is handy though for debugging if you want to see what is happening in the robot test.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "271798c0_ddbae4c2",
+        "filename": "csit/tests/public-properties-query/public-properties-query.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-11T10:37:06Z",
+      "side": 1,
+      "message": "Took a bit of looking around but this is the simplest way to expect and catch a thrown exception in robot I could find.",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
