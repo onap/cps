@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "5a372315_34e6d853",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-11T13:40:05Z",
+      "side": 1,
+      "message": "Agreed in weekly meeting that this was the appropriate implementation",
+      "parentUuid": "a2609471_67dafd14",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 91
+      },
+      "revId": "62bb434e3be9d3cc15737c3e1c470acb744973e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b052371_8f449a51",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/CpsRestInputMapperSpec.groovy",
         "patchSetId": 5
