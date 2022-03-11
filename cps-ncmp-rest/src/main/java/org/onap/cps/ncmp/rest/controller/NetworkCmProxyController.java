@@ -76,17 +76,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param resourceIdentifier resource identifier
      * @param acceptParamInHeader accept header parameter
      * @param optionsParamInQuery options query parameter
+     * @param topicParamInQuery topic query parameter
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
     public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
                                                                         final @NotNull @Valid String resourceIdentifier,
                                                                         final String acceptParamInHeader,
-                                                                        final @Valid String optionsParamInQuery) {
+                                                                        final @Valid String optionsParamInQuery,
+                                                                        final @Valid String topicParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
                 resourceIdentifier,
                 acceptParamInHeader,
-                optionsParamInQuery);
+                optionsParamInQuery,
+                topicParamInQuery);
         return ResponseEntity.ok(responseObject);
     }
 
@@ -97,17 +100,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param resourceIdentifier resource identifier
      * @param acceptParamInHeader accept header parameter
      * @param optionsParamInQuery options query parameter
+     * @param topicParamInQuery topic query parameter
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
     public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandle,
                                                                     final @NotNull @Valid String resourceIdentifier,
                                                                     final String acceptParamInHeader,
-                                                                    final @Valid String optionsParamInQuery) {
+                                                                    final @Valid String optionsParamInQuery,
+                                                                    final @Valid String topicParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier,
                 acceptParamInHeader,
-                optionsParamInQuery);
+                optionsParamInQuery,
+                topicParamInQuery);
         return ResponseEntity.ok(responseObject);
     }
 

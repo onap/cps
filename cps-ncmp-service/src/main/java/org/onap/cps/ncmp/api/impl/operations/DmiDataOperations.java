@@ -23,10 +23,10 @@ package org.onap.cps.ncmp.api.impl.operations;
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
@@ -47,8 +47,8 @@ public class DmiDataOperations extends DmiOperations {
     public DmiDataOperations(final YangModelCmHandleRetriever cmHandlePropertiesRetriever,
                              final JsonObjectMapper jsonObjectMapper,
                              final NcmpConfiguration.DmiProperties dmiProperties,
-                             final DmiRestClient dmiRestClient) {
-        super(cmHandlePropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient);
+                             final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
+        super(cmHandlePropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
 
     /**
@@ -59,25 +59,31 @@ public class DmiDataOperations extends DmiOperations {
      * @param resourceId  resource identifier
      * @param optionsParamInQuery options query
      * @param acceptParamInHeader accept parameter
-     * @param dataStore  data store enum
+     * @param dataStore           data store enum
+     * @param requestId           requestId for async responses
+     * @param topicParamInQuery   topic name for (triggering) async responses
      * @return {@code ResponseEntity} response entity
      */
     public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandleId,
-                                                          final String resourceId,
-                                                          final String optionsParamInQuery,
-                                                          final String acceptParamInHeader,
-                                                          final DataStoreEnum dataStore) {
+                                                         final String resourceId,
+                                                         final String optionsParamInQuery,
+                                                         final String acceptParamInHeader,
+                                                         final DataStoreEnum dataStore,
+                                                         final String requestId,
+                                                         final String topicParamInQuery) {
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+                yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
+            .requestId(requestId)
             .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
 
-        final var dmiResourceDataUrl = getDmiDatastoreUrlWithOptions(
-            yangModelCmHandle.resolveDmiServiceName(DATA), cmHandleId, resourceId,
-            optionsParamInQuery, dataStore);
+        final var dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
+                dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
+                topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
+                        yangModelCmHandle, cmHandleId, dataStore));
         final var httpHeaders = prepareHeader(acceptParamInHeader);
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
     }
@@ -108,33 +114,10 @@ public class DmiDataOperations extends DmiOperations {
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
-            getResourceInDataStoreUrl(yangModelCmHandle.resolveDmiServiceName(DATA),
-                cmHandleId, resourceId, PASSTHROUGH_RUNNING);
+                dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
+                                null, null),
+                        dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, new HttpHeaders());
-    }
-
-    private String getResourceInDataStoreUrl(final String dmiServiceName,
-                                             final String cmHandleId,
-                                             final String resourceId,
-                                             final DataStoreEnum dataStoreEnum) {
-        return getCmHandleUrl(dmiServiceName, cmHandleId)
-            + "data"
-            + URL_SEPARATOR
-            + "ds"
-            + URL_SEPARATOR
-            + dataStoreEnum.getValue()
-            + "?resourceIdentifier="
-            + resourceId;
-    }
-
-    private String getDmiDatastoreUrlWithOptions(final String dmiServiceName,
-                                                 final String cmHandleId,
-                                                 final String resourceId,
-                                                 final String optionsParamInQuery,
-                                                 final DataStoreEnum dataStoreEnum) {
-        final String resourceInDataStoreUrl = getResourceInDataStoreUrl(dmiServiceName,
-            cmHandleId, resourceId, dataStoreEnum);
-        return appendOptionsQuery(resourceInDataStoreUrl, optionsParamInQuery);
     }
 
 }
