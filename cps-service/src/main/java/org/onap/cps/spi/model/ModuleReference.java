@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021 Nordix Foundation.
+ * Copyright (C) 2021-2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,4 +35,18 @@ public class ModuleReference implements Serializable {
     private static final long serialVersionUID = -1761408847591042599L;
     private String moduleName;
     private String revision;
+    @Builder.Default
+    private String namespace = "";
+
+    /**
+     * Constructor for module references without namespace (will remain blank).
+     *
+     * @param moduleName module names.
+     * @param revision   revision of module.
+     */
+    public ModuleReference(final String moduleName, final String revision) {
+        this.moduleName = moduleName;
+        this.revision = revision;
+        this.namespace = "";
+    }
 }
