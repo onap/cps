@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b8f6114_acc5c332",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-11T09:54:27Z",
+      "side": 1,
+      "message": "( Indendation )\nThis needs to be aligned/in-parallel with the items tag , otherwise the example is not displayed correctly.",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 39
+      },
+      "revId": "2c963173e447b9ffbdf29ecad57a3b666c72ce0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
