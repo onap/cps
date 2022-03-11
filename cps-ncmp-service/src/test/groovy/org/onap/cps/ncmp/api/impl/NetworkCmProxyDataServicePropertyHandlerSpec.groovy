@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2021 Bell Canada
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +21,13 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
+
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
@@ -117,12 +120,53 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: [:], dmiProperties: [:])]
         and: 'data node cannot be found'
-            mockCpsDataService.getDataNode(*_) >> { throw new DataNodeNotFoundException(dataspaceName, anchorName, cmHandleXpath) }
+            mockCpsDataService.getDataNode(*_) >> { throw exception }
         when: 'update data node leaves is called using correct parameters'
-            objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
-        then: 'data validation exception is thrown'
-            def exceptionThrown = thrown(DataValidationException.class)
-            assert exceptionThrown.getMessage().contains('DataNode not found')
+            def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'one failed registration response'
+            response.size() == 1
+        and: 'it has expected error details'
+            with(response.get(0)) {
+                it.status == Status.FAILURE
+                it.cmHandle == cmHandleId
+                it.errorCode == expectedError
+                it.getErrorText() == expectedErrorText
+            }
+        where:
+            scenario                  | exception                                                        || expectedError                                               | expectedErrorText
+            'cmhandle does not exist' | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') || CmHandleRegistrationResponse.Error.CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'unexpected error'        | new RuntimeException('Failed')                                   || CmHandleRegistrationResponse.Error.UNKNOWN_ERROR            | 'Failed'
+    }
+
+    def 'Multiple update operations in a single request'() {
+        given: 'cm handles request'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
+                                         new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
+                                         new NcmpServiceCmHandle(cmHandleID: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:])]
+        and: 'data node can be found for first and third cmhandle but not for second cmhandle'
+            mockCpsDataService.getDataNode(*_) >> cmHandleDataNode >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNode
+        when: 'update data node leaves is called using correct parameters'
+            def cmHandleResponseList = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'response has 3 values'
+            cmHandleResponseList.size() == 3
+        and: 'the first and thirst requests were processed successfully'
+            with(cmHandleResponseList.get(0)) {
+                it.status == Status.SUCCESS
+                it.cmHandle == cmHandleId
+            }
+            with(cmHandleResponseList.get(2)) {
+                it.status == Status.SUCCESS
+                it.cmHandle == cmHandleId
+            }
+        and: 'the second request was failed with correct error code'
+            with(cmHandleResponseList.get(1)) {
+                it.status == Status.FAILURE
+                it.cmHandle == cmHandleId
+                it.errorCode == CmHandleRegistrationResponse.Error.CM_HANDLE_DOES_NOT_EXIST
+                it.getErrorText() == "cm-handle does not exist"
+            }
+        then: 'the replace list method is called twice'
+            2 * mockCpsDataService.replaceListContent(*_)
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
@@ -133,4 +177,5 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }))
         return properties
     }
+
 }
