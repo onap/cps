@@ -22,6 +22,30 @@
       "revId": "2c963173e447b9ffbdf29ecad57a3b666c72ce0e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c5fcb5d_0c2a8f6e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-11T12:34:15Z",
+      "side": 1,
+      "message": "It was aligned with the items before, but in that case, the request was not in the expected format.\n\nExpected example is\n\n\"updatedCmHandles\": [\n    {\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      }\n    }\n  ]\n\nthe previous example was\n\n\"updatedCmHandles\":{\n      \"cmHandle\": \"my-cm-handle\",\n      \"cmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      },\n      \"publicCmHandleProperties\": {\n        \"additionalProp1\": \"my-property\",\n        \"additionalProp2\": \"my-property\",\n        \"additionalProp3\": \"my-property\"\n      }\n    }",
+      "parentUuid": "4b8f6114_acc5c332",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 39
+      },
+      "revId": "2c963173e447b9ffbdf29ecad57a3b666c72ce0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
