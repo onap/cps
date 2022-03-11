@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "c77a9a2f_4a6694c0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-11T13:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e42de4_c08d14f1",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 14
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8907ac98_c7d04f97",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/RestControllerMapper.java",
         "patchSetId": 1
@@ -634,6 +658,30 @@
       "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8168115c_e845b4a7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-11T13:41:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "423fe776_20705c89",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 54
+      },
+      "revId": "c2cec966c3d86d12b39d3ff2b26383af70bf1622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
