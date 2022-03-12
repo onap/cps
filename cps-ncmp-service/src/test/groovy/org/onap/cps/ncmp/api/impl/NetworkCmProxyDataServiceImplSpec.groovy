@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import spock.lang.Shared
@@ -217,7 +218,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             exceptionThrown.details.contains('NOK-json')
     }
 
-    def 'Get resource data for operational from DMI with empty topic sync request.'() {
+    def 'DMI Operational data request with #scenario'() {
         given: 'cps data service returns valid data node'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                     cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
@@ -227,14 +228,14 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called data operational with blank topic'
             def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '',
                     '', '', emptyTopic)
-        then: '(synchronous) the dmi response is expected'
-            assert responseData == '{dmi-response}'
+        then: 'a invalid topic exception is thrown'
+            thrown(InvalidTopicException)
         where: 'the following parameters are used'
-            scenario             | emptyTopic
-            'No topic in url'    | ''
-            'Null topic in url'  | null
-            'Empty topic in url' | '\"\"'
-            'Blank topic in url' | ' '
+            scenario                               | emptyTopic
+            'no topic value in url'                | ''
+            'empty topic value in url'             | '\"\"'
+            'blank topic value in url'             | ' '
+            'invalid non-empty topic value in url' | '1_5_*_#'
     }
 
     def 'Get resource data for data operational from DMI with valid topic i.e. async request.'() {
@@ -263,7 +264,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert responseData.body.requestId.length() > 0
     }
 
-    def 'Get resource data for pass through running from DMI sync request where #scenario.'() {
+    def 'DMI pass through  running data request with #scenario'() {
         given: 'cps data service returns valid data node'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                     cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
@@ -273,14 +274,14 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called for data operational with valid topic'
             def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
                     '', '', '', emptyTopic)
-        then: '(synchronous) the dmi response is expected'
-            assert responseData == '{dmi-response}'
+        then: 'a invalid topic exception is thrown'
+            thrown(InvalidTopicException)
         where: 'the following parameters are used'
-            scenario             | emptyTopic
-            'No topic in url'    | ''
-            'Null topic in url'  | null
-            'Empty topic in url' | '\"\"'
-            'Blank topic in url' | ' '
+            scenario                               | emptyTopic
+            'no topic value in url'                | ''
+            'empty topic value in url'             | '\"\"'
+            'blank topic value in url'             | ' '
+            'invalid non-empty topic value in url' | '1_5_*_#'
     }
 
     def 'Getting Yang Resources.'() {
