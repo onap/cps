@@ -24,6 +24,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
+import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
@@ -65,7 +66,8 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class})
+    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class,
+            InvalidTopicException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
