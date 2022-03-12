@@ -42,11 +42,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
@@ -304,7 +304,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private static boolean isValidTopicName(final String topicName) {
-        return Strings.isNotEmpty(topicName) && TOPIC_NAME_PATTERN.matcher(topicName).matches();
+        if (topicName == null) {
+            return false;
+        }
+        if (TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
+            return true;
+        }
+        throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
     }
 
     private Map<String, Object> buildDmiResponse(final String requestId) {
