@@ -22,12 +22,14 @@
 
 package org.onap.cps.rest.exceptions
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
-import org.modelmapper.ModelMapper
+import org.mapstruct.factory.Mappers
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.CpsPathException
@@ -71,10 +73,10 @@ class CpsRestExceptionHandlerSpec extends Specification {
     CpsQueryService mockCpsQueryService = Stub()
 
     @SpringBean
-    ModelMapper modelMapper = Stub()
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = Stub()
+    CpsRestInputMapper cpsRestInputMapper = Stub()
 
     @Autowired
     MockMvc mvc

@@ -2,6 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (c) 2020 Linux Foundation.
+  Modifications Copyright (C) 2020-2022 Nordix Foundation.
   Modifications Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -78,8 +79,12 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
         </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>

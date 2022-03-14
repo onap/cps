@@ -22,7 +22,7 @@
 
 package org.onap.cps.ncmp.rest.controller
 
-
+import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Shared
 
@@ -37,7 +37,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.modelmapper.ModelMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -61,10 +60,10 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
-    ModelMapper modelMapper = new ModelMapper()
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1

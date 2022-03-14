@@ -61,11 +61,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>
+                <!--All exclusions below are referring to generated code-->
                     <excludes>
                         <exclude>org/onap/cps/event/model/*</exclude>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
+                        <exclude>org/onap/cps/ncmp/rest/controller/*MapperImpl.class</exclude>
+                        <exclude>org/onap/cps/rest/controller/*MapperImpl.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

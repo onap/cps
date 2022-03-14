@@ -73,6 +73,8 @@ components:
     SchemaSetDetails:
       type: object
       title: Schema set details by dataspace and schemasetName
+      required:
+        - "moduleReferences"
       properties:
         dataspaceName:
           type: string
