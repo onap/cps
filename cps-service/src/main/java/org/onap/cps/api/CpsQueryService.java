@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
@@ -40,7 +39,7 @@ public interface CpsQueryService {
      *                               included in the output
      * @return a collection of data nodes
      */
-    Collection<DataNode> queryDataNodes(@NonNull String dataspaceName, @NonNull String anchorName,
-        @NonNull String cpsPath, @NonNull FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName, String cpsPath,
+                                        FetchDescendantsOption fetchDescendantsOption);
 
 }
