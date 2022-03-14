@@ -83,7 +83,7 @@ Get modules for registered data node
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{responseJson}
-            IF   "${item['moduleName']}" == "stores"
-                Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
-            END
+    IF   "${item['moduleName']}" == "stores"
+        Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
         END
+    END
