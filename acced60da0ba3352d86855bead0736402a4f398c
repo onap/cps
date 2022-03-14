@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f870adc_126bb400",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-14T17:04:17Z",
+      "side": 1,
+      "message": "If topicName is null it is returned as boolean false so it is not a valid topic name, however this exception is for an invalid topic. Should the excpetion not also be thrown for a null and if not then I think better names to distinguish paths is necessary?",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 100
+      },
+      "revId": "acced60da0ba3352d86855bead0736402a4f398c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71502e1b_65c67cb7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 1
