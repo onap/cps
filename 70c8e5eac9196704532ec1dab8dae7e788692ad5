@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59cf37a9_b12c8a88",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T17:45:54Z",
+      "side": 1,
+      "message": "what are these changes about, I don\u0027t see it mentioned in teh commit message either and I dont see any test updates either?!",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 5
+      },
+      "revId": "70c8e5eac9196704532ec1dab8dae7e788692ad5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
