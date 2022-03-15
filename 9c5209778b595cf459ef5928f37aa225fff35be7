@@ -46,6 +46,29 @@
       "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25a2130d_4e28fed5",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T16:08:01Z",
+      "side": 1,
+      "message": "Small issue, I think the CPS should be ordered by number.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 95
+      },
+      "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
