@@ -61,9 +61,9 @@ Configuration Persistence Service provides the following interfaces.
    * - CPS-E-04
      - Change Notification
      - - Kafka is used as the event messaging system
-       - running instance is supplied independently from ONAP DMaaP component or any Kafka instance deployed from ONAP
+       - running instance is supplied independently from any Kafka instance deployed from ONAP
        - published events contain Timestamp, Dataspace, Schema set, Anchor and JSON Data Payload
-     - DMaaP
+     - Kafka
    * - CPS-E-05
      - xNF Data Access
      - - read xNF data
