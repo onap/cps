@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d92d561b_0ef3bf20",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T17:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a008cd11_20f03340",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25a2130d_4e28fed5",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
