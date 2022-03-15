@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0ae88d_aa1b9814",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T16:39:43Z",
+      "side": 1,
+      "message": "can we use 5.3.13 ?!\nI think we have to because of SECOM issue with older version of spring-web",
+      "range": {
+        "startLine": 80,
+        "startChar": 25,
+        "endLine": 80,
+        "endChar": 30
+      },
+      "revId": "376a078268f20a35c7fbd81f853b00164ebb748d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
