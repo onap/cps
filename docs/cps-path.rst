@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021 Nordix Foundation
+.. Copyright (C) 2021-2022 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _design:
@@ -20,10 +20,75 @@ The CPS path parameter is used for querying xpaths. CPS path is inspired by the 
 
 This section describes the functionality currently supported by CPS Path.
 
-Sample Data
-===========
+Sample Model
+============
 
-The xml below describes some basic data to be used to illustrate the CPS Path functionality.
+.. code-block::
+
+  module stores {
+    yang-version 1.1;
+    namespace "org:onap:ccsdk:sample";
+
+    prefix book-store;
+
+    revision "2020-09-15" {
+        description
+          "Sample Model";
+    }
+
+    typedef year {
+        type uint16 {
+            range "1000..9999";
+        }
+    }
+    container shops {
+
+      container bookstore {
+
+          leaf bookstore-name {
+              type string;
+          }
+
+          list categories {
+
+              key "code";
+
+              leaf code {
+                  type string;
+              }
+
+              leaf name {
+                  type string;
+              }
+
+              list books {
+                  key title;
+
+                  leaf title {
+                      type string;
+                  }
+                  leaf lang {
+                      type string;
+                  }
+                  leaf-list authors {
+                      type string;
+                  }
+                  leaf pub_year {
+                      type year;
+                  }
+                  leaf price {
+                      type uint64;
+                  }
+              }
+          }
+      }
+    }
+  }
+
+The xml and json below describes some basic data to be used to illustrate the CPS Path functionality.
+
+Sample Data in XML
+==================
 
 .. code-block:: xml
 
@@ -51,6 +116,66 @@ The xml below describes some basic data to be used to illustrate the CPS Path fu
           </categories>
        </bookstore>
     </shops>
+
+Sample Data in Json
+===================
+
+.. code-block:: json
+
+    {
+      "shops": {
+        "bookstore": {
+          "bookstore-name": "Chapters",
+          "categories": [
+            {
+              "code": "01",
+              "name": "SciFi",
+              "books": [
+                {
+                  "authors": [
+                    "Iain M. Banks"
+                  ],
+                  "lang": "en",
+                  "price": "895",
+                  "pub_year": "1994",
+                  "title": "Feersum Endjinn"
+                },
+                {
+                  "authors": [
+                    "Ursula K. Le Guin",
+                    "Joe Haldeman",
+                    "Orson Scott Card",
+                    "david Brin",
+                    "Rober Silverberg",
+                    "Dan Simmons",
+                    "Greg Bear"
+                  ],
+                  "lang": "en",
+                  "price": "1099",
+                  "pub_year": "1999",
+                  "title": "Far Horizons"
+                }
+              ]
+            },
+            {
+              "name": "kids",
+              "code": "02",
+              "books": [
+                {
+                  "authors": [
+                    "Philip Pullman"
+                  ],
+                  "lang": "en",
+                  "price": "699",
+                  "pub_year": "1995",
+                  "title": "The Golden Compass"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
 
 **Note.** 'categories' is a Yang List and 'code' is its key leaf. All other data nodes are Yang Containers. 'label' and 'edition' are both leaf-lists.
 
