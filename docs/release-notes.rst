@@ -61,6 +61,9 @@ of cm handle registration.
 
 *Known Vulnerabilities*
 
+The Absolute path to list with integer key will not work. Please refer `CPS-961 <https://jira.onap.org/browse/CPS-961>`_
+for more information.
+
 None
 
 *Workarounds*
