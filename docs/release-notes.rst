@@ -19,10 +19,25 @@ CPS Release Notes
 ..      * * *   JAKARTA   * * *
 ..      ========================
 
-Version: 3.0.0-SNAPSHOT
-=======================
+Version: 3.0.0
+==============
 
-This section lists the main changes & fixes merged into master (snapshot) version of CPS-NCMP. This information is here to assist developers that want experiment/test using our latest code bases directly. Stability of this is not guaranteed.
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.0.0                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.0.0 Jakarta                                          |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2022 March 15                                          |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
@@ -35,6 +50,8 @@ Features
    - `CPS-780 <https://jira.onap.org/browse/CPS-780>`_  Add examples for parameters, request and response in openapi yaml for cps-core
    - `CPS-817 <https://jira.onap.org/browse/CPS-817>`_  Create Endpoint For Get Cm Handles (incl. public properties) By Name
    - `CPS-837 <https://jira.onap.org/browse/CPS-837>`_  Add Remove and Update properties (DMI and Public) as part of CM Handle Registration update
+   - `CPS-789 <https://jira.onap.org/browse/CPS-789>`_ CPS Data Updated Event Schema V2 to support delete operation
+   - `CPS-791 <https://jira.onap.org/browse/CPS-791>`_ CPS-Core sends delete notification event
 
 Bug Fixes
 ---------

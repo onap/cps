@@ -70,6 +70,17 @@ paths:
           sample 3:
             value:
               options: "(depth=2,fields=book/authors)"
+      - name: topic
+        in: query
+        description: topic parameter in query.
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              topic: my-topic-name
       responses:
         "200":
           description: OK
@@ -184,6 +195,17 @@ paths:
           sample 3:
             value:
               options: "(depth=2,fields=book/authors)"
+      - name: topic
+        in: query
+        description: topic parameter in query.
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              topic: my-topic-name
       responses:
         "200":
           description: OK
@@ -664,7 +686,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ModuleReference'
+                  $ref: '#/components/schemas/RestModuleReference'
         "400":
           description: Bad Request
           content:
@@ -851,7 +873,7 @@ components:
           type: string
         details:
           type: string
-    ModuleReference:
+    RestModuleReference:
       title: Module reference details
       type: object
       properties:
