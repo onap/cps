@@ -22,6 +22,30 @@
       "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d1535c0_1307338d",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-03-15T14:17:03Z",
+      "side": 1,
+      "message": "Decided in team to keep version 1 here as long as we are still using v1 in endpoints urls.",
+      "parentUuid": "788834be_ec521676",
+      "range": {
+        "startLine": 12,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
