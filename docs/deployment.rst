@@ -7,13 +7,13 @@
 .. _deployment:
 
 CPS Deployment
-==============
+##############
 
 .. contents::
     :depth: 2
 
 CPS OOM Charts
---------------
+==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
 This chart includes different cps components referred as <cps-component-name> further in the document are listed below:
 
@@ -26,7 +26,8 @@ This chart includes different cps components referred as <cps-component-name> fu
 Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/latest/oom_user_guide.html>`_ on how to install and deploy ONAP.
 
 Installing or Upgrading CPS Components
---------------------------------------
+======================================
+
 The assumption is you have cloned the charts from the OOM repository into a local directory.
 
 **Step 1** Go to the cps charts and edit properties in values.yaml files to make any changes to particular cps component if required.
@@ -91,7 +92,7 @@ After deploying cps, keep monitoring the cps pods until they come up.
   kubectl get pods -n <namespace> | grep <cps-component-name>
 
 Restarting a faulty component
------------------------------
+=============================
 Each cps component can be restarted independently by issuing the following command:
 
 .. code-block:: bash
@@ -102,7 +103,7 @@ Each cps component can be restarted independently by issuing the following comma
 .. _cps_common_credentials_retrieval:
 
 Credentials Retrieval
----------------------
+=====================
 
 Application and database credentials are kept in Kubernetes secrets. They are defined as external secrets in the
 values.yaml file to be used across different components as :

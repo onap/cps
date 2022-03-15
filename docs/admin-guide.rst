@@ -49,8 +49,6 @@ CPS Log pattern
 Change logging level
 --------------------
 
-.. container:: ulist
-
 - Curl command 1. Check current log level of "logging.level.org.onap.cps" if it is set to it's default value (INFO)
 
 .. code-block:: java

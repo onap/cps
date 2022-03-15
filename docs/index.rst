@@ -9,7 +9,10 @@
 .. _cps-framework-doc:
 
 CPS Documentation
------------------
+#################
+
+CPS Core
+========
 
 .. toctree::
    :maxdepth: 1
@@ -22,12 +25,12 @@ CPS Documentation
    deployment.rst
    release-notes.rst
 
-DMI-Plugin Documentation
-------------------------
+DMI-Plugin
+==========
 
 * :ref:`DMI-Plugin<onap-cps-ncmp-dmi-plugin:master_index>`
 
-CPS-Temporal Documentation
---------------------------
+CPS Temporal
+============
 
 * :ref:`CPS-Temporal<onap-cps-cps-temporal:master_index>`

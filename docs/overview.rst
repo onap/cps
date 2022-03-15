@@ -4,7 +4,7 @@
 .. _overview:
 
 CPS Overview
-============
+############
 
 The Configuration Persistence Service (CPS) is a platform component that is designed to serve as a
 data repository for runtime data that needs persistence.
@@ -28,10 +28,10 @@ Types of data that is stored:
   configuration and operational parameters depending on how they are used.
 
 CPS Components
---------------
+==============
 
 CPS-Core
-########
+--------
 This is the component of CPS which encompasses the generic storage of Yang module data.
 
 **NCMP**
@@ -43,13 +43,13 @@ NCMP accesses all network Data-Model-Inventory (DMI) information via NCMP-DMI-Pl
 even though CPS-Core could be deployed without the NCMP extension.
 
 NCMP-DMI-Plugin
-####################
+---------------
 
 The Data-Model-Inventory (DMI) Plugin is a rest interface used to synchronize CM-Handles data between CPS and DMI through the DMI-Plugin.
 This is built previously from the CPS-NF-Proxy component.
 
 CPS-Temporal
-############
+------------
 
 This service is responsible to provide a time oriented perspective for
 operational network data. It provides features to store and retrieve sequences
@@ -57,14 +57,8 @@ of configurations or states along with the associated times when they occurred
 or have been observed.
 
 CPS Project
------------
+===========
 
-Wiki: `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
-
-Contact Information
--------------------
-
-onap-discuss@lists.onap.org
-
-Meeting details `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_
-`Agenda <https://wiki.onap.org/pages/viewpage.action?pageId=111117075>`_
+* Wiki: `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
+* Contact Information: onap-discuss@lists.onap.org
+* Meeting details: `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_ & `Agenda <https://wiki.onap.org/pages/viewpage.action?pageId=111117075>`_

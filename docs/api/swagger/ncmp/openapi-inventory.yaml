@@ -86,23 +86,16 @@ components:
             $ref: '#/components/schemas/RestInputCmHandle'
         updatedCmHandles:
           type: array
-          example:
-            cmHandle: my-cm-handle
-            cmHandleProperties:
-              add-my-property: add-property
-              update-my-property: updated-property
-              delete-my-property: ~
-            publicCmHandleProperties:
-              add-my-property: add-property
-              update-my-property: updated-property
-              delete-my-property: ~
           items:
             $ref: '#/components/schemas/RestInputCmHandle'
         removedCmHandles:
           type: array
+          example:
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
           items:
             type: string
-            example: "[\"my-cm-handle1\",\"my-cm-handle2\",\"my-cm-handle3\"]"
     RestInputCmHandle:
       required:
       - cmHandle
