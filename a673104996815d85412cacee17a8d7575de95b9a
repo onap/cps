@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9486a85_6c36cab8",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "update the copyright LoL",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db542d42_ed9bc9e7",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "template",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 51
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2aca884_61dfdd79",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "no needed I think",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e571b6c2_5e662755",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "no need to print this I think",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bb9db8b_25a95713",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "dont print anything of no errors",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 75
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "104a96cc_d89e7e7f",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "please use git to ignore deleted files",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 109
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b92c36_b642c69d",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "only print banner if there is anything to reported on a file.\nI realize this could be tricky. It might be betert to dont print banners at all\nI think in most cases it is likely there is only 1 error in the copyright... so the format of\nfilename: \"copyright problem\"  might be good enough\ntry to keep the \"copyright problem\" message short and without line breaks....",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 21
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ef642df_331247bf",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "remove excluded files base on (configurable) list of extension: .json, .csv .yang",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0171f0c7_350ee841",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T15:55:09Z",
+      "side": 1,
+      "message": "...Template",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 23
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
