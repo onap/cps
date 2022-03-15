@@ -206,6 +206,29 @@
       "revId": "a673104996815d85412cacee17a8d7575de95b9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59d42ac0_75922cb7",
+        "filename": "checkstyle/src/main/resources/copyright-example.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T16:06:20Z",
+      "side": 1,
+      "message": "should not have space here!",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "a673104996815d85412cacee17a8d7575de95b9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
