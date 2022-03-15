@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c3b6e277_e3db3bcb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea9eb9fb_d488058d",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09e3734f_b639e1be",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 13
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "5c3eedfd_f5ebd7c9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e3734f_b639e1be",
+      "range": {
+        "startLine": 227,
+        "startChar": 21,
+        "endLine": 227,
+        "endChar": 41
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "160e0879_9643506c",
         "filename": "csit/data/cmHandleRegistration.json",
         "patchSetId": 13
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "c9fd79e2_2fc57041",
+        "filename": "csit/data/cmHandleRegistration.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "160e0879_9643506c",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2e10a01_836a90d5",
         "filename": "csit/plans/cps/setup.sh",
         "patchSetId": 13
@@ -73,6 +133,24 @@
       "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e02111a_56d223e5",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2e10a01_836a90d5",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "ace349f2_c47c3cf1",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a7d3efc_0373162a",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 23
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53c5c5f2_83e502b5",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
         "patchSetId": 13
@@ -119,6 +221,30 @@
       "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f7723c_93250abd",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "I have removed this as there only one scenario we are testing only one scenario now and not testing multiple different nodes.",
+      "parentUuid": "53c5c5f2_83e502b5",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -145,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "0dd9542f_974278c1",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8539edbc_1abf9129",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "271798c0_ddbae4c2",
         "filename": "csit/tests/public-properties-query/public-properties-query.robot",
         "patchSetId": 13
@@ -159,6 +309,24 @@
       "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "555e206b_d241e87e",
+        "filename": "csit/tests/public-properties-query/public-properties-query.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T10:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "271798c0_ddbae4c2",
+      "revId": "4e10f989f1f9fb67aae9ccf8e13e1370c4a1da01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
