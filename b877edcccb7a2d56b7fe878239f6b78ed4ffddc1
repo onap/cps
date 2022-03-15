@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "142b706b_3b7884b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T14:02:58Z",
+      "side": 1,
+      "message": "Use a static import for this maybe to shorten it here?",
+      "range": {
+        "startLine": 85,
+        "startChar": 53,
+        "endLine": 85,
+        "endChar": 112
+      },
+      "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "900138a4_a41e615a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
         "patchSetId": 6
@@ -64,6 +87,29 @@
         "startChar": 0,
         "endLine": 66,
         "endChar": 20
+      },
+      "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daf97c78_db0c1c50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-15T14:02:58Z",
+      "side": 1,
+      "message": "I don\u0027t see this enum being used in the code currently outside of groovy tests?\n\nIs this included for future reference?",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 66
       },
       "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
