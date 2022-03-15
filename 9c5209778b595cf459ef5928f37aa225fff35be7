@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "6259f487_c22dfd20",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-15T16:22:53Z",
+      "side": 1,
+      "message": "wasn\u0027t aware of this issue but I see now how it is consistent with other pages....\n\nBut I noticed index.rst only uses -----------  for all titles is that correct\nand overview.rst starts with \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d for the main title, maybe that needs changing too?!",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "9c5209778b595cf459ef5928f37aa225fff35be7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25a2130d_4e28fed5",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
