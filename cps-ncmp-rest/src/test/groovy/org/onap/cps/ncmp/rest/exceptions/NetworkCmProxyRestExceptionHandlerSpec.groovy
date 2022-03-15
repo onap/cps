@@ -21,15 +21,14 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -46,6 +45,7 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -92,13 +92,14 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario              | exception                                                        || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
-            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails   | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | BAD_REQUEST
-            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                 | 'DataNode not found' | NOT_FOUND
-            'other'               | new IllegalStateException(sampleErrorMessage)                    || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found' | 'DataNode not found' | NOT_FOUND
+            scenario                   | exception                                                        || expectedErrorDetails              | expectedErrorMessage        | expectedErrorCode
+            'CPS'                      | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails                | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'NCMP-server'              | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                              | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'NCMP-client'              | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                              | sampleErrorMessage          | BAD_REQUEST
+            'DataNode Validation'      | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                              | 'DataNode not found'        | NOT_FOUND
+            'other'                    | new IllegalStateException(sampleErrorMessage)                    || null                              | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'Data Node Not Found'      | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found'              | 'DataNode not found'        | NOT_FOUND
+            'Data Integrity Violation' | new AlreadyDefinedException('some data space', new Throwable())  || 'some data space already exists.' | 'Already defined exception' | CONFLICT
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

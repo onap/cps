@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -38,6 +39,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 /**
  * Exception handler with error message return.
@@ -67,14 +69,19 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class,
-            InvalidTopicException.class})
+            InvalidTopicException.class, HttpClientErrorException.BadRequest.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({DataNodeNotFoundException.class})
-    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
+    @ExceptionHandler({DataNodeNotFoundException.class, HttpClientErrorException.NotFound.class})
+    public static ResponseEntity<Object> handleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
+    }
+
+    @ExceptionHandler({AlreadyDefinedException.class})
+    public static ResponseEntity<Object> handleAlreadyDefinedExceptions(final AlreadyDefinedException exception) {
+        return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {

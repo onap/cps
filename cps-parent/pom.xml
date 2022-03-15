@@ -74,6 +74,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <type>pom</type>
+                <version>5.3.13</version>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.onap.cps</groupId>
                 <artifactId>cps-dependencies</artifactId>
                 <version>${project.version}</version>
