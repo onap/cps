@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "900138a4_a41e615a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-15T11:39:11Z",
+      "side": 1,
+      "message": "Should just be Copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ba5478a_10298d6e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
         "patchSetId": 6
@@ -179,6 +202,29 @@
         "startChar": 16,
         "endLine": 163,
         "endChar": 43
+      },
+      "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51629f20_3e118a8a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-15T11:39:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 18
       },
       "revId": "b877edcccb7a2d56b7fe878239f6b78ed4ffddc1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
