@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import java.util.Collection;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.ModuleReference;
 
@@ -38,8 +39,9 @@ public interface NetworkCmProxyDataService {
      * Registration of New CM Handles.
      *
      * @param dmiPluginRegistration Dmi Plugin Registration
+     * @return dmiPluginRegistrationResponse
      */
-    void updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
+    DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
 
     /**
      * Get resource data for data store pass-through operational

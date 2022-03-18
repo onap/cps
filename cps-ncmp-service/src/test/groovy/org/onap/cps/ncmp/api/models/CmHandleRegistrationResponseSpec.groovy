@@ -42,7 +42,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
     def 'Failed Cm Handle Registration Response: for unexpected exception'() {
         when: 'CMHandle response is created'
             def cmHandleRegistrationResponse =
-                CmHandleRegistrationResponse.createFailureResponse('cmHandle', new RuntimeException('unexpected error'))
+                CmHandleRegistrationResponse.createFailureResponse('cmHandle', new Exception('unexpected error'))
         then: 'the response is created with expected value'
             with(cmHandleRegistrationResponse) {
                 assert it.registrationError == RegistrationError.UNKNOWN_ERROR
