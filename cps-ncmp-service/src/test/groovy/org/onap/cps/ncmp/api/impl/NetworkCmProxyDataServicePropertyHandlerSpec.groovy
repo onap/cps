@@ -135,7 +135,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                  | exception                                                        || expectedError                              | expectedErrorText
+            scenario                  | exception                                                        || expectedError            | expectedErrorText
             'cmhandle does not exist' | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
             'unexpected error'        | new RuntimeException('Failed')                                   || UNKNOWN_ERROR            | 'Failed'
     }

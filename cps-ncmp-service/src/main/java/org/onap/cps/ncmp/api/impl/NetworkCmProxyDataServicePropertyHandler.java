@@ -67,8 +67,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
      * @param ncmpServiceCmHandles collection of ncmpServiceCmHandles
      */
     public List<CmHandleRegistrationResponse> updateCmHandleProperties(
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles)
-        throws DataNodeNotFoundException {
+        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandle = ncmpServiceCmHandle.getCmHandleID();
