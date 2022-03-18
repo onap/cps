@@ -32,6 +32,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -54,10 +55,14 @@ import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandlesList;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -92,22 +97,29 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private static final String NO_TOPIC = null;
 
     @Override
-    public void updateDmiRegistrationAndSyncModule(final DmiPluginRegistration dmiPluginRegistration) {
+    public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
+        final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
+        final var dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
         try {
+            if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
+                dmiPluginRegistrationResponse.setRemovedCmHandles(
+                    parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration));
+            }
             if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
                 parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration);
             }
             if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
-                parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration);
+                dmiPluginRegistrationResponse.setUpdatedCmHandles(
+                    parseAndUpdateCmHandlesInDmiRegistration(dmiPluginRegistration));
             }
-            parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration);
         } catch (final JsonProcessingException | DataNodeNotFoundException e) {
             final String errorMessage = String.format(
                     "Error occurred while processing the CM-handle registration request, caused by : [%s]",
                     e.getMessage());
             throw new DataValidationException(errorMessage, e.getMessage(), e);
         }
+        return dmiPluginRegistrationResponse;
     }
 
     @Override
@@ -162,6 +174,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     /**
      * Retrieve cm handle details for a given cm handle.
+     *
      * @param cmHandleId cm handle identifier
      * @return cm handle details
      */
@@ -224,8 +237,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void parseAndUpdateCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        networkCmProxyDataServicePropertyHandler.updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
+    private List<CmHandleRegistrationResponse> parseAndUpdateCmHandlesInDmiRegistration(
+        final DmiPluginRegistration dmiPluginRegistration) {
+        return networkCmProxyDataServicePropertyHandler
+            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
     }
 
     private YangModelCmHandlesList getUpdatedYangModelCmHandlesList(
@@ -253,24 +268,36 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         createAnchor(yangModelCmHandle);
     }
 
-    private void parseAndRemoveCmHandlesInDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+    private List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
+        final DmiPluginRegistration dmiPluginRegistration) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         for (final String cmHandle : dmiPluginRegistration.getRemovedCmHandles()) {
             try {
-                attemptToDeleteSchemaSetWithCascade(cmHandle);
+                deleteSchemaSetWithCascade(cmHandle);
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
-            } catch (final DataNodeNotFoundException e) {
-                log.warn("Datanode {} not deleted message {}", cmHandle, e.getMessage());
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+            } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
+                    cmHandle, dataNodeNotFoundException.getMessage());
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
+                    .createFailureResponse(cmHandle, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
+            } catch (final Exception exception) {
+                log.error("Unable to de-register cm-handleIdd : {} , caused by : {}",
+                    cmHandle, exception.getMessage());
+                cmHandleRegistrationResponses.add(
+                    CmHandleRegistrationResponse.createFailureResponse(cmHandle, exception));
             }
         }
+        return cmHandleRegistrationResponses;
     }
 
-    private void attemptToDeleteSchemaSetWithCascade(final String schemaSetName) {
+    private void deleteSchemaSetWithCascade(final String schemaSetName) {
         try {
             cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
                 CASCADE_DELETE_ALLOWED);
-        } catch (final Exception e) {
-            log.warn("Schema set {} delete failed, reason {}", schemaSetName, e.getMessage());
+        } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
+            log.info("Schema set {} does not exist or already deleted", schemaSetName);
         }
     }
 
