@@ -162,8 +162,9 @@ Additional Cps-Core Customizations
 ==================================
 
 The following table lists some properties that can be specified as Helm chart
-values to configure the application to be deployed. This list is not
-exhaustive.
+values to configure the application to be deployed. This list is not exhaustive.
+
+Any spring supported property can be configured by providing in ``config.additional.<spring-supported-property-name>: value`` Example: config.additional.spring.datasource.hikari.maximumPoolSize: 30
 
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | Property                              | Description                                                                                             | Default Value                 |
@@ -277,6 +278,10 @@ exhaustive.
 | config.additional.                    | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``async_``                    |
 | notification.async.executor.          |                                                                                                         |                               |
 | thread-name-prefix                    |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                    | Specifies number of database connections between database and application.                              | ``10``                        |
+| spring.datasource.hikari.             | This property controls the maximum size that the pool is allowed to reach,                              |                               |
+| maximumPoolSize                       | including both idle and in-use connections.                                                             |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
 CPS-Core Docker Installation
