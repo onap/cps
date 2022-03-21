@@ -46,6 +46,30 @@
       "revId": "3cfd744da33032aa74084eb2e69246b4a50b6a52",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed2128e1_f0cbf152",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-21T12:12:14Z",
+      "side": 1,
+      "message": "agree, this should be required here. Any particular reason for adding this?",
+      "parentUuid": "544f3a48_dd2b8b8c",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "3cfd744da33032aa74084eb2e69246b4a50b6a52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
