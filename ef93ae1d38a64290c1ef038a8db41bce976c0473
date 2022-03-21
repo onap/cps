@@ -307,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3fac5b25_801d40a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-21T18:11:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55a8bf3a_77d41311",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35b60585_de5e50dc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 1
@@ -318,6 +342,30 @@
       "writtenOn": "2022-03-21T11:34:53Z",
       "side": 1,
       "message": "suggestion: not sure myself if it is worth it but these 2 tests could be combined (by using \u0027null\u0027 in the deleteListElementException column and not thrown an exception when that is the case\nmaybe it is still to messy and 2 separate test are better...",
+      "range": {
+        "startLine": 186,
+        "startChar": 3,
+        "endLine": 205,
+        "endChar": 55
+      },
+      "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4393b411_5ac9b570",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-21T18:11:24Z",
+      "side": 1,
+      "message": "I was thinking about the same thing when I was adding the test cases. I find two separate test cases approach easier to read.",
+      "parentUuid": "35b60585_de5e50dc",
       "range": {
         "startLine": 186,
         "startChar": 3,
