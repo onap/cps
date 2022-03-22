@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f35f49f9_a4d69716",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T18:21:41Z",
+      "side": 1,
+      "message": "instead of List.of I think you can just use [ ] here.\nAlso it can be shortened like this (no need for extra variable I think)\n\nmockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) \u003e\u003e\n              [ CmHandleRegistrationResponse.createSuccessResponse(\u0027cm-handle-1\u0027),\n                CmHandleRegistrationResponse.createFailureResponse(\u0027cm-handle-2\u0027, new Exception(\"Failed\")),\n                CmHandleRegistrationResponse.createFailureResponse(\u0027cm-handle-3\u0027, CM_HANDLE_DOES_NOT_EXIST) ]",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 146,
+        "endChar": 111
+      },
+      "revId": "5738b93a105f39334ee84f5c1ecf174ef8e987d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "738706b3_b436c209",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T18:21:41Z",
+      "side": 1,
+      "message": "good addition that explains (and asserts) the expected behavior",
+      "range": {
+        "startLine": 209,
+        "startChar": 7,
+        "endLine": 210,
+        "endChar": 70
+      },
+      "revId": "5738b93a105f39334ee84f5c1ecf174ef8e987d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

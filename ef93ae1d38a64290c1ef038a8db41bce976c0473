@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5e8c51ae_81c9a8ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T18:21:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cc15db1_955dccd8",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 70
+      },
+      "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55c77d88_be11daf1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -284,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "81035e68_63a09c27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T18:21:41Z",
+      "side": 1,
+      "message": "you could write a test that \n1) delete an existing (added in test setup) cmhandle\n2) (re)create the same one\n3) update the same one\n\nno need to assert anything really maybe just what was updated...\nbut the test should fail if it was execute in the OLD order",
+      "parentUuid": "f228e167_9792cec5",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "55a8bf3a_77d41311",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 1
@@ -375,6 +423,30 @@
       "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8747d26e_16e0a85e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T18:21:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4393b411_5ac9b570",
+      "range": {
+        "startLine": 186,
+        "startChar": 3,
+        "endLine": 205,
+        "endChar": 55
+      },
+      "revId": "ef93ae1d38a64290c1ef038a8db41bce976c0473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
