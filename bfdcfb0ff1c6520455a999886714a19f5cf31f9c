@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e05d15b1_451beb62",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "naming not consistent with content",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71a2073d_7506333e",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "issueCounter",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 7
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b44d3f77_de68b646",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "no need, just print 0 issues",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 49
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "615d2f38_90d83166",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "remove \u0027bool\u0027",
+      "range": {
+        "startLine": 71,
+        "startChar": 37,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03971e1b_b8df0dbe",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "insert \u0027changed \u0027",
+      "range": {
+        "startLine": 82,
+        "startChar": 76,
+        "endLine": 82,
+        "endChar": 77
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06d2372a_49736ad8",
+        "filename": "checkstyle/src/main/CopyrightCheck.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T17:49:02Z",
+      "side": 1,
+      "message": "maybe initialize her instead of in main function",
+      "range": {
+        "startLine": 95,
+        "startChar": 21,
+        "endLine": 95,
+        "endChar": 36
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
