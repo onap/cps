@@ -22,6 +22,30 @@
       "revId": "8fb0278688a024ee34a0ac0f342150897225d162",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0a75e68_166c9c76",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-22T10:20:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3acca41_57c284ab",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "8fb0278688a024ee34a0ac0f342150897225d162",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
