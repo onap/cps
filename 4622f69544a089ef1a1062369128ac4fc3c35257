@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "c0d78c96_634a54de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-22T17:19:04Z",
+      "side": 1,
+      "message": "Agree. Fixed as a part of the next change request for the same story.\n\nhttps://gerrit.onap.org/r/c/cps/+/127891/5/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+      "parentUuid": "122fd417_935a9072",
+      "revId": "4622f69544a089ef1a1062369128ac4fc3c35257",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92352c85_a64de13a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 11
