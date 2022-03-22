@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "dc6e378f_150a52ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-22T10:32:38Z",
+      "side": 1,
+      "message": "does this method throws DataNodeNotFoundException?",
+      "revId": "4622f69544a089ef1a1062369128ac4fc3c35257",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92352c85_a64de13a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 11
