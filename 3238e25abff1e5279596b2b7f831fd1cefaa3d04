@@ -1,0 +1,360 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "051d4e35_2fc99ef4",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_all_singing_and_dancing.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "ch1-new",
+      "range": {
+        "startLine": 6,
+        "startChar": 18,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d9b1971_14a3b2ac",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_all_singing_and_dancing.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "ch2-new",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f61f0893_1dc69b8e",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_invalid.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "is there no lower level unit test for this already?!",
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00f83a36_ad8821ec",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_invalid.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "handleWith,Comma",
+      "range": {
+        "startLine": 5,
+        "startChar": 18,
+        "endLine": 5,
+        "endChar": 34
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f1e7d55_0ea1d3ef",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_invalid.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "no data not for test",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b2be004_95080119",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_updates_only.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "ch3-upd",
+      "range": {
+        "startLine": 5,
+        "startChar": 18,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b76e11ee_7bfe6d6b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "this is a util class, validation should not happen here but at point of entry ie. public api methods...",
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef14a5b3_bc2a0989",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "+ (1 or more)",
+      "range": {
+        "startLine": 38,
+        "startChar": 90,
+        "endLine": 38,
+        "endChar": 91
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ffae0a8_7db67484",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "no need for ^ and $ delimiters",
+      "range": {
+        "startLine": 38,
+        "startChar": 77,
+        "endLine": 38,
+        "endChar": 78
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0a26eb2_1871bdc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "add -",
+      "range": {
+        "startLine": 38,
+        "startChar": 88,
+        "endLine": 38,
+        "endChar": 89
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1156f2_b0a1953d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "extract out VALID_NAME_AND_IDENTIFIER_REGEX",
+      "range": {
+        "startLine": 38,
+        "startChar": 76,
+        "endLine": 38,
+        "endChar": 93
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00d79f2e_2a907bac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "should validate BEFORE create the object with teh invalide parameter",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 64
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68960715_f451bb13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "not needed for this test",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 110
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "701a1b9e_11e22c78",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "no need for scenarios (test regex)\nmaybe test just with \"cm handle with spaces\"",
+      "range": {
+        "startLine": 110,
+        "startChar": 1,
+        "endLine": 113,
+        "endChar": 50
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5803a58c_a9585dad",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69e51c08_5ac6fef9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-22T16:38:59Z",
+      "side": 1,
+      "message": "not neede here, tested in exceptionHandleSpec isntead",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 5
+      },
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
