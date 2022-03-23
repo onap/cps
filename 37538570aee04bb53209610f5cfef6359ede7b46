@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5ff21791_821da487",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-23T19:26:06Z",
+      "side": 1,
+      "message": "Same as above",
+      "parentUuid": "9320ea45_34cd8748",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 12
+      },
+      "revId": "37538570aee04bb53209610f5cfef6359ede7b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e353b4a9_d50f75d3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 11
@@ -118,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "5cf829c7_acce7a01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-23T19:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d52c57b_591a40ad",
+      "range": {
+        "startLine": 179,
+        "startChar": 66,
+        "endLine": 179,
+        "endChar": 80
+      },
+      "revId": "37538570aee04bb53209610f5cfef6359ede7b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3299d0ae_9f10f397",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 11
@@ -129,6 +177,30 @@
       "writtenOn": "2022-03-23T17:28:46Z",
       "side": 1,
       "message": "why did you remove \u0027Exception thrown on CM-Handle registration update request\u0027 is it no longer applicable or is it included in other test now?",
+      "range": {
+        "startLine": 293,
+        "startChar": 4,
+        "endLine": 293,
+        "endChar": 5
+      },
+      "revId": "37538570aee04bb53209610f5cfef6359ede7b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd743e1e_6327266d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-23T19:26:06Z",
+      "side": 1,
+      "message": "No exception can be thrown from update method. If there is any error it will be sent as CMHandleRegistrationResponse.",
+      "parentUuid": "3299d0ae_9f10f397",
       "range": {
         "startLine": 293,
         "startChar": 4,
