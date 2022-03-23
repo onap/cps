@@ -254,4 +254,20 @@ class CpsDataServiceImplSpec extends Specification {
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
+
+    def 'start session'() {
+        when: 'start session method is called'
+            objectUnderTest.startSession()
+        then: 'the persistence service method to start session is invoked'
+            1 * mockCpsDataPersistenceService.startSession()
+    }
+
+    def 'close session'(){
+        given: 'session Id from calling the start session method'
+            def sessionId = objectUnderTest.startSession()
+        when: 'close session method is called'
+            objectUnderTest.closeSession(sessionId)
+        then: 'the persistence service method to close session is invoked'
+            1 * mockCpsDataPersistenceService.closeSession(sessionId)
+    }
 }

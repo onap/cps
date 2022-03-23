@@ -56,6 +56,7 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
+import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
 
     private final JsonObjectMapper jsonObjectMapper;
+
+    private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
@@ -197,6 +200,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    public String startSession() {
+        return sessionManager.startSession();
+    }
+
+    @Override
+    public void closeSession(final String sessionId) {
+        sessionManager.closeSession(sessionId);
     }
 
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
