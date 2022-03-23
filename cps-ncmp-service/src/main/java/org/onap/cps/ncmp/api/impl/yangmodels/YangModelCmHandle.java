@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.impl.yangmodels;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class YangModelCmHandle {
 
     private String id;
