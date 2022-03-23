@@ -109,6 +109,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public String startSession() {
+        final String sessionId = cpsDataPersistenceService.startSession();
+        return sessionId;
+    }
+
+    @Override
+    public void closeSession(final String sessionId) {
+        cpsDataPersistenceService.closeSession(sessionId);
+    }
+
+    @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         final var dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
