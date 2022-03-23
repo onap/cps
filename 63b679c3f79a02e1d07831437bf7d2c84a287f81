@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c919d8da_4c469430",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "any exceptions that should be handled/documented here?! ie. BEFORE we get to this line",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 37
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ed2aeba_91f3ff6b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "why the full name, can you not import and use these with simple(short) class names?",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 64
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a41e109_9522ad0c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "a session id",
+      "range": {
+        "startLine": 623,
+        "startChar": 15,
+        "endLine": 623,
+        "endChar": 22
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8266de93_8c7d13a8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 624,
+        "startChar": 12,
+        "endLine": 624,
+        "endChar": 45
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "931b50e8_25836f59",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "id  (english words, not variable names)",
+      "range": {
+        "startLine": 624,
+        "startChar": 28,
+        "endLine": 624,
+        "endChar": 31
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "691d6ce5_ae9b8929",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "add JAvaDoc",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 39
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ed0addd_759dd4f5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T17:16:40Z",
+      "side": 1,
+      "message": "to start session",
+      "range": {
+        "startLine": 261,
+        "startChar": 45,
+        "endLine": 261,
+        "endChar": 46
+      },
+      "revId": "63b679c3f79a02e1d07831437bf7d2c84a287f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
