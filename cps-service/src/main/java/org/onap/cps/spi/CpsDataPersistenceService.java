@@ -148,4 +148,17 @@ public interface CpsDataPersistenceService {
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Starts a session for transactions.
+     *
+     * @return Session ID string
+     */
+    String startSession();
+
+    /**
+     * Close session.
+     *
+     * @param sessionId session ID
+     */
+    void closeSession(String sessionId);
 }

@@ -174,4 +174,19 @@ public interface CpsDataService {
      */
     void updateNodeLeavesAndExistingDescendantLeaves(String dataspaceName, String anchorName, String parentNodeXpath,
         String dataNodeUpdatesAsJson, OffsetDateTime observedTimestamp);
+
+    /**
+     * Starts a session for transactions.
+     *
+     * @return Session ID string
+     */
+    String startSession();
+
+    /**
+     * Close session.
+     *
+     * @param sessionId session ID
+     *
+     */
+    void closeSession(String sessionId);
 }
