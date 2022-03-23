@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e353b4a9_d50f75d3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-23T17:03:39Z",
+      "side": 1,
+      "message": "I think this method is testing many things and should be split. If we agree on it then I will work on it as a part of create cmHandle sub-task.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 101
+      },
+      "revId": "37538570aee04bb53209610f5cfef6359ede7b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
