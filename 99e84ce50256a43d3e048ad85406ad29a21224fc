@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2c7b3261_27bc7aec",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T14:00:42Z",
+      "side": 1,
+      "message": "well spotted to change this too I probably would have missed that :-)",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 16
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b5bf221_96b60b5f",
         "filename": "docs/cps-path.rst",
         "patchSetId": 6
@@ -36,6 +59,52 @@
       "writtenOn": "2022-03-23T11:28:14Z",
       "side": 1,
       "message": "Also, should this be above the json and xml data so the reader is aware beforehand?",
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "015ca268_b8734cfa",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T14:00:42Z",
+      "side": 1,
+      "message": "This is important, doe it work without the quotes too?!\nif os add both example if not your update is correct...",
+      "range": {
+        "startLine": 223,
+        "startChar": 25,
+        "endLine": 223,
+        "endChar": 28
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a68c74b_d7161d13",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-23T14:00:42Z",
+      "side": 1,
+      "message": "this was deliberately done on a non-key attribute, please restore!",
+      "range": {
+        "startLine": 284,
+        "startChar": 20,
+        "endLine": 284,
+        "endChar": 24
+      },
       "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
