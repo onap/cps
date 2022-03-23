@@ -111,5 +111,4 @@ class CpsDataPersistenceServiceSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }
-
 }

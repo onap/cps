@@ -23,6 +23,7 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
+import org.hibernate.SessionException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -615,6 +616,33 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .withXpath("${parentXPath}/${tag}-grand-child")
             .withLeaves([attr1: tag])
             .build()
+    }
+
+    def 'start session'() {
+        when: 'start session'
+            def result = objectUnderTest.startSession()
+        then: 'session ID is returned'
+            assert result instanceof String
+            objectUnderTest.closeSession(result)
+    }
+
+    def 'close session'(){
+        given: 'session Id from calling the start session method'
+            def sessionId = objectUnderTest.startSession()
+        when: 'close session method is called'
+            objectUnderTest.closeSession(sessionId)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'close session that does not exist' (){
+        given: 'session Id that does not exist'
+            def absentSessionId = "XXXX"
+        when: 'close session method is called'
+            objectUnderTest.closeSession(absentSessionId)
+        then: 'a session exception is thrown'
+            def thrown = thrown(SessionException)
+            assert thrown.message.contains(absentSessionId + ' does not exist')
     }
 
 }
