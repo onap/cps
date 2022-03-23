@@ -33,13 +33,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.StaleStateException;
+import org.hibernate.cfg.Configuration;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -76,6 +80,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
+
+    private static SessionFactory sessionFactory;
+    private static Map<String, Session> sessionMap = new HashMap<>();
 
     @Override
     @Transactional
@@ -197,6 +204,35 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return fragmentEntities.stream()
             .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    public String startSession() {
+        buildSessionFactory();
+        final Session session = sessionFactory.openSession();
+        final String sessionId = UUID.randomUUID().toString();
+        sessionMap.put(sessionId, session);
+        session.beginTransaction();
+        return sessionId;
+    }
+
+    @Override
+    public void closeSession(final String sessionId) {
+        final Session currentSession = sessionMap.get(sessionId);
+        currentSession.getTransaction().commit();
+        currentSession.close();
+        sessionMap.remove(sessionId);
+    }
+
+    private synchronized void buildSessionFactory() {
+        if (sessionFactory == null) {
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+                    .addAnnotatedClass(org.onap.cps.spi.entities.AnchorEntity.class)
+                    .addAnnotatedClass(org.onap.cps.spi.entities.DataspaceEntity.class)
+                    .addAnnotatedClass(org.onap.cps.spi.entities.SchemaSetEntity.class)
+                    .addAnnotatedClass(org.onap.cps.spi.entities.YangResourceEntity.class)
+                    .buildSessionFactory();
+        }
     }
 
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,

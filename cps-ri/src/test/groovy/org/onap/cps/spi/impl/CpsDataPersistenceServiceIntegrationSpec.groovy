@@ -617,4 +617,21 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .build()
     }
 
+    def 'start session'() {
+        when: 'start session'
+            def result = objectUnderTest.startSession()
+        then: 'session is returned'
+            println("sessionId is " + result)
+            assert result instanceof String
+    }
+
+    def 'close session'(){
+        given: 'session Id from calling the start session method'
+            def sessionId = objectUnderTest.startSession()
+        when: 'close session method is called'
+            objectUnderTest.closeSession(sessionId)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
 }

@@ -148,4 +148,7 @@ public interface CpsDataPersistenceService {
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
+    String startSession();
+
+    void closeSession(String sessionId);
 }
