@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da8a38e6_79388e9a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-23T20:31:15Z",
+      "side": 1,
+      "message": "If we have multiple then blocks then order or invocation is tested too. But in the case of \u0027and\u0027 the order of invocation is not validated.\n\nhttps://spockframework.org/spock/docs/1.3/all_in_one.html#_invocation_order_2",
+      "parentUuid": "962e3b33_78fa341e",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "37538570aee04bb53209610f5cfef6359ede7b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9320ea45_34cd8748",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 11
