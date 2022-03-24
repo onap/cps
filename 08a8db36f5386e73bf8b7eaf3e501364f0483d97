@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a8c9bbd5_e6e70160",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-24T10:45:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6570539_2c980d76",
+      "range": {
+        "startLine": 77,
+        "startChar": 25,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "08a8db36f5386e73bf8b7eaf3e501364f0483d97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "236a4921_684b3740",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "08a8db36f5386e73bf8b7eaf3e501364f0483d97",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a2066dd_376e3808",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-24T10:45:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "236a4921_684b3740",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 25
+      },
+      "revId": "08a8db36f5386e73bf8b7eaf3e501364f0483d97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
