@@ -92,6 +92,30 @@
       "revId": "8e81f09dbc858cf34864931d93c61f69e3630394",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba3eda8d_69de4211",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-03-24T11:01:39Z",
+      "side": 1,
+      "message": "hm I need to generate the session ID from starting a session, if I use a hardcoded sessionID I will get an exception when trying to close it",
+      "parentUuid": "052262bf_fc648dd8",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 58
+      },
+      "revId": "8e81f09dbc858cf34864931d93c61f69e3630394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
