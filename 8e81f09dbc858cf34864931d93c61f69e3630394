@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5c3a6a3_3af79fc5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-24T10:38:06Z",
+      "side": 1,
+      "message": "I think these may as well be combined into one test, better code practice to have them separate but most of the lines are the same because it must be closed after started",
+      "range": {
+        "startLine": 621,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 5
+      },
+      "revId": "8e81f09dbc858cf34864931d93c61f69e3630394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052262bf_fc648dd8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-24T10:38:06Z",
+      "side": 1,
+      "message": "If CpsDataPersistenceService is mocked anyway then I\u0027m not sure what the value of sessionId is. Might be better to change given to def sessionId \u003d \u0027some-session-id\u0027. Don\u0027t need startSession()",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 58
+      },
+      "revId": "8e81f09dbc858cf34864931d93c61f69e3630394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
