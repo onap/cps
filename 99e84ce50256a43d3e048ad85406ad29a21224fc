@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aeeb2624_bfc3537a",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f8d17c9_1bdfd5f1",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 7
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c9af498_dcbdf372",
         "filename": "docs/cps-path.rst",
         "patchSetId": 6
@@ -41,6 +65,76 @@
         "startChar": 27,
         "endLine": 61,
         "endChar": 33
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9688a95_893019d0",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c9af498_dcbdf372",
+      "range": {
+        "startLine": 61,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 33
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dea4de24_dab5fcf7",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "change this to int",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 36
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bba9eed3_41486434",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "change this to int",
+      "range": {
+        "startLine": 80,
+        "startChar": 31,
+        "endLine": 80,
+        "endChar": 36
       },
       "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -111,6 +205,52 @@
     },
     {
       "key": {
+        "uuid": "9e357d5f_a3747c07",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "This doesnt work. Because parser thinks that it is a leaf condition",
+      "range": {
+        "startLine": 206,
+        "startChar": 40,
+        "endLine": 206,
+        "endChar": 43
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c858f3_ab9f5a73",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "This work",
+      "range": {
+        "startLine": 207,
+        "startChar": 40,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "015ca268_b8734cfa",
         "filename": "docs/cps-path.rst",
         "patchSetId": 6
@@ -127,6 +267,76 @@
         "startChar": 25,
         "endLine": 223,
         "endChar": 28
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6678feae_282d2988",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "because it is a list index it has to be in ` tokens no mater of the type!",
+      "parentUuid": "015ca268_b8734cfa",
+      "range": {
+        "startLine": 223,
+        "startChar": 25,
+        "endLine": 223,
+        "endChar": 28
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff827114_82232348",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "1. (change type back to uint8). provide 2 examples. with quote wont work. captured in CPS-961",
+      "range": {
+        "startLine": 238,
+        "startChar": 49,
+        "endLine": 238,
+        "endChar": 52
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82962893_cb29b8de",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "add: the value for list-index always needs to be wrapped in single quotes.\n\nThe above comment will not apply as we store the key with quote.",
+      "range": {
+        "startLine": 244,
+        "startChar": 116,
+        "endLine": 244,
+        "endChar": 139
       },
       "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -154,6 +364,30 @@
       "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "583eecc9_6f40bd61",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-24T14:41:58Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "9a68c74b_d7161d13",
+      "range": {
+        "startLine": 284,
+        "startChar": 20,
+        "endLine": 284,
+        "endChar": 24
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
