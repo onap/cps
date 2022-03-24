@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6570539_2c980d76",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-24T10:23:10Z",
+      "side": 1,
+      "message": "use new property here!",
+      "range": {
+        "startLine": 77,
+        "startChar": 25,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "08a8db36f5386e73bf8b7eaf3e501364f0483d97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "236a4921_684b3740",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-24T10:23:10Z",
+      "side": 1,
+      "message": "duplicate!",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 25
+      },
+      "revId": "08a8db36f5386e73bf8b7eaf3e501364f0483d97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
