@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1741d0ba_cb81220b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-24T11:29:32Z",
+      "side": 1,
+      "message": "Yes. \nActually I checked the documentation https://docs.jboss.org/hibernate/orm/3.5/javadocs/org/hibernate/impl/SessionImpl.html\nand from the above statements it can only throw NullPointer or HibernateException , so I think I am good now..",
+      "parentUuid": "9fb4c7d2_8b911ce6",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 37
+      },
+      "revId": "8e81f09dbc858cf34864931d93c61f69e3630394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e5c3a6a3_3af79fc5",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
