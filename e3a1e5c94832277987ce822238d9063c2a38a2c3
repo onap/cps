@@ -2,6 +2,190 @@
   "comments": [
     {
       "key": {
+        "uuid": "f698a863_7ad5f4ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "Same comment as sessionMape",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dc5b9f8_71b142ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "Blocking Comment: This stateless class will have state now. I would recommend to manage Session in a separate class. \n\nBlocking Comment: Concurrency need to be considered (ConcurrentHashMap).",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 69
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c587935_8b28e4eb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "@Team, \nApplication Graceful shutdown: close the transaction when the application shutdown event is received.",
+      "range": {
+        "startLine": 89,
+        "startChar": 40,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3ec7fc1_7ce73dd6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "Can declare a Domain object CustomSession (any custom name) as an Interface. \ncps-ri \n1. can have an a HibernateSessionImpl implements CustomSession. \n2. Session Manager which maintains all the sessions \n\nI think we need a proposal on designing it. @Team what are your views on it?",
+      "range": {
+        "startLine": 216,
+        "startChar": 14,
+        "endLine": 216,
+        "endChar": 21
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10d6ccfc_2081dbf3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "How do we manage clean-up if user does not close transactions?",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 35
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26ac7c81_58c57176",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "this close session method does not let user decide to commit or rollback. \n\nShould we even club these two features? As user can open a session so we need to give ability to commit or rollback too.",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 28
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d8596da_f4783b16",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "@Team As user has already sent request to close session, should we close and remove from Map even in the case of error?",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 37
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc18bb49_b8f04195",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-24T16:19:10Z",
+      "side": 1,
+      "message": "Single Responsibility principle: This functionality belongs to a class of its own.",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f8d21a2_315cc420",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
