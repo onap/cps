@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "e0c67715_2c1ff18a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-25T10:42:08Z",
+      "side": 1,
+      "message": "Shutdown hook , where we iterate over the map elements and explicitly close them. Right? \nor something else?",
+      "parentUuid": "9c587935_8b28e4eb",
+      "range": {
+        "startLine": 89,
+        "startChar": 40,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3ec7fc1_7ce73dd6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
