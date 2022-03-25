@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "cd98b0b4_c5675269",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-03-25T10:25:44Z",
+      "side": 1,
+      "message": "I believe this is out of scope for this user story(start and stop sessions). I think the mentioned capabilities shall be included as part of the anchor locking user story?",
+      "parentUuid": "26ac7c81_58c57176",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 28
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d8596da_f4783b16",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
