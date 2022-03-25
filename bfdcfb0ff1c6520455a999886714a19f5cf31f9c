@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "ecf6066c_91a6093e",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-25T17:04:02Z",
+      "side": 1,
+      "message": "What we reckon is that python always installs on windows using python as a path pointer to the python exec but only sometimes does the same with python3. So safer to have it the way it was before as has little extra overhead. What do people think?",
+      "parentUuid": "2355f827_2c34df99",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e05d15b1_451beb62",
         "filename": "checkstyle/src/main/CopyrightCheck.py",
         "patchSetId": 2
