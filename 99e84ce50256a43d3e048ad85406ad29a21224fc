@@ -363,6 +363,30 @@
     },
     {
       "key": {
+        "uuid": "11dc0c81_39b81f84",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:26:16Z",
+      "side": 1,
+      "message": "see my suggestion to add limitation with ref to CPS-961 in patch #7",
+      "parentUuid": "ff827114_82232348",
+      "range": {
+        "startLine": 238,
+        "startChar": 49,
+        "endLine": 238,
+        "endChar": 52
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82962893_cb29b8de",
         "filename": "docs/cps-path.rst",
         "patchSetId": 6
@@ -383,6 +407,30 @@
       "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "014b94b2_959e25b1",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:26:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82962893_cb29b8de",
+      "range": {
+        "startLine": 244,
+        "startChar": 116,
+        "endLine": 244,
+        "endChar": 139
+      },
+      "revId": "99e84ce50256a43d3e048ad85406ad29a21224fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

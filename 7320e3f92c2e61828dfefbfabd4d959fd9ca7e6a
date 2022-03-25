@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b848869c_ccf92d9d",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:26:16Z",
+      "side": 1,
+      "message": "please remove this example as it is interpreted as a prefix + leaf-condition not an absolute path (and that is why it works without \u0027 )",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 44
+      },
+      "revId": "7320e3f92c2e61828dfefbfabd4d959fd9ca7e6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "327e18d2_a6adaa1b",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:26:16Z",
+      "side": 1,
+      "message": "I think we need to add a reference to the Jira bug you wrote yesterday to highlight this is incorrect and wil be fixed in the next release (add it in release notes under \u0027known limitations\u0027 and here too under line #206))",
+      "range": {
+        "startLine": 201,
+        "startChar": 40,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "7320e3f92c2e61828dfefbfabd4d959fd9ca7e6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
