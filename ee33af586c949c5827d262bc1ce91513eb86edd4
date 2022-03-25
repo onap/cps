@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "87c99c2d_c6a73681",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T15:37:01Z",
+      "side": 1,
+      "message": "In the rest input, it is just cm handle. But we consistently call this cm handle id throughout the code. It is never referred to as cm handle name. \n\nThat\u0027s why I chose to leave this as ID. Can change to name if necessary?",
+      "parentUuid": "029a4437_a2216e80",
+      "range": {
+        "startLine": 82,
+        "startChar": 61,
+        "endLine": 82,
+        "endChar": 63
+      },
+      "revId": "ee33af586c949c5827d262bc1ce91513eb86edd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b5b00b1_1cbff249",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b61a88c1_bae8852b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T15:37:01Z",
+      "side": 1,
+      "message": "I didn\u0027t put validation here, as dataspace isn\u0027t a user inputted parameter here.\n\nThis method belongs to the following api.\n/v1/ch/searches\n\nThis queries cm handles based on module names. Which we didn\u0027t specify as part of the validation criteria in the initial user story.\n\nI can add validation for module names too as part of this commit?",
+      "parentUuid": "7b5b00b1_1cbff249",
+      "range": {
+        "startLine": 89,
+        "startChar": 60,
+        "endLine": 89,
+        "endChar": 73
+      },
+      "revId": "ee33af586c949c5827d262bc1ce91513eb86edd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dff2139d_d4816e2c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 16
@@ -59,6 +107,30 @@
       "writtenOn": "2022-03-25T14:17:16Z",
       "side": 1,
       "message": "did you forget this one?!",
+      "range": {
+        "startLine": 60,
+        "startChar": 49,
+        "endLine": 60,
+        "endChar": 97
+      },
+      "revId": "ee33af586c949c5827d262bc1ce91513eb86edd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26b3db40_da876c76",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T15:37:01Z",
+      "side": 1,
+      "message": "Dataspace and schemaset also aren\u0027t user inputted here. Validation is done at earlier stage as part of cm handle creation.",
+      "parentUuid": "dff2139d_d4816e2c",
       "range": {
         "startLine": 60,
         "startChar": 49,
