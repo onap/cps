@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "bac0e1fe_bfa22a3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T14:17:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d39cd171_b9698299",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 9
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff41a771_72d2b3da",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 11
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "I changed this file as part of a previous commit. Can revert, but you\u0027re right. I don\u0027t think it\u0027s necessary?",
       "parentUuid": "6c1cbcb5_54c3ad8c",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "718c7530_92721943",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T14:17:16Z",
+      "side": 1,
+      "message": "no its OK we probably did change this file at some stage already :-)",
+      "parentUuid": "8a953708_2e3ba6c6",
       "range": {
         "startLine": 3,
         "startChar": 22,
