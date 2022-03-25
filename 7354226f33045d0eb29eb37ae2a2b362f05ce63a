@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5795c920_caa65dfa",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T10:16:23Z",
+      "side": 1,
+      "message": "addd: \"(it needs to be surrounded with \u0027 tokens as if it is a string)\"",
+      "range": {
+        "startLine": 206,
+        "startChar": 60,
+        "endLine": 206,
+        "endChar": 61
+      },
+      "revId": "7354226f33045d0eb29eb37ae2a2b362f05ce63a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c9ca7c_d3398c2c",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T10:16:23Z",
+      "side": 1,
+      "message": "is a know limitation rather then a vulnerability... Move to above line 62 please",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "7354226f33045d0eb29eb37ae2a2b362f05ce63a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
