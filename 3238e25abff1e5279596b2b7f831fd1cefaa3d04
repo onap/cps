@@ -131,6 +131,24 @@
     },
     {
       "key": {
+        "uuid": "3c980e36_7e26c936",
+        "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_invalid.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "756d7f7f_6fb310ea",
+      "revId": "3238e25abff1e5279596b2b7f831fd1cefaa3d04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00f83a36_ad8821ec",
         "filename": "cps-ncmp-rest/src/test/resources/dmi_registration_invalid.json",
         "patchSetId": 10

@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8491a18a_9f6edb88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "I can see some issue here lated to Renu\u0027s task. I think the best strategy is to merge your validation first and then renu can see how to use it best",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 9
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff41a771_72d2b3da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "inconsistent with message on line #91 I think the one on line #91 is better",
+      "range": {
+        "startLine": 97,
+        "startChar": 44,
+        "endLine": 97,
+        "endChar": 67
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85227674_32bc9ab3",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "I didn\u0027t think you wre using this?",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 17
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c1cbcb5_54c3ad8c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "you didn\u0027t change this file but copyright update is probably OK",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57b36afb_b3061b52",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "lets just call it CpsValidator",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bb294e2_035913b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "nameOrIds\n\n(maybe check all the calls and just IDs will sufices if so change constant and method name too, we can dicuss if needed)",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 64
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "082ea67f_89eba369",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "see naming discussion above, I am starting to think that just id is probably best...",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cde45eb_160aaac2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "I think thre is betetr ways of dsoing this expcially using static and do it oncce\nSee also https://www.geeksforgeeks.org/iterate-over-the-characters-of-a-string-in-java/\n\nI think I would define/use something like this \nprivate static char[] INVALID_ID_CHARACTERS \u003d \"...\".toCharArray();",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c2ba58_c5772c55",
+        "filename": "csit/tests/cps-admin/cps-admin.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T09:49:22Z",
+      "side": 1,
+      "message": "I thought we agreed to accept - so no need to change this",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
