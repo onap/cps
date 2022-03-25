@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b9610f1c_0834a311",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-25T10:31:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5795c920_caa65dfa",
+      "range": {
+        "startLine": 206,
+        "startChar": 60,
+        "endLine": 206,
+        "endChar": 61
+      },
+      "revId": "7354226f33045d0eb29eb37ae2a2b362f05ce63a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7c9ca7c_d3398c2c",
         "filename": "docs/release-notes.rst",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "7354226f33045d0eb29eb37ae2a2b362f05ce63a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "087464aa_2dec8bee",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-25T10:31:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7c9ca7c_d3398c2c",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "7354226f33045d0eb29eb37ae2a2b362f05ce63a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
