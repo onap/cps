@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d39cd171_b9698299",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Yes, me and Renu discussed this yesterday. Renu said to put the validation here for now, and then she will work around it.",
+      "parentUuid": "8491a18a_9f6edb88",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 9
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff41a771_72d2b3da",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4b63d60_7ca6af49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff41a771_72d2b3da",
+      "range": {
+        "startLine": 97,
+        "startChar": 44,
+        "endLine": 97,
+        "endChar": 67
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9f2f4c12_f9a0dd87",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "You\u0027re right. This was part of an older commit for the apache validator library.",
+      "parentUuid": "85227674_32bc9ab3",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 17
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c1cbcb5_54c3ad8c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
         "patchSetId": 11
@@ -82,6 +154,30 @@
       "writtenOn": "2022-03-25T09:49:22Z",
       "side": 1,
       "message": "you didn\u0027t change this file but copyright update is probably OK",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a953708_2e3ba6c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "I changed this file as part of a previous commit. Can revert, but you\u0027re right. I don\u0027t think it\u0027s necessary?",
+      "parentUuid": "6c1cbcb5_54c3ad8c",
       "range": {
         "startLine": 3,
         "startChar": 22,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "7a2ad56d_114b73f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57b36afb_b3061b52",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0bb294e2_035913b6",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
         "patchSetId": 11
@@ -137,6 +257,30 @@
       "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "928d0476_f41757cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bb294e2_035913b6",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 64
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e69ce822_be732fa7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "082ea67f_89eba369",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cde45eb_160aaac2",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
         "patchSetId": 11
@@ -174,6 +342,30 @@
       "writtenOn": "2022-03-25T09:49:22Z",
       "side": 1,
       "message": "I think thre is betetr ways of dsoing this expcially using static and do it oncce\nSee also https://www.geeksforgeeks.org/iterate-over-the-characters-of-a-string-in-java/\n\nI think I would define/use something like this \nprivate static char[] INVALID_ID_CHARACTERS \u003d \"...\".toCharArray();",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2089d566_c9343b22",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "I am not sure if it can work that way. Because we have to iterate over the characters that are passed in as part of the id parameter to see if they match any of the characters in the string above.",
+      "parentUuid": "4cde45eb_160aaac2",
       "range": {
         "startLine": 40,
         "startChar": 18,
@@ -206,6 +398,30 @@
       "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b2f615_ac76099f",
+        "filename": "csit/tests/cps-admin/cps-admin.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T10:59:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46c2ba58_c5772c55",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
