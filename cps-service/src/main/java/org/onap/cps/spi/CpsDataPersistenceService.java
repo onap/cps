@@ -148,4 +148,17 @@ public interface CpsDataPersistenceService {
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Starts a session which allows use of locks and batch interaction with the persistence service.
+     *
+     * @return Session ID string
+     */
+    String startSession();
+
+    /**
+     * Close session.
+     *
+     * @param sessionId session ID
+     */
+    void closeSession(String sessionId);
 }
