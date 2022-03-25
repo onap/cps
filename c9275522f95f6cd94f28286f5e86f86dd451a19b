@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcd76cd0_498199f8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "NB: its a new file :-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "c9275522f95f6cd94f28286f5e86f86dd451a19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2505889_888043cb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "i wonder if we should silently ignore this\ninstead of catch exception we can also check use sesionMap.ContainsKey(sesionId)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 110
+      },
+      "revId": "c9275522f95f6cd94f28286f5e86f86dd451a19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5078e41_646d63b2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "NB: same session ID",
+      "range": {
+        "startLine": 128,
+        "startChar": 75,
+        "endLine": 128,
+        "endChar": 84
+      },
+      "revId": "c9275522f95f6cd94f28286f5e86f86dd451a19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3833337_0c68f069",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "NB: you do need another test for teh hibernate exception, not sure how it can be done, probably need some mocking for that...",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "c9275522f95f6cd94f28286f5e86f86dd451a19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

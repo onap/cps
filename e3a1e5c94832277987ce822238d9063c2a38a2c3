@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5a61495_80ef46a6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f698a863_7ad5f4ab",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8dc5b9f8_71b142ab",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "1705608a_e2f7017c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e44acb0_0f0b1baa",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 69
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3ec7fc1_7ce73dd6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -154,6 +202,30 @@
       "writtenOn": "2022-03-24T16:19:10Z",
       "side": 1,
       "message": "Can declare a Domain object CustomSession (any custom name) as an Interface. \ncps-ri \n1. can have an a HibernateSessionImpl implements CustomSession. \n2. Session Manager which maintains all the sessions \n\nI think we need a proposal on designing it. @Team what are your views on it?",
+      "range": {
+        "startLine": 216,
+        "startChar": 14,
+        "endLine": 216,
+        "endChar": 21
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d17c3e3_412e783c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:27:10Z",
+      "side": 1,
+      "message": "Not sure of the use of a customSession object...  Lets not over-engineer it until need\nSessionManager yes , as agreed before\n\nalso we need to maybe merge this commit and handle further improvements in another commit as part of handover.\nLets discuss in team meet today",
+      "parentUuid": "a3ec7fc1_7ce73dd6",
       "range": {
         "startLine": 216,
         "startChar": 14,
