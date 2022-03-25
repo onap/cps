@@ -95,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "d1d3da15_1f12f79c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "- we assume the DB will handle transaction closure in case of a crash or graceful shutdown of one service",
+      "parentUuid": "e0c67715_2c1ff18a",
+      "range": {
+        "startLine": 89,
+        "startChar": 40,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e44acb0_0f0b1baa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "yea, I agree with both\nsuggested separate class: SessionManager",
+      "parentUuid": "8dc5b9f8_71b142ab",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 69
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3ec7fc1_7ce73dd6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -165,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "55300397_dc7f5f4c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "agreed, as disucssed CPS is not responsible, we assume Postgress as underlying mechanism too to handle this",
+      "parentUuid": "cb852cf1_88da7767",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 35
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26ac7c81_58c57176",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -212,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "406c8084_9ec03b75",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "All of this has bene discussed with Tony, I am not sure if you were in all meeting Renu. But it was a very clear guidline not to expose the concept of a transaction to the user",
+      "parentUuid": "cd98b0b4_c5675269",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 28
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d8596da_f4783b16",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -235,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "7d6c0157_5231d781",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "note sure what you mean...",
+      "parentUuid": "7d8596da_f4783b16",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 37
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc18bb49_b8f04195",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -246,6 +366,30 @@
       "writtenOn": "2022-03-24T16:19:10Z",
       "side": 1,
       "message": "Single Responsibility principle: This functionality belongs to a class of its own.",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a710839_c1d0d754",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T11:31:26Z",
+      "side": 1,
+      "message": "agreed, lets create a sessionManager",
+      "parentUuid": "fc18bb49_b8f04195",
       "range": {
         "startLine": 213,
         "startChar": 4,
