@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "b2ccee7e_99fa3740",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValidationUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T12:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2089d566_c9343b22",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "bf2f5d99fbbebd55a30b5f99d35a915a733b2c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46c2ba58_c5772c55",
         "filename": "csit/tests/cps-admin/cps-admin.robot",
         "patchSetId": 11
