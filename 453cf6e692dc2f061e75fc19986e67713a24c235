@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c263bfaa_8eb3f583",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T09:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96a76d59_7e3ad7d4",
+      "revId": "453cf6e692dc2f061e75fc19986e67713a24c235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63140a0b_6e753cb9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "453cf6e692dc2f061e75fc19986e67713a24c235",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fa24db5_cf64c74f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandlesList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-25T09:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63140a0b_6e753cb9",
+      "revId": "453cf6e692dc2f061e75fc19986e67713a24c235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
