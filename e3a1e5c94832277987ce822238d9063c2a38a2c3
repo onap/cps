@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "cb852cf1_88da7767",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-03-25T10:32:59Z",
+      "side": 1,
+      "message": "from what I remember, as for now we are assuming that the client will use good practice of starting and closing the session",
+      "parentUuid": "10d6ccfc_2081dbf3",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 35
+      },
+      "revId": "e3a1e5c94832277987ce822238d9063c2a38a2c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26ac7c81_58c57176",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
