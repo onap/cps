@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "14c91ed3_c277b31f",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-03-25T14:42:59Z",
+      "side": 1,
+      "message": "I did a little test there and it seems like we can have both as Python3. Will set as Python3 for now and if people have issues running can fix later",
+      "parentUuid": "456eeb82_09794243",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "bfdcfb0ff1c6520455a999886714a19f5cf31f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e05d15b1_451beb62",
         "filename": "checkstyle/src/main/CopyrightCheck.py",
         "patchSetId": 2
