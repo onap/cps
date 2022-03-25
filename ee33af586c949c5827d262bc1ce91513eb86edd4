@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8e92ff68_61dfc68a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "it is a public Java API even if not used with user input now it could be at any time....",
+      "parentUuid": "b61a88c1_bae8852b",
+      "range": {
+        "startLine": 89,
+        "startChar": 60,
+        "endLine": 89,
+        "endChar": 73
+      },
+      "revId": "ee33af586c949c5827d262bc1ce91513eb86edd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dff2139d_d4816e2c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 16

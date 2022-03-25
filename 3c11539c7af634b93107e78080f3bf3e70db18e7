@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4219500e_fc08063a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "need a bit of update:\n- introduce CpsValidotr\n- applied to all relevant public Java APIs\n- update tets where needed",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af473d01_06b4a51d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "add validation for this too",
+      "range": {
+        "startLine": 115,
+        "startChar": 69,
+        "endLine": 115,
+        "endChar": 79
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c2e30e_02364c3a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "add validation for this too",
+      "range": {
+        "startLine": 126,
+        "startChar": 76,
+        "endLine": 126,
+        "endChar": 86
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4afc3bb_b3989ba7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "add validation for this too",
+      "range": {
+        "startLine": 136,
+        "startChar": 78,
+        "endLine": 136,
+        "endChar": 88
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5876c3a_a82b2bb0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "validate this too",
+      "range": {
+        "startLine": 89,
+        "startChar": 60,
+        "endLine": 89,
+        "endChar": 73
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e02985bb_f6455fa6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "as before public interface should be validated in any case",
+      "range": {
+        "startLine": 60,
+        "startChar": 56,
+        "endLine": 60,
+        "endChar": 96
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34da0edc_ba06008a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "as before public interface should be validated in any case",
+      "range": {
+        "startLine": 95,
+        "startChar": 84,
+        "endLine": 95,
+        "endChar": 97
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "201c2db4_b376c34f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "as before public interface should be validated in any case",
+      "range": {
+        "startLine": 100,
+        "startChar": 85,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abbb9ae7_a9320e9d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-25T16:14:04Z",
+      "side": 1,
+      "message": "Name or ID",
+      "range": {
+        "startLine": 45,
+        "startChar": 55,
+        "endLine": 45,
+        "endChar": 59
+      },
+      "revId": "3c11539c7af634b93107e78080f3bf3e70db18e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
