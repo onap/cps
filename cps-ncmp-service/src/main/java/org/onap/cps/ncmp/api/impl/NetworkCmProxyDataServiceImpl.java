@@ -343,7 +343,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (processAsynchronously) {
             final String resourceDataRequestId = UUID.randomUUID().toString();
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(buildDmiResponse(resourceDataRequestId));
+                    .body(buildDmiResponse(resourceDataRequestId)).getBody();
         }
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
                 cmHandleId, resourceIdentifier, optionsParamInQuery, acceptParamInHeader,

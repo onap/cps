@@ -247,7 +247,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called for data operational with valid topic'
             def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '', '', '', 'my-topic-name')
         then: 'non empty request id is generated'
-            assert responseData.body.requestId.length() > 0
+            assert responseData.requestId.length() > 0
     }
 
     def 'Get resource data for pass through running from DMI with valid topic async request.'() {
@@ -261,7 +261,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
                     '', '', OPTIONS_PARAM, 'my-topic-name')
         then: 'non empty request id is generated'
-            assert responseData.body.requestId.length() > 0
+            assert responseData.requestId.length() > 0
     }
 
     def 'DMI pass through running data request with #scenario'() {
