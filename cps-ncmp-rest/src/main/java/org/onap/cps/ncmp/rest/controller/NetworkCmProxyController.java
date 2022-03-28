@@ -32,17 +32,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
+import org.onap.cps.ncmp.rest.model.CmHandleQueryRestParameters;
 import org.onap.cps.ncmp.rest.model.CmHandles;
 import org.onap.cps.ncmp.rest.model.ConditionProperties;
 import org.onap.cps.ncmp.rest.model.Conditions;
@@ -192,6 +195,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandles cmHandles = new CmHandles();
         cmHandles.setCmHandles(toCmHandleProperties(processConditions(conditionProperties)));
         return ResponseEntity.ok(cmHandles);
+    }
+
+    /**
+     * Query and return cm handles that match the given query parameters.
+     *
+     * @param cmHandleQueryRestParameters the cm handle query parameters
+     * @return collection of cm handle ids
+     */
+    public ResponseEntity<List<String>> queryCmHandles(
+        final CmHandleQueryRestParameters cmHandleQueryRestParameters) {
+        final Set<String> cmHandleIds = networkCmProxyDataService.queryCmHandles(
+            jsonObjectMapper.convertToValueType(cmHandleQueryRestParameters, CmHandleQueryApiParameters.class));
+        return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
     /**

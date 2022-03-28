@@ -31,12 +31,14 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMES
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 
+import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -53,6 +55,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
@@ -166,6 +169,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
         return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+    }
+
+    @Override
+    public Set<String> queryCmHandles(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+
+        cmHandleQueryApiParameters.getPublicProperties().forEach((key, value) -> {
+            if (Strings.isNullOrEmpty(key)) {
+                throw new DataValidationException("Invalid Query Parameter.",
+                    "Missing property name - please supply a valid name.");
+            }
+        });
+
+        return cpsAdminService.queryCmHandles(jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters,
+                org.onap.cps.spi.model.CmHandleQueryParameters.class));
     }
 
     /**

@@ -281,6 +281,33 @@ retrieveCmHandleDetailsById:
           application/json:
             schema:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
+queryCmHandles:
+  post:
+    description: Execute cm handle query search
+    tags:
+      - network-cm-proxy
+    summary: Execute cm handle query upon a given set of query parameters
+    operationId: queryCmHandles
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/CmHandleQueryRestParameters'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
