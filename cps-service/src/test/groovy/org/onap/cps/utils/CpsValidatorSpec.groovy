@@ -45,4 +45,18 @@ class CpsValidatorSpec extends Specification {
             'position 5' | 'name with spaces' || 'name with spaces invalid token encountered at position 5'
             'position 9' | 'nameWith Space'   || 'nameWith Space invalid token encountered at position 9'
     }
+
+    def 'Validating topic names.'() {
+        when: 'the topic name is validated'
+            def isValidTopicName = CpsValidator.validateTopicName(topicName)
+        then: 'boolean response will be returned for #scenario'
+            assert isValidTopicName == booleanResponse
+        where: 'the following names are used'
+            scenario                  | topicName       || booleanResponse
+            'valid topic'             | 'my-topic-name' || true
+            'empty topic'             | ''              || false
+            'blank topic'             | ' '             || false
+            'null topic'              | null            || false
+            'invalid non empty topic' | '1_5_*_#'       || false
+    }
 }

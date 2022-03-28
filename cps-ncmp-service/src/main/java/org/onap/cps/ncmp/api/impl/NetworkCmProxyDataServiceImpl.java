@@ -37,8 +37,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +45,6 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
-import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
@@ -65,7 +62,6 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -90,12 +86,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
 
-    // valid kafka topic name regex
-    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
-            + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
-    private static final String NO_REQUEST_ID = null;
-    private static final String NO_TOPIC = null;
-
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
@@ -119,20 +109,22 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Object getResourceDataOperationalForCmHandle(final String cmHandleId,
                                                         final String resourceIdentifier,
                                                         final String optionsParamInQuery,
-                                                        final String topicParamInQuery) {
+                                                        final String topicParamInQuery,
+                                                        final String requestId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, optionsParamInQuery, topicParamInQuery);
+        return getResourceDataResponse(cmHandleId, resourceIdentifier,
+                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, optionsParamInQuery, topicParamInQuery, requestId);
     }
 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
                                                                final String resourceIdentifier,
                                                                final String optionsParamInQuery,
-                                                               final String topicParamInQuery) {
+                                                               final String topicParamInQuery,
+                                                               final String requestId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery);
+        return getResourceDataResponse(cmHandleId, resourceIdentifier,
+                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery, requestId);
     }
 
     @Override
@@ -329,35 +321,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             yangModelCmHandle.getId());
     }
 
-    private static boolean hasTopicParameter(final String topicName) {
-        if (topicName == null) {
-            return false;
-        }
-        if (TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
-            return true;
-        }
-        throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
-    }
-
-    private Map<String, Object> buildDmiResponse(final String requestId) {
-        final Map<String, Object> dmiResponseMap = new HashMap<>();
-        dmiResponseMap.put("requestId", requestId);
-        return dmiResponseMap;
-    }
-
-    private Object validateTopicNameAndGetResourceData(final String cmHandleId,
-                                                       final String resourceIdentifier,
-                                                       final DmiOperations.DataStoreEnum dataStore,
-                                                       final String optionsParamInQuery,
-                                                       final String topicParamInQuery) {
-        final boolean processAsynchronously = hasTopicParameter(topicParamInQuery);
-        if (processAsynchronously) {
-            final String resourceDataRequestId = UUID.randomUUID().toString();
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(buildDmiResponse(resourceDataRequestId));
-        }
+    private Object getResourceDataResponse(final String cmHandleId,
+                                           final String resourceIdentifier,
+                                           final DmiOperations.DataStoreEnum dataStore,
+                                           final String optionsParamInQuery,
+                                           final String topicParamInQuery,
+                                           final String requestId) {
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, resourceIdentifier, optionsParamInQuery, dataStore, NO_REQUEST_ID, NO_TOPIC);
+                cmHandleId, resourceIdentifier, optionsParamInQuery, dataStore, requestId, topicParamInQuery);
         return handleResponse(responseEntity, OperationEnum.READ);
     }
 }

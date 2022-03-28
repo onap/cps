@@ -23,7 +23,6 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
-import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import spock.lang.Shared
@@ -119,7 +118,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         then: 'DMI returns a json response'
             response == 'dmi-response'
     }
@@ -137,7 +137,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         then: 'exception is thrown with the expected response code and details'
             def exceptionThrown = thrown(HttpClientRequestException.class)
             exceptionThrown.details.contains('NOK-json')
@@ -160,7 +161,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         then: 'exception is thrown'
             def exceptionThrown = thrown(HttpClientRequestException.class)
         and: 'details contain the original response'
@@ -183,7 +185,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         then: 'get resource data returns expected response'
             response == '{dmi-response}'
     }
@@ -204,78 +207,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         then: 'exception is thrown'
             def exceptionThrown = thrown(HttpClientRequestException.class)
         and: 'details contain the original response'
             exceptionThrown.details.contains('NOK-json')
             exceptionThrown.httpStatus == HttpStatus.NOT_FOUND.value()
-    }
-
-    def 'DMI Operational data request with #scenario'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, NO_REQUEST_ID, NO_TOPIC)
-                    >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
-        when: 'get resource data is called data operational with blank topic'
-            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '',
-                    '', emptyTopic)
-        then: 'a invalid topic exception is thrown'
-            thrown(InvalidTopicException)
-        where: 'the following parameters are used'
-            scenario                               | emptyTopic
-            'no topic value in url'                | ''
-            'empty topic value in url'             | '\"\"'
-            'blank topic value in url'             | ' '
-            'invalid non-empty topic value in url' | '1_5_*_#'
-    }
-
-    def 'Get resource data for data operational from DMI with valid topic i.e. async request.'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode(*_) >> dataNode
-        and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, 'my-topic-name')
-                    >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
-        when: 'get resource data is called for data operational with valid topic'
-            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '', '', 'my-topic-name')
-        then: 'non empty request id is generated'
-            assert responseData.body.requestId.length() > 0
-    }
-
-    def 'Get resource data for pass through running from DMI with valid topic async request.'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, 'my-topic-name')
-                    >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
-        when: 'get resource data is called for data operational with valid topic'
-            def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
-                    '', OPTIONS_PARAM, 'my-topic-name')
-        then: 'non empty request id is generated'
-            assert responseData.body.requestId.length() > 0
-    }
-
-    def 'DMI pass through running data request with #scenario'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, NO_REQUEST_ID, NO_TOPIC)
-                    >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
-        when: 'get resource data is called for data operational with valid topic'
-            def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
-                    '', '', emptyTopic)
-        then: 'a invalid topic exception is thrown'
-            thrown(InvalidTopicException)
-        where: 'the following parameters are used'
-            scenario                               | emptyTopic
-            'no topic value in url'                | ''
-            'empty topic value in url'             | '\"\"'
-            'blank topic value in url'             | ' '
-            'invalid non-empty topic value in url' | '1_5_*_#'
     }
 
     def 'Getting Yang Resources.'() {
