@@ -30,7 +30,23 @@ components:
           type: string
         details:
           type: string
-
+    # DMI Server Exception Schema
+    DmiErrorMessage:
+      title: Error
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Bad Gateway Error Message Details"
+        dmi-response:
+          type: object
+          properties:
+            http-code:
+              type: integer
+              example: 502
+            body:
+              type: string
+              example: Bad Gateway
     # Request Schemas
     RestDmiPluginRegistration:
       type: object
@@ -434,3 +450,14 @@ components:
             status: 500
             message: Internal Server Error
             details: Internal Server Error occurred
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/DmiErrorMessage"
+          example:
+            message: "Bad Gateway Error Message Details"
+            dmi-response:
+              http-code: 502
+              body: "Bad Gateway"
