@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Bell Canada
+ *  Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,17 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
+import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
+import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,14 +48,56 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     /**
      * Update DMI Plugin Registration (used for first registration also).
+     *
      * @param restDmiPluginRegistration the registration data
      */
     @Override
     public ResponseEntity<Void> updateDmiPluginRegistration(
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
-        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
-            ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
+            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+                ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
+        final var failedRegistrationErrorResponse = getFailureRegistrationResponse(dmiPluginRegistrationResponse);
+        return allRegistrationsSuccessful(failedRegistrationErrorResponse)
+            ? new ResponseEntity<>(HttpStatus.OK)
+            : new ResponseEntity(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private boolean allRegistrationsSuccessful(
+        final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse) {
+        return dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles().isEmpty()
+            && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
+            && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty();
+
+    }
+
+    private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
+        final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
+        final var dmiPluginRegistrationErrorResponse = new DmiPluginRegistrationErrorResponse();
+        dmiPluginRegistrationErrorResponse.setFailedCreatedCmHandles(
+            getFailedResponses(dmiPluginRegistrationResponse.getCreatedCmHandles()));
+        dmiPluginRegistrationErrorResponse.setFailedUpdatedCmHandles(
+            getFailedResponses(dmiPluginRegistrationResponse.getUpdatedCmHandles()));
+        dmiPluginRegistrationErrorResponse.setFailedRemovedCmHandles(
+            getFailedResponses(dmiPluginRegistrationResponse.getRemovedCmHandles()));
+
+        return dmiPluginRegistrationErrorResponse;
+    }
+
+    private List<CmHandlerRegistrationErrorResponse> getFailedResponses(
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
+        return cmHandleRegistrationResponseList.stream()
+            .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
+            .map(this::toCmHandleRegistrationErrorResponse)
+            .collect(Collectors.toList());
+    }
+
+    private CmHandlerRegistrationErrorResponse toCmHandleRegistrationErrorResponse(
+        final CmHandleRegistrationResponse registrationResponse) {
+        return new CmHandlerRegistrationErrorResponse()
+            .cmHandle(registrationResponse.getCmHandle())
+            .errorCode(registrationResponse.getRegistrationError().errorCode)
+            .errorText(registrationResponse.getErrorText());
     }
 
 }
