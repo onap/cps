@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "df51f675_ffdd3187",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-28T16:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e9dd180_583e9d19",
+      "range": {
+        "startLine": 208,
+        "startChar": 26,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "805e5e61_0e355f68",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 22
@@ -36,6 +60,30 @@
       "writtenOn": "2022-03-28T15:00:20Z",
       "side": 1,
       "message": "Maybe add an expected number of invocation on this method?",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 130
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8168f30_cb9485a1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-28T16:19:13Z",
+      "side": 1,
+      "message": "It\u0027s mocked so no need I think",
+      "parentUuid": "805e5e61_0e355f68",
       "range": {
         "startLine": 257,
         "startChar": 12,
