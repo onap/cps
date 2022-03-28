@@ -1,6 +1,6 @@
 /*
    ============LICENSE_START=======================================================
-    Copyright (C) 2021 Nordix Foundation.
+    Copyright (C) 2021-2022 Nordix Foundation.
     Modifications Copyright (C) 2021 Pantheon.tech
     Modifications Copyright (C) 2021-2022 Bell Canada.
    ================================================================================
@@ -21,14 +21,16 @@
 */
 
 INSERT INTO DATASPACE (ID, NAME) VALUES
-    (1001, 'DATASPACE-001');
+    (1001, 'DATASPACE-001'),
+    (1002, 'NCMP-Admin');
 
 INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2001, 'SCHEMA-SET-001', 1001);
 
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
-    (3003, 'ANCHOR-003', 1001, 2001);
+    (3003, 'ANCHOR-003', 1001, 2001),
+    (3004, 'ncmp-dmi-registry', 1002, 2001);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
     (4001, 1001, 3001, null, '/parent-1'),
@@ -68,3 +70,11 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4231, 1001, 3003, null, '/parent-206[@key="A"]', '{"key": "A"}'),
     (4232, 1001, 3003, 4231, '/parent-206[@key="A"]/child-206', '{}'),
     (4233, 1001, 3003, null, '/parent-206[@key="B"]', '{"key": "B"}');
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (5000, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo"]', '{"id": "PNFDemo", "dmi-service-name": "http://172.21.235.14:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
+    (5001, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo2"]', '{"id": "PNFDemo2", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
+    (5002, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo3"]', '{"id": "PNFDemo3", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
+    (5003, 1002, 3004, 5000, '/dmi-registry/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5004, 1002, 3004, 5001, '/dmi-registry/cm-handles[@id="PNFDemo2"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5005, 1002, 3004, 5002, '/dmi-registry/cm-handles[@id="PNFDemo3"]/public-properties[@name="Contact"]', '{"name": "Contact3", "value": "PNF3@bookstore.com"}');
