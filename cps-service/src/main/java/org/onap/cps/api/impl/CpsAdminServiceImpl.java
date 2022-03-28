@@ -24,12 +24,14 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -90,5 +92,10 @@ public class CpsAdminServiceImpl implements CpsAdminService {
         CpsValidator.validateNameCharacters(dataspaceName);
         final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
         return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+        return  cpsAdminPersistenceService.queryCmHandles(cmHandleQueryParameters);
     }
 }

@@ -24,20 +24,30 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Transactional
+@AllArgsConstructor
 public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    private final CpsDataPersistenceService cpsDataPersistenceService;
 
     @Override
     @SneakyThrows
@@ -55,6 +65,55 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         insertDataIntoTable(tempTableName, moduleReferencesToCheck);
 
         return identifyNewModuleReferencesForCmHandle(tempTableName);
+    }
+
+    /**
+     * Query and return cm handles that match the given properties.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return collection of cm handle ids
+     */
+    @Override
+    public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+
+        if (cmHandleQueryParameters.getPublicProperties().entrySet().isEmpty()) {
+            final Collection<DataNode> cmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
+            return extractCmHandleIds(cmHandles);
+        }
+
+        final Collection<DataNode> cmHandleIds = new ArrayList<>();
+        final Collection<DataNode> cmHandleIdsToReturn = new ArrayList<>();
+        cmHandleQueryParameters.getPublicProperties().forEach((key, value) -> {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//public-properties[@name='").append(key).append("' ");
+            cmHandlePath.append("and @value='").append(value).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            cmHandleIds.addAll(cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS));
+
+            addCmHandleIdsToReturn(cmHandleIds, cmHandleIdsToReturn);
+        });
+
+        return extractCmHandleIds(cmHandleIdsToReturn);
+    }
+
+    private void addCmHandleIdsToReturn(final Collection<DataNode> cmHandleIds,
+                                        final Collection<DataNode> cmHandleIdsToReturn) {
+        if (cmHandleIdsToReturn.isEmpty()) {
+            cmHandleIdsToReturn.addAll(cmHandleIds);
+            cmHandleIds.clear();
+        } else {
+            cmHandleIdsToReturn.retainAll(cmHandleIds);
+            cmHandleIds.clear();
+        }
+    }
+
+    private Set<String> extractCmHandleIds(final Collection<DataNode> cmHandles) {
+        return cmHandles.stream().map(cmHandle -> cmHandle.getLeaves().get("id").toString())
+            .collect(Collectors.toSet());
     }
 
     private void createTemporaryTable(final String tempTableName) {
@@ -95,7 +154,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
                 + " WHERE yang_resource.module_name IS NULL;", tempTableName);
 
         final List<Object[]> resultsAsObjects =
-            entityManager.createNativeQuery(sql).getResultList();
+            (List<Object[]>) entityManager.createNativeQuery(sql).getResultList();
 
         final List<ModuleReference> resultsAsModuleReferences = new ArrayList<>(resultsAsObjects.size());
         for (final Object[] row : resultsAsObjects) {

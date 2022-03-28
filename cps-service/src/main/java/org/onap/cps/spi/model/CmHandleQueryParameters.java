@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,17 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.model;
 
-import java.util.Collection;
-import org.onap.cps.spi.entities.YangResourceEntity;
-import org.onap.cps.spi.model.ModuleReference;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Collections;
+import java.util.Map;
+import javax.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
 
-@Repository
-public interface ModuleReferenceRepository extends JpaRepository<YangResourceEntity, Long>, ModuleReferenceQuery {
+@Setter
+@Getter
+@JsonInclude(Include.NON_NULL)
+public class CmHandleQueryParameters {
 
-    Collection<ModuleReference> identifyNewModuleReferences(final Collection<ModuleReference> moduleReferencesToCheck);
+    @JsonProperty("publicCmHandleProperties")
+    @Valid
+    private Map<String, String> publicProperties = Collections.emptyMap();
 
 }

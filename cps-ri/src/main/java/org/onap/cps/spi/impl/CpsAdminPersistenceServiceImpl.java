@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -36,8 +37,10 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -51,6 +54,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private final AnchorRepository anchorRepository;
     private final SchemaSetRepository schemaSetRepository;
     private final YangResourceRepository yangResourceRepository;
+    private final ModuleReferenceRepository moduleReferenceRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -130,6 +134,11 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         anchorRepository.delete(anchorEntity);
+    }
+
+    @Override
+    public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+        return moduleReferenceRepository.queryCmHandles(cmHandleQueryParameters);
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {
