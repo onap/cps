@@ -72,6 +72,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @Shared
     def NO_TOPIC = null
+    def NO_REQUEST_ID = null
 
     def 'Get Resource Data from pass-through operational.'() {
         given: 'resource data url'
@@ -88,7 +89,8 @@ class NetworkCmProxyControllerSpec extends Specification {
                     'parent/child',
                     'application/json',
                     '(a=1,b=2)',
-                    NO_TOPIC)
+                    NO_TOPIC,
+                    NO_REQUEST_ID)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
     }
@@ -104,20 +106,22 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .accept(MediaType.APPLICATION_JSON_VALUE)
             ).andReturn().response
         then: 'the NCMP data service is called with operational data for cm handle'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
+            expectedNumberOfMethodExecution
+                    * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
                     'application/json',
                     '(a=1,b=2)',
-                    expectedTopicName)
-        and: 'response status is Ok'
-            response.status == HttpStatus.OK.value()
+                    expectedTopicName,
+                    _)
+        then: 'response status is expected'
+            response.status == expectedHttpStatus
         where: 'the following parameters are used'
-            scenario               | topicQueryParam        || expectedTopicName
-            'Url with valid topic' | "&topic=my-topic-name" || "my-topic-name"
-            'No topic in url'      | ''                     || NO_TOPIC
-            'Null topic in url'    | "&topic=null"          || "null"
-            'Empty topic in url'   | "&topic=\"\""          || "\"\""
-            'Missing topic in url' | "&topic="              || ""
+            scenario               | topicQueryParam        || expectedTopicName | expectedNumberOfMethodExecution | expectedHttpStatus
+            'Url with valid topic' | '&topic=my-topic-name' || 'my-topic-name'   | 1                               | HttpStatus.OK.value()
+            'No topic in url'      | ''                     || NO_TOPIC          | 1                               | HttpStatus.OK.value()
+            'Null topic in url'    | '&topic=null'          || 'null'            | 1                               | HttpStatus.OK.value()
+            'Empty topic in url'   | '&topic=\"\"'          || null              | 0                               | HttpStatus.BAD_REQUEST.value()
+            'Missing topic in url' | '&topic='              || null              | 0                               | HttpStatus.BAD_REQUEST.value()
     }
 
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
@@ -129,7 +133,8 @@ class NetworkCmProxyControllerSpec extends Specification {
                     resourceIdentifier,
                     'application/json',
                     '(a=1,b=2)',
-                    NO_TOPIC) >> '{valid-json}'
+                    NO_TOPIC,
+                    NO_REQUEST_ID) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -279,5 +284,44 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'the response is No Content'
             response.status == HttpStatus.NO_CONTENT.value()
     }
+
+    def 'Get resource data with #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=${invalidTopic}"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                    get(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+        then: 'the response status is bad request'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following parameters are used'
+            scenario                               | datastoreInUrl            | invalidTopic
+            'no topic value in url'                | 'passthrough-operational' | ''
+            'empty topic value in url'             | 'passthrough-operational' | '\"\"'
+            'blank topic value in url'             | 'passthrough-running'     | ' '
+            'invalid non-empty topic value in url' | 'passthrough-running'     | '1_5_*_#'
+    }
+
+    def 'Get resource data from DMI with valid topic i.e. async request for #scenario'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=my-topic-name"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                    get(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+        then: 'async request id is generated'
+            assert response.contentAsString.contains("requestId")
+        where: 'the following parameters are used'
+            scenario                    | datastoreInUrl
+            ': passthrough-operational' | 'passthrough-operational'
+            ':passthrough-running'      | 'passthrough-running'
+    }
+
 }
 
