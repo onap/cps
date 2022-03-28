@@ -73,6 +73,9 @@ Null can no longer be passed within the dmi plugin service names when registerin
 `CPS-837 <https://jira.onap.org/browse/CPS-837>`_ null is now used to indicate if a property should be removed as part
 of cm handle registration.
 
+The Absolute path to list with integer key will not work. Please refer `CPS-961 <https://jira.onap.org/browse/CPS-961>`_
+for more information.
+
 *Known Vulnerabilities*
 
 None
