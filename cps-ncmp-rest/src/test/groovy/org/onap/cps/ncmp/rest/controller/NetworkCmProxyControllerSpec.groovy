@@ -60,7 +60,10 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    ObjectMapper objectMapper = new ObjectMapper()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(objectMapper)
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
@@ -247,6 +250,31 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
             response.contentAsString == '{"cmHandles":[]}'
+    }
+
+    def 'Query for cm handles matching query parameters'() {
+        given: 'an endpoint and json data'
+            def searchesEndpoint = "$ncmpBasePathV1/data/ch/searches"
+            String jsonString = '{"publicCmHandleProperties": {"name": "Contact", "value": "newemailforstore@bookstore.com"}}'
+        and: 'the service method is invoked with module names and returns cm handle ids'
+            1 * mockNetworkCmProxyDataService.queryCmHandles(_) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
+        when: 'the searches api is invoked'
+            def response = mvc.perform(post(searchesEndpoint)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonString)).andReturn().response
+        then: 'cm handle ids are returned'
+            response.contentAsString == '["some-cmhandle-id1","some-cmhandle-id2"]'
+    }
+
+    def 'Query for cm handles with invalid request payload'() {
+        when: 'the searches api is invoked'
+            def searchesEndpoint = "$ncmpBasePathV1/data/ch/searches"
+            def invalidInputData = '{invalidJson}'
+            def response = mvc.perform(post(searchesEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(invalidInputData)).andReturn().response
+        then: 'BAD_REQUEST is returned'
+            response.getStatus() == 400
     }
 
     def 'Patch resource data in pass-through running datastore.' () {
