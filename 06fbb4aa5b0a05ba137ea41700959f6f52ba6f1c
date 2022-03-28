@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cd35871f_e2f8fe38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:13:20Z",
+      "side": 1,
+      "message": "There is inconsistency here which me and Toine realized. But everywhere else within CPS we use ID for cm-handle and not name. We decided to reflect this in the message thrown as part of the Data validation exception in the utility class.",
+      "parentUuid": "89dd9523_e7f4db39",
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be09fee4_0f9d5f85",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 24
@@ -30,6 +48,30 @@
       "writtenOn": "2022-03-28T13:59:15Z",
       "side": 1,
       "message": "With this dependency we are coupling this utility class with service spi and we\u0027ll not be able to use in a different context. Are we ok with this ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f20dca10_633ff015",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:13:20Z",
+      "side": 1,
+      "message": "Data validation exception is already coupled within the utility package as part of the JsonObjectMapper utility class and the Yangutils utility. I presumed it would be okay to use it in the came context here?",
+      "parentUuid": "be09fee4_0f9d5f85",
       "range": {
         "startLine": 45,
         "startChar": 30,
