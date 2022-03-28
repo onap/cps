@@ -21,14 +21,13 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -38,6 +37,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
@@ -109,6 +109,19 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             def response = performTestRequest(NCMPINVENTORY)
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, BAD_REQUEST, sampleErrorMessage, sampleErrorDetails)
+    }
+
+    def 'Failing DMI Request - passthrough scenario'() {
+        given: 'failing DMI request'
+            mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(*_) >> { throw new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400) }
+        when: 'the DMI request is executed'
+            def response = mvc.perform(get("$dataNodeBaseEndpointNcmp/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=100"))
+                .andReturn().response
+        then: 'NCMP service responds with 502 Bad Gateway status'
+            response.status == HttpStatus.BAD_GATEWAY.value()
+        and: 'the NCMP response also contains the original DMI response details'
+            response.contentAsString.contains('400')
+            response.contentAsString.contains('Bad Request from DMI')
     }
 
     def setupTestException(exception, apiType) {
