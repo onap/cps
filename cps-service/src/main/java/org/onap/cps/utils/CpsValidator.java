@@ -22,6 +22,7 @@ package org.onap.cps.utils;
 
 import com.google.common.collect.Lists;
 import java.util.Collection;
+import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,8 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 public final class CpsValidator {
 
     private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
+    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
+            + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
 
     /**
      * Validate characters in names within cps.
@@ -47,5 +50,13 @@ public final class CpsValidator {
                 }
             }
         }
+    }
+
+    /**
+     * Validate kafka topic name pattern.
+     * @param topicName name of the topic to be validated
+     */
+    public static boolean validateTopicName(final String topicName) {
+        return TOPIC_NAME_PATTERN.matcher(topicName).matches();
     }
 }
