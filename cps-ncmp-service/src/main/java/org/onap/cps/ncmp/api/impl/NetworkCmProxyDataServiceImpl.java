@@ -47,8 +47,8 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
-import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
@@ -149,9 +149,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final String requestData,
                                                                final String dataType) {
         return handleResponse(
-            dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(
-                cmHandleId, resourceIdentifier, operation, requestData, dataType),
-            "Not able to " + operation + " resource data.");
+                dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
+                        requestData, dataType), operation);
     }
 
 
@@ -225,14 +224,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         registerAndSyncNewCmHandles(createdYangModelCmHandlesList);
     }
 
-    private static Object handleResponse(final ResponseEntity<?> responseEntity,
-                                         final String exceptionMessage) {
+    private static Object handleResponse(final ResponseEntity<?> responseEntity, final OperationEnum operation) {
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
         } else {
-            throw new ServerNcmpException(exceptionMessage,
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
+            final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";
+            throw new HttpClientRequestException(exceptionMessage, (String) responseEntity.getBody(),
+                    responseEntity.getStatusCodeValue());
         }
     }
 
@@ -355,6 +353,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
                 cmHandleId, resourceIdentifier, optionsParamInQuery, acceptParamInHeader,
                 dataStore, NO_REQUEST_ID, NO_TOPIC);
-        return handleResponse(responseEntity, "Not able to get resource data.");
+        return handleResponse(responseEntity, OperationEnum.READ);
     }
 }
