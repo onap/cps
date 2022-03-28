@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dbacc01_939ebd53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-28T10:11:38Z",
+      "side": 1,
+      "message": "NB: Copyright slightly out of alignment",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 4
+      },
+      "revId": "5157e56616337c4d7ca05408993dd1065f8305fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6349503f_ef55427d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-28T10:11:38Z",
+      "side": 1,
+      "message": "NB: Could add to message: \"the following characters are not supported for cm handles in CPS !“” #$%\u0026‘()*+,./\\\\:;\u003c\u003d\u003e?@[]^`{|}~\"",
+      "revId": "5157e56616337c4d7ca05408993dd1065f8305fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "530b570d_ead8eaab",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-28T10:11:38Z",
+      "side": 1,
+      "message": "NB: could use when/then and use string only once in the the when block",
+      "revId": "5157e56616337c4d7ca05408993dd1065f8305fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
