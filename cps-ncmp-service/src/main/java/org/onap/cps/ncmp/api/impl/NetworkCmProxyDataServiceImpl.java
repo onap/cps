@@ -47,8 +47,8 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.exception.HttpRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
-import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
@@ -230,9 +230,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
         } else {
-            throw new ServerNcmpException(exceptionMessage,
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
+            throw new HttpRequestException(exceptionMessage, responseEntity.getStatusCodeValue(),
+                    (String) responseEntity.getBody());
         }
     }
 

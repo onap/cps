@@ -21,14 +21,13 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.exception.HttpRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -38,6 +37,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
@@ -92,13 +92,24 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario              | exception                                                        || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
-            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails   | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | BAD_REQUEST
-            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                 | 'DataNode not found' | NOT_FOUND
-            'other'               | new IllegalStateException(sampleErrorMessage)                    || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found' | 'DataNode not found' | NOT_FOUND
+            scenario                        | exception                                                             || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
+            'CPS'                           | new CpsException(sampleErrorMessage, sampleErrorDetails)              || sampleErrorDetails   | sampleErrorMessage   | INTERNAL_SERVER_ERROR
+            'NCMP-server'                   | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)       || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
+            'NCMP-client'                   | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)       || null                 | sampleErrorMessage   | BAD_REQUEST
+            'DataNode Validation'           | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')      || null                 | 'DataNode not found' | NOT_FOUND
+            'other'                         | new IllegalStateException(sampleErrorMessage)                         || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
+            'Data Node Not Found'           | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')      || 'DataNode not found' | 'DataNode not found' | NOT_FOUND
+    }
+
+    def 'Request return correct HTTP status for NCMP-passthrough scenarios'() {
+        when: 'an exception is thrown by the service'
+            mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(*_) >> { throw new HttpRequestException('Bad Gateway Error Message Details', 502, 'Bad Gateway') }
+            def response = mvc.perform(get("$dataNodeBaseEndpointNcmp/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=100"))
+                .andReturn().response
+
+        then: 'an HTTP response is returned with correct message and response'
+            response.status.equals(HttpStatus.BAD_GATEWAY.value())
+            response.contentAsString.contains('{"message":"Bad Gateway Error Message Details","dmi-response":{"http-code":502,"body":"Bad Gateway"}}')
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

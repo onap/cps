@@ -131,6 +131,18 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
+
   /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
     get:
       tags:
@@ -256,6 +268,17 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
     put:
       tags:
       - network-cm-proxy
@@ -362,6 +385,17 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
     post:
       tags:
       - network-cm-proxy
@@ -464,6 +498,17 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
     delete:
       tags:
       - network-cm-proxy
@@ -561,6 +606,17 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
     patch:
       tags:
       - network-cm-proxy
@@ -661,6 +717,17 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: "Bad Gateway Error Message Details"
+                dmi-response:
+                  http-code: 502
+                  body: Bad Gateway
   /v1/ch/{cm-handle}/modules:
     get:
       tags:
@@ -873,6 +940,23 @@ components:
           type: string
         details:
           type: string
+    # DMI Server Exception Schema
+    DmiErrorMessage:
+      title: Error
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Bad Gateway Error Message Details"
+        dmi-response:
+          type: object
+          properties:
+            http-code:
+              type: integer
+              example: 502
+            body:
+              type: string
+              example: Bad Gateway
     RestModuleReference:
       title: Module reference details
       type: object
