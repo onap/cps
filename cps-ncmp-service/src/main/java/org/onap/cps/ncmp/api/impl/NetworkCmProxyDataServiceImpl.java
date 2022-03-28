@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -161,6 +162,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
         return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+    }
+
+    @Override
+    public Set<String> getCmHandlesForMatchingPublicProperties(final Map<String, String> publicProperties) {
+        return cpsAdminService.getCmHandlesForMatchingPublicProperties(publicProperties);
     }
 
     /**

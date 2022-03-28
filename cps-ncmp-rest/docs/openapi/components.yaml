@@ -146,6 +146,16 @@ components:
           type: string
           example: my-module-revision
 
+    PublicProperties:
+      type: object
+      title: Return CM Handle(s) matching Public Properties
+      properties:
+        publicCmHandleProperties:
+          type: object
+          additionalProperties:
+            type: string
+            example: Book Type
+
     RestOutputCmHandle:
       type: object
       title: CM handle Details
