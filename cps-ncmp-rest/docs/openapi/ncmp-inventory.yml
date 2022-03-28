@@ -31,7 +31,7 @@ updateDmiRegistration:
           schema:
             $ref: 'components.yaml#/components/schemas/RestDmiPluginRegistration'
     responses:
-      204:
+      200:
         $ref: 'components.yaml#/components/responses/NoContent'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
@@ -40,4 +40,7 @@ updateDmiRegistration:
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
-        $ref: 'components.yaml#/components/responses/InternalServerError'
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/DmiPluginRegistrationErrorResponse'
