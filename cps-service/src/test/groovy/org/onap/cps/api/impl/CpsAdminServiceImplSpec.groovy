@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.CmHandleQueryParameters
 import spock.lang.Specification
 import java.time.OffsetDateTime
 
@@ -93,6 +94,15 @@ class CpsAdminServiceImplSpec extends Specification {
             objectUnderTest.deleteDataspace('someDataspace')
         then: 'associated persistence service method is invoked with correct parameter'
             1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
+    }
+
+    def 'Query CM Handles.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryParameters = new CmHandleQueryParameters()
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+        then: 'associated persistence service method is invoked with correct parameter'
+            1 * mockCpsAdminPersistenceService.queryCmHandles(cmHandleQueryParameters)
     }
 
 }
