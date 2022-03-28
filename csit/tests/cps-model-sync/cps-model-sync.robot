@@ -34,7 +34,7 @@ ${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}  /ncmpInventory
 ${ncmpBasePath}           /ncmp
 ${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
-${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com"}}]}
+${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com", "Contact2":"storeemail2@bookstore.com"}}]}
 ${jsonDataUpdate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","updatedCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Romance Book"},"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}}]}
 
 *** Test Cases ***

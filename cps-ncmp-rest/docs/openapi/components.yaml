@@ -146,6 +146,16 @@ components:
           type: string
           example: my-module-revision
 
+    CmHandleQueryParameters:
+      type: object
+      title: Cm Handle query parameters for executing cm handle search
+      properties:
+        publicCmHandleProperties:
+          type: object
+          additionalProperties:
+            type: string
+            example: Book Type
+
     RestOutputCmHandle:
       type: object
       title: CM handle Details
