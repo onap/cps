@@ -24,11 +24,14 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
+import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
+import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiresponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -66,6 +69,11 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    @ExceptionHandler({HttpClientRequestException.class})
+    public static ResponseEntity<Object> handleClientRequestExceptions(final HttpClientRequestException exception) {
+        return wrapDmiErrorResponse(HttpStatus.BAD_GATEWAY, exception);
+    }
+
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class,
             InvalidTopicException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
@@ -91,8 +99,19 @@ public class NetworkCmProxyRestExceptionHandler {
         } else {
             errorMessage.setDetails(CHECK_LOGS_FOR_DETAILS);
         }
-        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
-            CHECK_LOGS_FOR_DETAILS);
+        errorMessage.setDetails(
+                exception instanceof CpsException ? ((CpsException) exception).getDetails() : CHECK_LOGS_FOR_DETAILS);
         return new ResponseEntity<>(errorMessage, status);
+    }
+
+    private static ResponseEntity<Object> wrapDmiErrorResponse(final HttpStatus httpStatus,
+            final HttpClientRequestException exception) {
+        final var dmiErrorMessage = new DmiErrorMessage();
+        final var dmiErrorResponse = new DmiErrorMessageDmiresponse();
+        dmiErrorResponse.setHttpCode(exception.getHttpStatus());
+        dmiErrorResponse.setBody(exception.getDetails());
+        dmiErrorMessage.setMessage(exception.getMessage());
+        dmiErrorMessage.setDmiResponse(dmiErrorResponse);
+        return new ResponseEntity<>(dmiErrorMessage, httpStatus);
     }
 }
