@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -22,9 +22,11 @@
 
 package org.onap.cps.spi.impl
 
+import org.mockito.Mock
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
@@ -32,13 +34,18 @@ import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
 
 class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     @Autowired
     CpsAdminPersistenceService objectUnderTest
 
+    @Mock
+    ObjectMapper objectMapper
+
     static final String SET_DATA = '/data/anchor.sql'
+    static final String SET_FRAGMENT_DATA = '/data/fragment.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
     static final Integer DELETED_ANCHOR_ID = 3002
@@ -219,4 +226,30 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
     }
 
+    @Sql([CLEAR_DATA, SET_FRAGMENT_DATA])
+    def 'Retrieve cm handles when #scenario.'() {
+        when: 'the service is invoked'
+            def returnedCmHandles = objectUnderTest.getCmHandlesForMatchingPublicProperties(publicProperties)
+        then: 'the correct expected cm handles are returned'
+            returnedCmHandles == expectedCmHandles
+        where: 'the following data is used'
+            scenario                                                | publicProperties                                                                 || expectedCmHandles
+            'public properties match'                               | ['Contact' : 'newemailforstore@bookstore.com']                                   || Set.of('PNFDemo2', 'PNFDemo')
+            'public properties dont match'                          | ['wont_match' : 'wont_match']                                                    || Set.of()
+            'one matches, one does not'                             | ['Contact' : 'wont_match']                                                       || Set.of()
+            'No public properties - return all cm handles'          | [ : ]                                                                            || Set.of( 'PNFDemo3', 'PNFDemo', 'PNFDemo2', 'PNFDemo4')
+            'there are more than one items in the publicProperties' | ['Contact' : 'newemailforstore@bookstore.com', 'Contact3': 'PNF3@bookstore.com'] || Set.of( 'PNFDemo3', 'PNFDemo', 'PNFDemo2')
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Exception thrown for retrieving cm handles when #scenario.'() {
+        when: 'the service is invoked'
+            def returnedCmHandles = objectUnderTest.getCmHandlesForMatchingPublicProperties(publicProperties)
+        then: 'then an exception is thrown'
+            def thrownException = thrown(DataValidationException)
+            thrownException.details.contains(expectedMessageDetails)
+        where: 'the following data is used'
+            scenario                             | publicProperties                                                          || expectedMessageDetails
+            'missing property - throw exception' | ['' : 'newemailforstore@bookstore.com', 'Contact3': 'PNF3@bookstore.com'] || 'Missing property - please supply a valid property'
+    }
 }
