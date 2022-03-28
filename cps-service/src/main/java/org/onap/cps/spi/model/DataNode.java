@@ -26,11 +26,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter(AccessLevel.PROTECTED)
 @Getter
+@EqualsAndHashCode
 public class DataNode {
 
     DataNode() {    }
