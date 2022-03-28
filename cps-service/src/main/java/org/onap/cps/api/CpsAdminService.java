@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
@@ -23,6 +23,8 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
@@ -100,4 +102,12 @@ public interface CpsAdminService {
      *         given module names
      */
     Collection<String> queryAnchorNames(String dataspaceName, Collection<String> moduleNames);
+
+    /**
+     * Retrieve public properties for given cm handle.
+     *
+     * @param publicProperties the public properties to match
+     * @return lit of cm handles that match
+     */
+    Set<String> getCmHandlesForMatchingPublicProperties(Map<String, String> publicProperties);
 }
