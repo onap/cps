@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89dd9523_e7f4db39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-03-28T13:59:15Z",
+      "side": 1,
+      "message": "Id seems misleading. CM_HANDLE_INVALID_NAME ?",
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be09fee4_0f9d5f85",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-03-28T13:59:15Z",
+      "side": 1,
+      "message": "With this dependency we are coupling this utility class with service spi and we\u0027ll not be able to use in a different context. Are we ok with this ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
