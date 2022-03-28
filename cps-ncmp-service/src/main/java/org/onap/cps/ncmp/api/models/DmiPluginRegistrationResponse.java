@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import java.util.Collections;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class DmiPluginRegistrationResponse {
-    private List<CmHandleRegistrationResponse> createdCmHandles;
-    private List<CmHandleRegistrationResponse> updatedCmHandles;
-    private List<CmHandleRegistrationResponse> removedCmHandles;
+    private List<CmHandleRegistrationResponse> createdCmHandles = Collections.emptyList();
+    private List<CmHandleRegistrationResponse> updatedCmHandles = Collections.emptyList();
+    private List<CmHandleRegistrationResponse> removedCmHandles = Collections.emptyList();
 }

@@ -70,6 +70,54 @@ components:
           items:
             type: string
           example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
+    DmiPluginRegistrationErrorResponse:
+      type: object
+      properties:
+        failedCreatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          example: [
+            {
+              "cmHandle": "my-cm-handle-01",
+              "errorCode": "01",
+              "errorText": "cm-handle already exists"
+            }
+          ]
+        failedUpdatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          example: [
+            {
+              "cmHandle": "my-cm-handle-02",
+              "errorCode": "02",
+              "errorText": "cm-handle does not exist"
+            }
+          ]
+        failedRemovedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          example: [
+            {
+              "cmHandle": "my-cm-handle-02",
+              "errorCode": "02",
+              "errorText": "cm-handle does not exist"
+            }
+          ]
+    CmHandlerRegistrationErrorResponse:
+      type: object
+      properties:
+        cmHandle:
+          type: string
+          example: my-cm-handle
+        errorCode:
+          type: string
+          example: '01'
+        errorText:
+          type: string
+          example: 'cm-handle already exists'
 
     RestInputCmHandle:
       required:

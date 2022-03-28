@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Bell Canada
+ *  Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,11 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
+import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -36,6 +40,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(NetworkCmProxyInventoryController)
@@ -58,7 +65,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
 
-    def 'Dmi plugin registration #scenario' () {
+    def 'Dmi plugin registration #scenario'() {
         given: 'a dmi plugin registration with #scenario'
             def jsonData = TestUtils.getResourceFileContent(dmiRegistrationJson)
         and: 'the expected rest input as an object'
@@ -72,9 +79,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                     .content(jsonData)
             ).andReturn().response
         then: 'the converted object is forwarded to the registration service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration)
+            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration) >> new DmiPluginRegistrationResponse()
         and: 'response status is no content'
-            response.status ==  HttpStatus.NO_CONTENT.value()
+            response.status == HttpStatus.OK.value()
         where: 'the following registration json is used'
             scenario                                                                       | dmiRegistrationJson
             'multiple services, added, updated and removed cm handles and many properties' | 'dmi_registration_all_singing_and_dancing.json'
@@ -82,7 +89,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'without any properties'                                                       | 'dmi_registration_without_properties.json'
     }
 
-    def 'Dmi plugin registration with invalid json' () {
+    def 'Dmi plugin registration with invalid json'() {
         given: 'a dmi plugin registration with #scenario'
             def jsonDataWithUndefinedDataLabel = '{"notAdmiPlugin":""}'
         when: 'post request is performed & registration is called with correct DMI plugin information'
@@ -93,6 +100,76 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'DMI Registration: All cm-handles operations processed successfully.'() {
+        given: 'a dmi plugin registration'
+            def dmiRegistrationRequest = '{}'
+        and: 'service can register cm-handles successfully'
+            def dmiRegistrationResponse = new DmiPluginRegistrationResponse(
+                createdCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-1')],
+                updatedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-2')],
+                removedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-3')]
+            )
+            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+        when: 'registration endpoint is invoked'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(dmiRegistrationRequest)
+            ).andReturn().response
+        then: 'response status is ok'
+            response.status == HttpStatus.OK.value()
+        and: 'the response body is empty'
+            response.getContentAsString() == ''
+
+    }
+
+    def 'DMI Registration Error Handling: #scenario.'() {
+        given: 'a dmi plugin registration'
+            def dmiRegistrationRequest = '{}'
+        and: '#scenario: service failed to register few cm-handle'
+            def dmiRegistrationResponse = new DmiPluginRegistrationResponse(
+                createdCmHandles: [createCmHandleResponse],
+                updatedCmHandles: [updateCmHandleResponse],
+                removedCmHandles: [removeCmHandleResponse]
+            )
+            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+        when: 'registration endpoint is invoked'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(dmiRegistrationRequest)
+            ).andReturn().response
+        then: 'request status is internal server error'
+            response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
+        and: 'the response body is in the expected format'
+            def responseBody = jsonObjectMapper.convertJsonString(response.getContentAsString(), DmiPluginRegistrationErrorResponse)
+        and: 'contains only the failure responses'
+            responseBody.getFailedCreatedCmHandles() == expectedFailedCreatedCmHandle
+            responseBody.getFailedUpdatedCmHandles() == expectedFailedUpdateCmHandle
+            responseBody.getFailedRemovedCmHandles() == expectedFailedRemovedCmHandle
+        where:
+            scenario               | createCmHandleResponse         | updateCmHandleResponse         | removeCmHandleResponse         || expectedFailedCreatedCmHandle       | expectedFailedUpdateCmHandle        | expectedFailedRemovedCmHandle
+            'only create failed'   | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | []                                  | []
+            'only update failed'   | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || []                                  | [failedRestResponse('cm-handle-2')] | []
+            'only delete failed'   | successResponse('cm-handle-1') | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || []                                  | []                                  | [failedRestResponse('cm-handle-3')]
+            'all three failed'     | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
+            'create update failed' | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | []
+            'create delete failed' | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | []                                  | [failedRestResponse('cm-handle-3')]
+            'update delete failed' | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || []                                  | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
+    }
+
+    def failedRestResponse(cmHandle) {
+        return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '00', 'errorText': 'Failed')
+    }
+
+    def failedResponse(cmHandle) {
+        return CmHandleRegistrationResponse.createFailureResponse(cmHandle, new RuntimeException("Failed"))
+    }
+
+    def successResponse(cmHandle) {
+        return CmHandleRegistrationResponse.createSuccessResponse(cmHandle)
     }
 
 }
