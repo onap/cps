@@ -48,6 +48,8 @@ getResourceDataForPassthroughOperational:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
 
 resourceDataForPassthroughRunning:
   get:
@@ -80,6 +82,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
   post:
     tags:
       - network-cm-proxy
@@ -116,6 +120,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
 
   put:
     tags:
@@ -153,6 +159,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
 
   patch:
     tags:
@@ -184,6 +192,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
 
   delete:
     tags:
@@ -208,6 +218,8 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
 
 fetchModuleReferencesByCmHandle:
   get:
