@@ -20,24 +20,36 @@
 
 package org.onap.cps.spi.repository;
 
+import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Transactional
+@AllArgsConstructor
 public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    private final CpsDataPersistenceService cpsDataPersistenceService;
 
     @Override
     @SneakyThrows
@@ -55,6 +67,49 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         insertDataIntoTable(tempTableName, moduleReferencesToCheck);
 
         return identifyNewModuleReferencesForCmHandle(tempTableName);
+    }
+
+    /**
+     * Retrieve cm handles for given public properties.
+     *
+     * @param publicProperties the public properties to match
+     * @return cm handles that match
+     */
+    @Override
+    public Set<String> getCmHandlesForMatchingPublicProperties(final Map<String, String> publicProperties) {
+        final Collection<DataNode> cmHandles = new ArrayList<>();
+
+        if (publicProperties.entrySet().isEmpty()) {
+            return extractMatchingCmHandles(cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS));
+        }
+
+        publicProperties.forEach((key, value) -> {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//public-properties[@name='").append(key).append("' ");
+            cmHandlePath.append("and @value='").append(value).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            if (Strings.isNullOrEmpty(key)) {
+                throw new DataValidationException("Invalid data", "Missing property - please supply a valid property");
+            }
+
+            cmHandles.addAll(cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS));
+        });
+
+        return extractMatchingCmHandles(cmHandles);
+    }
+
+    private Set<String> extractMatchingCmHandles(final Collection<DataNode> cmHandles) {
+        final Set<String> returnedCmHandles = new HashSet<>();
+        for (final DataNode cmHandle: cmHandles) {
+            final Map<String, Object> leaves = cmHandle.getLeaves();
+            final String cmHandleId = leaves.get("id").toString();
+            returnedCmHandles.add(cmHandleId);
+        }
+        return returnedCmHandles;
     }
 
     private void createTemporaryTable(final String tempTableName) {
@@ -95,7 +150,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
                 + " WHERE yang_resource.module_name IS NULL;", tempTableName);
 
         final List<Object[]> resultsAsObjects =
-            entityManager.createNativeQuery(sql).getResultList();
+            (List<Object[]>) entityManager.createNativeQuery(sql).getResultList();
 
         final List<ModuleReference> resultsAsModuleReferences = new ArrayList<>(resultsAsObjects.size());
         for (final Object[] row : resultsAsObjects) {

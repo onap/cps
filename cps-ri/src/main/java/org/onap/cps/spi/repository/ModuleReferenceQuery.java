@@ -21,6 +21,8 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -30,5 +32,13 @@ public interface ModuleReferenceQuery {
 
     Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck);
+
+    /**
+     * Retrieve cm handles for given public properties.
+     *
+     * @param publicProperties the public properties to match
+     * @return cm handles that match
+     */
+    Set<String> getCmHandlesForMatchingPublicProperties(Map<String, String> publicProperties);
 
 }
