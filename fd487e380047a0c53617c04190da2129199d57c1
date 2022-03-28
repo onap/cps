@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e9dd180_583e9d19",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "I think this could just be called cmHandles.\n\nThe method name for the java api I think is self explanatory enough.",
+      "range": {
+        "startLine": 208,
+        "startChar": 26,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "805e5e61_0e355f68",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "Maybe add an expected number of invocation on this method?",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 130
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a6f246c_ab7b5720",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "Retrieve cm handles for given public properties",
+      "range": {
+        "startLine": 125,
+        "startChar": 7,
+        "endLine": 125,
+        "endChar": 53
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "534f017c_eb7e4beb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "list",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 18
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b69e7ad7_7d11c233",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceQuery.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "Same comment as before. Also in the other interfaces too.",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f6f97de_ba44fdf7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceQuery.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "List",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a0a400_233aaea0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-28T15:00:20Z",
+      "side": 1,
+      "message": "Maybe add different expected result here to differentiate from tests above.",
+      "range": {
+        "startLine": 240,
+        "startChar": 154,
+        "endLine": 240,
+        "endChar": 196
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
