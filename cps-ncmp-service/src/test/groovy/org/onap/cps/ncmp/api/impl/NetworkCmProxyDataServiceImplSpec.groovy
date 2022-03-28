@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.exception.HttpRequestException
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -40,7 +41,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -98,9 +98,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testResourceId', CREATE,
                 '{some-json}', 'application/json')
         then: 'exception is thrown'
-            def exceptionThrown = thrown(ServerNcmpException.class)
-        and: 'details contains (not found) error code: 404'
-            exceptionThrown.details.contains('404')
+            def exceptionThrown = thrown(HttpRequestException.class)
+        and: 'http status (not found) error code: 404'
+            exceptionThrown.httpStatus.equals(HttpStatus.NOT_FOUND.value());
     }
 
     def 'Get resource data for pass-through operational from DMI.'() {
@@ -141,9 +141,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
-        then: 'exception is thrown with the expected details'
-            def exceptionThrown = thrown(ServerNcmpException.class)
-            exceptionThrown.details == 'DMI status code: 404, DMI response body: NOK-json'
+        then: 'exception is thrown with the expected response code and body'
+            def exceptionThrown = thrown(HttpRequestException.class)
+            exceptionThrown.body.contains('NOK-json')
+            exceptionThrown.httpStatus.equals(HttpStatus.NOT_FOUND.value())
     }
 
     def 'Get resource data for pass-through operational from DMI return NOK response.'() {
@@ -166,9 +167,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'exception is thrown'
-            def exceptionThrown = thrown(ServerNcmpException.class)
-        and: 'details contains the original response'
-            exceptionThrown.details.contains('NOK-json')
+            def exceptionThrown = thrown(HttpRequestException.class)
+        and: 'body contains the original response'
+            exceptionThrown.httpStatus.equals(HttpStatus.NOT_FOUND.value())
+            exceptionThrown.body.contains('NOK-json')
     }
 
     def 'Get resource data for pass-through running from DMI.'() {
@@ -213,9 +215,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'exception is thrown'
-            def exceptionThrown = thrown(ServerNcmpException.class)
-        and: 'details contains the original response'
-            exceptionThrown.details.contains('NOK-json')
+            def exceptionThrown = thrown(HttpRequestException.class)
+        and: 'body contains the original response'
+            exceptionThrown.body.contains('NOK-json')
+            exceptionThrown.httpStatus.equals(HttpStatus.NOT_FOUND.value())
     }
 
     def 'DMI Operational data request with #scenario'() {
@@ -340,7 +343,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 '{some-json}',
                 'application/json')
         then: 'an exception is thrown with the expected error message details with correct operation'
-            def exceptionThrown = thrown(ServerNcmpException.class)
+            def exceptionThrown = thrown(HttpRequestException.class)
             exceptionThrown.getMessage().contains(expectedResponseMessage)
         where:
             scenario | givenOperation || expectedResponseMessage
