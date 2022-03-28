@@ -40,3 +40,6 @@ paths:
 
   /v1/ch/{cm-handle}:
     $ref: 'ncmp.yml#/retrieveCmHandleDetailsById'
+
+  /v1/data/ch/searches:
+    $ref: 'ncmp.yml#/queryCmHandlesWithPublicProperties'
