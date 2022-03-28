@@ -42,7 +42,7 @@ Register data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonDataCreate}
-    Should Be Equal As Strings              ${response.status_code}   204
+    Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been registered.
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo
@@ -61,7 +61,7 @@ Update data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonDataUpdate}
-    Should Be Equal As Strings              ${response.status_code}   204
+    Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been updated.
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo
