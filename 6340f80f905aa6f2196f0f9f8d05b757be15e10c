@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "db8975bb_f6cb1ce1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-29T10:37:13Z",
+      "side": 1,
+      "message": "Yes. I am throwing this exception in passthrough scenarios.",
+      "parentUuid": "56103897_1a237fc9",
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dda3595_750df3a5",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2022-03-29T10:20:03Z",
       "side": 1,
       "message": "You don\u0027t need this check as it is being checked at line 92 anyway",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 56
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "155171b2_20a77314",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-29T10:37:13Z",
+      "side": 1,
+      "message": "Actually I tried removing it but the spotbug doesn\u0027t allow me to do so and mark it as unsafe cast and start complaining.",
+      "parentUuid": "3dda3595_750df3a5",
       "range": {
         "startLine": 113,
         "startChar": 8,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "e16826b5_581a4d87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-29T10:37:13Z",
+      "side": 1,
+      "message": "let me try this. Thanks :)",
+      "parentUuid": "e3a3a466_50f7a000",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4cb6a1e2_2f6128b7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
         "patchSetId": 2
@@ -85,6 +151,30 @@
       "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4827a062_04ed594c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-29T10:37:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4cb6a1e2_2f6128b7",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
