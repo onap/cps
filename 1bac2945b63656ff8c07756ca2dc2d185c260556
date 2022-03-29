@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79ce290e_efd49786",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T13:54:26Z",
+      "side": 1,
+      "message": "The response body is empty so I continued using NoContent.",
+      "parentUuid": "4a2b1710_f8152fed",
+      "range": {
+        "startLine": 35,
+        "startChar": 53,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "517a7093_9796394c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f578292_c41f08e0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T13:54:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "517a7093_9796394c",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8d1dee1c_bff44c8e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T13:54:26Z",
+      "side": 1,
+      "message": "Two different response status is returned. If all registrations are successful, then 200 status else 500. \n\nLet me know if I missed something in your comment.",
+      "parentUuid": "4dd980bc_9db9879f",
+      "range": {
+        "startLine": 62,
+        "startChar": 14,
+        "endLine": 62,
+        "endChar": 49
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "368eaaaf_6eea7a2e",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2022-03-29T10:01:57Z",
       "side": 1,
       "message": "Same here",
+      "range": {
+        "startLine": 76,
+        "startChar": 14,
+        "endLine": 76,
+        "endChar": 18
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97314fbd_3cac361b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T13:54:26Z",
+      "side": 1,
+      "message": "As a team, we agreed not to use var, but this scenario can be considered an exception to the rule. If put type instead of var, the statement has to be split into two lines, so var looks a better option here from the readability perspective.\n\nI am okay to change but wanted to share my views on it.\n\nfinal var dmiPluginRegistrationErrorResponse \u003d new DmiPluginRegistrationErrorResponse()\n\nor\n\nfinal DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse \u003d \nnew DmiPluginRegistrationErrorResponse()",
+      "parentUuid": "368eaaaf_6eea7a2e",
       "range": {
         "startLine": 76,
         "startChar": 14,
