@@ -55,6 +55,29 @@
     },
     {
       "key": {
+        "uuid": "148ccadb_3467988b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T07:42:58Z",
+      "side": 1,
+      "message": "this test belong in CmHandleRgeistrationResponsSpec !",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 72,
+        "endChar": 66
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be09fee4_0f9d5f85",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 24
@@ -123,6 +146,29 @@
       "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae188d8_53ab3eea",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T07:42:58Z",
+      "side": 1,
+      "message": "proble reintroce constant String (From wich you can create the list of cahr still now you are using this in teh error message...",
+      "range": {
+        "startLine": 48,
+        "startChar": 31,
+        "endLine": 48,
+        "endChar": 66
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
