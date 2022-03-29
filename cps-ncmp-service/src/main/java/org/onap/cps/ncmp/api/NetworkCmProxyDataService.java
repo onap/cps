@@ -50,14 +50,12 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param acceptParamInHeader accept param
      * @param optionsParamInQuery options query
      * @param topicParamInQuery topic name for (triggering) async responses
      * @return {@code Object} resource data
      */
     Object getResourceDataOperationalForCmHandle(String cmHandleId,
                                                  String resourceIdentifier,
-                                                 String acceptParamInHeader,
                                                  String optionsParamInQuery,
                                                  String topicParamInQuery);
 
@@ -67,14 +65,12 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param acceptParamInHeader accept param
      * @param optionsParamInQuery options query
      * @param topicParamInQuery topic query
      * @return {@code Object} resource data
      */
     Object getResourceDataPassThroughRunningForCmHandle(String cmHandleId,
                                                         String resourceIdentifier,
-                                                        String acceptParamInHeader,
                                                         String optionsParamInQuery,
                                                         String topicParamInQuery);
 
