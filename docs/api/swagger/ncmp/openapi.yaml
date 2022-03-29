@@ -50,7 +50,6 @@ paths:
           type: string
           enum:
           - application/json
-          - application/yang-data+json
       - name: options
         in: query
         description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
