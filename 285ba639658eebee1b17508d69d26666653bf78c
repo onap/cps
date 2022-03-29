@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdc3b81c_ab97db34",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-29T10:29:32Z",
+      "side": 1,
+      "message": "Should this param be named as acceptParamJsonInHeader if the response can be of any type?",
+      "range": {
+        "startLine": 319,
+        "startChar": 19,
+        "endLine": 319,
+        "endChar": 116
+      },
+      "revId": "285ba639658eebee1b17508d69d26666653bf78c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
