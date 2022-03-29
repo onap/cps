@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a19bdbf2_5a697beb",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T16:58:23Z",
+      "side": 1,
+      "message": "should this not be removed now?! see next comment too\nand if so we dont need a special names like you have no on line 315",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 62
+      },
+      "revId": "c0b714eaed7d142e6f7e1dc0f1b370f319f65513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "825cc61f_6e115179",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T16:58:23Z",
+      "side": 1,
+      "message": "did we not agree that this too only should support \u0027application/json\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 54,
+        "endLine": 62,
+        "endChar": 72
+      },
+      "revId": "c0b714eaed7d142e6f7e1dc0f1b370f319f65513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
