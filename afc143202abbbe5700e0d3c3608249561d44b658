@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aba26451_f2173f2a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-29T15:00:55Z",
+      "side": 1,
+      "message": "I\u0027m confused, if we are testing for failure here, should this not be createFailureResponse?",
+      "range": {
+        "startLine": 133,
+        "startChar": 64,
+        "endLine": 133,
+        "endChar": 85
+      },
+      "revId": "afc143202abbbe5700e0d3c3608249561d44b658",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
