@@ -26,7 +26,6 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -56,10 +55,5 @@ public class DmiOperations {
                 .buildAndExpand(dmiServiceName, dmiProperties.getDmiBasePath(), cmHandle, resourceName).toUriString();
     }
 
-    static HttpHeaders prepareHeader(final String acceptParam) {
-        final var httpHeaders = new HttpHeaders();
-        httpHeaders.set(HttpHeaders.ACCEPT, acceptParam);
-        return httpHeaders;
-    }
 
 }

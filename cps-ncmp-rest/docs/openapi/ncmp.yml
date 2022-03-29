@@ -1,7 +1,7 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
-#  Modifications Copyright (C) 2021 Bell Canada
+#  Modifications Copyright (C) 2021-2022 Bell Canada
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ getResourceDataForPassthroughOperational:
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
-      - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
     responses:
@@ -59,7 +58,6 @@ resourceDataForPassthroughRunning:
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
-      - $ref: 'components.yaml#/components/parameters/acceptParamInHeader'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
     responses:
@@ -80,6 +78,7 @@ resourceDataForPassthroughRunning:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+
   post:
     tags:
       - network-cm-proxy
@@ -215,6 +214,12 @@ fetchModuleReferencesByCmHandle:
     tags:
       - network-cm-proxy
     summary: Fetch all module references (name and revision) for a given cm handle
+    x-contracts:
+      - contractId: 1
+        name: Should Mark Client as Fraud
+        priority: 1
+      - contractId: 2
+        name: Should Not Mark Client as Fraud
     operationId: getModuleReferencesByCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'

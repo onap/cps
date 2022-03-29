@@ -58,7 +58,6 @@ public class DmiDataOperations extends DmiOperations {
      * @param cmHandleId    network resource identifier
      * @param resourceId  resource identifier
      * @param optionsParamInQuery options query
-     * @param acceptParamInHeader accept parameter
      * @param dataStore           data store enum
      * @param requestId           requestId for async responses
      * @param topicParamInQuery   topic name for (triggering) async responses
@@ -67,7 +66,6 @@ public class DmiDataOperations extends DmiOperations {
     public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandleId,
                                                          final String resourceId,
                                                          final String optionsParamInQuery,
-                                                         final String acceptParamInHeader,
                                                          final DataStoreEnum dataStore,
                                                          final String requestId,
                                                          final String topicParamInQuery) {
@@ -79,13 +77,11 @@ public class DmiDataOperations extends DmiOperations {
             .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
-
         final var dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
                 dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
                 topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
                         yangModelCmHandle, cmHandleId, dataStore));
-        final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, new HttpHeaders());
     }
 
     /**
