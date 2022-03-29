@@ -20,43 +20,32 @@
 
 package org.onap.cps.ncmp.api.impl.client;
 
+import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
+@AllArgsConstructor
 public class DmiRestClient {
 
     private RestTemplate restTemplate;
     private DmiProperties dmiProperties;
 
-    /**
-     * Constructor injection for DmiRestClient objects.
-     *
-     * @param restTemplate the rest template
-     * @param dmiProperties the DMI properties
-     */
-    public DmiRestClient(final RestTemplate restTemplate, final DmiProperties dmiProperties) {
-        this.restTemplate = restTemplate;
-        this.dmiProperties = dmiProperties;
-    }
 
     /**
      * Sends POST operation to DMI with json body containing module references.
      * @param dmiResourceUrl dmi resource url
      * @param jsonData json data body
-     * @param httpHeaders http headers
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData,
-                                                            final HttpHeaders httpHeaders) {
-        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(httpHeaders));
+                                                            final String jsonData) {
+        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
         return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
     }
 
@@ -64,16 +53,5 @@ public class DmiRestClient {
         httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
-    }
-
-    /**
-     * Sends POST operation to DMI.
-     * @param dmiResourceUrl dmi resource url
-     * @param httpHeaders http headers
-     * @return response entity of type String
-     */
-    public ResponseEntity<Object> postOperation(final String dmiResourceUrl, final HttpHeaders httpHeaders) {
-        final var httpEntity = new HttpEntity<>(configureHttpHeaders(httpHeaders));
-        return restTemplate.exchange(dmiResourceUrl, HttpMethod.POST, httpEntity, Object.class);
     }
 }

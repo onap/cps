@@ -55,7 +55,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
             def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{}}', [:])
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{}}')
                     >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
@@ -88,7 +88,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
-                '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}', [:]) >> responseFromDmi
+                '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}') >> responseFromDmi
         when: 'a get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
         then: 'the result is the response from DMI service'
@@ -107,7 +107,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
                                                       [moduleName: 'mod2', revision: 'C', yangSource: 'other yang source']], HttpStatus.OK)
             def expectedModuleReferencesInRequest = '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-                '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', [:]) >> responseFromDmi
+                '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}') >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
         then: 'the result has the 2 expected yang (re)sources (order is not guaranteed)'
@@ -139,8 +139,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-            '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":'+expectedAdditionalPropertiesInRequest+'}',
-            [:]) >> responseFromDmi
+            '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":'+expectedAdditionalPropertiesInRequest+'}') >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, unknownModuleReferences)
         then: 'the result is the response from DMI service'
