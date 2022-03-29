@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "90f2cedd_3daf0ad6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-29T11:52:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e16826b5_581a4d87",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cb6a1e2_2f6128b7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
         "patchSetId": 2
