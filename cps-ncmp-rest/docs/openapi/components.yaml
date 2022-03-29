@@ -1,6 +1,7 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
+#  Modifications Copyright (C) 2022 Bell Canada
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -303,14 +304,6 @@ components:
         sample 3:
           value:
             resourceIdentifier: parent=shops,child=bookstore
-    acceptParamInHeader:
-      name: Accept
-      in: header
-      required: false
-      description: Accept parameter for response, if accept parameter is null, that means client can accept any format.
-      schema:
-        type: string
-        enum: [ application/json, application/yang-data+json ]
     optionsParamInQuery:
       name: options
       in: query
