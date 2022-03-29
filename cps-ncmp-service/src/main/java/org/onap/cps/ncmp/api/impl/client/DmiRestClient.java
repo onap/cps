@@ -50,13 +50,11 @@ public class DmiRestClient {
      * Sends POST operation to DMI with json body containing module references.
      * @param dmiResourceUrl dmi resource url
      * @param jsonData json data body
-     * @param httpHeaders http headers
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData,
-                                                            final HttpHeaders httpHeaders) {
-        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(httpHeaders));
+                                                            final String jsonData) {
+        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
         return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
     }
 

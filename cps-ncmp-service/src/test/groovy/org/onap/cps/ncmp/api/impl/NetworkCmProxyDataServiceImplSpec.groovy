@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -112,14 +112,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     'testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    'testAcceptParam',
                     PASSTHROUGH_OPERATIONAL,
                     NO_REQUEST_ID,
                     NO_TOPIC) >> new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
             def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
-                    'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'DMI returns a json response'
@@ -138,7 +136,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
-                    'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'exception is thrown with the expected details'
@@ -154,7 +151,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    'testAcceptParam',
                     PASSTHROUGH_OPERATIONAL,
                     NO_REQUEST_ID,
                     NO_TOPIC)
@@ -162,7 +158,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called'
             objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
                     'testResourceId',
-                    'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'exception is thrown'
@@ -179,14 +174,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    'testAcceptParam',
                     PASSTHROUGH_RUNNING,
                     NO_REQUEST_ID,
                     NO_TOPIC) >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
             def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     'testResourceId',
-                    'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'get resource data returns expected response'
@@ -201,7 +194,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
                     'testResourceId',
                     OPTIONS_PARAM,
-                    'testAcceptParam',
                     PASSTHROUGH_RUNNING,
                     NO_REQUEST_ID,
                     NO_TOPIC)
@@ -209,7 +201,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called'
             objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     'testResourceId',
-                    'testAcceptParam',
                     OPTIONS_PARAM,
                     NO_TOPIC)
         then: 'exception is thrown'
@@ -227,7 +218,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called data operational with blank topic'
             def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '',
-                    '', '', emptyTopic)
+                    '', emptyTopic)
         then: 'a invalid topic exception is thrown'
             thrown(InvalidTopicException)
         where: 'the following parameters are used'
@@ -242,10 +233,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'cps data service returns valid data node'
             mockCpsDataService.getDataNode(*_) >> dataNode
         and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, _, 'my-topic-name')
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, 'my-topic-name')
                     >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called for data operational with valid topic'
-            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '', '', '', 'my-topic-name')
+            def responseData = objectUnderTest.getResourceDataOperationalForCmHandle('', '', '', 'my-topic-name')
         then: 'non empty request id is generated'
             assert responseData.body.requestId.length() > 0
     }
@@ -255,11 +246,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                     cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, _, 'my-topic-name')
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, 'my-topic-name')
                     >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called for data operational with valid topic'
             def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
-                    '', '', OPTIONS_PARAM, 'my-topic-name')
+                    '', OPTIONS_PARAM, 'my-topic-name')
         then: 'non empty request id is generated'
             assert responseData.body.requestId.length() > 0
     }
@@ -269,11 +260,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                     cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'dmi data operation returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, NO_REQUEST_ID, NO_TOPIC)
+            mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, NO_REQUEST_ID, NO_TOPIC)
                     >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called for data operational with valid topic'
             def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
-                    '', '', '', emptyTopic)
+                    '', '', emptyTopic)
         then: 'a invalid topic exception is thrown'
             thrown(InvalidTopicException)
         where: 'the following parameters are used'
