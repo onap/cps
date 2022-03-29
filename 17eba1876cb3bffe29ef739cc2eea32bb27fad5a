@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91e0ff01_8efe0365",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "Validations are usually the first thing in a flow.",
+      "range": {
+        "startLine": 246,
+        "startChar": 12,
+        "endLine": 246,
+        "endChar": 75
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f54afa23_66a5ab38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "cm-handle has an invalid character(s) in id.",
+      "range": {
+        "startLine": 82,
+        "startChar": 36,
+        "endLine": 82,
+        "endChar": 63
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e1e89c0_ac5e3bbf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "The intention of this test is check if correct objects is created using createFailureResponse method. It is not to test each Registration error.\n\nIf you want to do it, the where clause can-be used.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60aa300a_dbd2dfa3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "cmhandle with invalid character is not testing a new functionality in this class. Is it possible to removed or merged it with the previous test?",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f643f49e_cab73ad0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "We have added the validation but we are not testing the flow if validation fails then nothing is processed. \n\nIt would be a lot of testing but I am not sure if it is okay to ignore it.",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 59
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09df04d8_03f35c9f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "NB: indexOf is 0 based. It would be easier for reader if it is 1-based indexed.",
+      "range": {
+        "startLine": 46,
+        "startChar": 75,
+        "endLine": 46,
+        "endChar": 109
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b05be0_4322593f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:46:25Z",
+      "side": 1,
+      "message": "good to validate the index position too in the error message.",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
