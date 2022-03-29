@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c6eb836_d779b36a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T13:25:57Z",
+      "side": 1,
+      "message": "NB: add space\n(If that is all you change I can +2 again without waiting on others)",
+      "range": {
+        "startLine": 49,
+        "startChar": 104,
+        "endLine": 49,
+        "endChar": 105
+      },
+      "revId": "ea11b2ad76f829949d26750ad1c1d20549d59571",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
