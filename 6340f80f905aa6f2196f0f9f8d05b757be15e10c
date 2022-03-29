@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56103897_1a237fc9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-29T10:20:03Z",
+      "side": 1,
+      "message": "Will all HttpRequestExceptions be related to an error coming from DMI?",
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dda3595_750df3a5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-29T10:20:03Z",
+      "side": 1,
+      "message": "You don\u0027t need this check as it is being checked at line 92 anyway",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 56
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3a3a466_50f7a000",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-29T10:20:03Z",
+      "side": 1,
+      "message": "I think you could add @Getter to the class and all instance variables will inherit the getter",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cb6a1e2_2f6128b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-03-29T10:20:03Z",
+      "side": 1,
+      "message": "Add a more informative description",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "6340f80f905aa6f2196f0f9f8d05b757be15e10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
