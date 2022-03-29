@@ -3,7 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modification Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications (C) 2021 Bell Canada
+ *  Modifications (C) 2021-2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -73,7 +73,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      *
      * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param acceptParamInHeader accept header parameter
      * @param optionsParamInQuery options query parameter
      * @param topicParamInQuery topic query parameter
      * @return {@code ResponseEntity} response from dmi plugin
@@ -81,12 +80,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
                                                                         final @NotNull @Valid String resourceIdentifier,
-                                                                        final String acceptParamInHeader,
                                                                         final @Valid String optionsParamInQuery,
                                                                         final @Valid String topicParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
                 resourceIdentifier,
-                acceptParamInHeader,
                 optionsParamInQuery,
                 topicParamInQuery);
         return ResponseEntity.ok(responseObject);
@@ -97,7 +94,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      *
      * @param cmHandle cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param acceptParamInHeader accept header parameter
      * @param optionsParamInQuery options query parameter
      * @param topicParamInQuery topic query parameter
      * @return {@code ResponseEntity} response from dmi plugin
@@ -105,12 +101,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandle,
                                                                     final @NotNull @Valid String resourceIdentifier,
-                                                                    final String acceptParamInHeader,
                                                                     final @Valid String optionsParamInQuery,
                                                                     final @Valid String topicParamInQuery) {
         final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier,
-                acceptParamInHeader,
                 optionsParamInQuery,
                 topicParamInQuery);
         return ResponseEntity.ok(responseObject);
