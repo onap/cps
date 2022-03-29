@@ -22,6 +22,30 @@
       "revId": "afc143202abbbe5700e0d3c3608249561d44b658",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f648bd3_e7183c82",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T18:57:53Z",
+      "side": 1,
+      "message": "I changed the test case a little. Is it still confusing?",
+      "parentUuid": "aba26451_f2173f2a",
+      "range": {
+        "startLine": 133,
+        "startChar": 64,
+        "endLine": 133,
+        "endChar": 85
+      },
+      "revId": "afc143202abbbe5700e0d3c3608249561d44b658",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
