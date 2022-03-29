@@ -3,7 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modification Copyright (C) 2021 highstreet technologies GmbH
  *  Modification Copyright (C) 2021-2022 Nordix Foundation
- *  Modification Copyright (C) 2021 Bell Canada.
+ *  Modification Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -81,12 +81,10 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                     get(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON_VALUE)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
-                    'application/json',
                     '(a=1,b=2)',
                     NO_TOPIC)
         and: 'response status is Ok'
@@ -101,12 +99,10 @@ class NetworkCmProxyControllerSpec extends Specification {
             def response = mvc.perform(
                     get(getUrl)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON_VALUE)
             ).andReturn().response
         then: 'the NCMP data service is called with operational data for cm handle'
             1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
                     'parent/child',
-                    'application/json',
                     '(a=1,b=2)',
                     expectedTopicName)
         and: 'response status is Ok'
@@ -127,14 +123,12 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
                     resourceIdentifier,
-                    'application/json',
                     '(a=1,b=2)',
                     NO_TOPIC) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON_VALUE)
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
@@ -157,8 +151,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'update data resource request is performed'
             def response = mvc.perform(
                 put(updateUrl)
-                    .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .accept(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+                    .contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
@@ -175,8 +168,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'create resource request is performed'
             def response = mvc.perform(
                     post(url)
-                            .contentType(MediaType.APPLICATION_JSON_VALUE)
-                            .accept(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+                            .contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',

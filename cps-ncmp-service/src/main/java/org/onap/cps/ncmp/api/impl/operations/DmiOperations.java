@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +27,6 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -56,10 +56,5 @@ public class DmiOperations {
                 .buildAndExpand(dmiServiceName, dmiProperties.getDmiBasePath(), cmHandle, resourceName).toUriString();
     }
 
-    static HttpHeaders prepareHeader(final String acceptParam) {
-        final var httpHeaders = new HttpHeaders();
-        httpHeaders.set(HttpHeaders.ACCEPT, acceptParam);
-        return httpHeaders;
-    }
 
 }
