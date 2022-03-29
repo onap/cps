@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +30,6 @@ import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -58,7 +58,6 @@ public class DmiDataOperations extends DmiOperations {
      * @param cmHandleId    network resource identifier
      * @param resourceId  resource identifier
      * @param optionsParamInQuery options query
-     * @param acceptParamInHeader accept parameter
      * @param dataStore           data store enum
      * @param requestId           requestId for async responses
      * @param topicParamInQuery   topic name for (triggering) async responses
@@ -67,7 +66,6 @@ public class DmiDataOperations extends DmiOperations {
     public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandleId,
                                                          final String resourceId,
                                                          final String optionsParamInQuery,
-                                                         final String acceptParamInHeader,
                                                          final DataStoreEnum dataStore,
                                                          final String requestId,
                                                          final String topicParamInQuery) {
@@ -79,13 +77,11 @@ public class DmiDataOperations extends DmiOperations {
             .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
-
         final var dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
                 dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
                 topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
                         yangModelCmHandle, cmHandleId, dataStore));
-        final var httpHeaders = prepareHeader(acceptParamInHeader);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, httpHeaders);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody);
     }
 
     /**
@@ -117,7 +113,7 @@ public class DmiDataOperations extends DmiOperations {
                 dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
                                 null, null),
                         dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, new HttpHeaders());
+        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody);
     }
 
 }

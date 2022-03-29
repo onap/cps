@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,12 +63,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl,
-                    expectedJson, [Accept: ['sample accept header']]) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, resourceIdentifier,
-                    options, 'sample accept header', dataStore, NO_REQUEST_ID, NO_TOPIC)
+                    options, dataStore, NO_REQUEST_ID, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
@@ -88,7 +88,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, [:]) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type')
         then: 'the result is the response from the DMI service'

@@ -118,22 +118,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Object getResourceDataOperationalForCmHandle(final String cmHandleId,
                                                         final String resourceIdentifier,
-                                                        final String acceptParamInHeader,
                                                         final String optionsParamInQuery,
                                                         final String topicParamInQuery) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier, acceptParamInHeader,
+        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier,
                 DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, optionsParamInQuery, topicParamInQuery);
     }
 
     @Override
     public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
                                                                final String resourceIdentifier,
-                                                               final String acceptParamInHeader,
                                                                final String optionsParamInQuery,
                                                                final String topicParamInQuery) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier, acceptParamInHeader,
+        return validateTopicNameAndGetResourceData(cmHandleId, resourceIdentifier,
                 DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery);
     }
 
@@ -349,7 +347,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private Object validateTopicNameAndGetResourceData(final String cmHandleId,
                                                        final String resourceIdentifier,
-                                                       final String acceptParamInHeader,
                                                        final DmiOperations.DataStoreEnum dataStore,
                                                        final String optionsParamInQuery,
                                                        final String topicParamInQuery) {
@@ -360,8 +357,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     .body(buildDmiResponse(resourceDataRequestId));
         }
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, resourceIdentifier, optionsParamInQuery, acceptParamInHeader,
-                dataStore, NO_REQUEST_ID, NO_TOPIC);
+                cmHandleId, resourceIdentifier, optionsParamInQuery, dataStore, NO_REQUEST_ID, NO_TOPIC);
         return handleResponse(responseEntity, OperationEnum.READ);
     }
 }

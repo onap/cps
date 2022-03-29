@@ -41,16 +41,6 @@ paths:
           sample 3:
             value:
               resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Accept
-        in: header
-        description: "Accept parameter for response, if accept parameter is null,\
-          \ that means client can accept any format."
-        required: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - application/yang-data+json
       - name: options
         in: query
         description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
@@ -178,16 +168,6 @@ paths:
           sample 3:
             value:
               resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Accept
-        in: header
-        description: "Accept parameter for response, if accept parameter is null,\
-          \ that means client can accept any format."
-        required: false
-        schema:
-          type: string
-          enum:
-          - application/json
-          - application/yang-data+json
       - name: options
         in: query
         description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
