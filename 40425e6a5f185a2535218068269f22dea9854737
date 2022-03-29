@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25401132_1deb61b2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T12:34:30Z",
+      "side": 1,
+      "message": "stil need this as a static constant too (tahst why added A_STRING) you dont want to convert each time!!\n\nso you need 2 constants like so:\nprivate static final String UNSUPPORTED_NAME_CHARACTERS_AS_STRING \u003d \"!“” #$%\u0026‘()*+,./\\\\:;\u003c\u003d\u003e?@[]^`{|}~\";\nprivate static final char[] UNSUPPORTED_NAME_CHARACTERS \u003d UNSUPPORTED_NAME_CHARACTERS.toCharArray();",
+      "range": {
+        "startLine": 43,
+        "startChar": 51,
+        "endLine": 43,
+        "endChar": 92
+      },
+      "revId": "40425e6a5f185a2535218068269f22dea9854737",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
