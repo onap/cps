@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "c18cd1aa_ff1773f8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-29T13:45:47Z",
+      "side": 1,
+      "message": "I think there\u0027s other instances of mocked method being invoked. \nline #107 in this class for example",
+      "parentUuid": "d8168f30_cb9485a1",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 130
+      },
+      "revId": "fd487e380047a0c53617c04190da2129199d57c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a6f246c_ab7b5720",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 22
