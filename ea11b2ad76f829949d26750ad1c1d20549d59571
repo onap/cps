@@ -22,6 +22,30 @@
       "revId": "ea11b2ad76f829949d26750ad1c1d20549d59571",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b3d008_89fdc979",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T17:38:36Z",
+      "side": 1,
+      "message": "doen in a different way",
+      "parentUuid": "9c6eb836_d779b36a",
+      "range": {
+        "startLine": 49,
+        "startChar": 104,
+        "endLine": 49,
+        "endChar": 105
+      },
+      "revId": "ea11b2ad76f829949d26750ad1c1d20549d59571",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
