@@ -78,6 +78,29 @@
     },
     {
       "key": {
+        "uuid": "b7aa2423_97e38540",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T08:27:13Z",
+      "side": 1,
+      "message": "extract you UNSUPPORTED_NAME_CHRACTERS_AS_STRING so you can use it in error message below too",
+      "range": {
+        "startLine": 34,
+        "startChar": 62,
+        "endLine": 34,
+        "endChar": 97
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be09fee4_0f9d5f85",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 24
@@ -165,6 +188,52 @@
         "startChar": 31,
         "endLine": 48,
         "endChar": 66
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fe8a7d5_6f5d462d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T08:27:13Z",
+      "side": 1,
+      "message": "no exception is thrown",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a0aeed_d3b20574",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-29T08:27:13Z",
+      "side": 1,
+      "message": "a data validation exception",
+      "range": {
+        "startLine": 39,
+        "startChar": 16,
+        "endLine": 39,
+        "endChar": 27
       },
       "revId": "06fbb4aa5b0a05ba137ea41700959f6f52ba6f1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
