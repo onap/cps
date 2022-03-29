@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fddbdc7e_cc0bc351",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:16:51Z",
+      "side": 1,
+      "message": "Q: What I understand in the async processing, we will call DMI-plugin rest end-point with topic-name. They are expected to reject it if they don\u0027t support async else an accepted response will be received. \n\nSo we need to handle these two types of responses in NCMP. \n\nIs it a part of a different story?",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 34
+      },
+      "revId": "c0783594b50058d011361f24a9e3924fce85eaac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b56fcf_e1ce8715",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-29T19:16:51Z",
+      "side": 1,
+      "message": "Why do we need to create a ResponseEntity here?\nIn this code, we created a response entity with a body and returned only the body from the method.",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 346,
+        "endChar": 77
+      },
+      "revId": "c0783594b50058d011361f24a9e3924fce85eaac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
