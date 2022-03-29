@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d756ad_16fc5199",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-29T15:16:30Z",
+      "side": 1,
+      "message": "NB : 1. Method name : handleBadGatewayExceptions\n     2. HttpRequestException can be used for more specific.",
+      "revId": "b509298413882d0ca9291cafcbe609f98bdca403",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7a679a1_bf7b2cd2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-03-29T15:16:30Z",
+      "side": 1,
+      "message": "NB : Bad Gateway error is 502 where 400 is Bad request. Test is not clear if we are trying to check bad gareway or bas request.",
+      "revId": "b509298413882d0ca9291cafcbe609f98bdca403",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
