@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "adc614f0_54251c1d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "can/should we list our possible error code in API and or (read the docs) doucentation somewhere?!\nI think at least in tis OPenAPi  (can it be defined as an enum?!)",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a2b1710_f8152fed",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 4
@@ -259,6 +282,145 @@
       "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d1b310a_a9e205d3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "not sure if I agree, your using var to make the line shorte.. I rather change the rule to allow longer lines in Java code instead... It is not a major issue but lets have a quick team vote on \"accept \u0027var\u0027 to create shorter lines when line would get over max length)",
+      "parentUuid": "570dcb69_49e0887e",
+      "range": {
+        "startLine": 76,
+        "startChar": 14,
+        "endLine": 76,
+        "endChar": 18
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b754672b_2eda6033",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "maybe closer to \u0027business logic\u0027 but I still would argue this method belong on the DmiPluginRegistrationErrorResponse class",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 71
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae29a83_b9318c89",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "i dont see the value of testing all these combinations. Just thee first 3 scenarios are sufficient to tets all code paths (given you the prev test of all successful)\nMaybe I leave the \u0027all three failed\u0027 for illustration purposes...",
+      "range": {
+        "startLine": 158,
+        "startChar": 13,
+        "endLine": 160,
+        "endChar": 153
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83c232af_03d9a948",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "why a method, just assign to static or @Shared (test)class property",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 163,
+        "endChar": 36
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b58052_2efab794",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "why a method, just assign to static or @Shared (test)class property:  def failedReponse \u003d CmHandleRegistrationResponse.createFailureResponse(cmHandle, new RuntimeException(\"Failed\"))",
+      "range": {
+        "startLine": 167,
+        "startChar": 3,
+        "endLine": 168,
+        "endChar": 107
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fdcd5bf_b3a97ccf",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T16:11:15Z",
+      "side": 1,
+      "message": "why a method, just assign to static or @Shared (test)class property",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 33
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
