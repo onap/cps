@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e3c05fbb_d828259f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T13:17:32Z",
+      "side": 1,
+      "message": "nb - replace var with DmiPluginRegistrationResponse.",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "309b4189_0ec31839",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistrationResponse.java",
         "patchSetId": 7
@@ -13,6 +36,30 @@
       "writtenOn": "2022-03-30T10:28:21Z",
       "side": 1,
       "message": "any particular reason why we need this here?",
+      "range": {
+        "startLine": 31,
+        "startChar": 66,
+        "endLine": 31,
+        "endChar": 89
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f61718a_d1c64f08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistrationResponse.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T13:17:32Z",
+      "side": 1,
+      "message": "I think the reason for this is because if this isn\u0027t defaulted to an empty list it defaults to null and can throw a null pointer wherever detected.\n\nSo it avoids having multiple unnecessary null pointer checks throughout the code.",
+      "parentUuid": "309b4189_0ec31839",
       "range": {
         "startLine": 31,
         "startChar": 66,
