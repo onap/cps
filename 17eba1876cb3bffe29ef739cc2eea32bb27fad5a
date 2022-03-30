@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "59217f39_b13c4191",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91e0ff01_8efe0365",
+      "range": {
+        "startLine": 246,
+        "startChar": 12,
+        "endLine": 246,
+        "endChar": 75
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f54afa23_66a5ab38",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
         "patchSetId": 29
@@ -45,6 +69,30 @@
       "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cd436c3_b2fab4f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f54afa23_66a5ab38",
+      "range": {
+        "startLine": 82,
+        "startChar": 36,
+        "endLine": 82,
+        "endChar": 63
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ac10636b_977150de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e1e89c0_ac5e3bbf",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60aa300a_dbd2dfa3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
         "patchSetId": 29
@@ -82,6 +154,30 @@
       "writtenOn": "2022-03-29T19:46:25Z",
       "side": 1,
       "message": "cmhandle with invalid character is not testing a new functionality in this class. Is it possible to removed or merged it with the previous test?",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d522b462_2253f46c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "Have merged with previous test.",
+      "parentUuid": "60aa300a_dbd2dfa3",
       "range": {
         "startLine": 69,
         "startChar": 3,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5662746f_873e93d5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "I initially added testing for all these cases, but thought just testing the CpsValidator itself would suffice as it would be the same kind of scenario.",
+      "parentUuid": "f643f49e_cab73ad0",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 59
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09df04d8_03f35c9f",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 29
@@ -128,6 +248,30 @@
       "writtenOn": "2022-03-29T19:46:25Z",
       "side": 1,
       "message": "NB: indexOf is 0 based. It would be easier for reader if it is 1-based indexed.",
+      "range": {
+        "startLine": 46,
+        "startChar": 75,
+        "endLine": 46,
+        "endChar": 109
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "342e5dd1_2dbb69e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "I personally prefer starting from 0 because it starts from the beginning of the first letter. What does the rest of the team think of this?",
+      "parentUuid": "09df04d8_03f35c9f",
       "range": {
         "startLine": 46,
         "startChar": 75,
@@ -160,6 +304,30 @@
       "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c04b8202_ee5fccf3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T09:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11b05be0_4322593f",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
