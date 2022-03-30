@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6a79a1b8_0e3f6f42",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-03-30T08:11:58Z",
+      "side": 1,
+      "message": "I thought we agreed to keep the changes for passthrough-running as it is for this bug. We will create a new task to cover these changes.",
+      "parentUuid": "a19bdbf2_5a697beb",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 62
+      },
+      "revId": "c0b714eaed7d142e6f7e1dc0f1b370f319f65513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "825cc61f_6e115179",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 3
