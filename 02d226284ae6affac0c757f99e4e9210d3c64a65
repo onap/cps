@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9f3302fc_5794353a",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-30T15:56:59Z",
+      "side": 1,
+      "message": "Actually status corresponds to http-code and details corresponds to body in the dmi-response.",
+      "parentUuid": "26216291_2c710a9b",
+      "range": {
+        "startLine": 459,
+        "startChar": 10,
+        "endLine": 459,
+        "endChar": 18
+      },
+      "revId": "02d226284ae6affac0c757f99e4e9210d3c64a65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e872b627_c89365f1",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "02d226284ae6affac0c757f99e4e9210d3c64a65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92843026_dd9a83de",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-03-30T15:56:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e872b627_c89365f1",
+      "range": {
+        "startLine": 460,
+        "startChar": 21,
+        "endLine": 460,
+        "endChar": 41
+      },
+      "revId": "02d226284ae6affac0c757f99e4e9210d3c64a65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
