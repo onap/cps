@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "457d004c_14c5463d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T12:41:22Z",
+      "side": 1,
+      "message": "replace .equals with operator",
+      "range": {
+        "startLine": 111,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 34
+      },
+      "revId": "67544b5cd616cca5fcd00581d258d9e42a985c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a39f5cf4_f9f13e72",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-30T12:41:22Z",
+      "side": 1,
+      "message": "I think this test should be in NetworkCmProxyControllerSpec.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 5
+      },
+      "revId": "67544b5cd616cca5fcd00581d258d9e42a985c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
