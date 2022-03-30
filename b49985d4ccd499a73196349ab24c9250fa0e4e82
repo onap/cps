@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a43c596_ffd9f54e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "HttpRequestException",
+      "range": {
+        "startLine": 110,
+        "startChar": 94,
+        "endLine": 110,
+        "endChar": 104
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e38555e_b18bbf79",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "httpStatus",
+      "range": {
+        "startLine": 110,
+        "startChar": 80,
+        "endLine": 110,
+        "endChar": 86
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c15599ce_c1e83f3b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 56
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3597981b_cfda4dcd",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "Failing DMI Request",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 84
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c49dfd_b92cc400",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "given: \u0027failing DMI Requests\u0027\n        mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(*_) \u003e\u003e { throw new \n        HttpRequestException(\u0027Error Message Details NCMP\u0027, 400, \u0027Bad Request from DMI\u0027) }\nwhen: \u0027the DMI request is executed\u0027\nmvc.perform(get(\"$dataNodeBaseEndpointNcmp/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier\u003dstores:bookstore/categories\u003d100\"))",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 187
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faf41235_87e47bd7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "Bad Gateway staus",
+      "range": {
+        "startLine": 109,
+        "startChar": 41,
+        "endLine": 109,
+        "endChar": 61
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad9009fb_bbdf0980",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "\u0027the NCMP response also contains the original DMI response details\u0027",
+      "range": {
+        "startLine": 111,
+        "startChar": 14,
+        "endLine": 111,
+        "endChar": 60
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d32c8eb_37bb3569",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "change to \"operationDescription\" remove \u0027unable to\u0027 part and add it in this method instead",
+      "range": {
+        "startLine": 229,
+        "startChar": 54,
+        "endLine": 229,
+        "endChar": 70
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f8ea66_7c61ebc8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "HttpClienttRequestException",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61e805a7_61388a03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "use NCMPException instead\n\ndetails field can be used to story body (just describe in javadox)",
+      "range": {
+        "startLine": 29,
+        "startChar": 42,
+        "endLine": 29,
+        "endChar": 59
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fcebf78_0b727ba1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "the client",
+      "range": {
+        "startLine": 39,
+        "startChar": 47,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d7c6ddf_f9ec5ca2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/HttpRequestException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T11:18:47Z",
+      "side": 1,
+      "message": "the client",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "b49985d4ccd499a73196349ab24c9250fa0e4e82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
