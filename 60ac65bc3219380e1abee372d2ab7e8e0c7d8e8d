@@ -69,6 +69,30 @@
       "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a648cc0_13e922db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistrationResponse.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-30T13:42:40Z",
+      "side": 1,
+      "message": "I dont think so. In NetworkCmProxyDataServiceImpl the required objects are created.",
+      "parentUuid": "6f61718a_d1c64f08",
+      "range": {
+        "startLine": 31,
+        "startChar": 66,
+        "endLine": 31,
+        "endChar": 89
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
