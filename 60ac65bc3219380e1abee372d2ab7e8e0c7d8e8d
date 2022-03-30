@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6a49ca81_ac2960e0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-30T14:26:26Z",
+      "side": 1,
+      "message": "Joe had the same comment and I shared my reason here, https://gerrit.onap.org/r/c/cps/+/128148/4/cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java#77",
+      "parentUuid": "e3c05fbb_d828259f",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "309b4189_0ec31839",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistrationResponse.java",
         "patchSetId": 7
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I dont think so. In NetworkCmProxyDataServiceImpl the required objects are created.",
       "parentUuid": "6f61718a_d1c64f08",
+      "range": {
+        "startLine": 31,
+        "startChar": 66,
+        "endLine": 31,
+        "endChar": 89
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f3a647_a0fa416a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistrationResponse.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-03-30T14:26:26Z",
+      "side": 1,
+      "message": "The reason for adding it is the same that Dylan mentioned. \n\nIn the code where it gets created, these lists are created only if the input is not empty. \n\nOne way could be to update that code to always create an empty list even if input is empty. It would require more testing from my side. So, I opted for an easier option to set it to empty list by default. \n\nDo you see any issues with the approach?",
+      "parentUuid": "3a648cc0_13e922db",
       "range": {
         "startLine": 31,
         "startChar": 66,
