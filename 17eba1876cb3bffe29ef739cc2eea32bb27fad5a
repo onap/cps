@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "09dfee19_4ddfbf56",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T10:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d522b462_2253f46c",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f643f49e_cab73ad0",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
         "patchSetId": 29
@@ -237,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "fe067b45_a1735f8b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T10:08:09Z",
+      "side": 1,
+      "message": "I think I agree, we do need a simple test for each method that now uses the validator.\nThey are simple test and can be added in a few minutes...",
+      "parentUuid": "5662746f_873e93d5",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 59
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09df04d8_03f35c9f",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 29
@@ -272,6 +320,30 @@
       "side": 1,
       "message": "I personally prefer starting from 0 because it starts from the beginning of the first letter. What does the rest of the team think of this?",
       "parentUuid": "09df04d8_03f35c9f",
+      "range": {
+        "startLine": 46,
+        "startChar": 75,
+        "endLine": 46,
+        "endChar": 109
+      },
+      "revId": "17eba1876cb3bffe29ef739cc2eea32bb27fad5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08f5d8f9_31aadbe2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-30T10:08:09Z",
+      "side": 1,
+      "message": "depends on the target audience, we assumed developers but end-user is more likely and Renu\u0027s point is valid and we should add 1",
+      "parentUuid": "342e5dd1_2dbb69e8",
       "range": {
         "startLine": 46,
         "startChar": 75,
