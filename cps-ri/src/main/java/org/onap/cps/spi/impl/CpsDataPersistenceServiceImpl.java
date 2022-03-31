@@ -41,6 +41,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -174,8 +176,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (isRootXpath(xpath)) {
             return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
         } else {
+            final String normalizedXpath;
+            try {
+                normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
+            } catch (final PathParsingException e) {
+                throw new CpsPathException(e.getMessage());
+            }
             return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
-                xpath);
+                    normalizedXpath);
         }
     }
 
@@ -186,8 +194,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
-            cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
-        } catch (final IllegalStateException e) {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
             throw new CpsPathException(e.getMessage());
         }
         List<FragmentEntity> fragmentEntities =
@@ -378,12 +386,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
-        if (parentFragmentEntity.getXpath().equals(targetXpath)) {
+        final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
+        if (parentFragmentEntity.getXpath().equals(normalizedTargetXpath)) {
             fragmentRepository.delete(parentFragmentEntity);
             return true;
         }
         if (parentFragmentEntity.getChildFragments()
-            .removeIf(fragment -> fragment.getXpath().equals(targetXpath))) {
+            .removeIf(fragment -> fragment.getXpath().equals(normalizedTargetXpath))) {
             fragmentRepository.save(parentFragmentEntity);
             return true;
         }
@@ -391,7 +400,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
-        final String deleteTargetXpathPrefix = listXpath + "[";
+        final String normalizedListXpath = CpsPathUtil.getNormalizedXpath(listXpath);
+        final String deleteTargetXpathPrefix = normalizedListXpath + "[";
         if (parentFragmentEntity.getChildFragments()
             .removeIf(fragment -> fragment.getXpath().startsWith(deleteTargetXpathPrefix))) {
             fragmentRepository.save(parentFragmentEntity);
