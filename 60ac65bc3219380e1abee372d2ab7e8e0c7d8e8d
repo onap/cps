@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ef4d3d91_a20b351c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-03-31T16:50:39Z",
+      "side": 1,
+      "message": "(I think this is my usual lost comment :-( )\nI think this should be in the Pojo :-) it is not business logic.... But non blocking",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 87
+      },
+      "revId": "60ac65bc3219380e1abee372d2ab7e8e0c7d8e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3c05fbb_d828259f",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 7
