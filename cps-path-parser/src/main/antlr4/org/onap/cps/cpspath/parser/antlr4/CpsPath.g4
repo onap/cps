@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 
 grammar CpsPath ;
 
-cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? ancestorAxis? ;
+cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? ancestorAxis? unprocessed?;
 
 ancestorAxis : SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
@@ -45,6 +45,10 @@ multipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;
 leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
 
 leafName : QName ;
+
+unprocessed : (AT | CB | COLONCOLON | EQ ).+ ;
+
+
 
 /*
  * Lexer Rules

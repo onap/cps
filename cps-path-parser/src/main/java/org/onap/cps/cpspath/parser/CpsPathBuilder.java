@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 import java.util.HashMap;
 import java.util.Map;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
+import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.DescendantContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.IncorrectPrefixContext;
@@ -39,9 +40,22 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final Map<String, Object> leavesData = new HashMap<>();
 
+    final StringBuilder normalizedXpath = new StringBuilder();
+
+    final StringBuilder normalizedAncestorpath = new StringBuilder();
+
+    boolean processingAncestorAxis = false;
+
+    @Override
+    public void exitUnprocessed(final CpsPathParser.UnprocessedContext ctx) {
+        if (!ctx.getText().isEmpty()) {
+            throw new InvalidPathException("Invalid xpath", ctx.getText());
+        }
+    }
+
     @Override
     public void exitPrefix(final PrefixContext ctx) {
-        cpsPathQuery.setXpathPrefix(ctx.getText());
+        cpsPathQuery.setXpathPrefix(normalizedXpath.toString());
     }
 
     @Override
@@ -56,32 +70,49 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         }
         if (ctx.StringLiteral() != null) {
+            final boolean wasWrappedInDoubleQuote  = ctx.StringLiteral().getText().startsWith("\"");
             comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
+            if (wasWrappedInDoubleQuote) {
+                comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
+            }
         } else if (comparisonValue == null) {
             throw new IllegalStateException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
+        appendCondition(normalizedXpath, ctx.leafName().getText(), comparisonValue);
+        if (processingAncestorAxis) {
+            appendCondition(normalizedAncestorpath, ctx.leafName().getText(), comparisonValue);
+        }
     }
 
     @Override
     public void exitDescendant(final DescendantContext ctx) {
         cpsPathQuery.setCpsPathPrefixType(DESCENDANT);
-        cpsPathQuery.setDescendantName(ctx.getText().substring(2));
+        cpsPathQuery.setDescendantName(normalizedXpath.substring(1));
+        normalizedXpath.insert(0, "/");
     }
 
     @Override
     public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
+        normalizedXpath.append("[");
         leavesData.clear();
     }
 
     @Override
     public void exitMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
+        normalizedXpath.append("]");
         cpsPathQuery.setLeavesData(leavesData);
     }
 
     @Override
+    public void enterAncestorAxis(final AncestorAxisContext ctx) {
+        processingAncestorAxis = true;
+    }
+
+    @Override
     public void exitAncestorAxis(final AncestorAxisContext ctx) {
-        cpsPathQuery.setAncestorSchemaNodeIdentifier(ctx.ancestorPath().getText());
+        cpsPathQuery.setAncestorSchemaNodeIdentifier(normalizedAncestorpath.substring(1));
+        processingAncestorAxis = false;
     }
 
     @Override
@@ -90,7 +121,24 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setTextFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
     }
 
+    @Override
+    public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
+        normalizedXpath.append("[");
+        if (processingAncestorAxis) {
+            normalizedAncestorpath.append("[");
+        }
+    }
+
+    @Override
+    public void exitListElementRef(final CpsPathParser.ListElementRefContext ctx) {
+        normalizedXpath.append("]");
+        if (processingAncestorAxis) {
+            normalizedAncestorpath.append("]");
+        }
+    }
+
     CpsPathQuery build() {
+        cpsPathQuery.setNormalizedXpath(normalizedXpath.toString());
         return cpsPathQuery;
     }
 
@@ -98,4 +146,23 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         return wrappedString.substring(1, wrappedString.length() - 1);
     }
 
+    @Override
+    public void exitContainerName(final CpsPathParser.ContainerNameContext ctx) {
+        normalizedXpath.append("/")
+                .append(ctx.getText());
+        if (processingAncestorAxis) {
+            normalizedAncestorpath.append("/").append(ctx.getText());
+        }
+    }
+
+    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                final Object value) {
+        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
+                .append("@")
+                .append(name)
+                .append("='")
+                .append(value)
+                .append("'");
+    }
 }
