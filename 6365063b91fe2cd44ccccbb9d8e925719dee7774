@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e179e41f_2c9602a6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-03-31T21:39:01Z",
+      "side": 1,
+      "message": "@Toine \u0026 all:\nI have problem in testing the ancestor case.\nThe exitAncestorAxis() in CpsPathBuilder returns categories[@code\u003d1] instead of categories[@code\u003d\u00271\u0027].\nI have tried to use enterAncestorAxis but i guess its not the place for fix. (not working anyway)\nThe exitAncestorAxis() gets the AncestorAxisContext from the ancestorPath() in CpsPathParser (generated code).\n\nAny pointers would be helpful.",
+      "range": {
+        "startLine": 153,
+        "startChar": 58,
+        "endLine": 153,
+        "endChar": 96
+      },
+      "revId": "6365063b91fe2cd44ccccbb9d8e925719dee7774",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
