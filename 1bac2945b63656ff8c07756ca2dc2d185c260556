@@ -357,6 +357,30 @@
     },
     {
       "key": {
+        "uuid": "ae70d25c_5e037005",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-03-31T14:21:21Z",
+      "side": 1,
+      "message": "I mentioned this too as part of PatchSet #7. I personally prefer explicitly stating the datatype, and would just prefer the line to be split. I don\u0027t think it takes away from readability personally. 😊",
+      "parentUuid": "d90fa572_83625d8a",
+      "range": {
+        "startLine": 76,
+        "startChar": 14,
+        "endLine": 76,
+        "endChar": 18
+      },
+      "revId": "1bac2945b63656ff8c07756ca2dc2d185c260556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b754672b_2eda6033",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 4
