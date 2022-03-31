@@ -26,8 +26,8 @@ import spock.lang.Specification
 
 class CmHandleRegistrationResponseSpec extends Specification {
 
-    def 'Successful CmHandle Registration Response'() {
-        when: 'CMHandle response is created'
+    def 'Successful cm-handle Registration Response'() {
+        when: 'cm-handle response is created'
             def cmHandleRegistrationResponse = CmHandleRegistrationResponse.createSuccessResponse('cmHandle')
         then: 'a success response is returned'
             with(cmHandleRegistrationResponse) {
@@ -39,8 +39,8 @@ class CmHandleRegistrationResponseSpec extends Specification {
             cmHandleRegistrationResponse.errorText == null
     }
 
-    def 'Failed Cm Handle Registration Response: for unexpected exception'() {
-        when: 'CMHandle response is created for an unexpected exception'
+    def 'Failed cm-handle Registration Response: for unexpected exception'() {
+        when: 'cm-handle response is created for an unexpected exception'
             def cmHandleRegistrationResponse =
                 CmHandleRegistrationResponse.createFailureResponse('cmHandle', new Exception('unexpected error'))
         then: 'the response is created with expected value'
@@ -51,18 +51,21 @@ class CmHandleRegistrationResponseSpec extends Specification {
             }
     }
 
-    def 'Failed Cm Handle Registration Response: for known error'() {
-        when: 'CMHandle response is created for known error'
+    def 'Failed cm-handle Registration Response: for #scenario'() {
+        when: 'cm-handle failure response is created for #scenario'
             def cmHandleRegistrationResponse =
-                CmHandleRegistrationResponse.createFailureResponse('cmHandle', RegistrationError.CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError)
         then: 'the response is created with expected value'
             with(cmHandleRegistrationResponse) {
-                assert it.registrationError == RegistrationError.CM_HANDLE_ALREADY_EXIST
-                assert it.cmHandle == 'cmHandle'
+                assert it.registrationError == registrationError
+                assert it.cmHandle == cmHandleId
                 assert it.status == Status.FAILURE
-                assert errorText == RegistrationError.CM_HANDLE_ALREADY_EXIST.errorText
+                assert errorText == registrationError.errorText
             }
-
+        where:
+            scenario                   | cmHandleId  | registrationError
+            'cm-handle already exists' | 'cmHandle'  | RegistrationError.CM_HANDLE_ALREADY_EXIST
+            'cm-handle id is invalid'  | 'cm handle' | RegistrationError.CM_HANDLE_INVALID_ID
     }
 
 }
