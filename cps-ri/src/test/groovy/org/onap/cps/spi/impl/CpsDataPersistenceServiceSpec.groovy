@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
+ * Modifications Copyright (C) 2021-2022 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +46,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
 
-        def parentXpath = 'parent-01'
+        def parentXpath = '/parent-01'
         def myDataspaceName = 'my-dataspace'
         def myAnchorName = 'my-anchor'
 
@@ -82,7 +83,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
         }
         when: 'getting the data node represented by this fragment'
         def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
-                'parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf is of the correct value and data type'
         def attributeValue = dataNode.leaves.get('some attribute')
         assert attributeValue == expectedValue
@@ -108,7 +109,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
         }
         when: 'getting the data node represented by this fragment'
         def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
-                'parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'a data validation exception is thrown'
         thrown(DataValidationException)
     }
