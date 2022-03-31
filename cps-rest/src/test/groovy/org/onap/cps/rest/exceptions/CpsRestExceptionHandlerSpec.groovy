@@ -24,7 +24,6 @@ package org.onap.cps.rest.exceptions
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
-import org.mapstruct.factory.Mappers
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
