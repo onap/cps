@@ -23,11 +23,13 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
+import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
+import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -150,7 +152,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             thrown(expectedException)
         where: 'the following data is used'
             scenario                 | parentXpath                      | dataNode              || expectedException
-            'parent does not exist'  | 'unknown'                        | newDataNode           || DataNodeNotFoundException
+            'parent does not exist'  | '/unknown'                        | newDataNode          || DataNodeNotFoundException
             'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || AlreadyDefinedException
     }
 
@@ -185,9 +187,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'following parameters were used'
-            scenario                     | parentNodeXpath | listElementXpaths                   || expectedException
-            'parent node does not exist' | '/unknown'      | ['irrelevant']                      || DataNodeNotFoundException
-            'already existing fragment'  | '/parent-201'   | ['/parent-201/child-204[@key="A"]'] || AlreadyDefinedException
+            scenario                        | parentNodeXpath | listElementXpaths                   || expectedException
+            'parent node does not exist'    | '/unknown'      | ['irrelevant']                      || DataNodeNotFoundException
+            'data fragment already exists'  | '/parent-201'   | ["/parent-201/child-204[@key='A']"] || AlreadyDefinedException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -205,6 +207,15 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'some xpath'  | '/parent-100'
             'root xpath'  | '/'
             'empty xpath' | ''
+    }
+
+    //@Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
+        when: 'trying to execute a query with a syntax (parsing) error'
+            objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, 'invalid-cps-path/child' , OMIT_DESCENDANTS)
+        then: 'exception is thrown'
+            def exceptionThrown = thrown(CpsPathException)
+            assert exceptionThrown.getDetails().contains('failed to parse at line 1 due to extraneous input \'invalid-cps-path\' expecting \'/\'')
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -235,10 +246,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                 | dataspaceName  | anchorName                        | xpath          || expectedException
-            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant' || DataspaceNotFoundException
-            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant' || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NO XPATH'     || DataNodeNotFoundException
+            scenario                 | dataspaceName  | anchorName                        | xpath           || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant' || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant' || AnchorNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO XPATH'     || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -265,10 +276,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                 | dataspaceName  | anchorName                        | xpath                || expectedException
-            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant'       || DataspaceNotFoundException
-            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NON-EXISTING XPATH' || DataNodeNotFoundException
+            scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING XPATH' || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -359,10 +370,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                 | dataspaceName  | anchorName                        | xpath                || expectedException
-            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | 'not relevant'       || DataspaceNotFoundException
-            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | 'not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'NON-EXISTING XPATH' || DataNodeNotFoundException
+            scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING XPATH' || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -468,10 +479,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert remainingChildXpaths.containsAll(expectedRemainingChildXpaths)
         where: 'following parameters were used'
             scenario                          | targetXpaths                                                 | parentFragmentId                     || expectedRemainingChildXpaths
-            'list element with key'           | '/parent-203/child-204[@key="A"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="B"]']
-            'list element with combined keys' | '/parent-202/child-205[@key="A" and @key2="B"]'              | LIST_DATA_NODE_PARENT202_FRAGMENT_ID || ['/parent-202/child-206[@key="A"]']
+            'list element with key'           | '/parent-203/child-204[@key="A"]'                            | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='B']"]
+            'list element with combined keys' | '/parent-202/child-205[@key="A" and @key2="B"]'              | LIST_DATA_NODE_PARENT202_FRAGMENT_ID || ["/parent-202/child-206[@key='A']"]
             'whole list'                      | '/parent-203/child-204'                                      | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203']
-            'list element under list element' | '/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203', '/parent-203/child-204[@key="A"]', '/parent-203/child-204[@key="B"]']
+            'list element under list element' | '/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]' | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -510,9 +521,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'child of target'                       | '/parent-206/child-206'                            | '/parent-206/child-206'                           || null
             'child data node, parent still exists'  | '/parent-206/child-206'                            | '/parent-206'                                     || '/parent-206'
             'list element'                          | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="A"]' || null
-            'list element, sibling still exists'    | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="X"]' || '/parent-206/child-206/grand-child-206[@key="X"]'
+            'list element, sibling still exists'    | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="X"]' || "/parent-206/child-206/grand-child-206[@key='X']"
             'container node'                        | '/parent-206'                                      | '/parent-206'                                     || null
-            'container list node'                   | '/parent-206[@key="A"]'                            | '/parent-206[@key="B"]'                           || '/parent-206[@key="B"]'
+            'container list node'                   | '/parent-206[@key="A"]'                            | '/parent-206[@key="B"]'                           || "/parent-206[@key='B']"
             'root node with xpath /'                | '/'                                                | '/'                                               || null
             'root node with xpath passed as blank'  | ''                                                 | ''                                                || null
 
@@ -523,11 +534,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'data node is deleted'
             objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, datanodeXpath)
         then: 'a #expectedException is thrown'
-            thrown(DataNodeNotFoundException)
+            thrown(expectedException)
         where: 'the following parameters were used'
-            scenario                                        | datanodeXpath
-            'valid data node, non existent child node'      | '/parent-203/child-non-existent'
-            'invalid list element'                          | '/parent-206/child-206/grand-child-206@key="A"]'
+            scenario                                        | datanodeXpath                                    | expectedException
+            'valid data node, non existent child node'      | '/parent-203/child-non-existent'                 | DataNodeNotFoundException
+            'invalid list element'                          | '/parent-206/child-206/grand-child-206@key="A"]' | PathParsingException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
