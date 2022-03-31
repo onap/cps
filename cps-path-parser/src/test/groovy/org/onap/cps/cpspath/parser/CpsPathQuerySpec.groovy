@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ class CpsPathQuerySpec extends Specification {
             'leaf of type Integer' | '/parent/child[@common-leaf-name-int=5]'                   || '/parent/child'                             | 'common-leaf-name-int' | 5
             'spaces around ='      | '/parent/child[@common-leaf-name-int = 5]'                 || '/parent/child'                             | 'common-leaf-name-int' | 5
             'key in top container' | '/parent[@common-leaf-name-int=5]'                         || '/parent'                                   | 'common-leaf-name-int' | 5
-            'parent list'          | '/shops/shop[@id=1]/categories[@id=1]/book[@title="Dune"]' || '/shops/shop[@id=1]/categories[@id=1]/book' | 'title'                | 'Dune'
+            'parent list'          | '/shops/shop[@id=1]/categories[@id=1]/book[@title="Dune"]' || "/shops/shop[@id='1']/categories[@id='1']/book" | 'title'                | 'Dune'
     }
 
     def 'Parse cps path of type ends with a #scenario.'() {
@@ -58,6 +58,42 @@ class CpsPathQuerySpec extends Specification {
             scenario         | cpsPath          || expectedDescendantName
             'yang container' | '//cps-path'     || 'cps-path'
             'parent & child' | '//parent/child' || 'parent/child'
+    }
+
+    def 'Parse cps path to form the Normalized cps path containing #scenario.'() {
+        when: 'the given cps path is parsed'
+        // change this to cpspath util
+        // add a test without /
+            def result = CpsPathUtil.getCpsPathQuery(cpsPath)
+        then: 'the query has the right normalized xpath type'
+            assert result.normalizedXpath == expectedNormalizedXPath
+        where: 'the following data is used'
+            scenario                                              | cpsPath                                         || expectedNormalizedXPath
+            'yang container'                                      | '/cps-path'                                     || '/cps-path'
+            'descendant anywhere'                                 | '//cps-path'                                    || '//cps-path'
+            'descendant with leaf condition'                      | '//cps-path[@key=1]'                            || "//cps-path[@key='1']"
+            'descendant with leaf value and ancestor'             | '//cps-path[@key=1]/ancestor:parent[@key=1]'    || "//cps-path[@key='1']/ancestor:parent[@key='1']"
+            'parent & child'                                      | '/parent/child'                                 || '/parent/child'
+            'parent leaf of type Integer & child'                 | '/parent/child[@code=1]/child2'                 || "/parent/child[@code='1']/child2"
+            'parent leaf with double quotes'                      | '/parent/child[@code="1"]/child2'               || "/parent/child[@code='1']/child2"
+            'parent leaf with double quotes inside single quotes' | '/parent/child[@code=\'"1"\']/child2'           || "/parent/child[@code='\"1\"']/child2"
+            'parent leaf with single quotes inside double quotes' | '/parent/child[@code="\'1\'"]/child2'           || "/parent/child[@code='\\\'1\\\'']/child2" // hows does it save
+            'leaf with single quotes inside double quotes'        | '/parent/child[@code="\'1\'"]'                  || "/parent/child[@code='\\\'1\\\'']"
+            'leaf with more than one attribute'                   | '/parent/child[@key1=1 and @key2="abc"]'        || "/parent/child[@key1='1' and @key2='abc']"
+            'parent & child with more than one attribute'         | '/parent/child[@key1=1 and @key2="abc"]/child2' || "/parent/child[@key1='1' and @key2='abc']/child2"
+    }
+
+    def 'Parse xpath to form the Normalized xpath containing #scenario.'() {
+        when: 'the given cps path is parsed'
+            // change this to cpspath util
+            // add a test without /
+            def result = CpsPathUtil.getNormalizedXpath(cpsPath)
+        then: 'the query has the right normalized xpath type'
+            assert result == expectedNormalizedXPath
+        where: 'the following data is used'
+            scenario                                              | cpsPath                                         || expectedNormalizedXPath
+            'yang container'                                      | '/cps-path'                                     || '/cps-path'
+            'descendant anywhere'                                 | '//cps-path'                                    || '//cps-path'
     }
 
     def 'Parse cps path that ends with a yang list containing #scenario.'() {

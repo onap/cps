@@ -41,6 +41,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -175,7 +176,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
         } else {
             return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
-                xpath);
+                    xpath);
         }
     }
 
@@ -186,7 +187,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
-            cpsPathQuery = CpsPathQuery.createFrom(cpsPath);
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
         } catch (final IllegalStateException e) {
             throw new CpsPathException(e.getMessage());
         }
