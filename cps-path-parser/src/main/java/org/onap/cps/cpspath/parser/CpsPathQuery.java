@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,19 +26,13 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.BaseErrorListener;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathLexer;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 
 @Getter
 @Setter(AccessLevel.PACKAGE)
 public class CpsPathQuery {
 
     private String xpathPrefix;
+    private String normalizedXpath;
     private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
     private Map<String, Object> leavesData;
@@ -53,20 +47,7 @@ public class CpsPathQuery {
      * @return a CpsPathQuery object.
      */
     public static CpsPathQuery createFrom(final String cpsPathSource) {
-        final var inputStream = CharStreams.fromString(cpsPathSource);
-        final var cpsPathLexer = new CpsPathLexer(inputStream);
-        final var cpsPathParser = new CpsPathParser(new CommonTokenStream(cpsPathLexer));
-        cpsPathParser.addErrorListener(new BaseErrorListener() {
-            @Override
-            public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
-                                    final int charPositionInLine, final String msg, final RecognitionException e) {
-                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
-            }
-        });
-        final var cpsPathBuilder = new CpsPathBuilder();
-        cpsPathParser.addParseListener(cpsPathBuilder);
-        cpsPathParser.cpsPath();
-        return cpsPathBuilder.build();
+        return CpsPathUtil.getCpsPathQuery(cpsPathSource);
     }
 
     /**
