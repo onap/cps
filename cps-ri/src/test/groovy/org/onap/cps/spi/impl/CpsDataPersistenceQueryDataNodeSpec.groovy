@@ -92,15 +92,15 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             }
         where: 'the following data is used'
             scenario                                                 | cpsPath                                 || expectedXPaths
-            'fully unique descendant name'                           | '//categories[@code=2]'                 || ['/shops/shop[@id=1]/categories[@code=2]', '/shops/shop[@id=2]/categories[@code=1]', '/shops/shop[@id=2]/categories[@code=2]']
-            'descendant name match end of other node'                | '//book'                                || ['/shops/shop[@id=1]/categories[@code=1]/book', '/shops/shop[@id=1]/categories[@code=2]/book']
-            'descendant with text condition on leaf'                 | '//book/title[text()="Chapters"]'       || ['/shops/shop[@id=1]/categories[@code=2]/book']
+            'fully unique descendant name'                           | '//categories[@code=2]'                 || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='2']/categories[@code='1']", "/shops/shop[@id='2']/categories[@code='2']"]
+            'descendant name match end of other node'                | '//book'                                || ["/shops/shop[@id='1']/categories[@code='1']/book", "/shops/shop[@id='1']/categories[@code='2']/book"]
+            'descendant with text condition on leaf'                 | '//book/title[text()="Chapters"]'       || ["/shops/shop[@id='1']/categories[@code='2']/book"]
             'descendant with text condition case mismatch'           | '//book/title[text()="chapters"]'       || []
-            'descendant with text condition on int leaf'             | '//book/price[text()="5"]'              || ['/shops/shop[@id=1]/categories[@code=1]/book']
-            'descendant with text condition on leaf-list'            | '//book/labels[text()="special offer"]' || ['/shops/shop[@id=1]/categories[@code=1]/book']
+            'descendant with text condition on int leaf'             | '//book/price[text()="5"]'              || ["/shops/shop[@id='1']/categories[@code='1']/book"]
+            'descendant with text condition on leaf-list'            | '//book/labels[text()="special offer"]' || ["/shops/shop[@id='1']/categories[@code='1']/book"]
             'descendant with text condition partial match'           | '//book/labels[text()="special"]'       || []
-            'descendant with text condition (existing) empty string' | '//book/labels[text()=""]'              || ['/shops/shop[@id=1]/categories[@code=1]/book']
-            'descendant with text condition on int leaf-list'        | '//book/editions[text()="2000"]'        || ['/shops/shop[@id=1]/categories[@code=2]/book']
+            'descendant with text condition (existing) empty string' | '//book/labels[text()=""]'              || ["/shops/shop[@id='1']/categories[@code='1']/book"]
+            'descendant with text condition on int leaf-list'        | '//book/editions[text()="2000"]'        || ["/shops/shop[@id='1']/categories[@code='2']/book"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -115,10 +115,10 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             }
         where: 'the following data is used'
             scenario                   | cpsPath                                               || expectedXPaths
-            'one leaf'                 | '//author[@FirstName="Joe"]'                          || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]', '/shops/shop[@id=1]/categories[@code=2]/book/author[@FirstName="Joe" and @Surname="Smith"]']
-            'more than one leaf'       | '//author[@FirstName="Joe" and @Surname="Bloggs"]'    || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
-            'leaves reversed in order' | '//author[@Surname="Bloggs" and @FirstName="Joe"]'    || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
-            'leaf and text condition'  | '//author[@FirstName="Joe"]/Surname[text()="Bloggs"]' || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
+            'one leaf'                 | '//author[@FirstName="Joe"]'                          || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
+            'more than one leaf'       | '//author[@FirstName="Joe" and @Surname="Bloggs"]'    || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'leaves reversed in order' | '//author[@Surname="Bloggs" and @FirstName="Joe"]'    || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'leaf and text condition'  | '//author[@FirstName="Joe"]/Surname[text()="Bloggs"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -133,9 +133,9 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             }
         where: 'the following data is used'
             scenario                              | cpsPath                                        || expectedXPaths
-            'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]', '/shops/shop[@id=1]/categories[@code=2]/book/author[@FirstName="Joe" and @Surname="Smith"]']
-            'one non key leaf'                    | '//author[@title="Dune"]'                      || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
-            'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ['/shops/shop[@id=1]/categories[@code=1]/book/author[@FirstName="Joe" and @Surname="Bloggs"]']
+            'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
+            'one non key leaf'                    | '//author[@title="Dune"]'                      || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -149,13 +149,13 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             }
         where: 'the following data is used'
             scenario                                    | cpsPath                                              || expectedXPaths
-            'multiple list-ancestors'                   | '//book/ancestor::categories'                        || ['/shops/shop[@id=1]/categories[@code=1]', '/shops/shop[@id=1]/categories[@code=2]']
-            'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'               || ['/shops/shop[@id=1]/categories[@code=1]']
+            'multiple list-ancestors'                   | '//book/ancestor::categories'                        || ["/shops/shop[@id='1']/categories[@code='1']", "/shops/shop[@id='1']/categories[@code='2']"]
+            'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'               || ["/shops/shop[@id='1']/categories[@code='1']"]
             'top ancestor'                              | '//shop[@id=1]/ancestor::shops'                      || ['/shops']
-            'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ['/shops/shop[@id=1]']
-            'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ['/shops/shop[@id=1]/categories[@code=2]']
-            'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ['/shops/shop[@id=3]/info/contact']
-            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ['/shops/shop[@id=1]']
+            'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ["/shops/shop[@id='1']"]
+            'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ["/shops/shop[@id='1']/categories[@code='2']"]
+            'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ["/shops/shop[@id='3']/info/contact"]
+            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ["/shops/shop[@id='1']"]
             'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []
             'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []
     }
