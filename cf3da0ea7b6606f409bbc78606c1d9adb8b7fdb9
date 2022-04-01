@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3bb11b8_200d444e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-01T11:27:31Z",
+      "side": 1,
+      "message": "2 spaces.. make it 1 😄",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 16
+      },
+      "revId": "cf3da0ea7b6606f409bbc78606c1d9adb8b7fdb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
