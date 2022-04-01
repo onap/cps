@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d6765e6_a0edd410",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-01T14:59:48Z",
+      "side": 1,
+      "message": "Changed to traditional for loop as break and continue are not supported in forEach\nThe only way to achieve this is by throwing an exception in the forEach which seems messy",
+      "revId": "7bf19e577307a8d12a752c4d70b6471b221a8525",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
