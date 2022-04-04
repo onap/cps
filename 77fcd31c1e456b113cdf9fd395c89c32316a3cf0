@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "64b0a161_e0013b98",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-04T09:28:02Z",
+      "side": 1,
+      "message": "Actually I was thinking of delegating all the responsibility to buildErrorResponse method and let it decide how to form the response object.\nI agree we end up checking few conditions more , but just wanted to mention my motive to do so :) \nI will change it.",
+      "parentUuid": "238a3522_892713e6",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b5171550_20fbadee",
         "filename": "docs/api/swagger/ncmp/openapi.yaml",
         "patchSetId": 10
