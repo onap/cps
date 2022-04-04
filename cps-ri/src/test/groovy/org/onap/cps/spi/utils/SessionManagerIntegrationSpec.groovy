@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.utils
 
+import org.hibernate.Session
 import org.hibernate.SessionException
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 
@@ -53,4 +54,5 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
             def thrown = thrown(SessionException)
             assert thrown.message.contains(unknownSessionId)
     }
+
 }

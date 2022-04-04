@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.hibernate.LockMode;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -40,6 +41,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.spi.utils.SessionManager;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -167,4 +169,62 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private void verifyDataspaceName(final String dataspaceName) {
         dataspaceRepository.getByName(dataspaceName);
     }
+
+    /**
+     * Lock anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param sessionId session ID
+     */
+    public void lockAnchor(final String dataspaceName, final String anchorName, final String sessionId) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var anchorId = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName).getId();
+        final var session = SessionManager.getSessionById(sessionId);
+        System.out.println("Attempting to lock anchor");
+        session.get(AnchorEntity.class, anchorId, LockMode.PESSIMISTIC_WRITE);
+        System.out.println("Anchor successfully locked");
+        return;
+    }
+
+    /**
+     * Unlock anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param sessionId session ID
+     */
+    public void unlockAnchor(final String dataspaceName, final String anchorName, final String sessionId) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var anchorId = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName).getId();
+        final var session = SessionManager.getSessionById(sessionId);
+        System.out.println("Attempting to unlock anchor");
+        session.getTransaction().commit();
+        session.get(AnchorEntity.class, anchorId, LockMode.NONE);
+        System.out.println("Anchor successfully unlocked");
+        return;
+    }
+
+    /**
+     * Update Anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     */
+    public void updateAnchor(final String dataspaceName, final String anchorName) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var anchorToUpdate = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        if (anchorToUpdate.getName().equals("ANCHOR-001")) {
+            System.out.println("Current name is " + anchorToUpdate.getName());
+            anchorToUpdate.setName("newName");
+            System.out.println("Anchor name 'newName' is ready to be committed for update");
+        } else {
+            System.out.println("Current name is " + anchorToUpdate.getName());
+            anchorToUpdate.setName("ANCHOR-001");
+            System.out.println("Revert: Anchor name 'ANCHOR-001' is ready to be committed for update");
+        }
+        return;
+    }
+
+
 }
