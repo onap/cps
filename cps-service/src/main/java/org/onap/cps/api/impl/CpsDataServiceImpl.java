@@ -117,13 +117,28 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     public String startSession() {
-        final String sessionId = cpsDataPersistenceService.startSession();
-        return sessionId;
+        return cpsDataPersistenceService.startSession();
     }
 
     @Override
     public void closeSession(final String sessionId) {
         cpsDataPersistenceService.closeSession(sessionId);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName, final String anchorName) {
+        lockAnchor(sessionID, dataspaceName, anchorName, 100L);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName,
+                           final String anchorName, final Long timeoutInMilliseconds) {
+        cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public void releaseLocks(final String sessionId) {
+        cpsDataPersistenceService.releaseLocks(sessionId);
     }
 
     @Override
