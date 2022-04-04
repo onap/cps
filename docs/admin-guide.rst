@@ -191,3 +191,19 @@ Prometheus Metrics can be checked at the following endpoint
 .. code::
 
     http://<cps-component-service-name>:8081/manage/prometheus
+
+Naming Validation
+-----------------
+
+As part of Jakarta's 3.1.0 release, CPS has added validation to the names of the following components:
+
+    - Dataspace names
+    - Schema Set names
+    - Anchor names
+    - Cm-Handle ID's
+
+The following characters along with spaces are no longer valid for naming of these components.
+
+.. code::
+
+    !"#$%&'()*+,./\:;<=>?@[]^`{|}~
