@@ -99,4 +99,13 @@ public interface CpsAdminPersistenceService {
      * @param anchorName anchor name
      */
     void deleteAnchor(String dataspaceName, String anchorName);
+
+    //POC
+    void lockAnchor(String dataspaceName, String anchorName, String sessionID);
+
+    //POC
+    void unlockAnchor(String dataspaceName, String anchorName, String sessionID);
+
+    //POC
+    void updateAnchor(String dataspaceName, String anchorName);
 }

@@ -458,4 +458,5 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static boolean isRootXpath(final String xpath) {
         return "/".equals(xpath) || "".equals(xpath);
     }
+
 }
