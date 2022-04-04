@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
+ * Modifications Copyright (C) 2022 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -127,5 +128,12 @@ class CpsDataPersistenceServiceSpec extends Specification {
             objectUnderTest.closeSession(someSessionId)
         then: 'the session manager method to close session is invoked with parameter'
             1 * mockSessionManager.closeSession(someSessionId)
+    }
+
+    def 'Lock anchor.'(){
+        when: 'lock anchor method is called with anchor entity details'
+            objectUnderTest.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 0L)
+        then: 'the session manager method to lock anchor is invoked with same parameters'
+            1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 0L)
     }
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,37 +20,50 @@
 
 package org.onap.cps.spi.utils
 
-import org.hibernate.SessionException
+import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.jdbc.Sql
 
 class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
 
-    def objectUnderTest = new SessionManager();
+    final static String SET_DATA = '/data/anchor.sql'
 
-    def 'start session'() {
-        when: 'start session'
-            def result = objectUnderTest.startSession()
-        then: 'session ID is returned'
-            assert result instanceof String
-            objectUnderTest.closeSession(result)
+    @Autowired
+    SessionManager objectUnderTest
+
+    def sessionId
+    def shortTimeoutForTesting = 200L
+
+    def setup(){
+        sessionId = objectUnderTest.startSession()
     }
 
-    def 'close session'(){
-        given: 'session Id from calling the start session method'
-            def sessionId = objectUnderTest.startSession()
-        when: 'close session method is called'
-            objectUnderTest.closeSession(sessionId)
+    def cleanup(){
+        objectUnderTest.closeSession(sessionId)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Lock anchor.'(){
+        when: 'session tries to acquire anchor lock by passing anchor entity details'
+            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
-    def 'close session that does not exist' (){
-        given: 'session Id that does not exist'
-            def unknownSessionId = 'unknown session id'
-        when: 'close session method is called'
-            objectUnderTest.closeSession(unknownSessionId)
-        then: 'a session exception is thrown'
-            def thrown = thrown(SessionException)
-            assert thrown.message.contains(unknownSessionId)
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Attempt to lock anchor when another session is holding the lock.'(){
+        given: 'another session that holds an anchor lock'
+            def otherSessionId = objectUnderTest.startSession()
+            objectUnderTest.lockAnchor(otherSessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+        when: 'a session tries to acquire the same anchor lock'
+            objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+        then: 'a session manager exception is thrown specifying operation reached timeout'
+            def thrown = thrown(SessionManagerException)
+            thrown.message.contains('Timeout')
+        then: 'when the other session holding the lock is closed, lock can finally be acquired'
+            objectUnderTest.closeSession(otherSessionId)
+            objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
     }
+
 }
