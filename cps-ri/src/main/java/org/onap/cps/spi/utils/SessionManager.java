@@ -20,9 +20,8 @@
 
 package org.onap.cps.spi.utils;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
@@ -38,7 +37,7 @@ import org.springframework.stereotype.Component;
 public class SessionManager {
 
     private static SessionFactory sessionFactory;
-    private static Map<String, Session> sessionMap = new HashMap<>();
+    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
 
     private synchronized void buildSessionFactory() {
         if (sessionFactory == null) {
@@ -81,6 +80,10 @@ public class SessionManager {
             throw new SessionException(String.format("Unable to close session with session ID %s", sessionId));
         }
         sessionMap.remove(sessionId);
+    }
+
+    public static Session getSessionById(final String sessionId) {
+        return sessionMap.get(sessionId);
     }
 
 }

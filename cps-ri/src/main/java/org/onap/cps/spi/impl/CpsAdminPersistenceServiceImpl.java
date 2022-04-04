@@ -22,17 +22,24 @@
 
 package org.onap.cps.spi.impl;
 
+import com.google.common.util.concurrent.SimpleTimeLimiter;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.hibernate.LockMode;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
@@ -40,6 +47,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
+import org.onap.cps.spi.utils.SessionManager;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -166,5 +174,50 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     private void verifyDataspaceName(final String dataspaceName) {
         dataspaceRepository.getByName(dataspaceName);
+    }
+
+    /**
+     * Lock anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param sessionId session ID
+     */
+    public void lockAnchor(final String dataspaceName, final String anchorName, final String sessionId) {
+        final var executorService = Executors.newSingleThreadExecutor();
+        final var timeLimiter = SimpleTimeLimiter.create(executorService);
+
+        try {
+            timeLimiter.callWithTimeout(() -> {
+                final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+                final var anchorId = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName).getId();
+                final var session = SessionManager.getSessionById(sessionId);
+                System.out.println("Attempting to lock anchor");
+                session.get(AnchorEntity.class, anchorId, LockMode.PESSIMISTIC_WRITE);
+                System.out.println("Anchor successfully locked");
+                return null;
+            }, 30000, TimeUnit.MILLISECONDS);
+        } catch (final TimeoutException | InterruptedException | ExecutionException e) {
+            throw new CpsAdminException("TIMEOUT", "Timeout: Lock cannot be acquired");
+        } finally {
+            System.out.println("SHUTDOWN SERVICE");
+            executorService.shutdownNow();
+        }
+    }
+
+    /**
+     * Unlock anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param sessionId session ID
+     */
+    public void unlockAnchor(final String dataspaceName, final String anchorName, final String sessionId) {
+        final var session = SessionManager.getSessionById(sessionId);
+        System.out.println("Attempting to unlock anchor");
+        session.getTransaction().commit();
+        session.getTransaction().begin();
+        System.out.println("Anchor successfully unlocked");
+        return;
     }
 }
