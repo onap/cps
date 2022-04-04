@@ -430,4 +430,36 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method to close session is invoked'
             1 * mockCpsDataPersistenceService.closeSession(sessionId)
     }
+
+    def 'lock anchor with default timeout'(){
+        given: 'anchor entity details to lock and session Id'
+            def sessionId = 'some-sessionId'
+            def dataspaceName = 'some-dataspaceName'
+            def anchorName = 'some-anchorName'
+        when: 'lock anchor method with no timeout parameter is called'
+            objectUnderTest.lockAnchor(sessionId, dataspaceName, anchorName)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'lock anchor with timeout'(){
+        given: 'anchor entity details to lock and session Id'
+            def sessionId = 'some-sessionId'
+            def dataspaceName = 'some-dataspaceName'
+            def anchorName = 'some-anchorName'
+            def someTimeoutInMilliseconds = 100L
+        when: 'lock anchor method with no timeout parameter is called'
+            objectUnderTest.lockAnchor(sessionId, dataspaceName, anchorName)
+        then: 'the persistence service method to lock anchor is invoked'
+            1 * mockCpsDataPersistenceService.lockAnchor(sessionId, dataspaceName, anchorName, someTimeoutInMilliseconds)
+    }
+
+    def 'unlock anchor' (){
+        given: 'session ID of session holding the lock'
+            def sessionID = 'some-sessionID'
+        when: 'unlock anchor method is called'
+            objectUnderTest.releaseLocks(sessionID)
+        then: 'the persistence service method to lock anchor is invoked'
+            1 * mockCpsDataPersistenceService.releaseLocks(sessionID)
+    }
 }
