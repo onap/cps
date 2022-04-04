@@ -22,6 +22,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.spockframework.spring.SpringBean
@@ -88,6 +89,20 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             0 * mockModuleStoreService.getYangSchemaResources(_, _)
     }
 
+    def 'Cache Hit: with invalid #scenario'() {
+        when: 'schema-set information is asked'
+            objectUnderTest.get(dataspaceName, schemaSetName)
+        then: 'an data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'module persistence is not invoked'
+            0 * mockModuleStoreService.getYangSchemaResources(_, _)
+        where: 'the following parameters are used'
+            scenario                        | dataspaceName                 | schemaSetName
+            'dataspace name'                | 'dataspace names with spaces' | 'schemaSetName'
+            'schema set name'               | 'dataspaceName'               | 'schema set name with spaces'
+            'dataspace and schema set name' | 'dataspace name with spaces'  | 'schema set name with spaces'
+    }
+
     def 'Cache Update: when no data exist in the cache'() {
         given: 'a schema set exists'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
@@ -99,7 +114,24 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             cachedValue.getModuleReferences() == yangTextSchemaSourceSet.getModuleReferences()
     }
 
-    def 'Cache Evict: remove when exist'() {
+    def 'Cache Update: with invalid #scenario'() {
+        given: 'a schema set exists'
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+        when: 'schema-set information is asked'
+            objectUnderTest.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet)
+        then: 'an data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'module persistence is not invoked'
+            0 * mockModuleStoreService.getYangSchemaResources(_, _)
+        where: 'the following parameters are used'
+            scenario                        | dataspaceName                 | schemaSetName
+            'dataspace name'                | 'dataspace names with spaces' | 'schemaSetName'
+            'schema set name'               | 'dataspaceName'               | 'schema set name with spaces'
+            'dataspace and schema set name' | 'dataspace name with spaces'  | 'schema set name with spaces'
+    }
+
+    def 'Cache Evict:with invalid #scenario'() {
         given: 'a schema set exists in cache'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
@@ -110,6 +142,18 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             objectUnderTest.removeFromCache('my-dataspace', 'my-schemaset')
         then: 'cached does not have value'
             assert getCachedValue('my-dataspace', 'my-schemaset') == null
+    }
+
+    def 'Cache Evict: remove when exist'() {
+        when: 'cache is evicted for schemaset'
+            objectUnderTest.removeFromCache(dataspaceName, schemaSetName)
+        then: 'an data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following parameters are used'
+            scenario                        | dataspaceName                 | schemaSetName
+            'dataspace name'                | 'dataspace names with spaces' | 'schemaSetName'
+            'schema set name'               | 'dataspaceName'               | 'schema set name with spaces'
+            'dataspace and schema set name' | 'dataspace name with spaces'  | 'schema set name with spaces'
     }
 
     def 'Cache Evict: remove when does not exist'() {

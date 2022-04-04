@@ -30,6 +30,7 @@ import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -77,18 +78,19 @@ public class DmiServiceUrlBuilder {
      * This method populates uri variables.
      *
      * @param yangModelCmHandle get dmi service name
-     * @param cmHandle          cm handle name for dmi registration
+     * @param cmHandleId        cm handle id for dmi registration
      * @return {@code String} dmi service url as string
      */
     public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
-                                                    final String cmHandle,
+                                                    final String cmHandleId,
                                                     final DmiOperations.DataStoreEnum dataStore) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
         uriVariables.put("dmiServiceName",
                 yangModelCmHandle.resolveDmiServiceName(DATA));
         uriVariables.put("dmiBasePath", dmiBasePath);
-        uriVariables.put("cmHandle", cmHandle);
+        uriVariables.put("cmHandle", cmHandleId);
         uriVariables.put("dataStore", dataStore.getValue());
         return uriVariables;
     }
