@@ -21,6 +21,7 @@ package org.onap.cps.spi.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -127,5 +128,17 @@ class CpsDataPersistenceServiceSpec extends Specification {
             objectUnderTest.closeSession(someSessionId)
         then: 'the session manager method to close session is invoked with parameter'
             1 * mockSessionManager.closeSession(someSessionId)
+    }
+
+    def 'Lock anchor.'(){
+        given: 'anchor entity details of anchor to lock'
+            def mySessionId = 'mySessionId'
+            def myDataspaceName = 'myDataspace'
+            def myAnchorName = 'myAnchor'
+            def someTimeoutInMilliseconds = 0L
+        when: 'lock anchor method is called'
+            objectUnderTest.lockAnchor(mySessionId, myDataspaceName, myAnchorName, someTimeoutInMilliseconds)
+        then: 'the session manager method to lock anchor is invoked with same parameters'
+            1 * mockSessionManager.lockAnchor(mySessionId, myDataspaceName, myAnchorName, someTimeoutInMilliseconds)
     }
 }
