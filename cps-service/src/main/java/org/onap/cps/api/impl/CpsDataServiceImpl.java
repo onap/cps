@@ -105,10 +105,10 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String parentNodeXpath,
         final String dataNodeUpdatesAsJson,
         final OffsetDateTime observedTimestamp) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates =
             buildDataNodes(dataspaceName, anchorName,
                 parentNodeXpath, dataNodeUpdatesAsJson);
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(dataspaceName, anchorName, dataNodeUpdate);
         }

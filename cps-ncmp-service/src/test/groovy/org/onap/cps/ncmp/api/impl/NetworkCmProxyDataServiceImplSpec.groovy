@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
@@ -84,6 +85,25 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
     }
 
+    def 'Write resource data for pass-through running from DMI using an invalid id.'() {
+        given: 'cpsDataService returns valid dataNode'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'DMI returns a response with 400 status code'
+            mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('invalid cm handle name',
+                'testResourceId', CREATE,
+                '{some-json}', 'application/json')
+                >> { new ResponseEntity<>(HttpStatus.BAD_REQUEST) }
+        when: 'write resource data is called'
+            objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('invalid cm handle name',
+                'testResourceId', CREATE,
+                '{some-json}', 'application/json')
+        then: 'exception is thrown'
+            def exception = thrown(DataValidationException.class)
+        and: 'details contains invalid token encountered'
+            exception.details.contains('invalid token encountered at position')
+    }
+
     def 'Write resource data for pass-through running from DMI using POST "not found" response (from DMI).'() {
         given: 'cpsDataService returns valid dataNode'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
@@ -124,6 +144,31 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     NO_TOPIC)
         then: 'DMI returns a json response'
             response == 'dmi-response'
+    }
+
+    def 'Get resource data for pass-through operational from DMI with invalid name.'() {
+        given: 'get data node is called'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'get resource data from DMI is called'
+            mockDmiDataOperations.getResourceDataFromDmi(
+                'invalid test cm handle',
+                'testResourceId',
+                OPTIONS_PARAM,
+                'testAcceptParam',
+                PASSTHROUGH_OPERATIONAL,
+                NO_REQUEST_ID,
+                NO_TOPIC) >> new ResponseEntity<>('dmi-response', HttpStatus.BAD_REQUEST)
+        when: 'get resource data operational for cm-handle is called'
+            objectUnderTest.getResourceDataOperationalForCmHandle('invalid test cm handle',
+                'testResourceId',
+                'testAcceptParam',
+                OPTIONS_PARAM,
+                NO_TOPIC)
+        then: 'A data validation Exception is thrown'
+            def exception = thrown(DataValidationException)
+        and: 'details contains invalid token encountered'
+            exception.details.contains('invalid token encountered at position')
     }
 
     def 'Get resource data for pass-through operational from DMI with Json Processing Exception.'() {
@@ -191,6 +236,31 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     NO_TOPIC)
         then: 'get resource data returns expected response'
             response == '{dmi-response}'
+    }
+
+    def 'Get resource data for pass-through running from DMI with invalid name.'() {
+        given: 'get data node is called'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'get resource data from DMI is called'
+            mockDmiDataOperations.getResourceDataFromDmi(
+                'invalid test cm handle',
+                'testResourceId',
+                OPTIONS_PARAM,
+                'testAcceptParam',
+                PASSTHROUGH_OPERATIONAL,
+                NO_REQUEST_ID,
+                NO_TOPIC) >> new ResponseEntity<>('dmi-response', HttpStatus.BAD_REQUEST)
+        when: 'get resource data operational for cm-handle is called'
+            objectUnderTest.getResourceDataPassThroughRunningForCmHandle('invalid test cm handle',
+                'testResourceId',
+                'testAcceptParam',
+                OPTIONS_PARAM,
+                NO_TOPIC)
+        then: 'A data validation Exception is thrown'
+            def exception = thrown(DataValidationException)
+        and: 'details contains invalid token encountered'
+            exception.details.contains('invalid token encountered at position')
     }
 
     def 'Get resource data for pass-through running from DMI return NOK response.'() {
@@ -272,7 +342,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations.getResourceDataFromDmi(_, _, _, _, _, NO_REQUEST_ID, NO_TOPIC)
                     >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called for data operational with valid topic'
-            def responseData = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
+            objectUnderTest.getResourceDataPassThroughRunningForCmHandle('',
                     '', '', '', emptyTopic)
         then: 'a invalid topic exception is thrown'
             thrown(InvalidTopicException)
@@ -289,6 +359,17 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cm-handle')
+    }
+
+    def 'Getting Yang Resources with an invalid #scenario.'() {
+        when: 'yang resources is called'
+            objectUnderTest.getYangResourcesModuleReferences('invalid cm handle with spaces')
+        then: 'CPS module services is invoked for the correct dataspace and cm handle'
+            0 * mockCpsModuleService.getYangResourcesModuleReferences(_, _)
+        and: 'a data validation exception is thrown'
+            def exception = thrown(DataValidationException)
+        and: 'details contains invalid token encountered'
+            exception.details.contains('invalid token encountered at position')
     }
 
     def 'Get cm handle identifiers for the given module names.'() {
@@ -312,6 +393,15 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result.dmiProperties ==[ Book:'Romance Novel' ]
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
 
+    }
+
+    def 'Get a cm handle with an invalid id.'() {
+        when: 'getting cm handle details for a given cm handle id with an invalid name'
+            objectUnderTest.getNcmpServiceCmHandle('invalid cm handle with spaces')
+        then: 'an exception is thrown'
+            def exception = thrown(DataValidationException)
+        and: 'details contains invalid token encountered'
+            exception.details.contains('invalid token encountered at position')
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

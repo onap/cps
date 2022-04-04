@@ -46,7 +46,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
         when: 'a new dataspace is created'
-            def dataspaceName = 'some new dataspace'
+            def dataspaceName = 'some-new-dataspace'
             objectUnderTest.createDataspace(dataspaceName)
         then: 'that dataspace can be retrieved from the dataspace repository'
             def dataspaceEntity = dataspaceRepository.findByName(dataspaceName).orElseThrow()
@@ -66,7 +66,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Create and retrieve a new anchor.'() {
         when: 'a new anchor is created'
-            def newAnchorName = 'my new anchor'
+            def newAnchorName = 'my-new-anchor'
             objectUnderTest.createAnchor(DATASPACE_NAME, SCHEMA_SET_NAME1, newAnchorName)
         then: 'that anchor can be retrieved'
             def anchor = objectUnderTest.getAnchor(DATASPACE_NAME, newAnchorName)
@@ -141,7 +141,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql(CLEAR_DATA)
     def 'Get all anchors in unknown dataspace.'() {
         when: 'attempt to get all anchors in an unknown dataspace'
-            objectUnderTest.getAnchors('unknown dataspace')
+            objectUnderTest.getAnchors('unknown-dataspace')
         then: 'an DataspaceNotFoundException is thrown'
             thrown(DataspaceNotFoundException)
     }

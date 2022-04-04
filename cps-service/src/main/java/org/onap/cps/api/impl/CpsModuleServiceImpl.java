@@ -101,18 +101,18 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String dataspaceName,
         final String anchorName) {
-        CpsValidator.validateNameCharacters(dataspaceName);
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName, anchorName);
-    }
-
-    private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
 
     @Override
     public Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck) {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
+    private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
+        return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }
 
 }
