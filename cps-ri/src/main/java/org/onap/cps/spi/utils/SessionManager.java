@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,10 +20,19 @@
 
 package org.onap.cps.spi.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.util.concurrent.TimeLimiter;
+import com.google.common.util.concurrent.UncheckedExecutionException;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
+import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
@@ -32,13 +41,18 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
+import org.onap.cps.spi.exceptions.SessionManagerException;
+import org.onap.cps.spi.exceptions.SessionTimeoutException;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
+@Slf4j
 @Component
 public class SessionManager {
 
+    private final TimeLimiterProvider timeLimiterProvider;
     private static SessionFactory sessionFactory;
-    private static Map<String, Session> sessionMap = new HashMap<>();
+    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
 
     private synchronized void buildSessionFactory() {
         if (sessionFactory == null) {
@@ -67,6 +81,7 @@ public class SessionManager {
 
     /**
      * Close session.
+     * Locks will be released and changes will be committed.
      *
      * @param sessionId session ID
      */
@@ -83,4 +98,60 @@ public class SessionManager {
         sessionMap.remove(sessionId);
     }
 
+    /**
+     * Lock Anchor.
+     *
+     * @param sessionId session ID
+     * @param anchorId anchor ID
+     * @param timeoutInMilliseconds lock attempt timeout in milliseconds
+     */
+    public void lockAnchor(final String sessionId, final int anchorId, final Long timeoutInMilliseconds) {
+        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        final TimeLimiter timeLimiter = timeLimiterProvider.getTimeLimiter(executorService);
+
+        try {
+            timeLimiter.callWithTimeout(() -> {
+                applyPessimisticWriteLockOnAnchor(sessionId, anchorId);
+                return null;
+            }, timeoutInMilliseconds, TimeUnit.MILLISECONDS);
+        } catch (final TimeoutException e) {
+            throw new SessionTimeoutException(
+                    "Timeout: Anchor locking prohibited",
+                    "The error could be caused by another session holding a lock on the specified table. "
+                            + "Retrying the sending the request could be required.");
+        } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new SessionManagerException("Operation interrupted", "This thread was interrupted. ", e);
+        } catch (final ExecutionException | UncheckedExecutionException e) {
+            throw new SessionManagerException(
+                    "Operation Aborted",
+                    "The transaction request was aborted. "
+                            + "Retrying and checking all details are correct could be required", e);
+        } finally {
+            log.info("SHUTTING DOWN SERVICE");
+            executorService.shutdownNow();
+        }
+    }
+
+    private void applyPessimisticWriteLockOnAnchor(final String sessionId, final int anchorId) {
+        final Session session = sessionMap.get(sessionId);
+        log.debug("Attempting to apply lock anchor with anchor ID {} held by session {}", anchorId, sessionId);
+        session.get(AnchorEntity.class, anchorId, LockMode.PESSIMISTIC_WRITE);
+        log.info("Anchor with ID {} successfully locked", anchorId);
+    }
+
+    /**
+     * Release all locks by committing current transaction.
+     * A new transaction within the same session will be started for further operations.
+     *
+     * @param sessionId session ID
+     */
+    public void releaseLocks(final String sessionId) {
+        final Session currentSession = sessionMap.get(sessionId);
+        log.debug("Attempting to release locks held by session with session ID {} by committing transaction",
+                sessionId);
+        currentSession.getTransaction().commit();
+        currentSession.getTransaction().begin();
+        log.info("Locks successfully released. Transaction committed and restarted.");
+    }
 }
