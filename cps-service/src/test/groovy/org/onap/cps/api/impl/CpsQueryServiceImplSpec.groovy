@@ -22,6 +22,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
 class CpsQueryServiceImplSpec extends Specification {
@@ -45,4 +46,19 @@ class CpsQueryServiceImplSpec extends Specification {
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
     }
+
+    def 'Query data nodes by cps path with invalid #scenario.'() {
+        when: 'queryDataNodes is invoked'
+            objectUnderTest.queryDataNodes(dataspaceName, anchorName, '/cps-path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service is not invoked'
+            0 * mockCpsDataPersistenceService.queryDataNodes(_, _, _, _)
+        where: 'the following parameters are used'
+            scenario                     | dataspaceName                 | anchorName
+            'dataspace name'             | 'dataspace names with spaces' | 'anchorName'
+            'anchor name'                | 'dataspaceName'               | 'anchor name with spaces'
+            'dataspace and anchor name'  | 'dataspace name with spaces'  | 'anchor name with spaces'
+    }
+
 }
