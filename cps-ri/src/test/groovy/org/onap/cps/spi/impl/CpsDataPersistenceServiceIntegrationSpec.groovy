@@ -617,4 +617,28 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .build()
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Lock anchor.'(){
+        given: 'correct anchor entity details to lock and session Id'
+            def sessionId = objectUnderTest.startSession()
+            def dataspaceName = 'DATASPACE-001'
+            def anchorName = 'ANCHOR-001'
+            def someTimeoutInMilliseconds = 10L
+        when: 'lock anchor method with timeout parameter is called'
+            objectUnderTest.lockAnchor(sessionId, dataspaceName, anchorName, someTimeoutInMilliseconds)
+        then: 'no exception is thrown and session is closed'
+            noExceptionThrown()
+            objectUnderTest.closeSession(sessionId)
+    }
+
+    def 'Unlock anchor.'(){
+        given: 'session Id of the session that holds the anchor lock'
+            def sessionId = objectUnderTest.startSession()
+        when: 'release locks method is called'
+            objectUnderTest.releaseLocks(sessionId)
+        then: 'no exception is thrown and session is closed'
+            noExceptionThrown()
+            objectUnderTest.closeSession(sessionId)
+    }
+
 }
