@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,11 +21,16 @@
 package org.onap.cps.spi.utils
 
 import org.hibernate.SessionException
+import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
+import org.springframework.test.context.jdbc.Sql
+import com.google.common.util.concurrent.TimeLimiter;
 
 class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
 
-    def objectUnderTest = new SessionManager();
+    final static String SET_DATA = '/data/anchor.sql'
+    TimeLimiterProvider timeLimiterProvider = Spy(TimeLimiterProvider)
+    SessionManager objectUnderTest = new SessionManager(timeLimiterProvider)
 
     def 'start session'() {
         when: 'start session'
@@ -53,4 +58,78 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
             def thrown = thrown(SessionException)
             assert thrown.message.contains(unknownSessionId)
     }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'lock anchor entity'(){
+        given: 'anchor entity details of anchor to lock'
+            def sessionId = objectUnderTest.startSession()
+            def anchorId = 3001
+            def someTimeoutInMilliseconds = 100L
+        when: 'session tries to acquire anchor lock'
+            objectUnderTest.lockAnchor(sessionId,anchorId,someTimeoutInMilliseconds)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+            objectUnderTest.closeSession(sessionId)
+    }
+
+    def 'lock anchor entity with Interrupted exception'(){
+        given: 'timeLimiter throws an interrupted exception'
+            def mockTimeLimiter = Mock(TimeLimiter)
+            timeLimiterProvider.getTimeLimiter(_) >> mockTimeLimiter
+            mockTimeLimiter.callWithTimeout(*_) >> { throw new InterruptedException() }
+        when: 'session tries to acquire anchor lock'
+            objectUnderTest.lockAnchor('',0,0L)
+        then: 'no exception is thrown'
+            def thrown = thrown(SessionManagerException)
+            thrown.details.contains('interrupted')
+    }
+
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'attempt to lock anchor entity with invalid sessionId'(){
+        given: 'anchor entity details of anchor to lock'
+            def sessionId = 'invalid-sessionId'
+            def anchorId = 3001
+            def someTimeoutInMilliseconds = 100L
+        when: 'session tries to acquire anchor lock'
+            objectUnderTest.lockAnchor(sessionId,anchorId,someTimeoutInMilliseconds)
+        then: 'exception is thrown'
+            def thrown = thrown(SessionManagerException)
+            thrown.details.contains('aborted')
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'attempt to lock anchor entity when another is holding the lock'(){
+        given: 'a session that holds an anchor lock'
+            def sessionId = objectUnderTest.startSession()
+            def anchorId = 3001
+            def someTimeoutInMilliseconds = 100L
+            objectUnderTest.lockAnchor(sessionId,anchorId,someTimeoutInMilliseconds)
+        when: 'another session tries to acquire anchor lock'
+            def sessionId2 = objectUnderTest.startSession()
+            objectUnderTest.lockAnchor(sessionId2,anchorId,someTimeoutInMilliseconds)
+        then: 'exception is thrown'
+            def thrown = thrown(SessionManagerException)
+            thrown.message.contains('Timeout')
+            objectUnderTest.closeSession(sessionId)
+            objectUnderTest.closeSession(sessionId2)
+    }
+
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'unlock anchor'(){
+        given: 'anchorEntity that is locked'
+            def sessionId = objectUnderTest.startSession()
+            def sessionId2 = objectUnderTest.startSession()
+            def anchorId = 3001
+            def someTimeoutInMilliseconds = 100L
+            objectUnderTest.lockAnchor(sessionId,anchorId,someTimeoutInMilliseconds)
+            objectUnderTest.releaseLocks(sessionId)
+        when: 'session tries to release lock held by session'
+            objectUnderTest.lockAnchor(sessionId2,anchorId,someTimeoutInMilliseconds)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+            objectUnderTest.closeSession(sessionId2)
+    }
+
 }
