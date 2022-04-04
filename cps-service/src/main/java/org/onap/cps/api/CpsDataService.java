@@ -189,4 +189,26 @@ public interface CpsDataService {
      *
      */
     void closeSession(String sessionId);
+
+    /**
+     * Lock anchor with default timeout.
+     * To release locks(s), the session holding the lock(s) must be closed.
+     *
+     * @param sessionID session ID
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     */
+    void lockAnchor(String sessionID, String dataspaceName, String anchorName);
+
+    /**
+     * Lock anchor with custom timeout.
+     * To release locks(s), the session holding the lock(s) must be closed.
+     *
+     * @param sessionID session ID
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param timeoutInMilliseconds lock attempt timeout in milliseconds
+     */
+    void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
 }
