@@ -161,4 +161,21 @@ public interface CpsDataPersistenceService {
      * @param sessionId session ID
      */
     void closeSession(String sessionId);
+
+    /**
+     * Lock anchor.
+     *
+     * @param sessionID session ID
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param timeoutInMilliseconds lock attempt timeout in milliseconds
+     */
+    void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    /**
+     * Release locks held by session by committing transactions (commit changes).
+     *
+     * @param sessionID session ID
+     */
+    void releaseLocks(String sessionID);
 }

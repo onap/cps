@@ -54,6 +54,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final NotificationService notificationService;
 
+    private static final long DEFAULT_LOCK_ATTEMPT_TIMEOUT = 100;
+
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
         final OffsetDateTime observedTimestamp) {
@@ -124,6 +126,22 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void closeSession(final String sessionId) {
         cpsDataPersistenceService.closeSession(sessionId);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName, final String anchorName) {
+        lockAnchor(sessionID, dataspaceName, anchorName, DEFAULT_LOCK_ATTEMPT_TIMEOUT);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName,
+                           final String anchorName, final Long timeoutInMilliseconds) {
+        cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public void releaseLocks(final String sessionId) {
+        cpsDataPersistenceService.releaseLocks(sessionId);
     }
 
     @Override
