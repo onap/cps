@@ -212,6 +212,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         sessionManager.closeSession(sessionId);
     }
 
+    @Override
+    public void lockAnchor(final String sessionId, final String dataspaceName,
+                            final String anchorName, final Long timeoutInMilliseconds) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final int anchorId = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName).getId();
+        sessionManager.lockAnchor(sessionId, anchorId, timeoutInMilliseconds);
+    }
+
+    @Override
+    public void releaseLocks(final String sessionId) {
+        sessionManager.releaseLocks(sessionId);
+    }
+
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
         final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();

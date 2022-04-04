@@ -126,6 +126,22 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName, final String anchorName) {
+        lockAnchor(sessionID, dataspaceName, anchorName, 100L);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName,
+                           final String anchorName, final Long timeoutInMilliseconds) {
+        cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public void releaseLocks(final String sessionId) {
+        cpsDataPersistenceService.releaseLocks(sessionId);
+    }
+
+    @Override
     public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
