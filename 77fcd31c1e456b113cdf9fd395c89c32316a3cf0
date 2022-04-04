@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "786984c2_1ba8dbbd",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T08:58:14Z",
+      "side": 1,
+      "message": "Please add a better title",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "238a3522_892713e6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T08:58:14Z",
+      "side": 1,
+      "message": "This could be called directly from the method above as it simply returns the wrapped object so calling buildErrorResponse simply to return is inefficient.",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5171550_20fbadee",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T08:58:14Z",
+      "side": 1,
+      "message": "I don\u0027t think this file needs to be edited (?)\nIf it does then it missing copyright and copyright modifications. However, I don\u0027t think it is necessary to update - can someone please let me know if I am wrong.",
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
