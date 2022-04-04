@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d73be87c_3c30135b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "16a28770_8d9db3ce",
+      "range": {
+        "startLine": 73,
+        "startChar": 3,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6970b36_85b7560f",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4119044e_944ca61f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6970b36_85b7560f",
+      "range": {
+        "startLine": 119,
+        "startChar": 105,
+        "endLine": 119,
+        "endChar": 114
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6889e98_c116f8cc",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -83,6 +131,30 @@
       "writtenOn": "2022-04-04T10:30:00Z",
       "side": 1,
       "message": "why are you change the datastore, seems not relevant to this test?!\nAlso does this test duplicate overlap the test starting on line #98\n\nI suspect we need 2 very similar look test (probably directly after each other for each datastore) or just ONE method using both datastore with paramater like done here but cover 4-topic scenarios for 2 datasore scenarios, so 8 rows in the where...",
+      "range": {
+        "startLine": 301,
+        "startChar": 53,
+        "endLine": 301,
+        "endChar": 79
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e47aa15f_b72b0bdc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "Yes it was duplicated. As it can be covered into previous test I merged both where and created 14 rows, 7 for each data resource.",
+      "parentUuid": "e6889e98_c116f8cc",
       "range": {
         "startLine": 301,
         "startChar": 53,
@@ -112,6 +184,24 @@
     },
     {
       "key": {
+        "uuid": "d406b2e0_bdc559c4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "It would take null as string if we include it with url and assign a topic name \u003d \u0027null\u0027 as string",
+      "parentUuid": "7b73bbc9_9150237f",
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2515f79_ca495f57",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -135,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "d2de9746_2d4b26f4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2515f79_ca495f57",
+      "range": {
+        "startLine": 322,
+        "startChar": 14,
+        "endLine": 322,
+        "endChar": 15
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d948059_bcd0e0bf",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -155,6 +269,30 @@
       "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4fb6b50_65c6affb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-04T12:52:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d948059_bcd0e0bf",
+      "range": {
+        "startLine": 335,
+        "startChar": 32,
+        "endLine": 335,
+        "endChar": 47
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
