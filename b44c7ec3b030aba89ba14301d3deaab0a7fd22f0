@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fa6a05d_770e9a75",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:38:20Z",
+      "side": 1,
+      "message": "Correct indentation",
+      "range": {
+        "startLine": 311,
+        "startChar": 39,
+        "endLine": 311,
+        "endChar": 41
+      },
+      "revId": "b44c7ec3b030aba89ba14301d3deaab0a7fd22f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
