@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "26dcb4d8_c84fdc00",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6da3be6_ac9b0f0b",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b683f7f0_6ee8dd1f",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2022-04-04T13:36:09Z",
       "side": 1,
       "message": "variable is \"wasWrappedInDoubleQuote\" but only checking if it starts with one but not end with one.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 100
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a01d7a6_df4c42b4",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "The intention is to check whether the input is wrapped inside double quotes. So in the exitLeafCondition() if it starts with double quotes then we assume that the string literal is wrapped inside the double quotes so we need to escape it to save the value with double quotes in the DB.",
+      "parentUuid": "b683f7f0_6ee8dd1f",
       "range": {
         "startLine": 66,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "53ccd601_0743b66f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e0cc721_bcf201cb",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b0d36c1_5e0f89a4",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "82b719add12a660da138721fdcd82cea0e469446",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5fb4ebc_d21e6111",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b0d36c1_5e0f89a4",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3d0b2742_4d48a9ee",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dde61435_d0585b52",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 35
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e60b834b_7238eef8",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "318231ab_85c29ab4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e60b834b_7238eef8",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd9630aa_f54bda0c",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "82b719add12a660da138721fdcd82cea0e469446",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df030435_c0de495d",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-04T14:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9630aa_f54bda0c",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 41
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
