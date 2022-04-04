@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6da3be6_ac9b0f0b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Modify Copyright 2021-2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b683f7f0_6ee8dd1f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "variable is \"wasWrappedInDoubleQuote\" but only checking if it starts with one but not end with one.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 100
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e0cc721_bcf201cb",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Just 2022 if it is a new file created this year",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b0d36c1_5e0f89a4",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Remove comments (and add test)",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde61435_d0585b52",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 35
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e60b834b_7238eef8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Modify copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9630aa_f54bda0c",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T13:36:09Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 41
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
