@@ -188,27 +188,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return ncmpServiceCmHandle;
     }
 
-    private void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
-                                  final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
-        asPropertiesMap(dmiProperties, dmiPropertiesMap);
-        ncmpServiceCmHandle.setDmiProperties(dmiPropertiesMap);
-    }
-
-    private void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,
-                                     final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> publicPropertiesMap = new LinkedHashMap<>();
-        asPropertiesMap(publicProperties, publicPropertiesMap);
-        ncmpServiceCmHandle.setPublicProperties(publicPropertiesMap);
-    }
-
-    private void asPropertiesMap(final List<YangModelCmHandle.Property> properties,
-                                 final Map<String, String> propertiesMap) {
-        for (final YangModelCmHandle.Property property: properties) {
-            propertiesMap.put(property.getName(), property.getValue());
-        }
-    }
-
     /**
      * THis method registers a cm handle and initiates modules sync.
      *
@@ -217,46 +196,24 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
         final DmiPluginRegistration dmiPluginRegistration) {
-        return dmiPluginRegistration.getCreatedCmHandles().stream()
-            .map(cmHandle ->
-                YangModelCmHandle.toYangModelCmHandle(
-                    dmiPluginRegistration.getDmiPlugin(),
-                    dmiPluginRegistration.getDmiDataPlugin(),
-                    dmiPluginRegistration.getDmiModelPlugin(), cmHandle)
-            )
-            .map(this::registerAndSyncNewCmHandle)
-            .collect(Collectors.toList());
-    }
-
-    private static Object handleResponse(final ResponseEntity<?> responseEntity,
-                                         final String exceptionMessage) {
-        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            return responseEntity.getBody();
-        } else {
-            throw new ServerNcmpException(exceptionMessage,
-                    "DMI status code: " + responseEntity.getStatusCodeValue()
-                            + ", DMI response body: " + responseEntity.getBody());
-        }
-    }
-
-    private CmHandleRegistrationResponse registerAndSyncNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
+        List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
-            CpsValidator.validateNameCharacters(yangModelCmHandle.getId());
-            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
-                jsonObjectMapper.asJsonString(yangModelCmHandle));
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                cmHandleJsonData, NO_TIMESTAMP);
-            syncModulesAndCreateAnchor(yangModelCmHandle);
-            return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
-        } catch (final AlreadyDefinedException alreadyDefinedException) {
-            return CmHandleRegistrationResponse.createFailureResponse(
-                yangModelCmHandle.getId(), RegistrationError.CM_HANDLE_ALREADY_EXIST);
+            cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
+                .map(cmHandle ->
+                    YangModelCmHandle.toYangModelCmHandle(
+                        dmiPluginRegistration.getDmiPlugin(),
+                        dmiPluginRegistration.getDmiDataPlugin(),
+                        dmiPluginRegistration.getDmiModelPlugin(), cmHandle)
+                )
+                .map(this::registerAndSyncNewCmHandle)
+                .collect(Collectors.toList());
         } catch (final DataValidationException dataValidationException) {
-            return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(),
-                RegistrationError.CM_HANDLE_INVALID_ID);
-        } catch (final Exception exception) {
-            return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
+            cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
+                    .getCreatedCmHandles().stream()
+                    .map(NcmpServiceCmHandle::getCmHandleID).findFirst().orElse(null),
+                RegistrationError.CM_HANDLE_INVALID_ID));
         }
+        return cmHandleRegistrationResponses;
     }
 
     protected void syncModulesAndCreateAnchor(final YangModelCmHandle yangModelCmHandle) {
@@ -366,4 +323,54 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 dataStore, NO_REQUEST_ID, NO_TOPIC);
         return handleResponse(responseEntity, "Not able to get resource data.");
     }
+
+    private void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
+                                  final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
+        asPropertiesMap(dmiProperties, dmiPropertiesMap);
+        ncmpServiceCmHandle.setDmiProperties(dmiPropertiesMap);
+    }
+
+    private void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,
+                                     final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final Map<String, String> publicPropertiesMap = new LinkedHashMap<>();
+        asPropertiesMap(publicProperties, publicPropertiesMap);
+        ncmpServiceCmHandle.setPublicProperties(publicPropertiesMap);
+    }
+
+    private void asPropertiesMap(final List<YangModelCmHandle.Property> properties,
+                                 final Map<String, String> propertiesMap) {
+        for (final YangModelCmHandle.Property property: properties) {
+            propertiesMap.put(property.getName(), property.getValue());
+        }
+    }
+
+
+    private CmHandleRegistrationResponse registerAndSyncNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
+        try {
+            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
+                jsonObjectMapper.asJsonString(yangModelCmHandle));
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandleJsonData, NO_TIMESTAMP);
+            syncModulesAndCreateAnchor(yangModelCmHandle);
+            return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
+        } catch (final AlreadyDefinedException alreadyDefinedException) {
+            return CmHandleRegistrationResponse.createFailureResponse(
+                yangModelCmHandle.getId(), RegistrationError.CM_HANDLE_ALREADY_EXIST);
+        } catch (final Exception exception) {
+            return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
+        }
+    }
+
+    private static Object handleResponse(final ResponseEntity<?> responseEntity,
+                                         final String exceptionMessage) {
+        if (responseEntity.getStatusCode().is2xxSuccessful()) {
+            return responseEntity.getBody();
+        } else {
+            throw new ServerNcmpException(exceptionMessage,
+                "DMI status code: " + responseEntity.getStatusCodeValue()
+                    + ", DMI response body: " + responseEntity.getBody());
+        }
+    }
+
 }

@@ -24,6 +24,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import spock.lang.Specification
 import java.time.OffsetDateTime
@@ -40,11 +41,29 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
     }
 
+    def 'Create a dataspace with an invalid dataspace name.'() {
+        when: 'create dataspace method is invoked with incorrectly named dataspace'
+            objectUnderTest.createDataspace('Dataspace Name with spaces')
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service method is not invoked'
+            0 * mockCpsAdminPersistenceService.createDataspace(_)
+    }
+
     def 'Create anchor method invokes persistence service.'() {
         when: 'create anchor method is invoked'
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
         then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
+    }
+
+    def 'Create an anchor with an invalid anchor name.'() {
+        when: 'create anchor method is invoked with incorrectly named dataspace'
+            objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'Anchor Name With Spaces')
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service method is not invoked'
+            0 * mockCpsAdminPersistenceService.createAnchor(_, _, _)
     }
 
     def 'Retrieve all anchors for dataspace.'() {
@@ -55,6 +74,15 @@ class CpsAdminServiceImplSpec extends Specification {
             objectUnderTest.getAnchors('someDataspace') == anchors
     }
 
+    def 'Retrieve all anchors with an invalid dataspace name.'() {
+        when: 'get anchors is invoked with an invalid dataspace name'
+            objectUnderTest.getAnchors('Dataspace name with spaces')
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'cps admin persistence get anchors is not invoked'
+            0 * mockCpsAdminPersistenceService.getAnchors(_)
+    }
+
     def 'Retrieve all anchors for schema-set.'() {
         given: 'that anchor is associated with the dataspace and schemaset'
             def anchors = [new Anchor()]
@@ -62,6 +90,20 @@ class CpsAdminServiceImplSpec extends Specification {
         expect: 'the collection provided by persistence service is returned as result'
             objectUnderTest.getAnchors('someDataspace', 'someSchemaSet') == anchors
     }
+    def 'Retrieve all anchors for schema-set with invalid #scenario.'() {
+        when: 'the collection provided by persistence service is returned as result'
+            objectUnderTest.getAnchors(dataspaceName, schemaSetName)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'cps admin persistence get anchors is not invoked'
+            0 * mockCpsAdminPersistenceService.getAnchors(_, _)
+        where: 'the following parameters are used'
+            scenario                         | dataspaceName                 | schemaSetName
+            'dataspace name'                 | 'dataspace names with spaces' | 'schemaSetName'
+            'schema set name'                | 'dataspaceName'               | 'schema set name with spaces'
+            'dataspace and schema set name'  | 'dataspace name with spaces'  | 'schema set name with spaces'
+    }
+
 
     def 'Retrieve anchor for dataspace and provided anchor name.'() {
         given: 'that anchor name is associated with the dataspace'
@@ -69,6 +111,20 @@ class CpsAdminServiceImplSpec extends Specification {
             mockCpsAdminPersistenceService.getAnchor('someDataspace','someAnchor') >>  anchor
         expect: 'the anchor provided by persistence service is returned as result'
             assert objectUnderTest.getAnchor('someDataspace','someAnchor') == anchor
+    }
+
+    def 'Retrieve anchor with invalid #scenario.'() {
+        when: 'get anchors is invoked with an invalid dataspace name'
+            objectUnderTest.getAnchor(dataspaceName, anchorName)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'cps admin persistence get anchor is not invoked'
+            0 * mockCpsAdminPersistenceService.getAnchor(_, _)
+        where: 'the following parameters are used'
+            scenario                     | dataspaceName                 | anchorName
+            'dataspace name'             | 'dataspace names with spaces' | 'anchorName'
+            'anchor name'                | 'dataspaceName'               | 'anchor name with spaces'
+            'dataspace and anchor name'  | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Delete anchor.'() {
@@ -80,6 +136,22 @@ class CpsAdminServiceImplSpec extends Specification {
              1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
     }
 
+    def 'Delete anchor with invalid #scenario.'() {
+        when: 'delete anchor is invoked'
+            objectUnderTest.deleteAnchor(dataspaceName, anchorName)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'delete data nodes is invoked on the data service with expected parameters'
+            0 * mockCpsDataService.deleteDataNodes(_,_, _ as OffsetDateTime )
+        and: 'the persistence service method is invoked with same parameters to delete anchor'
+            0 * mockCpsAdminPersistenceService.deleteAnchor(_,_)
+        where: 'the following parameters are used'
+            scenario                     | dataspaceName                 | anchorName
+            'dataspace name'             | 'dataspace names with spaces' | 'anchorName'
+            'anchor name'                | 'dataspaceName'               | 'anchor name with spaces'
+            'dataspace and anchor name'  | 'dataspace name with spaces'  | 'anchor name with spaces'
+    }
+
     def 'Query all anchor identifiers for a dataspace and module names.'() {
         given: 'the persistence service is invoked with the expected parameters and returns a list of anchors'
             mockCpsAdminPersistenceService.queryAnchors('some-dataspace-name', ['some-module-name']) >> [new Anchor(name:'some-anchor-identifier')]
@@ -88,11 +160,29 @@ class CpsAdminServiceImplSpec extends Specification {
 
     }
 
+    def 'Query all anchor identifiers for a dataspace and module names with an invalid dataspace name.'() {
+        when: 'delete anchor is invoked'
+            objectUnderTest.queryAnchorNames('some dataspace name', _ as Collection<String>)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'delete data nodes is not invoked'
+            0 * mockCpsAdminPersistenceService.queryAnchors(_, _)
+    }
+
     def 'Delete dataspace.'() {
         when: 'delete dataspace is invoked'
             objectUnderTest.deleteDataspace('someDataspace')
         then: 'associated persistence service method is invoked with correct parameter'
             1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
+    }
+
+    def 'Delete dataspace with invalid dataspace id.'() {
+        when: 'delete dataspace is invoked'
+            objectUnderTest.deleteDataspace('some dataspace name')
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'associated persistence service method is not invoked'
+            0 * mockCpsAdminPersistenceService.deleteDataspace(_)
     }
 
 }
