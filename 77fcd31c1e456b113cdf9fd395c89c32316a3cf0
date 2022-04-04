@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4eac349a_89c0459f",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-04T11:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "786984c2_1ba8dbbd",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "238a3522_892713e6",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
         "patchSetId": 10
@@ -69,6 +93,30 @@
       "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "617a622a_ccec8679",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-04T11:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64b0a161_e0013b98",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "77fcd31c1e456b113cdf9fd395c89c32316a3cf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
