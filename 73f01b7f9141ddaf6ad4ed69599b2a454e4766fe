@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95575451_9d99b718",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T14:06:50Z",
+      "side": 0,
+      "message": "Just for my info. Are we no longer accepting spaces in cm handles. If so, is it documented?",
+      "range": {
+        "startLine": 54,
+        "startChar": 45,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "73f01b7f9141ddaf6ad4ed69599b2a454e4766fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
