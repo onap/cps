@@ -83,4 +83,8 @@ public class SessionManager {
         sessionMap.remove(sessionId);
     }
 
+    public static Session getSessionById(String sessionId){
+        return sessionMap.get(sessionId);
+    }
+
 }

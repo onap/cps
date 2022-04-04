@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -63,6 +64,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final DataNode newDataNode = new DataNodeBuilder().build()
     static DataNode existingDataNode
     static DataNode existingChildDataNode
+
+    static final sessionManager = new SessionManager();
 
     def expectedLeavesByXpathMap = [
             '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
@@ -615,6 +618,61 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .withXpath("${parentXPath}/${tag}-grand-child")
             .withLeaves([attr1: tag])
             .build()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'lock anchor entity inside a session'(){
+        given: 'two different sessions'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+
+            //the first session is closed after 60 seconds to release lock and commit changes
+            def timer = new Timer()
+            timer.runAfter(60000){
+                println("Closing first transaction")
+                sessionManager.closeSession(sessionId)
+            }
+        when: 'lock anchor method is invoked from both sessions'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+        then: 'no exception is thrown as second session waited for the lock'
+            noExceptionThrown()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'lock anchor entity inside a session and update anchor'(){
+        given: 'two different sessions'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+
+            //the first session is closed after 60 seconds
+            def timer = new Timer()
+            timer.runAfter(60000){
+                println("Closing first transaction")
+                sessionManager.closeSession(sessionId)
+            }
+        when: 'lock anchor method is invoked from both sessions'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.updateAnchor('DATASPACE-001','ANCHOR-001')
+
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+            objectUnderTest.updateAnchor('DATASPACE-001','ANCHOR-001') //second session will try revert it back to the original state before first session was committed
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'unlock anchor entity from session'(){
+        given: 'two different sessions'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+
+        when: 'lock anchor method is invoked from both sessions'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.unlockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+        then: 'no exception is thrown'
+            noExceptionThrown()
     }
 
 }

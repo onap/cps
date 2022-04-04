@@ -161,4 +161,13 @@ public interface CpsDataPersistenceService {
      * @param sessionId session ID
      */
     void closeSession(String sessionId);
+
+    //POC
+    void lockAnchor(String dataspaceName, String anchorName, String sessionID);
+
+    //POC
+    void unlockAnchor(String dataspaceName, String anchorName, String sessionID);
+
+    //POC
+    void updateAnchor(String dataspaceName, String anchorName);
 }
