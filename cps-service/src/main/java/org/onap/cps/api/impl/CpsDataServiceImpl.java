@@ -48,6 +48,7 @@ import org.springframework.stereotype.Service;
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
+    private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsAdminService cpsAdminService;
@@ -123,6 +124,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void closeSession(final String sessionId) {
         cpsDataPersistenceService.closeSession(sessionId);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName, final String anchorName) {
+        lockAnchor(sessionID, dataspaceName, anchorName, DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS);
+    }
+
+    @Override
+    public void lockAnchor(final String sessionID, final String dataspaceName,
+                           final String anchorName, final Long timeoutInMilliseconds) {
+        cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
     }
 
     @Override
