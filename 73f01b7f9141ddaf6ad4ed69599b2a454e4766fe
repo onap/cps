@@ -22,6 +22,30 @@
       "revId": "73f01b7f9141ddaf6ad4ed69599b2a454e4766fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f668b4e_cf82cd05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-04T15:37:32Z",
+      "side": 0,
+      "message": "spaces are no longer accepted within cm-handles. I will document this.",
+      "parentUuid": "95575451_9d99b718",
+      "range": {
+        "startLine": 54,
+        "startChar": 45,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "73f01b7f9141ddaf6ad4ed69599b2a454e4766fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
