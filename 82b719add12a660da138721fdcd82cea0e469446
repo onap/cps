@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8475eedd_2c71a9a8",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "agreed, the parse will have checked (have passed) so there is no need to check last token here",
+      "parentUuid": "2a01d7a6_df4c42b4",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 100
+      },
+      "revId": "82b719add12a660da138721fdcd82cea0e469446",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e0cc721_bcf201cb",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
         "patchSetId": 2

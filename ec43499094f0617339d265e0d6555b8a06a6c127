@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83f2ace0_e5dac5d7",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "suggestion: maybe we should add \u0027Builder\u0027 to the name...",
+      "range": {
+        "startLine": 45,
+        "startChar": 24,
+        "endLine": 45,
+        "endChar": 47
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f07a8e1_d35fc5d7",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "i wonder should this not be in an else block below ie. when NOT \u0027processingAncestorAxis\u0027\n(not 100% suer though)",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cbbf327_c4b6e6af",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "a lot of duplication!\nextract out a small method that takes in a parameter which is the \u0027currentNormalizedPath\u0027\n\nso above comment combined expect something like this:\n\n\n if ((processingAncestorAxis) }\n    appendCondition(normalizedXpath) \n } else {\n    appendCondition(normalizedAncestorpath) \n\n } \n\nprivate void appenCondition(Stringbuilder currentNormlizedPathBuilder, String name, String value) {\n   final char lastCharacter \u003d currentNormlizedPathBuilder.charAt(stringBuilder.length()-1);\n   normalizedAncestorpath.append(lastCharacter\u003d\u003d\u0027[\u0027 ? \"\" : \" and \")\n                    .append(\"@\")\n                    .append(name)\n                    .append(\"\u003d\u0027\")\n                    .append(value)\n                    .append(\"\u0027\");\n}",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7fc5c34_1d9c27e6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "need a check here too \nalthough it might be better to refactor the parse rules (.g4) itself and then you need to add [ only in 1 place)\n\nlines 41 and 43:\n\nlistElementRef :  OB leafCondition ( KW_AND leafCondition)* CB ;\n\nmultipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;\n\nshould be refactored like this:\n\nmultipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;\n\nlistElementRef :  multipleLeafConditions ;\n\n\nyou need to do a clean install in maven then to generate the relevant code\nThen you OMNLY need to add [ annd ] when entering/exiting the mutlipleLeafCondition ie. it wil be re-used in both scenarios if you know what I mean....\n\nI was tryign to get you on Teams but mayeb we can talk tomorrow",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e424524_4a9eade0",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "no need for this check here (look at the method name :-))",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 37
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a18212_a65670dc",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:26:24Z",
+      "side": 1,
+      "message": "for future proofing you shoudl set processinAncestorAxis to false here...",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 9
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
