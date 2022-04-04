@@ -51,7 +51,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     @Shared
-    def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleID: 'some-cm-handle-id')
 
     @Shared
     def cmHandlesArray = ['cmHandle001']

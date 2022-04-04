@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -71,6 +72,7 @@ public class DmiDataOperations extends DmiOperations {
                                                          final DataStoreEnum dataStore,
                                                          final String requestId,
                                                          final String topicParamInQuery) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
                 yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
@@ -104,6 +106,7 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final OperationEnum operation,
                                                                              final String requestData,
                                                                              final String dataType) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
