@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92628f9a_9fbe3bea",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T12:41:55Z",
+      "side": 1,
+      "message": "since only one type is handled her we can have a specific signature and use HttpClientRequestException (use for name too!)",
+      "range": {
+        "startLine": 73,
+        "startChar": 74,
+        "endLine": 73,
+        "endChar": 84
+      },
+      "revId": "74bed659fb3e791c8eec88196c28f7ea44087777",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f01bc80e_3cae4b89",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T12:41:55Z",
+      "side": 1,
+      "message": "Given the previous comment I think this can be HttpClientRequestException again",
+      "range": {
+        "startLine": 107,
+        "startChar": 98,
+        "endLine": 107,
+        "endChar": 108
+      },
+      "revId": "74bed659fb3e791c8eec88196c28f7ea44087777",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5753ea3_3d46bb32",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T12:41:55Z",
+      "side": 1,
+      "message": "not need anymore based on prv. comments",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 59
+      },
+      "revId": "74bed659fb3e791c8eec88196c28f7ea44087777",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
