@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7409534d_55dfcd33",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T11:29:15Z",
+      "side": 1,
+      "message": "rename one of the clashing classes, we can have a chat bout which pattern to use",
+      "range": {
+        "startLine": 209,
+        "startChar": 16,
+        "endLine": 209,
+        "endChar": 68
+      },
+      "revId": "d3a5209a046fc6ca3b9e8aa1ec4edaefaa24bb60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "479e9dd9_36173654",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T11:29:15Z",
+      "side": 1,
+      "message": "initilise with null",
+      "range": {
+        "startLine": 84,
+        "startChar": 49,
+        "endLine": 84,
+        "endChar": 66
+      },
+      "revId": "d3a5209a046fc6ca3b9e8aa1ec4edaefaa24bb60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ec6b85_23bb96a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T11:29:15Z",
+      "side": 1,
+      "message": "use counter instead",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 40
+      },
+      "revId": "d3a5209a046fc6ca3b9e8aa1ec4edaefaa24bb60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b31b9e72_98956b80",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T11:29:15Z",
+      "side": 1,
+      "message": "the nature order for me would put lines 241 and 242 as teh frist 2 tests...",
+      "range": {
+        "startLine": 241,
+        "startChar": 20,
+        "endLine": 241,
+        "endChar": 29
+      },
+      "revId": "d3a5209a046fc6ca3b9e8aa1ec4edaefaa24bb60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
