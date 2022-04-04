@@ -25,11 +25,13 @@ package org.onap.cps.spi.impl
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.CpsAdminException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.utils.SessionManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -42,6 +44,8 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
     static final Integer DELETED_ANCHOR_ID = 3002
+
+    static final sessionManager = new SessionManager();
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
@@ -217,6 +221,59 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'dataspace name does not exist' | 'unknown'       || DataspaceNotFoundException | 'unknown does not exist'
             'dataspace contains an anchor'  | 'DATASPACE-001' || DataspaceInUseException    | 'contains 2 anchor(s)'
             'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
+    }
+
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'lock anchor entity inside a session'(){
+        given: 'two different sessions wherein first session holds anchor lock'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+        when: 'second session tries to acquire anchor lock'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+        then: 'Timeout exception is thrown as it waits'
+            def thrownException = thrown(CpsAdminException)
+            thrownException.details.contains("Timeout")
+            sessionManager.closeSession(sessionId)
+            sessionManager.closeSession(sessionId2)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'lock anchor entity inside a session and update anchor'(){
+        given: 'two different sessions'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+
+            //the first session is closed after 60 seconds
+            def timer = new Timer()
+            timer.runAfter(60000){
+                println("Closing first transaction")
+                sessionManager.closeSession(sessionId)
+            }
+        when: 'lock anchor method is invoked from both sessions'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.updateAnchor('DATASPACE-001','ANCHOR-001')
+
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+            objectUnderTest.updateAnchor('DATASPACE-001','ANCHOR-001') //second session will try revert it back to the original state before first session was committed
+        then: 'no exception is thrown'
+            noExceptionThrown()
+            sessionManager.closeSession(sessionId2)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'unlock anchor entity from session'(){
+        given: 'two different sessions'
+            def sessionId = sessionManager.startSession()
+            def sessionId2 = sessionManager.startSession()
+        when: 'lock anchor method is invoked from both sessions'
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.unlockAnchor('DATASPACE-001','ANCHOR-001',sessionId)
+            objectUnderTest.lockAnchor('DATASPACE-001','ANCHOR-001',sessionId2)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+            sessionManager.closeSession(sessionId2)
     }
 
 }
