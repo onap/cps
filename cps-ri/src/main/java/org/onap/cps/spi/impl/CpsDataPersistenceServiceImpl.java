@@ -220,6 +220,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         sessionManager.closeSession(sessionId);
     }
 
+    @Override
+    public void lockAnchor(final String sessionId, final String dataspaceName,
+                            final String anchorName, final Long timeoutInMilliseconds) {
+        sessionManager.lockAnchor(sessionId, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,
         final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();
