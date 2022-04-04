@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "daa0b3b6_a1b82f25",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:39:14Z",
+      "side": 1,
+      "message": "suggestion: maybe we should add \u0027Builder\u0027 to the name...",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 40
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83f2ace0_e5dac5d7",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 3
@@ -45,6 +68,30 @@
       "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "393f14b1_b0f3556b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:39:14Z",
+      "side": 1,
+      "message": "ok I see you need to update this one always",
+      "parentUuid": "4f07a8e1_d35fc5d7",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +180,75 @@
         "startChar": 8,
         "endLine": 119,
         "endChar": 9
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cefd861a_29280569",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:39:14Z",
+      "side": 1,
+      "message": "this can be moved in enterMultipleLeafConsition once rule refactor is applied",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 9
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b972b186_2edff9eb",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:39:14Z",
+      "side": 1,
+      "message": "this can be moved in exitMultipleLeafConsition once rule refactor is applied",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7d36560_6853cd7c",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T16:39:14Z",
+      "side": 1,
+      "message": "add another scenario with compound key",
+      "range": {
+        "startLine": 163,
+        "startChar": 40,
+        "endLine": 163,
+        "endChar": 63
       },
       "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
