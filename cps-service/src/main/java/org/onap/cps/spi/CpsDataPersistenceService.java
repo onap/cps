@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation.
+ *  Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  * ================================================================================
@@ -161,4 +161,21 @@ public interface CpsDataPersistenceService {
      * @param sessionId session ID
      */
     void closeSession(String sessionId);
+
+    /**
+     * Lock anchor.
+     *
+     * @param sessionID session ID
+     * @param dataspaceName dataspace name
+     * @param anchorName anchor name
+     * @param timeoutInMilliseconds lock attempt timeout in milliseconds
+     */
+    void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    /**
+     * Release locks held by session (commit changes).
+     *
+     * @param sessionID session ID
+     */
+    void releaseLocks(String sessionID);
 }
