@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb52b81c_b39d488b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T09:25:04Z",
+      "side": 1,
+      "message": "please remove this parameters as it always called with empty headers. so the version in patch #9 is better",
+      "range": {
+        "startLine": 58,
+        "startChar": 60,
+        "endLine": 58,
+        "endChar": 89
+      },
+      "revId": "7b01fd6498bf1c0334ce28e354448d2aaab4520f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8b4f093_fe2bd7ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-04T09:25:04Z",
+      "side": 1,
+      "message": "I assume this can now be removed to as agreed per the bug we don\u0027t need the accept-header at all so we don\u0027t need to have methods to pass it down....",
+      "range": {
+        "startLine": 75,
+        "startChar": 77,
+        "endLine": 75,
+        "endChar": 106
+      },
+      "revId": "7b01fd6498bf1c0334ce28e354448d2aaab4520f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
