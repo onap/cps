@@ -51,7 +51,7 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
         given: 'a cm handle'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
-            ncmpServiceCmHandle.cmHandleID = 'cm handle id 1'
+            ncmpServiceCmHandle.cmHandleId = 'cm-handle-id-1'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),

@@ -292,7 +292,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleID());
+        restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
         return restOutputCmHandle;
