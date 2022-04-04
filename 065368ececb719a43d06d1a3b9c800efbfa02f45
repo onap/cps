@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cc3576f4_cdfa6481",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-04T16:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d50e8cc_046d85cc",
+      "range": {
+        "startLine": 73,
+        "startChar": 104,
+        "endLine": 73,
+        "endChar": 113
+      },
+      "revId": "065368ececb719a43d06d1a3b9c800efbfa02f45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cefbdaa_a7e1d834",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "065368ececb719a43d06d1a3b9c800efbfa02f45",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13e6e0ac_357cdd4f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-04T16:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cefbdaa_a7e1d834",
+      "range": {
+        "startLine": 108,
+        "startChar": 45,
+        "endLine": 108,
+        "endChar": 54
+      },
+      "revId": "065368ececb719a43d06d1a3b9c800efbfa02f45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
