@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8ee4499_efd105f2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T09:02:55Z",
+      "side": 1,
+      "message": "Change the variable name to reflect this and remove the comment :)",
+      "range": {
+        "startLine": 73,
+        "startChar": 3,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b73bbc9_9150237f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T09:02:55Z",
+      "side": 1,
+      "message": "What would happen if topic\u003dnull?",
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2515f79_ca495f57",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-04T09:02:55Z",
+      "side": 1,
+      "message": "NB: Space",
+      "range": {
+        "startLine": 322,
+        "startChar": 14,
+        "endLine": 322,
+        "endChar": 15
+      },
+      "revId": "49d30bcbbef19ca324941a2f76e49a1ddecc74d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
