@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "386d0eb4_473fb5bd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-04T15:31:37Z",
+      "side": 1,
+      "message": "Maybe we could extract these out into the CPSValidator in the future?\n\nI don\u0027t know if the team wants this class to be used for REST Api\u0027s in the future, or just the internal java interfaces.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 49
+      },
+      "revId": "b44c7ec3b030aba89ba14301d3deaab0a7fd22f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6fa6a05d_770e9a75",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 4
