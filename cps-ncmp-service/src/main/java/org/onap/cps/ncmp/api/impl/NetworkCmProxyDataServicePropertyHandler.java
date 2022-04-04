@@ -72,7 +72,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
-            final String cmHandle = ncmpServiceCmHandle.getCmHandleID();
+            final String cmHandle = ncmpServiceCmHandle.getCmHandleId();
             try {
                 CpsValidator.validateNameCharacters(cmHandle);
                 final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandle);

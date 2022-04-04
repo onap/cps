@@ -39,7 +39,7 @@ import org.springframework.validation.annotation.Validated;
 @NoArgsConstructor
 public class NcmpServiceCmHandle {
 
-    private String cmHandleID;
+    private String cmHandleId;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> dmiProperties = Collections.emptyMap();
