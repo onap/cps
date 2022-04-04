@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 
 /**
@@ -48,6 +49,7 @@ public class YangModelCmHandleRetriever {
      * @return yang model cm handle
      */
     public YangModelCmHandle getDmiServiceNamesAndProperties(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleID(cmHandleId);
