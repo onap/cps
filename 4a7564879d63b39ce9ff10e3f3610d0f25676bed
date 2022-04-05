@@ -1,0 +1,239 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7f4e63f_daad8a69",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "rename to ASYNC_REQUEST_ID? or REQUEST_ID?",
+      "range": {
+        "startLine": 73,
+        "startChar": 31,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "931c97c7_79f13dde",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "Is this check needed here?",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 72
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35bcee59_db3b2a9b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 57
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd854ef_655054bb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "can this be moved above line 98?",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 9
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ec86735_51b00ed1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "all the above comments apply",
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e479f5ee_78d5499a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "initialise to null?",
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fef7dc6f_e5d86c93",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "this is not needed if the variable is initialised",
+      "range": {
+        "startLine": 296,
+        "startChar": 10,
+        "endLine": 298,
+        "endChar": 9
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "649a1539_5af06ba8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "move this null check to validateTopicName() ?\nguess the exception needs to be thrown from validateTopicName()\n\nI think you wont need hasTopicParameter().\n\nwhat\u0027s your view?",
+      "range": {
+        "startLine": 303,
+        "startChar": 12,
+        "endLine": 303,
+        "endChar": 29
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a6ef123_ecab74cc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "do you think this method is needed? can this be moved to populateAsyncResponse() itself?",
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd1c5c34_6f692b1f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "duplicated may be?",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 38
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfcd8521_aebbba61",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-05T14:20:38Z",
+      "side": 1,
+      "message": "same and few of the test scenarios are duplicated. please check",
+      "range": {
+        "startLine": 133,
+        "startChar": 13,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "4a7564879d63b39ce9ff10e3f3610d0f25676bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
