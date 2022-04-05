@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02660913_9d7d557e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-05T15:54:09Z",
+      "side": 1,
+      "message": "this can be simplified to: return topicName!\u003dnull \u0026\u0026 TOPIC_NAME_PATTERN.matcher(topicName).matches()",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 91
+      },
+      "revId": "d47e8e4d85b3d588f15189dc69935f0340e79fce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6344b62a_8d2bff66",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-05T15:54:09Z",
+      "side": 1,
+      "message": "on a separate note the null-check is also done before this method is called, so maybe it should not be her at all!",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "d47e8e4d85b3d588f15189dc69935f0340e79fce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
