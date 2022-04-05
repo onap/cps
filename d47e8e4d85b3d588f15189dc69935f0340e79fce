@@ -45,6 +45,54 @@
       "revId": "d47e8e4d85b3d588f15189dc69935f0340e79fce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d88d242_03f51c98",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-05T19:42:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02660913_9d7d557e",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 91
+      },
+      "revId": "d47e8e4d85b3d588f15189dc69935f0340e79fce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c2e072c_04209031",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-05T19:42:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6344b62a_8d2bff66",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "d47e8e4d85b3d588f15189dc69935f0340e79fce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
