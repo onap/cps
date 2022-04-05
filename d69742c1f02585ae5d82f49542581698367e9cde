@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34aae892_04390623",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-05T15:26:40Z",
+      "side": 1,
+      "message": "NB - HttpEntity\u003cString\u003e instead of var",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 17
+      },
+      "revId": "d69742c1f02585ae5d82f49542581698367e9cde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4774da5_eb20847a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-05T15:26:40Z",
+      "side": 1,
+      "message": "NB - Use of var here too",
+      "range": {
+        "startLine": 80,
+        "startChar": 14,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "d69742c1f02585ae5d82f49542581698367e9cde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
