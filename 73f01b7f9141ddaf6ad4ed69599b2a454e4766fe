@@ -46,6 +46,30 @@
       "revId": "73f01b7f9141ddaf6ad4ed69599b2a454e4766fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c8db22_9bb0d2f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-05T09:01:32Z",
+      "side": 0,
+      "message": "Done - Have added a new section to the release notes under 3.1.0 JAKARTA. \n\nAlong with adding a section to the admin-guide for validations.",
+      "parentUuid": "2f668b4e_cf82cd05",
+      "range": {
+        "startLine": 54,
+        "startChar": 45,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "73f01b7f9141ddaf6ad4ed69599b2a454e4766fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
