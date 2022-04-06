@@ -34,7 +34,6 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +47,10 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
-import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -79,8 +78,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final DmiDataOperations dmiDataOperations;
 
-    private final DmiModelOperations dmiModelOperations;
-
     private final CpsModuleService cpsModuleService;
 
     private final CpsAdminService cpsAdminService;
@@ -88,6 +85,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
+
+    private final ModuleSyncService moduleSyncService;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -223,8 +222,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     protected void syncModulesAndCreateAnchor(final YangModelCmHandle yangModelCmHandle) {
-        syncAndCreateSchemaSet(yangModelCmHandle);
-        createAnchor(yangModelCmHandle);
+        final String schemaSetName = moduleSyncService.syncAndCreateSchemaSet(yangModelCmHandle);
+        final String anchorName = yangModelCmHandle.getId();
+        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
+                anchorName);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
@@ -265,35 +266,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
             log.warn("Schema set {} does not exist or already deleted", schemaSetName);
         }
-    }
-
-    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle) {
-        final Collection<ModuleReference> moduleReferencesFromCmHandle =
-            dmiModelOperations.getModuleReferences(yangModelCmHandle);
-
-        final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
-            .identifyNewModuleReferences(moduleReferencesFromCmHandle);
-
-        final Collection<ModuleReference> existingModuleReferencesFromCmHandle =
-            moduleReferencesFromCmHandle.stream().filter(moduleReferenceFromCmHandle ->
-                !identifiedNewModuleReferencesFromCmHandle.contains(moduleReferenceFromCmHandle)
-            ).collect(Collectors.toList());
-
-        final Map<String, String> newModuleNameToContentMap;
-        if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
-            newModuleNameToContentMap = new HashMap<>();
-        } else {
-            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                identifiedNewModuleReferencesFromCmHandle);
-        }
-        cpsModuleService
-            .createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, yangModelCmHandle.getId(),
-                newModuleNameToContentMap, existingModuleReferencesFromCmHandle);
-    }
-
-    private void createAnchor(final YangModelCmHandle yangModelCmHandle) {
-        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, yangModelCmHandle.getId(),
-            yangModelCmHandle.getId());
     }
 
     private Object getResourceDataResponse(final String cmHandleId,

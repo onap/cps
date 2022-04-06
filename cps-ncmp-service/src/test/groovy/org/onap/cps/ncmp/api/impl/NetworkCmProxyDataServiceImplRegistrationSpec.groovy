@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -64,6 +65,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockModuleSyncService = Mock(ModuleSyncService)
 
     def noTimestamp = null
     def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
@@ -386,7 +388,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     }
 
     def getObjectUnderTest() {
-        return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever))
+        return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
+            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever, mockModuleSyncService))
     }
 }

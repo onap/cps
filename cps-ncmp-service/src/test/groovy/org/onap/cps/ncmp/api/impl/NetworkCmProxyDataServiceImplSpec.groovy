@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
@@ -34,7 +35,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
-import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -54,17 +54,18 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockModuleSyncService = Mock(ModuleSyncService)
+
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
+        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever, mockModuleSyncService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
