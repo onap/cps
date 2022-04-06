@@ -16,6 +16,24 @@
       "revId": "64e23295aa638a48de19b8d2df290bea5449007f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1130420c_57aba7bc",
+        "filename": "csit/tests/public-properties-query/public-properties-query.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T10:13:53Z",
+      "side": 1,
+      "message": "I cannot remember but I believe it is part of the AC #2 for CPS-731 it states \"CI Test - two attributes\" which is why I added this test and modifies cps-model-sync as well to add an additional attribute",
+      "parentUuid": "8cfad4e3_a4aa5cd6",
+      "revId": "64e23295aa638a48de19b8d2df290bea5449007f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
