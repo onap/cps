@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6904d78_b441308c",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "I think you missed my previous comment. Remove the comment if it is no longer relevant :)",
+      "range": {
+        "startLine": 79,
+        "startChar": 160,
+        "endLine": 79,
+        "endChar": 181
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45cb9325_dfefbdf7",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "No need for where block if using only a single row. Just inline the values instead,",
+      "range": {
+        "startLine": 194,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 13
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0acd995_23a13943",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "There is nothing storing the return of this call...Is it needed?",
+      "range": {
+        "startLine": 401,
+        "startChar": 8,
+        "endLine": 401,
+        "endChar": 50
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71a8c469_c69f2e6d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "Assert the correct message is returned for example\n\ndef exceptionThrown \u003d thrown(CpsPathException)\nassert exceptionThrown.getMessage().contains(\"some expected detail\")",
+      "range": {
+        "startLine": 216,
+        "startChar": 12,
+        "endLine": 216,
+        "endChar": 36
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be736ae_9698b976",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76aeecfd_098b8391",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T15:14:20Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
