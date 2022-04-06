@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "a6e401b2_951b0de9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-06T13:46:24Z",
+      "side": 1,
+      "message": "This method allows a session to try get an anchor lock and will throw exception if it has to wait as another session is holding the lock",
+      "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cb046bd_34114bfb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 6
