@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fb2efff2_a73e2a3f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-06T15:35:26Z",
+      "side": 1,
+      "message": "We need to update this I guess.",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 75
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6904d78_b441308c",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 4
