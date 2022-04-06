@@ -52,6 +52,24 @@
       "revId": "64e23295aa638a48de19b8d2df290bea5449007f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b31c740_9430672d",
+        "filename": "csit/tests/public-properties-query/public-properties-query.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-06T13:19:13Z",
+      "side": 1,
+      "message": "I\u0027ll mark this as resolved",
+      "parentUuid": "8c4bc9b7_6ea24c5f",
+      "revId": "64e23295aa638a48de19b8d2df290bea5449007f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
