@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Joseph Keenan <joseph.keenan@est.tech>
+Code-Review+2: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-by: Bruno Sakoto <bruno.sakoto@bell.ca>
+Submitted-at: Wed, 06 Apr 2022 18:57:06 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/128339
+Project: cps
+Branch: refs/heads/master
