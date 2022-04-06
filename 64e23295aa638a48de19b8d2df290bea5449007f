@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cfad4e3_a4aa5cd6",
+        "filename": "csit/tests/public-properties-query/public-properties-query.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-06T09:33:19Z",
+      "side": 1,
+      "message": "As per our previous discussions, this is not required in Integration test.",
+      "revId": "64e23295aa638a48de19b8d2df290bea5449007f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
