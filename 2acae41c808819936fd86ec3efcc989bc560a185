@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a43258a_25a5f357",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-06T13:31:52Z",
+      "side": 1,
+      "message": "As per sonar it is important that is exception is thrown:\nhttps://sonarcloud.io/organizations/onap/rules?open\u003djava%3AS2142\u0026rule_key\u003djava%3AS2142",
+      "range": {
+        "startLine": 200,
+        "startChar": 42,
+        "endLine": 200,
+        "endChar": 62
+      },
+      "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0baa120f_8b573574",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-06T13:31:52Z",
+      "side": 1,
+      "message": "Unit tests should be fast and run often. Spending 1 min for 1 test is not ideal.",
+      "range": {
+        "startLine": 253,
+        "startChar": 23,
+        "endLine": 253,
+        "endChar": 28
+      },
+      "revId": "1240a39201b7f8379003fa48039221d9c8493175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
