@@ -22,6 +22,30 @@
       "revId": "1240a39201b7f8379003fa48039221d9c8493175",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b16cc1_85ac1288",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-06T13:37:48Z",
+      "side": 1,
+      "message": "I have removed this. see latest patch",
+      "parentUuid": "0baa120f_8b573574",
+      "range": {
+        "startLine": 253,
+        "startChar": 23,
+        "endLine": 253,
+        "endChar": 28
+      },
+      "revId": "1240a39201b7f8379003fa48039221d9c8493175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
