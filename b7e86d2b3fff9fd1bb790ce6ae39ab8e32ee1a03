@@ -2,6 +2,167 @@
   "comments": [
     {
       "key": {
+        "uuid": "8c8bca9d_306c07d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "add some details like\n- introduced \u0027normalizedXPath\u0027 and relevant utils\n- fixed existing tests to use/expect normalized paths\n- etc.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebfaa031_bf0790e7",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "legacy: this can be refactored, see comments in next file...",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 71
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10b29ce4_450ca592",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "invalidPostFix was I think what we came up with earlier",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07083d7c_316a2098",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this as the unprocessed rule uses \u0027+\u0027 instead of \u0027?\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef8bd91e_299f62dd",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "see my comment in path #3 regarding refactoring the rules itself to simplify this...",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 43
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18af53c3_cc066d5d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "see comments in patchset #3",
+      "range": {
+        "startLine": 124,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 9
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa5eb036_fc266a4c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb2efff2_a73e2a3f",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
         "patchSetId": 4
@@ -25,6 +186,52 @@
     },
     {
       "key": {
+        "uuid": "cdd8ee93_d1b99a19",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "dont need this in this case",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 100
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55c81600_d36065a5",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "?!?!",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6904d78_b441308c",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 4
@@ -41,6 +248,52 @@
         "startChar": 160,
         "endLine": 79,
         "endChar": 181
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38cc4e8f_032e2372",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "can this not be added to the test start at line 131?!",
+      "range": {
+        "startLine": 189,
+        "startChar": 9,
+        "endLine": 189,
+        "endChar": 47
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c71d1cd8_f4ff367c",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "update teh labels!",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 36
       },
       "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -82,6 +335,30 @@
       "writtenOn": "2022-04-06T15:14:20Z",
       "side": 1,
       "message": "There is nothing storing the return of this call...Is it needed?",
+      "range": {
+        "startLine": 401,
+        "startChar": 8,
+        "endLine": 401,
+        "endChar": 50
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bd19160_9a0f9cdb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "is assume it is to validate it and make it thrown an exception, if so extract out into a validateXPAth method or alternatively (better I think now) implement a CpsPathUtil.isValidateXpath() method that either throws an exception is returns a boolean...",
+      "parentUuid": "e0acd995_23a13943",
       "range": {
         "startLine": 401,
         "startChar": 8,
@@ -156,6 +433,29 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 23
+      },
+      "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd62b186_607ec319",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-06T15:52:42Z",
+      "side": 1,
+      "message": "did you check out liquibase steps to see if we have similar issues with hardcoded data imported using liquibase steps?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 57,
+        "endLine": 53,
+        "endChar": 62
       },
       "revId": "b7e86d2b3fff9fd1bb790ce6ae39ab8e32ee1a03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
