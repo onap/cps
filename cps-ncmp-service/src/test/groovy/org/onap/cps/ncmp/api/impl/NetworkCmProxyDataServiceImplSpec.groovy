@@ -25,7 +25,10 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
@@ -34,7 +37,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
-import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -54,17 +56,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockModuleSyncService = Mock(ModuleSyncService)
+    def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
+
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
+    @Shared
+    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever)
+    def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
+        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever, mockModuleSyncService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -331,5 +337,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             'CREATE' | CREATE         || 'Unable to create resource data.'
             'READ'   | READ           || 'Unable to read resource data.'
             'UPDATE' | UPDATE         || 'Unable to update resource data.'
+    }
+
+    def 'Verify modules and create anchor params'() {
+        given: 'dmi plugin registration return created cm handles'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'service1', dmiModelPlugin: 'service1',
+                    dmiDataPlugin: 'service2')
+            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
+            mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
+        when: 'parse and create cm handle in dmi registration then sync module'
+            objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
+        then: 'validate params for creating anchor and list elements'
+            1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
+                    '/dmi-registry', '{"cm-handles":[{"id":"some-cm-handle-id",' +
+                    '"additional-properties":[],"public-properties":[]}]}', null)
+            1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
+                    'some-cm-handle-id')
     }
 }

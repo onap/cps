@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,32 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl
+package org.onap.cps.ncmp.api.inventory.sync
 
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
-import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
-class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
+class ModuleSyncServiceSpec extends Specification {
 
-    def nullCpsDataService = null
-    def mockJsonObjectMapper = Mock(JsonObjectMapper)
+
     def mockCpsModuleService = Mock(CpsModuleService)
-    def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
-    def mockDmiDataOperations = Mock(DmiDataOperations)
-    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
-    def nullNetworkCmProxyDataServicePropertyHandler = null
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(nullCpsDataService, mockJsonObjectMapper, mockDmiDataOperations, mockDmiModelOperations,
-            mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler,mockYangModelCmHandleRetriever)
+    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService)
 
     def expectedDataspaceName = 'NFP-Operational'
 
@@ -51,7 +41,7 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
         given: 'a cm handle'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
-            ncmpServiceCmHandle.cmHandleId = 'cm-handle-id-1'
+            ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
@@ -63,16 +53,14 @@ class NetworkCmProxyDataServiceImplModelSyncSpec extends Specification {
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
-            objectUnderTest.syncModulesAndCreateAnchor(yangModelCmHandle)
-        then: 'the CPS module service is called once with the correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(expectedDataspaceName, yangModelCmHandle.getId(), yangResourceToContentMap, toModuleReference(expectedKnownModules))
-        and: 'admin service create anchor method has been called with correct parameters'
-            1 * mockCpsAdminService.createAnchor(expectedDataspaceName, yangModelCmHandle.getId(), yangModelCmHandle.getId())
+            def result = objectUnderTest.syncAndCreateSchemaSet(yangModelCmHandle)
+        then: 'the resulting schema set name is the same as the cm handle id'
+            assert result == 'cmHandleId-1'
         where: 'the following parameters are used'
-            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | yangResourceToContentMap      || expectedKnownModules
-            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source'] || [['module2' : '2']]
-            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source'] || [['module2' : '2']]
-            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]                           || [['module1' : '1'], ['module2' : '2']]
+            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | yangResourceToContentMap
+            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
+            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
+            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
     }
 
     def toModuleReference(moduleReferenceAsMap) {
