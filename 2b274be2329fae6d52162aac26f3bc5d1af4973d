@@ -22,6 +22,46 @@
       "revId": "2b274be2329fae6d52162aac26f3bc5d1af4973d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23b34edf_71d65d27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:28:12Z",
+      "side": 1,
+      "message": "the name of the schema set (same as cm handle name)",
+      "range": {
+        "startLine": 49,
+        "startChar": 29,
+        "endLine": 49,
+        "endChar": 45
+      },
+      "revId": "2b274be2329fae6d52162aac26f3bc5d1af4973d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d46b901_d3be0fbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:28:12Z",
+      "side": 1,
+      "message": "as the logic is now in a different class with its won spec this file is no longer need. \nJust update the NetworkCmProxyDataServiceImplSpec using a mock ModuleSyncService to proof that the service method delegates to the new class with the correct parameters",
+      "revId": "2b274be2329fae6d52162aac26f3bc5d1af4973d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
