@@ -67,6 +67,11 @@ committers:
       company: 'Bell Canada'
       id: 'renukumari'
       timezone: 'America/Toronto'
+    - name: 'Joseph Keenan'
+      email: 'joseph.keenan@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'JosephKeenan'
+      timezone: 'Europe/Dublin'
 repositories:
     - cps
 tsc:
