@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2b7ec6_15dde0f6",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T15:26:03Z",
+      "side": 1,
+      "message": "singular, remove s",
+      "range": {
+        "startLine": 37,
+        "startChar": 87,
+        "endLine": 37,
+        "endChar": 88
+      },
+      "revId": "aceab6e478a56c29290256fcde6570eb31e2bee1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
