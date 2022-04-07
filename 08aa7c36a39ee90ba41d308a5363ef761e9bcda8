@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad449d5_3729f3ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-07T11:28:09Z",
+      "side": 1,
+      "message": "I would think we would want the build to fail? It means that there is an issue with a copyright and should be fixed before going to production...",
+      "revId": "08aa7c36a39ee90ba41d308a5363ef761e9bcda8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
