@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "5782583c_670bf2e9",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T08:40:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1da988b_df94fb6a",
+      "range": {
+        "startLine": 50,
+        "startChar": 27,
+        "endLine": 50,
+        "endChar": 50
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1a40f35_4a3faf28",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 3
@@ -142,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1f8da389_c0ea914a",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T08:40:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5f1448e5_b2b12452",
+      "range": {
+        "startLine": 55,
+        "startChar": 36,
+        "endLine": 55,
+        "endChar": 68
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1914dd5f_5635e7c6",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 3
@@ -171,6 +219,24 @@
       "side": 1,
       "message": "the slash here is to escape the double quote.",
       "parentUuid": "1914dd5f_5635e7c6",
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f903c7b2_a07f4f35",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T08:40:13Z",
+      "side": 1,
+      "message": "Sorry I mean should it be ...getText().startsWith(\"\\\"\").endsWith(\"\\\"\") as the boolean name is wasWrappedInDoubleQuote",
+      "parentUuid": "f64f0ea4_5f82e8e8",
       "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -595,6 +661,53 @@
       "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb11a121_a91715eb",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T08:40:13Z",
+      "side": 1,
+      "message": "A compound key would be \"categories[@code\u003d\u00271\u0027 and @code2\u003d\u00272\u0027]\"",
+      "parentUuid": "bdddb85f_6ba2799c",
+      "range": {
+        "startLine": 163,
+        "startChar": 40,
+        "endLine": 163,
+        "endChar": 63
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f049c9e7_052350f8",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T08:40:13Z",
+      "side": 1,
+      "message": "align with below",
+      "range": {
+        "startLine": 182,
+        "startChar": 107,
+        "endLine": 182,
+        "endChar": 113
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
