@@ -16,6 +16,24 @@
       "revId": "08aa7c36a39ee90ba41d308a5363ef761e9bcda8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09678fb0_11202370",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T12:09:15Z",
+      "side": 1,
+      "message": "At the moment the script doesn\u0027t make a build fail if the copyright is wrong. It does fail the build if a python exception gets thrown. In future I will implement build failure on wrong copyright but while we are testing the script I would rather people\u0027s builds not fail on a python exception as it is not something they can immediately fix and impedes their work",
+      "parentUuid": "9ad449d5_3729f3ad",
+      "revId": "08aa7c36a39ee90ba41d308a5363ef761e9bcda8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
