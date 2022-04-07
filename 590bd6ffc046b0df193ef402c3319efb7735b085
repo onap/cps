@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0cb77f2_68bebb25",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T17:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "391b9476_da3f7839",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fa23aeb_b364f6d0",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2022-04-07T10:22:59Z",
       "side": 1,
       "message": "should we use the new CpsPathException here too ?!",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d2af1b9_f04021cc",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T17:39:06Z",
+      "side": 1,
+      "message": "Not sure, because this was there before. I think having CpsPathException makes sense but it is created in cps-service and referenced in cps-rest module.",
+      "parentUuid": "5fa23aeb_b364f6d0",
       "range": {
         "startLine": 77,
         "startChar": 22,
@@ -68,6 +116,30 @@
       "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c8e502b_2433c26f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T17:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf7fb18d_714af8d4",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +209,30 @@
       "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80b822f3_10d61ac8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T17:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d089ff7c_871f813a",
+      "range": {
+        "startLine": 217,
+        "startChar": 57,
+        "endLine": 217,
+        "endChar": 58
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
