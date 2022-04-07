@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "100e03e0_76427029",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-07T09:53:46Z",
+      "side": 1,
+      "message": "NB typo",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 9
+      },
+      "revId": "2b274be2329fae6d52162aac26f3bc5d1af4973d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
