@@ -243,6 +243,24 @@
     },
     {
       "key": {
+        "uuid": "aeb65c15_3f0ca7e9",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T09:26:50Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is needed because if the first string starts with double quotes our ANTLR grammar force it should end with double quotes otherwise it will throw error and it will never reach this line. The wasWrappedInDoubleQuote is for our understand that the string literal was wrapped in double quotes like this,\n\u0027/parent/child[@code\u003d\"\\\u00271\\\u0027\"]\u0027 \n\nIf this variable name is confusing or misleading we can change it to different one.",
+      "parentUuid": "f903c7b2_a07f4f35",
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f07a8e1_d35fc5d7",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 3
@@ -688,6 +706,30 @@
     },
     {
       "key": {
+        "uuid": "b6e38851_d045e061",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T09:26:50Z",
+      "side": 1,
+      "message": "This was updated in patch6",
+      "parentUuid": "fb11a121_a91715eb",
+      "range": {
+        "startLine": 163,
+        "startChar": 40,
+        "endLine": 163,
+        "endChar": 63
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f049c9e7_052350f8",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 3
@@ -699,6 +741,30 @@
       "writtenOn": "2022-04-07T08:40:13Z",
       "side": 1,
       "message": "align with below",
+      "range": {
+        "startLine": 182,
+        "startChar": 107,
+        "endLine": 182,
+        "endChar": 113
+      },
+      "revId": "ec43499094f0617339d265e0d6555b8a06a6c127",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cefd6ae_201af4ac",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-07T09:26:50Z",
+      "side": 1,
+      "message": "This looks aligned in my IDE. :(",
+      "parentUuid": "f049c9e7_052350f8",
       "range": {
         "startLine": 182,
         "startChar": 107,
