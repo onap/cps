@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c541be7_57648fab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T14:40:31Z",
+      "side": 1,
+      "message": "This shouldn\u0027t stop after the first failure. I just decided to catch the invalid cm handle exception here using the validator as opposed to the private method below. Also due to the fact I added another validator to the YangModelCmHandle.\n\nThe response will look like this if multiple failures are detected\n{\n    \"failedCreatedCmHandles\": [\n        {\n            \"cmHandle\": \"Bookstore\",\n            \"errorCode\": \"01\",\n            \"errorText\": \"cm-handle already exists\"\n        },\n        {\n            \"cmHandle\": \"Bookstore 1\",\n            \"errorCode\": \"03\",\n            \"errorText\": \"cm-handle has an invalid character(s) in id\"\n        },\n        {\n            \"cmHandle\": \"Bookstore 2\",\n            \"errorCode\": \"03\",\n            \"errorText\": \"cm-handle has an invalid character(s) in id\"\n        }\n    ],\n    \"failedUpdatedCmHandles\": [],\n    \"failedRemovedCmHandles\": []\n}",
+      "parentUuid": "ec091a33_2c684ba7",
+      "range": {
+        "startLine": 216,
+        "startChar": 8,
+        "endLine": 216,
+        "endChar": 72
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61a93646_ef5aa035",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
         "patchSetId": 8
