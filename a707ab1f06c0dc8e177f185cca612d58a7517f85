@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "99379166_ca5b966d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplModelSyncSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "There\u0027s 15 files affected by this if I make this change. Will I do it as part of a separate commit?",
+      "parentUuid": "a2ab2a3b_3521238e",
+      "range": {
+        "startLine": 54,
+        "startChar": 40,
+        "endLine": 54,
+        "endChar": 42
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fa97ad8_7b49d2c3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 8
@@ -142,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2b784350_8e8dcd4d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "Done - have changed to cm handle id, as that is the variable name",
+      "parentUuid": "5fa97ad8_7b49d2c3",
+      "range": {
+        "startLine": 260,
+        "startChar": 48,
+        "endLine": 260,
+        "endChar": 58
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c058c6f2_cfd4480d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
         "patchSetId": 8
@@ -162,6 +210,30 @@
       "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c17546ee_078cbc2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c058c6f2_cfd4480d",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -211,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "f89923a9_3dbeec39",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e502b7b_bebe05d1",
+      "range": {
+        "startLine": 198,
+        "startChar": 18,
+        "endLine": 198,
+        "endChar": 20
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fdbf143_22442f78",
         "filename": "docs/admin-guide.rst",
         "patchSetId": 8
@@ -234,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "f9522685_ca9d95a2",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fdbf143_22442f78",
+      "range": {
+        "startLine": 203,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 19
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76c2956a_bff632e7",
         "filename": "docs/release-notes.rst",
         "patchSetId": 8
@@ -254,6 +374,30 @@
       "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bde18059_fdfce3e0",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-07T15:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76c2956a_bff632e7",
+      "range": {
+        "startLine": 37,
+        "startChar": 77,
+        "endLine": 37,
+        "endChar": 118
+      },
+      "revId": "a707ab1f06c0dc8e177f185cca612d58a7517f85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
