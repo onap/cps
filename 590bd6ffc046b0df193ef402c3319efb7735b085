@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "391b9476_da3f7839",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "depending on further us of this exception (see upcoming comments) teh message might be hardcode in teh exception class ie. just need a constructor with the details....",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fa23aeb_b364f6d0",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "should we use the new CpsPathException here too ?!",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf7fb18d_714af8d4",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "PathParsingException (when use in context of query service there might be other reasons for it being \u0027invalid\u0027 so lets be more specific in the name)",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "485121be_a130613e",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "see my oterh commeten maybe we can use teh new CpsPathException in both cases...",
+      "range": {
+        "startLine": 134,
+        "startChar": 19,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d089ff7c_871f813a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "use single \u0027 tokens in Groovy :-)",
+      "range": {
+        "startLine": 217,
+        "startChar": 57,
+        "endLine": 217,
+        "endChar": 58
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41d54a0b_f14eeb9d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-07T10:22:59Z",
+      "side": 1,
+      "message": "I want to get back to this once we are using CpsPath exception for all scenarios.\n(not sure if the message need to be variable (adn verified here) but it is more interesting to check that the details contain the original path or specificc abour error...)",
+      "range": {
+        "startLine": 217,
+        "startChar": 35,
+        "endLine": 217,
+        "endChar": 56
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
