@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "00b441bd_99e71ba2",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T10:56:30Z",
+      "side": 1,
+      "message": "lets discuss, there are 2 thing to consider\n1) consistency; what is diff between cpsPathParsingExceion and IllegalStateException as thrown here\n2) depencies, will this introduce new dependencies",
+      "parentUuid": "2d2af1b9_f04021cc",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "590bd6ffc046b0df193ef402c3319efb7735b085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf7fb18d_714af8d4",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/InvalidPathException.java",
         "patchSetId": 8

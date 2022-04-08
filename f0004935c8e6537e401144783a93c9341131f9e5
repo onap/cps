@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7485fcd8_31c67b19",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T10:56:30Z",
+      "side": 1,
+      "message": "no need to check this, chekc details instead",
+      "range": {
+        "startLine": 217,
+        "startChar": 58,
+        "endLine": 217,
+        "endChar": 96
+      },
+      "revId": "f0004935c8e6537e401144783a93c9341131f9e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

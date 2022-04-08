@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2bf51af0_09a10a65",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T10:56:30Z",
+      "side": 1,
+      "message": "agreed, parser already checks the matching quotes no need to check here again",
+      "parentUuid": "928833fd_a79d5cc1",
+      "range": {
+        "startLine": 71,
+        "startChar": 83,
+        "endLine": 71,
+        "endChar": 100
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ccac927_8e7ded6a",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 10
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "No",
       "parentUuid": "0ccac927_8e7ded6a",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 75
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5bd029c_e19212ee",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T10:56:30Z",
+      "side": 1,
+      "message": "we always add to normalized path if \u0027in ancestor\u0027 we ALSO need to add to the normalized ancestor....",
+      "parentUuid": "e83dc3c7_6e666142",
       "range": {
         "startLine": 152,
         "startChar": 12,
