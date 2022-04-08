@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f0dac0e2_ff02cd96",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T13:03:46Z",
+      "side": 1,
+      "message": "as agreed during meeting let\u0027s use PathParserEception here too",
+      "range": {
+        "startLine": 61,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "f0004935c8e6537e401144783a93c9341131f9e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7485fcd8_31c67b19",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 11
