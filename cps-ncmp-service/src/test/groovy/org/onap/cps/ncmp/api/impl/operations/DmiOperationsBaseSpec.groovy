@@ -25,6 +25,8 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared
@@ -57,6 +59,8 @@ abstract class DmiOperationsBaseSpec extends Specification {
         yangModelCmHandle.dmiServiceName = dmiServiceName
         yangModelCmHandle.dmiProperties = dmiProperties
         yangModelCmHandle.id = cmHandleId
+        yangModelCmHandle.compositeState = new CompositeState()
+        yangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
     }
 }
