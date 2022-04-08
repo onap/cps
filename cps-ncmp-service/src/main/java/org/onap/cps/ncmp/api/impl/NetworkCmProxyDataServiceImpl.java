@@ -208,7 +208,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     YangModelCmHandle.toYangModelCmHandle(
                         dmiPluginRegistration.getDmiPlugin(),
                         dmiPluginRegistration.getDmiDataPlugin(),
-                        dmiPluginRegistration.getDmiModelPlugin(), cmHandle)
+                        dmiPluginRegistration.getDmiModelPlugin(),
+                        "ADVISED",
+                        cmHandle)
                 )
                 .map(this::registerAndSyncNewCmHandle)
                 .collect(Collectors.toList());

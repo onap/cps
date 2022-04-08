@@ -78,6 +78,7 @@ public class YangModelCmHandle {
     public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
+                                                        final String cmHandleState,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle) {
         CpsValidator.validateNameCharacters(ncmpServiceCmHandle.getCmHandleId());
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
@@ -85,6 +86,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setCmHandleState(cmHandleState);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
             ncmpServiceCmHandle.getPublicProperties()));

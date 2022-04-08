@@ -209,7 +209,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<CmHandles> executeCmHandleSearch(final Conditions conditions) {
         final List<ConditionProperties> conditionProperties =
-            conditions.getConditions().stream().collect(Collectors.toList());
+            new ArrayList<>(conditions.getConditions());
         final CmHandles cmHandles = new CmHandles();
         cmHandles.setCmHandles(toCmHandleProperties(processConditions(conditionProperties)));
         return ResponseEntity.ok(cmHandles);

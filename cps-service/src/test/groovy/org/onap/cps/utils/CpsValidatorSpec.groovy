@@ -20,6 +20,7 @@
 
 package org.onap.cps.utils
 
+import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
@@ -58,5 +59,26 @@ class CpsValidatorSpec extends Specification {
             'blank topic'             | ' '             || false
             'null topic'              | null            || false
             'invalid non empty topic' | '1_5_*_#'       || false
+    }
+
+    def 'Validating Cm Handle READY State'() {
+        when: 'the cm handle state is READY'
+            CpsValidator.validateCmHandleReadyState("READY")
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Validating Cm Handle with #scenario State' () {
+        when: 'the cm handle state is #scenario'
+            CpsValidator.validateCmHandleReadyState(cmHandleState)
+        then: 'a cps exception is thrown'
+            def exceptionThrown = thrown(CpsException)
+        and: 'the error was encountered at the following index in #scenario'
+            assert exceptionThrown.getDetails().contains(expectedErrorMessage)
+        where: 'the following states are used'
+            scenario   | cmHandleState || expectedErrorMessage
+            'LOCKED'   | 'LOCKED'      || 'Cm-Handle state is LOCKED must be "READY"'
+            'ADVISED'  | 'ADVISED'     || 'Cm-Handle state is ADVISED must be "READY"'
+            'DELETING' | 'DELETING'    || 'Cm-Handle state is DELETING must be "READY"'
     }
 }

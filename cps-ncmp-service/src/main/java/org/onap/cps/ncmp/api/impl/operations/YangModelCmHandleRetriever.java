@@ -58,6 +58,7 @@ public class YangModelCmHandleRetriever {
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-model-service-name")),
+            String.valueOf(cmHandleDataNode.getLeaves().get("state")),
             ncmpServiceCmHandle
         );
     }
