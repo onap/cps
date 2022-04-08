@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "928833fd_a79d5cc1",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "The intention is to check whether the input is wrapped inside double quotes. So in the exitLeafCondition() if it starts with double quotes then we assume that the string literal is wrapped inside the double quotes so we need to escape it to save the value with double quotes in the DB.",
+      "parentUuid": "6035800e_dac4c3df",
+      "range": {
+        "startLine": 71,
+        "startChar": 83,
+        "endLine": 71,
+        "endChar": 100
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ccac927_8e7ded6a",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2022-04-08T08:55:59Z",
       "side": 1,
       "message": "Same as line 149... so if processing ancestor axis we add the same information?",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 75
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e83dc3c7_6e666142",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "No",
+      "parentUuid": "0ccac927_8e7ded6a",
       "range": {
         "startLine": 152,
         "startChar": 12,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "e1950b7d_984b5bf1",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c93558e2_5628058c",
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cecc367_d637f9d2",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
         "patchSetId": 10
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "8ee81e1b_c8605e32",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4cecc367_d637f9d2",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3965d5ef_3403fa0f",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 10
@@ -99,6 +189,30 @@
       "writtenOn": "2022-04-08T08:55:59Z",
       "side": 1,
       "message": "Is this duplicating scenarios on lines 70 \u0026 71? Looks like this test is redundant?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 5
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d276bac5_03501324",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "It checks the getNormalizedXpath(). It is misleading because of the cps path in the scenario. Updated with xpath in next patch",
+      "parentUuid": "3965d5ef_3403fa0f",
       "range": {
         "startLine": 84,
         "startChar": 0,
@@ -131,6 +245,30 @@
       "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecfc3453_17f50cd9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-08T09:16:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f9a87ed_fd0dffe1",
+      "range": {
+        "startLine": 540,
+        "startChar": 110,
+        "endLine": 540,
+        "endChar": 111
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
