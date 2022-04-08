@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -69,6 +70,7 @@ public class DmiDataOperations extends DmiOperations {
                                                          final DataStoreEnum dataStore,
                                                          final String requestId,
                                                          final String topicParamInQuery) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
                 yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
@@ -77,7 +79,7 @@ public class DmiDataOperations extends DmiOperations {
             .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
-        final var dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
+        final String dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
                 dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
                 topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
                         yangModelCmHandle, cmHandleId, dataStore));
@@ -100,6 +102,7 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final OperationEnum operation,
                                                                              final String requestData,
                                                                              final String dataType) {
+        CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
@@ -110,9 +113,9 @@ public class DmiDataOperations extends DmiOperations {
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
         final String dmiUrl =
-                dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
-                                null, null),
-                        dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
+            dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
+                    null, null),
+                dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody);
     }
 

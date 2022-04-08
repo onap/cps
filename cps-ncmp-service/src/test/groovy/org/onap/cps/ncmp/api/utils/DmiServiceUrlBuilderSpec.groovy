@@ -32,21 +32,21 @@ import spock.lang.Specification
 class DmiServiceUrlBuilderSpec extends Specification {
 
     @Shared
-    YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle("dmiServiceName",
-            "dmiDataServiceName", "dmiModuleServiceName", new NcmpServiceCmHandle())
+    YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
+            'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'))
 
-    NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties();
+    NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
 
     def objectUnderTest = new DmiServiceUrlBuilder(dmiProperties)
 
     def 'Create the dmi service url with #scenario.'() {
         given: 'uri variables'
-            dmiProperties.dmiBasePath = 'dmi';
+            dmiProperties.dmiBasePath = 'dmi'
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING);
+                    "cmHandle", PASSTHROUGH_RUNNING)
         and: 'query params'
             def uriQueries = objectUnderTest.populateQueryParams(resourceId,
-                    'optionsParamInQuery', topicParamInQuery);
+                    'optionsParamInQuery', topicParamInQuery)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'service url is generated as expected'
@@ -61,12 +61,12 @@ class DmiServiceUrlBuilderSpec extends Specification {
 
     def 'Populate dmi data store url #scenario.'() {
         given: 'uri variables are created'
-            dmiProperties.dmiBasePath = dmiBasePath;
+            dmiProperties.dmiBasePath = dmiBasePath
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING);
+                    "cmHandle", PASSTHROUGH_RUNNING)
         and: 'null query params'
             def uriQueries = objectUnderTest.populateQueryParams(null,
-                    null, null);
+                    null, null)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'the created dmi service url matches the expected'

@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021 Nordix Foundation
+.. Copyright (C) 2021-2022 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _adminGuide:
@@ -191,3 +191,19 @@ Prometheus Metrics can be checked at the following endpoint
 .. code::
 
     http://<cps-component-service-name>:8081/manage/prometheus
+
+Naming Validation
+-----------------
+
+As part of the Jakarta 3.1.0 release, CPS has added validation to the names of the following components:
+
+    - Dataspace names
+    - Schema Set names
+    - Anchor names
+    - Cm-Handle identifiers
+
+The following characters along with spaces are no longer valid for naming of these components.
+
+.. code::
+
+    !"#$%&'()*+,./\:;<=>?@[]^`{|}~

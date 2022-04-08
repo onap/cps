@@ -231,7 +231,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandleId = 'Some-Cm-Handle'
             def dmiProperties = [ prop:'some DMI property' ]
             def publicProperties = [ "public prop":'some public property' ]
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleID: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties)
         and: 'the service method is invoked with the cm handle id'
             1 * mockNetworkCmProxyDataService.getNcmpServiceCmHandle('Some-Cm-Handle') >> ncmpServiceCmHandle
         when: 'the cm handle details api is invoked'

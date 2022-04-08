@@ -43,7 +43,7 @@ class NcmpRestInputMapperSpec extends Specification {
         then: 'the result returns the correct number of cm handles'
             result.createdCmHandles.size() == 1
         and: 'the converted cm handle has the same id'
-            result.createdCmHandles[0].cmHandleID == 'example-id'
+            result.createdCmHandles[0].cmHandleId == 'example-id'
         and: '(empty) properties are converted correctly'
             result.createdCmHandles[0].dmiProperties == expectedDmiProperties
             result.createdCmHandles[0].publicProperties == expectedPublicProperties

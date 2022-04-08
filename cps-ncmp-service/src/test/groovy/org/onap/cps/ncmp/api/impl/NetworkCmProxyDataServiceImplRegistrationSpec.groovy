@@ -51,7 +51,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     @Shared
-    def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     @Shared
     def cmHandlesArray = ['cmHandle001']
@@ -71,8 +71,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
         given: 'a registration with operations of all three types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleID: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
-            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleID: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
@@ -88,8 +88,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'DMI Registration: Response from all operations types are in response'() {
         given: 'a registration with operations of all three types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleID: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
-            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleID: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
         and: 'update cm-handles can be processed successfully'
             def updateResponses = [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-2')]
@@ -153,7 +153,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Successfully: #scenario.'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleID: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a successful response is received'
@@ -190,9 +190,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed'() {
         given: 'a registration with three cm-handles to be created'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                createdCmHandles: [new NcmpServiceCmHandle(cmHandleID: 'cmhandle1'),
-                                   new NcmpServiceCmHandle(cmHandleID: 'cmhandle2'),
-                                   new NcmpServiceCmHandle(cmHandleID: 'cmhandle3')])
+                createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1'),
+                                   new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
+                                   new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
             mockCpsDataService.saveListElements(_, _, _, _, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to create cm-handles'
@@ -220,7 +220,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Error Handling: Registration fails: #scenario'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleID: cmHandleId)]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
             mockCpsDataService.saveListElements(_, _, _, _, _) >> { throw exception }
         when: 'registration is updated'
@@ -247,7 +247,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def objectUnderTest = getObjectUnderTest()
         and: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleID: 'cmhandle')]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle')]
         and: 'cm-handler models sync fails'
             objectUnderTest.syncModulesAndCreateAnchor(*_) >> { throw new RuntimeException('Model-Sync failed') }
         when: 'registration is updated'

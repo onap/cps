@@ -31,6 +31,7 @@ class YangModelCmHandleSpec extends Specification {
     def 'Creating yang model cm handle from a service api cm handle.'() {
         given: 'a cm handle with properties'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
         when: 'it is converted to a yang model cm handle'
@@ -47,7 +48,7 @@ class YangModelCmHandleSpec extends Specification {
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new NcmpServiceCmHandle())
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'))
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
