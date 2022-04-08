@@ -155,8 +155,8 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
                 + " AND yang_resource.revision=%1$s.revision"
                 + " WHERE yang_resource.module_name IS NULL;", tempTableName);
 
-        final List<Object[]> resultsAsObjects =
-            (List<Object[]>) entityManager.createNativeQuery(sql).getResultList();
+        @SuppressWarnings("unchecked")
+        final List<Object[]> resultsAsObjects = entityManager.createNativeQuery(sql).getResultList();
 
         final List<ModuleReference> resultsAsModuleReferences = new ArrayList<>(resultsAsObjects.size());
         for (final Object[] row : resultsAsObjects) {

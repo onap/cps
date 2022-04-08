@@ -74,7 +74,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
-        final var dmiPluginRegistrationErrorResponse = new DmiPluginRegistrationErrorResponse();
+        final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse =
+            new DmiPluginRegistrationErrorResponse();
         dmiPluginRegistrationErrorResponse.setFailedCreatedCmHandles(
             getFailedResponses(dmiPluginRegistrationResponse.getCreatedCmHandles()));
         dmiPluginRegistrationErrorResponse.setFailedUpdatedCmHandles(
