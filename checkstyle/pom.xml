@@ -91,6 +91,10 @@
                                 <argument>resources/copyright-template.txt</argument>
                                 <argument>resources/ignore-files-config.csv</argument>
                             </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
                         </configuration>
                     </execution>
                 </executions>
