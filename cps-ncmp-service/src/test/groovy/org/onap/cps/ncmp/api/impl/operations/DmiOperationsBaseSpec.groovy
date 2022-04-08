@@ -56,6 +56,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
         yangModelCmHandle.dmiServiceName = dmiServiceName
         yangModelCmHandle.dmiProperties = dmiProperties
         yangModelCmHandle.id = cmHandleId
+        yangModelCmHandle.cmHandleState = 'READY'
         mockCmHandlePropertiesRetriever.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
     }
 }

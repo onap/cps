@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -73,6 +74,8 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
                 yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        final String cmHandleState = yangModelCmHandle.getCmHandleState();
+        isCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .requestId(requestId)
@@ -105,6 +108,8 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        final String cmHandleState = yangModelCmHandle.getCmHandleState();
+        isCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
@@ -117,6 +122,14 @@ public class DmiDataOperations extends DmiOperations {
                     null, null),
                 dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody);
+    }
+
+    private void isCmHandleStateReady(final YangModelCmHandle yangModelCmHandle, final String cmHandleState) {
+        if (!cmHandleState.equals("READY")) {
+            throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. "
+                + "cm handle state is "
+                + yangModelCmHandle.getCmHandleState());
+        }
     }
 
 }
