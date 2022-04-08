@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Slf4j
@@ -58,5 +59,17 @@ public final class CpsValidator {
      */
     public static boolean validateTopicName(final String topicName) {
         return topicName != null && TOPIC_NAME_PATTERN.matcher(topicName).matches();
+    }
+
+    /**
+     * Validate if cm-handle is in a READY state.
+     *
+     * @param cmHandleState current state of cm-handle
+     */
+    public static void validateCmHandleReadyState(final String cmHandleState) {
+        if (!cmHandleState.equals("READY")) {
+            throw new CpsException("State mismatch exception.", "Cm-Handle state is " + cmHandleState
+                + " must be \"READY\" ");
+        }
     }
 }

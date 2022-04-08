@@ -73,6 +73,7 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
                 yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        CpsValidator.validateCmHandleReadyState(yangModelCmHandle.getCmHandleState());
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .requestId(requestId)
@@ -105,6 +106,7 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        CpsValidator.validateCmHandleReadyState(yangModelCmHandle.getCmHandleState());
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
