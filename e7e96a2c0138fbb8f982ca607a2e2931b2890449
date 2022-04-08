@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6035800e_dac4c3df",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "Inly checking if it starts with \" but not ending with \" ... wasWrappedInDoubleQuotes should check both I would assume",
+      "range": {
+        "startLine": 71,
+        "startChar": 83,
+        "endLine": 71,
+        "endChar": 100
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ccac927_8e7ded6a",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "Same as line 149... so if processing ancestor axis we add the same information?",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 75
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c93558e2_5628058c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "NB: extra space",
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cecc367_d637f9d2",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "No need for constant if only used once. Just inline instead.",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3965d5ef_3403fa0f",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "Is this duplicating scenarios on lines 70 \u0026 71? Looks like this test is redundant?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 5
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f9a87ed_fd0dffe1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-08T08:55:59Z",
+      "side": 1,
+      "message": "Indentation",
+      "range": {
+        "startLine": 540,
+        "startChar": 110,
+        "endLine": 540,
+        "endChar": 111
+      },
+      "revId": "e7e96a2c0138fbb8f982ca607a2e2931b2890449",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
