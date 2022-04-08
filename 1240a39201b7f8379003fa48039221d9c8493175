@@ -46,6 +46,30 @@
       "revId": "1240a39201b7f8379003fa48039221d9c8493175",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b847658d_312d53d0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T07:43:06Z",
+      "side": 1,
+      "message": "i think the whole concept of have a method that wait on  a  lock is out of the scope of this user story, I actually think it is client responsibility to wait for a lock or not. I will download the patch now and have a close look",
+      "parentUuid": "b1b16cc1_85ac1288",
+      "range": {
+        "startLine": 253,
+        "startChar": 23,
+        "endLine": 253,
+        "endChar": 28
+      },
+      "revId": "1240a39201b7f8379003fa48039221d9c8493175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
