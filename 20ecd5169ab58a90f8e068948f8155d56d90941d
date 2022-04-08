@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b96c91b6_df88a2ef",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T11:37:43Z",
+      "side": 1,
+      "message": "revert to #9 !",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "20ecd5169ab58a90f8e068948f8155d56d90941d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3a9b3e3_2de95a28",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-08T11:37:43Z",
+      "side": 1,
+      "message": "names and identifiers",
+      "range": {
+        "startLine": 37,
+        "startChar": 92,
+        "endLine": 37,
+        "endChar": 117
+      },
+      "revId": "20ecd5169ab58a90f8e068948f8155d56d90941d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
