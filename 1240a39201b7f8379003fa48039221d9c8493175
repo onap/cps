@@ -70,6 +70,30 @@
       "revId": "1240a39201b7f8379003fa48039221d9c8493175",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "413ae716_a0d6b026",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-08T12:32:33Z",
+      "side": 1,
+      "message": "Exact, this was an old comment ;)",
+      "parentUuid": "b1b16cc1_85ac1288",
+      "range": {
+        "startLine": 253,
+        "startChar": 23,
+        "endLine": 253,
+        "endChar": 28
+      },
+      "revId": "1240a39201b7f8379003fa48039221d9c8493175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
