@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35edbb56_7b1ebeac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-11T09:06:42Z",
+      "side": 1,
+      "message": "NB: add: - Introduce PathPArserException (replacing IllegalStateExceptions)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ec934f_3a3b82a4",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-11T09:06:42Z",
+      "side": 1,
+      "message": "legacy: remove old comment",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 138
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d8837cd_7b7619f9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-11T09:06:42Z",
+      "side": 1,
+      "message": "NB: should need any SQL setup for this test (it never gets that far)",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
