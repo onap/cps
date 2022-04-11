@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3ad17c48_c133c4d2",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Just followed the existing pattern. Each method argument type is different so do you think we need to update all the methods?",
+      "parentUuid": "7547eaf4_b091795a",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24aa9c98_53fbc387",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
         "patchSetId": 12
@@ -59,6 +83,30 @@
       "writtenOn": "2022-04-11T09:49:45Z",
       "side": 1,
       "message": "@Getter\n@Setter\n@NoArgsConstructor(access \u003d AccessLevel.PACKAGE)\n\nAdd this to get rid of sonar violation.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8292ec4_ca1aed35",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "The annotations were already there in CpsPathQuery and its moved to CpsPathUtil.\nHow to see the sonar report for this commit?",
+      "parentUuid": "24aa9c98_53fbc387",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "0178a741_1e9fa6cb",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/PathParsingException.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9d2dd0b2_912409fd",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7706afd5_881f70f4",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 12
@@ -114,6 +186,30 @@
       "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cbf96dc_6be880aa",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7706afd5_881f70f4",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 67
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "76e5aaea_de819598",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3ec934f_3a3b82a4",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 138
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb0e3586_de5bf036",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 12
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "98e8acce_6a1dc13f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb0e3586_de5bf036",
+      "range": {
+        "startLine": 155,
+        "startChar": 72,
+        "endLine": 155,
+        "endChar": 73
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fedc533a_92c89092",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 12
@@ -174,6 +318,30 @@
       "writtenOn": "2022-04-11T09:49:45Z",
       "side": 1,
       "message": "\"Add multiple new list elements including an element with a child datanode where #scenario\"",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 82
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea816093_da0379a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Scenarios are not defined in this test so adding it here doesn\u0027t make any difference.",
+      "parentUuid": "fedc533a_92c89092",
       "range": {
         "startLine": 160,
         "startChar": 9,
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "df9a9186_d12dd5dc",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79bbd6e2_289eb2e3",
+      "range": {
+        "startLine": 192,
+        "startChar": 13,
+        "endLine": 192,
+        "endChar": 38
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d8837cd_7b7619f9",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 12
@@ -220,6 +412,30 @@
       "writtenOn": "2022-04-11T09:06:42Z",
       "side": 1,
       "message": "NB: should need any SQL setup for this test (it never gets that far)",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d92a9706_30fa75a4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-11T13:57:08Z",
+      "side": 1,
+      "message": "It is required to get the fragment data",
+      "parentUuid": "2d8837cd_7b7619f9",
       "range": {
         "startLine": 212,
         "startChar": 4,
