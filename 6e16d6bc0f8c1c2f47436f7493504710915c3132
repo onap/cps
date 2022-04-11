@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6f550b86_d2f18670",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-11T16:08:58Z",
+      "side": 1,
+      "message": "I personally think it\u0027s easier to read.\n\nBut if the team doesn\u0027t agree we can keep it like this!",
+      "parentUuid": "3ad17c48_c133c4d2",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24aa9c98_53fbc387",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
         "patchSetId": 12
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "The annotations were already there in CpsPathQuery and its moved to CpsPathUtil.\nHow to see the sonar report for this commit?",
       "parentUuid": "24aa9c98_53fbc387",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79ca2f11_fd870347",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-11T16:08:58Z",
+      "side": 1,
+      "message": "I checked the commit out myself when reviewing.\n\nTo set up sonar in your local intellij, you can view this guide\nhttps://wiki.onap.org/display/DW/Setting+Up+Your+Development+Environment#SettingUpYourDevelopmentEnvironment-SetupSonarLinttowardsONAPforIntelliJ",
+      "parentUuid": "d8292ec4_ca1aed35",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -342,6 +390,30 @@
       "side": 1,
       "message": "Scenarios are not defined in this test so adding it here doesn\u0027t make any difference.",
       "parentUuid": "fedc533a_92c89092",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 82
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de29cc77_5077125d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-11T16:08:58Z",
+      "side": 1,
+      "message": "My bad! Got it confused with the test below",
+      "parentUuid": "ea816093_da0379a9",
       "range": {
         "startLine": 160,
         "startChar": 9,
