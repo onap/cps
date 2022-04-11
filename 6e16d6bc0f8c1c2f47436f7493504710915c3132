@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b526d0e6_fdc86c89",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-11T16:17:54Z",
+      "side": 1,
+      "message": "well spotted, but this was discussed before and because of the way Antlr code generation works it is easier to stick with \u0027ctx\u0027",
+      "parentUuid": "6f550b86_d2f18670",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24aa9c98_53fbc387",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
         "patchSetId": 12
@@ -508,6 +532,30 @@
       "side": 1,
       "message": "It is required to get the fragment data",
       "parentUuid": "2d8837cd_7b7619f9",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "6e16d6bc0f8c1c2f47436f7493504710915c3132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b13f2a7_162fd67e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-11T16:17:54Z",
+      "side": 1,
+      "message": "you sure, you commented it out now?! I would assume the code fails (first) on validation of the cps path",
+      "parentUuid": "d92a9706_30fa75a4",
       "range": {
         "startLine": 212,
         "startChar": 4,
