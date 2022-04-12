@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021 Nordix Foundation
+# Modifications Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -109,9 +109,57 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-cps}
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
-      #KAFKA_BOOTSTRAP_SERVER: kafka:9092
-      #notification.data-updated.enabled: 'true'
-      #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
+      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      notification.data-updated.enabled: 'true'
+      NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
     depends_on:
       - dbpostgresql
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.1.1
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:6.1.1
+    container_name: kafka
+    ports:
+      - "19092:19092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONNECTIONS_FROM_HOST://localhost:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  ### Comment out this section if dmi plugin is not required ###
+  ncmp-dmi-plugin:
+    container_name: ncmp-dmi-plugin
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.2.0-SNAPSHOT-latest}
+    ports:
+      - ${DMI_PORT:-8783}:8080
+      - ${DMI_MANAGEMENT_PORT:-8787}:8081
+    environment:
+      CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+      CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
+      CPS_CORE_HOST: ${CPS_CORE_HOST:-cps-and-ncmp}
+      CPS_CORE_PORT: ${CPS_CORE_PORT:-8080}
+      CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+      CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
+      SDNC_HOST: ${SDNC_HOST:-sdnc}
+      SDNC_PORT: ${SDNC_PORT:-8181}
+      SDNC_USERNAME: ${SDNC_USERNAME:-admin}
+      SDNC_PASSWORD: ${SDNC_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
+      DMI_SERVICE_URL: ${DMI_SERVICE_URL:-http://ncmp-dmi-plugin:8783}
+      DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
+      DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
+      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      notification.data-updated.enabled: 'true'
+      NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
+    restart: unless-stopped
