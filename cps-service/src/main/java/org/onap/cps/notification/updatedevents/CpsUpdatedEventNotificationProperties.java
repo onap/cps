@@ -17,24 +17,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.updatedevents;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.Collections;
+import java.util.Map;
+import javax.validation.constraints.NotNull;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+@ConfigurationProperties(prefix = "notification.data-updated")
 @Component
-@Slf4j
-public class NotificationErrorHandler {
+@Data
+@Validated
+public class CpsUpdatedEventNotificationProperties {
 
-    void onException(final Exception exception, final Object... context) {
-        onException("Failed to process", exception, context);
-    }
-
-    void onException(final String message, final Exception exception, final Object... context) {
-        log.error("{} \n Error cause: {} \n Error context: {}",
-            message,
-            exception.getCause() != null ? exception.getCause().toString() : exception.getMessage(),
-            context,
-            exception);
-    }
+    @NotNull
+    private String topic;
+    private Map<String, String> filters = Collections.emptyMap();
+    @NotNull
+    private boolean enabled = false;
 }

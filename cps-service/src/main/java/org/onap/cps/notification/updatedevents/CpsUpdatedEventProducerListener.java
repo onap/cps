@@ -17,7 +17,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.updatedevents;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -27,12 +27,13 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class KafkaProducerListener<K, V> implements ProducerListener<K, V> {
+public class CpsUpdatedEventProducerListener<K, V> implements ProducerListener<K, V> {
 
-    private NotificationErrorHandler notificationErrorHandler;
+    private CpsUpdatedEventNotificationErrorHandler cpsUpdatedEventNotificationErrorHandler;
 
-    public KafkaProducerListener(final NotificationErrorHandler notificationErrorHandler) {
-        this.notificationErrorHandler = notificationErrorHandler;
+    public CpsUpdatedEventProducerListener(
+        final CpsUpdatedEventNotificationErrorHandler cpsUpdatedEventNotificationErrorHandler) {
+        this.cpsUpdatedEventNotificationErrorHandler = cpsUpdatedEventNotificationErrorHandler;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class KafkaProducerListener<K, V> implements ProducerListener<K, V> {
     public void onError(final ProducerRecord<K, V> producerRecord,
             final RecordMetadata recordMetadata,
             final Exception exception) {
-        notificationErrorHandler.onException("Failed to send message to message bus",
+        cpsUpdatedEventNotificationErrorHandler.onException("Failed to send message to message bus",
             exception, producerRecord, recordMetadata);
     }
 

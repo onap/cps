@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.updatedevents;
 
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class NotificationPublisher {
+public class CpsUpdatedEventNotificationPublisher {
 
     private KafkaTemplate<String, CpsDataUpdatedEvent> kafkaTemplate;
     private String topicName;
@@ -43,7 +43,7 @@ public class NotificationPublisher {
      *                      'notification.data-updated.topic' in the application properties
      */
     @Autowired
-    public NotificationPublisher(
+    public CpsUpdatedEventNotificationPublisher(
         final KafkaTemplate<String, CpsDataUpdatedEvent> kafkaTemplate,
         final @Value("${notification.data-updated.topic}") String topicName) {
         this.kafkaTemplate = kafkaTemplate;

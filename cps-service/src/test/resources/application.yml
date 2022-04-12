@@ -1,5 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (c) 2021 Bell Canada.
+#  Modification Copyright (C) 2022 Nordix Foundation.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -44,6 +45,11 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent
+  app:
+    listener:
+      ncmp:
+        async-m2m:
+          topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
 
 logging:
   level:
