@@ -1,0 +1,15 @@
+{
+  "eventId": "9999",
+  "eventCorrelationId": "request-009995",
+  "eventTime": "2021-11-16T16:42:25-04:00",
+  "eventSource": "org.onap.ncmp",
+  "eventType": "org.onap.ncmp.async-request-response-event",
+  "eventSchema": "org.onap.ncmp:async-request-response-event:v1",
+  "eventTarget": "topic:client-application-topic",
+  "event": {
+    "response-data-schema": "org.onap.cps.yang-patch-json:v1",
+    "response-status": "SUCCESS",
+    "response-code": "200",
+    "response-data": {"some-key": "some-value"}
+  }
+}
