@@ -24,8 +24,8 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
-import org.onap.cps.notification.NotificationService
-import org.onap.cps.notification.Operation
+import org.onap.cps.notification.updatedevents.CpsUpdatedEventNotificationService
+import org.onap.cps.notification.updatedevents.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -42,7 +42,7 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
-    def mockNotificationService = Mock(NotificationService)
+    def mockNotificationService = Mock(CpsUpdatedEventNotificationService)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
             mockYangTextSchemaSourceSetCache, mockNotificationService)

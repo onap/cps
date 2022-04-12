@@ -17,10 +17,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification
+package org.onap.cps.notification.updatedevents
 
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.clients.producer.RecordMetadata
 import org.onap.cps.event.model.Content
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.spockframework.spring.SpringBean
@@ -28,16 +27,16 @@ import org.springframework.kafka.KafkaException
 import org.springframework.kafka.core.KafkaTemplate
 import spock.util.concurrent.PollingConditions
 
-class NotificationPublisherSpec extends KafkaPublisherSpecBase {
+class CpsUpdatedEventNotificationPublisherSpec extends KafkaPublisherSpecBase {
 
     @SpringBean
-    NotificationErrorHandler spyNotificationErrorHandler = Spy(new NotificationErrorHandler())
+    CpsUpdatedEventNotificationErrorHandler spyNotificationErrorHandler = Spy(new CpsUpdatedEventNotificationErrorHandler())
 
     @SpringBean
-    KafkaProducerListener spyKafkaProducerListener = Spy(new KafkaProducerListener<>(spyNotificationErrorHandler))
+    CpsUpdatedEventProducerListener spyKafkaProducerListener = Spy(new CpsUpdatedEventProducerListener<>(spyNotificationErrorHandler))
 
     KafkaTemplate spyKafkaTemplate
-    NotificationPublisher objectUnderTest
+    CpsUpdatedEventNotificationPublisher objectUnderTest
 
     def myAnchorName = 'my-anchor'
     def myDataspaceName = 'my-dataspace'
@@ -49,7 +48,7 @@ class NotificationPublisherSpec extends KafkaPublisherSpecBase {
 
     def setup() {
         spyKafkaTemplate = Spy(kafkaTemplate)
-        objectUnderTest = new NotificationPublisher(spyKafkaTemplate, cpsEventTopic);
+        objectUnderTest = new CpsUpdatedEventNotificationPublisher(spyKafkaTemplate, cpsEventTopic);
     }
 
     def 'Sending event to message bus with correct message Key.'() {

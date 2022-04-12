@@ -17,7 +17,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification
+package org.onap.cps.notification.updatedevents
 
 import org.testcontainers.containers.KafkaContainer
 import org.testcontainers.utility.DockerImageName

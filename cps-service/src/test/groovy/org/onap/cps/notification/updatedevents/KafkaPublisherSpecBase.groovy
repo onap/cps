@@ -17,7 +17,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification
+package org.onap.cps.notification.updatedevents
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
@@ -36,7 +36,7 @@ import org.springframework.test.context.DynamicPropertySource
 import spock.lang.Shared
 import spock.lang.Specification
 
-@ContextConfiguration(classes = [KafkaAutoConfiguration, KafkaProducerListener, NotificationErrorHandler])
+@ContextConfiguration(classes = [KafkaAutoConfiguration, CpsUpdatedEventProducerListener, CpsUpdatedEventNotificationErrorHandler])
 @SpringBootTest
 class KafkaPublisherSpecBase extends Specification {
 

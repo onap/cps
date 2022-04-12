@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.updatedevents;
 
 import java.net.URI;
 import java.net.URISyntaxException;

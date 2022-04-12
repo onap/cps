@@ -19,7 +19,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.notification;
+package org.onap.cps.notification.updatedevents;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -39,23 +39,24 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class NotificationService {
+public class CpsUpdatedEventNotificationService {
 
-    private final NotificationProperties notificationProperties;
-    private final NotificationPublisher notificationPublisher;
+    private final CpsUpdatedEventNotificationProperties cpsUpdatedEventNotificationProperties;
+    private final CpsUpdatedEventNotificationPublisher cpsUpdatedEventNotificationPublisher;
     private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
-    private final NotificationErrorHandler notificationErrorHandler;
+    private final CpsUpdatedEventNotificationErrorHandler cpsUpdatedEventNotificationErrorHandler;
     private List<Pattern> dataspacePatterns;
 
     @PostConstruct
     public void init() {
-        log.info("Notification Properties {}", notificationProperties);
-        this.dataspacePatterns = getDataspaceFilterPatterns(notificationProperties);
+        log.info("Notification Properties {}", cpsUpdatedEventNotificationProperties);
+        this.dataspacePatterns = getDataspaceFilterPatterns(cpsUpdatedEventNotificationProperties);
     }
 
-    private List<Pattern> getDataspaceFilterPatterns(final NotificationProperties notificationProperties) {
-        if (notificationProperties.isEnabled()) {
-            return Arrays.stream(notificationProperties.getFilters()
+    private List<Pattern> getDataspaceFilterPatterns(
+        final CpsUpdatedEventNotificationProperties cpsUpdatedEventNotificationProperties) {
+        if (cpsUpdatedEventNotificationProperties.isEnabled()) {
+            return Arrays.stream(cpsUpdatedEventNotificationProperties.getFilters()
                 .getOrDefault("enabled-dataspaces", "")
                 .split(","))
                 .map(filterPattern -> Pattern.compile(filterPattern, Pattern.CASE_INSENSITIVE))
@@ -84,13 +85,13 @@ public class NotificationService {
                     cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
                         observedTimestamp, getRootNodeOperation(xpath, operation));
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
-                notificationPublisher.sendNotification(cpsDataUpdatedEvent);
+                cpsUpdatedEventNotificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }
         } catch (final Exception exception) {
             /* All the exceptions are handled to not to propagate it to caller.
                CPS operation should not fail if sending event fails for any reason.
              */
-            notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
+            cpsUpdatedEventNotificationErrorHandler.onException("Failed to process cps-data-updated-event.",
                 exception, anchor, xpath, operation);
         }
         return CompletableFuture.completedFuture(null);
@@ -101,7 +102,7 @@ public class NotificationService {
      */
     private boolean shouldSendNotification(final String dataspaceName) {
 
-        return notificationProperties.isEnabled()
+        return cpsUpdatedEventNotificationProperties.isEnabled()
             && dataspacePatterns.stream()
             .anyMatch(pattern -> pattern.matcher(dataspaceName).find());
     }
