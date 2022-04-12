@@ -23,7 +23,6 @@ package org.onap.cps.notification
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import org.onap.cps.utils.DateTimeUtility
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.event.model.Content
 import org.onap.cps.event.model.Data

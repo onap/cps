@@ -64,20 +64,7 @@ cd $WORKSPACE/archives/dc-cps
 curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
 chmod +x docker-compose
 
-# start CPS and PostgreSQL containers with docker compose
-./docker-compose up -d
-
-###################### setup onap-dmi-plugin ############################
-
-cd $WORKSPACE/archives
-git clone "https://gerrit.onap.org/r/cps/ncmp-dmi-plugin"
-mkdir -p $WORKSPACE/archives/dc-dmi
-cat $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/docker-compose.yml
-cp $WORKSPACE/archives/ncmp-dmi-plugin/docker-compose/*.yml $WORKSPACE/archives/dc-dmi
-cd $WORKSPACE/archives/dc-dmi
-# copy docker-compose (downloaded already for cps)
-cp $WORKSPACE/archives/dc-cps/docker-compose .
-chmod +x docker-compose
+# start CPS/NCMP, DMI, and PostgreSQL containers with docker compose
 ./docker-compose up -d
 
 ###################### setup sdnc #######################################

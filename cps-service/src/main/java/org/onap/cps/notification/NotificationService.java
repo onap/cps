@@ -53,7 +53,8 @@ public class NotificationService {
         this.dataspacePatterns = getDataspaceFilterPatterns(notificationProperties);
     }
 
-    private List<Pattern> getDataspaceFilterPatterns(final NotificationProperties notificationProperties) {
+    private List<Pattern> getDataspaceFilterPatterns(
+        final NotificationProperties notificationProperties) {
         if (notificationProperties.isEnabled()) {
             return Arrays.stream(notificationProperties.getFilters()
                 .getOrDefault("enabled-dataspaces", "")
