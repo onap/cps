@@ -70,6 +70,20 @@ spring:
         producer:
             value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
             client-id: cps-core
+        consumer:
+            group-id: ${CPS_CONSUMER_GROUP_ID:cps-core-group}
+            key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            properties:
+                spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+                spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+                spring.json.value.default.type: org.onap.cps.event.model.CpsAsyncRequestResponseEvent
+                spring.json.use.type.headers: false
+app:
+    listener:
+        ncmp:
+            async-m2m:
+                topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
 
 notification:
     data-updated:
