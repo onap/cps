@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -96,16 +97,23 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
 
-        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
-                resourceIdentifier,
-                optionsParamInQuery,
-                asyncResponseData == null ? NO_TOPIC : topicParamInQuery,
-                asyncResponseData == null ? NO_REQUEST_ID : asyncResponseData.get(ASYNC_REQUEST_ID).toString());
-
-        if (asyncResponseData == null) {
-            return ResponseEntity.ok(responseObject);
+        if (hasTopic(topicParamInQuery)) {
+            Executors.newSingleThreadExecutor().submit(() -> {
+                networkCmProxyDataService.getResourceDataOperationalForCmHandle(
+                    cmHandle,
+                    resourceIdentifier,
+                    optionsParamInQuery,
+                    topicParamInQuery,
+                    asyncResponseData.get(ASYNC_REQUEST_ID).toString()
+                );
+            });
+            return ResponseEntity.ok(asyncResponse);
         }
-        return ResponseEntity.ok(asyncResponse);
+
+        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(
+            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
+
+        return ResponseEntity.ok(responseObject);
     }
 
     /**
@@ -125,16 +133,26 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
 
-        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier,
-                optionsParamInQuery,
-                asyncResponseData == null ? NO_TOPIC : topicParamInQuery,
-                asyncResponseData == null ? NO_REQUEST_ID : asyncResponseData.get(ASYNC_REQUEST_ID).toString());
-
-        if (asyncResponseData == null) {
-            return ResponseEntity.ok(responseObject);
+        if (hasTopic(topicParamInQuery)) {
+             Executors.newSingleThreadExecutor().submit(() -> {
+                networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
+                    cmHandle,
+                    resourceIdentifier,
+                    optionsParamInQuery,
+                    topicParamInQuery,
+                    asyncResponseData.get(ASYNC_REQUEST_ID).toString());
+            });
+            return ResponseEntity.ok(asyncResponse);
         }
-        return ResponseEntity.ok(asyncResponse);
+
+        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
+            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
+
+        return ResponseEntity.ok(responseObject);
+    }
+
+    private boolean hasTopic(String topicParamInQuery) {
+        return topicParamInQuery != null && !topicParamInQuery.isEmpty() && !topicParamInQuery.isBlank();
     }
 
     @Override

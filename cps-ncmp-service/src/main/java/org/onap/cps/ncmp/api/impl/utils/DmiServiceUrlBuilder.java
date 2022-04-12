@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
@@ -36,6 +37,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class DmiServiceUrlBuilder {
@@ -111,7 +113,7 @@ public class DmiServiceUrlBuilder {
                 resourceId, queryParams);
         getQueryParamConsumer().accept("options", optionsParamInQuery, queryParams);
         if (Strings.isNotEmpty(topicParamInQuery)) {
-            getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
+            getQueryParamConsumer().accept("topicParamInQuery", topicParamInQuery, queryParams);
         }
         return queryParams;
     }
