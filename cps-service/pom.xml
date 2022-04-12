@@ -44,6 +44,11 @@
       <artifactId>cps-events</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.onap.cps</groupId>
+      <artifactId>cps-ncmp-events</artifactId>
+      <version>3.1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>yang-model-api</artifactId>
     </dependency>
@@ -149,6 +154,11 @@
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>kafka</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>spock</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
