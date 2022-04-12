@@ -31,7 +31,8 @@ public class KafkaProducerListener<K, V> implements ProducerListener<K, V> {
 
     private NotificationErrorHandler notificationErrorHandler;
 
-    public KafkaProducerListener(final NotificationErrorHandler notificationErrorHandler) {
+    public KafkaProducerListener(
+        final NotificationErrorHandler notificationErrorHandler) {
         this.notificationErrorHandler = notificationErrorHandler;
     }
 
