@@ -55,6 +55,7 @@
         <module>cps-events</module>
         <module>cps-service</module>
         <module>cps-rest</module>
+        <module>cps-ncmp-events</module>
         <module>cps-ncmp-service</module>
         <module>cps-ncmp-rest</module>
         <module>cps-path-parser</module>
