@@ -57,6 +57,7 @@ public final class CpsValidator {
      * @param topicName name of the topic to be validated
      */
     public static boolean validateTopicName(final String topicName) {
-        return topicName != null && TOPIC_NAME_PATTERN.matcher(topicName).matches();
+        return topicName != null && TOPIC_NAME_PATTERN.matcher(topicName).matches()
+            && !topicName.equalsIgnoreCase("null");
     }
 }
