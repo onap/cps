@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
+import org.onap.cps.ncmp.rest.executor.CpsTaskExecutor
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -65,6 +66,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
+
+    @SpringBean
+    CpsTaskExecutor cpsTaskExecutor = Spy()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp

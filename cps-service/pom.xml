@@ -153,5 +153,10 @@
       <artifactId>aspectjrt</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>spock</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
