@@ -21,3 +21,8 @@ rest:
     api:
         ncmp-base-path: /ncmp
         ncmp-inventory-base-path: /ncmpInventory
+
+notification:
+    async:
+        executor:
+            time-out-value: 2000
