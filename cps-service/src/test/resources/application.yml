@@ -44,6 +44,11 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent
+  app:
+    listener:
+      ncmp:
+        async-m2m:
+          topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
 
 logging:
   level:
