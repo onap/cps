@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27fcfb15_198aa131",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T15:25:51Z",
+      "side": 1,
+      "message": "NB not aligned, was just the one space that needed to be removed",
+      "range": {
+        "startLine": 156,
+        "startChar": 72,
+        "endLine": 156,
+        "endChar": 73
+      },
+      "revId": "6156da3d5c4b5dbd39178805c81757b395677734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
