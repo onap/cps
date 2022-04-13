@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5b4c07f_bca1db3a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "\"Retrying the sending of the request could be required.\" might be better",
+      "range": {
+        "startLine": 118,
+        "startChar": 23,
+        "endLine": 118,
+        "endChar": 70
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3acefe29_f588c5ef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "debug log to remove",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 25
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "522a670e_1800aad7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "releaseLocksOnAnchor to match lock method naming",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 145,
+        "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401fada3_26bde5cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "Or to above: might be better to remove \u0027Anchor\u0027 from logging and then can be used for all locks\nAttempting to unlock entities and Entities successfully unlocked possibly",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 49
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15434268_cd6140a8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "debug print to be removed",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 30
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "089874e3_46da869e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "I think for these tests the sessionManager should be mocked because otherwise its the same tests as those that are in the sessionManager groovy testing. This should check the correct sessionManager method is being called. Would also remove the need for the Sql annotation at the start of the lock test",
+      "range": {
+        "startLine": 620,
+        "startChar": 4,
+        "endLine": 643,
+        "endChar": 5
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5a7c73_fba753cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "releaseAnchorLocks or something similar",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "477c04be_da31e247",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionTimeoutException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "Does this need its own serialized version id?",
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2f5d91b_047079a0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "defaultTimeoutInMilliseconds",
+      "range": {
+        "startLine": 290,
+        "startChar": 16,
+        "endLine": 290,
+        "endChar": 42
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5487522d_d8618605",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-13T16:04:02Z",
+      "side": 1,
+      "message": "Same as before, either \u0027unlock entities method is called\u0027 or rename function to releaseAnchorLocks",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 302,
+        "endChar": 72
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
