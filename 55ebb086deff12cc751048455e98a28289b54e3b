@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "dce73b7b_d97fce25",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T17:21:04Z",
+      "side": 1,
+      "message": "Is this required for this change ? What is the reason ?",
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5b4c07f_bca1db3a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -110,6 +127,29 @@
         "startChar": 16,
         "endLine": 145,
         "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f689f54_fc6c0810",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T17:21:04Z",
+      "side": 1,
+      "message": "The difference between releaseLocks() here and existing closeSession() is not so clear from an interface point of view.\nThe implementation needs to be read to understand that both methods are committing the transaction and then one is closing the session and the other one is starting a new transaction using the same session.\n\nWhat is the reason and the use case to start a new transaction on the same session ? What does it bring compare to starting a new transaction using the existing startSession() method ?",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 54
       },
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
