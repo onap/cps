@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "51431ab4_4c26e31d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-14T07:58:17Z",
+      "side": 1,
+      "message": "Remove if this is ready to be added",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adb5d027_64934537",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-14T07:58:17Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 16,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5b4c07f_bca1db3a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -140,6 +186,52 @@
     },
     {
       "key": {
+        "uuid": "20a4f2f2_a34b7522",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-14T07:58:17Z",
+      "side": 1,
+      "message": "attempt to lock",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8368ec95_6b8cb9b5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-14T07:58:17Z",
+      "side": 1,
+      "message": "As this is being used only once it can be inlined. The name does give context but from the api it can be seen that it is the default timeout.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 65
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df5a7c73_fba753cb",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 8
@@ -156,6 +248,29 @@
         "startChar": 16,
         "endLine": 143,
         "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e899ac3b_888a7963",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-14T07:58:17Z",
+      "side": 1,
+      "message": "2020 -2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
       },
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
