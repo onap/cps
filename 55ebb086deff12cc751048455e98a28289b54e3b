@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "c4204ab0_28011e10",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T21:08:02Z",
+      "side": 1,
+      "message": "It would be good to add the actual exception as the exception cause of this one to ensure that no information is left under the way.",
+      "range": {
+        "startLine": 115,
+        "startChar": 22,
+        "endLine": 115,
+        "endChar": 45
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5b4c07f_bca1db3a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -105,6 +128,23 @@
         "endLine": 130,
         "endChar": 25
       },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fa6263d_61edc096",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T21:08:02Z",
+      "side": 1,
+      "message": "As there is some logs here, I\u0027m suggesting logging seesion id and anchor id to make the trace more meaningful and useful.",
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -249,6 +289,29 @@
     },
     {
       "key": {
+        "uuid": "1cd71ce1_f735578f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T21:08:02Z",
+      "side": 1,
+      "message": "Is it required and a good idea to let the client specify whatever timeout he wishes ?\nThe client would be able to get and keep the connections for any amount of time he decides, preventing other requests to get some connections.",
+      "range": {
+        "startLine": 210,
+        "startChar": 84,
+        "endLine": 210,
+        "endChar": 105
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8368ec95_6b8cb9b5",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 8
@@ -311,6 +374,29 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 23
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3accf131_b762285d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionManagerException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-14T21:08:02Z",
+      "side": 1,
+      "message": "Any reason why this exception is not extending a type from CpsException hierarchy ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 45,
+        "endLine": 26,
+        "endChar": 61
       },
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
