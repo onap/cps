@@ -94,35 +94,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
-          example: [
-            {
-              "cmHandle": "my-cm-handle-01",
-              "errorCode": "01",
-              "errorText": "cm-handle already exists"
-            }
-          ]
         failedUpdatedCmHandles:
           type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
-          example: [
-            {
-              "cmHandle": "my-cm-handle-02",
-              "errorCode": "02",
-              "errorText": "cm-handle does not exist"
-            }
-          ]
         failedRemovedCmHandles:
           type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
-          example: [
-            {
-              "cmHandle": "my-cm-handle-02",
-              "errorCode": "02",
-              "errorText": "cm-handle does not exist"
-            }
-          ]
     CmHandlerRegistrationErrorResponse:
       type: object
       properties:
@@ -131,10 +110,10 @@ components:
           example: my-cm-handle
         errorCode:
           type: string
-          example: '01'
+          example: '00'
         errorText:
           type: string
-          example: 'cm-handle already exists'
+          example: 'Unknown error. <error-details>'
 
     RestInputCmHandle:
       required:
