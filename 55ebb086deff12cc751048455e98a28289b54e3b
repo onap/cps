@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d127a425_a8fb2255",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adb5d027_64934537",
+      "range": {
+        "startLine": 4,
+        "startChar": 16,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dce73b7b_d97fce25",
         "filename": "cps-path-parser/pom.xml",
         "patchSetId": 8
@@ -111,6 +135,30 @@
     },
     {
       "key": {
+        "uuid": "91a1ef42_c6c35b33",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5b4c07f_bca1db3a",
+      "range": {
+        "startLine": 118,
+        "startChar": 23,
+        "endLine": 118,
+        "endChar": 70
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3acefe29_f588c5ef",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -134,6 +182,30 @@
     },
     {
       "key": {
+        "uuid": "2ad0b67d_1b302bef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3acefe29_f588c5ef",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 25
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2fa6263d_61edc096",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -148,6 +220,24 @@
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec9a8255_053bd048",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fa6263d_61edc096",
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -197,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "7e606977_318b7ee7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "522a670e_1800aad7",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 145,
+        "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "401fada3_26bde5cd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -240,6 +354,30 @@
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038d8ab0_8a9dfc9f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15434268_cd6140a8",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 30
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -289,6 +427,30 @@
     },
     {
       "key": {
+        "uuid": "855928f9_01ac4555",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20a4f2f2_a34b7522",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cd71ce1_f735578f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 8
@@ -300,6 +462,30 @@
       "writtenOn": "2022-04-14T21:08:02Z",
       "side": 1,
       "message": "Is it required and a good idea to let the client specify whatever timeout he wishes ?\nThe client would be able to get and keep the connections for any amount of time he decides, preventing other requests to get some connections.",
+      "range": {
+        "startLine": 210,
+        "startChar": 84,
+        "endLine": 210,
+        "endChar": 105
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf286a9f_edae6165",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "it would be up to the client and letting the client specify the timeout allows it to be configurable",
+      "parentUuid": "1cd71ce1_f735578f",
       "range": {
         "startLine": 210,
         "startChar": 84,
@@ -358,6 +544,30 @@
     },
     {
       "key": {
+        "uuid": "1c4ab13f_157855d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df5a7c73_fba753cb",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 28
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e899ac3b_888a7963",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 8
@@ -381,6 +591,30 @@
     },
     {
       "key": {
+        "uuid": "e4672f25_6a5d4c0b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e899ac3b_888a7963",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3accf131_b762285d",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionManagerException.java",
         "patchSetId": 8
@@ -392,6 +626,30 @@
       "writtenOn": "2022-04-14T21:08:02Z",
       "side": 1,
       "message": "Any reason why this exception is not extending a type from CpsException hierarchy ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 45,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0851f889_10ece68e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionManagerException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "No reason, should it extend CpsException?",
+      "parentUuid": "3accf131_b762285d",
       "range": {
         "startLine": 26,
         "startChar": 45,
@@ -421,6 +679,24 @@
     },
     {
       "key": {
+        "uuid": "687db4e8_a14a2420",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionTimeoutException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "477c04be_da31e247",
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2f5d91b_047079a0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 8
@@ -432,6 +708,30 @@
       "writtenOn": "2022-04-13T16:04:02Z",
       "side": 1,
       "message": "defaultTimeoutInMilliseconds",
+      "range": {
+        "startLine": 290,
+        "startChar": 16,
+        "endLine": 290,
+        "endChar": 42
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a67ca204_42234349",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "should I specify it to be \u0027default\u0027 when the other test method is running with the default timeout? this scenario is for passing a custom timeout",
+      "parentUuid": "a2f5d91b_047079a0",
       "range": {
         "startLine": 290,
         "startChar": 16,
@@ -464,6 +764,30 @@
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bee44d6f_e5189bef",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-19T21:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5487522d_d8618605",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 302,
+        "endChar": 72
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
