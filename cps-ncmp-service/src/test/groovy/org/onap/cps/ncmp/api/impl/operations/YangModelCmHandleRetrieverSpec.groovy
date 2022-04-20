@@ -29,15 +29,21 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 class YangModelCmHandleRetrieverSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
     def objectUnderTest = new YangModelCmHandleRetriever(mockCpsDataService)
 
+    @Shared
     def cmHandleId = 'some-cm-handle'
-    def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
+
+    @Shared
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
+
+    def leaves = ["id":"some-cm-handle",  "dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -49,13 +55,14 @@ class YangModelCmHandleRetrieverSpec extends Specification {
     @Shared
     def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
 
-    def "Retrieve CmHandle using datanode with #scenario."() {
-        given: 'the cps data service returns a data node from the DMI registry'
+    def "Retrieve Cm-Handle using datanode with #scenario."() {
+        given: 'a cm handle data node'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
-            def result = objectUnderTest.getDmiServiceNamesAndProperties(cmHandleId)
-        then: 'the result has the correct id and service names'
+            def result = objectUnderTest.getYangModelCmHandle(inputtedCmHandleId)
+        then : 'the cps data service returns a data node from the DMI registry'
+            1 * mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', cmHandleXpath, fetchDecendantsOption) >> dataNode
+        and: 'the result has the correct id and service names'
             result.id == cmHandleId
             result.dmiServiceName == 'common service name'
             result.dmiDataServiceName == 'data service name'
@@ -64,16 +71,17 @@ class YangModelCmHandleRetrieverSpec extends Specification {
             result.dmiProperties == expectedDmiProperties
             result.publicProperties == expectedPublicProperties
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties
-            'no properties'             | []                                            || []                                                  || []
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]
-            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []
-            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]
+            scenario                     | childDataNodes                                | inputtedCmHandleId | cmHandleXpath |fetchDecendantsOption    || expectedDmiProperties                               || expectedPublicProperties
+            'no properties'              | []                                            | cmHandleId         | xpath         | INCLUDE_ALL_DESCENDANTS || []                                                  || []
+            'DMI and public properties'  | childDataNodesForCmHandleWithAllProperties    | cmHandleId         | xpath         | INCLUDE_ALL_DESCENDANTS || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]
+            'just DMI properties'        | childDataNodesForCmHandleWithDMIProperties    | cmHandleId         | xpath         | INCLUDE_ALL_DESCENDANTS || [new YangModelCmHandle.Property("name1", "value1")] || []
+            'just public properties'     | childDataNodesForCmHandleWithPublicProperties | cmHandleId         | xpath         | INCLUDE_ALL_DESCENDANTS || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]
+            'where cm handle id is null' | []                                            | null               | null          | OMIT_DESCENDANTS        || []                                                  || []
     }
 
     def "Retrieve CmHandle using datanode with invalid CmHandle id."() {
         when: 'retrieving the yang modelled cm handle with an invalid id'
-            def result = objectUnderTest.getDmiServiceNamesAndProperties('cm handle id with spaces')
+            def result = objectUnderTest.getYangModelCmHandle('cm handle id with spaces')
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'the result is not returned'
