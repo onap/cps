@@ -74,7 +74,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
-    def dataNode = new DataNode(leaves: ['dmi-service-name': 'testDmiService'])
+    def dataNode = new DataNode(leaves: ['id': 'Some-Cm-Handle', 'dmi-service-name': 'testDmiService'])
 
     def 'Write resource data for pass-through running from DMI using POST #scenario cm handle properties.'() {
         given: 'cpsDataService returns valid datanode'
@@ -285,7 +285,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
             def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
-            1 * mockYangModelCmHandleRetriever.getDmiServiceNamesAndProperties('Some-Cm-Handle') >> yangModelCmHandle
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('Some-Cm-Handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('Some-Cm-Handle')
         then: 'the result returns the correct data'
@@ -301,7 +301,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getDmiServiceNamesAndProperties(_)
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
