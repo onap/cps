@@ -173,10 +173,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         if (isRootXpath(xpath)) {
             return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
-        } else {
-            return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
-                xpath);
+        } else if (xpath == null) {
+            return fragmentRepository.getCmHandleByAdvisedState();
         }
+        return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
     }
 
     @Override
