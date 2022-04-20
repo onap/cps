@@ -54,7 +54,7 @@ class YangModelCmHandleRetrieverSpec extends Specification {
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
-            def result = objectUnderTest.getDmiServiceNamesAndProperties(cmHandleId)
+            def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the result has the correct id and service names'
             result.id == cmHandleId
             result.dmiServiceName == 'common service name'
@@ -73,7 +73,7 @@ class YangModelCmHandleRetrieverSpec extends Specification {
 
     def "Retrieve CmHandle using datanode with invalid CmHandle id."() {
         when: 'retrieving the yang modelled cm handle with an invalid id'
-            def result = objectUnderTest.getDmiServiceNamesAndProperties('cm handle id with spaces')
+            def result = objectUnderTest.getYangModelCmHandle('cm handle id with spaces')
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'the result is not returned'

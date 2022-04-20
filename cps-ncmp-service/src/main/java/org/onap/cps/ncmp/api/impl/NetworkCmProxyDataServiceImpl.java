@@ -184,7 +184,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         CpsValidator.validateNameCharacters(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
