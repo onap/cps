@@ -53,6 +53,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
     static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
+    static final String CM_HANDLE_WITH_ADVISED_STATE_XPATH = '/dmi-registry/cm-handles[@id="PNFDemo5"]'
     static final long UPDATE_DATA_NODE_FRAGMENT_ID = 4202L
     static final long UPDATE_DATA_NODE_SUB_FRAGMENT_ID = 4203L
     static final long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
@@ -68,7 +69,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
             '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
             '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
-            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
+            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value'],
+            '/dmi-registry/cm-handles[@id="PNFDemo5"]': ['id': 'PNFDemo5', 'state': 'ADVISED', 'dmi-service-name': 'http://172.26.46.68:8783', 'dmi-data-service-name': '', 'dmi-model-service-name': '']
     ]
 
     static {
@@ -206,6 +208,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'root xpath'  | '/'
             'empty xpath' | ''
     }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get data node with null xpath.'() {
+        when: 'data node is requested'
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+                null, OMIT_DESCENDANTS)
+        then: 'cm-handle data node with an advised state is returned with no descendants'
+            assert result.xpath == CM_HANDLE_WITH_ADVISED_STATE_XPATH
+        and: 'expected leaves'
+            assert result.childDataNodes.size() == 0
+            assertLeavesMaps(result.leaves, expectedLeavesByXpathMap[CM_HANDLE_WITH_ADVISED_STATE_XPATH])
+    }
+
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants.'() {
