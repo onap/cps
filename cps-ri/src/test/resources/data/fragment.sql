@@ -76,8 +76,9 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (5001, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo2"]', '{"id": "PNFDemo2", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
     (5002, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo3"]', '{"id": "PNFDemo3", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
     (5003, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo4"]', '{"id": "PNFDemo4", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
-    (5004, 1002, 3004, 5000, '/dmi-registry/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
-    (5005, 1002, 3004, 5001, '/dmi-registry/cm-handles[@id="PNFDemo2"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
-    (5006, 1002, 3004, 5002, '/dmi-registry/cm-handles[@id="PNFDemo3"]/public-properties[@name="Contact"]', '{"name": "Contact3", "value": "PNF3@bookstore.com"}'),
-    (5007, 1002, 3004, 5003, '/dmi-registry/cm-handles[@id="PNFDemo4"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
-    (5008, 1002, 3004, 5004, '/dmi-registry/cm-handles[@id="PNFDemo4"]/public-properties[@name="Contact2"]', '{"name": "Contact2", "value": "newemailforstore2@bookstore.com"}');
+    (5004, 1002, 3004, null, '/dmi-registry/cm-handles[@id="PNFDemo5"]', '{"id": "PNFDemo5", "state": "ADVISED", "dmi-service-name": "http://172.26.46.68:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),
+    (5005, 1002, 3004, 5000, '/dmi-registry/cm-handles[@id="PNFDemo"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5006, 1002, 3004, 5001, '/dmi-registry/cm-handles[@id="PNFDemo2"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5007, 1002, 3004, 5002, '/dmi-registry/cm-handles[@id="PNFDemo3"]/public-properties[@name="Contact"]', '{"name": "Contact3", "value": "PNF3@bookstore.com"}'),
+    (5008, 1002, 3004, 5003, '/dmi-registry/cm-handles[@id="PNFDemo4"]/public-properties[@name="Contact"]', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
+    (5009, 1002, 3004, 5004, '/dmi-registry/cm-handles[@id="PNFDemo4"]/public-properties[@name="Contact2"]', '{"name": "Contact2", "value": "newemailforstore2@bookstore.com"}');
