@@ -74,7 +74,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
-    def dataNode = new DataNode(leaves: ['dmi-service-name': 'testDmiService'])
+    def dataNode = new DataNode(leaves: ['id': 'Some-Cm-Handle', 'dmi-service-name': 'testDmiService'])
+
+    def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","dmi-service-name":"some service name","state":"READY"}]}'
 
     def 'Write resource data for pass-through running from DMI using POST #scenario cm handle properties.'() {
         given: 'cpsDataService returns valid datanode'
@@ -263,6 +265,24 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cm-handle')
     }
 
+    def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
+        given: 'a cm handle with an advised state'
+            def dmiServiceName = 'some service name'
+            def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', cmHandleState: 'ADVISED', dmiServiceName:  dmiServiceName)
+        when: 'a sync is scheduled'
+            objectUnderTest.scheduleCmHandleSync()
+        then: 'cm handles with an advised state are queried'
+            1 * mockCpsAdminService.queryAdvisedCmHandle() >> dataNode
+        and: 'a cm handle is retrieved with an advised state'
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('Some-Cm-Handle') >> yangModelCmHandle
+        and: 'no further cm handles are retrieved with an advised state'
+            1 * mockCpsAdminService.queryAdvisedCmHandle() >> null
+        and: 'yang model cm handle state is set to ready'
+            yangModelCmHandle.cmHandleState == 'READY'
+        and: 'cps data service update node leaves is called with the correct parameters'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData , null)
+    }
+
     def 'Getting Yang Resources with an invalid #scenario.'() {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences('invalid cm handle with spaces')
@@ -285,7 +305,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
             def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
-            1 * mockYangModelCmHandleRetriever.getDmiServiceNamesAndProperties('Some-Cm-Handle') >> yangModelCmHandle
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('Some-Cm-Handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('Some-Cm-Handle')
         then: 'the result returns the correct data'
@@ -301,7 +321,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getDmiServiceNamesAndProperties(_)
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

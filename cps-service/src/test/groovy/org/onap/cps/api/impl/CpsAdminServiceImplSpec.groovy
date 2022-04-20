@@ -186,6 +186,13 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsAdminPersistenceService.queryCmHandles(cmHandleQueryParameters)
     }
 
+    def 'Query Advised Cm Handles.'() {
+        when: 'query advised cm handles is invoked'
+            objectUnderTest.queryAdvisedCmHandle()
+        then: 'the associated persistence service method is invoked'
+            1 * mockCpsAdminPersistenceService.queryAdvisedCmHandle()
+    }
+
     def 'Delete dataspace with invalid dataspace id.'() {
         when: 'delete dataspace is invoked'
             objectUnderTest.deleteDataspace('some dataspace name')

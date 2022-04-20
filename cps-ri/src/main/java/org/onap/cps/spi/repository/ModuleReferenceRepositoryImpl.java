@@ -106,6 +106,22 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         return extractCmHandleIds(amalgamatedQueryResult);
     }
 
+    /**
+     * Query and Return "ADVISED" cm handles.
+     *
+     * @return single cm handle in an "ADVISED"
+     */
+    public DataNode queryAdvisedCmHandle() {
+        final Collection<DataNode> dataNodes = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+            "ncmp-dmi-registry", "//cm-handles[@state=\"ADVISED\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+        for (final DataNode dataNode: dataNodes) {
+            if (dataNode.getLeaves().get("state").equals("ADVISED")) {
+                return dataNode;
+            }
+        }
+        return null;
+    }
+
     private Set<String> getAllCmHandles() {
         final Collection<DataNode> cmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
             "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",

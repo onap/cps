@@ -61,15 +61,19 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@EnableScheduling
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
     private final CpsDataService cpsDataService;
@@ -174,6 +178,49 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
+     * Schedule Job which syncs cm-handle and changes the state from 'ADVISED' to 'READY'.
+     */
+    @Scheduled(fixedDelay = 30000)
+    public void scheduleCmHandleSync() {
+        YangModelCmHandle newAdvisedCmHandle = getFirstAdvisedCmHandle();
+        while (newAdvisedCmHandle != null) {
+            // ToDo When Cm-Handle in the 'ADVISED' state is Retrieved, Set CM-Handle state to 'LOCKED'
+            //  and give lock reason
+            // ToDo if lock fails, move to next cm handle.
+            // ToDo Update last update time with a timestamp everytime Cm-handle state is changed
+            final String cmHandleJsonData = updatedCmHandlesAsJson(newAdvisedCmHandle);
+            updateCmHandleState(cmHandleJsonData);
+            log.info("{} is now in READY state", newAdvisedCmHandle.getId());
+            newAdvisedCmHandle = getFirstAdvisedCmHandle();
+        }
+        log.info("No Cm-Handles currently found in an ADVISED state");
+    }
+
+    private void updateCmHandleState(final String cmHandleJsonData) {
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+            cmHandleJsonData, NO_TIMESTAMP);
+    }
+
+    private String updatedCmHandlesAsJson(final YangModelCmHandle newAdvisedCmHandle) {
+        newAdvisedCmHandle.setCmHandleState("READY");
+        return String.format("{\"cm-handles\":[%s]}",
+            jsonObjectMapper.asJsonString(newAdvisedCmHandle));
+    }
+
+    private String updatedCmHandleAsJson(final YangModelCmHandle newAdvisedCmHandle) {
+        return String.format("{\"cm-handles\":[%s]}",
+            jsonObjectMapper.asJsonString(newAdvisedCmHandle));
+    }
+
+    private YangModelCmHandle getFirstAdvisedCmHandle() {
+        final DataNode advisedCmHandles = cpsAdminService.queryAdvisedCmHandle();
+        if (advisedCmHandles != null) {
+            return yangModelCmHandleRetriever.getYangModelCmHandle(advisedCmHandles.getLeaves().get("id").toString());
+        }
+        return null;
+    }
+
+    /**
      * Retrieve cm handle details for a given cm handle.
      *
      * @param cmHandleId cm handle identifier
@@ -184,7 +231,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         CpsValidator.validateNameCharacters(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
@@ -303,8 +350,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CmHandleRegistrationResponse registerAndSyncNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
-            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
-                jsonObjectMapper.asJsonString(yangModelCmHandle));
+            final String cmHandleJsonData = updatedCmHandleAsJson(yangModelCmHandle);
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
             syncModulesAndCreateAnchor(yangModelCmHandle);

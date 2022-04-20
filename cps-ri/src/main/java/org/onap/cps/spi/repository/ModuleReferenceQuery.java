@@ -23,6 +23,7 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.Set;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -40,5 +41,7 @@ public interface ModuleReferenceQuery {
      * @return collection of cm handle ids
      */
     Set<String> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
+
+    DataNode queryAdvisedCmHandle();
 
 }

@@ -48,7 +48,7 @@ public class YangModelCmHandleRetriever {
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
-    public YangModelCmHandle getDmiServiceNamesAndProperties(final String cmHandleId) {
+    public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
