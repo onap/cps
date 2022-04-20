@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29fbdc20_a4cc1114",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/cpsasyncrequestresponseeventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T12:06:47Z",
+      "side": 1,
+      "message": "This file name is causing a checkstyle violation.\n\nI think this is leading to the current unstable build issues.",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "789c0abe64bb184b9c598129515c2ba515b4d768",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
