@@ -72,7 +72,7 @@ public class DmiDataOperations extends DmiOperations {
                                                          final String topicParamInQuery) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-                yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+                yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .requestId(requestId)
@@ -104,7 +104,7 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final String dataType) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)

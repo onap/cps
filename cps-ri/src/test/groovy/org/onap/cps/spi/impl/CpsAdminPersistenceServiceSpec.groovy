@@ -24,6 +24,8 @@ package org.onap.cps.spi.impl
 
 import org.mockito.Mock
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
@@ -43,6 +45,8 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
 
     @Mock
     ObjectMapper objectMapper
+
+    def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
 
     static final String SET_DATA = '/data/anchor.sql'
     static final String SET_FRAGMENT_DATA = '/data/fragment.sql'
@@ -241,5 +245,24 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             '2 properties, only one match (and)'           | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4'] as Set
             '2 properties, no match (and)'                 | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || [] as Set
             'No public properties - return all cm handles' | [ : ]                                                                                         || ['PNFDemo3', 'PNFDemo', 'PNFDemo2', 'PNFDemo4'] as Set
+    }
+
+    //ToDo Complete this test.
+    @Sql([CLEAR_DATA, SET_FRAGMENT_DATA])
+    def 'Retrieve cm handles with ADVISED state' () {
+        when: 'query advised cm handles is invoked a datanode is returned'
+            def cmHandles = ['PNFDemo5'] as Set
+            def returnedCmHandles = objectUnderTest.queryAdvisedCmHandle(cmHandles)
+        then: 'the correct data is returned'
+            returnedCmHandles.getLeaves().get("state") == 'ADVISED'
+    }
+
+    @Sql([CLEAR_DATA, SET_FRAGMENT_DATA])
+    def 'Retrieve cm handles with READY state' () {
+        when: 'query advised cm handles is invoked a datanode is returned'
+            def cmHandles = ['PNFDemo4'] as Set
+            def returnedCmHandles = objectUnderTest.queryAdvisedCmHandle(cmHandles)
+        then: 'the correct data is returned'
+            returnedCmHandles == null
     }
 }

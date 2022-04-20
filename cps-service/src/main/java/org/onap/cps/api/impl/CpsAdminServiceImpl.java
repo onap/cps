@@ -32,6 +32,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -97,5 +98,10 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
         return cpsAdminPersistenceService.queryCmHandles(cmHandleQueryParameters);
+    }
+
+    @Override
+    public DataNode queryAdvisedCmHandle(final Set<String> newCmHandles) {
+        return cpsAdminPersistenceService.queryAdvisedCmHandle(newCmHandles);
     }
 }
