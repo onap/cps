@@ -27,6 +27,7 @@ import java.util.Set;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 
 /*
     Service for handling CPS admin data.
@@ -109,4 +110,6 @@ public interface CpsAdminPersistenceService {
      * @return collection of cm handle ids
      */
     Set<String> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
+
+    DataNode queryAdvisedCmHandle();
 }

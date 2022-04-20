@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.CmHandleQueryParameters
+import org.onap.cps.spi.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
@@ -130,7 +131,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         where:
             scenario     | dataspace       | schemasetName               || expectedAnchors
             'no-anchors' | 'DATASPACE-003' | 'SCHEMA-SET-002-NO-ANCHORS' || Collections.emptySet()
-            'one-anchor' | 'DATASPACE-001' | 'SCHEMA-SET-001'            || Set.of(new Anchor('ANCHOR-001', 'DATASPACE-001', 'SCHEMA-SET-001'))
+            'one-anchor' | 'DATASPACE-001' | 'SCHEMA-SET-001'            || Set.of(new Anchor('ANCHOR-001', 'DATASPACE-001', 'SCHEMA-SET-001'), new Anchor('ncmp-dmi-registry', 'NCMP-Admin', 'SCHEMA-SET-001'))
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -241,5 +242,21 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             '2 properties, only one match (and)'           | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4'] as Set
             '2 properties, no match (and)'                 | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || [] as Set
             'No public properties - return all cm handles' | [ : ]                                                                                         || ['PNFDemo3', 'PNFDemo', 'PNFDemo2', 'PNFDemo4'] as Set
+    }
+
+    @Sql([CLEAR_DATA, SET_FRAGMENT_DATA])
+    def 'Retrieve cm handles with "ADVISED" state' () {
+        when: 'query advised cm handle is invoked where cm-handle exists and is in "ADVISED" state'
+            def returnedCmHandle = objectUnderTest.queryAdvisedCmHandle()
+        then: 'a single cm handle is returned with state "ADVISED"'
+            returnedCmHandle.getLeaves().get("state") == 'ADVISED'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Retrieve cm handles with "READY" state' () {
+        when: 'query advised cm handle is invoked where cm-handle exists and is in "READY" state'
+            def returnedCmHandle = objectUnderTest.queryAdvisedCmHandle()
+        then: 'no cm handles in "ADVISED" state are returned'
+            returnedCmHandle == null
     }
 }
