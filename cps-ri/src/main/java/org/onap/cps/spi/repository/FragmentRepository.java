@@ -46,7 +46,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                            @NonNull AnchorEntity anchorEntity,
-                                                           @NonNull String xpath) {
+                                                           String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }

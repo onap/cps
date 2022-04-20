@@ -33,7 +33,7 @@ echo '================================== SDNC Logs ============================'
 docker logs sdnc
 
 echo 'Stopping, Removing all running containers...'
-docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+#docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
 echo 'Removing Volumes...'
 echo y | docker volume prune

@@ -44,7 +44,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
 
     @Override
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
-        final var sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
+        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
         sqlStringBuilder.append(" AND xpath SIMILAR TO :xpathRegex");

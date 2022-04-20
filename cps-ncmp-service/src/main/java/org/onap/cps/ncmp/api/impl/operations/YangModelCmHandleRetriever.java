@@ -48,10 +48,16 @@ public class YangModelCmHandleRetriever {
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
-    public YangModelCmHandle getDmiServiceNamesAndProperties(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
+    public YangModelCmHandle getYangModelCmHandle(String cmHandleId) {
+        final DataNode cmHandleDataNode;
+        if (cmHandleId != null) {
+            CpsValidator.validateNameCharacters(cmHandleId);
+        }
+        cmHandleDataNode = getCmHandleDataNode(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        if (cmHandleId == null) {
+            cmHandleId = cmHandleDataNode.getLeaves().get("id").toString();
+        }
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleProperties(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
@@ -63,6 +69,12 @@ public class YangModelCmHandleRetriever {
     }
 
     private DataNode getCmHandleDataNode(final String cmHandle) {
+        if (cmHandle == null) {
+            return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR,
+                null,
+                FetchDescendantsOption.OMIT_DESCENDANTS);
+        }
         final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR,
