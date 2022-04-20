@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5357413_6febab37",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "This is already in master. I think if you do a rebase with master it should pick this up :)",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 40
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f26940ca_766e3474",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/TimeLimiterProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "Is it necessary for this to be a completely new class, as opposed to just a single method within the session manager?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 5
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f0cc10d_9cb033e2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "to close the session is called",
+      "range": {
+        "startLine": 639,
+        "startChar": 42,
+        "endLine": 639,
+        "endChar": 72
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "410765f6_f62252a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "1 * objectUnderTest.closeSession",
+      "range": {
+        "startLine": 641,
+        "startChar": 12,
+        "endLine": 641,
+        "endChar": 51
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7b32c92_f45dad3a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "Session is closed",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 37
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f78e4c41_77922598",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 1,
+      "message": "exception is thrown",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 37
+      },
+      "revId": "f1c22cf27449f1b39c70850d9ace7f0a2b12b8ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

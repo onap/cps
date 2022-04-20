@@ -34,6 +34,23 @@
       "revId": "b14f04b6bd92b4dd6e3ed511ef5334db02e0b1ea",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71686641_f5005c44",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-20T14:11:04Z",
+      "side": 0,
+      "message": "I\u0027m confused as to why changes are being picked up in this file?",
+      "revId": "b14f04b6bd92b4dd6e3ed511ef5334db02e0b1ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
