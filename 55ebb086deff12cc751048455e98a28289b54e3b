@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2ac8d671_fa339d0d",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-20T11:02:55Z",
+      "side": 1,
+      "message": "this issue was discussed and Lathish pushed a quick fix which has since been merged, https://gerrit.onap.org/r/c/cps/+/128492\nso rebase should clear this too: https://gerrit.onap.org/r/c/cps/+/128492",
+      "parentUuid": "dce73b7b_d97fce25",
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4204ab0_28011e10",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
