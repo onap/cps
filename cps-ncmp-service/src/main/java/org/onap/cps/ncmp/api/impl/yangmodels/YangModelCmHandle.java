@@ -55,6 +55,9 @@ public class YangModelCmHandle {
     @JsonProperty("dmi-data-service-name")
     private String dmiDataServiceName;
 
+    @JsonProperty("state")
+    private String cmHandleState;
+
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
 
