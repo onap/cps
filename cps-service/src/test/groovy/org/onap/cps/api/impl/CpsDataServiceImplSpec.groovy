@@ -159,8 +159,7 @@ class CpsDataServiceImplSpec extends Specification {
             'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
-    def 'Get data node with option #fetchDescendantsOption.'() {
-        def xpath = '/xpath'
+    def 'Get data node with a #scenario and option #fetchDescendantsOption.'() {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         given: 'persistence service returns data for get data request'
             mockCpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
@@ -168,6 +167,10 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << FetchDescendantsOption.values()
+        and: 'the following xpath params are used'
+            scenario         | xpath
+            'non null xpath' | 'xpath'
+            'null xpath'     | null
     }
 
     def 'Get data node with option invalid #scenario.'() {

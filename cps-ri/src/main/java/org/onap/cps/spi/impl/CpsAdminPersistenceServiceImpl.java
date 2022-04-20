@@ -38,6 +38,7 @@ import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleReferenceRepository;
@@ -139,6 +140,11 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Override
     public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
         return moduleReferenceRepository.queryCmHandles(cmHandleQueryParameters);
+    }
+
+    @Override
+    public DataNode queryAdvisedCmHandle(final Set<String> newCmHandles) {
+        return moduleReferenceRepository.queryAdvisedCmHandle(newCmHandles);
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {

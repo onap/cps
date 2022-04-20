@@ -106,6 +106,25 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         return extractCmHandleIds(amalgamatedQueryResult);
     }
 
+    /**
+     * Query and Return active cm handles.
+     *
+     * @param newCmHandles new cm handles
+     * @return set of active cm handles
+     */
+    public DataNode queryAdvisedCmHandle(final Set<String> newCmHandles) {
+        DataNode dataNode;
+        for (final String newCmHandle: newCmHandles) {
+            dataNode = cpsDataPersistenceService.getDataNode("NCMP-Admin",
+                "ncmp-dmi-registry", "/dmi-registry/cm-handles[@id='" + newCmHandle + "']",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
+            if (dataNode.getLeaves().get("state").equals("ADVISED")) {
+                return dataNode;
+            }
+        }
+        return null;
+    }
+
     private Set<String> getAllCmHandles() {
         final Collection<DataNode> cmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
             "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
