@@ -87,7 +87,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        if (xpath != null) {
+            return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        }
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, null, fetchDescendantsOption);
     }
 
     @Override

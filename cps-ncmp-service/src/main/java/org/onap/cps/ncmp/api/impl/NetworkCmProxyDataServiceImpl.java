@@ -65,11 +65,14 @@ import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@EnableScheduling
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
     private final CpsDataService cpsDataService;
@@ -174,6 +177,28 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
+     * Schedule Job which syncs cm-handle and changes the state from 'ADVISED' to 'READY'.
+     */
+    @Scheduled(fixedDelay = 30000)
+    public void scheduleCmHandleSync() {
+        try {
+            final YangModelCmHandle yangModelCmHandle = yangModelCmHandleRetriever.getYangModelCmHandle(null);
+            //ToDo When Cm-Handle in the 'ADVISED' state is Retrieved, Set CM-Handle state to 'LOCKED'
+            // and give lock reason
+            //ToDo Once Cm-Handle is in a 'LOCKED', initiate Cm-Handle sync
+            //ToDo Update last update time with a timestamp everytime Cm-handle state is changed
+            yangModelCmHandle.setCmHandleState("READY");
+            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
+                jsonObjectMapper.asJsonString(yangModelCmHandle));
+            cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandleJsonData, NO_TIMESTAMP);
+            log.info("{} is now in READY state", yangModelCmHandle.getId());
+        } catch (final NullPointerException e) {
+            log.info("No Cm-Handles currently found in an ADVISED state");
+        }
+    }
+
+    /**
      * Retrieve cm handle details for a given cm handle.
      *
      * @param cmHandleId cm handle identifier
@@ -184,7 +209,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         CpsValidator.validateNameCharacters(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getDmiServiceNamesAndProperties(cmHandleId);
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());

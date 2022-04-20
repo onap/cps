@@ -46,10 +46,17 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                            @NonNull AnchorEntity anchorEntity,
-                                                           @NonNull String xpath) {
+                                                           String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }
+
+    @Query(
+        value = "SELECT * FROM FRAGMENT WHERE CAST (ATTRIBUTES AS TEXT)"
+            + " LIKE '%\"state\": \"ADVISED\"%' FETCH FIRST 1 ROWS ONLY",
+        nativeQuery = true
+    )
+    FragmentEntity getCmHandleByAdvisedState();
 
     @Query(
         value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND dataspace_id = :dataspace AND parent_id is NULL",
