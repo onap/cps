@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "091b9805_7acaece5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T15:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6e401b2_951b0de9",
+      "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8cb046bd_34114bfb",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 6
@@ -63,6 +81,30 @@
       "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e0a6c3e_b8e8db88",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T15:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b689786_ad7a889e",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 45
+      },
+      "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +176,30 @@
       "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f575b29_b37af9de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T15:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30a4c029_384c024b",
+      "range": {
+        "startLine": 200,
+        "startChar": 42,
+        "endLine": 200,
+        "endChar": 62
+      },
+      "revId": "2acae41c808819936fd86ec3efcc989bc560a185",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

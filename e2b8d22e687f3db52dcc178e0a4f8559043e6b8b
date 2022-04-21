@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "fc3daaa0_2a8904db",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T15:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae72e530_74a4231a",
+      "range": {
+        "startLine": 218,
+        "startChar": 8,
+        "endLine": 218,
+        "endChar": 42
+      },
+      "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1661ef62_90ba7ced",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 7
@@ -280,6 +304,30 @@
       "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dddc64ea_c856082f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T15:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1661ef62_90ba7ced",
+      "range": {
+        "startLine": 219,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 41
+      },
+      "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
