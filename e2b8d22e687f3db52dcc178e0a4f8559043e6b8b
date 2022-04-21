@@ -715,6 +715,30 @@
       "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45c5f106_dd31899d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T18:48:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7894559e_c01a48c1",
+      "range": {
+        "startLine": 113,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 37
+      },
+      "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
