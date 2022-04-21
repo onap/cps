@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43b95256_8674b047",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "it is no longer a POC! Also maybe add a bit more detail",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc6be4e1_6e049bc4",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 14
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "NB: you haven\u0027t modified this file",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4746080_2204573a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "move this into the sessioNManager method",
+      "range": {
+        "startLine": 218,
+        "startChar": 6,
+        "endLine": 219,
+        "endChar": 105
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37b8ca26_01208949",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "this is your \u0027cause\u0027 see comments on your SessionTimeoutException constructor!",
+      "range": {
+        "startLine": 116,
+        "startChar": 40,
+        "endLine": 116,
+        "endChar": 41
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a682825b_e8672bbb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "I think this method should take in a anchor name an look up the id itself...",
+      "range": {
+        "startLine": 135,
+        "startChar": 85,
+        "endLine": 135,
+        "endChar": 93
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dafc177_801efcbe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "can the logger itself not do the String formatting?!",
+      "range": {
+        "startLine": 137,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 109
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df503fe1_721836ba",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "I think this should be debug level logging",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 16
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb7c376_4374cfcb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "add id (or name as per previous comment on method parameter)",
+      "range": {
+        "startLine": 141,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a088637_5af2ba9a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "info level is good here",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 16
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81dd8ab2_8ff85c7a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "debug level \n(we probably need some guidelines on what level to use when it is always a contentious subject and hard to get right)",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 16
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b036f436_40c7dddb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "typically no need to mock ObjectMapper, use real thing instead\nor if not used at all use a Stub\n\n(unless testing error scenarios but even then a Spy might be better)",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbe2a473_8111297e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "I think these test are now redundant, you have \u0027delegate\u0027 test in CpsDataServiceImplSpec.groovy and spearte intergation test on the sesionmanager itself",
+      "range": {
+        "startLine": 620,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 5
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "339d2842_14809ce9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to to this in test, since each test wil run its own clean environment\nIf need use cleanup() or cleanupSpec() fixture methods ,see https://spockframework.org/spock/docs/1.0/spock_primer.html",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3b97c06_83598b91",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "perfect!",
+      "range": {
+        "startLine": 59,
+        "startChar": 19,
+        "endLine": 59,
+        "endChar": 60
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "577973ec_41871e1a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "better declare these once as common fields\n(can override in specific tets where needed)",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "441cae5d_501dc532",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "not part of test/assert",
+      "range": {
+        "startLine": 70,
+        "startChar": 37,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49d4a56b_cc8952d8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "see previous comment about the need for this",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d3af661_fd1c8676",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "a session manager exception is thrown, saying it was interrupted",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 24
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c8c0459_8e2830a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "a session manager exception is thrown, saying it was aborted",
+      "range": {
+        "startLine": 96,
+        "startChar": 15,
+        "endLine": 96,
+        "endChar": 33
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f07bbb90_799b3d09",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "a session manager exception is thrown, mentioning both sessions",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 34
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45dfbb41_e5ad6c06",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "not needed or use cleanup",
+      "range": {
+        "startLine": 114,
+        "startChar": 1,
+        "endLine": 115,
+        "endChar": 52
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca6d147_66c61722",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionTimeoutException.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "do not use a dummy exception as cause, only use caught exceptions as \u0027cause\u0027\nI think you can just use a constructor without cause here",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 48
+      },
+      "revId": "2e72e5cb68ea3023a4bb5d0c8173b1cc8a3ef510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

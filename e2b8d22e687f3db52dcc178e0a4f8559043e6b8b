@@ -575,6 +575,30 @@
     },
     {
       "key": {
+        "uuid": "9c3c6cce_c7aae125",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T11:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3766df28_c95c7254",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 28
+      },
+      "revId": "e2b8d22e687f3db52dcc178e0a4f8559043e6b8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7894559e_c01a48c1",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
         "patchSetId": 7
