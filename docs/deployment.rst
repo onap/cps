@@ -14,7 +14,7 @@ CPS Deployment
 
 CPS OOM Charts
 ==============
-The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
+The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/jakarta/kubernetes/cps>`_.
 This chart includes different cps components referred as <cps-component-name> further in the document are listed below:
 
 .. container:: ulist
@@ -287,5 +287,5 @@ Any spring supported property can be configured by providing in ``config.additio
 CPS-Core Docker Installation
 ============================
 
-CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
-The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
+CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/jakarta/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
+The latest instructions are covered in the `README <https://github.com/onap/cps/blob/jakarta/docker-compose/README.md>`_.
