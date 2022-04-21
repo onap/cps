@@ -22,6 +22,29 @@
       "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05886119_0599b576",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-21T15:30:21Z",
+      "side": 1,
+      "message": "Jakarta ?\nOr even better to remove it, then we don\u0027t have to update it for each release ?",
+      "range": {
+        "startLine": 285,
+        "startChar": 56,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
