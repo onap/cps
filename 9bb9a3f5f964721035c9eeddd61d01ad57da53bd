@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6f7fec7_588fc491",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T12:20:02Z",
+      "side": 1,
+      "message": "Question: I thought this should be done on Jakarta branch?!",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "9bb9a3f5f964721035c9eeddd61d01ad57da53bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
