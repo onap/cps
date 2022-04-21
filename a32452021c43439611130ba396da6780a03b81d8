@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9903cb50_0f28b3bd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-21T19:00:00Z",
+      "side": 1,
+      "message": "WIP\ncompare to previous patch (patch 16) \n\nsince the move of repository class methods to sessionManager class- this test class had to be refactored to use @Autowired for other test cases\n\nthis test case seems to fail and ignores the interruptedException thrown under the \u0027given\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a32452021c43439611130ba396da6780a03b81d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
