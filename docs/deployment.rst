@@ -282,5 +282,5 @@ exhaustive.
 CPS-Core Docker Installation
 ============================
 
-CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
-The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
+CPS-Core can also be installed in a docker environment. `docker-compose <https://github.com/onap/cps/blob/jakarta/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
+The instructions are covered in the `README <https://github.com/onap/cps/blob/jakarta/docker-compose/README.md>`_.
