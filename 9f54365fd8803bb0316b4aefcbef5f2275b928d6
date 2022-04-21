@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1bd53b1_f029be18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "question, can this be cofigured (in the future) using a parameter?",
+      "range": {
+        "startLine": 182,
+        "startChar": 15,
+        "endLine": 182,
+        "endChar": 33
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf5c2745_4b4e1573",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "new classes, will also help testing!",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd7e4d35_503eb1f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "create new method getFirstAdvisedCmHandle()\nuse proper nullCheck or optio\nwhole method need to be in a loop don\u0027t exit until there is no NEW advised cm handle\n\n\nnewCmHandle \u003d getFirstAdvisedCmHandle()\nwhile (newCmHandle !\u003dnull) {\n  syncMethod1()\n  syncMethod2()\n  syncMethod3()\n  newCmHandle \u003d getFirstAdvisedCmHandle()\n}",
+      "range": {
+        "startLine": 185,
+        "startChar": 104,
+        "endLine": 185,
+        "endChar": 108
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db847264_80fd3dc8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "extract out as updatedCmHandleAsJson",
+      "range": {
+        "startLine": 192,
+        "startChar": 16,
+        "endLine": 192,
+        "endChar": 64
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d8d9951_6d3c07df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "extract out udpateCmHandleState(newState)",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 76
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00169f24_f07b538e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "as discussed before create dedicate method with clear name",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8630e86_0b9f6310",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "new test class for watchdo",
+      "range": {
+        "startLine": 268,
+        "startChar": 3,
+        "endLine": 289,
+        "endChar": 5
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1027e70d_5994aa7f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-21T14:03:14Z",
+      "side": 1,
+      "message": "use CpsCore Java API with CpPath instead!\nsee aslo https://gerrit.onap.org/r/c/cps/+/127541",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "9f54365fd8803bb0316b4aefcbef5f2275b928d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
