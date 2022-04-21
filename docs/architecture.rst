@@ -21,8 +21,6 @@ In this release CPS is no longer a stand alone component and is released along w
 Project page describing eventual scope and ambition is here:
 `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
 
-This page reflects the state for Istanbul-R9 release.
-
 .. image:: _static/star.png
     :class: float-left
 
