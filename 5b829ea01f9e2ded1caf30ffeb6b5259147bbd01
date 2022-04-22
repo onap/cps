@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c9809875_94e28af9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-22T13:07:46Z",
+      "side": 1,
+      "message": "I dont think we need to keep this ticket open till then. We have branched out the documentation for cps and that should be enough.",
+      "parentUuid": "c6aabdb6_f4fe5c2c",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 95
+      },
+      "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05886119_0599b576",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2be181f4_dea962d2",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-22T13:07:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "05886119_0599b576",
+      "range": {
+        "startLine": 285,
+        "startChar": 56,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28a395e1_01cb2989",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27b56d98_a39fb2e8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-22T13:07:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28a395e1_01cb2989",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 10
+      },
+      "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
