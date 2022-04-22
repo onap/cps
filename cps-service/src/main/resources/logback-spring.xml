@@ -20,14 +20,14 @@
 
 <configuration scan="true" debug="false">
     <include resource="org/springframework/boot/logging/logback/base.xml" />
-
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <property name="queueSize" value="256" />
     <property name="maxFileSize" value="20MB" />
     <property name="maxHistory" value="30" />
     <property name="totalSizeCap" value="20MB" />
 
     <!-- log file names -->
-    <property name="logName" value="cps" />
+    <property name="logName" value="${springAppName}" />
 
     <property name="currentTimeStamp" value="%d{&quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;,UTC}"/>
 
@@ -78,5 +78,42 @@
 <!--    <root level="INFO">-->
 <!--        <appender-ref ref="asyncDebug" />-->
 <!--    </root>-->
+
+    <!-- Appender to log to file in a JSON format -->
+    <appender name="logstash" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../log/${logName}.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logName}.json.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "logTypeName": "",
+                        "severity": "%level",
+                        "span": "%X{spanId:-}",
+                        "statusCode": "",
+                        "trace": "%X{traceId:-}",
+                        "service": "${springAppName:-}",
+                        "pid": "${PID:-}",
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        "message": "%message"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <!-- uncomment this to have also JSON logs -->
+        <appender-ref ref="logstash"/>
+    </root>
 
 </configuration>
