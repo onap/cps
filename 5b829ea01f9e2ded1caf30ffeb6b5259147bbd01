@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2b07806b_09197623",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-22T19:37:05Z",
+      "side": 1,
+      "message": "Then, I think we should have another Jira to update oom links when oom is going to create jakarta branch, This is to ensure we are not forgetting about it.",
+      "parentUuid": "c9809875_94e28af9",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 95
+      },
+      "revId": "5b829ea01f9e2ded1caf30ffeb6b5259147bbd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05886119_0599b576",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
