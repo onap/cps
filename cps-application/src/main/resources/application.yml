@@ -124,6 +124,7 @@ management:
                 enabled: true
 
 logging:
+    format: json
     level:
         org:
             springframework: INFO
