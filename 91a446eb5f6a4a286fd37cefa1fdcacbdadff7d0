@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "35f4da85_a9705141",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-25T14:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1058f890_a48349fd",
+      "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bd1c323_6243c900",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 18
@@ -51,6 +69,24 @@
       "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "957cc981_f185646f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-25T14:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b2660e5_8c3399a3",
+      "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

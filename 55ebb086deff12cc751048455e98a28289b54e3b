@@ -443,6 +443,30 @@
     },
     {
       "key": {
+        "uuid": "fad64cb9_8dd0746f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-25T14:46:47Z",
+      "side": 1,
+      "message": "removed as agreed in daily meeting. see latest patch",
+      "parentUuid": "e235a4b2_27e0f4a7",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 54
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "401fada3_26bde5cd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -935,6 +959,30 @@
       "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51addbf2_5300185c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionManagerException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-25T14:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f22ca83_0941ce8e",
+      "range": {
+        "startLine": 26,
+        "startChar": 45,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
