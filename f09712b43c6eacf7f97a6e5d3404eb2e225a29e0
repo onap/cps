@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "13af4057_9ebec7ac",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-25T14:06:13Z",
+      "side": 1,
+      "message": "NB not sure if either needed",
+      "parentUuid": "ebd36a36_294bd16d",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "f09712b43c6eacf7f97a6e5d3404eb2e225a29e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a18fe36_4870705d",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 15
@@ -41,6 +65,52 @@
         "startChar": 4,
         "endLine": 41,
         "endChar": 11
+      },
+      "revId": "f09712b43c6eacf7f97a6e5d3404eb2e225a29e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "403ed5d1_8d2ece39",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-25T14:06:13Z",
+      "side": 1,
+      "message": "NB remove blank spaces",
+      "range": {
+        "startLine": 142,
+        "startChar": 80,
+        "endLine": 142,
+        "endChar": 98
+      },
+      "revId": "f09712b43c6eacf7f97a6e5d3404eb2e225a29e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa8e2e6_347da73a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-04-25T14:06:13Z",
+      "side": 1,
+      "message": "NB doesn\u0027t align with below",
+      "range": {
+        "startLine": 155,
+        "startChar": 72,
+        "endLine": 155,
+        "endChar": 73
       },
       "revId": "f09712b43c6eacf7f97a6e5d3404eb2e225a29e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
