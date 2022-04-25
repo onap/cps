@@ -33,6 +33,24 @@
       "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2660e5_8c3399a3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-25T13:25:04Z",
+      "side": 1,
+      "message": "Agreed during the daily that wrapping this one into SessionManagerException will be done in a separate commit under the same Jira.",
+      "parentUuid": "2bd1c323_6243c900",
+      "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
