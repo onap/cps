@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1058f890_a48349fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-25T13:00:06Z",
+      "side": 1,
+      "message": "Commit message does not follow onap guidelines:\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure\n(one blank line between summary and body)",
+      "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bd1c323_6243c900",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-25T13:00:06Z",
+      "side": 1,
+      "message": "The cause of the actual exception is not the exception to be thrown.\n\nI presume that the intent here is to throw a SessionManagerException (same as the other situations).",
+      "revId": "91a446eb5f6a4a286fd37cefa1fdcacbdadff7d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

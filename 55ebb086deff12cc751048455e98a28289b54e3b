@@ -419,6 +419,30 @@
     },
     {
       "key": {
+        "uuid": "e235a4b2_27e0f4a7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-25T13:00:06Z",
+      "side": 1,
+      "message": "I think that the interface should not be over complicated if not required. \nWhy not removing releaseLocks() and only provide the close() method ? The client is still able to start a new session if needed. Do I miss something ...",
+      "parentUuid": "728e9710_fe5d4053",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 54
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "401fada3_26bde5cd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
