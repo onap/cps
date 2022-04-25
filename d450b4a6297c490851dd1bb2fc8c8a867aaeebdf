@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fdd8a52_aa7071cc",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-25T14:40:57Z",
+      "side": 1,
+      "message": "NB: insert \u0027Jakarta\u0027",
+      "range": {
+        "startLine": 286,
+        "startChar": 3,
+        "endLine": 286,
+        "endChar": 4
+      },
+      "revId": "d450b4a6297c490851dd1bb2fc8c8a867aaeebdf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
