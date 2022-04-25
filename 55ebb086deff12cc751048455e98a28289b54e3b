@@ -914,6 +914,30 @@
     },
     {
       "key": {
+        "uuid": "2f22ca83_0941ce8e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionManagerException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-25T13:54:37Z",
+      "side": 1,
+      "message": "Yes, it should be part of the hierarchy somewhere, for consistency and to facilitate exception handling and mapping in the rest layer.",
+      "parentUuid": "afc80571_8b25bfe8",
+      "range": {
+        "startLine": 26,
+        "startChar": 45,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "55ebb086deff12cc751048455e98a28289b54e3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "477c04be_da31e247",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SessionTimeoutException.java",
         "patchSetId": 8
