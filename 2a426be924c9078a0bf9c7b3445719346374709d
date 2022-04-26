@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e891357_75b6741a",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-26T08:00:11Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 15,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb91adc2_58f22491",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-26T08:00:11Z",
+      "side": 1,
+      "message": "Remove if not needed",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 54
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
