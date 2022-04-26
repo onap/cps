@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05585067_c6ded9f8",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 22
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "712adf91_463b0972",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "802aad05_0a1d4dd2",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 22
@@ -39,6 +63,42 @@
       "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad1c5c51_395c6e41",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "802aad05_0a1d4dd2",
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3713f50c_4f84bef2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "802aad05_0a1d4dd2",
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +125,54 @@
     },
     {
       "key": {
+        "uuid": "6bad4be8_6fe345a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d584315a_e48b5207",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 40
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19fe7a09_3ea84828",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d584315a_e48b5207",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 40
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab249bbe_9be71e49",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
         "patchSetId": 22
@@ -85,6 +193,30 @@
       "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c9d964e_85f19967",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab249bbe_9be71e49",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 87
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +243,30 @@
     },
     {
       "key": {
+        "uuid": "0492bcbd_76f5cada",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e1e2137_ba26bfc2",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f858d1cb_9cb95bd4",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 22
@@ -131,6 +287,30 @@
       "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a805f2b_6dde671e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f858d1cb_9cb95bd4",
+      "range": {
+        "startLine": 68,
+        "startChar": 54,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +337,30 @@
     },
     {
       "key": {
+        "uuid": "af9d5d4c_49934851",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Yes I believe so, to give more details in unlocking anchor as there is NO method to unlock anchor but to close the current session holding it",
+      "parentUuid": "00047f1c_7a9def6d",
+      "range": {
+        "startLine": 195,
+        "startChar": 7,
+        "endLine": 195,
+        "endChar": 75
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62cd29ab_7f46cc6e",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 22
@@ -177,6 +381,30 @@
       "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d3826c_ecd4ae7c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-26T12:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62cd29ab_7f46cc6e",
+      "range": {
+        "startLine": 436,
+        "startChar": 7,
+        "endLine": 438,
+        "endChar": 46
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
