@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2c58d660_5feafa39",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "version should be defined in dependency management in cps-dependencies/pom.xml",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e891357_75b6741a",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 2
@@ -18,6 +41,167 @@
         "startChar": 15,
         "endLine": 3,
         "endChar": 20
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b400a537_cbbff9d4",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "For the comments I compared to https://wiki.onap.org/display/DW/Jakarta+Best+Practice+Proposal+for+Standardized+Logging+Fields+-+v2\n\n(naming of fields is not always very clearly defined though)",
+      "range": {
+        "startLine": 95,
+        "startChar": 20,
+        "endLine": 95,
+        "endChar": 29
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee67316_ed7429a2",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "logLevel (accodrinf to Wiki, also following Java casing convention, I think you need to confirm with Byeung and Bob the extact names of these fields and if they are case sensitive etc)",
+      "range": {
+        "startLine": 98,
+        "startChar": 25,
+        "endLine": 98,
+        "endChar": 33
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc0bb89c_022a6c1d",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "not mentioned on Wiki?!",
+      "range": {
+        "startLine": 99,
+        "startChar": 25,
+        "endLine": 99,
+        "endChar": 47
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05156990_e9b47f31",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "traceId",
+      "range": {
+        "startLine": 101,
+        "startChar": 25,
+        "endLine": 101,
+        "endChar": 30
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21ac82ef_e0a3aeae",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "serviceName (wiki not clear!)",
+      "range": {
+        "startLine": 102,
+        "startChar": 25,
+        "endLine": 102,
+        "endChar": 32
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90a1c3cf_32b8a438",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "nof of these are on Wiki, can we include them?!",
+      "range": {
+        "startLine": 103,
+        "startChar": 24,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d26ff1_24cdc498",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:52:32Z",
+      "side": 1,
+      "message": "missing: principalId",
+      "range": {
+        "startLine": 108,
+        "startChar": 20,
+        "endLine": 108,
+        "endChar": 30
       },
       "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
