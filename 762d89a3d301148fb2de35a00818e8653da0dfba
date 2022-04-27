@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1398d15_325059bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-27T15:18:48Z",
+      "side": 1,
+      "message": "query: why do we need 2 different methods with exactly the same implementation? What is the relevance of custom timeout?",
+      "revId": "762d89a3d301148fb2de35a00818e8653da0dfba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "010d9745_772afd31",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-27T15:18:48Z",
+      "side": 1,
+      "message": "As per the Jira, the client should be able to set this... so do we want to set this in a properties file ?\nAnd define a default value as well, thus we could remove overloading lockAnchor();",
+      "range": {
+        "startLine": 51,
+        "startChar": 69,
+        "endLine": 51,
+        "endChar": 73
+      },
+      "revId": "762d89a3d301148fb2de35a00818e8653da0dfba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
