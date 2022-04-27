@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "d207ac84_c7b2bea5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T11:14:51Z",
+      "side": 1,
+      "message": "none",
+      "parentUuid": "3e620a05_e68070eb",
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17e74149_3c3a559e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 22
@@ -77,6 +95,30 @@
       "writtenOn": "2022-04-26T14:50:21Z",
       "side": 1,
       "message": "In newSingleThreadExecutor the threads are not reused but with newfixedthreadpool we can reuse them.",
+      "range": {
+        "startLine": 117,
+        "startChar": 58,
+        "endLine": 117,
+        "endChar": 81
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dca19bb_3152a364",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T11:14:51Z",
+      "side": 1,
+      "message": "will this be necessary if I only need one to run the timelimiter ?",
+      "parentUuid": "17e74149_3c3a559e",
       "range": {
         "startLine": 117,
         "startChar": 58,
@@ -112,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "5b3ef7eb_1f4f0bd3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T11:14:51Z",
+      "side": 1,
+      "message": "new class for timelimit was added to create unit test",
+      "parentUuid": "0b90f8c8_95099046",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 23
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55c4d82a_b27b9633",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 22
@@ -135,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "e1fff819_3e0a4449",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T11:14:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55c4d82a_b27b9633",
+      "range": {
+        "startLine": 142,
+        "startChar": 12,
+        "endLine": 142,
+        "endChar": 41
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2001a53_aa1a8799",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 22
@@ -155,6 +245,30 @@
       "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d24f550_8fbe7079",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T11:14:51Z",
+      "side": 1,
+      "message": "Tried this and it seems that hibernate creates a new object instead of using the same entities therefore, I get the hibernate error \u0027a different object with the same identifier value was already associated with the session\u0027\n\ntested it aswell with locking the same anchor twice with the same session and it fails",
+      "parentUuid": "e2001a53_aa1a8799",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 19
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
