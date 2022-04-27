@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e05536a5_8ce0fcde",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:40:44Z",
+      "side": 1,
+      "message": "NB: as you are testing parameter passing I would tets with a more unique value like 1234L",
+      "range": {
+        "startLine": 135,
+        "startChar": 89,
+        "endLine": 135,
+        "endChar": 90
+      },
+      "revId": "c32378c38e7d3394f895e2a05b9f9664cb93ff7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1a95547_547e770a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:40:44Z",
+      "side": 1,
+      "message": "this is the same value as the timeout should be different to proof it is NOT teh default used on line 448",
+      "range": {
+        "startLine": 445,
+        "startChar": 38,
+        "endLine": 445,
+        "endChar": 43
+      },
+      "revId": "c32378c38e7d3394f895e2a05b9f9664cb93ff7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

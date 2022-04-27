@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "479d1a71_99e7053d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:40:44Z",
+      "side": 1,
+      "message": "I am not sure it matters much. See what the documentation sasy. we can always change later if needed",
+      "parentUuid": "0dca19bb_3152a364",
+      "range": {
+        "startLine": 117,
+        "startChar": 58,
+        "endLine": 117,
+        "endChar": 81
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b90f8c8_95099046",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 22
@@ -443,6 +467,30 @@
     },
     {
       "key": {
+        "uuid": "41fc8d5f_50d0a5a3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:40:44Z",
+      "side": 1,
+      "message": "NB: I actually thought it was good to have that knowledge documented in the (at least production) code!\nbest case I would even implement minimum timeout in the production code :-) But don\u0027t to that now, let\u0027s get this merged!",
+      "parentUuid": "0c9d964e_85f19967",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 87
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e1e2137_ba26bfc2",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 22
@@ -572,6 +620,30 @@
       "side": 1,
       "message": "Yes I believe so, to give more details in unlocking anchor as there is NO method to unlock anchor but to close the current session holding it",
       "parentUuid": "00047f1c_7a9def6d",
+      "range": {
+        "startLine": 195,
+        "startChar": 7,
+        "endLine": 195,
+        "endChar": 75
+      },
+      "revId": "bcf7cf658c35fe3764fbdf2b7524533f7a601d78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5665c27c_1dff2f53",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-27T15:40:44Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "af9d5d4c_49934851",
       "range": {
         "startLine": 195,
         "startChar": 7,
