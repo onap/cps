@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "320f9473_59126cbc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T15:21:29Z",
+      "side": 1,
+      "message": "see comment on sessionManager class about default timeout",
+      "parentUuid": "c1398d15_325059bb",
+      "revId": "762d89a3d301148fb2de35a00818e8653da0dfba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "010d9745_772afd31",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 27
@@ -39,6 +57,30 @@
       "revId": "762d89a3d301148fb2de35a00818e8653da0dfba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b13e0d5_1eb7c108",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-27T15:21:29Z",
+      "side": 1,
+      "message": "this is why there is 2 different methods on the service layer which allows the client to configure it , if they don\u0027t give a custom timeout then the default will be used",
+      "parentUuid": "010d9745_772afd31",
+      "range": {
+        "startLine": 51,
+        "startChar": 69,
+        "endLine": 51,
+        "endChar": 73
+      },
+      "revId": "762d89a3d301148fb2de35a00818e8653da0dfba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
