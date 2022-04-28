@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aca3565_af82490b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "not for utils, extract out ModelSync(wtachDog) class see comment below",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37e08e4b_fb9e8f41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "this is the main CmHandleModelSync (method) and deservers it own class instead of being  a utility",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 0
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78e99d27_16c5f956",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "instead of loop you iterator.hasNext() and itertor.next()",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 62
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f45e9b57_1a93c3fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "i don\u0027t think this is possible?!",
+      "range": {
+        "startLine": 80,
+        "startChar": 15,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1a8c98_a9231bc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "why no timestamps on these?",
+      "range": {
+        "startLine": 96,
+        "startChar": 30,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fffff32f_23dcc24c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T12:05:57Z",
+      "side": 1,
+      "message": "a lot in one test, aslo main sync method needs to spearted from util methods I expect to see separate test for util methods when taht is done...",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 69,
+        "endChar": 67
+      },
+      "revId": "9c8f22d949f456d37bbea2c76da94059c3c50061",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
