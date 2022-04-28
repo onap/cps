@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "af7dddae_a4bb6ff2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-28T11:39:48Z",
+      "side": 1,
+      "message": "Here you are making multiple calls to db which is not required if you consider the entire collection returned by the persistence layer.",
+      "parentUuid": "da146b3c_2810bfd0",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 13
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5aae5f1_09799d5a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -484,6 +508,30 @@
       "side": 1,
       "message": "Because we only want to process a single cm handle at a time. \n\nThis is clearer in the new commit where it is all part of it\u0027s own util class.",
       "parentUuid": "2bb3d260_31e5a51d",
+      "range": {
+        "startLine": 119,
+        "startChar": 23,
+        "endLine": 119,
+        "endChar": 31
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dc575c4_9e49dc19",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-28T11:39:48Z",
+      "side": 1,
+      "message": "yes but within while loop you continously query the db to get the cm handles and process it.\nMy question is why don\u0027t we use the collection of datanodes already in hand to process the next cm handle?",
+      "parentUuid": "1151cff4_5a855cc9",
       "range": {
         "startLine": 119,
         "startChar": 23,
