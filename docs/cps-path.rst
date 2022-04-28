@@ -234,12 +234,15 @@ leaf-conditions
   - ``//categories[@name="Kids"]``
   - ``//categories[@name='Kids']``
   - ``//categories[@code='1']/books/book[@title='Dune' and @price=5]``
-
+  - ``//categories[@code=1]``
 **Limitations**
   - Only the last list or container can be queried leaf values. Any ancestor list will have to be referenced by its key name-value pair(s).
   - Multiple attributes can only be combined using ``and``. ``or`` and bracketing is not supported.
   - Only leaves can be used, leaf-list are not supported.
   - Only string and integer values are supported, boolean and float values are not supported.
+  - The key should be supplied with correct data type for it to be queried from DB. In the last example above the attribute code is of type
+    Integer so the cps query will not work if the value is passed as string.
+    eg: ``//categories[@code="1"]`` or ``//categories[@code='1']`` will not work because the key attribute code is treated a string.
 
 **Notes**
   - For performance reasons it does not make sense to query using key leaf as attribute. If the key value is known it is better to execute a get request with the complete xpath.
