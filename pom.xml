@@ -32,7 +32,7 @@
 
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-aggregator</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>cps</name>
