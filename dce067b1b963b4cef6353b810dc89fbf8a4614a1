@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72c48f93_ffa6480f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "This was going to be done as part of a separate commit.\n\nWill add ToDo regarding this.\n\nI am not sure if we should add an initial delay. We can get a team consensus on this.",
+      "parentUuid": "e11cdc11_ef32a8b2",
+      "range": {
+        "startLine": 183,
+        "startChar": 28,
+        "endLine": 183,
+        "endChar": 33
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "60ac60ed_db3bc217",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4b8641c0_db3f9292",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ac60ed_db3bc217",
+      "range": {
+        "startLine": 185,
+        "startChar": 50,
+        "endLine": 185,
+        "endChar": 55
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c15fef84_89772ce8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -59,6 +107,30 @@
       "writtenOn": "2022-04-28T09:40:32Z",
       "side": 1,
       "message": "is it not possible to get all the advised cm handles and processing it instead of having a while loop?",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 13
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da146b3c_2810bfd0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "We only want to process a single cm handle at a time as part of this story.\nThe process will wake up, process each Cm-Handle individually, until there are no more in an ADVISED state, then it will sleep. And check again if there are any new CM-Handles in an advised state.",
+      "parentUuid": "c15fef84_89772ce8",
       "range": {
         "startLine": 186,
         "startChar": 8,
@@ -91,6 +163,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "848e9ade_ec9f5327",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5aae5f1_09799d5a",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 16
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "69f3c29c_02d1dd70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "This whole section has been extracted out into a new class",
+      "parentUuid": "7b6c5df8_8e888213",
+      "range": {
+        "startLine": 357,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 5
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f03ecaa_acc88cb3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -161,6 +281,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5a716ae_0b06952f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f03ecaa_acc88cb3",
+      "range": {
+        "startLine": 369,
+        "startChar": 58,
+        "endLine": 369,
+        "endChar": 78
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "a006dbe6_1bb75ea2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9269f9_94c1968d",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 0
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7deb8b3c_2df04864",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -207,6 +375,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "773e983a_827ab46d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7deb8b3c_2df04864",
+      "range": {
+        "startLine": 147,
+        "startChar": 7,
+        "endLine": 147,
+        "endChar": 63
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -233,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "97b2075d_e6ca0d14",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d90df71_5c5865b0",
+      "range": {
+        "startLine": 115,
+        "startChar": 48,
+        "endLine": 117,
+        "endChar": 50
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bb3d260_31e5a51d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 12
@@ -244,6 +460,30 @@
       "writtenOn": "2022-04-28T09:40:32Z",
       "side": 1,
       "message": "why the datanode collection is not returned and in the caller method process all the not null datanodes.",
+      "range": {
+        "startLine": 119,
+        "startChar": 23,
+        "endLine": 119,
+        "endChar": 31
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1151cff4_5a855cc9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Because we only want to process a single cm handle at a time. \n\nThis is clearer in the new commit where it is all part of it\u0027s own util class.",
+      "parentUuid": "2bb3d260_31e5a51d",
       "range": {
         "startLine": 119,
         "startChar": 23,
@@ -276,6 +516,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5efc48_25632c2e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-28T11:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "871156f3_1b2b10d3",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 1
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
