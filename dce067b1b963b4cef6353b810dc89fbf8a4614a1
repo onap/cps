@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "c15fef84_89772ce8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-28T09:40:32Z",
+      "side": 1,
+      "message": "is it not possible to get all the advised cm handles and processing it instead of having a while loop?",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 13
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5aae5f1_09799d5a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -59,6 +82,30 @@
       "writtenOn": "2022-04-27T20:49:14Z",
       "side": 1,
       "message": "Amm..do you want to chain these methods?",
+      "range": {
+        "startLine": 357,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 5
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6c5df8_8e888213",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-28T09:40:32Z",
+      "side": 1,
+      "message": "Agreed. Methods are duplicated.",
+      "parentUuid": "53b9f6f5_754d74c1",
       "range": {
         "startLine": 357,
         "startChar": 4,
@@ -156,6 +203,29 @@
         "startChar": 48,
         "endLine": 117,
         "endChar": 50
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb3d260_31e5a51d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-28T09:40:32Z",
+      "side": 1,
+      "message": "why the datanode collection is not returned and in the caller method process all the not null datanodes.",
+      "range": {
+        "startLine": 119,
+        "startChar": 23,
+        "endLine": 119,
+        "endChar": 31
       },
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
