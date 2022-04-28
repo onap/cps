@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e11cdc11_ef32a8b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-04-28T10:31:19Z",
+      "side": 1,
+      "message": "can this be configurable?\n\nAlso, does it start the jobs after the application is fully set up or the class? will initialDelay be useful here?",
+      "range": {
+        "startLine": 183,
+        "startChar": 28,
+        "endLine": 183,
+        "endChar": 33
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "60ac60ed_db3bc217",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
