@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "60ac60ed_db3bc217",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "as discussed \u0027first\u0027 is not relevant, we hope it is more or less random...\nso maybe rename to getAnAdvisedCmHandle",
+      "range": {
+        "startLine": 185,
+        "startChar": 50,
+        "endLine": 185,
+        "endChar": 55
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5aae5f1_09799d5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "debug",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 16
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53b9f6f5_754d74c1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -18,6 +64,121 @@
         "startChar": 4,
         "endLine": 366,
         "endChar": 5
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f03ecaa_acc88cb3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "thsi method is NCMP specific should not live in cpsAdmin service!",
+      "range": {
+        "startLine": 369,
+        "startChar": 58,
+        "endLine": 369,
+        "endChar": 78
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd9269f9_94c1968d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "these methods should be in a new class (and package) ie. SyncUtiltities",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 0
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7deb8b3c_2df04864",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "still wrong place!",
+      "range": {
+        "startLine": 147,
+        "startChar": 7,
+        "endLine": 147,
+        "endChar": 63
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d90df71_5c5865b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "this should be called from NCMP-service!!!",
+      "range": {
+        "startLine": 115,
+        "startChar": 48,
+        "endLine": 117,
+        "endChar": 50
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "871156f3_1b2b10d3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T08:45:57Z",
+      "side": 1,
+      "message": "should NOT have data integration tets as this user story shoudl NOT impact CPS-RI or CPS-core services",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 1
       },
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
