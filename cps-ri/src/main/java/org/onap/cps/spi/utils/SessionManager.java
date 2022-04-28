@@ -29,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -161,5 +162,10 @@ public class SessionManager {
                 String.format("Session with ID %s does not exist", sessionId));
         }
         return session;
+    }
+
+    @PreDestroy
+    private void destroy() {
+        log.debug("Component destroy method");
     }
 }
