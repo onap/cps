@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b72bfd1c_44d28f42",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-28T11:02:32Z",
+      "side": 1,
+      "message": "since this test is almost identical the previous test (which already has the word \u0027valid\u0027 in eth title implying that is part of its scope) I would combine the two tets into one , something like:\n\n        ....\n        when: \u0027the content is parsed\u0027\n            def result \u003d YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()\n        then: \u0027it can be validated succefully\u0027 \n             YangTextSchemaSourceSetBuilder.validate(yangResourceNameToContent)\n        and: \u0027the result contains 1 module of the correct name and revision\u0027\n            result.modules.size() \u003d\u003d 1\n            def optionalModule \u003d result.findModule(\u0027stores\u0027, Revision.of(\u00272020-09-15\u0027))\n            optionalModule.isPresent()\n        ....\n\nNo need to explicitly assert noExceptionThrown since there are other asserts in the test now...",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 78
+      },
+      "revId": "66ec1fa3485d7ddc84f276e895c3b6bfe3dee778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
