@@ -1,0 +1,4 @@
+distribution_type: maven
+log_dir: cps-maven-stage-jakarta/1/
+project: cps
+version: 3.0.1
