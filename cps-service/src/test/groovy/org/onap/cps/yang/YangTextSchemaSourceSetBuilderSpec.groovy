@@ -20,22 +20,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils
+package org.onap.cps.yang
+
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
 
-class YangTextSchemaSourceSetSpec extends Specification {
+class YangTextSchemaSourceSetBuilderSpec extends Specification {
 
     def 'Building a valid YangTextSchemaSourceSet using #filenameCase filename.'() {
         given: 'a yang model (file)'
             def yangResourceNameToContent = [filename: TestUtils.getResourceFileContent('bookstore.yang')]
         when: 'the content is parsed'
             def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        then: 'the result contains 1 module of the correct name and revision'
+        then: 'it can be validated successfully'
+            YangTextSchemaSourceSetBuilder.validate(yangResourceNameToContent)
+        and: 'the result contains 1 module of the correct name and revision'
             result.modules.size() == 1
             def optionalModule = result.findModule('stores', Revision.of('2020-09-15'))
             optionalModule.isPresent()
