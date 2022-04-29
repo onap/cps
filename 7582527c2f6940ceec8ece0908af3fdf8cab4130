@@ -22,6 +22,69 @@
       "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32b77b80_863f77f1",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-29T21:15:01Z",
+      "side": 1,
+      "message": "Unused property. To be removed.",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70d7fa8f_1033f8a7",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-29T21:15:01Z",
+      "side": 1,
+      "message": "Is there a specific reason to set the default log level to DEBUG ?\n\nIs not, for consistency and simplicity let\u0027s keep it as INFO as it is already for the root logger. It makes the life easier instead of having to check the code and the different loggers to figure out if something is going to be logged or not or what is the appropriate log level to have for a logging statement in the application code.",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d47271d_0a7d0ca2",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-04-29T21:15:01Z",
+      "side": 1,
+      "message": "Non blocking: Good to remove all unused commented code.",
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
