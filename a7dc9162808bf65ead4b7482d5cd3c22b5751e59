@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b28a989_8fb5cb9a",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-29T10:53:39Z",
+      "side": 1,
+      "message": "I am forgetting the details :-( Will this work here?\n(because it is part of the path)",
+      "range": {
+        "startLine": 236,
+        "startChar": 25,
+        "endLine": 236,
+        "endChar": 28
+      },
+      "revId": "a7dc9162808bf65ead4b7482d5cd3c22b5751e59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
