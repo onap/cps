@@ -203,26 +203,29 @@ Any spring supported property can be configured by providing in ``config.additio
 | logging.level                         | Logging level set in cps-core                                                                           | info                          |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka hostname and port                                                                                 | ``message-router-kafka:9092`` |
+| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKakfa: false, the config.eventPublisher.spring.kafka  | true                          |
+|                                       | values must be set.                                                                                     |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
 | spring.kafka.bootstrap-servers        |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                | Kafka consumer client id                                                                                | ``cps-core``                  |
 | spring.kafka.consumer.client-id       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security protocol.                                                                                | ``PLAINTEXT``                 |
+| config.eventPublisher.                | Kafka security protocol.                                                                                | ``SASL_PLAINTEXT``            |
 | spring.kafka.security.protocol        | Some possible values are:                                                                               |                               |
 |                                       |                                                                                                         |                               |
 |                                       | * ``PLAINTEXT``                                                                                         |                               |
 |                                       | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
 |                                       | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
 | spring.kafka.properties.              | Some possible values are:                                                                               |                               |
 | sasl.mechanism                        |                                                                                                         |                               |
 |                                       | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
 |                                       | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
 | spring.kafka.properties.              | Some possible values are:                                                                               |                               |
 | sasl.jaas.config                      |                                                                                                         |                               |
 |                                       | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
@@ -230,18 +233,18 @@ Any spring supported property can be configured by providing in ``config.additio
 |                                       | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
 |                                       |   for SSL                                                                                               |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
 | spring.kafka.ssl.trust-store-type     | Some possible values are:                                                                               |                               |
 |                                       |                                                                                                         |                               |
 |                                       | * ``JKS``                                                                                               |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
 | spring.kafka.ssl.trust-store-location |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
 | spring.kafka.ssl.trust-store-password |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.publisher.                     | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
+| config.eventPublisher.                | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
 | spring.kafka.properties.              | Possible value is:                                                                                      |                               |
 | ssl.endpoint.identification.algorithm |                                                                                                         |                               |
 |                                       | * ``""``, empty string to disable                                                                       |                               |
