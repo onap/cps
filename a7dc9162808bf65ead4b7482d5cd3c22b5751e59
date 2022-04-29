@@ -22,6 +22,30 @@
       "revId": "a7dc9162808bf65ead4b7482d5cd3c22b5751e59",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd0b188_1536cc50",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-04-29T13:40:37Z",
+      "side": 1,
+      "message": "As we discussed yes. it will work.",
+      "parentUuid": "4b28a989_8fb5cb9a",
+      "range": {
+        "startLine": 236,
+        "startChar": 25,
+        "endLine": 236,
+        "endChar": 28
+      },
+      "revId": "a7dc9162808bf65ead4b7482d5cd3c22b5751e59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
