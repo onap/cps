@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "3ac5ccf7_539f8e68",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-29T08:37:18Z",
+      "side": 1,
+      "message": "ok, I assume additional field (especially when using json) are not an issue for any processing system.\nMaybe we can get Beyung involved in reviewing this patch...\nQuestion: what is \u0027span id\u0027 ?!",
+      "parentUuid": "46368311_31f8642c",
+      "range": {
+        "startLine": 103,
+        "startChar": 24,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93d26ff1_24cdc498",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 2
