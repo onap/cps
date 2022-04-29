@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65221376_5656a15d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T10:59:58Z",
+      "side": 1,
+      "message": "We discussed this in yesterday\u0027s standup too with Lathish.\n\nWe decided it was best to query the db each time a receive an ADVISED record and update them one at a time, due to having multiple threads running and preventing them from working on the same cm handles.",
+      "parentUuid": "3f788198_a73e0b3c",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed82db6_75cde14b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "86d5067b_e42dc24d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T10:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed82db6_75cde14b",
+      "range": {
+        "startLine": 42,
+        "startChar": 76,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0309c39e_0df30c93",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
         "patchSetId": 16
@@ -68,6 +116,30 @@
       "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "733267e3_691776a2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T10:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0309c39e_0df30c93",
+      "range": {
+        "startLine": 52,
+        "startChar": 57,
+        "endLine": 52,
+        "endChar": 58
+      },
+      "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
