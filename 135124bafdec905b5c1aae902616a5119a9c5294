@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d4557eb_681c20e5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-29T11:49:15Z",
+      "side": 1,
+      "message": "Add a more meaningful message if it is needed. If this is all that this predestroy does then I would remove it",
+      "range": {
+        "startLine": 169,
+        "startChar": 19,
+        "endLine": 169,
+        "endChar": 43
+      },
+      "revId": "135124bafdec905b5c1aae902616a5119a9c5294",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
