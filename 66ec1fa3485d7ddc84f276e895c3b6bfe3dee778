@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "4ef2793b_df16d8c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-04-29T08:24:46Z",
+      "side": 1,
+      "message": "NB: Update the copyright to 2020-2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "66ec1fa3485d7ddc84f276e895c3b6bfe3dee778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b72bfd1c_44d28f42",
         "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
         "patchSetId": 1
