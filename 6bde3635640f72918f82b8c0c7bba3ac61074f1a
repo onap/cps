@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d7db0051_956851f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-04-29T11:05:08Z",
+      "side": 1,
+      "message": "also lets not pre-optimize. a Team in ericsson will test this for performance and will highlight any potential issues. I suspect although it might see big teh query overhead si small compared to the the actual model-sync",
+      "parentUuid": "65221376_5656a15d",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed82db6_75cde14b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 16
