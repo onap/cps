@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac5a358_37c4297c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-04-29T09:58:34Z",
+      "side": 1,
+      "message": "This needs to be 2022 now that the file has been modified",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "bf6f956c779dc6341858f6563973fbecf52ea17d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
