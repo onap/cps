@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d6952e22_1609d2aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T08:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72c48f93_ffa6480f",
+      "range": {
+        "startLine": 183,
+        "startChar": 28,
+        "endLine": 183,
+        "endChar": 33
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60ac60ed_db3bc217",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 12
@@ -164,6 +188,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "595a9a29_7a0b2fe2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T08:24:18Z",
+      "side": 1,
+      "message": "Has been resolved with team what approach to take",
+      "parentUuid": "af7dddae_a4bb6ff2",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 13
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -541,6 +589,30 @@
       "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1242501_f990da4f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-04-29T08:24:18Z",
+      "side": 1,
+      "message": "Has been discussed with team. Have decided to take the approach of querying a single cm handle at a time, due to potentially having multiple threads running carrying out the same query.",
+      "parentUuid": "7dc575c4_9e49dc19",
+      "range": {
+        "startLine": 119,
+        "startChar": 23,
+        "endLine": 119,
+        "endChar": 31
+      },
+      "revId": "dce067b1b963b4cef6353b810dc89fbf8a4614a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
