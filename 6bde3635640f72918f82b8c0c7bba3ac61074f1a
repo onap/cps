@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f788198_a73e0b3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-04-29T10:38:15Z",
+      "side": 1,
+      "message": "Is this a DB hit while parsing each record? Is that the only feasible solution?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "6bde3635640f72918f82b8c0c7bba3ac61074f1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed82db6_75cde14b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 16
