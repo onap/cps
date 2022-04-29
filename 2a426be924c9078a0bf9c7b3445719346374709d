@@ -402,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "3a1acf3e_40edda17",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-04-29T10:09:22Z",
+      "side": 1,
+      "message": "Traceid \u003d each request and response traceid is same when calling same service or one service to another service.\n\nSpanid \u003d In general Span Id is printed along with Trace Id. Span Id is different every request and response calling one service to another service.\n\nhttps://refactorfirst.com/distributed-tracing-with-spring-cloud-sleuth.html",
+      "parentUuid": "3ac5ccf7_539f8e68",
+      "range": {
+        "startLine": 103,
+        "startChar": 24,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "2a426be924c9078a0bf9c7b3445719346374709d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93d26ff1_24cdc498",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 2
