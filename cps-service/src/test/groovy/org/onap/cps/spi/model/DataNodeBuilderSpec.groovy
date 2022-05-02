@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021 Nordix Foundation.
+ *  Modifications Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,12 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.model
+package org.onap.cps.spi.model
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.opendaylight.yangtools.yang.common.QName
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
+import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
@@ -155,6 +158,37 @@ class DataNodeBuilderSpec extends Specification {
             scenario           | jsonData                                         | expectedSize | expectedXpaths
             'single entry'     | '{"branch": [{"name": "One"}]}'                  | 1            | ['/test-tree/branch[@name=\'One\']']
             'multiple entries' | '{"branch": [{"name": "One"}, {"name": "Two"}]}' | 2            | ['/test-tree/branch[@name=\'One\']', '/test-tree/branch[@name=\'Two\']']
+    }
+
+    def 'Converting NormalizedNode to a DataNode collection -- edge cases: #scenario.'() {
+        when: 'the normalized node is #node'
+            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).buildCollection()
+        then: 'the resulting collection contains data nodes for expected list elements'
+            assert result.size() == expectedSize
+            assert result.containsAll(expectedNodes)
+        where: 'following parameters are used'
+            scenario                                | node            | normalizedNode                        | expectedSize | expectedNodes
+            'NormalizedNode is null'                | 'null'          | null                                  | 1            | [ new DataNode() ]
+            'NormalizedNode is an unsupported type' | 'not supported' | createUnsupportedNormalizedNodeTree() | 0            | [ ]
+    }
+
+    def static createUnsupportedNormalizedNodeTree() {
+        return new NormalizedNode() {
+            @Override
+            QName getNodeType() {
+                return null
+            }
+
+            @Override
+            YangInstanceIdentifier.PathArgument getIdentifier() {
+                return null
+            }
+
+            @Override
+            Object getValue() {
+                return null
+            }
+        }
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
