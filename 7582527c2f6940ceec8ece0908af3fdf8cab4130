@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "61f42b54_5ec86149",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-03T11:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6cf37a25_4bf82e78",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32b77b80_863f77f1",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a77cf9ea_0a439126",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-03T11:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "32b77b80_863f77f1",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "dcda423a_d5d4f3b6",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-03T11:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aa685ec7_6bf08898",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d47271d_0a7d0ca2",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 6
@@ -109,6 +181,24 @@
       "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e375283c_1e163d30",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-03T11:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3d47271d_0a7d0ca2",
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
