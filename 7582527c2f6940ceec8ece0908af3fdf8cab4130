@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "aa685ec7_6bf08898",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-03T08:17:45Z",
+      "side": 1,
+      "message": "agreed, this should be info level",
+      "parentUuid": "70d7fa8f_1033f8a7",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d47271d_0a7d0ca2",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 6
