@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b2623e45_af32c579",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-03T08:48:15Z",
+      "side": 1,
+      "message": "These will be implemented as part of a separate commit.",
+      "parentUuid": "e9d60667_c9916a3b",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 97
+      },
+      "revId": "6369af0f6cb53619daa253d5da0f360f2bf67fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2be8b028_db4ae3cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 17
@@ -36,6 +60,30 @@
       "writtenOn": "2022-04-29T11:46:26Z",
       "side": 1,
       "message": "debug?",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "6369af0f6cb53619daa253d5da0f360f2bf67fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35589f22_f911026e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-03T08:48:15Z",
+      "side": 1,
+      "message": "We decided to keep this as info, to alert the user which node is updated and when. \nAnd we\u0027re using debug below because it will wake every 30 seconds anyway, as explained in patchset 14.",
+      "parentUuid": "2be8b028_db4ae3cd",
       "range": {
         "startLine": 50,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a04addea_a7f33d59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-03T08:48:15Z",
+      "side": 1,
+      "message": "So we lessen the chance of potentially have multiple watchdog threads working on the same cm handle.",
+      "parentUuid": "2b73c7bd_5e6cabbd",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "6369af0f6cb53619daa253d5da0f360f2bf67fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13963f9c_c66c6459",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 17
@@ -82,6 +154,30 @@
       "writtenOn": "2022-04-29T11:46:26Z",
       "side": 1,
       "message": "Should this not be READY?",
+      "range": {
+        "startLine": 33,
+        "startChar": 39,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "6369af0f6cb53619daa253d5da0f360f2bf67fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "962f5097_30729474",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-03T08:48:15Z",
+      "side": 1,
+      "message": "No, because we only sync the ADVISED cm handles, then they get set to READY.",
+      "parentUuid": "13963f9c_c66c6459",
       "range": {
         "startLine": 33,
         "startChar": 39,
