@@ -23,6 +23,7 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.DataNode;
 
@@ -145,8 +146,8 @@ public interface CpsDataPersistenceService {
      *                               included in the output
      * @return the data nodes found i.e. 0 or more data nodes
      */
-    Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-        String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+    List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
