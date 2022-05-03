@@ -96,6 +96,23 @@
     },
     {
       "key": {
+        "uuid": "eb857e10_fab7c477",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-03T16:30:18Z",
+      "side": 1,
+      "message": "Root logger specification is required. It should not be removed.\nMy previous comment for some cleanup was related to unused variables and commented code.\nLet\u0027s bring this one one during the daily tomorrow to have everybody aligned.",
+      "revId": "7582527c2f6940ceec8ece0908af3fdf8cab4130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70d7fa8f_1033f8a7",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 6
