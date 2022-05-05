@@ -1,0 +1,618 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "358fb8a1_2314e0fd",
+        "filename": "cps-events/src/main/resources/schemas/cps-async-request-response-event-schema.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "thsis should be in a NCMP specific repo",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3eec8f2_16e3aecf",
+        "filename": "cps-events/src/main/resources/schemas/cps-async-request-response-event-schema.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "Ncmp or CpsNcmp",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 8
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ca79cc_9de671c0",
+        "filename": "cps-events/src/main/resources/schemas/cps-async-request-response-event-schema.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "CPS-NCMP",
+      "range": {
+        "startLine": 7,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e5045d0_83b9effd",
+        "filename": "cps-events/src/main/resources/schemas/cps-async-request-response-event-schema.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "is the response data itself missing?!",
+      "range": {
+        "startLine": 56,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5e6fd8b_de25f326",
+        "filename": "cps-events/src/main/resources/schemas/cps-async-request-response-event-with-origin-schema.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "similar comments as prev. event definition",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88612fa8_ab6279ee",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "might be easier(to read) as: !(topicParamInQuery \u003d\u003d null || topicParamInQuery.isBlank())\n\nP.S. isBlank() includes isEmpty()!",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 104
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3fc50ef_08e312ec",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsTaskExecutor.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "tshi calss does not know if it is a request, use word \u0027task\u0027 instead",
+      "range": {
+        "startLine": 47,
+        "startChar": 36,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4de21342_6587bfed",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsTaskExecutor.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "looks to much like (a) the succes message...\nsuggestion: \"Async task failed.\"",
+      "range": {
+        "startLine": 49,
+        "startChar": 71,
+        "endLine": 49,
+        "endChar": 98
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71673b9d_66a87ae7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "Spy functionality not use use stub or the real thing instead",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb905c3_c13d059c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "not sure if new event stuff is limited to ncmp specific module i cps(core) needs any updates!",
+      "range": {
+        "startLine": 59,
+        "startChar": 53,
+        "endLine": 59,
+        "endChar": 86
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a873145_3d1a5c96",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "move to (new?) ncmp specific (events?) module",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd214870_ce56880a",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "i wont repeat but all reference to CPS in the new event code should be cps-ncmp or just ncmp",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbb887fc_78a6ba23",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "can this be static, insert using injection instead of create a new instance upon each event?!",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc9b6972_2e6c5609",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventProducer.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "although \u0027payload\u0027 add some clarification it is against our naming convention and a bit ambiguous.\nnot sure what is best here... \nopinions requested...",
+      "range": {
+        "startLine": 51,
+        "startChar": 98,
+        "endLine": 51,
+        "endChar": 105
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae4c2d3f_7ff0c6e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventUtil.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "not really a \u0027getter\u0027\nsugegstion getFormmatedCurrentTime",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 35
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ecf2f7a_83242480",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventUtil.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "extract out static final",
+      "range": {
+        "startLine": 88,
+        "startChar": 42,
+        "endLine": 88,
+        "endChar": 99
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6ad3dc9_9759be05",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/updatedevents/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "maybe not needed...",
+      "range": {
+        "startLine": 21,
+        "startChar": 34,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b72387f_d3c38078",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/updatedevents/CpsUpdatedEventNotificationErrorHandler.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "mayeb not needed",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 53
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d38767_5ef60d2a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "how could this happen?",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 50
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50e68f5b_0d1493d0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "are you using spy functionality?",
+      "range": {
+        "startLine": 81,
+        "startChar": 72,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf506c53_5752b191",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "are you using spy functionality?",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 37
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70b9da90_ea279b5b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "redundant if there are other asserts",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6961beb_f0ef9056",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "why plural?",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1783f26a_923de3dc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "this is Java way. in groovy you can init an populate in one go\n\n\ndef confis \u003d [key1:\u0027value1\u0027, \u0027key 2\u0027:\u0027value2\u0027] \n\nkeys can be with our with \u0027 tokes as illustrated in my sample. I think you only NEED \u0027 when you have spaces the key name (unusual)",
+      "range": {
+        "startLine": 108,
+        "startChar": 7,
+        "endLine": 108,
+        "endChar": 19
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a68bfb8_4bd73d26",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "replace ALL \" with \u0027",
+      "range": {
+        "startLine": 110,
+        "startChar": 55,
+        "endLine": 110,
+        "endChar": 56
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afa8a9c7_b59e482a",
+        "filename": "cps-service/src/test/resources/cpsAsyncRequestResponseEvent.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "move to NCMP",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "162b0cfd_bc14f505",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "not so important but is there a way of assert a message has been sent in Kafka?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec3e4389_ded4a466",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T15:50:33Z",
+      "side": 1,
+      "message": "beyond my paygrade :-)",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
