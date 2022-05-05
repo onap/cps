@@ -16,6 +16,24 @@
       "revId": "eafed0e34d9b34765afe67d4bb4c4f5b3ae0d7a5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ddabd6f_0588604d",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-05T13:29:24Z",
+      "side": 1,
+      "message": "Exact, the base one was including the CONSOLE appender anyway, causing the duplication.\nSee https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/base.xml\nThen, we skipped this base one to keep only the defaults include.",
+      "parentUuid": "3c3a4707_d3621825",
+      "revId": "eafed0e34d9b34765afe67d4bb4c4f5b3ae0d7a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a016af7a_f1cc5297",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-05T13:29:24Z",
+      "side": 1,
+      "message": "Exact, see also my other comment in logback config file.",
+      "parentUuid": "ac4e907f_69f68433",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 16
+      },
+      "revId": "ac5ae3e24e347bb6d643e9b4e5ebcf3baa7152a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bf36b76_99cd9f91",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-05T12:32:47Z",
       "side": 1,
       "message": "does this set asyncConsole to default and if so how does\"jsonConsole\"get enabeld in ONAP?!",
+      "range": {
+        "startLine": 72,
+        "startChar": 27,
+        "endLine": 72,
+        "endChar": 39
+      },
+      "revId": "ac5ae3e24e347bb6d643e9b4e5ebcf3baa7152a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c85c2ea6_491237ba",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-05T13:29:24Z",
+      "side": 1,
+      "message": "It is enabled at line 63 above. \n\nAsyncAppender is a wrapper on top of either jsonConsole or CONSOLE appender depending on the configuration. The default configuration is specified in application.yml as the json one.\n\nThen, the default `json` value for `logging.format` property can be changed at application startup time to come with the more human readable text format.",
+      "parentUuid": "4bf36b76_99cd9f91",
       "range": {
         "startLine": 72,
         "startChar": 27,
