@@ -23,17 +23,17 @@ package org.onap.cps.ncmp.api.inventory.sync;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@EnableScheduling
 @RequiredArgsConstructor
 @Component
 public class ModuleSyncWatchdog {
 
     private final SyncUtils syncUtils;
+
+    private final ModuleSyncService moduleSyncService;
 
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
@@ -42,12 +42,11 @@ public class ModuleSyncWatchdog {
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle newAdvisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (newAdvisedCmHandle != null) {
-            // ToDo When Cm-Handle in the 'ADVISED' state is Retrieved, Set CM-Handle state to 'LOCKED'
-            //  and give lock reason
-            // ToDo if lock fails, move to next cm handle.
-            // ToDo Update last update time with a timestamp everytime Cm-handle state is changed
-            syncUtils.updateCmHandleState(newAdvisedCmHandle, "READY");
-            log.info("{} is now in READY state", newAdvisedCmHandle.getId());
+            final CmHandleState cmHandleState = newAdvisedCmHandle.getCmHandleState();
+            moduleSyncService.syncAndCreateSchemaSet(newAdvisedCmHandle);
+            // ToDo Lock Cm Handle if module sync fails
+            syncUtils.updateCmHandleState(newAdvisedCmHandle, cmHandleState.ready());
+            log.info("{} is now in {} state", newAdvisedCmHandle.getId(), newAdvisedCmHandle.getCmHandleState());
             newAdvisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
