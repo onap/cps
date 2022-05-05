@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +22,10 @@ package org.onap.cps.ncmp.api.impl.config;
 
 import java.util.Arrays;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncWatchdog;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -29,11 +33,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@EnableScheduling
 @Configuration
+@Setter
+@RequiredArgsConstructor
 public class NcmpConfiguration {
+
+    @Autowired
+    private static ModuleSyncWatchdog moduleSyncWatchdog;
 
     @Getter
     @Component
@@ -67,4 +78,5 @@ public class NcmpConfiguration {
             Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
     }
+
 }

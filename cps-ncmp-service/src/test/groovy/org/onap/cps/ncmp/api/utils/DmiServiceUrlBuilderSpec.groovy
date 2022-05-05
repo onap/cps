@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.utils
 
+import org.onap.cps.ncmp.api.inventory.sync.CmHandleState
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -33,7 +35,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
 
     @Shared
     YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
-            'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'))
+            'dmiDataServiceName', 'dmiModuleServiceName', CmHandleState.ADVISED, new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'))
 
     NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
 
