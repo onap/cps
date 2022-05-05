@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c3a4707_d3621825",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-05T12:21:16Z",
+      "side": 1,
+      "message": "By removing \"\u003cinclude resource\u003d\"org/springframework/boot/logging/logback/base.xml\" /\u003e\" is the duplicate output issues addressed? I am happy to +2 merge this once Bruno is happy with all (because he gave last -1)",
+      "revId": "eafed0e34d9b34765afe67d4bb4c4f5b3ae0d7a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
