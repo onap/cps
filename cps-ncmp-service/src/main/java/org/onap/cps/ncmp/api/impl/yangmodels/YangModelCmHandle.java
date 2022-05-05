@@ -34,6 +34,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.inventory.sync.CmHandleState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.utils.CpsValidator;
 
@@ -56,7 +57,7 @@ public class YangModelCmHandle {
     private String dmiDataServiceName;
 
     @JsonProperty("state")
-    private String cmHandleState;
+    private CmHandleState cmHandleState;
 
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
@@ -78,6 +79,7 @@ public class YangModelCmHandle {
     public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
+                                                        final CmHandleState cmHandleState,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle) {
         CpsValidator.validateNameCharacters(ncmpServiceCmHandle.getCmHandleId());
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
@@ -85,6 +87,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setCmHandleState(cmHandleState);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
             ncmpServiceCmHandle.getPublicProperties()));
