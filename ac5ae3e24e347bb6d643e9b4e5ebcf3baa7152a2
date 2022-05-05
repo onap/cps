@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2773c62f_0533c80a",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-05T13:33:57Z",
+      "side": 1,
+      "message": "Yes by default log format will be in json but if we remove/set logging.format to blank or any other value that does not equal to json or remove this property from application.yml will enable log format as plain text.",
+      "parentUuid": "ac4e907f_69f68433",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 16
+      },
+      "revId": "ac5ae3e24e347bb6d643e9b4e5ebcf3baa7152a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bf36b76_99cd9f91",
         "filename": "cps-service/src/main/resources/logback-spring.xml",
         "patchSetId": 13
@@ -93,6 +117,30 @@
       "revId": "ac5ae3e24e347bb6d643e9b4e5ebcf3baa7152a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45973e47_144b33ff",
+        "filename": "cps-service/src/main/resources/logback-spring.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-05T13:33:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c85c2ea6_491237ba",
+      "range": {
+        "startLine": 72,
+        "startChar": 27,
+        "endLine": 72,
+        "endChar": 39
+      },
+      "revId": "ac5ae3e24e347bb6d643e9b4e5ebcf3baa7152a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
