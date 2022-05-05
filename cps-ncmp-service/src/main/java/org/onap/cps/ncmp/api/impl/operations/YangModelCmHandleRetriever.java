@@ -25,6 +25,7 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.sync.CmHandleState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -58,6 +59,7 @@ public class YangModelCmHandleRetriever {
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
             String.valueOf(cmHandleDataNode.getLeaves().get("dmi-model-service-name")),
+            CmHandleState.valueOf(String.valueOf(cmHandleDataNode.getLeaves().get("state"))),
             ncmpServiceCmHandle
         );
     }
