@@ -42,7 +42,7 @@ class ModuleSyncServiceSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', ncmpServiceCmHandle)
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', CmHandleState.ADVISED, ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
                                                             new ModuleReference(moduleName:'module2',revision:'2') ]

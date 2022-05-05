@@ -50,6 +50,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.sync.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -208,7 +209,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     YangModelCmHandle.toYangModelCmHandle(
                         dmiPluginRegistration.getDmiPlugin(),
                         dmiPluginRegistration.getDmiDataPlugin(),
-                        dmiPluginRegistration.getDmiModelPlugin(), cmHandle)
+                        dmiPluginRegistration.getDmiModelPlugin(),
+                        CmHandleState.ADVISED,
+                        cmHandle)
                 )
                 .map(this::registerAndSyncNewCmHandle)
                 .collect(Collectors.toList());

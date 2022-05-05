@@ -36,7 +36,7 @@ class YangModelCmHandleRetrieverSpec extends Specification {
     def objectUnderTest = new YangModelCmHandleRetriever(mockCpsDataService)
 
     def cmHandleId = 'some-cm-handle'
-    def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
+    def leaves = ["state":"ADVISED","dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     @Shared
