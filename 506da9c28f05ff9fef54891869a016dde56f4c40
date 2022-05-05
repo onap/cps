@@ -746,6 +746,30 @@
     },
     {
       "key": {
+        "uuid": "4a9c2b79_911f39c0",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/updatedevents/CpsUpdatedEventNotificationErrorHandler.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-05T17:09:10Z",
+      "side": 1,
+      "message": "Its used in many classes related to cps updated events. Perhaps Bruno or Aditya can say",
+      "parentUuid": "4b72387f_d3c38078",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 53
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0d38767_5ef60d2a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 22
@@ -924,6 +948,24 @@
     },
     {
       "key": {
+        "uuid": "d2465ee5_968b8a76",
+        "filename": "cps-service/src/test/resources/cpsAsyncRequestResponseEvent.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-05T17:09:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afa8a9c7_b59e482a",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "162b0cfd_bc14f505",
         "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
         "patchSetId": 22
@@ -935,6 +977,30 @@
       "writtenOn": "2022-05-05T15:50:33Z",
       "side": 1,
       "message": "not so important but is there a way of assert a message has been sent in Kafka?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8c7ce6d_efb8b430",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-05T17:09:10Z",
+      "side": 1,
+      "message": "Not an easy way at least. I am looking into it but I\u0027m not convinced it\u0027s viable at this point",
+      "parentUuid": "162b0cfd_bc14f505",
       "range": {
         "startLine": 39,
         "startChar": 0,
