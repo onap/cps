@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
@@ -74,7 +74,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
-    def dataNode = new DataNode(leaves: ['id': 'Some-Cm-Handle', 'dmi-service-name': 'testDmiService'])
+    def dataNode = new DataNode(leaves: ['id': 'some-cm-handle', 'dmi-service-name': 'testDmiService'])
 
     def 'Write resource data for pass-through running from DMI using POST #scenario cm handle properties.'() {
         given: 'cpsDataService returns valid datanode'
@@ -284,12 +284,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiServiceName = 'some service name'
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
-            def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
-            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('Some-Cm-Handle') >> yangModelCmHandle
+            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
-            def result = objectUnderTest.getNcmpServiceCmHandle('Some-Cm-Handle')
+            def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
         then: 'the result returns the correct data'
-            result.cmHandleId == 'Some-Cm-Handle'
+            result.cmHandleId == 'some-cm-handle'
             result.dmiProperties ==[ Book:'Romance Novel' ]
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
 
@@ -298,6 +298,28 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get a cm handle with an invalid id.'() {
         when: 'getting cm handle details for a given cm handle id with an invalid name'
             objectUnderTest.getNcmpServiceCmHandle('invalid cm handle with spaces')
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+        and: 'the yang model cm handle retriever is not invoked'
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
+    }
+
+    def 'Get cm handle public properties'() {
+        given: 'the system returns a yang modelled cm handle'
+            def dmiServiceName = 'some service name'
+            def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+            def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
+            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+        when: 'getting cm handle public properties for a given cm handle id from ncmp service'
+            def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
+        then: 'the result returns the correct data'
+            result == [ 'public prop' : 'some public prop' ]
+    }
+
+    def 'Get cm handle public properties with an invalid id.'() {
+        when: 'getting cm handle details for a given cm handle id with an invalid name'
+            objectUnderTest.getCmHandlePublicProperties('invalid cm handle with spaces')
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'

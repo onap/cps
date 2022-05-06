@@ -2,8 +2,8 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
- *  Modification Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications (C) 2021-2022 Bell Canada
+ *  Modifications Copyright (C) 2021 highstreet technologies GmbH
+ *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -57,6 +57,7 @@ import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
 import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -238,6 +239,22 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final NcmpServiceCmHandle ncmpServiceCmHandle = networkCmProxyDataService.getNcmpServiceCmHandle(cmHandleId);
         final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
         return ResponseEntity.ok(restOutputCmHandle);
+    }
+
+    /**
+     * Search for Cm Handle and Properties by Name.
+     * @param cmHandleId cm-handle identifier
+     * @return cm handle and its properties
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandlePublicProperties> retrieveCmHandlePublicPropertiesById(
+        final String cmHandleId) {
+        final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
+            new RestOutputCmHandlePublicProperties();
+        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        cmHandlePublicProperties.add(networkCmProxyDataService.getCmHandlePublicProperties(cmHandleId));
+        restOutputCmHandlePublicProperties.publicCmHandleProperties(cmHandlePublicProperties);
+        return ResponseEntity.ok(restOutputCmHandlePublicProperties);
     }
 
     /**
