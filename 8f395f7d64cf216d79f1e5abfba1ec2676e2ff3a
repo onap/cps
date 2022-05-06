@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5c60e956_10c9c350",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-06T14:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f6006ee_1f530ab7",
+      "revId": "8f395f7d64cf216d79f1e5abfba1ec2676e2ff3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e40c294_927518e6",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "61138b59_083e6ae9",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-06T14:14:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e40c294_927518e6",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "8f395f7d64cf216d79f1e5abfba1ec2676e2ff3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b36665f0_5f86650b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 1
@@ -53,6 +95,30 @@
       "writtenOn": "2022-05-06T11:15:52Z",
       "side": 1,
       "message": "did you tets it, does it require restart? (important for RTD update)",
+      "range": {
+        "startLine": 41,
+        "startChar": 33,
+        "endLine": 41,
+        "endChar": 65
+      },
+      "revId": "8f395f7d64cf216d79f1e5abfba1ec2676e2ff3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6019683_15fbbbb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-06T14:14:24Z",
+      "side": 1,
+      "message": "I have tested this locally, it will require a restart of the cps-service each time a new schedule is picked up, as there is currently no way of refreshing properties at runtime as far as I know.",
+      "parentUuid": "b36665f0_5f86650b",
       "range": {
         "startLine": 41,
         "startChar": 33,
