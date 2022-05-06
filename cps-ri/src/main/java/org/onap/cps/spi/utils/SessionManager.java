@@ -29,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -52,11 +53,30 @@ import org.springframework.stereotype.Component;
 @Component
 public class SessionManager {
 
+    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
     private final TimeLimiterProvider timeLimiterProvider;
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
     private static SessionFactory sessionFactory;
-    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
+
+
+    @PostConstruct
+    private void postConstruct() {
+        final Thread shutdownHook = new Thread(this::closeAllSessionsInShutdown);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
+
+    private void closeAllSessionsInShutdown() {
+        for (final String sessionId : sessionMap.keySet()) {
+            try {
+                closeSession(sessionId);
+                log.info("Session with session ID {} closed", sessionId);
+            } catch (final Exception e) {
+                throw new SessionManagerException("Shutdown method to close all sessions aborted",
+                        "Unable to close all sessions", e);
+            }
+        }
+    }
 
     private synchronized void buildSessionFactory() {
         if (sessionFactory == null) {
