@@ -770,6 +770,30 @@
     },
     {
       "key": {
+        "uuid": "bbfe575f_3b7f5ceb",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/updatedevents/CpsUpdatedEventNotificationErrorHandler.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-06T07:59:42Z",
+      "side": 1,
+      "message": "i meant renaming is not needed. sorry that wasn\u0027t very clear",
+      "parentUuid": "4a9c2b79_911f39c0",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 53
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0d38767_5ef60d2a",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 22
@@ -1001,6 +1025,30 @@
       "side": 1,
       "message": "Not an easy way at least. I am looking into it but I\u0027m not convinced it\u0027s viable at this point",
       "parentUuid": "162b0cfd_bc14f505",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3d547fd_2cef8b68",
+        "filename": "csit/tests/ncmp-passthrough/ncmp-passthrough.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-06T07:59:42Z",
+      "side": 1,
+      "message": "dont worry about it for  now",
+      "parentUuid": "a8c7ce6d_efb8b430",
       "range": {
         "startLine": 39,
         "startChar": 0,
