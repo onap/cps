@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9778ff0_ac5f308f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-06T15:34:51Z",
+      "side": 1,
+      "message": "NB: these are not part of your user story so technically shouldn\u0027t be there\nWhomever implements them can change name if they so whish",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 25
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d0e0360_7919d57c",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-06T15:34:51Z",
+      "side": 1,
+      "message": "too much detail for admin guide.\n\nshould be as single line entry on this page: https://docs.onap.org/projects/onap-cps/en/latest/deployment.html\nsuggested descrption \"NCMP New CM Handle Module Sync period\"",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 47
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b7b243_7d141345",
+        "filename": "docs/images/state-transitions.JPG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-06T15:34:51Z",
+      "side": 1,
+      "message": "remove, not need for admin guide",
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
