@@ -296,6 +296,27 @@ retrieveCmHandleDetailsById:
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 
+retrieveCmHandlePropertiesById:
+  get:
+    description: Retrieve CM handle properties by cm handle id
+    tags:
+      - network-cm-proxy
+    summary: Retrieve CM handle properties
+    operationId: retrieveCmHandlePublicPropertiesByCmHandleId
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/RestOutputCmHandlePublicProperties'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
 queryCmHandles:
   post:
     description: Execute cm handle query search
