@@ -127,7 +127,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
         when: 'close session method is called with session ID as parameter'
             objectUnderTest.closeSession(someSessionId)
         then: 'the session manager method to close session is invoked with parameter'
-            1 * mockSessionManager.closeSession(someSessionId)
+            1 * mockSessionManager.closeSession(someSessionId, true)
     }
 
     def 'Lock anchor.'(){

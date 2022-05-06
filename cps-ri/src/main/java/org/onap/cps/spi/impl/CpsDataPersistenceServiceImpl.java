@@ -217,7 +217,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void closeSession(final String sessionId) {
-        sessionManager.closeSession(sessionId);
+        sessionManager.closeSession(sessionId, true);
     }
 
     @Override

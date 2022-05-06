@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.utils
 
+import org.onap.cps.spi.config.CpsSessionFactory
 import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,6 +33,9 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
     @Autowired
     SessionManager objectUnderTest
 
+    @Autowired
+    CpsSessionFactory cpsSessionFactory
+
     def sessionId
     def shortTimeoutForTesting = 200L
 
@@ -40,7 +44,7 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
     }
 
     def cleanup(){
-        objectUnderTest.closeSession(sessionId)
+        objectUnderTest.closeSession(sessionId, false)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -62,8 +66,18 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
             def thrown = thrown(SessionManagerException)
             thrown.message.contains('Timeout')
         then: 'when the other session holding the lock is closed, lock can finally be acquired'
-            objectUnderTest.closeSession(otherSessionId)
+            objectUnderTest.closeSession(otherSessionId, true)
             objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Lock anchor twice using the same session.'(){
+        given: 'session that already holds an anchor lock'
+            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+        when: 'same session tries to acquire same anchor lock'
+            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+        then: 'no exception is thrown'
+            noExceptionThrown()
     }
 
 }
