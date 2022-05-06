@@ -33,17 +33,17 @@ CPS Log pattern
 .. code-block:: java
 
    <pattern>
-	   {
-	     "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
-	     "severity": "%level",   // DEBUG
-	     "service": "${springAppName}",  // cps-application
-	     "trace": "${TraceId}", // e17da1571e518c59
-	     "span": "${SpanId}", // e17da1571e518c59
-	     "pid": "${PID}", //11128
-	     "thread": "%thread", //tp1901272535-29
-	     "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
-	     "rest": "%message" // Execution time ...
-	   }
+       {
+         "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+         "severity": "%level",   // DEBUG
+         "service": "${springAppName}",  // cps-application
+         "trace": "${TraceId}", // e17da1571e518c59
+         "span": "${SpanId}", // e17da1571e518c59
+         "pid": "${PID}", //11128
+         "thread": "%thread", //tp1901272535-29
+         "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+         "rest": "%message" // Execution time ...
+       }
    </pattern>
 
 Change logging level
@@ -207,3 +207,15 @@ The following characters along with spaces are no longer valid for naming of the
 .. code::
 
     !"#$%&'()*+,./\:;<=>?@[]^`{|}~
+
+Cm Handle State Transitions Module Sync
+----------------------------------------
+
+As part of the Kohn 4.0.0 release, CPS has added the following cm handle states:
+
+    - ADVISED
+    - READY
+    - LOCKED
+    - DELETING
+
+Also, as part of this release there is a scheduled watch dog process which will sync the cm handles and initiate the state transitions.
