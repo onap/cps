@@ -29,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,22 @@ public class SessionManager {
     private final AnchorRepository anchorRepository;
     private static SessionFactory sessionFactory;
     private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
+
+    @PostConstruct
+    private void postConstruct() {
+        log.info("Post Construct method executing");
+        final Thread printingHook = new Thread(() -> closeAllSessionsInGracefulShutdown());
+        Runtime.getRuntime().addShutdownHook(printingHook);
+    }
+
+    private void closeAllSessionsInGracefulShutdown() {
+        log.info("Shutdown hook method starting");
+        for (final String sessionId : sessionMap.keySet()) {
+            closeSession(sessionId);
+        }
+        sessionFactory.close();
+        log.info("Shutdown hook method executed");
+    }
 
     private synchronized void buildSessionFactory() {
         if (sessionFactory == null) {
