@@ -58,7 +58,7 @@
     </appender>
 
     <appender name="asyncConsole" class="ch.qos.logback.classic.AsyncAppender">
-        <if condition='property("loggingFormat").equals("json")'>
+        <if condition='property("loggingFormat").equalsIgnoreCase("json")'>
             <then>
                 <appender-ref ref="jsonConsole"/>
             </then>
