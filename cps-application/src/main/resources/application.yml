@@ -131,9 +131,14 @@ logging:
             onap:
                 cps: INFO
 
-dmi:
-    auth:
-        username: ${DMI_USERNAME}
-        password: ${DMI_PASSWORD}
-    api:
-        base-path: dmi
+ncmp:
+    dmi:
+        auth:
+            username: ${DMI_USERNAME}
+            password: ${DMI_PASSWORD}
+        api:
+            base-path: dmi
+
+    timers:
+        advised-modules-sync:
+            sleep-time: 30000
