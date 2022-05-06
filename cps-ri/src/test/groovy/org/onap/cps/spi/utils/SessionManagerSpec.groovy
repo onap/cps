@@ -27,10 +27,8 @@ import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
-import org.testcontainers.shaded.com.google.common.util.concurrent.UncheckedExecutionException
 import spock.lang.Specification
 import org.hibernate.Session
-
 import java.util.concurrent.ExecutionException
 
 class SessionManagerSpec extends Specification {
@@ -39,6 +37,7 @@ class SessionManagerSpec extends Specification {
     def mockDataspaceRepository = Mock(DataspaceRepository)
     def mockAnchorRepository = Mock(AnchorRepository)
     def mockSession = Mock(Session)
+    def mockSessionManager = Mock(SessionManager)
 
     def objectUnderTest = new SessionManager(spiedTimeLimiterProvider, mockDataspaceRepository, mockAnchorRepository)
 
