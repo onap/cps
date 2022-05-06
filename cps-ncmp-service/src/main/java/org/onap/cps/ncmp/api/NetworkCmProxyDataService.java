@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.api;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
@@ -120,6 +121,14 @@ public interface NetworkCmProxyDataService {
      * @return a collection of cm handle details.
      */
     NcmpServiceCmHandle getNcmpServiceCmHandle(String cmHandleId);
+
+    /**
+     * Get cm handle public properties by cm handle's id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return a collection of cm handle details.
+     */
+    Map<String, String> getCmHandlePublicProperties(String cmHandleId);
 
     /**
      * Query and return cm handles that match the given query parameters.

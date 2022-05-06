@@ -41,5 +41,8 @@ paths:
   /v1/ch/{cm-handle}:
     $ref: 'ncmp.yml#/retrieveCmHandleDetailsById'
 
+  /v1/ch/{cm-handle}/properties:
+    $ref: 'ncmp.yml#/getCmHandlePropertiesById'
+
   /v1/data/ch/searches:
     $ref: 'ncmp.yml#/queryCmHandles'

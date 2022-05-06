@@ -34,6 +34,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -191,6 +192,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         setDmiProperties(dmiProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
         return ncmpServiceCmHandle;
+    }
+
+    /**
+     * Retrieve cm handle public properties for a given cm handle id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return cm handle details
+     */
+    @Override
+    public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle =
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        final List<YangModelCmHandle.Property> yangModelPublicProperties = yangModelCmHandle.getPublicProperties();
+        final Map<String, String> cmHandlePublicProperties = new HashMap<>();
+        asPropertiesMap(yangModelPublicProperties, cmHandlePublicProperties);
+        return cmHandlePublicProperties;
     }
 
     /**

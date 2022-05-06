@@ -217,6 +217,12 @@ components:
           type: string
           example: Book Type
 
+    RestOutputCmHandlePublicProperties:
+      type: object
+      properties:
+        publicCmHandleProperties:
+          $ref: '#/components/schemas/CmHandlePublicProperties'
+
   examples:
     dataSampleRequest:
         summary: Sample request
