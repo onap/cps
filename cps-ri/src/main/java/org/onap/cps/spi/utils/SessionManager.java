@@ -29,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +37,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
-import org.onap.cps.spi.entities.SchemaSetEntity;
-import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SessionManagerException;
 import org.onap.cps.spi.exceptions.SessionTimeoutException;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -55,17 +53,27 @@ public class SessionManager {
     private final TimeLimiterProvider timeLimiterProvider;
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
-    private static SessionFactory sessionFactory;
-    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
+    private final SessionManagerHelper sessionManagerHelper = SessionManagerHelper.getInstance();
+    private SessionFactory sessionFactory = sessionManagerHelper.getSessionFactory();
+    private ConcurrentHashMap<String, Session> sessionMap = sessionManagerHelper.getSessionMap();
 
-    private synchronized void buildSessionFactory() {
-        if (sessionFactory == null) {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(AnchorEntity.class)
-                    .addAnnotatedClass(DataspaceEntity.class)
-                    .addAnnotatedClass(SchemaSetEntity.class)
-                    .addAnnotatedClass(YangResourceEntity.class)
-                    .buildSessionFactory();
+    @PostConstruct
+    private void postConstruct() {
+        final Thread shutdownHook = new Thread(this::closeAllSessionsInShutdown);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
+
+    private void closeAllSessionsInShutdown() {
+        for (final String sessionId : sessionMap.keySet()) {
+            try {
+                final Session session = getSession(sessionId);
+                session.getTransaction().rollback();
+                session.close();
+                log.info("Session with session ID {} rolled back and closed", sessionId);
+            } catch (final Exception e) {
+                throw new SessionManagerException("Shutdown method to close all sessions aborted",
+                        "Unable to close all sessions", e);
+            }
         }
     }
 
@@ -75,7 +83,6 @@ public class SessionManager {
      * @return Session ID string
      */
     public String startSession() {
-        buildSessionFactory();
         final Session session = sessionFactory.openSession();
         final String sessionId = UUID.randomUUID().toString();
         sessionMap.put(sessionId, session);
@@ -162,4 +169,5 @@ public class SessionManager {
         }
         return session;
     }
+
 }
