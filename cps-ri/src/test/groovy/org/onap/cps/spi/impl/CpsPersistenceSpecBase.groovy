@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.DatabaseTestContainer
+
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
@@ -32,11 +33,13 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest
+@ContextConfiguration
 @Testcontainers
 class CpsPersistenceSpecBase extends Specification {
 
