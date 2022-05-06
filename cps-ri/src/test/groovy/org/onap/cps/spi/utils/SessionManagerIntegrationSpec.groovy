@@ -66,4 +66,14 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
             objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Lock anchor twice using the same session.'(){
+        given: 'session that already holds an anchor lock'
+        objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+        when: 'same session tries to acquire same anchor lock'
+        objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+        then: 'no exception is thrown'
+        noExceptionThrown()
+    }
+
 }
