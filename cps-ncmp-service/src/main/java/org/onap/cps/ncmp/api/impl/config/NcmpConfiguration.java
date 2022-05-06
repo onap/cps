@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.config;
 import java.util.Arrays;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,7 +54,7 @@ public class NcmpConfiguration {
      * @return rest template instance
      */
     @Bean
-    @Scope("singleton")
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
         final RestTemplate restTemplate = restTemplateBuilder.build();
         setRestTemplateMessageConverters(restTemplate);
