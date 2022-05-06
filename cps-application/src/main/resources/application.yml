@@ -137,3 +137,7 @@ dmi:
         password: ${DMI_PASSWORD}
     api:
         base-path: dmi
+
+modulesync:
+    watchdog:
+        delay: 30000
