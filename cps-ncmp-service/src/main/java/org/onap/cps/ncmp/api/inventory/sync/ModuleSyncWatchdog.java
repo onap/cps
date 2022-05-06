@@ -38,7 +38,7 @@ public class ModuleSyncWatchdog {
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
-    @Scheduled(fixedDelay = 30000)
+    @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms}")
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle newAdvisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (newAdvisedCmHandle != null) {
