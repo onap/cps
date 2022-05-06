@@ -157,8 +157,10 @@ To get a listing of the cps-core Pods, run the following command:
   dev-cps-core-postgres-primary-f7766d46c-s9d5b         1/1     Running            0          24h
   dev-cps-core-postgres-replica-84659d68f9-6qnt4        1/1     Running            0          24h
 
+.. note::
+    The CPS Service will have to be restarted each time a change is made to a configurable property.
 
-Additional Cps-Core Customizations
+Additional CPS-Core Customizations
 ==================================
 
 The following table lists some properties that can be specified as Helm chart
@@ -176,14 +178,6 @@ Any spring supported property can be configured by providing in ``config.additio
 | config.appUserPassword                | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
 |                                       |                                                                                                         |                               |
 |                                       | This is the password to be used by CPS Temporal REST clients to authenticate themselves.                |                               |
-|                                       |                                                                                                         |                               |
-|                                       | If not defined, the password is generated when deploying the application.                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserName              | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserPassword          | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined                   |
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
@@ -285,6 +279,22 @@ Any spring supported property can be configured by providing in ``config.additio
 | config.additional.                    | Specifies number of database connections between database and application.                              | ``10``                        |
 | spring.datasource.hikari.             | This property controls the maximum size that the pool is allowed to reach,                              |                               |
 | maximumPoolSize                       | including both idle and in-use connections.                                                             |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+
+Additional CPS-NCMP Customizations
+==================================
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.dmiPluginUserName              | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.dmiPluginUserPassword          | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined                   |
+|                                       |                                                                                                         |                               |
+|                                       | If not defined, the password is generated when deploying the application.                               |                               |
+|                                       |                                                                                                         |                               |
+|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.timers.advised-modules-sync    | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
+| .sleep-time-ms                        |                                                                                                         |                               |
+|                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
 CPS-Core Docker Installation

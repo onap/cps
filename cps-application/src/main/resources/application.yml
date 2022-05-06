@@ -137,3 +137,6 @@ ncmp:
             password: ${DMI_PASSWORD}
         api:
             base-path: dmi
+    timers:
+        advised-modules-sync:
+            sleep-time-ms: 30000
