@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
@@ -298,6 +298,31 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get a cm handle with an invalid id.'() {
         when: 'getting cm handle details for a given cm handle id with an invalid name'
             objectUnderTest.getNcmpServiceCmHandle('invalid cm handle with spaces')
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+        and: 'the yang model cm handle retriever is not invoked'
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
+    }
+
+    def 'Get cm handle public properties'() {
+        given: 'the system returns a yang modelled cm handle'
+            def dmiServiceName = 'some service name'
+            def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+            def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
+            def yangModelCmHandle = new YangModelCmHandle(id:'Some-Cm-Handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('Some-Cm-Handle') >> yangModelCmHandle
+        when: 'getting cm handle public properties for a given cm handle id from ncmp service'
+            def result = objectUnderTest.getNcmpServiceCmHandlePublicProperties('Some-Cm-Handle')
+        then: 'the result returns the correct data'
+            result.cmHandleId == 'Some-Cm-Handle'
+            result.publicProperties == [ 'public prop' : 'some public prop' ]
+        and: 'the result does not contain dmi properties'
+            result.dmiProperties == [:]
+    }
+
+    def 'Get cm handle public properties with an invalid id.'() {
+        when: 'getting cm handle details for a given cm handle id with an invalid name'
+            objectUnderTest.getNcmpServiceCmHandlePublicProperties('invalid cm handle with spaces')
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'

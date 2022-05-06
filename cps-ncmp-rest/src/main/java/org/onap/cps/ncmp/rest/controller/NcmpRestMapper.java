@@ -20,19 +20,23 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import java.util.Map;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.spi.model.ModuleReference;
 
 @Mapper(componentModel = "spring")
-public interface NcmpRestInputMapper {
+public interface NcmpRestMapper {
 
     @Mapping(source = "createdCmHandles", target = "createdCmHandles",
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
@@ -52,4 +56,24 @@ public interface NcmpRestInputMapper {
 
     RestModuleReference toRestModuleReference(
         final ModuleReference moduleReference);
+
+    @Mapping(source = "cmHandleId", target = "cmHandle")
+    @Mapping(source = "publicProperties", target = "publicCmHandleProperties",
+        qualifiedByName = "mapCmHandlePublicProperties")
+    RestOutputCmHandlePublicProperties toRestOutputCmHandlePublicProperties(
+        final NcmpServiceCmHandle ncmpServiceCmHandle);
+
+    /**
+     * Map public properties to CmHandlePublicProperties.
+     *
+     * @param publicProperties public properties.
+     * @return a collection of cm handle public properties.
+     */
+    @Named("mapCmHandlePublicProperties")
+    static CmHandlePublicProperties mapCmHandlePublicProperties(final Map<String, String> publicProperties) {
+        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        cmHandlePublicProperties.add(publicProperties);
+        return cmHandlePublicProperties;
+
+    }
 }

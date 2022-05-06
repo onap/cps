@@ -44,7 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
-    private final NcmpRestInputMapper ncmpRestInputMapper;
+    private final NcmpRestMapper ncmpRestMapper;
 
     /**
      * Update DMI Plugin Registration (used for first registration also).
@@ -56,7 +56,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
             networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
-                ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
+                ncmpRestMapper.toDmiPluginRegistration(restDmiPluginRegistration));
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);
         return allRegistrationsSuccessful(failedRegistrationErrorResponse)

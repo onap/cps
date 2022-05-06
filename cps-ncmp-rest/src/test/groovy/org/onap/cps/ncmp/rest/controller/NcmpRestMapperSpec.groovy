@@ -28,9 +28,9 @@ import org.onap.cps.ncmp.rest.model.RestModuleReference
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
-class NcmpRestInputMapperSpec extends Specification {
+class NcmpRestMapperSpec extends Specification {
 
-    def objectUnderTest = Mappers.getMapper(NcmpRestInputMapper.class)
+    def objectUnderTest = Mappers.getMapper(NcmpRestMapper.class)
 
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'

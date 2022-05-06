@@ -1,7 +1,7 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modification Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
-import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
+import org.onap.cps.ncmp.rest.controller.NcmpRestMapper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -64,7 +64,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     JsonObjectMapper jsonObjectMapper = Stub()
 
     @SpringBean
-    NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
+    NcmpRestMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestMapper)
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp

@@ -122,6 +122,14 @@ public interface NetworkCmProxyDataService {
     NcmpServiceCmHandle getNcmpServiceCmHandle(String cmHandleId);
 
     /**
+     * Query cm handle public properties by cm handle's name.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return a collection of cm handle details.
+     */
+    NcmpServiceCmHandle getNcmpServiceCmHandlePublicProperties(String cmHandleId);
+
+    /**
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryApiParameters the cm handle query parameters

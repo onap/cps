@@ -194,6 +194,24 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
+     * Retrieve cm handle public properties for a given cm handle.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return cm handle details
+     */
+    @Override
+    public NcmpServiceCmHandle getNcmpServiceCmHandlePublicProperties(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        final YangModelCmHandle yangModelCmHandle =
+            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
+        ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
+        setPublicProperties(publicProperties, ncmpServiceCmHandle);
+        return ncmpServiceCmHandle;
+    }
+
+    /**
      * THis method registers a cm handle and initiates modules sync.
      *
      * @param dmiPluginRegistration dmi plugin registration information.
