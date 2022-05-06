@@ -137,3 +137,11 @@ dmi:
         password: ${DMI_PASSWORD}
     api:
         base-path: dmi
+
+timers:
+    advised-modules-sync:
+        sleep-time: 30000
+    data-sync:
+        sleep-time: 30000
+    retry-mechanism:
+        sleep-time: 30000

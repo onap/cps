@@ -33,17 +33,17 @@ CPS Log pattern
 .. code-block:: java
 
    <pattern>
-	   {
-	     "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
-	     "severity": "%level",   // DEBUG
-	     "service": "${springAppName}",  // cps-application
-	     "trace": "${TraceId}", // e17da1571e518c59
-	     "span": "${SpanId}", // e17da1571e518c59
-	     "pid": "${PID}", //11128
-	     "thread": "%thread", //tp1901272535-29
-	     "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
-	     "rest": "%message" // Execution time ...
-	   }
+       {
+         "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+         "severity": "%level",   // DEBUG
+         "service": "${springAppName}",  // cps-application
+         "trace": "${TraceId}", // e17da1571e518c59
+         "span": "${SpanId}", // e17da1571e518c59
+         "pid": "${PID}", //11128
+         "thread": "%thread", //tp1901272535-29
+         "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+         "rest": "%message" // Execution time ...
+       }
    </pattern>
 
 Change logging level
@@ -207,3 +207,25 @@ The following characters along with spaces are no longer valid for naming of the
 .. code::
 
     !"#$%&'()*+,./\:;<=>?@[]^`{|}~
+
+Cm Handle State Transitions Module Sync
+----------------------------------------
+
+As part of the Kohn 4.0.0 release, CPS has added cm handle states. Each state has a subsequent transition state:
+
+.. image:: images/state-transitions.JPG
+  :width: 700
+  :alt: State Transition Diagram
+
+As part of this feature, there is a module sync process which will initiate the state transitions for a cm handle.
+
+The schedule for when this process will run is configurable within CPS.
+
+.. note::
+    The CPS Service will have to be restarted each time a change is made to this schedule.
+
+Currently, the schedule is set to wake after the time listed below passes for each of the following processes:
+
+    - Module Sync - 30 seconds(provisional)
+    - Data Sync - 30 seconds(provisional)
+    - Retry Mechanism - 30 seconds(provisional)
