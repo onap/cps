@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "33bfd8d7_751d12e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-05-09T17:12:55Z",
+      "side": 1,
+      "message": "That is reason for making it singleton but that does not mean that the state belongs to class. I think it should be discussed more because it cause difficult to debug issues later on.",
+      "parentUuid": "bbe5bd11_28b9e3bd",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 93
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92247300_d3d48aee",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -93,6 +117,30 @@
       "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63b18a32_475bc9b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-05-09T17:12:55Z",
+      "side": 1,
+      "message": "It is faulty functionality and can lead to inconsistent state in DB. If it has already discussed and has been agreed in handling in the future story or sub task then can you please share jira link in the comment.",
+      "parentUuid": "1a96e1a8_9454d813",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
