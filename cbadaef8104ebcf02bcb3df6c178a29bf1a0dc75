@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8957db9a_86721bab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "747b99af_48a8d018",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2aa23aef_51e9a1ad",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I will implement the exception to be thrown for locked, is there any specific exception which comes to mind which should be thrown here?",
       "parentUuid": "7af8aee6_b363e22e",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99894e57_6edd9f23",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Have removed lock from this commit, will address as part of the next commit.",
+      "parentUuid": "56b42ae6_e58d3dc6",
       "range": {
         "startLine": 79,
         "startChar": 8,
@@ -167,6 +215,53 @@
     },
     {
       "key": {
+        "uuid": "346b2d3d_56ba218e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Have renamed to Ready",
+      "parentUuid": "f2b7e266_5bef85d4",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 43
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42a998b2_4848ee8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Have removed and will commit as part of a separate commit.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c7f49961_8cd9b590",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 2
@@ -187,6 +282,30 @@
       "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e503d1d_32e60519",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f49961_8cd9b590",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -213,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "48215cc6_c2985440",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a88fa67_56f2aa90",
+      "range": {
+        "startLine": 45,
+        "startChar": 26,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b74b7b9_0787170f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 2
@@ -224,6 +367,30 @@
       "writtenOn": "2022-05-07T20:31:37Z",
       "side": 1,
       "message": "Do we expect Model sync and status-update change to happen in a transaction? We are missing transaction per cm-handle.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 0
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad98b26d_7ccf4fed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T15:49:10Z",
+      "side": 1,
+      "message": "Hello Renu, If I understand your query correctly, I think this will be handled as part of the following story, where we are planning on using distributed cache to store in memory each Cm-Handle which is being worked on by a Watchdog process.\n\nhttps://jira.onap.org/browse/CPS-1015",
+      "parentUuid": "2b74b7b9_0787170f",
       "range": {
         "startLine": 47,
         "startChar": 12,
