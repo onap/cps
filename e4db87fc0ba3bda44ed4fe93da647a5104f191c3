@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbe5bd11_28b9e3bd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-09T12:34:48Z",
+      "side": 1,
+      "message": "it was made static as the sessionFactory is meant to be be used to open multiple sessions by the client",
+      "parentUuid": "ff468866_f8af235f",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 93
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92247300_d3d48aee",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a96e1a8_9454d813",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-09T12:34:48Z",
+      "side": 1,
+      "message": "as said before rollback is out of scope for this user story so far and can be added as an improvement for future",
+      "parentUuid": "92247300_d3d48aee",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

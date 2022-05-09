@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2594f867_61b01d83",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-09T12:34:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09523418_b67e9ed6",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "4bb4a80ada0103b314e2150920a31ee22f29186a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4214b47f_727ee0fc",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "72b2b207_c261b27a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-09T12:34:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4214b47f_727ee0fc",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "4bb4a80ada0103b314e2150920a31ee22f29186a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6091243_8765fbf0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "4bb4a80ada0103b314e2150920a31ee22f29186a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28d907bb_16e379a7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-09T12:34:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6091243_8765fbf0",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 27
+      },
+      "revId": "4bb4a80ada0103b314e2150920a31ee22f29186a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
