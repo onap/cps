@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91aa09_84326343",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-09T13:23:35Z",
+      "side": 1,
+      "message": "all small as used in other places",
+      "range": {
+        "startLine": 252,
+        "startChar": 62,
+        "endLine": 252,
+        "endChar": 66
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0f09019_3de4728d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-09T13:23:35Z",
+      "side": 1,
+      "message": "getCmHandlePublicPropertiesByID ?",
+      "range": {
+        "startLine": 130,
+        "startChar": 24,
+        "endLine": 130,
+        "endChar": 62
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5a7cd66_869010f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-09T13:23:35Z",
+      "side": 1,
+      "message": "why are we using ncmpService with the method name?",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 69
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21c629d_7378b77d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-09T13:23:35Z",
+      "side": 1,
+      "message": "suggest to use smaller case for all the values used in this test .. to be in sync with other tests",
+      "range": {
+        "startLine": 310,
+        "startChar": 74,
+        "endLine": 310,
+        "endChar": 90
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
