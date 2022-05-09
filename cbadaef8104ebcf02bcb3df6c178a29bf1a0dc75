@@ -447,6 +447,23 @@
       "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9304fba_4a4fbbc8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/CmHandleStateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-09T16:00:45Z",
+      "side": 1,
+      "message": "NB: tests could be combined with table, Locked will always go to locked, Delete will always go to deleting so just need table for original state",
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
