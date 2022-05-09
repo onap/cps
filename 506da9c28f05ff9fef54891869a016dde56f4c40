@@ -465,6 +465,24 @@
     },
     {
       "key": {
+        "uuid": "fa6df81a_9d60bce6",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "3a873145_3d1a5c96",
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd214870_ce56880a",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/async/CpsAsyncRequestResponseEventConsumer.java",
         "patchSetId": 22
@@ -841,6 +859,30 @@
     },
     {
       "key": {
+        "uuid": "8f3bdb29_b4f8c48a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "e0d38767_5ef60d2a",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 50
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50e68f5b_0d1493d0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
         "patchSetId": 22
@@ -887,6 +929,30 @@
     },
     {
       "key": {
+        "uuid": "10c306db_9f75af7c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Changed to mock",
+      "parentUuid": "cf506c53_5752b191",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 37
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70b9da90_ea279b5b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
         "patchSetId": 22
@@ -907,6 +973,30 @@
       "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e3bb873_afd6b488",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "70b9da90_ea279b5b",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -933,6 +1023,30 @@
     },
     {
       "key": {
+        "uuid": "ed7d4a66_ea01d9b2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d6961beb_f0ef9056",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1783f26a_923de3dc",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
         "patchSetId": 22
@@ -956,6 +1070,30 @@
     },
     {
       "key": {
+        "uuid": "2689026d_ee3d0975",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1783f26a_923de3dc",
+      "range": {
+        "startLine": 108,
+        "startChar": 7,
+        "endLine": 108,
+        "endChar": 19
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a68bfb8_4bd73d26",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
         "patchSetId": 22
@@ -976,6 +1114,30 @@
       "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cf2f09b_df476ac6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/updatedevents/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-09T14:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a68bfb8_4bd73d26",
+      "range": {
+        "startLine": 110,
+        "startChar": 55,
+        "endLine": 110,
+        "endChar": 56
+      },
+      "revId": "506da9c28f05ff9fef54891869a016dde56f4c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
