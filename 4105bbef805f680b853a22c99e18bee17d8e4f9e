@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb95c6fe_dc028d5c",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T11:52:07Z",
+      "side": 1,
+      "message": "Have documented the time as part of the documentation.",
+      "parentUuid": "2cfda32a_7848a3c1",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 25
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9778ff0_ac5f308f",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8d60d7e_c681477f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T11:52:07Z",
+      "side": 1,
+      "message": "Have removed these two properties. Which can be added at a later time.",
+      "parentUuid": "b9778ff0_ac5f308f",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 25
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b4641224_46230920",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T11:52:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d0e0360_7919d57c",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 47
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03b7b243_7d141345",
         "filename": "docs/images/state-transitions.JPG",
         "patchSetId": 3
@@ -85,6 +157,24 @@
       "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8284a0de_fbfc50f8",
+        "filename": "docs/images/state-transitions.JPG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T11:52:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03b7b243_7d141345",
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
