@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "56b42ae6_e58d3dc6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T12:33:09Z",
+      "side": 1,
+      "message": "I will implement the exception to be thrown for locked, is there any specific exception which comes to mind which should be thrown here?",
+      "parentUuid": "7af8aee6_b363e22e",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0eb9413_eaeb123d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
         "patchSetId": 2
@@ -106,6 +130,30 @@
       "writtenOn": "2022-05-09T09:16:41Z",
       "side": 1,
       "message": "suggestion: maybe we should NOT support nextState() since it is ambigous...",
+      "parentUuid": "d0eb9413_eaeb123d",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 43
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b7e266_5bef85d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T12:33:09Z",
+      "side": 1,
+      "message": "In this case Renu, lock and delete are actions to lock and delete the cm handle.\n\nIn the case of lock, it is if a failure occurs during the module sync process.\n\nWhereas next state is used when there is no other possible state to transition to as part of the sync process.\n\nBut this can of course be changed if it is too ambiguous",
       "parentUuid": "d0eb9413_eaeb123d",
       "range": {
         "startLine": 90,
@@ -199,6 +247,30 @@
       "writtenOn": "2022-05-07T20:31:37Z",
       "side": 1,
       "message": "I am not sure but I think it should be \u0027the\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 52,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aff0d7e_242eee80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-09T12:33:09Z",
+      "side": 1,
+      "message": "\u0027The\u0027 would normally be used when referring to an object, as opposed to the state I would presume",
+      "parentUuid": "5286b596_92b3c361",
       "range": {
         "startLine": 54,
         "startChar": 52,
