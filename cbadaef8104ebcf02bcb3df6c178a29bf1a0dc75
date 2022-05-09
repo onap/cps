@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7af8aee6_b363e22e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-09T09:16:41Z",
+      "side": 1,
+      "message": "good questions. mot sure if we should handle them now or when we start using the specific states. my gut feeling is to handle them per use-case. delete for now is not a yused state yet.\nnot sure if lock is? Lock on a cm-handle that is ALREADY locked should NOT be allowed. that maybe is part of this user story...",
+      "parentUuid": "2aa23aef_51e9a1ad",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0eb9413_eaeb123d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2022-05-07T20:31:37Z",
       "side": 1,
       "message": "Inconsistent method names. In the case of nextState, it can mean what is the next state. But if the names are verb like lock or delete, then it means more like an action to lock the cmhandel rather than asking for lock State?",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 43
+      },
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd74d30_d53fe2fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-09T09:16:41Z",
+      "side": 1,
+      "message": "suggestion: maybe we should NOT support nextState() since it is ambigous...",
+      "parentUuid": "d0eb9413_eaeb123d",
       "range": {
         "startLine": 90,
         "startChar": 4,
