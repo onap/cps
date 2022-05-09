@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "092983ce_a6a53d82",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-05-09T17:18:07Z",
+      "side": 1,
+      "message": "Good configuration variables name should provide enough information without looking at docs. We can either add a comment or change the variable name. In Java also, it is recommend to use TimeUtil.SECONDS.sleep instead of Thread.sleep because of better readability even though it is documented.",
+      "parentUuid": "fb95c6fe_dc028d5c",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 25
+      },
+      "revId": "4105bbef805f680b853a22c99e18bee17d8e4f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9778ff0_ac5f308f",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 3
