@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a575eee4_9ed63ea3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-10T21:07:43Z",
+      "side": 1,
+      "message": "Might be good to apply the extract method refactoring for lines 68 to 76 below.\n\nTo avoid any code duplication with `closeSession` method we might want to implement \n  public void closeSession(final String sessionId, boolean commit)\n\nthat is responsible to close the specified session by either committing or rollbacking depending on the specified indicator.",
+      "revId": "669e32552cac4de8a6b29c3e71d5342302d2402a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
