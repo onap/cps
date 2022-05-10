@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "a7098e7d_29719f6b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T09:39:00Z",
+      "side": 1,
+      "message": "Was following the convention of the method above, included to distinguish between NcmpServiceCmHandle and a YangModelCmHandle. Will bring up with team in daily",
+      "parentUuid": "f272aa72_8475a75f",
+      "range": {
+        "startLine": 253,
+        "startChar": 38,
+        "endLine": 253,
+        "endChar": 76
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b91aa09_84326343",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "c1fd7482_62d4621a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T09:39:00Z",
+      "side": 1,
+      "message": "Was following the convention of the method above, included to distinguish between NcmpServiceCmHandle and a YangModelCmHandle. Will bring up with team in daily",
+      "parentUuid": "e0f09019_3de4728d",
+      "range": {
+        "startLine": 130,
+        "startChar": 24,
+        "endLine": 130,
+        "endChar": 62
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5a7cd66_869010f1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
@@ -105,6 +153,30 @@
       "writtenOn": "2022-05-09T13:23:35Z",
       "side": 1,
       "message": "why are we using ncmpService with the method name?",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 69
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb8c8b52_91f85631",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T09:39:00Z",
+      "side": 1,
+      "message": "Was following the convention of the method above, included to distinguish between NcmpServiceCmHandle and a YangModelCmHandle. Will bring up with team in daily",
+      "parentUuid": "a5a7cd66_869010f1",
       "range": {
         "startLine": 203,
         "startChar": 31,
