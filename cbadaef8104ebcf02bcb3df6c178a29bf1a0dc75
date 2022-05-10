@@ -464,6 +464,24 @@
       "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a64de3b0_c0e565b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/CmHandleStateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-10T09:46:26Z",
+      "side": 1,
+      "message": "Have removed most of the tests from the latest commit, there are now just two tests. Testing now tests if ADVISED state will go to READY, and READY state will return READY. Will add back in scenarios when there is more than one possible scenario for each state :)",
+      "parentUuid": "c9304fba_4a4fbbc8",
+      "revId": "cbadaef8104ebcf02bcb3df6c178a29bf1a0dc75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
