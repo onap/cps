@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d90904e5_fea28111",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-10T10:29:09Z",
+      "side": 1,
+      "message": "missing cmhandle state on parameters",
+      "range": {
+        "startLine": 78,
+        "startChar": 5,
+        "endLine": 78,
+        "endChar": 7
+      },
+      "revId": "c47c3bdbb5103c1e7c33e376074b8fa80e1cef15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf249165_49f9dd92",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/CmHandleStateSpec.groovy",
         "patchSetId": 4
