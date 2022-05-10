@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "e18a2ad3_da54f55e",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "we discussed with team on site and agreed on the term \u0027loadData\u0027",
+      "range": {
+        "startLine": 46,
+        "startChar": 36,
+        "endLine": 46,
+        "endChar": 43
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "543f46b7_38b3ef2e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "should be 14 (convention, see previous sets)",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 14
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866b4fc8_135c91d5",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "NB: DELETE FROM",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d84eb22_4ccf344b",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "14.1 etc.",
+      "range": {
+        "startLine": 34,
+        "startChar": 10,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2096c780_5c90298c",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "add missing columns",
+      "range": {
+        "startLine": 45,
+        "startChar": 10,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa6d3a02_ac6cf3e0",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
         "patchSetId": 2
@@ -48,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "fac21811_50e1e07e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "Datastores",
+      "parentUuid": "49483540_b189e716",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72127217_59b4c449",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
         "patchSetId": 2
@@ -59,6 +198,30 @@
       "writtenOn": "2022-05-10T12:32:26Z",
       "side": 1,
       "message": "data-sync-state?",
+      "range": {
+        "startLine": 117,
+        "startChar": 18,
+        "endLine": 117,
+        "endChar": 29
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e03831f_ba5abc16",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:46:47Z",
+      "side": 1,
+      "message": "datastores",
+      "parentUuid": "72127217_59b4c449",
       "range": {
         "startLine": 117,
         "startChar": 18,
