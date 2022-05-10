@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "b1a9d8f9_b44c1625",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-10T15:03:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "33bfd8d7_751d12e6",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 93
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92247300_d3d48aee",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
         "patchSetId": 8
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Would also make sense to me. Any issue for that ?",
       "parentUuid": "3076c68c_56331e5c",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "940673c9_31cd8381",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-10T15:03:29Z",
+      "side": 1,
+      "message": "yes makes sense,i will add this on for next patch",
+      "parentUuid": "f2a9f70b_8c05e058",
       "range": {
         "startLine": 70,
         "startChar": 12,
