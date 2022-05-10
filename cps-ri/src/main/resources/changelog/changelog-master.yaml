@@ -42,3 +42,5 @@ databaseChangeLog:
       file: changelog/db/changes/12-delete-all-previous-dmi-registry-schema-set.yaml
   - include:
       file: changelog/db/changes/13-insert-dmi-registry-2022-02-10-schema-set.yaml
+  - include:
+      file: changelog/db/changes/14-insert-dmi-registry-2022-05-10-schema-set.yaml

@@ -1,0 +1,123 @@
+module dmi-registry {
+
+  yang-version 1.1;
+
+  namespace "org:onap:cps:ncmp";
+
+  prefix dmi-reg;
+
+  contact "toine.siebelink@est.tech";
+
+  revision "2022-05-10" {
+    description
+    "Added DataSyncEnabled, SyncState with State, LastSyncTime, DataStoreSyncState with Operational and Running syncstate";
+  }
+
+  revision "2022-02-10" {
+    description
+    "Added State, LockReason, LockReasonDetails to aid with cmHandle sync and timestamp to aid with retry/timeout scenarios";
+  }
+
+  revision "2021-12-13" {
+    description
+    "Added new list of public additional properties for a Cm-Handle which are exposed to clients of the NCMP interface";
+  }
+
+  revision "2021-10-20" {
+    description
+    "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
+  }
+
+  revision "2021-05-20" {
+    description
+    "Initial Version";
+  }
+
+  grouping LockReason {
+    leaf reason {
+      type string;
+    }
+    leaf details {
+      type string;
+    }
+  }
+
+  grouping SyncState {
+   leaf sync-state {
+     type string;
+   }
+   leaf last-sync-time {
+     type string;
+   }
+  }
+
+  grouping DataStores {
+    container operational {
+      uses SyncState;
+    }
+    container running {
+      uses SyncState;
+    }
+  }
+
+  container dmi-registry {
+    list cm-handles {
+      key "id";
+      leaf id {
+        type string;
+      }
+      leaf dmi-service-name {
+        type string;
+      }
+      leaf dmi-data-service-name {
+        type string;
+      }
+      leaf dmi-model-service-name {
+        type string;
+      }
+
+      list additional-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+
+      list public-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+
+      container state {
+        leaf cm-handle-state {
+          type string;
+        }
+
+        container lock-reason {
+          uses LockReason;
+        }
+
+        leaf last-update-time {
+          type string;
+        }
+
+        leaf data-sync-enabled {
+          type boolean;
+          default "false";
+        }
+
+        container data-stores {
+          uses DataStores;
+        }
+      }
+    }
+  }
+}
