@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b67a05e_e48cf537",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 0,
+      "message": "see comment on previous schema",
+      "revId": "e4f3b392b383910398a7fe8c9315d06e9c81e930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23d81024_3911e366",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/async/NcmpAsyncRequestResponseEventUtil.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 0,
+      "message": "SOurabh will refactor this class to use MapStruct for mapping",
+      "revId": "e4f3b392b383910398a7fe8c9315d06e9c81e930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

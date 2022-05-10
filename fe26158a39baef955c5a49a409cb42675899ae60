@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab35815b_9cccfdba",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 27
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "ncmp",
+      "range": {
+        "startLine": 74,
+        "startChar": 46,
+        "endLine": 74,
+        "endChar": 54
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2db00375_2c40dc61",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 27
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "NCMP",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 27
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "734a8b53_5e7454cb",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 27
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "what does this do, is it really needed?",
+      "range": {
+        "startLine": 81,
+        "startChar": 46,
+        "endLine": 81,
+        "endChar": 51
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e02bffc3_5baf0092",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "use uuid (from your demo)",
+      "range": {
+        "startLine": 11,
+        "startChar": 86,
+        "endLine": 11,
+        "endChar": 91
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396ca77f_20c629c3",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "agreed in teamm meeting NOT to include example",
+      "range": {
+        "startLine": 11,
+        "startChar": 80,
+        "endLine": 11,
+        "endChar": 91
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "738d1c5c_73b289aa",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "as passed on by NCMP",
+      "range": {
+        "startLine": 15,
+        "startChar": 63,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c788bb6b_9cf0c69e",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "use uuid (from your demo)",
+      "range": {
+        "startLine": 15,
+        "startChar": 72,
+        "endLine": 15,
+        "endChar": 85
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aff1ece_42427b47",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "e.g.",
+      "range": {
+        "startLine": 19,
+        "startChar": 102,
+        "endLine": 19,
+        "endChar": 104
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df741999_c27e05d7",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "dmi",
+      "range": {
+        "startLine": 23,
+        "startChar": 66,
+        "endLine": 23,
+        "endChar": 70
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55ce8856_9799b98e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "Prefer:\n!(topicParamInQuery \u003d\u003d null || topicParamInQuery.isBlank());",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 75
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26d89335_d06d4433",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "use method parameter like taskTimeOutInMilliSeconds",
+      "range": {
+        "startLine": 44,
+        "startChar": 23,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67a0ba5e_2ec66c1f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "extract out handleTaskCompletion() method",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c13f2d6_07602cbf",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "spiedCpsTaskExecutor",
+      "range": {
+        "startLine": 73,
+        "startChar": 24,
+        "endLine": 73,
+        "endChar": 40
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eb23c20_a4238bf2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "stubbed...",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 71,
+        "endChar": 40
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e421e9c7_650e6355",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "I think we already removed this :-)",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b4f5b5b_648bf83a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "deprecated constructor, please supply image name",
+      "range": {
+        "startLine": 54,
+        "startChar": 32,
+        "endLine": 54,
+        "endChar": 52
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "688e5735_23169539",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "forward",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84cb6c96_18ab6d25",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "\u0027topic-for-test\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 32,
+        "endLine": 91,
+        "endChar": 45
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5926fb_4e3b964f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "this should be part of given ie.\n\u0027and\u0027 the Consumer has a subscription\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 63
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd7bb11_d0fd76e8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "need to discuss this also ensure a max timeout",
+      "range": {
+        "startLine": 92,
+        "startChar": 35,
+        "endLine": 92,
+        "endChar": 63
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59971e1d_05481e17",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "us emore label when ...  and  ...  and  ....",
+      "range": {
+        "startLine": 92,
+        "startChar": 13,
+        "endLine": 92,
+        "endChar": 63
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18eb78a1_81b03b93",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T12:59:17Z",
+      "side": 1,
+      "message": "\u0027topic-for-test\u0027",
+      "range": {
+        "startLine": 116,
+        "startChar": 28,
+        "endLine": 116,
+        "endChar": 41
+      },
+      "revId": "fe26158a39baef955c5a49a409cb42675899ae60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
