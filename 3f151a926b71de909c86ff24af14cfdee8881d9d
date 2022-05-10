@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0194081d_ba2c4f01",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-insert-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T10:12:37Z",
+      "side": 1,
+      "message": "Missing changesets to delete previous dmi-registry, see changesets 12.4 and 12.5, these should be the first two changesets for this changelog altered to new file names etc",
+      "revId": "3f151a926b71de909c86ff24af14cfdee8881d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0c4691a_1ac70bfe",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T10:12:37Z",
+      "side": 1,
+      "message": "Should be data-store singular I think",
+      "range": {
+        "startLine": 117,
+        "startChar": 18,
+        "endLine": 117,
+        "endChar": 29
+      },
+      "revId": "3f151a926b71de909c86ff24af14cfdee8881d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f0b279d_a86605cd",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T10:12:37Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 118,
+        "startChar": 15,
+        "endLine": 118,
+        "endChar": 25
+      },
+      "revId": "3f151a926b71de909c86ff24af14cfdee8881d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
