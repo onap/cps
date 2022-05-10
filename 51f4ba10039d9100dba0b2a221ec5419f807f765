@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79f7d8dc_3f4595b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-10T11:36:08Z",
+      "side": 1,
+      "message": "provide default value if this property is not configured.",
+      "revId": "51f4ba10039d9100dba0b2a221ec5419f807f765",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
