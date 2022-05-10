@@ -165,6 +165,30 @@
       "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2a9f70b_8c05e058",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-05-10T14:48:22Z",
+      "side": 1,
+      "message": "Would also make sense to me. Any issue for that ?",
+      "parentUuid": "3076c68c_56331e5c",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
