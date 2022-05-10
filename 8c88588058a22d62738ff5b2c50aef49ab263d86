@@ -95,6 +95,29 @@
     },
     {
       "key": {
+        "uuid": "50870d30_45b76318",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-10T11:16:45Z",
+      "side": 1,
+      "message": "Missing quotation marks",
+      "range": {
+        "startLine": 255,
+        "startChar": 34,
+        "endLine": 255,
+        "endChar": 38
+      },
+      "revId": "8c88588058a22d62738ff5b2c50aef49ab263d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0f09019_3de4728d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 1
