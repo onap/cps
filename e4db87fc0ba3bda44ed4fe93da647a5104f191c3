@@ -141,6 +141,30 @@
       "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3076c68c_56331e5c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-10T14:47:31Z",
+      "side": 1,
+      "message": "Agree with Renu on tis. Instead of closeSession, we can just use             session.getTransaction().rollback();",
+      "parentUuid": "63b18a32_475bc9b0",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "e4db87fc0ba3bda44ed4fe93da647a5104f191c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
