@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cc30054a_68699d0e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-insert-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-10T11:07:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0194081d_ba2c4f01",
+      "revId": "3f151a926b71de909c86ff24af14cfdee8881d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0c4691a_1ac70bfe",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
         "patchSetId": 1
