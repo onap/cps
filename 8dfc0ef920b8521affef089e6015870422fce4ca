@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "098e1fa0_d5cf1aa7",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:48:09Z",
+      "side": 1,
+      "message": "maybe in future somewhere else, check with Tony.\nBut not here and not aas part of thsi User Story",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 135
+      },
+      "revId": "8dfc0ef920b8521affef089e6015870422fce4ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "368d3e99_6e79eae9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-10T14:48:09Z",
+      "side": 1,
+      "message": "30000",
+      "range": {
+        "startLine": 295,
+        "startChar": 150,
+        "endLine": 295,
+        "endChar": 152
+      },
+      "revId": "8dfc0ef920b8521affef089e6015870422fce4ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
