@@ -422,6 +422,7 @@
                         <argument>yangResourceCsvGenerator.py</argument>
                         <argument>dmi-registry@2021-12-13</argument>
                         <argument>dmi-registry@2022-02-10</argument>
+                        <argument>dmi-registry@2022-05-10</argument>
                     </arguments>
                 </configuration>
             </plugin>
