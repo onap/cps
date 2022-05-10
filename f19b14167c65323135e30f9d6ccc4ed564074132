@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "aa6d3a02_ac6cf3e0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-replace-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-10T14:40:42Z",
+      "side": 1,
+      "message": "Needs module_name and revision columns as below",
+      "range": {
+        "startLine": 45,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "f19b14167c65323135e30f9d6ccc4ed564074132",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "49483540_b189e716",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/data/yang-models/dmi-registry@2022-05-10.yang",
         "patchSetId": 2
